@@ -1,0 +1,931 @@
+/*
+Author: [Sacchin Ranganathan]
+Created: [07-08-2015]
+Description: [stylesheet for members_profile.html]
+Associated Files: [members_profile.html from the templates/module/members_profile folder]
+*/
+
+@import (reference)"../modules.less";
+
+.memb_prof{
+
+  //container for full module
+  &-fullsize{
+    background-color:#000;
+    width: 1000px;
+    height: 2091px;
+  }
+
+  //container for lest side
+  &-leftside{
+    display: inline;
+    background-color:#989898;
+    width: 680px;
+    height: 2043px;
+  }
+
+  //container for right side
+  &-rightside{
+    float: right;
+    display: inline;
+    background-color:#404040 ;
+    background-image: url('/drk-linen.png');
+    width: 320px;
+    height: 2090px;
+  }
+
+  //widget-1 area
+  &-widget1-area{
+    border-width: 1px;
+    border-color:  #ccc;
+    border-style: solid;
+    background-color:  #e9e9e9;
+    width: 298px;
+    height: 328px;
+    margin: 10px 10px 10px 10px;
+  }
+
+  //advertisement area
+  &-add-area{
+    border-width: 1px;
+    border-color:  #ccc;
+    border-style: solid;
+    background-color:  #272727;
+    width: 298px;
+    height: 248px;
+    margin: 25px 0px 0px 10px;
+  }
+
+  //widget-2 area
+  &-widget2-area{
+    border-width: 1px;
+    border-color:  #ccc;
+    border-style: solid;
+    background-color: #e9e9e9;
+    width: 298px;
+    height: 328px;
+    margin: 0px 0px 0px 10px;
+  }
+
+  //presented by text
+  &-presented-by{
+    float: left;
+    font-family: Lato;
+    color:  #fff;
+    font-size: 10px; /* Approximation due to font substitution */
+    font-weight: 500;
+    text-transform: uppercase;
+    margin: 0px 0px 0px 20px;
+  }
+
+  //start of left side 1st container
+  &-leftsidetop{
+    background-color:#fff;
+    width: 680px;
+    height: 145px;
+  }
+
+  &-headerimg {
+    border-radius: 50%;
+    border-width: 2px;
+    border-color: #ccc;
+    border-style: solid;
+    background-color: #fff;
+    width: 96px;
+    height: 96px;
+    position: relative;
+    top: 20px;
+    left: 20px;
+  }
+
+  &-headericon {
+    background-color: #3098ff;
+    width: 35px;
+    height: 35px;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 6px 2px 0px 0px;
+    border-radius: 50%;
+    float: left;
+    color: #fff;
+  }
+
+  &-headertext{
+    width: 225px;
+    height: 95px;
+    position: relative;
+    left: 140px;
+    text-align: left;
+    bottom: 80px;
+  }
+
+  &-timestamp{
+    float: left;
+    font-family: HelveticaNeue;
+    color:  #959595;
+    font-size: 10px; /* Approximation due to font substitution */
+    font-weight: 500;
+  }
+
+  &-location{
+    float: left;
+    color:  #000;
+    font-size: 12px; /* Approximation due to font substitution */
+    font-weight: 400;
+    line-height: 26px; /* Approximation due to font substitution */
+  }
+
+  &-members{
+    float: left;
+    color:  #000;
+    font-size: 22px; /* Approximation due to font substitution */
+    font-weight: 700;
+    line-height: 26px; /* Approximation due to font substitution */
+  }
+
+  &-area{
+    float: left;
+    color:  #000000;
+    font-size: 22px; /* Approximation due to font substitution */
+    font-weight: 300;
+    line-height: 26px; /* Approximation due to font substitution */
+  }
+  //end of left side 1st container
+
+  //start of left side 2st container
+  &-left2imagebox{
+    width:680px;
+    height:360px;
+    background-color: #ccc;
+  }
+
+  &-left2imagebox-header{
+    width: 443px;
+    height: 35px;
+    background-color: rgba(0, 0, 0, 0.85);
+  }
+
+  &-left2imagebox-txt{
+    float: left;
+    position: relative;
+    bottom: 43px;
+    margin-left: 10px;
+    line-height: 18px;
+    padding: 4px;
+    font-family: HelveticaNeue;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    border-right: 1px solid #363636;
+    padding-right: 15px;
+  }
+
+  &-symbols {
+    float: left;
+    color: #fff;
+    font-weight: 400;
+    font-size: 14px;
+    padding: 14px 13px 0px 13px;
+    position: relative;
+    bottom: 50px;
+  }
+
+  &-symbol-text {
+    float: left;
+    color: #fff;
+    font-weight: 300;
+    font-size: 14px;
+    padding: 11px 26px 0px 0px;
+    position: relative;
+    bottom: 50px;
+  }
+
+  //left arrow for navigatiion
+  &-leftarrow {
+    float: right;
+    width: 14px;
+    height: 23px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 40px;
+    position: relative;
+    top: 80px;
+    right: 655px;
+  }
+
+  &-leftarrow:hover{
+    color: #3098ff;
+  }
+
+  //right arrow for navigation
+  &-rightarrow {
+    float: right;
+    width: 14px;
+    height: 23px;
+    color: #fff;
+    font-weight: 400;
+    margin-top: 80px;
+    font-size: 40px;
+  }
+
+  &-rightarrow:hover{
+    color: #3098ff;
+  }
+
+  //bottom information of 2nd container
+  &-left2imagebox-bottom {
+    height: 76px;
+    width: 680px;
+    position: relative;
+    top: 135px;
+    padding: 12px;
+    padding-left: 20px;
+    background-color: rgba(0, 0, 0, 0.75);
+    float: left;
+  }
+
+  &-agentname {
+    float: left;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 24px;
+    font-family: HelveticaNeue;
+  }
+
+  &-inquiries {
+    float: left;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 24px;
+    font-family: HelveticaNeue;
+    position: relative;
+    bottom: 15px;
+    padding-right: 5px;
+  }
+
+  &-number {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+    font-family: HelveticaNeue;
+    color: #fff;
+    float: left;
+    position: relative;
+    bottom: 15px;
+    padding-right: 5px;
+  }
+
+  //view profile button
+  &-borderbutton {
+    background: #3098ff;
+    width: 140px;
+    height: 35px;
+    border-radius: 7px;
+    color: #fff;
+    border: none;
+    float: right;
+    position: relative;
+    bottom: 30px;
+    right: 12px;
+  }
+
+  //view profile butten inside profile container
+  &-borderbutton1 {
+    background: #3098ff;
+    width: 140px;
+    height: 35px;
+    border-radius: 7px;
+    color: #fff;
+    border: none;
+    float: right;
+    position: relative;
+    bottom: -4px;
+    right: 4px;
+  }
+  //end of left side 2nd container
+
+  //start of 3rd container
+  &-sortby {
+    background-color: #fff;
+    width: 100%;
+    height: 151px;
+  }
+
+  &-sorttext {
+    float: left;
+    font-weight: 700;
+    padding: 8px 0 0 15px;
+  }
+
+  &-list {
+    float: left;
+    border: none;
+    padding: 8px 0 0 5px;
+  }
+
+  &-listboxarrow {
+    color: #3098ff;
+    font-size: 12px;
+    font-weight: 400;
+    float: left;
+    margin: 10px 0 0 3px;
+  }
+
+  //container for question
+  &-questioncontainer {
+    border-color: #ebebeb;
+    border-style: solid;
+    background-color: #fafafa;
+    width: 648px;
+    height: 98px;
+    margin: 10px 15px 14px 15px;
+    float: left;
+  }
+
+  //questionbox
+  &-questionbox {
+    height: 20px;
+    width: 100%;
+    color: #333;
+    background-color: #ebebeb;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  &-question {
+    font-size: 12px;
+    font-weight: 700;
+    float: left;
+  }
+
+  //close box placement
+  &-closebox {
+    font-size: 10px;
+    font-weight: 400;
+    float: right;
+    margin: 2px;
+  }
+
+  //content for what is in the page
+  &-contentbox {
+    float: left;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: left;
+    padding: 15px 0px 0px 20px;
+    position: relative;
+    bottom: 10px;
+  }
+  //end of 3rd container
+
+  //start of 4th container i.e the profile container
+  //1st profile container with backgrounf grey
+  &-container {
+    width: 100%;
+    height: 185px;
+    background-color: #ebebeb;
+    border-top: 1px solid #ccc;
+  }
+
+  //2nd profile container with background white
+  &-container1 {
+    width: 100%;
+    height: 185px;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+  }
+
+  //image circle
+  &-member-img {
+    width: 121px;
+    height: 121px;
+    border-radius: 50%;
+    border-width: 2px;
+    border-color: #acacac;
+    border-style: solid;
+    background-color: #ffffff;
+    margin: 20px 0px 0px 15px;
+  }
+
+  //counter circle
+  &-member-imgcounter {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border:2px solid #acacac;
+    background-color: #ffffff;
+    margin: -120px 0px 0px 20px;
+    text-align:center;
+    padding:.5em;
+  }
+
+  //right side informations stats here
+  &-infobox {
+    font-family: HelveticaNeue;
+    float: left;
+    position: relative;
+    bottom: 40px;
+    left: 170px;
+    width: 170px;
+    height:62px;
+    text-align: left;
+  }
+
+  &-loc {
+    font-family: HelveticaNeue;
+    color: #3098ff;
+    font-size: 10px;
+    font-weight: 400;
+    float: left;
+  }
+
+  &-loctext {
+    font-family: HelveticaNeue;
+    font-size: 10px;
+    font-weight: 300;
+    float: left;
+  }
+
+  &-membername {
+    font-family: HelveticaNeue;
+    font-size: 20px;
+    font-weight: 700;
+    float: left;
+    line-height: 26px;
+  }
+
+  &-inquiries1 {
+    font-family: HelveticaNeue;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 25px;
+    float: left;
+  }
+
+  &-value {
+    font-family: HelveticaNeue;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 25px;
+    float: left;
+  }
+
+  &-rightbox {
+    float: right;
+    position: relative;
+    left: -25px;
+    bottom: 40px;
+    width: 148px;
+    height:62px;
+    font-family: HelveticaNeue;
+    text-align: right;
+  }
+
+  &-save-home{
+    font-size: 10px; /* Approximation due to font substitution */
+    font-weight: 400;
+  }
+
+  &-save-home-number{
+    font-size: 20px; /* Approximation due to font substitution */
+    font-weight: 700;
+    line-height: 26px; /* Approximation due to font substitution */
+  }
+
+  &-time{
+    font-size: 12px; /* Approximation due to font substitution */
+    font-weight: 400;
+    line-height: 25px; /* Approximation due to font substitution */
+  }
+
+  &-infotextbox {
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #ebebeb;
+    border-style: solid;
+    background-color: #ffffff;
+    width: 485px;
+    height: 45px;
+    position: relative;
+    bottom: 30px;
+    left: 170px;
+    float: left;
+  }
+
+  &-member-infoque {
+    color: #000000;
+    font-size: 14px;
+    float:left;
+    font-weight: 400;
+    padding: 10px 0px 0px 20px;
+  }
+
+  //bottom icon tray comtainer
+  &-bottom-icons {
+    height: 35px;
+    width: 680px;
+    top: -17px;
+    position: relative;
+    float: left;
+  }
+
+  //icons positioning and properties
+  &-icon {
+    float: left;
+    color: #666666;
+    font-weight: 400;
+    font-size: 14px;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 10px;
+  }
+
+  //text positioning and properties
+  &-text {
+    float: left;
+    color: #666666;
+    font-weight: 300;
+    font-size: 14px;
+    padding: 2px;
+    padding-right: 3px;
+  }
+
+  &-feedbacktext {
+    float: right !important;
+    color: #666666;
+    font-weight: 300;
+    font-size: 14px;
+    padding: 2px;
+    padding-right: 15px;
+  }
+
+  &-feedback {
+    float: right !important;
+    color: #666666;
+    font-weight: 400;
+    font-size: 14px;
+    padding: 5px;
+    padding-right: 10px;
+  }
+
+  //listing and image of members container
+  &-place_hold{
+    width: 680px;
+    height: 185px;
+    position: relative;
+    background-color:  #fff;
+  }
+
+  //container for header
+  &-featuredtop {
+    background-color: rgba(0, 0, 0, 0.75);
+    width: 371px;
+    height: 35px;
+    position: relative;
+    z-index: 1;
+  }
+
+  //header text
+  &-featuredtext {
+    font-family: arial;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 18px;
+    position: relative;
+    top: -7px;
+    padding-left: 10px;
+    float: left;
+  }
+
+  //tile one properties
+  &-imagetile1 {
+    background-color: #f2f2f2;
+    background: -webkit-linear-gradient(90deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
+    background: -moz-linear-gradient(90deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
+    background: -o-linear-gradient(90deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
+    background: -ms-linear-gradient(90deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
+    background: linear-gradient(0deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
+    width: 169px;
+    height: 185px;
+    border-left:2px solid #fff;
+    position: absolute;
+    top: 0px;
+  }
+
+
+  //text line 1
+  &-tile1text1 {
+    font-family: HelveticaNeue;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 18px;
+    padding: 130px 0px 0px 10px;
+    float: left;
+  }
+
+  //text line 2
+  &-tile1text2 {
+    font-family: HelveticaNeue;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    padding: 0px 6px 0px 10px;
+    float: left;
+  }
+  //text line 3
+  &-tile1text3{
+    font-family: HelveticaNeue;
+    color:  #ffffff;
+    font-size: 14px; /* Approximation due to font substitution */
+    font-weight: 700;
+    line-height: 18px; /* Approximation due to font substitution */
+    float: left;
+  }
+
+  //tile two properties
+  &-imagetile2 {
+    background-color: #f2f2f2;
+    background: -webkit-linear-gradient(90deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
+    background: -moz-linear-gradient(90deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
+    background: -o-linear-gradient(90deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
+    background: -ms-linear-gradient(90deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
+    background: linear-gradient(0deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
+    width: 169px;
+    height: 185px;
+    position: absolute;
+    border-left:2px solid #fff;
+    left: 169px;
+    top: 0px;
+  }
+
+  //tile three properties
+  &-imagetile3 {
+    background-color: #f2f2f2;
+    background: -webkit-linear-gradient(90deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
+    background: -moz-linear-gradient(90deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
+    background: -o-linear-gradient(90deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
+    background: -ms-linear-gradient(90deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
+    background: linear-gradient(0deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
+    width: 169px;
+    height: 185px;
+    border-left:1px solid #fff;
+    position: absolute;
+    left: 339px;
+    top: 0px;
+  }
+
+  //tile four properties
+  &-imagetile4 {
+    background-color: #f2f2f2;
+    background: -webkit-linear-gradient(90deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
+    background: -moz-linear-gradient(90deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
+    background: -o-linear-gradient(90deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
+    background: -ms-linear-gradient(90deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
+    background: linear-gradient(0deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
+    width: 169px;
+    height: 185px;
+    position: absolute;
+    border-left:2px solid #fff;
+    left:509px;
+    top: 0px;
+  }
+
+  &-tilearrow {
+    position: absolute;
+    right: 15px;
+    top: -70px;
+  }
+
+  &-rightarrow {
+    float: right;
+    width: 14px;
+    height: 23px;
+    color: #ffffff;
+    font-weight: 400;
+    margin-top: 130px;
+    font-size: 40px;
+  }
+
+  //page selection container
+  &-pagescrollerbox {
+    background-color: #ffffff;
+    width: 680px;
+    height: 45px;
+    position: relative;
+  }
+
+  //left arrow
+  &-bottomleftarrow {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21px;
+    float: left;
+    position: absolute;
+    top: 11px;
+    left: 248px;
+  }
+
+  //corcles for the page numbers
+  &-circle1 {
+    border-radius: 50%;
+    border: 1px solid #dadada;
+    background-color: #fff;
+    width: 24px;
+    height: 24px;
+    float: left;
+    position: absolute;
+    left: 263px;
+    top: 10px;
+    text-align:center;
+  }
+
+  &-circle1:hover {
+    background-color: #3098ff;
+    color:#fff;
+  }
+
+  &-circle2 {
+    border-radius: 50%;
+    border: 1px solid #dadada;
+    background-color: #fff;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left: 293px;
+    top: 10px;
+    text-align:center;
+  }
+
+  &-circle2:hover {
+    background-color: #3098ff;
+    color:#fff;
+  }
+
+  &-circle3 {
+    border-radius: 50%;
+    border: 1px solid #dadada;
+    background-color: #fff;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left: 323px;
+    top: 10px;
+    text-align:center;
+  }
+
+  &-circle3:hover {
+    background-color: #3098ff;
+    color:#fff;
+  }
+
+  &-dots {
+    font-family: HelveticaNeue;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 21px;
+    float: right;
+    position: absolute;
+    top: 8px;
+    right: 314px;
+  }
+
+  &-circle4 {
+    border-radius: 20px;
+    border-width: 1px;
+    border-color: #dadada;
+    border-style: solid;
+    width: 51px;
+    height: 25px;
+    float: right;
+    position: absolute;
+    right: 258px;
+    top: 10px;
+  }
+
+  &-circle4:hover {
+    background-color: #3098ff;
+    color:#fff;
+  }
+
+  //right arrow
+  &-bottomrightarrow {
+    color: #000000;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21px;
+    top: 11px;
+    right: 245px;
+    position: absolute;
+    float: right;
+  }
+
+  &-viewall {
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #3098ff;
+    border-style: solid;
+    width: 113px;
+    height: 23px;
+    float: right;
+    position: relative;
+    top: -5px;
+    right: 20px;
+  }
+
+  &-viewalltext {
+    font-family: arial;
+    color: #3098ff;
+    font-size: 12px;
+    font-weight: 400;
+    float: left;
+    padding: 3px;
+    padding-left: 15px;
+  }
+
+  //left lower container for search
+  &-searchcontainer {
+    width: 680px;
+    height: 280px;
+    background-image: url("http://media-cdn.tripadvisor.com/media/photo-s/02/76/af/cd/filename-bilde-002-vladivostok.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  //1st line text
+  &-discovertext {
+    font-family: HelveticaNeue;
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 30.027px;
+    float: left;
+    position: relative;
+    top: 35px;
+    left: 85px;
+  }
+
+  //second line text
+  &-future {
+    font-family: HelveticaNeue;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 30.027px;
+    position: relative;
+    float: left;
+    top: 45px;
+    left: 130px;
+  }
+
+  //search bar
+  &-searchbox {
+    border-radius: 5px;
+    background-color: #ffffff;
+    width: 540px;
+    height: 40px;
+    position: relative;
+    float: left;
+    top: 75px;
+    left: 55px;
+  }
+
+  //search bar text
+  &-searchtext {
+    font-family: HelveticaNeue;
+    color: #505050;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 18px;
+    text-align: left;
+    float: left;
+    margin-left: 10px;
+    padding: 10px;
+  }
+
+  &-searchicon {
+    font-family: FontAwesome;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 18px;
+    text-align: center;
+    position: relative;
+    top: 7px;
+  }
+
+  //search bar button
+  &-searchbutton {
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+    background-color: #3098ff;
+    width: 99px;
+    height: 40px;
+    float: right;
+  }
+}

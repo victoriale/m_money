@@ -1,0 +1,167 @@
+<!--Author : Viany Vittal Karagod
+Date Created:06/15/2015
+Description:Real Estate Property Listing Breakdown Frame Spec. Which gives details
+about the property its views and the list of all the available properties
+Associated files: global_var.less,property_breakdown.css,module.css,property_breakdown.html
+-->
+
+<template name="property_breakdown">
+
+  <!-- Module heading-->
+
+  <div class="module-3"><div class="module-header"><span class="module-header-line"></span><span class="module-header-title">PROPERTY LISTING BREAKDOWN</span></div>
+  <div class="module-wrapper">
+    <!-- Start of the property lint breakdown details -->
+    <div class="property_breakdown">
+      <div class="property_breakdown-Innerbody"> <!-- Inner body details -->
+        <div class="property_breakdown-BackGround"><!-- Rectangular back ground details  -->
+          <!-- Address details about he home -->
+          <div class="property_breakdown-RectangleHeader"><b class = "property_breakdown-RectangleHeader-headerContern">
+            <i class="fa fa-circle property_breakdown-RectangleHeader-headerContern-circle"></i> Home Details for {{Address_info}}</b></div>
+            <!-- end of the address details details -->
+
+            <!-- grey box which contains the details and image of the house -->
+            <div class="property_breakdown-top" style="background-image: url('{{listing_image}}')">
+              <div class="property_breakdown-cover"></div>
+              <div class="property_breakdown-content">
+                <div class="property_breakdown-infobox">
+                  <div class="property_breakdown-infobox-loc">
+                    <i class="fa fa-map-marker pb_blue"></i> {{Locate}}
+                  </div>
+                  <div class="property_breakdown-infobox-add">
+                    {{Address_info}}
+                  </div>
+                  <div class="property_breakdown-infobox-day">
+                    Days on Market: {{DaysOnMarket}}
+                  </div>
+                </div>
+                <div class="property_breakdown-buttonbox">
+                  <div class="property_breakdown-bluebutton">
+                    SEE ALL FEATURES
+                    <i class="fa fa-mail-forward pbspace"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- end of the grey box content details -->
+
+                    <!-- start of Features title tile details -->
+                     <div class="property_breakdown-Bottom_content">
+                      <p class="property_breakdown-Bottom_content-features">Features</p>
+                      <ul>
+                        {{#each FeaturesList1}}
+                        <li title="{{Data}}"><div>{{Data}}</div></li>
+                        {{/each}}
+                      </ul>
+
+                      <!-- end of Features details on right pane -->
+                      <ul>
+                        {{#each FeaturesList2}}
+                        <li title="{{Data}}"><div>{{Data}}</div></li>
+                        {{/each}}
+                      </ul>
+                    </div>
+                    <!-- end of the  Features title tile details -->
+                  </div>
+                </div>
+
+                <!-- start of Right panel tile details -->
+
+                <div class="property_breakdown-RightPanel">
+                  <!-- first top box of map details -->
+                  <!--
+                  <div class="module-tile">
+                    <div class="module-tile-default">
+                      <div class="module-tile-default-container">
+                        <div class="module-tile-default-icon">
+                          <i class="fa fa-bed"></i>
+                        </div>
+                        <div class="module-tile-default-text">
+                          Property's Features
+                        </div>
+                      </div>
+                      <div class="property_breakdown-RightPanel-new_button">
+                        <i class="fa fa-mail-forward property_breakdown-RightPanel-forward"></i>
+                      </div>
+                    </div>
+                    <a class="module-tile-link" href="#">
+                      <div class="module-tile-hover">
+                        <div class="module-tile-name">
+                          <i class="fa fa-bed"></i>Property's Features
+                        </div>
+                        <div class="module-tile-info"></div>
+                        <button class="module-tile-button module-tile-button-align">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
+                      </div>
+                    </a>
+                  </div>
+                -->
+                  <!-- end of the link to the map -->
+
+                  <!-- second tile details about nearby cities -->
+                  <!--
+                  <div class="module-tile">
+                    <div class="module-tile-default">
+                      <div class="module-tile-default-container">
+                        <div class="module-tile-default-icon">
+                          <i class="fa fa-file-text-o"></i>
+                        </div>
+                        <div class="module-tile-default-text">
+                          Property's Public Records
+                        </div>
+                      </div>
+                    </div>
+                    <a class="module-tile-link" href="#">
+                      <div class="module-tile-hover">
+                        <div class="module-tile-name">
+                          <i class="fa fa-file-text-o"></i>Property's Public Records
+                        </div>
+                        <div class="module-tile-info">
+                        </div>
+                        <button class="module-tile-button module-tile-button-align">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
+                      </div>
+                    </a>
+                  </div>
+                -->
+                  <!-- end of second tile -->
+
+                  <!-- third tile details about stastics -->
+                  <!--
+                  <div class="module-tile">
+                    <div class="module-tile-default">
+                      <div class="module-tile-default-container">
+                        <div class="module-tile-default-icon">
+                          <i class="fa fa-bar-chart"></i>
+                        </div>
+                        <div class="module-tile-default-text">
+                          Neighborhood Statistics
+                        </div>
+                      </div>
+                      <div class="property_breakdown-RightPanel-FullList_new">
+                        <span class="property_breakdown-RightPanel-this_txtbtn">
+                        -->
+                        <!--properties for text inside the button-->
+                        <!--
+                          NEW
+                        </span>
+                      </div>
+                    </div>
+                    <a class="module-tile-link" href="#">
+                      <div class="module-tile-hover">
+                        <div class="module-tile-name">
+                          <i class="fa fa-bar-chart"></i>Neighborhood Statistics
+                        </div>
+                        <div class="module-tile-info">
+                        </div>
+                        <button class="module-tile-button module-tile-button-align">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
+                      </div>
+                    </a>
+                  </div>
+                  -->
+                  <!-- end of the details -->
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>

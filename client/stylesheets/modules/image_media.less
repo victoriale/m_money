@@ -1,0 +1,106 @@
+//Name :snehalatha pappu
+//date created: 06/15/15
+//description:html file for the frame property images
+//attached files: image_media.html, image_media.less
+
+@import (reference)"../global_vars.less";
+
+.property_listing_module {
+  // Specific styles for the property listing module
+  height: 510px !important;
+  border-bottom: none !important;
+}
+
+.property_listing {
+  // code for the first container according to the specifications
+  &-container {
+    width:680px;
+    height:385px;
+    padding-top:20px;
+    background-size:contain !important;
+    background-position: center center !important;
+    background-repeat:no-repeat !important;
+    position:relative;
+  }
+  // middle container
+  &-midcont {
+    width:680px;
+    height:125px;
+
+    padding-top:130px;
+
+    .navigation-button-left {
+      background-color: rgba(0,0,0,0.6);
+      border-color: rgba(0,0,0,0.6);
+      top: ~"calc(50%)";
+    }
+
+    .navigation-button-right {
+      background-color: rgba(0,0,0,0.6);
+      border-color: rgba(0,0,0,0.6);
+      top: ~"calc(50%)";
+    }
+  }
+  //code for the second container
+  &-small_container {
+    width:680px;
+    height:80px;
+    border:1px solid rgb(242, 242, 242);
+    padding-left:2px;
+    padding-right:2px;
+    padding-top:2px;
+    padding-bottom:2px;
+  }
+  // ellipse
+  &-elpse {
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+    background-color:rgba(54, 54, 54, 0.85);
+    border:2px solid #fff;
+    vertical-align:baseline;
+    float:right;
+    position:relative;
+    margin-top:120px;
+  }
+  //first rounded rectangle
+  &-rounded_rec {
+    border-radius:25px;
+    height:30px;
+    background-color: rgba(54, 54, 54, 0.85);;
+    margin-right:10px;
+    padding: 5px 7px 0;
+    float: right;
+    cursor: pointer;
+    .fa-file-image-o {
+      color: @white;
+      font-size: 14px;
+    }
+    &:hover{
+      background-color: #3098ff;
+    }
+  }
+
+  //text inside the  rounded rectangle
+  &-rectext {
+    font-size:14px;
+    font-weight: bold;
+    font-family: helveticaneue;
+    color:#fff;
+  }
+  // first column
+  &-sc1 {
+    width:130px;
+    height:70px;
+    border:1px solid rgb(242, 242, 242);
+    float: left;
+    margin: 2px;
+    background-size:contain !important;
+    background-position: center center !important;
+    background-repeat:no-repeat !important;
+    cursor:pointer;
+  }
+  &-txt {
+    font-size:10px;
+  }
+}

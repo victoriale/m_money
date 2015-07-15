@@ -1,0 +1,189 @@
+<!-- Author : Vinay Vittal Karagod
+Date: 06/09/2015
+Description: Gives Details about Area brakdown statistics like location,population
+details,Average Rent,Description about the location ,Median income,Total companies
+It gives location,Nearby cities,Statistics
+Associated files: module.less,area_breakdown.less,area_breakdown.html,navigation_layout.less
+-->
+<template name="area_breakdown">
+
+  <div class="module-3"><div class="module-header"><span class="module-header-line"></span><span class="module-header-title">{{location}} Breakdown</span></div>
+  <div class="module-wrapper">
+    <div class="area_breakdown">
+      <div class="area_breakdown-Innerbody">
+        <!-- start of background details -->
+        <div class="area_breakdown-RectBckGrnd">
+          <!-- start of header details -->
+          <div class="area_breakdown-RectangleHeader"><b class = "area_breakdown-RectangleHeader-headerContern">
+            <i class="fa fa-circle area_breakdown-RectangleHeader-headerContern-blucrcl"></i> {{location}} STATISTICS</b></div>
+            <!-- end of the header -->
+
+            <!-- start of view profile -->
+            <div class="area_breakdown-logo-image">
+                <!--  <img class="area_breakdown-logo-image" src="{{Bck_image}}" /> -->
+                {{image}}
+               <div class="area_breakdown-logo-image-view-profile">
+                  <a class="area_breakdown-logo-image-profile-link" href="">
+                  <div class="area_breakdown-logo-image-body">
+                    <div class="area_breakdown-logo-image-logo_text_view">View</div>
+                    <div class="area_breakdown-logo-image-logo_text_profile">Profile</div>
+                  </div></a>
+                </div>
+
+            </div>
+            <!-- end of view profile -->
+
+            <!-- Statistical Content Content details about the location  -->
+            <div class = "area_breakdown-DescriptionSpace"><p align = "left"><strong>{{location}} </strong>represents {{zip_count}} zip codes and {{neighborhood_count}} vibrant neighborhoods.
+            </p>
+              <a class="" href=""><p1 class = "area_breakdown-DescriptionSpace-readmorecolor"><strong>Read More</strong></p1></a></div>
+              <!-- End of the content details -->
+
+              <!-- start of the bottom details which contains population details,Average Rent,Income,Companies-->
+              <div class = "area_breakdown-Bottom_details" >
+                <!--population details -->
+                <a class="" href="">
+                  <div class="area_breakdown-Bottom_details-Standard_box_dtls">
+
+                    <div class = "area_breakdown-Bottom_details-shading_awsm"><i class="fa fa-users area_breakdown-Bottom_details-users fa-2x"></i></div>
+                    <div class = "area_breakdown-Bottom_details-Statistical_text_align">
+                      <div class="area_breakdown-Bottom_details-statistical_text_large">{{population}}</div>
+                      <div class="area_breakdown-Bottom_details-statistical_text_small">Population</div>
+                    </div><i class="fa fa-angle-right area_breakdown-Bottom_details-angrit fa-2x"></i>
+                    <!--end of population details -->
+                  </div>
+                </a>
+              </div>
+              <!-- Average Rent Details -->
+              <div class = "area_breakdown-Bottom_details" >
+                <a class="" href="">
+                  <div class="area_breakdown-Bottom_details-Standard_box_dtls">
+                    <div class = "area_breakdown-Bottom_details-shading_awsm"><i class="fa fa-globe area_breakdown-Bottom_details-globe fa-2x"></i></div>
+                    <div class = "area_breakdown-Bottom_details-Statistical_text_align">
+                      <div class="area_breakdown-Bottom_details-statistical_text_large">{{rent}}</div>
+                      <div class="area_breakdown-Bottom_details-statistical_text_small">Average Rent</div>
+                    </div><i class="fa fa-angle-right area_breakdown-Bottom_details-angrit fa-2x"></i>
+                  </div>
+                </a>
+              </div>
+              <!-- end of average rent details -->
+
+              <!-- Median income -->
+              <div class = "area_breakdown-Bottom_details" >
+                <a class="" href="">
+                  <div class="area_breakdown-Bottom_details-Standard_box_dtls">
+                    <div class = "area_breakdown-Bottom_details-shading_awsm"><i class="fa fa-user area_breakdown-Bottom_details-user fa-2x"></i></div>
+                    <div class = "area_breakdown-Bottom_details-Statistical_text_align" ><div class="area_breakdown-Bottom_details-statistical_text_large">{{median_income}}</div>
+                    <div class="area_breakdown-Bottom_details-statistical_text_small">Median Income</div>
+                  </div><i class="fa fa-angle-right area_breakdown-Bottom_details-angrit fa-2x"></i>
+                </div>
+              </a>
+            </div>
+            <!-- end of median income -->
+
+            <!-- total companies -->
+            <div class = "area_breakdown-Bottom_details" >
+              <a class="" href="">
+                <div class="area_breakdown-Bottom_details-Standard_box_dtls">
+                  <div class = "area_breakdown-Bottom_details-shading_awsm"><i class="fa fa-building-o area_breakdown-Bottom_details-building fa-2x"></i></div>
+                  <div class = "area_breakdown-Bottom_details-Statistical_text_align">
+                    <div class="area_breakdown-Bottom_details-statistical_text_large">{{company_count}}</div>
+                    <div class="area_breakdown-Bottom_details-statistical_text_small">Total Companies</div>
+                  </div><i class="fa fa-angle-right area_breakdown-Bottom_details-angrit fa-2x"></i>
+                </div>
+              </a>
+            </div>
+            <!--end of total companies details -->
+          </div>
+          <!-- End of the bottom details -->
+          <!-- end of background details -->
+
+          <!-- start of Right panel tile details -->
+          <div class="area_breakdown-RightPanel">
+            <!-- first top box of map details
+            <div class="module-tile">
+              <div class="module-tile-default">
+                <div class="module-tile-default-container">
+                  <div class="module-tile-default-icon">
+                    <i class="fa fa-thumb-tack"></i>
+                  </div>
+                  <div class="module-tile-default-text">
+                    Map
+                  </div>
+                </div>
+              </div>
+              <a class="module-tile-link" href="#">
+                <div class="module-tile-hover">
+                  <div class="module-tile-name">
+                    <i class="fa fa-thumb-tack"></i>Map
+                  </div>
+                  <div class="module-tile-info"></div>
+                  <button class="module-tile-button">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
+                </div>
+              </a>
+            </div>
+            end of the link to the map -->
+
+            <!-- second tile details about nearby cities
+
+            <div class="module-tile">
+              <div class="module-tile-default">
+                <div class="module-tile-default-container">
+                  <div class="module-tile-default-icon">
+                    <i class="fa fa-crosshairs"></i>
+                  </div>
+                  <div class="module-tile-default-text">
+                    Nearby Cities
+                  </div>
+                </div>
+              </div>
+              <a class="module-tile-link" href="#">
+                <div class="module-tile-hover">
+                  <div class="module-tile-name">
+                    <i class="fa fa-crosshairs"></i>Nearby Cities
+                  </div>
+                  <div class="module-tile-info">
+
+                  </div>
+                  <button class="module-tile-button">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
+                </div>
+              </a>
+            </div>
+
+             end of second tile -->
+
+            <!-- third tile details about stastics
+
+            <div class="module-tile">
+              <div class="module-tile-default">
+                <div class="module-tile-default-container">
+                  <div class="module-tile-default-icon">
+                    <i class="fa fa-bar-chart"></i>
+                  </div>
+                  <div class="module-tile-default-text">
+                    Coming Soon
+                  </div>
+                </div>
+              </div>
+              <a class="module-tile-link" href="#">
+                <div class="module-tile-hover">
+                  <div class="module-tile-name">
+                    <i class="fa fa-bar-chart"></i>Coming Soon
+                  </div>
+                  <div class="module-tile-info">
+
+                  </div>
+                  <button class="module-tile-button">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
+                </div>
+              </a>
+            </div>
+
+            end of the details -->
+
+          </div>
+          <!-- end of right panel details -->
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

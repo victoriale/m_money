@@ -1,0 +1,524 @@
+@import (reference)"../global_vars.less";
+// ***************Tile buttons left panel******************
+.propertyhistory{
+&-leftpanel{
+ float:left;
+}
+// *************** class used to style right panel container starts here******************
+ &-pacontainer
+  {
+    margin:15px;
+    display:block;
+    float:right;
+    height:570px;
+    width:455px;
+    color:#fff;
+    border:1px solid #cccccc;
+    transform:translate(0,-600px);
+    -moz-transform:translate(0,-600px);
+    -webkit-transform:translate(0,-600px);
+    -khtml-transform:translate(0,-600px);
+    -ms-transform:translate(0,-600px);
+    ul,ol{ // *************** class used to style unordered list and ordered list in right panel container starts here******************
+      margin-bottom: 0px;
+    } // *************** class used to style unordered list and ordered list in right panel container starts here******************
+  &-RectangleHeader{
+   height:41px;
+   background-color:#f2f2f2 ;
+
+   &-headerContern{
+     float: left;
+     margin-left: 5px;
+     margin-top: 10px;
+     text-transform:uppercase;
+     color:#000;
+
+     &-Header_content {
+       font-size: 16px;
+       margin-right:325px;
+       margin-top:-5px;
+
+     }
+     &-circle {
+       color: #3098ff ;
+     }
+   }
+ }
+  &-pabar{ //*************** class used to style Home bar starts here has Home value, Home text, Dropdown Rectangle and ellipse included starts here******************
+    height: 45px;
+    width:454px;
+    background-color:#fff;
+    border:1px solid #cccccc;
+    &-valuebg{ //************************class used to style both Home value and Home text starts here******************************************
+      display:block;
+      width:95px;
+      height: 45px;
+      background-color:#ccccc;
+      text-align: center;
+      vertical-align:middle;
+      border-right:1px solid #cccccc;
+      &-valuetext{ //******************class used to style Home value starts here**************
+        font-size: 14px;
+        font-weight: bold;
+        color:#000;
+        padding-left:10px;
+
+         } //******************class used to style Home value ends here**************
+         &-hometext{ //******************class used to style Home text starts here**************
+           font-size: 10px;
+           font-weight: lighter;
+           color:#000;
+
+         }   //******************class used to style Home text ends here**************
+         &-pellipsis{ //******************class used to style ellipse starts here**************
+           display:list-item;
+           float:none;
+           margin-left: 83px;
+           margin-top:-26px;
+           width:21px;
+           height:21px;
+           background-color:#3098ff;
+           stroke:#fff;
+           stroke-width:2px;
+           border-radius: 50%;
+           -moz-border-radius: 50%;
+           -webkit-border-radius: 50%;
+           -ms-border-radius: 50%;
+           -khtml-border-radius: 50%;
+           &-vs{  //******************class used to style text ellipse starts here**************
+             font-size: 10px;
+             font-weight: bold;
+             color:#fff;
+             text-align: center;
+
+           }   //******************class used to style text inside ellipse ends here**************
+       }  //******************class used to style ellipse ends here**************
+} //************************class used to style both Home value and Home text ends here******************************************
+@media screen and (-webkit-min-device-pixel-ratio:0){
+  &-ddrect{ //************************class used to style Sold price rectangle starts here******************************************
+    width:84px;
+    height:25px;
+    color:#fff;
+    border:1px solid #cccccc;
+    -khtml-transform:translate(107px,-20px);
+    -webkit-transform:translate(107px,-20px);
+   &-ddtext{ //************************class used to style text inside Sold price rectangle starts here*******************************
+     display:block;
+     font-size:12px;
+     color:#000;
+     font-weight: bold;
+     padding:5px;
+  } //************************class used to style text inside Sold price rectangle ends here*******************************
+  } //************************class used to style Sold price rectangle starts here******************************************
+
+}
+
+&-ddrect{ //************************class used to style Sold price rectangle starts here******************************************
+  width:84px;
+  height:25px;
+  color:#fff;
+  border:1px solid #cccccc;
+  transform:translate(107px,-20px);
+  -moz-transform:translate(107px,-20px);
+  -ms-transform:translate(107px,-20px);
+ &-ddtext{ //************************class used to style text inside Sold price rectangle starts here*******************************
+   display:block;
+   font-size:12px;
+   color:#000;
+   font-weight: bold;
+   padding:5px;
+} //************************class used to style text inside Sold price rectangle ends here*******************************
+} //************************class used to style Sold price rectangle starts here******************************************
+} //***************class used to style Home bar ends here******************************
+} // ***************class used to style right panel container ends here******************
+&-ddicon{ // ***************class used to style dropdown icon starts here******************
+  font-size: 10px;
+  color:#959595;
+  line-height: 6px;
+  padding:10px;
+  list-style-type: none;
+  margin-left:63px;
+  margin-top: -34px;
+}// ***************class used to style dropdown icon starts here******************
+&-di //******************class used to style display inline block starts here********************************
+{
+display:inline-block;
+} //******************class used to style display inline block ends here********************************
+&-keycontent{ //******************class used to style key price and key value starts here********************************
+  padding-top: 12px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 11px;
+  transform:translate(210px,-47px);
+  -webkit-transform:translate(107px,-25px);
+  -moz-transform:translate(107px,-25px);
+  -ms-transform:translate(107px,-25px);
+  -khtml-transform:translate(107px,-25px);
+&-rightcol{ //******************class used to style right column which has key price and key value starts here********************************
+  display:inline-block;
+  padding-left:5px;
+  margin-top:-5px;
+  &-valuetext{ //******************class used to style right column which has key price starts here ********************************
+  font-size: 14px;
+  font-weight: bold;
+  color:#000;
+
+   } //******************class used to style right column which has key price ends here ********************************
+   &-hometext{ //******************class used to style key value starts here ********************************
+     font-size: 10px;
+     font-weight: lighter;
+     color:#3098ff;
+
+   }  //******************class used to style key value starts here ********************************
+ }//******************class used to style key price and key value ends here********************************
+&-roundrectangle
+{//******************class used to style icon starts here********************************
+  float:left;
+  display:block;
+  width:10px;
+  height:10px;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -khtml-border-radius: 3px;
+
+} //******************class used to style icon ends here********************************
+} //******************class used to style key price and key value ends here********************************
+&-rrblue{ //******************class used to color icon starts here********************************
+  background-color:#3098ff;
+
+} //******************class used to color icon ends here********************************
+&-rrred{ //******************class used to color icon starts here********************************
+  background-color:#ca1010;
+} //******************class used to color icon ends here********************************
+&-rrorange{ //******************class used to color icon starts here********************************
+  background-color:#f7701d;
+} //******************class used to color icon ends here********************************
+&-pph1{  //******************class used to position keycontent with color red icon starts here********************************
+  transform:translate(105px,-47px);
+  -webkit-transform:translate(105px,-47px);
+  -moz-transform:translate(105px,-47px);
+  -khtml-transform:translate(105px,-47px);
+  -ms-transform:translate(105px,-47px);
+} //******************class used to position keycontent with color red icon ends here********************************
+&-pph2{ //******************class used to position keycontent starts here********************************
+  transform:translate(90px,-47px);
+  -webkit-transform:translate(90px,-47px);
+  -khtml-transform:translate(90px,-47px);
+  -ms-transform:translate(90px,-47px);
+  -moz-transform:translate(90px,-47px);
+} //******************class used to position keycontent starts here********************************
+@media screen and (-webkit-min-device-pixel-ratio:0){
+  &-pph3{ //******************class used to position keycontent with color blue icon starts here********************************
+
+    -khtml-transform:translate(110px,-58px);
+    -webkit-transform:translate(110px,-58px);
+
+  } //******************class used to position keycontent with color blue icon starts here********************************
+
+}
+&-pph3{ //******************class used to position keycontent with color blue icon starts here********************************
+  transform:translate(110px,-47px);
+  -ms-transform:translate(110px,-47px);
+  -moz-transform:translate(110px,-47px);
+} //******************class used to position keycontent with color blue icon starts here********************************
+
+&-hidentifier{  //******************class used to position home identifier starts here********************************
+  transform:translate(400px,-182.5px);
+  -webkit-transform:translate(400px,-182.5px);
+  -ms-transform:translate(400px,-182.5px);
+  -moz-transform:translate(400px,-182.5px);
+  -khtml-transform:translate(400px,-182.5px);
+  display:inline-block;
+  text-align: center;
+  width:12px;
+  height:12px;
+  background-color:#44b224;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  -ms-border-radius: 50%;
+
+  &-hicon{ //******************class used for home identifier icon in graph starts here********************************
+    display:inline-block;
+    font-size: 8px;
+    color:#fff;
+    }  //******************class used for home identifier icon in graph ends here********************************
+} //******************class used to position home identifier ends here********************************
+
+&-filterbar{ //******************class used to style Filter bar which filters graph content based upon days, months and years starts here -->********************************
+  transform:translate(0px,0px);
+  -webkit-transform:translate(0px,0px);
+  -moz-transform:translate(0px,0px);
+  -khtml-transform:translate(0px,0px);
+  -ms-transform:translate(0px,0px);
+  display:block;
+  width:453px;
+  height:45px;
+  background-color: #f2f2f2;
+  &-unseldates {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    font-size: 13px;
+    color: #000;
+    width: 35px;
+    height: 35px;
+    -khtml-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+    background:@grey-3;
+    margin:5px 0 0 0;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-right:15px;
+    cursor:pointer;
+  }
+
+  &-unseldates:hover{
+    background: @blue;
+  }
+  &-buttonsbar{
+    margin-left:35px;
+    margin-right:35px;
+    width:393px;
+    height:45px;
+  }
+  &-seldateellipse
+  {//******************class used to style ellipse for selected filter buttons starts here*******************************
+    display:inline-block;
+    height:35px;
+    width:35px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -khtml-border-radius: 50%;
+    -ms-border-radius: 50%;
+    background-color: #3098ff;
+    transform:translateY(-8px);
+    -moz-transform:translateY(-8px);
+    -khtml-transform:translateY(-8px);
+    -ms-transform:translateY(-8px);
+    -webkit-transform:translateY(-8px);
+    &-seldate
+    { //******************class used to style selected filter buttons starts here*******************************
+      text-align:center;
+      vertical-align:middle;
+      font-size:14px;
+      font-weight:bold;
+      color:#fff;
+      padding-bottom: 5px;
+      transform:translateY(7px);
+      -webkit-transform:translateY(7px);
+      -moz-transform:translateY(7px);
+      -khtml-transform:translateY(7px);
+      -ms-transform:translateY(7px);
+    } //******************class used to style selected filter buttons starts here*******************************
+  } //******************class used to style ellipse for selected filter buttons ends here*******************************
+
+  &-pdright{ //******************class used to style padding right for the right end filter button starts here*******************************
+    padding-right: 45px;
+  } //******************class used to style padding right for the right end filter button ends here*******************************
+  &-phfb{ //******************class used to position filter buttons inside of filter bar starts here*******************************
+    float:left;
+    transform:translate(0px,14px);
+    -webkit-transform:translate(0px,14px);
+    -moz-transform:translate(0px,14px);
+    -khtml-transform:translate(0px,14px);
+    -ms-transform:translate(0px,14px);
+} //******************class used to position filter buttons inside of filter bar ends here*******************************
+
+}  //******************class used to style Filter bar which filters graph content based upon days, months and years ends here********************************
+&-contentrectangle{ //****************class used to style content section below filter bar starts here*************************************
+  width:454px;
+  height:78px;
+  background-color: #fff;
+  stroke:#cccccc;
+  stroke-width:15px;
+  vertical-align:middle;
+  float:left;
+  border-bottom:1px solid #cccccc;
+  border-left:5px solid #cccccc;
+  border-right:1px solid #cccccc;
+
+/*&-contentMH{ //****************class used to style content marker inside section below filter bar starts here************************************
+  float:left;
+  display:inline-block;
+  height:78px;
+  width:5px;
+  background-color: #cccccc;
+  } //****************class used to style content marker inside section below filter bar ends here************************************
+  */
+
+
+  &-iconrectangle
+  {//****************class used to style icon rectangle inside section below filter bar starts here************************************
+    float:left;
+    display:inline-block;
+    vertical-align:middle;
+    text-align: center;
+    width:76px;
+    height:78px;
+    background-color: #dadada;
+
+
+
+  &-icontext{//****************class used to style icon text inside icon rectangle  starts here************************************
+    float:none;
+    font-size: 30px;
+    color:#272727;
+  } //****************class used to style icon text inside icon rectangle ends here************************************
+}//****************class used to style content marker inside section below filter bar ends here************************************
+
+  &-line{ //****************class used to style line  starts here*****************************
+    display:inline-block;
+    float: none !important;
+    padding-left:10px;
+    padding-right:20px;
+
+    &-line1text{ //****************class used to style line1text  starts here*****************************
+  font-size:18px;
+  font-weight:lighter;
+  color:#000;
+  } //****************class used to style line1text ends here*****************************
+
+
+&-line2text
+{ //****************class used to style line2text starts here*****************************
+  font-size:12px;
+  font-weight:lighter;
+  color:#000;
+  line-height: auto;
+  } //****************class used to style line2text ends here*****************************
+&-openbutton{//****************class used to style open button starts here************************************
+  float:right;
+  vertical-align: middle;
+  font-size:30px;
+  color:#cccccc;
+  padding-left:10px;
+  padding-right:20px;
+} //****************class used to style open button starts here************************************
+&-pricevalue{ //****************class used to style price value starts here************************************
+  float:right;
+  text-align: right;
+  font-weight:bold;
+  color:#000;
+
+}//****************class used to style price value ends here************************************
+&-pricedescription{ //****************class used to style price description starts here************************************
+  display: block;
+  font-weight:lighter;
+  color:#000;
+} //****************class used to style price description ends here************************************
+}//****************class used to style line section ends here*****************************
+&-phcr1{//*********************class used to position content section starts here***************************************
+  transform:translateY(-0px);
+}//*********************class used to position content section ends here***************************************
+&-phcr2{//*********************class used to position content section starts here***************************************
+  transform:translateY(-0px);
+} //*********************class used to position content section ends here***************************************
+
+&-phcr3{//*********************class used to position content section starts here***************************************
+  transform:translateY(-0px);
+} //*********************class used to position content section ends here***************************************
+&-phcr3{//*********************class used to position content section starts here***************************************
+  transform:translate(0,-0px);
+} //*********************class used to position content section ends here***************************************
+} //****************class used to style content section below filter bar ends here*************************************
+
+
+
+&-other{//*****************class used to float line1text and line2text on left side starts****************************************
+  float:left;
+  padding-left: 15px;
+}//*************class used to align line1text and line2text on left side starts*********************************************************
+&-contentrectangle:hover{
+  border-left:5px solid #3098ff;
+}
+  &-contentrectangle:hover &-contentrectangle-line-line1text{
+    color:#3098ff;
+  }
+  &-contentrectangle:hover &-contentrectangle-line-line2text{
+    color:#3098ff;
+  }
+  &-contentrectangle:hover &-contentrectangle-line-openbutton{
+    color:#3098ff;
+  }
+
+&-otherright{//*****************class used to float price value, price description and price button on right side starts****************************************
+  text-align: right;
+  padding-right: 10px;
+} //*****************class used to float  price value, price description and open button on right side starts****************************************
+&-phcr4{ // ************class used to position content section elements**********************************************************
+  transform:translate(0,18px);
+  -webkit-transform:translate(0,18px);
+  -moz-transform:translate(0,18px);
+  -ms-transform:translate(0,18px);
+  -khtml-transform:translate(0,18px);
+} // ************class used to position content section elements**********************************************************
+&-graph{//************************class used to style graph section starts here ***************************************************************************
+  width:454px;
+  height:205px;
+  border:1px solid #cccccc;
+  transform:translate(0,-1px);
+  -webkit-transform:translate(0,-1px);
+  -moz-transform:translate(0,-1px);
+  -ms-transform:translate(0,-1px);
+  -khtml-transform:translate(0,-1px);
+
+} //************************class used to style graph section ends here ***************************************************************************
+&-leading{ //**************used to define leading for affordability tile *************************
+  line-height:23px;
+} //**************used to define leading for affordability tile *************************
+@media screen and (-webkit-min-device-pixel-ratio:0){
+  &-pph4{ //******************class used to position keycontent with color blue icon starts here********************************
+
+    -khtml-transform:translate(-10px,5px);
+    -webkit-transform:translate(-10px,5px);
+
+  } //******************class used to position keycontent with color blue icon starts here********************************
+}
+  &-pph4{ //******************class used to position keycontent with color blue icon starts here********************************
+
+    transform:translate(-10px,5px);
+    -moz-transform:translate(-10px,5px);
+    -ms-transform:translate(-10px,5px);
+
+  } //******************class used to position keycontent with color blue icon starts here********************************
+
+
+@media screen and (-webkit-min-device-pixel-ratio:0){
+  &-pph5{ //******************class used to position keycontent with color blue icon starts here********************************
+
+    -khtml-transform:translate(0px,5px);
+    -webkit-transform:translate(0px,5px);
+
+  } //******************class used to position keycontent with color blue icon starts here********************************
+
+}
+&-pph5{ //******************class used to position keycontent with color blue icon starts here********************************
+
+  transform:translate(0px,5px);
+  -moz-transform:translate(0px,5px);
+  -ms-transform:translate(0px,5px);
+
+} //******************class used to position keycontent with color blue icon starts here********************************
+&-align{
+  transform: translate(0px, -40px);
+  -moz-transform: translate(0px, -40px);
+  -ms-transform: translate(0px, -40px);
+  }
+  @media screen and (-webkit-min-device-pixel-ratio:0)
+  {
+    &-align{
+      -khtml-transform: translate(0px, -60px);
+      -webkit-transform: translate(0px, -60px);
+      }
+
+  }
+}

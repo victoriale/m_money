@@ -1,0 +1,390 @@
+@import (reference)"global_vars.less"; //include important global vars (colors mostly)
+
+.top_bottom_border {
+  border-top: 2px solid @blue;
+  border-bottom: 2px solid @blue;
+}
+
+button {
+  outline: none;
+}
+
+.module {
+  // Class contains the basic module layout
+  // shouldn't be used on it's own (included in module-[1-5])
+  .top_bottom_border; // Adds blue top and bottom border
+  width: 680px;
+  margin: 5px;
+  background-color: @white;
+  position: relative;
+  overflow: hidden;
+}
+
+.module-header {
+  // Class to add the header bar (black) to the top of the module
+  // div
+  height: 45px;
+  background-color: #000;
+  padding-left: 7px;
+  padding-right: 5px;
+  text-align: left;
+  vertical-align: middle;
+
+  &-line{
+    font-size:12px;
+    color:@blue;
+    border-left: 2px solid @blue;
+    position: relative;
+    top:20%;
+  }
+
+  &-title {
+    // Class for the text title of the module. Also includes the left blue bar
+    // span
+    // Add left blue bar
+    //border-left: 2px solid @blue;
+
+    padding-left: 7px;
+
+    // Font stuff
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: @white;
+
+    // Centers the span in the title bar
+    position: relative;
+    top: 25%;
+  }
+}
+
+.module-wrapper {
+  // wrapper for the module body
+  height: calc(~'100% - 45px');
+  width: 100%;
+}
+
+.module-footer {
+  // wrapper for the module footer
+  text-align: center;
+  height: 35px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+
+  // *************************** BUTTON FOR BOTTOM OF module **************************************
+  &-button {
+    margin: 0 auto;
+    vertical-align: bottom;
+    text-align: center;
+    background-color: @blue;
+    width: 225px;
+    height: 35px;
+    position: relative;
+    z-index: 5;
+    border-radius: 15px 15px 0 0;
+    border-style: none;
+
+    &-text{
+      text-align: center;
+      font-size: 14px;
+      color: #fff;
+      font-weight: bold;
+      vertical-align: middle;
+      margin: auto;
+      position: relative;
+      top: 4px;
+    }
+
+    &-ellipse{
+      height: 25px;
+      width: 25px;
+      font-size: 12px;
+      padding: 5px;
+      border-radius: 50%;
+      position: relative;
+      float: right;
+      vertical-align: middle;
+      text-align: center;
+      margin: auto;
+      color: @white;
+      background-color: @grey-4;
+    }
+
+    &:hover {
+      background-color: #1c79ff;
+    }
+
+    &:active {
+      border: 1px solid @blue;
+      background-color: @grey-4;
+
+      .module-footer-button-ellipse {
+        color: @white;
+        background-color: @blue;
+      }
+    }
+  }
+  // *************************** END BUTTON FOR BOTTOM OF module **************************************
+}
+
+// ****** START LEFT NAV BUTTON MODULE ******
+.navigation-button-left {
+  /* Required inner HTML (provides the arrow):
+  <i class="fa fa-angle-left"></i>
+  */
+  // button
+
+  cursor: pointer;
+  background-color: @black;
+  width: 30px;
+  height: 80px;
+  border: solid 1px @black;
+  border-radius: ~"100%/50%";
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin: 0;
+  float: left;
+  position: relative;
+  top: 0;
+  top: ~"calc(50% - 40px)";
+  z-index: 5; // makes sure the button is on top of the content
+  padding: 0; // when a button needed to keep fa in correct spot
+
+  font-size: 30px;
+  text-align: left;
+  color: @white;
+
+  &:hover {
+    background-color: @blue;
+    border-color: @blue;
+  }
+
+  &:active {
+    background-color: @grey-4;
+    border-color: @blue;
+  }
+
+  .fa {
+    float: left;
+    position: relative;
+    top: 0;
+    top: ~"calc(50% - 15px)";
+    margin-left: 3px;
+  }
+
+}
+// ****** END LEFT NAV BUTTON MODULE ******
+
+// ****** START RIGHT NAV BUTTON MODULE ******
+
+/*
+*************** SPECIAL NOTE ********************
+Put this button BEFORE all of the content in the div - this makes it align vertically in the correct place
+If you put this button at the end of the div, it will NOT be centered vertically
+e.g.
+<div class="container">
+  <div class="navigation-button-left"><i class="fa fa-angle-left"></i></div>
+  <div class="navigation-button-right"><i class="fa fa-angle-right"></i></div>
+  <div>**YOUR CONTENT HERE**</div>
+</div>
+*/
+
+.navigation-button-right {
+  /* Required inner HTML (provides the arrow):
+  <i class="fa fa-angle-right"></i>
+  */
+  // button
+
+  .navigation-button-left;
+
+  border-radius: ~"100%/50%";
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  float: right;
+  position: relative;
+
+  .fa {
+    float: right;
+    margin-right: 3px;
+  }
+
+}
+// ****** END RIGHT NAV BUTTON MODULE ******
+
+// Different module sizes from smallest (1) to largest (5)
+.module-1 {
+  .module;
+  height: 375px;
+}
+.module-2 {
+  .module;
+  height: 600px;
+}
+.module-3 {
+  .module;
+  height: 645px;
+}
+.module-4 {
+  .module;
+  height: 690px;
+}
+.module-5 {
+  .module;
+  height: 725px;
+}
+
+/**********************************************
+Tile within module
+demo HTML:
+<div class="module-tile">
+  <div class="module-tile-default">
+    <div class="module-tile-default-container">
+      <div class="module-tile-default-icon">
+        <i class="fa fa-trophy"></i> **Replace with correct font awesome character**
+      </div>
+      <div class="module-tile-default-text">
+        **Title of the tile**
+      </div>
+    </div>
+  </div>
+  <a class="module-tile-link" href="#">
+    <div class="module-tile-hover">
+      <div class="module-tile-name">
+        <i class="fa fa-trophy"></i>**Same font awesome**Title of the tile**
+      </div>
+      <div class="module-tile-info">
+        **Tile description/text**
+      </div>
+      <button class="module-tile-button">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
+    </div>
+  </a>
+</div>
+**********************************************/
+.module-tile {
+  // class for the tiles within modules
+  // div
+
+  width: 180px;
+  height: 180px;
+  background-color: #333;
+  background-image: @tile;
+  margin: 15px;
+  overflow: hidden;
+  text-align: center;
+  color: @white;
+
+  &:hover .module-tile-default{
+    // show the hover portion
+    display: none;
+  }
+
+  &-default {
+    // Class for the default state of the module (no hover)
+    // div
+
+    width: 180px;
+    height: 180px;
+    margin: 0;
+    padding: auto;
+
+    &-container {
+      // Class for the container inside the default div for vertical center
+      // div
+
+      position: relative;
+      top: 20%;
+    } // end .module-tile-default-container
+
+    &-icon {
+      // Class for the icon on the default tile
+      // div
+
+      font-size: 48px;
+      margin-bottom: 24px;
+      padding: 0;
+      line-height: 1em;
+    } // end .module-tile-default-icon
+
+    &-text {
+      // Class for the text on the default tile
+      // div
+
+      font-size: 22px;
+      font-weight: lighter;
+      padding: 0 15px 30px 15px;
+    } // end .module-tile-default-text
+  } // end .module-tile-default
+
+  &-info {
+    // Class for the tile description/information
+    // div
+
+    height: 65px;
+    width: 160px;
+    margin: 0 10px 20px;
+    padding: 0;
+    font-size: 12px;
+    //font-family: 'Helvetica Neue', sans-serif;
+  } // end .module-tile-info
+
+  &-link:active .module-tile-button {
+    // controls the button bg color on active
+    background-color: @grey-4;
+  }
+
+  &-hover {
+    // Class for the hover tilel
+    // div
+
+    width: 180px;
+    height: 180px;
+    margin: 0;
+    padding: auto;
+    font-family: 'Helvetica Neue', sans-serif;
+    text-align: left;
+    padding-bottom: 20px !important;
+  } // end .module-tile-hover
+
+  &-name {
+    // Class for the name on the hover tilel
+    // div
+
+    font-size: 18px;
+    color: @white;
+    font-weight: light;
+    margin: 10px 10px 5px 10px;
+
+    .fa {
+      margin: 0 10px 0 0;
+    }
+  } // end .module-tile-name
+
+  &-button {
+  // Class for the button on the hover tile
+  // button
+
+  margin: 0 20px 20px;
+  width: 139px;
+  height: 34px;
+  background-color: @green;
+  font-size: 12px;
+  font-weight: bold;
+  color: @white;
+  font-family: 'Helvetica Neue', sans-serif;
+  border: solid 1px @green;
+  border-radius: 17px;
+  padding: 0;
+
+  .fa {
+    // Controls the FA on the button
+    margin-left: 3px;
+  }
+  &-align{
+    transform: translate(0px, -20px);
+    -webkit-transform: translate(0px, -20px); // code for safari
+      -khtml-transform: translate(0px, -20px); // code for safari
+    }
+
+  } // end .module-tile-button
+} // end .module-tile

@@ -1,0 +1,335 @@
+/*Author:Ramakrishna Vaibhav kasibhatla [Ram]
+Created: [06/09/2015]
+Description: [Trending Realtors in Chicago,Il]
+Associated Files: [Trends.less, Trenders.html, and Router.js]
+*/
+/*main class */
+.trds{
+
+  /*for sizing the button properties of realtors,real estate agencies and users*/
+  &-naming{
+    font-size: 20px;
+    color:#fff;
+  }
+
+  &-complete{
+    background-color:#fff;
+  }
+
+  /* for partitioning the complete widget into various boxes*/
+  &-boxes{
+    margin-top: 5px;
+    padding-left: 5px;
+    margin-right:20px;
+    list-style-type: none;
+  }
+
+  /*top profile frame*/
+  &-rightside{
+    border: 2px solid #dadada;
+    width: 455px;
+    height:570px;
+    float: right;
+    background: #fff;
+  }
+
+  /*header properties for trending realtors*/
+  &-header{
+    width:453px;
+    height:30px;
+    margin-bottom: 5px;
+    background-color:#dadada;
+  }
+
+  /*font properties for heading */
+  &-title2{
+    font-style: bold;
+    padding-left: 5px;
+    padding-top:10px;
+    float:left;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 15px;
+    line-height: .85em;
+  }
+
+  &-profile{
+    border-radius: 10px;
+    border: 4px solid #ccc;
+    position:relative;
+    outline-offset: 3px;
+    margin-left: auto;
+    margin-right: auto;
+    width:128px;
+    height:128px;
+    background: #dadada;
+    background-image: url("http://docs.atproperties.com/newHeadshotRepository/Kevin_Van_EckType1.jpg ");
+    background-size: 100%;
+    image-orientation:inherit;
+    border-radius:100%;
+    box-sizing:border-box;
+    line-height: .85em;
+    text-align: center;
+  }
+
+  /*properties for image setting*/
+  &-view-profile{
+    position:relative;
+    top:0;
+    left:0;
+    width:127px;
+    height:127px;
+    //margin-left: auto;
+    //margin-right: auto;
+    background: rgba(48,152,255,.75);
+    border-radius:100%;
+    padding:1em;
+    opacity:0;
+    transition: .3s opacity;
+    box-sizing:border-box;
+    transform: translate(-2px, -3px);
+    -webkit-transform: translate(-4px,-3px); /* Safari */
+  }
+
+
+  /*properties when the image is hovered*/
+
+  &-view-profile_txt1 {
+    font-weight: bolder;
+    text-align: center;
+    vertical-align: middle;
+    color: #fff;
+    padding-top: 1.7em;
+    padding-bottom: 10px;
+    font-size: 22px;
+  }
+
+  &-view-profile_txt2 {
+    font-weight: lighter;
+    text-align: center;
+    color: #fff;
+    font-size: 22px;
+
+
+  }
+
+  &-view-profile:hover{
+    border:solid 3px #ccc;
+    opacity:1;
+  }
+  /* properties for realtors license number*/
+  &-License{
+    text-align:center;
+    color:#000;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    font-size:14px;
+    font-weight:light;
+  }
+
+  /*properties for comapny location*/
+  &-company-location{
+    text-align:center;
+  }
+
+  /*properties for company title*/
+  &-company-title{
+    display: inline-block;
+    font-size:14px;
+    font-weight:bold;
+    color:#3098ff;
+  }
+
+  /*properties for realtors name*/
+  &-realtor-name{
+    padding-top:5px;
+    font-size:20px;
+    font-weight:bold;
+    color:#000;
+    margin-bottom: 2px;
+  }
+
+  /*properties for description about the realtor*/
+  &-primary-text{
+    padding: 3px;
+    font-size: 13px;
+    color:#000;
+    text-align:left;
+    //text-justify:inter-word;
+  }
+
+  /*link to related realtor page*/
+  &-read-more{
+    float:left;
+    padding-left:5px !important;
+    font-size: 14px;
+    color:#3098ff;
+    font-weight:bold;
+  }
+
+  /*properties for top-profile*/
+  &-main{
+    border-bottom: 2px solid #dadada;
+    width: 453px;
+    height:310px ;
+  }
+
+  /*properties for the next order of the realtor 2*/
+  &-submain{
+    text-align:left;
+    border-left:5px solid #dadada;
+    border-bottom: 2px solid #dadada;
+    padding-right: 5px;
+    width: 453px;
+    height:74px;
+
+  }
+
+  &-submain:hover {
+    border-left:5px solid #3098ff;
+  }
+  &-submain:hover &-miniclass{
+    color:#3098ff;
+  }
+
+
+
+
+  /*properties for realtor 3*/
+  &-submain2{
+
+    text-align:left;
+    border-left:5px solid #dadada;
+    border-bottom: 2px solid #dadada;
+    padding-right: 5px;
+    width: 453px;
+    height:74px;
+  }
+  &-submain2:hover{
+    border-left:5px solid #3098ff;
+
+  }
+
+  &-submain2:hover &-miniclass{
+    color:#3098ff;
+  }
+
+  /*properties for realtor 4*/
+  &-submain3{
+    text-align:left;
+    border-left:5px solid #dadada;
+    border-bottom: 2px solid #dadada;
+    padding-right: 5px;
+    width: 453px;
+    height:74px;
+  }
+
+  &-submain3:hover{
+    border-left:5px solid #3098ff;
+  }
+  &-submain3:hover &-miniclass{
+    color:#3098ff;
+  }
+  /*properties for  the profile images for other realtors 45px*45px*/
+
+  &-view-smallprofile{
+    margin-top:5px;
+    float:left;
+    background: #3098FF;
+    border: solid 1px #3098ff;
+    margin:5px 5px 0px 10px;
+    width:45px;
+    height:45px;
+    background: #dadada;
+    border-radius:100%;
+    background-image: url(" http://www.pacificcommunity.ca/df_media/W1siZiIsIjIwMTMvMDIvMDQvMTJfMDFfMTZfMF8xNV8wMV8xNl8zMV9zaWxsb3VldHRlX21hbGUuanBnIl0sWyJwIiwibGFyZ2UiXV0/12_01_16_0_15_01_16_31_sillouette_male.jpg?sha=ca364d9ce63a39dc");
+    background-size: 105%;
+    image-orientation:inherit;
+    cursor: pointer;
+
+  }
+  &-hover{
+    width:45px;
+    height:45px;
+    border-radius:100%;
+    transform: translate(0px, -2px);
+    -webkit-transform: translate(-1px,-1px); /* Safari */
+
+  }
+  &-hover:hover{
+    opacity:.85;
+    background:#3098ff;
+    border: solid 3px #ccc;
+  }
+  /*properties for hovered images*/
+
+
+
+
+  /*properties for left navigation button*/
+  &-left-button-hov{
+    border: 3px solid #000;
+    float:left;
+    height:75px;
+    width:38px;
+    background:#000;
+    border-top-right-radius:38px;
+    border-bottom-right-radius:38px;
+    padding-right:12px;
+    color:#fff;
+  }
+
+  /*properties for left navigation button hover*/
+  &-left-button-hov:hover{
+    border: 3px solid #3098ff;
+    height:75px;
+    width:38px;
+    background:#3098ff;
+    border-top-right-radius:38px;
+    border-bottom-right-radius:38px;
+
+  }
+
+  /*properties for right navigation button*/
+  &-right-button-hov{
+    border: 3px solid #000;
+    float:right;
+    height:75px;
+    width:38px;
+    background:#000;
+    border-top-left-radius:38px;
+    border-bottom-left-radius:38px;
+    color:#fff;
+    padding-left:12px;
+  }
+
+  /*properties for right navigation button hover*/
+  &-right-button-hov:hover{
+    border: 3px solid #3098ff;
+    float:right;
+    height:75px;
+    width:38px;
+    background:#3098ff;
+    border-top-left-radius:38px;
+    border-bottom-left-radius:38px;
+
+  }
+
+  /*changes commited*/
+  /*properties for submain text setting*/
+
+  &-names{
+    clear: both;
+  }
+
+  &-miniclass{
+    padding-right:3px;
+    margin-top:-20px;
+    float:right !important;
+    color: #ccc;
+    cursor: pointer;
+  }
+
+
+
+}

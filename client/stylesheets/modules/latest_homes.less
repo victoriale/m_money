@@ -1,0 +1,112 @@
+/*
+Author: jyothyswaroop
+Created: [06/07/2015]
+Description: made a widget called trending_companies
+Associated Files: [latest_homes.html home_hitting.less file for the module] latest homes.less
+*/
+
+
+@import (reference)"../global_vars.less"; //include important global vars (colors mostly)
+
+.lh_wrapper{
+  width:95%;
+  height:575px;
+  border: 1px solid @grey-3;
+  margin: 22px auto 0 auto;
+
+//latest homes header
+  .lh_header{
+    width:100%;
+    height:41px;
+    background-color: @grey-1;
+    font-size:16px;
+    text-transform: uppercase;
+    text-align: left;
+    &-circle{
+      width:41px;
+      font-size: 14px;
+      color:@blue;
+      padding:10px 13px;
+      float:left;
+    }
+    &-title{
+      padding: 10px 0;
+      font-size:16px;
+      font-weight: bold;
+      float:left;
+    }
+  }
+  //latest homes header END
+  //latest homes content rectangle
+  .lh_content{
+    width:100%;
+    height:69px;
+    border-left:5px solid @grey-2;
+    border-top: 1px solid @grey-2;
+    border-bottom: 1px solid @grey-2;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    //content date
+    &-date{
+      width:69px;
+      height:100%;
+      text-align: center;
+      color:@black;
+      float: left;
+      box-sizing: border-box;
+      padding-left: 10px;
+      &-month{
+        font-size:12px;
+        padding-top: 8px;
+      }
+      &-day{
+        font-size:38px;
+        font-weight: bold;
+        line-height: 38px;
+        height:40px;
+      }
+    }
+    //content image
+    &-image{
+      width: 50px;
+      height:50px;
+      border: 1px solid @grey-3;
+      border-radius: 50%;
+      float:left;
+      margin:9px 15px;
+      background-position: center center !important;
+      background-repeat: no-repeat;
+      background-size: cover !important;
+    }
+    //content area
+    &-area{
+      height:100%;
+      padding: 10px 15px;
+      color:@black;
+      float:left;
+      &-place{
+        font-size: 18px;
+        font-weight: bold;
+      }
+      &-listing{
+        font-size: 14px;
+        color:#505050;
+      }
+    }
+    //bold available listings
+    &-bold{
+      font-weight: bold;
+    }
+    &-arrow{
+      font-size: 22px;
+      height:100%;
+      float:right;
+      padding-right: 15px;
+      color:@grey-2;
+      line-height: 69px;
+    }
+  }
+  //latest homes content rectangle END
+}

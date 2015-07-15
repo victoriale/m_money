@@ -1,0 +1,69 @@
+<!-- Name :snehalatha pappu
+date created: 06/15/15
+description:html file for the frame property images
+attached files:image_media.html , image_media.less
+-->
+
+
+<template name= "image_media">
+  <div class="property_listing_module module-3">
+    <div class="module-header">
+      <span class="module-header-line"></span>
+      <!-- Title -->
+      <span class="module-header-title">Property listing  Images & Media</span>
+    </div>
+    <div class="module-wrapper">
+      <!--The first container -->
+      <div class ="property_listing-container" style="background-image: url('{{MainImgURL}}')">
+        {{#if video_counter}}
+        <!-- Videos -->
+        <div class="property_listing-rounded_rec" id="video">
+          <!--text inside third rounded rectangle -->
+          <span class="property_listing-rectext"> VIDEOS ({{video_counter}}) </span>
+        </div>
+        {{/if}}
+        {{#if virtual_counter}}
+        <!-- Virtual Tours-->
+        <div class="property_listing-rounded_rec" id="virtual_tour">
+          <!-- text inside second rounded rectangle -->
+          <span class="property_listing-rectext"> VIRTUAL TOURS ({{virtual_counter}})</span>
+        </div>
+        {{/if}}
+        {{#if image_counter}}
+        <!-- Images  -->
+        <div class="property_listing-rounded_rec">
+          <!-- fa icon -->
+          <i class="fa fa-file-image-o"></i>
+          <!-- text inside the rounded rectangle -->
+          <span class= "property_listing-rectext" >IMAGES ({{image_counter}})</span>
+        </div>
+        {{/if}}
+
+        <!-- middle container -->
+        <div class ="property_listing-midcont" >
+          <!-- left navigation button -->
+          <div class="navigation-button-left">
+            <i class = "fa fa-angle-left"></i>
+          </div>
+          <!-- right navigation button-->
+          <div class="navigation-button-right">
+            <i class = "fa fa-angle-right"></i>
+          </div>
+        </div>
+        <!-- ellipse -->
+        <!--<div class="property_listing-elpse">
+          <!- fa icon fa map maker ->
+          <i class= "fa fa-map-marker" style="font-size:18px;color:#fff;margin-top:10px;"><div class= "property_listing-txt">map </div></i>
+        </div>-->
+
+      </div>
+      <!--second container -->
+      <div class ="property_listing-small_container" >
+        <!-- Sub images -->
+        {{#each SubImg}}
+        <div class="property_listing-sc1" id="{{Index}}" style="background-image: url('{{SubImgURL}}')"></div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</template>

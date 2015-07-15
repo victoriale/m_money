@@ -1,0 +1,145 @@
+<!--
+Author: jyothyswaroop(joe)
+Created: [06/07/2015]
+Description: made a widget called trending_companies
+Associated Files: [The trending_companies.less, trending_companies.html, and trending_companines_module.html file for the module]
+latest homes.html
+!-->
+
+<template name="latest_homes">
+
+  <div class="module-3" id="lh_height">   <!-- Widget 3 of height of 654px and width of 680px !-->
+    <div class="module-header">
+      <span class="module-header-line"></span> <!-- for blue line in the header!-->
+      <span class="module-header-title">HOMES HITTING {{location}} MARKET</span> <!-- Header Title !-->
+    </div>
+    <!--latest homes Module start here-->
+    <div class="lh_wrapper">
+      <!-- latest homes header -->
+      <div class="lh_header">
+        <div class="lh_header-circle"><i class="fa fa-circle"></i></div>
+        <div class="lh_header-title">NEW HOMES IN {{location}}</div>
+      </div>
+      <!-- latest homes header END-->
+      <!-- latest homes content rectangle-->
+      {{#each List}}
+      <div class="lh_content">
+        <div class="lh_content-date">
+          <div class="lh_content-date-month">{{month}}</div>
+          <div class="lh_content-date-day">{{day}}</div>
+        </div>
+        <div class="lh_content-image" style="background-image:url('{{stockimage}}')"></div>
+        <div class="lh_content-area">
+          <div class="lh_content-area-place">{{neighborhood}}</div>
+          <div class="lh_content-area-listing">New Listings <span class="lh_content-bold">{{listings}} Available</span></div>
+        </div>
+        <div class="lh_content-arrow"><i class="fa fa-angle-right"></i></div>
+      </div>
+      {{/each}}
+      <!-- latest homes content rectangle END-->
+    </div>
+    <!--latest homes Module END here-->
+    <!-- need neighborhood list
+    <div class="module-footer">
+      <button class="module-footer-button" id="lh_button">
+        <span class="module-footer-button-text">SEE WHOLE LIST</span>
+        <span class="module-footer-button-ellipse"><i class="fa fa-mail-forward"></i></span>
+      </button>
+    </div>
+    -->
+  </div>
+
+
+</template>
+
+<!--NOT ENOUGH INFORMATION TO FINISH THESE TILES-->
+<template name="latesthomestimes">
+  <div class="home_body-home_left_column"> <!-- created a left column for tiles !-->
+    <div class="module-tile"> <!-- global class from module.less !-->
+      <div class="module-tile-default">
+        <div class="module-tile-default-container">
+          <div class="module-tile-default-icon">
+            <i class="fa fa-list-ul"></i>   <!-- list icon !-->
+          </div>
+
+          <div class="module-tile-default-text">
+            Recently Listed   <!-- text for the tile !-->
+          </div>
+        </div>
+      </div>
+      <a class="module-tile-link" href="#">  <!-- link class in module.less !-->
+        <div class="module-tile-hover">
+          <div class="module-tile-name">
+            <i class="fa fa-list-ul"></i>Recently Listed
+          </div>
+          <div class="module-tile-info">
+          </div>
+          <button class="module-tile-button">OPEN PAGE <i class="fa fa-mail-forward"></i></button> <!-- button to open the page !-->
+        </div>
+      </a>
+    </div>
+
+    <div class="module-tile"> <!-- global class from module.less !-->
+      <div class="module-tile-default">
+        <div class="module-tile-default-container">
+
+          <div class="module-tile-default-icon">
+            <i class="fa fa-trophy"></i>  <!-- trophy icon !-->
+          </div>
+
+          <div class="module-tile-default-text">
+            Recently Sold  <!-- text for the tile !-->
+          </div>
+        </div>
+      </div>
+
+      <a class="module-tile-link" href="#">  <!-- link class in module.less !-->
+        <div class="module-tile-hover">
+
+          <div class="module-tile-name">
+            <i class="fa fa-trophy"></i>
+            Recently Sold
+          </div>
+
+          <div class="module-tile-info">
+          </div>
+
+          <button class="module-tile-button">OPEN PAGE <i class="fa fa-mail-forward"></i></button> <!-- button to open the page !-->
+        </div>
+      </a>
+    </div>
+
+    <div class="module-tile"> <!-- global class from module.less !-->
+      <div class="module-tile-default">
+        <div class="module-tile-default-container">
+
+          <div class="module-tile-default-icon">
+            <i class="fa fa-th-large"></i> <!-- large icon !-->
+          </div>
+
+          <div class="module-tile-default-text">
+            Recently Relisted  <!-- text for the tile !-->
+          </div>
+
+        </div>
+      </div>
+
+      <a class="module-tile-link" href="#">  <!-- link class in module.less !-->
+      <div class="module-tile-hover">
+
+          <div class="module-tile-name">
+            <i class="fa fa-th-large"></i>
+            Recently Relisted
+          </div>
+
+          <div class="module-tile-info">
+          </div>
+
+         <button class="module-tile-button module-tile-button-align">OPEN PAGE <i class="fa fa-mail-forward"></i></button> <!-- button to open the page !-->
+
+    </div>
+
+    </a>
+    </div>
+  </div>
+</template>

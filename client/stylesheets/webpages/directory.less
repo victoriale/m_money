@@ -1,0 +1,183 @@
+/*
+Author : Larry Pham
+Date: 07/09/2015
+Description: Directory page that will hold all links to all list created on our domain
+Associated files: directory.html
+*/
+
+@import (reference) "../global_vars.less"; //include important global vars (colors mostly)
+
+.directory-container{
+  width: 1012px;
+  height: auto;
+  border:1px solid @grey-2;
+  background-color: @white;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  >.title-container{
+    width: 970px;
+    height: auto;
+    margin: 0px 20px;
+    border-bottom: 1px solid @grey-3;
+    padding: 12px 0px;
+
+    >#location{
+      display: block;
+      font-size: 12px;
+
+      >.fa-map-marker{
+        margin-right: 5px;
+      }//Close .fa-map-marker
+
+      >a{
+        color: #000;
+
+        &:hover{
+          color: @blue;
+        }//Close hover
+      }//Close a
+    }//Close #location
+
+    >#title{
+      display: block;
+      font-size: 22px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }//Close #title
+  }//Close .title-container
+
+  >.sort-container{
+    width: 970px;
+    height: auto;
+    margin: 0 20px;
+    border-bottom: 1px solid @grey-3;
+    padding: 12px 0px;
+
+    >#sub-title{
+      display: block;
+      font-size: 18px;
+      font-weight: 300;
+      text-transform: uppercase;
+
+    }//Close #sub-title
+    >.link-container{
+
+      >a{
+        color: #000;
+
+        >.more-cities{
+          color: @blue;
+          font-weight: 700;
+        }//Close .more-cities
+
+        &:hover{
+          color: @blue;
+        }//Close hover
+      }//Close a
+    }//Close .link-container
+
+  }//Close .sort-container
+
+  >.error-container{
+    width: 950px;
+    height: auto;
+    margin: 0px 30px;
+    padding: 12px 0px;
+  }
+
+  >.button-container{
+    width: 950px;
+    height: 50px;
+    margin: 0px 30px;
+    padding: 8px 0px;
+
+    >.view-range{
+      display: block;
+      float: left;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 34px;
+
+      >.bold{
+        font-weight: 700;
+      }//Close .bold
+    }//Close .view-range
+
+    .nav-button{
+      display: block;
+      width: 140px;
+      height: 35px;
+      border-radius: 5px;
+      border: none;
+      float: right;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      margin-left: 20px;
+      background-color: #999999;
+
+      >.fa{
+        font-size: 17px;
+        font-weight: 700;
+      }//Close .fa
+      >.fa-angle-right{
+        margin-left: 5px;
+      }//Close .fa-angle-right
+      >.fa-angle-left{
+        margin-right: 5px;
+      }//Close .fa-angle-left
+
+      //Button is blue if it is useable
+      &.active{
+        background-color: @blue;
+      }//Close .active
+    }//Close .nav-button
+  }//Close .button-container
+
+  >.listings-container{
+    width: 950px;
+    height: auto;
+    margin: 0px 30px;
+    list-style-type: none;
+    padding: 0px;
+
+    >.listing{
+      width: inherit;
+      height: auto;
+      border-top: 1px solid @grey-3;
+      border-left: 5px solid @grey-2;
+      padding: 12px 14px;
+      line-height: 17px;
+
+      >.date{
+        display: block;
+        font-size: 12px;
+      }//Close .date
+      >.location{
+        display: block;
+        font-size: 14px;
+        color: @blue;
+
+        >a{
+          color: @blue;
+        }
+
+        >.grey{
+          color: #999999;
+        }//Close .grey
+      }//Close location
+      >.dir-stats{
+        display: block;
+        font-size: 14px;
+      }//Close stats
+
+      &.white-background{
+        background-color: #fff;
+      }//Close .white-background
+      &.grey-background{
+        background-color: @grey-1;
+      }//Close .grey-background
+    }//Close .listing
+  }//Close listings-container
+}//Close .directory-container

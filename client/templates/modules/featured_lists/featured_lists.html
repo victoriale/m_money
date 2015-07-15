@@ -1,0 +1,133 @@
+<!-- Author: Navya Eetaram
+Created: [06/09/2015]
+Description: Chicago Top 100 featured Lists
+Associated Files: featured_lists.html, featured_lists.less-->
+<template name= "featured_lists">
+
+  <div class="module-3">
+
+    <div class="module-header">
+      <span class="module-header-line"></span>
+      <!--widget title-->
+      <span class="module-header-title">{{City}}, {{State}} FEATURED LISTS</span>
+    </div>
+
+    <div class="module-wrapper">
+      <!-- Begin Panel-->
+      <div class ="featured-list-panel">
+        <div class="featured-list-panel_title">
+          <!--Panel Ttile-->
+          <i class="fa fa-circle" style="color:#3098ff; padding-right:10px;"></i>real estate trending lists
+        </div>
+        <div class="featured-list-panel_header-text"><c>T</c>op 10 Most Expensive Homes</div>
+        <div class="featured-list-panel_underline"></div>
+        <div class = "profile-name">{{FullStreetAddress}}</div>
+        <div class = "location-text"><i class="fa fa-map-marker" style="color:#3098ff"></i> {{City}}, {{State}} {{PostalCode}}{{#if CountyName}}-{{CountyName}}{{/if}}</div>
+        <!-- Container for navigation buttons and profile image-->
+        <div class="middlecontainer">
+          <a class="nav-left" ><i class="fa fa-angle-left"></i></a>
+          <div class="center-image pic pic_s" id="featured_list_link" style="background-image: url('{{ListingPhoto}}'),url('/Home_Stock_Images/25_S.png')">
+            <!--image hover-->
+            <a href="{{ListingURL}}"><div class="featured-view-profile">
+              <div class="featured-view-profile_txt1">VIEW</div>
+              <div class="featured-view-profile_txt2">PROFILE</div>
+            </div></a>
+            <div class="pic pic_pass-fail "></div>
+            <div class = "pic pic_counter">{{featured_list_index}}</div>
+          </div>
+          <a class="nav-right"><i class="fa fa-angle-right"></i></a>
+        </div>
+        <!--end of container-->
+        <!--container for price specifications-->
+        <div class="bottomcontainer">
+          <div class="line-1" >Bedrooms: {{Bedrooms}} | Bathrooms: {{BathRooms}}    </div>
+          <div class="line-2">Asking Price: <b>${{Price}} </b> </div>
+        </div>
+        <div class="featured-list_footer">
+          <!-- See whole list Button -->
+          <a href="{{ListURL}}"><button class="module-footer-button" id="FeaturedListButton">
+            <span class="module-footer-button-text">SEE WHOLE LIST</span>
+            <span class="module-footer-button-ellipse"><i class="fa fa-mail-forward"></i></span>
+          </button></a>
+          <!-- END -->
+        </div>
+
+      </div>
+      <div class="fl_tile_container">
+
+      <!-- Begin: Module Tiles of Top 100 featured lists widget -->
+      <!-- Tile 1 -->
+      <div class="module-tile">
+        <div class="module-tile-default">
+          <div class="module-tile-default-container">
+            <div class="module-tile-default-icon">
+              <i class="fa fa-list-ul"></i>
+            </div>
+            <div class="module-tile-default-text">Real Estate Trending Lists
+            </div>
+          </div>
+        </div>
+        <!--Hover effects for the tiles-->
+        <a class="module-tile-link" href="{{Top10ListURL}}" id="Top10List">
+          <div class="module-tile-hover">
+            <div class="module-tile-name">
+              <i class="fa fa-list-ul"></i>Real Estate Trending Lists
+            </div>
+            <div class="module-tile-info" >
+            </div>
+            <!--Tile Button -->
+            <button class="module-tile-button module-tile-button-align">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
+          </div>
+        </a>
+      </div>
+
+      <!-- Tile 2 -->
+      <div class="module-tile">
+        <div class="module-tile-default">
+          <div class="module-tile-default-container">
+            <div class="module-tile-default-icon">
+              <i class="fa fa-trophy"></i>
+            </div>
+            <div class="module-tile-default-text">Location's Top 10 Lists
+            </div>
+          </div>
+        </div>
+        <a class="module-tile-link" href="{{Top10ListURL}}" id="Top10List">
+          <div class="module-tile-hover">
+            <div class="module-tile-name">
+              <i class="fa fa-trophy"></i>Location's Top 10 Lists
+            </div>
+            <div class="module-tile-info" >
+            </div>
+            <button class="module-tile-button module-tile-button-align">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
+          </div>
+        </a>
+      </div>
+
+      <!-- Tile 3 -->
+      <div class="module-tile">
+        <div class="module-tile-default">
+          <div class="module-tile-default-container">
+            <div class="module-tile-default-icon">
+              <i class="fa fa-th-large"></i>
+            </div>
+            <div class="module-tile-default-text">Similar Top 10 Lists
+            </div>
+          </div>
+        </div>
+        <a class="module-tile-link" href="{{SimilarTopListsURL}}" id="SimilarTopLists">
+          <div class="module-tile-hover">
+            <div class="module-tile-name">
+              <i class="fa fa-th-large"></i>Similar Top 10 Lists
+            </div>
+            <div class="module-tile-info">
+            </div>
+            <button class="module-tile-button module-tile-button-align">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
+          </div>
+        </a>
+      </div>
+      <!-- End of Module tiles -->
+    </div>
+  </div>
+  </div>
+</template>

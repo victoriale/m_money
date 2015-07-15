@@ -1,0 +1,83 @@
+<!--
+  Created 6/3/15 by William Klausmeyer
+  Depends on: profile-header-logic.js, profile-header.less, modules.less
+  Required vars:
+    ProfileLastUpdated - the string of the last updated time
+    ProfileTitle - The title of the profile
+    ProfileType - the type of the profile
+    CarouselTitle - the title of the initial carousel item
+    CarouselDescription - the description for the initial carousel item
+-->
+<template name="nothing">
+  <div></div>
+</template>
+
+<template name="profile_header">
+  <div class="profile-header">
+    <div class="profile-header-name-container">
+      <div class="profile-header-profile-image" style="background-image: url('{{ProfileImage}}'), url('{{DefaultImage}}')">
+        <!--<button class="profile-header-profile-image-addbutton">+</button>-->
+      </div>
+      <ul class="profile-header-text">
+        <li>
+          <span class="profile-header-text-update">
+            {{#if isListing}}
+              <i class="fa fa-map-marker"></i>
+            {{else}}
+              <i class="fa fa-gear"></i>
+            {{/if}}
+            {{ProfileLastUpdated}}
+          </span>
+          {{#if isListing}}
+          <a href="{{originalLink}}" style="float:right; padding-right:20px; cursor:pointer; color:#252525;">See Original</a>
+          {{/if}}
+        </li>
+        <li class="profile-header-text-name">{{ProfileTitle}}{{status}}</li>
+        <li>
+          <span class="profile-header-text-type">
+            {{ProfileType}}{{area}}
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div class="profile-header-bar-top">
+      <!--<div class="profile-header-bar-button">
+        <i class="fa fa-plus"></i><span class="profile-header-bar-text">Follow</span>
+      </div>
+      <div class="profile-header-bar-button">
+        <i class="fa fa-share-alt"></i><span class="profile-header-bar-text">Share</span>
+      </div>
+      <div class="profile-header-bar-button">
+        <i class="fa fa-comments-o"></i><span class="profile-header-bar-text">Comments (78)</span>
+      </div>
+      <div class="profile-header-bar-button">
+        <i class="fa fa-flag"></i><span class="profile-header-bar-text">Feedback</span>
+      </div>-->
+    </div>
+    <div class="profile-header-carousel">
+      <div class="profile-header-carousel-cover">
+        <!--{{#if isListing}}
+          <button class="navigation-button-left"><i class="fa fa-angle-left"></i></button>
+          <button class="navigation-button-right"><i class="fa fa-angle-right"></i></button>
+        {{/if}}-->
+        <div class="profile-header-carousel-image-wrapper"><div class="profile-header-carousel-image"  style="background-image: url('{{ProfileImage}}'), url('{{DefaultImage}}')">
+          {{#if RealtorImage}}
+          <div class="profile-header-carousel-image-agency" style="background-image: url('{{RealtorImage}}')"></div>
+          {{/if}}
+        </div></div>
+        <ul class="profile-header-carousel-container">
+          <li class="profile-header-carousel-title"><div class="profile-header-carousel-title-image">
+            <i class="fa fa-map-marker"></i></div>{{CarouselTitle}}</li>
+          <li class="profile-header-carousel-description">{{CarouselDescription}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="profile-header-bar">
+      {{#if isListing}}
+        <i class="fa fa-university"></i><span class="profile-header-bar-text"> Agency > <b>{{NumberListings}}</b></span>
+      {{else}}
+        <span class="profile-header-bar-text">Listings > <b>{{NumberListings}}</b></span>
+      {{/if}}
+    </div>
+  </div>
+</template>

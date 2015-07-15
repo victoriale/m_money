@@ -1,0 +1,40 @@
+<template name="school_list">
+  <div class="module-3 school_list">
+    <!--Frame name header-->
+    <div class="module-header">
+      <span class="module-header-line"></span><span class="module-header-title">{{PageTitle}}</span></div>
+      <div class="module-wrapper">
+        {{#each ListItems}}
+        <div class="{{class}}">
+          <!--Profile Image-->
+          <div class="school_list_img" style="background-image: url('{{image_url}}')">
+            <a href="{{url}}"><div class="top_list-view-profile">
+              <div class="top_list-image-body">
+                <div class="top_list-view">View</div>
+                <div class="top_list-profile">School</div>
+              </div>
+            </div></a>
+          </div>
+          <!--Location title -->
+          {{#if street_address}}
+          <div class="school_list_location"><i class="fa fa-map-marker"></i>{{street_address}} > {{city}}, {{state}} {{zipcode}} </div>
+          {{/if}}
+          <div class="school_list_listtitle">{{name}}</div>
+          <div class="school_list_comments"><b>School Type:</b> {{type}}<br><b>Grade Level:</b> {{#each grade_level}}{{level}}{{/each}}</div>
+        </div>
+        {{/each}}
+      </div>
+      <div class="module-footer">
+        {{#if NextURLContext}}
+        {{#with NextURLContext}}
+        <a href="{{pathFor 'content.realestate.school.skip'}}"><button class="module-footer-button" id="see_whole_list">
+          <span class="module-footer-button-text">NEXT 20 school</span>
+          <span class="module-footer-button-ellipse"><i class="fa fa-mail-forward"></i></span>
+        </button></a>
+        {{/with}}
+        {{/if}}
+      </div>
+    </div>
+
+    {{> search_module}}
+  </template>

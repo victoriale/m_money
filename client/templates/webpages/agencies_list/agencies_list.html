@@ -1,0 +1,285 @@
+<!-- Author : Deepika Priyanka V
+Date: 07/08/2015
+Description: Web page for Real Estate Agencies
+Associated files: agencies_list.html, agencies_list.less
+Dependecies: Router.js,global_vars.less -->
+
+<template name="agencies_list">
+  <!-- The Left panel -->
+  <div class="agencies_list-leftpanel">
+    <!-- header container shows real estate agencies in that locatin-->
+    <div class="agencies_list-headercontainer">
+      <div class="agencies_list-headerimg">
+        <span class="agencies_list-headericon"><i class="fa fa-reply"></i></span>
+      </div>
+      <div class="agencies_list-headertext">
+        <span class="agencies_list-timestamp">LAST UPDATED: 06/24/2015,8:30AM EST </span><br>
+        <span class="agencies_list-location"><i class="fa fa-map-marker"> Chicago, IL</i></span><br>
+        <span class="agencies_list-agents">Real Estate Agencies</span><br>
+        <span class="agencies_list-area">in the Chicago, IL Area</span>
+      </div>
+    </div>
+
+    <!--frame for image holder-->
+    <div class=" agencies_list-imagebox">
+      <div class="agencies_list-leftarrow"><i class="fa fa-angle-left"></i></div>
+      <div class=" agencies_list-rightarrow"> <i class="fa fa-angle-right"></i></div>
+      <div class=" agencies_list-imageheader">
+        <span class=" agencies_list-imghdrtxt">Featured Real Estate Agencies</span>
+        <i class="fa fa-heart  agencies_list-symbols"></i>
+        <span class=" agencies_list-symbol-text">Save</span>
+        <i class="fa fa-share-alt  agencies_list-symbols"></i>
+        <span class=" agencies_list-symbol-text">Share</span>
+      </div>
+      <div class=" agencies_list-imgcontainerborder ">
+        <span class=" agencies_list-agentname">Sotheby's International Realty</span><br><br>
+        <span class="agencies_list-salesdetails">Agents: </span>
+        <span class="agencies_list-propertydetails">10,587 </span>
+        <span class="agencies_list-salesdetails"><i class="fa fa-angle-right"></i> Homes for sale: </span>
+        <span class="agencies_list-propertydetails"> 1,254,896</span>
+        <button class=" agencies_list-borderbutton" type="button"> View Profile <i class="fa fa-angle-right"></i></button>
+      </div>
+    </div>
+    <!-- Listing box details shows the agencies-->
+    <div class="agencies_list-listingcontainer">
+      <span class="agencies_list-sort">Sort by:</span>
+      <span class="agencies_list-list">Chicago, IL Agencies </span>
+      <span class="agencies_list-listboxarrow"><i class="fa fa-angle-down"></i></span>
+
+      <div class="agencies_list-listquestioncontainer">
+        <div class="agencies_list-listquestionbox">
+          <span class="agencies_list-question">What is this page? </span>
+          <span class="agencies_list-closebox"><i class="fa fa-times"></i></span>
+        </div>
+        <span class="agencies_list-contentbox"> This is a list featuring all 105 real estate agents serving the Chicago,IL metro area. Lists include agencies in a 10 mile radius from Chicago, IL.
+          List includes agencies of all varieties with excellent agents, brokers and realtors.
+        </span>
+      </div>
+    </div>
+    <!-- first agency details container-->
+    <div class="agencies_list-propertycontainer1">
+      <div class="agencies_list-propertyimg">
+        <div class="agencies_list-imgcounter">#1</div>
+      </div>
+      <div class="agencies_list-centerbox">
+        <span class="agencies_list-loc"><i class="fa fa-map-marker"></i></span>
+        <span class="agencies_list-loctext"> Chicago, IL</span><br>
+        <span class="agencies_list-brokername">Americorp, LTD</span><br>
+        <span class="agencies_list-broker">Agents:</span>
+        <span class="agencies_list-brokercompany">5,987</span>
+      </div>
+      <div class="agencies_list-rightdetailsbox">
+        <span class="agencies_list-sales">Homes for sale</span><br>
+        <span class="agencies_list-homenum">2,347</span><br>
+        <span class="agencies_list-tilldate">as of 06/30/2015</span>
+      </div>
+      <div class="agencies_list-infotextbox">
+        <span class="agencies_list-brokerinfo">Want more info about Americorp, LTD?</span>
+        <button class=" agencies_list-borderbutton2" type="button"> View Profile <i class="fa fa-angle-right"></i></button>
+      </div>
+      <div class="agencies_list-bordericons">
+        <span><i class="fa fa-heart agencies_list-ss"></i></span>
+        <span class="agencies_list-sstext">Save</span>
+        <span><i class="fa fa-share-alt agencies_list-ss"></i></span>
+        <span class="agencies_list-sstext">Share</span>
+        <span class="agencies_list-feedbacktext">Feedback</span>
+        <span><i class="fa fa-flag agencies_list-feedback"></i></span>
+      </div>
+    </div>
+
+    <!--  second agency details container -->
+
+    <div class="agencies_list-propertycontainer2">
+      <div class="agencies_list-propertyimg">
+        <div class="agencies_list-imgcounter">#2</div>
+      </div>
+      <div class="agencies_list-centerbox">
+        <span class="agencies_list-loc"><i class="fa fa-map-marker"></i></span>
+        <span class="agencies_list-loctext"> Chicago, IL</span><br>
+        <span class="agencies_list-brokername">Koenig Strey</span><br>
+        <span class="agencies_list-broker">Agents:</span>
+        <span class="agencies_list-brokercompany">4,873</span>
+      </div>
+      <div class="agencies_list-rightdetailsbox">
+        <span class="agencies_list-sales">Homes for sale</span><br>
+        <span class="agencies_list-homenum">2,226</span><br>
+        <span class="agencies_list-tilldate">as of 06/30/2015</span>
+      </div>
+      <div class="agencies_list-infotextbox">
+        <span class="agencies_list-brokerinfo">Want more info about Koenig Strey?</span>
+        <button class=" agencies_list-borderbutton2" type="button"> View Profile <i class="fa fa-angle-right"></i></button>
+      </div>
+      <div class="agencies_list-bordericons">
+        <span><i class="fa fa-heart agencies_list-ss"></i></span>
+        <span class="agencies_list-sstext">Save</span>
+        <span><i class="fa fa-share-alt agencies_list-ss"></i></span>
+        <span class="agencies_list-sstext">Share</span>
+        <span class="agencies_list-feedbacktext">Feedback</span>
+        <span><i class="fa fa-flag agencies_list-feedback"></i></span>
+      </div>
+    </div>
+    <!-- Third agency details container-->
+
+    <div class="agencies_list-propertycontainer1">
+      <div class="agencies_list-propertyimg">
+        <div class="agencies_list-imgcounter"> #3 </div>
+      </div>
+      <div class="agencies_list-centerbox">
+        <span class="agencies_list-loc"><i class="fa fa-map-marker"></i></span>
+        <span class="agencies_list-loctext"> Chicago, IL</span><br>
+        <span class="agencies_list-brokername">Coldwell Banker</span><br>
+        <span class="agencies_list-broker">Agents:</span>
+        <span class="agencies_list-brokercompany"> 10,879 </span>
+      </div>
+      <div class="agencies_list-rightdetailsbox">
+        <span class="agencies_list-sales">Homes for sale</span><br>
+        <span class="agencies_list-homenum">2,003</span><br>
+        <span class="agencies_list-tilldate">as of 06/30/2015</span>
+      </div>
+      <div class="agencies_list-infotextbox">
+        <span class="agencies_list-brokerinfo">Want more info about Coldwell Banker?</span>
+        <button class=" agencies_list-borderbutton2" type="button"> View Profile <i class="fa fa-angle-right"></i></button>
+      </div>
+      <div class="agencies_list-bordericons">
+        <span><i class="fa fa-heart agencies_list-ss"></i></span>
+        <span class="agencies_list-sstext">Save</span>
+        <span><i class="fa fa-share-alt agencies_list-ss"></i></span>
+        <span class="agencies_list-sstext">Share</span>
+        <span class="agencies_list-feedbacktext">Feedback</span>
+        <span><i class="fa fa-flag agencies_list-feedback"></i></span>
+      </div>
+    </div>
+
+    <!-- Featured Real estate agencies are shown -->
+    <div class="agencies_list-featuredagentscontainer">
+      <div class="agencies_list-featuredtop">
+        <span class="agencies_list-featuredtext">Featured Real Estate Agencies in Chicago, IL</span>
+      </div>
+      <div class="agencies_list-imagetile1">
+        <span class="agencies_list-tile1text1">CMK Realty</span>
+        <span class="agencies_list-tile1text2">Agent </span>
+        <span class="agencies_list-tile1text2"><i class="fa fa-angle-right"></i></span>
+        <span class="agencies_list-tile1text3"> 4,980 </span>
+      </div>
+      <div class="agencies_list-imagetile1 agencies_list-imagetile2">
+        <span class="agencies_list-tile1text1 agencies_list-tile2text1"> Re/Max </span>
+        <span class="agencies_list-tile1text2 agencies_list-tile2text2">Agent </span>
+        <span class="agencies_list-tile1text2 agencies_list-tile2text2"><i class="fa fa-angle-right"></i></span>
+        <span class="agencies_list-tile1text3 agencies_list-tile2text3">3,335</span>
+      </div>
+      <div class="agencies_list-imagetile1 agencies_list-imagetile3">
+        <span class="agencies_list-tile1text1 agencies_list-tile2text1">Century 21</span>
+        <span class="agencies_list-tile1text2 agencies_list-tile3text2">Agent</span>
+        <span class="agencies_list-tile1text2 agencies_list-tile3text2"><i class="fa fa-angle-right"></i></span>
+        <span class="agencies_list-tile1text3 agencies_list-tile3text3"> 6,777 </span>
+      </div>
+      <div class="agencies_list-imagetile1 agencies_list-imagetile4">
+        <div class=" agencies_list-rightarrow agencies_list-tilearrow"> <i class="fa fa-angle-right"></i></div>
+        <span class="agencies_list-tile1text1 agencies_list-tile2text1">Adam Wavrunek</span>
+        <span class="agencies_list-tile1text2 agencies_list-tile4text2">Agent</span>
+        <span class="agencies_list-tile1text2 agencies_list-tile4text2"><i class="fa fa-angle-right"></i></span>
+        <span class="agencies_list-tile1text3 agencies_list-tile4text3"> 856 </span>
+      </div>
+    </div>
+
+    <!-- fourth agency details container-->
+    <div class="agencies_list-propertycontainer2">
+      <div class="agencies_list-propertyimg">
+        <div class="agencies_list-imgcounter">#4</div>
+      </div>
+      <div class="agencies_list-centerbox">
+        <span class="agencies_list-loc"><i class="fa fa-map-marker"></i></span>
+        <span class="agencies_list-loctext"> Chicago, IL</span><br>
+        <span class="agencies_list-brokername"> @Properties</span><br>
+        <span class="agencies_list-broker">Agents:</span>
+        <span class="agencies_list-brokercompany">5,879</span>
+      </div>
+      <div class="agencies_list-rightdetailsbox">
+        <span class="agencies_list-sales">Homes for sale</span><br>
+        <span class="agencies_list-homenum">1,998</span><br>
+        <span class="agencies_list-tilldate">as of 06/30/2015</span>
+      </div>
+      <div class="agencies_list-infotextbox">
+        <span class="agencies_list-brokerinfo">Want more info about @Properties?</span>
+        <button class=" agencies_list-borderbutton2" type="button"> View Profile <i class="fa fa-angle-right"></i></button>
+      </div>
+      <div class="agencies_list-bordericons">
+        <span><i class="fa fa-heart agencies_list-ss"></i></span>
+        <span class="agencies_list-sstext">Save</span>
+        <span><i class="fa fa-share-alt agencies_list-ss"></i></span>
+        <span class="agencies_list-sstext">Share</span>
+        <span class="agencies_list-feedbacktext">Feedback</span>
+        <span><i class="fa fa-flag agencies_list-feedback"></i></span>
+      </div>
+    </div>
+    <!-- fifth agency details container-->
+    <div class="agencies_list-propertycontainer1">
+      <div class="agencies_list-propertyimg">
+        <div class="agencies_list-imgcounter"> #5 </div>
+      </div>
+      <div class="agencies_list-centerbox">
+        <span class="agencies_list-loc"><i class="fa fa-map-marker"></i></span>
+        <span class="agencies_list-loctext"> Chicago, IL</span><br>
+        <span class="agencies_list-brokername">Dream Town Reality</span><br>
+        <span class="agencies_list-broker">Agents:</span>
+        <span class="agencies_list-brokercompany">325</span>
+      </div>
+      <div class="agencies_list-rightdetailsbox">
+        <span class="agencies_list-sales">Homes for sale</span><br>
+        <span class="agencies_list-homenum">1,987</span><br>
+        <span class="agencies_list-tilldate">as of 06/30/2015</span>
+      </div>
+      <div class="agencies_list-infotextbox">
+        <span class="agencies_list-brokerinfo">Want more info about Dream Town Reality?</span>
+        <button class=" agencies_list-borderbutton2" type="button"> View Profile <i class="fa fa-angle-right"></i></button>
+      </div>
+      <div class="agencies_list-bordericons">
+        <span><i class="fa fa-heart agencies_list-ss"></i></span>
+        <span class="agencies_list-sstext">Save</span>
+        <span><i class="fa fa-share-alt agencies_list-ss"></i></span>
+        <span class="agencies_list-sstext">Share</span>
+        <span class="agencies_list-feedbacktext">Feedback</span>
+        <span><i class="fa fa-flag agencies_list-feedback"></i></span>
+      </div>
+    </div>
+
+    <!-- Listings border with pagination display-->
+    <div class="agencies_list-listingsbottom">
+      <div class="agencies_list-pagescrollerbox">
+        <span class="agencies_list-bottomleftarrow"><i class="fa fa-angle-left"></i></span>
+        <div class="agencies_list-circle1"><span class="agencies_list-circletext">1</span></div>
+        <div class="agencies_list-circle2"><span class="agencies_list-circletext">2</span></div>
+        <div class="agencies_list-circle2 agencies_list-circle3"><span class="agencies_list-circletext">3</span></div>
+        <span class="agencies_list-dots">...</span>
+        <div class="agencies_list-circle4"><span class="agencies_list-circletext">200</span></div>
+        <span class="agencies_list-bottomrightarrow"><i class="fa fa-angle-right"></i></span>
+      </div>
+      <div class="agencies_list-viewall">
+        <span class="agencies_list-viewalltext">VIEW ALL</span>
+        <div class="agencies_list-viewallicon"></div>
+      </div>
+    </div>
+
+    <!-- Search container-->
+    <div class="agencies_list-searchcontainer">
+      <span class="agencies_list-discovertext">DISCOVER YOUR NEXT HOME</span>
+      <span class="agencies_list-planfuture">Get all the details you need to plan future. </span>
+      <div class="agencies_list-searchbox">
+        <span class="agencies_list-searchtext">Search... </span>
+        <div class="agencies_list-searchbutton">
+          <span class="agencies_list-searchicon"><i class="fa fa-search"></i></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- left panel ends here and right panel starts below -->
+
+  <div class="agencies_list-rightpanel">
+    <div class="agencies_list-widgetzone"></div>
+    <span class="agencies_list-presentedby">PRESENTED BY</span>
+    <div class="agencies_list-adspace"></div>
+    <div class="agencies_list-widgetzone agencies_list-widgetzone2"></div>
+  </div>
+  <!-- right panel ends -->
+</template>

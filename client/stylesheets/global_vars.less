@@ -1,0 +1,107 @@
+//Global Color Values
+/* commented out because of conflict with below (GVFS 6/2/15)
+@red: #ff3131;
+@green: #44b224;
+@blue: #3098ff;
+@grey-1: #ebebeb;
+@grey-2: #cccccc;
+@grey-3: #959595;
+@grey-4: #272727;
+@grey-5: #252525;*/
+
+// Global vars from specs 6/2/15
+@orange: #f7701d;
+@orange-1: #ff3131;
+@red: #ca1010;
+@yellow: #ffc500;
+@green: #44b224;
+@blue: #3098ff;
+@grey-fail: #999ea6;
+@grey-1: #f2f2f2;
+@grey-2: #dadada;
+@grey-3: #cccccc;
+@grey-4: #272727;
+// End GVFS
+@grey-5: #252525;
+@grey-6: #959595;
+@green-hover: #339f33;
+
+// /Header Style
+
+// William Mod
+@white: #ffffff;
+@black: #000000;
+
+@bgcolor: #aeaeae;
+
+//icons used globally
+@info-icon: url('/icons/info.png');
+@dark-linen: url('/drk-linen.png');
+@tile: url('/Tile_Overlay.png');
+//for unfinished pieces used for the future
+@coming-soon: url('comingsoon-asset.png');
+@coming-soon-frame: url('onframe.png');
+@joyful-homes:url('joyfulhome_logo.png');
+@joyful-white:url('Small_JoyFulHome_WhiteText_Transparent.png');
+html, body { // Default vals across the board
+  margin-top: auto;
+  font-family: HelveticaNeue, sans-serif, Arial !important; //HelveticaNeue, sans-serif, Arial replace with this once we get helvetica Neue
+  width: 100%;
+  height: auto;
+  background-color: @bgcolor;
+}
+//temporary
+div, span{
+  font-family: HelveticaNeue, sans-serif, Arial !important;
+}
+a {
+  text-decoration: none !important;
+}
+// End william mod
+
+
+@font-face{
+  font-family: Gotham Book;
+  src: url('/fonts/GothamHTF-Book.ttf');
+}
+
+@font-face{
+  font-family: Gotham Bold;
+  src: url('/fonts/GothamHTF-Bold.ttf');
+}
+
+@font-face{
+  font-family: Gotham Black;
+  src: url('/fonts/GothamHTF-Black.ttf');
+}
+//Font Incorrect? Potentially not needed
+@font-face{
+  font-family: Gotham Book Italic;
+  src: url('/fonts/GothamHTF-Book-Italic.ttf');
+}
+
+@font-face{
+  font-family: Gotham Book Light;
+  src: url('/fonts/GothamHTF-Book-Light.ttf');
+}
+
+//Global Stylings
+.syn-text-center{
+  text-align: center;
+}
+
+.coming-soon{
+  width:100%;
+  height:100%;
+  background-image: @coming-soon;
+  background-size:100%;
+
+}
+
+.coming-soon-frame{
+  width:100%;
+  height:100%;
+  background-image: @coming-soon-frame;
+  background-size:100%;
+
+}

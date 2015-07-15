@@ -1,0 +1,47 @@
+<!--Name: Meghana
+Created:6/5/2015
+Description:html for the toplist homes in chicago module
+Associated Files:list-of-lists.less,listof_lists_layout.html-->
+<template name="list_of_lists">
+  <div class="module-3 module-toplist">
+    <!--Frame name header-->
+    <div class="module-header">
+      <span class="module-header-line"></span><span class="module-header-title">{{MasterLocation}}'S TOP 10 LISTS</span></div>
+      <div class="module-wrapper">
+        {{#each List}}
+        <div class="{{Class}}" id="List{{ListNum}}">
+          <!--Profile Image-->
+          <div class="top_list_mainimg" style="background-image: url('{{MainImage}}'),url('/Home_Stock_Images/25_S.png')" id="{{ListingID}}">
+            <a href="{{MainListingURL}}"><div class="top_list-view-profile">
+              <div class="top_list-image-body">
+                <div class="top_list-view">View</div>
+                <div class="top_list-profile">Profile</div>
+              </div>
+            </div></a>
+          </div>
+          <!--Location title -->
+          {{#if ListLocation}}
+          <div class="top_list_location"><i class="fa fa-map-marker"></i>{{ListLocation}}</div>
+          {{/if}}
+          <div class="top_list_listtitle">{{ListTitle}}</div>
+          <div class="top_list_subimg_cont">
+            {{#each Listing}}
+            <a href="{{ListingURL}}"><div class="top_list_subimg" style="background-image: url('{{ListingImage}}'),url('/Home_Stock_Images/25_S.png')" id="{{SubListID}}"></div></a>
+            {{/each}}
+            <a href="{{ListURL}}"><button class="top_list-tile-button" id="{{ListName}}" city="{{ListCity}}" state="{{ListState}}">SEE THE FULL LIST<span style="margin-left:6px"><i class="fa fa-share"></i></span></button></a>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      <div class="module-footer">
+        <!--Top lists button-->
+        {{#unless IsListOfListPage}}
+        <a href="/list_of_lists"><button class="module-footer-button" id="see_whole_list">
+          <span class="module-footer-button-text">SEE WHOLE LIST</span>
+          <span class="module-footer-button-ellipse"><i class="fa fa-mail-forward"></i></span>
+        </button></a>
+        {{/unless}}
+        <!-- END -->
+      </div>
+    </div>
+  </template>

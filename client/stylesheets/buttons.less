@@ -1,0 +1,25 @@
+@import (reference)"global_vars.less"; //include important global vars (colors mostly)
+
+.button {
+  // Set bg and colors
+  background-color: @black;
+  color: @white;
+
+  // Take away white border
+  border-style: none;
+
+  // Different button sizes
+  border-radius: 1em;
+  height: 2em;
+  font-size: 0.8em;
+  padding: 0.1em 1em;
+}
+
+.button_medium {
+  .button;
+  font-size: 1em;
+}
+.button_large {
+  .button;
+  font-size: 1.2em;
+}

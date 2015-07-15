@@ -1,0 +1,58 @@
+<Template name="realestate_homepage">
+  <div class="re_home_container">
+    <!--Discover Your Home Search Area-->
+    <div class="re_discover">
+      <div class="re_discover-title">DISCOVER YOUR NEXT HOME</div>
+      <div class="re_discover-subtitle">Get all the details you need to plan your future</div>
+      <div class="re_mainsearch">
+        <input type="text" name="keyword" class="re_mainsearch-text" placeholder="Find A Location (City, ST)">
+          <button class="re_searchbtn fa fa-search"></button>
+      </div>
+    </div>
+    <!--Discover Your Home Search Area END-->
+    <!--Explore Your Local Area-->
+    <div class="re_explore">
+      <div class="re_explore-title">
+        <!--green icon goes here-->
+        <span class="re_explore-title-first">
+          <div class="re_explore-green"></div>
+          EXPLORE
+        </span>
+          YOUR LOCAL AREA
+      </div>
+      <div class="re_explore-box">
+        {{#each Cities}}
+        <a href="{{URL}}"><div class="{{class}}" id="{{id}}">{{String}}</div></a>
+        {{/each}}
+      </div>
+      <!--<div class="re_explore-more">MORE <i class="fa fa-angle-double-down"></i></div>-->
+    </div>
+    <!--Explore Your Local Area END-->
+    <!--Top Properties Right Now-->
+    <div class="re_properties_now">
+      <div class="re_properties_now-title">TOP PROPERTIES RIGHT NOW</div>
+      <div class="re_properties_now-subtitle">See what {{CityName}}'s neighborhoods have to offer.</div>
+      <a href="{{TopHomesURL}}"><div class="re_properties_now-more">See the List</div></a>
+    </div>
+    <!--Top Properties Right Now END-->
+    <!--Features to Note-->
+    <div class="re_features_note">
+      <div class="re_features_note-title">
+        <!--green icon goes here-->
+        <span class="re_features_note-title-first">
+          <div class="re_features_note-green"></div>
+          FEATURES
+        </span>
+        TO NOTE
+      </div>
+      <div class="re_features_note-box">
+        <div class="re_features_note-image1" id="feature1">Interactive Local Map</div>
+        <div class="re_features_note-image2" id="feature2">Dive deep into key information</div>
+        <a href="{{Top100URL}}"><div class="re_features_note-image1" id="feature4">Top 10 Lists</div></a>
+        <div class="re_features_note-image2" id="feature3">Trending News</div>
+      </div>
+      <!--<div class="re_features_note-more">MORE <i class="fa fa-angle-double-down"></i></div>-->
+    </div>
+    <!--Features to Note END-->
+  </div>
+</Template>

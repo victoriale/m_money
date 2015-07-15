@@ -1,0 +1,1446 @@
+@import (reference)"../global_vars.less";
+
+.stats {
+  //global across webpage
+  background-color: @white;
+
+  //Headers for different sections on page
+  &_section-header {
+    height: 30px;
+    font-size: 18px;
+    margin-top: 30px;
+    margin-left: 15px;
+    margin-right: 15px;
+    border-bottom: 1px solid @grey-3;
+    text-align: left;
+  }
+
+  //Main page header
+  &_page-header {
+    width: 680px;
+    height: 140px;
+    padding-top: 20px;
+    padding-left: 20px;
+    position: relative;
+
+    //Main page header large circle for main image
+    &_image {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border-width: 2px;
+      border-color: @grey-3;
+      border-style: solid;
+      background-color: @white;
+      z-index: 0;
+    }
+
+    //Main page header Upper left circle for back arrow
+    &_back-arrow {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background-color: @blue;
+      color: @white;
+      font-size: 15px;
+      position: relative;
+      top: -100px;
+      z-index: 1;
+
+      //Main page header Back arrow icon
+      &_icon {
+        padding-top: 9px;
+      }
+    }
+
+    //Main page header text
+    &_text {
+      position: absolute;
+      top: 10px;
+      left: 140px;
+      text-align: left;
+    }
+
+    //Main page header "last updated"
+    &_last-updated {
+      font-size: 10px;
+      color: #959595;
+      margin-bottom: 10px;
+    }
+
+    //Main page header location
+    &_location {
+      font-size: 12px;
+    }
+
+    //Main page header title
+    &_title {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    //Main page header subtitle
+    &_title-location {
+      font-size: 22px;
+    }
+  }
+
+  //Area map
+  &_map {
+    width: 680px;
+    height: 360px;
+    background-color: @grey-4;
+    color: @white;
+    position: relative;
+
+    //Area map header
+    &_location {
+      font-size: 18px;
+      width: 170px;
+      height: 35px;
+      padding-top: 8px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+
+    //Area map dropdown menu
+    &_dropdown {
+      font-size: 14px;
+      text-align: left;
+      width: 200px;
+      height: 35px;
+      padding-top: 8px;
+      padding-left: 15px;
+      padding-right: 15px;
+      position: absolute;
+      top: 0px;
+      left: 170px;
+      background-color: @blue;
+
+      //Area map dropdown text
+      &_text {
+        display: inline;
+        float: left;
+      }
+
+      //Area map dropdown icon
+      &_icon {
+        display: inline;
+        float: right;
+      }
+    }
+
+    //Area map legend
+    &_legend {
+      font-size: 12px;
+
+      //Area map legend min
+      &_lowend-text {
+        position: absolute;
+        top: 12px;
+        left: 420px;
+      }
+
+      //Area map legend green
+      &_greenbox {
+        position: absolute;
+        top: 13px;
+        left: 458px;
+        background-color:  @green;
+        width: 30px;
+        height: 10px;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+      }
+
+      //Area map legend yellow
+      &_yellowbox {
+        position: absolute;
+        top: 13px;
+        left: 490px;
+        background-color:  @yellow;
+        width: 30px;
+        height: 10px;
+      }
+
+      //Area map legend orange
+      &_orangebox {
+        position: absolute;
+        top: 13px;
+        left: 522px;
+        background-color:  @orange;
+        width: 30px;
+        height: 10px;
+      }
+
+      //Area map legend red
+      &_redbox {
+        position: absolute;
+        top: 13px;
+        left: 554px;
+        background-color:  @red;
+        width: 30px;
+        height: 10px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+
+      //Area map legend max
+      &_highend-text {
+        position: absolute;
+        top: 12px;
+        left: 590px;
+      }
+    }
+
+    //Area map map container
+    &_mapcontainer {
+      width: 680px;
+      height: 325px;
+      position: absolute;
+      top: 35px;
+    }
+  }
+
+  //Page summary info box
+  &_infobox {
+    background-color: @white;
+    width: 650px;
+    color: @black;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: left;
+    margin: 15px;
+    position: relative;
+    border-color: #ebebeb;
+    border-style: solid;
+
+    //"What is this page?" text
+    &_header {
+      background-color: #ebebeb;
+      color: #333333;
+      padding-left: 10px;
+      padding-right: 15px;
+    }
+
+    //Close info box icon
+    &_icon {
+      font-size: 10px;
+      font-weight: 400;
+      position: absolute;
+      right: 10px;
+      top: 0px;
+    }
+
+    //Info box text
+    &_text {
+      padding-top: 15px;
+      padding-left: 20px;
+      padding-right: 25px;
+      padding-bottom: 10px;
+      font-weight: normal;
+    }
+  }
+
+  //Listing summary
+  &_summary {
+    width: 680px;
+
+    //Listing summary text
+    &_text {
+      font-size: 14px;
+      text-align: left;
+      padding: 15px;
+    }
+  }
+
+  //Market overview section
+  &_market-overview {
+
+    //Market overview light grey subheader text
+    &_subheader {
+      padding-top: 10px;
+      padding-left: 15px;
+      padding-bottom: 10px;
+      color: #959595;
+      font-size: 12px;
+      text-align: left;
+    }
+
+    //Market overview table
+    &_table {
+      width: 650px;
+      margin-left: 15px;
+      border-width: 1px;
+      border-left-width: 5px;
+      border-color: #e1e1e1;
+      border-style: solid;
+      font-size: 14px;
+
+      //Market overview average listing price
+      &_average {
+        height: 42px;
+        padding-top: 10px;
+        border-top: 1px solid #e1e1e1;
+        position: relative;
+        background-color: #f2f2f2;
+
+        //average listing price label
+        &_label {
+          position: absolute;
+          left: 25px;
+        }
+
+        //average listing price amount
+        &_amount {
+          position: absolute;
+          text-align: right;
+          right: 295px;
+        }
+
+        //average listing price differences
+        &_diff {
+          position: absolute;
+          text-align: right;
+          right: 20px;
+          font-weight: bold;
+          color: @red;
+        }
+      }
+
+      //Market overview median sale prices
+      &_median {
+        height: 42px;
+        padding-top: 10px;
+        border-top: 1px solid #e1e1e1;
+        position: relative;
+
+        //median sale prices label
+        &_label {
+          position: absolute;
+          left: 25px;
+        }
+
+        //median sale prices amount
+        &_amount {
+          position: absolute;
+          text-align: right;
+          right: 295px;
+        }
+
+        //median sale prices differences
+        &_diff {
+          position: absolute;
+          text-align: right;
+          right: 20px;
+          font-weight: bold;
+          color: @green;
+        }
+      }
+
+      //Market overview homes for sale
+      &_totalnum {
+        height: 42px;
+        padding-top: 10px;
+        border-top: 1px solid #e1e1e1;
+        position: relative;
+        background-color: #f2f2f2;
+
+        //homes for sale label
+        &_label {
+          position: absolute;
+          left: 25px;
+        }
+
+        //homes for sale label
+        &_amount {
+          position: absolute;
+          text-align: right;
+          right: 295px;
+        }
+
+        //homes for sale label
+        &_diff {
+          position: absolute;
+          text-align: right;
+          right: 20px;
+          font-weight: bold;
+          color: @red;
+        }
+      }
+
+      //Market overview recently sold homes
+      &_recent {
+        height: 42px;
+        padding-top: 10px;
+        border-top: 1px solid #e1e1e1;
+        position: relative;
+
+        //recently sold homes label
+        &_label {
+          position: absolute;
+          left: 25px;
+        }
+
+        //recently sold homes label
+        &_amount {
+          position: absolute;
+          text-align: right;
+          right: 295px;
+        }
+
+        //recently sold homes label
+        &_diff {
+          position: absolute;
+          text-align: right;
+          right: 20px;
+          font-weight: bold;
+          color: @red;
+        }
+      }
+
+      //Market overview foreclosures
+      &_foreclosure {
+        height: 42px;
+        padding-top: 10px;
+        border-top: 1px solid #e1e1e1;
+        position: relative;
+        background-color: #f2f2f2;
+
+        //foreclosures label
+        &_label {
+          position: absolute;
+          left: 25px;
+        }
+
+        //foreclosures label
+        &_amount {
+          position: absolute;
+          text-align: right;
+          right: 295px;
+        }
+
+        //foreclosures label
+        &_diff {
+          position: absolute;
+          text-align: right;
+          right: 20px;
+          font-weight: bold;
+          color: @red;
+        }
+      }
+    }
+
+  }
+
+  //Market trends section
+  &_trends {
+    //Market trends chart
+    &_graph {
+      width: 650px;
+      height: 330px;
+      margin: 15px;
+      background-color: @grey-1;
+
+      //Market trends chart header bar
+      &_displayinfo {
+        height: 50px;
+        position: relative;
+
+        //Market trends chart dropdown menu
+        &_dropdowntext {
+          font-size: 16px;
+          position: absolute;
+          top: 15px;
+          left: 20px;
+        }
+
+        //Market trends chart dropdown menu icon
+        &_dropdownicon {
+          color: @blue;
+          position: absolute;
+          top: 15px;
+          left: 160px;
+        }
+
+        //Market trends chart color-coded legend
+        &_legend {
+          //Local city legend
+          &_local {
+            width: 140px;
+            height: 50px;
+            padding-top: 10px;
+            position: absolute;
+            right: 140px;
+
+            //local city info
+            &_line1 {
+              height: 18px;
+              line-height: 18px;
+
+              //local city color
+              &_color {
+                border-radius: 3px;
+                background-color:  @blue;
+                width: 10px;
+                height: 10px;
+                display: inline-block;
+              }
+
+              //local city data piece
+              &_text {
+                font-size: 18px;
+                font-weight: bold;
+                display: inline-block;
+              }
+            }
+
+            //local city name
+            &_line2 {
+              font-size: 12px;
+              color: #999999;
+              padding-left: 15px;
+            }
+          }
+
+          //Market trends chart VS circle
+          &_vs {
+            width: 20px;
+            height: 20px;
+            font-size: 10px;
+            font-weight: bold;
+            background-color: @blue;
+            color: @white;
+            border-radius: 50%;
+            padding-top: 3px;
+            position: absolute;
+            right: 129px;
+            top: 12px;
+            z-index: 1;
+          }
+          //National legend
+          &_national {
+            width: 140px;
+            height: 50px;
+            border-left: 1px solid @grey-2;
+            padding-top: 10px;
+            position: absolute;
+            right: 0px;
+            z-index: 0;
+
+            //national info
+            &_line1 {
+              height: 18px;
+              line-height: 18px;
+
+              //national color
+              &_color {
+                border-radius: 3px;
+                background-color:  @orange;
+                width: 10px;
+                height: 10px;
+                display: inline-block;
+              }
+
+              //national data piece
+              &_text {
+                font-size: 18px;
+                font-weight: bold;
+                display: inline-block;
+              }
+            }
+
+            //national name
+            &_line2 {
+              font-size: 12px;
+              color: #999999;
+              padding-left: 15px;
+            }
+          }
+        }
+      }
+
+      //Filter bar which filters graph content based upon days, months and years
+      &_filterbar {
+        transform: translate(0px,0px);
+        display: block;
+        width: 650px;
+        height: 45px;
+
+        //Unselected dates
+        &_unseldates {
+          display: inline-block;
+          font-size: 14px;
+          font-weight: lighter;
+          color: #959595;
+          padding-bottom: 5px;
+          padding-left: 21px;
+          padding-right: 21px;
+        }
+
+        //Selected dates blue circle
+        &_seldateellipse {
+          display: inline-block;
+          height: 35px;
+          width: 35px;
+          border-radius: 50%;
+          -moz-border-radius: 50%;
+          -webkit-border-radius: 50%;
+          background-color: @blue;
+          transform: translateY(-8px);
+
+          //Selected dates text
+          &_seldate {
+            text-align: center;
+            vertical-align: middle;
+            font-size: 14px;
+            font-weight: bold;
+            color: @white;
+            padding-bottom: 5px;
+            transform: translateY(7px);
+          }
+        }
+        //class used to position filter buttons inside of filter bar
+        &_phfb {
+          float: left;
+          transform: translate(0px,14px);
+      }
+    }
+  }
+
+    //Market trends table
+    &_table {
+      width: 650px;
+      margin-left: 15px;
+      margin-top: 15px;
+      border-width: 1px;
+      border-left: 5px solid #e1e1e1;
+      font-size: 14px;
+
+      //Market trends table average listing price
+      &_average {
+        height: 42px;
+        padding-top: 10px;
+        border-top: 1px solid #e1e1e1;
+        position: relative;
+        background-color: #f2f2f2;
+
+        //average listing price label
+        &_label {
+          position: absolute;
+          left: 25px;
+          font-weight: bold;
+        }
+
+        //average listing price amount
+        &_amount {
+          position: absolute;
+          text-align: right;
+          right: 215px;
+          font-weight: bold;
+        }
+
+        //average listing price differences
+        &_diff {
+          position: absolute;
+          text-align: right;
+          right: 20px;
+          color: @red;
+        }
+      }
+
+      //Market trends median listing price
+      &_median {
+        height: 42px;
+        padding-top: 10px;
+        border-top: 1px solid #e1e1e1;
+        position: relative;
+        background-color: #f2f2f2;
+
+        //median listing price label
+        &_label {
+          position: absolute;
+          left: 25px;
+        }
+
+        //median listing price amount
+        &_amount {
+          position: absolute;
+          text-align: right;
+          right: 215px;
+        }
+
+        //median listing price differences
+        &_diff {
+          position: absolute;
+          text-align: right;
+          right: 20px;
+          color: @red;
+        }
+      }
+
+      //Market trends average price by square foot
+      &_avgsqft {
+        height: 42px;
+        padding-top: 10px;
+        border-top: 1px solid #e1e1e1;
+        position: relative;
+        background-color: #f2f2f2;
+
+        //average price by square foot label
+        &_label {
+          position: absolute;
+          left: 25px;
+        }
+
+        //average price by square foot amount
+        &_amount {
+          position: absolute;
+          text-align: right;
+          right: 215px;
+        }
+
+        //average price by square foot differences
+        &_diff {
+          position: absolute;
+          text-align: right;
+          right: 20px;
+          color: @green;
+        }
+      }
+
+      //Market trends number of sales
+      &_sales {
+        height: 42px;
+        padding-top: 10px;
+        border-top: 1px solid #e1e1e1;
+        position: relative;
+        background-color: #f2f2f2;
+
+        //number of sales label
+        &_label {
+          position: absolute;
+          left: 25px;
+        }
+
+        //number of sales amount
+        &_amount {
+          position: absolute;
+          text-align: right;
+          right: 215px;
+        }
+
+        //number of sales differences
+        &_diff {
+          position: absolute;
+          text-align: right;
+          right: 20px;
+          color: @red;
+        }
+      }
+    }
+
+    //Market trends view more button
+    &_view-more {
+      color: @blue;
+      font-size: 14px;
+      text-align: right;
+      font-weight: bold;
+      padding-top: 15px;
+      padding-right: 15px;
+    }
+  }
+
+  //Housing Prices
+  &_prices {
+    //Housing prices map
+    &_map {
+      width: 300px;
+      height: 340px;
+      margin-top: 10px;
+      margin-left: 15px;
+      margin-right: 15px;
+      background-color: @grey-4;
+
+      //Housing prices map header
+      &_header {
+        height: 42px;
+        background-color: @black;
+        color: @white;
+        font-weight: bold;
+        text-algin: left;
+        border-top: 2px solid @blue;
+        position: relative;
+
+        //Housing prices map header icon
+        &_icon {
+          color: @blue;
+          position: absolute;
+          top: 13px;
+          left: 12px;
+        }
+
+        //Housing prices map header text
+        &_text {
+          position: absolute;
+          top: 10px;
+          left: 35px;
+        }
+      }
+
+      //Area map map container
+      &_mapcontainer {
+        width: 300px;
+        height: 298px;
+      }
+
+      //Housing prices map footer text
+      &_footer {
+        height: 70px;
+        background-color: @black;
+        opacity: 0.8;
+        filter: alpha(opacity=80);
+        color: @white;
+        text-align: left;
+        position: relative;
+        top: -70px;
+
+        //Housing prices map footer main text
+        &_line1 {
+          font-size: 18px;
+          position: absolute;
+          top: 15px;
+          left: 15px;
+        }
+
+        //Housing prices map legend
+        &_line2 {
+          font-size: 12px;
+
+          //Housing prices map legend min
+          &_lowend-text {
+            position: absolute;
+            top: 39px;
+            left: 15px;
+          }
+
+          //Housing prices map legend green
+          &_greenbox {
+            position: absolute;
+            top: 41px;
+            left: 53px;
+            background-color:  @green;
+            width: 30px;
+            height: 10px;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+          }
+
+          //Housing prices map legend yellow
+          &_yellowbox {
+            position: absolute;
+            top: 41px;
+            left: 85px;
+            background-color:  @yellow;
+            width: 30px;
+            height: 10px;
+          }
+
+          //Housing prices map legend orange
+          &_orangebox {
+            position: absolute;
+            top: 41px;
+            left: 117px;
+            background-color:  @orange;
+            width: 30px;
+            height: 10px;
+          }
+
+          //Housing prices map legend red
+          &_redbox {
+            position: absolute;
+            top: 41px;
+            left: 149px;
+            background-color:  @red;
+            width: 30px;
+            height: 10px;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+          }
+
+          //Housing prices map legend max
+          &_highend-text {
+            position: absolute;
+            top: 39px;
+            left: 185px;
+          }
+        }
+      }
+    }
+
+    //Housing prices neighboorhood table
+    &_neighborhood {
+      position: relative;
+
+      //Housing prices neighboorhood table header
+      &_header {
+        width: 330px;
+        height: 42px;
+        font-size: 12px;
+        font-weight: bold;
+        text-align: left;
+        background-color: @black;
+        color: @white;
+        border-top: 2px solid @blue;
+        position: absolute;
+        top: -340px;
+        left: 335px;
+
+        //neighborhood header name
+        &_name {
+          position: absolute;
+          top: 4px;
+          left: 25px;
+        }
+
+        //neighborhood header price
+        &_price {
+          position: absolute;
+          top: 4px;
+          left: 155px;
+        }
+
+        //neighborhood header w-o-w
+        &_wow {
+          position: absolute;
+          top: 12px;
+          right: 16px;
+        }
+      }
+
+      //Housing prices neighboorhood table item 1
+      &_listitem1 {
+        width: 330px;
+        height: 42px;
+        text-align: left;
+        border-left: 5px solid #e1e1e1;
+        border-bottom: 1px solid #e1e1e1;
+        border-right: 1px solid #e1e1e1;
+        position: absolute;
+        top: -298px;
+        left: 335px;
+
+        //neighborhood item 1 name
+        &_name {
+          position: absolute;
+          top: 12px;
+          left: 20px;
+        }
+
+        //neighborhood item 1 price
+        &_price {
+          position: absolute;
+          top: 12px;
+          left: 150px;
+        }
+
+        //neighborhood item 1 w-o-w
+        &_wow {
+          position: absolute;
+          top: 12px;
+          right: 15px;
+          text-align: right;
+          font-weight: bold;
+          color: @red;
+        }
+      }
+
+      //Housing prices neighboorhood table item 2
+      &_listitem2 {
+        width: 330px;
+        height: 42px;
+        text-align: left;
+        border-left: 5px solid #e1e1e1;
+        border-bottom: 1px solid #e1e1e1;
+        border-right: 1px solid #e1e1e1;
+        position: absolute;
+        top: -256px;
+        left: 335px;
+
+        //neighborhood item 2 name
+        &_name {
+          position: absolute;
+          top: 12px;
+          left: 20px;
+        }
+
+        //neighborhood item 2 name
+        &_price {
+          position: absolute;
+          top: 12px;
+          left: 150px;
+        }
+
+        //neighborhood item 2 name
+        &_wow {
+          position: absolute;
+          top: 12px;
+          right: 15px;
+          text-align: right;
+          font-weight: bold;
+          color: @green;
+        }
+      }
+
+      //Housing prices neighboorhood table item 3
+      &_listitem3 {
+        width: 330px;
+        height: 42px;
+        text-align: left;
+        border-left: 5px solid #e1e1e1;
+        border-bottom: 1px solid #e1e1e1;
+        border-right: 1px solid #e1e1e1;
+        position: absolute;
+        top: -214px;
+        left: 335px;
+
+        //neighborhood item 3 name
+        &_name {
+          position: absolute;
+          top: 12px;
+          left: 20px;
+        }
+
+        //neighborhood item 3 name
+        &_price {
+          position: absolute;
+          top: 12px;
+          left: 150px;
+        }
+
+        //neighborhood item 3 name
+        &_wow {
+          position: absolute;
+          top: 12px;
+          right: 15px;
+          text-align: right;
+          font-weight: bold;
+          color: @red;
+        }
+      }
+    }
+
+    //Housing prices trendsetter table
+    &_trendsetter {
+      position: relative;
+
+      //Housing prices trendsetter table header
+      &_header {
+        width: 330px;
+        height: 42px;
+        font-size: 12px;
+        font-weight: bold;
+        text-align: left;
+        background-color: @black;
+        color: @white;
+        border-top: 2px solid @blue;
+        position: absolute;
+        top: -168px;
+        left: 335px;
+
+        //trendsetter header name
+        &_name {
+          position: absolute;
+          top: 12px;
+          left: 25px;
+        }
+
+        //trendsetter header name
+        &_price {
+          position: absolute;
+          top: 4px;
+          left: 155px;
+        }
+
+        //trendsetter header name
+        &_wow {
+          position: absolute;
+          top: 12px;
+          right: 16px;
+        }
+      }
+
+      //Housing prices trendsetter table item 1
+      &_listitem1 {
+        width: 330px;
+        height: 42px;
+        text-align: left;
+        border-left: 5px solid #e1e1e1;
+        border-bottom: 1px solid #e1e1e1;
+        border-right: 1px solid #e1e1e1;
+        position: absolute;
+        top: -126px;
+        left: 335px;
+
+        //trendsetter item 1 name
+        &_name {
+          position: absolute;
+          top: 12px;
+          left: 20px;
+        }
+
+        //trendsetter item 1 name
+        &_price {
+          position: absolute;
+          top: 12px;
+          left: 150px;
+        }
+
+        //trendsetter item 1 name
+        &_wow {
+          position: absolute;
+          top: 12px;
+          right: 15px;
+          text-align: right;
+          font-weight: bold;
+          color: @green;
+        }
+      }
+
+      //Housing prices trendsetter table item 2
+      &_listitem2 {
+        width: 330px;
+        height: 42px;
+        text-align: left;
+        border-left: 5px solid #e1e1e1;
+        border-bottom: 1px solid #e1e1e1;
+        border-right: 1px solid #e1e1e1;
+        position: absolute;
+        top: -84px;
+        left: 335px;
+
+        //trendsetter item 2 name
+        &_name {
+          position: absolute;
+          top: 12px;
+          left: 20px;
+        }
+
+        //trendsetter item 2 name
+        &_price {
+          position: absolute;
+          top: 12px;
+          left: 150px;
+        }
+
+        //trendsetter item 2 name
+        &_wow {
+          position: absolute;
+          top: 12px;
+          right: 15px;
+          text-align: right;
+          font-weight: bold;
+          color: @red;
+        }
+      }
+
+      //Housing prices trendsetter table item 3
+      &_listitem3 {
+        width: 330px;
+        height: 42px;
+        text-align: left;
+        border-left: 5px solid #e1e1e1;
+        border-bottom: 1px solid #e1e1e1;
+        border-right: 1px solid #e1e1e1;
+        position: absolute;
+        top: -42px;
+        left: 335px;
+
+        //trendsetter item 3 name
+        &_name {
+          position: absolute;
+          top: 12px;
+          left: 20px;
+        }
+
+        //trendsetter item 3 name
+        &_price {
+          position: absolute;
+          top: 12px;
+          left: 150px;
+        }
+
+        //trendsetter item 3 name
+        &_wow {
+          position: absolute;
+          top: 12px;
+          right: 15px;
+          text-align: right;
+          font-weight: bold;
+          color: @green;
+        }
+      }
+    }
+
+    //Housing prices view full button
+    &_view-more {
+      color: @blue;
+      font-size: 14px;
+      text-align: right;
+      font-weight: bold;
+      padding-top: 15px;
+      padding-right: 15px;
+      position: relative;
+      top: -125px;
+    }
+  }
+
+  //School overview
+  &_schools {
+    //Schools table
+    &_table {
+      margin-left: 15px;
+      width: 640px;
+      margin-top: 10px;
+
+      //Schools table header
+      &_header {
+        height: 42px;
+        border-top: 2px solid @blue;
+        padding-top: 10px;
+        color: @white;
+        background-color: @black;
+        font-weight: bold;
+        position: relative;
+
+        //schools header district name
+        &_district {
+          position: absolute;
+          left: 35px;
+        }
+
+        //schools header type
+        &_type {
+          position: absolute;
+          left: 305px;
+        }
+
+        //schools header grades
+        &_grades {
+          position: absolute;
+          left: 380px;
+        }
+
+        //schools header # of schools
+        &_schools {
+          position: absolute;
+          left: 465px;
+        }
+
+        //schools header students
+        &_students {
+          position: absolute;
+          text-align: right;
+          right: 15px;
+        }
+      }
+
+      //Schools table item
+      &_district {
+        height: 42px;
+        border-left: 5px solid #e1e1e1;
+        border-bottom: 1px solid #e1e1e1;
+        border-right: 1px solid #e1e1e1;
+        padding-top: 10px;
+        position: relative;
+
+        //Schools item district name
+        &_name {
+          color: @blue;
+          position: absolute;
+          left: 20px;
+        }
+
+        //schools item type
+        &_type {
+          position: absolute;
+          left: 300px;
+        }
+
+        //schools item grades
+        &_grades {
+          position: absolute;
+          left: 375px;
+        }
+
+        //schools item # of schools
+        &_schools {
+          position: absolute;
+          left: 460px;
+        }
+
+        //schools item students
+        &_students {
+          position: absolute;
+          text-align: right;
+          right: 14px;
+        }
+      }
+    }
+  }
+
+  //Income stats
+  &_income {
+    position: relative;
+
+    //Household income
+    &_household {
+      font-size: 16px;
+      text-align: left;
+      position: absolute;
+      top: 40px;
+      left: 15px;
+
+      //household income chart
+      &_graph {
+        width: 310px;
+        height: 140px;
+        position: absolute;
+        top: 50px;
+      }
+    }
+
+    //Family income
+    &_family {
+      font-size: 16px;
+      text-align: left;
+      position: absolute;
+      top: 40px;
+      left: 355px;
+
+      //family income chart
+      &_graph {
+        width: 310px;
+        height: 140px;
+        position: absolute;
+        top: 50px;
+      }
+    }
+  }
+
+  //Side-scrolling image list
+  &_image-list {
+    width: 680px;
+    height: 185px;
+    padding-bottom: 15px;
+    position: relative;
+    margin-top: 220px;
+
+    //Image list header
+    &_header {
+      width: 320px;
+      height: 35px;
+      background-color: @black;
+      opacity: 0.75;
+      filter: alpha(opacity=75);
+      line-height: 35px;
+      color: @white;
+      font-weight: bold;
+      position: absolute;
+      z-index: 1;
+    }
+
+    //Image list navigation, left arrow
+    &_left-button {
+      position: absolute;
+      top: 80px;
+      left: 10px;
+      font-size: 40px;
+      color: @white;
+      visibility: hidden;
+    }
+
+    //Image list navigation, right arrow
+    &_right-button {
+      position: absolute;
+      top: 80px;
+      right: 10px;
+      font-size: 40px;
+      color: @white;
+    }
+
+    //Image list single result, image
+    &_image {
+      width: 170px;
+      height: 185px;
+      background-color: @black;
+      position: absolute;
+      z-index: 0;
+    }
+
+    //Image list single result, information
+    &_text {
+      width: 170px;
+      height: 185px;
+      color: @white;
+      text-align: left;
+      font-size: 14px;
+      position: relative;
+      top: 135px;
+      left: 10px;
+    }
+
+    //Image list single result, address
+    &_address {
+      font-weight: bold;
+    }
+  }
+
+
+  //Search module at bottom of page
+  &_search {
+    width: 680px;
+    height: 280px;
+    color: @white;
+    background-color: @grey-4;
+
+    //New search title text
+    &_line1 {
+      font-size: 30px;
+      font-weight: bold;
+      padding-top: 50px;
+      padding-bottom: 8px;
+    }
+
+    //New search subtitle text
+    &_line2 {
+      font-size: 18px;
+      padding-bottom: 40px;
+    }
+  }
+
+  //Search bar text field
+  &_searchbar-text {
+    width: 440px;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    background-color: @white;
+    border: 0px solid @blue;
+  }
+
+  //Search bar search button
+  &_searchbar-button {
+    position:relative;
+    font-size: 22px;
+    padding: 8px 39px 9px 39px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    left:-8px;
+    top: 2px;
+    background-color: @blue;
+    color: @white;
+  }
+}

@@ -1,0 +1,35 @@
+<!--Author: [Praveen Kumar]
+Created: [06/05/2015]
+Description: [Real Estate Location Profile Frame: Like Us on Facebook]
+Associated Files: [The like_us.less and like_us.html, ]-->
+
+
+<template name="like_us">
+
+  <!-- Script for facebook plugin-->
+
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+  <!--End of script-->
+
+  <!-- Html and CSS implementation-->
+  <div class="module-fb">
+    <div class="module-header">
+      <span class="module-header-line"></span><span class="module-header-title">LIKE US ON FACEBOOK</span>
+    </div>
+
+    <!--code for positioning the plugin-->
+    <div class="module-fb-wrapper">
+      <div class="fb-page" data-href="https://www.facebook.com/PassFailSocial" data-width="680px" data-height="224px" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/PassFailSocial"><a href="https://www.facebook.com/PassFailSocial">PassFail</a></blockquote></div></div>
+    </div>
+    <!--positioningends-->
+  </div>
+  <!--End of Html and CSS implementation-->
+</template>

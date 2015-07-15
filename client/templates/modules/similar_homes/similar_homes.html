@@ -1,0 +1,83 @@
+<template name= "similar_homes">
+  <div class="module-3" style = "height:510px; border-bottom:none">
+    <div class="module-header">
+      <span class="module-header-line"></span>
+      <!-- Title -->
+      <span class="module-header-title">Similar Listings</span></div>
+
+      <div class="module-wrapper">
+        <!--The first container -->
+        <div class ="frameslisting-container" style="background-image: url('{{MainImgURL}}')">
+          <!-- left navigation button -->
+          <div class="navigation-button-left">
+            <!-- fa icon angle right -->
+            <i class = "fa fa-angle-left"></i>
+          </div>
+          <!-- right navigation button -->
+          <div class="navigation-button-right">
+            <!-- fa icon angle left -->
+            <i class = "fa fa-angle-right"></i>
+          </div>
+          {{#if virtualtourURL}}
+          <!-- virtual tour rounded rectangle-->
+          <a href="{{virtualtourURL}}"><div class="property_listing-rounded_rec">
+            <!-- text inside second rounded rectangle -->
+            <span class="frameslisting-rectext">VIRTUAL TOUR</span>
+          </div></a>
+          {{/if}}
+          {{#if imagecounter}}
+          <!-- image rounded rectangle  -->
+          <div class="property_listing-rounded_rec">
+            <!-- fa icon -->
+            <i class="fa fa-file-image-o" style= "color:#fff; font-size:14px;"></i>
+            <!-- text inside the rounded rectangle -->
+            <span class= "frameslisting-rectext" >IMAGES ({{imagecounter}})</span>
+          </div>
+          {{/if}}
+          <!-- videos rounded rectangle ->
+          <button class="frameslisting-rounded_rec2">
+            <!-text inside third rounded rectangle ->
+            <span class="frameslisting-rectext"> VIDEOS (0) </span>
+          </button>-->
+
+          <!-- ellipse -->
+
+          <div class="frameslisting-large_container">
+            <div class="frameslisting-positionilarge">
+              <div class="frameslisting-linetext1"><i class="fa fa-map-marker frameslisting-bluemap"></i>
+
+                {{location}}   <i class="fa fa-angle-double-right frameslisting-whiteright"></i> {{neighborhood}}</div>
+                <div class="frameslisting-linetext2" style="text-align:left">{{address}}</div>
+                <div class="frameslisting-linetext3" style="text-align:left">Listing Price: {{price}}{{agency}}</div>
+              </div>
+
+              <a href="{{ListingURL}}"><button class="frameslisting-calloutbtn "><div class="frameslisting-text">VIEW LISTING<i class="frameslisting-pic fa fa-share"></i></div>
+              </button></a>
+
+              <!--<button class="frameslisting-ellipse">
+                <i class= "fa fa-map-marker" style="font-size:18px;color:#fff;margin-top:10px;"></i><div style="color:#ffffff;font-size:8px;font-weight:bold">Map</div>
+              </button>-->
+
+            </div>
+          </div>
+
+          <!--second container -->
+          <div class ="frameslisting-small_container" >
+            <!-- Small Pictures -->
+            {{#each SubImgURL}}
+            <div class="frameslisting-sc1" style="background-image: url('{{ImgURL}}')"></div>
+            {{/each}}
+            <!-- second column ->
+            <div class="frameslisting-sc2"></div>
+            <!- third column ->
+            <div class="frameslisting-sc3"></div>
+            <!- fourth column ->
+            <div class="frameslisting-sc4"></div>
+            <!- fifth column ->
+            <div class="frameslisting-sc5"></div>
+            <!-on page startup run a function once to display images of first listing-->
+          </div>
+        </div>
+      </div>
+
+    </template>

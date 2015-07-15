@@ -1,0 +1,168 @@
+
+/*
+Author: jyothyswaroop
+Created: [06/07/2015]
+Description: made a widget called trending_companies
+Associated Files: [The trending_companies.less, trending_companies.html, and trending_companines_module.html file for the module]
+
+*/
+
+
+@import (reference)"../global_vars.less"; //include important global vars (colors mostly)
+
+.home_body{  /* intializing the total height and widht of the module body */
+  height: 600px;
+  width: 100%;
+  background: white none repeat scroll 0 0;
+
+  /* partioned the module in to leftcolumn and rightcolumn */
+
+  &-home_left_column{   /* leftcolumn : specified as requriments  */
+    background: white none repeat scroll 0 0;
+    height: 600px;
+    width: 210px;
+    float: left;
+  }
+
+  &-home_right_column{  /* rightcolumn : specified as requirements  */
+    width:455px;
+    height:570px;
+    float: right;
+    position:relative;
+    margin-left: 210px;
+    margin-right:15px;
+    margin-top:-584px;
+    padding: 0 15px 0 15px;
+    border: 2px solid rgb(209, 208, 208);
+    border-image: none;
+  }
+
+  &-home_right_column2{ /*  the content marker rectangle which is aligned left of content bg */
+    width: 5px;
+    height: 527px;
+    background-color: #dadada;
+    margin: 0 0 0 -16px;
+    float:left;
+  }
+
+  &-header{ /* specification's for top grey portion with given spec's */
+  width:452px;
+  height:41px;
+  background-color:#f2f2f2;
+  margin: 0 0 0 -15px;
+  font-size: 20px;
+  border-bottom: 2px solid #cccccc;
+}
+
+&-headerinside{ /* specification's for text inside the header  */
+margin-left:9px;
+font-size:12pt;
+font-weight:bold;
+text-align: left;
+text-transform:uppercase;
+color:#000000;
+padding: 6px 0 0 6px;
+padding-bottom:13px;
+}
+
+&-content_rectangle{ /* specification's for content date, text and circle and text  */
+width:452px;
+height: 66px;
+background-color: #fff;
+display: block;
+border-bottom: 1px solid #d1d0d0;
+margin:0 0 0 -16px;
+}
+
+&-rect_boxtext{ /* outer class for text(i.e, company name and newlisting and available ) bounding must be in same margin */
+  width:250px;
+  height: 65px;
+  background-color: #fff;
+  display: block;
+  margin:0 26px 0 165px;
+  text-align: left;
+}
+
+&-month_text{ /* specifications for the month */
+  height: 70px;
+  width: 56px;
+  float: left;
+  font-size: 12px;
+  font-weight: normal;
+  padding: 12px;
+  text-align: left;
+  color: #000;
+  text-transform: uppercase;
+  margin: -5px 0 0 20px;
+}
+
+&-date_text{ /* specifications for the date */
+  font-size: 38px;
+  font-weight: bold;
+  color: #000;
+  display: block;
+  margin: -10px 0 0 5px;
+}
+
+&-small_circle{ /* specifications for the small circle */
+  height: 50px;
+  width: 50px;
+  padding-left: 25px;
+  padding-right: 25px;
+  border: 1px solid #d1d0d0;
+  background: #3098ff none repeat scroll 0 0;
+  border-radius: 50%;
+  position: relative;
+  margin: -60px 25px 0 55px;
+}
+
+&-neib_name{ /* specs for the neibour name  */
+  font-size: 18px;
+  color:#000;
+  font-weight:bold;
+  padding:10px 0 0 0;
+}
+
+&-neib_name:hover{  /*hove on the neibour name class */
+  color:#3098FF;
+}
+
+&-listing_name{  /*specs for the listingname */
+  font-size: 14px;
+  color: #505050;
+  font-weight: normal;
+  margin:-7px 25px 0 0;
+}
+
+&-listing_name:hover{ /*hover on listingname  */
+  color:#3098FF;
+}
+
+&-available_name{ /* specs for the availble */
+  font-size: 14px;
+  color: #505050;
+  font-weight: bold;
+  display:inline-block;
+}
+
+&-available_name:hover{ /* hover on the avilable */
+  color:#3098FF;
+}
+
+&-home_footer{ /* this class is for the outter alignment to the module fotter(which is global) for my module */
+  height:35px;
+  width:452px;
+  position:relative;
+  margin:-49px 0 0 212px;
+  border-bottom:2px solid #3098ff;
+}
+
+&-home_images{/*gives circular image inside the circle with location given in "src" */
+border-radius: 50%;
+float: left;
+height: 58px;
+margin: -5px 0 0 -26px;
+padding: 5px 0;
+width: 51px;
+}
+}

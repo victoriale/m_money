@@ -1,0 +1,398 @@
+//Name: Meghana
+//Created:6/5/2015
+//Description:html for the toplist homes in chicago module
+//Associated Files:list-of-lists.html
+@import (reference)"../global_vars.less";
+
+@grey-divider: #b4b4b4;
+
+//module size
+.module-toplist{
+  height: auto !important;
+}
+
+.top_list_item_template {
+  width: 100%;
+  height: 160px;
+  border-bottom: 1px solid @grey-divider;
+  padding-top: 16px;
+}
+
+.top_list{
+  &_odd {
+    .top_list_item_template;
+    background: @grey-1;
+  }
+
+  &_even {
+    .top_list_item_template;
+    background: @white;
+  }
+
+  &_mainimg {
+    width: 125px;
+    height: 125px;
+    border: 3px solid @grey-3;
+    border-radius: 50%;
+    margin: 0 20px 16px;
+    float: left;
+    background-size: cover !important;
+    background-position: center center !important;
+    cursor: pointer;
+  }
+
+  &_location {
+    float: left;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    color: @black;
+
+    .fa-map-marker {
+      margin-right: 5px;
+      color: @blue;
+    }
+  }
+
+  &_listtitle {
+    font-size: 18px;
+    text-align: left;
+    width: ~"calc(100% - 185px)";
+    color: @black;
+    font-weight: bold;
+    padding-bottom: 10px;
+    float: left;
+  }
+
+  &_subimg {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 2px solid @grey-3;
+    margin: 10px 10px 0 0;
+    float: left;
+    background-size: cover !important;
+    background-position: center center !important;
+    cursor: pointer;
+  }
+
+  &_subimg_cont {
+    width: ~"calc(100% - 185px)";
+    height: 65px;
+    float: left;
+    text-align: left;
+    position: relative;
+    bottom: 0;
+  }
+}
+
+// styling list item tiles
+.top_list-tile1{
+
+  background:#f2f2f2;
+  width:680px;
+  height: 160px;
+  color: #000
+}
+
+.top_list-tile2{
+  .top_list-tile1;
+  background: #fff;
+  border-top:1px solid #b4b4b4;
+  border-bottom:0.5px solid #b4b4b4
+}
+
+.top_list-tile3{
+  .top_list-tile1;border-top:1px solid #b4b4b4;
+  border-bottom:1px solid #b4b4b4
+}
+
+.top_list-tile4{
+  .top_list-tile1;
+  background: #fff
+}
+//spacing
+.top_list-space{
+  font-size: 13px;
+  margin: 2px 265px 0 0;
+}
+
+.top_list-adjust{
+  margin-left:82px;
+  margin-top:-100px;
+  font-weight: bold;
+  font-size:16px
+}
+
+.top_list-adjust1{
+  .top_list-adjust;
+  margin-left: 158px;
+}
+
+.top_list-adjust2{
+  .top_list-adjust;
+  margin-left: 153px
+}
+
+.top_list-adjustmid{
+  .top_list-adjust;
+  margin-left:110px
+}
+//profile image styling
+.top_list-head-image{
+  background-image: url(http://cdn.cstatic.net/images/gridfs/536afdb0f92ea14515004ff8/1955-n-burling-1.jpg);
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  background-size: 120px 120px;
+  width:125px;height: 125px;
+  border: 2px solid gray;
+  margin-left: 20px;
+  margin-top: -23px;
+
+}
+.top_list-view-profile
+{
+  position:relative;
+  width:125px;
+  height:125px;
+  background: rgba(48,152,255,.75);
+  border-radius:100%;
+  padding:1em;
+  opacity:0;
+  transition: .2s opacity;
+  box-sizing:border-box;
+}
+.top_list-view-profile:hover{
+  opacity:.85;
+  margin-top: -3px;
+  margin-left: -2px;
+}
+.top_list-view-profile-tile1{
+  .top_list-view-profile;
+  width: 50px;
+  height: 50px;
+}
+.top_list-view-profile-tile1:hover{
+  opacity:.4;
+  margin-top: 0px;
+  margin-left: 0px;
+}
+.top_list-image-body
+{
+  vertical-align:middle;
+  color: #fff;
+  font-weight: lighter;
+  text-align: center !important;
+  text-transform: uppercase;
+  padding-top: 2em;
+  border-radius: 70px;
+  width: 90px;
+  height: 75px;
+}
+.top_list-view{
+  margin-top:-5px;
+  font-size: 22px;
+  font-weight: bold;
+}
+.top_list-profile{
+  margin-top:-10px;
+  font-size: 22px;
+  font-weight:light;
+}
+.right{
+  float:right;
+}
+
+//styling for profile images in the list
+.small_circle{
+  height: 100px;
+  width: 100%;
+  float: left;
+}
+.top_list-tile-image1
+{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-image: url(http://cdn.cstatic.net/images/gridfs/536afdb0f92ea14515004ff8/1955-n-burling-1.jpg);
+  background-size: 45px 45px;
+  margin-left: 130px;
+  margin-top:10px;
+  display: block;
+  float: left;
+}
+.top_list-hover{
+
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+}
+.top_list-hover:hover
+{
+  background: rgba(48,152,255,.75);
+  opacity: .85;
+}
+.top_list-tile-image2
+{
+
+  width: 50px;height: 50px;
+  border-radius: 50%;
+  background-image: url(https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTC0wChH_-bYMNZk0-a4GS6G_a7r-2uy0vVAEWA2gHnEPJAP-P4);
+  background-size: 50px 50px;
+  margin-left:10px;
+  margin-top:10px;
+  display: block;
+  float: left;
+}
+
+.top_list-tile-image3
+{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmr1wkktTdgM26bV6AaRlnx5RC1Jt_N1ccJdsdWWVmaIVWgBzj8g);
+  background-size: 50px 50px;
+  margin-left:10px;
+  margin-top:10px;
+  display: block;
+  float: left;
+}
+
+.top_list-tile-image4
+{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-image: url(https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRrbUjAoFHch8uiV7m3W7BuePIfvDZ7rvPbzaR5s9RHql6yFtzIOQ);
+  background-size: 50px 50px;
+  margin-left:10px;
+  margin-top:10px;
+  display: block;
+  float: left;
+}
+
+.top_list-tile-image5
+{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjuLq1k3elbJppCTn4ELrvzKI4hp_y3I4BqyEPIkffLYu3VU-3);
+  background-size: 50px 50px;
+  margin-left:10px;
+  margin-top:10px;
+  display: block;
+  float: left;
+}
+//styling for full list button
+.top_list-tile-button
+{
+  width:180px;
+  height: 40px;
+  border-radius: 25px;
+  background: #3098ff;
+  color:#fff;
+  border: 2px solid #3098ff;
+  margin-top:15px;
+  float: right;
+}
+//profile image styling
+.top_list-head-image-tile2
+{
+  .top_list-head-image;
+  background-image:url(https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTYiza9vGYeFK8P3CWeFx8XLuHufuF81DZpHdlD-UZnZtLsNysV);
+  background-size: 125px 125px
+}
+//styling for profile images in the list
+.top_list-tile-image1-tile2
+{
+  .top_list-tile-image1;background-image: url(https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT_sACzQCqbzxxomcvzItTFWHCRTrm-6ARx-JqeiMZ9qQlileTQcg);
+  background-size:45px 45px
+}
+.top_list-tile-image2-tile2
+{
+  .top_list-tile-image2;
+  background-image: url(https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTOcVml9vLzHIrLYLSyC-QoKK5Ux_anGPz5Vv7FvMbuJlg6na-s)
+}
+.top_list-tile-image3-tile2
+
+{
+  .top_list-tile-image3;
+  background-image: url(https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSQRiu7IQHD1odBLYUClSiBc_8V6bocbFlOdpv64MtfUgz79j4W)
+}
+.top_list-tile-image4-tile2
+{
+  .top_list-tile-image4;
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjHr6nyfWxAiQl7pmVYoIRxhu_7xZ3fy62lEo_NBJeuyHMN8e-LA)
+}
+
+.top_list-tile-image5-tile2
+{
+  .top_list-tile-image5;
+  background-image: url(https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSaECNbqgSEXj3eRs97tAd2r4KW-fiHwtxgrzQ4Qt-wKMYNQkrD)
+}
+//profile image styling
+.top_list-head-image-tile3
+{
+  .top_list-head-image-tile2;
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2cMfBp6RAZyaT15v4bYXVpiqiuh85F-zoQU79Way3Gfjm6mn9rg)
+}
+//styling for profile images in the list
+.top_list-tile-image1-tile3
+{
+  .top_list-tile-image1;
+  background-image: url(https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQh9-Ov1SY6EmduvzKe00Jzw3hkNepLVxP94uWI9ux486s4Q_QF3Q)
+}
+
+.top_list-tile-image2-tile3
+{
+  .top_list-tile-image2;
+  background-image: url(https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSDgnFxutPpIv8CqBYBPa9s__grlmmm6k-V0yvBFwXBnHg6CKNTXA)
+}
+
+.top_list-tile-image3-tile3
+{
+  .top_list-tile-image3;background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5GTG-kVHd3XfJ5eUxioz-L9kjwJOPr9-FXyOPJj4H6zTlSWIliA)
+}
+
+.top_list-tile-image4-tile3{
+  .top_list-tile-image4;
+  background-image: url(https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQcpbZGEsD67N-kq7t8A85mVXlDHrq497H3t_VA4xqT0BxZ3w5elA)
+}
+
+.top_list-tile-image5-tile3
+{
+  .top_list-tile-image5;
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKXu1OBQGe4-MhYO-0yNuP_xoVmyiNjDGBqa6c6IF_C91Cml0aTw)
+}
+
+.top_list-head-image-tile4
+{
+  .top_list-head-image-tile2;
+  background-image: url(https://encrypted-tbn1.gstati c.com/images?q=tbn:ANd9GcT8OxkaRwhOgsvpj6O9eemfD90ufSA11i8sinxbU34sGrMhzodURA)
+}
+//styling for profile images in the list
+.top_list-tile-image1-tile4
+{
+  .top_list-tile-image1;
+  background-image: url(https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTgQzsyW50V_R10VXXaKTmgN5oDX8NBf-P9F0Jbx9R3mcr20qjwZw)
+}
+
+.top_list-tile-image2-tile4
+{
+  .top_list-tile-image2;background-image: url(https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRDnwPktEUl0qoiM-lk39gyMGKh3BXkIODTptlBM-3mVpxURQrd)
+}
+.top_list-tile-image3-tile4
+{
+  .top_list-tile-image3;
+  background-image: url(https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTnnQHVu4qJivHOCoLlSk2qM9lzRJEPiUVDkxPsF6bMHvPA-znWiw)
+}
+.top_list-tile-image4-tile4
+{
+  .top_list-tile-image4;
+  background-image: url(https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQAq9HpDUjxPIHrwMjecMeCEEJMgA5blSToRcSJpRxOgaPxOhsd)
+}
+.top_list-tile-image5-tile4
+{
+  .top_list-tile-image5;
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcVl6IIRSexHT40eKfdoSxdedGZVxgQuQ-Q-hisSy_QAwNcffEOw)
+}

@@ -1,0 +1,90 @@
+<!-- Author : Larry Pham
+Date: 07/13/2015
+Description: Web page for Contact Us
+Associated files: contact_us_page.html, contact_us_page.less
+Dependecies: Router.js,global_vars.less -->
+<template name="au_page">
+  <div class="au_page_container">
+
+    <div class="au_page">
+      <!--Top profile-->
+      <div class="au_page-header">
+        <div class="au_page-headerimagebox">
+          <div class="au_page-headerimage">
+            <div class="au_page-bluebutton">
+              <i class="fa fa-mail-reply"></i>
+            </div>
+          </div>
+        </div>
+        <!--header with basic header info-->
+        <div class="au_page-listingtitle">
+          <div class="prop_feat-date">
+            LAST UPDATED: 7/13/2015 11:31 PM EST
+          </div>
+          <div class="au_page-location">
+            <i class="fa fa-map-marker"></i>
+            United States
+          </div>
+          <div class="au_page-headertitle">
+            About Us
+          </div>
+          <div class="au_page-headeraddress">
+            Take a seat and get to know us better.
+          </div>
+        </div>
+        <!--header with basic header info END-->
+      </div>
+    </div>
+    <!--Top profile END-->
+    <!--joyfulhome bar-->
+    <div class="au_page-bar">
+      <div class="au_page-bar-logo"></div>
+      <!--
+      <div class="au_page-bar-click"><i class="fa fa-heart"></i>  Saved</div>
+      <div class="au_page-bar-click"><i class="fa fa-share"></i>  Share</div>
+      -->
+    </div>
+    <!--joyfulhome bar END-->
+    <!--What is Joyful Home-->
+    <div class="au_page-title">
+      <span class="au_page-title-bold">What is</span>
+      Joyful Home?
+    </div>
+    <!--What is Joyful Home END-->
+    <!--About us description-->
+    <div class="au_page-desc">
+      Founded in July of 2015 and based in San Francisco, California and Wichita, Kansas Joyful Home&#x2122; is a trusted community marketplace for people to discover and purchase their new joyful home.<br><br>
+      Whether they are buying their first home, relocation for college, starting a family or looking to retire in their dream home, Joyful Home connects people to real estate listings, at any price point, in more than 3,007 counties in the United States. And with an ever-growing list of world-class agents around the United States, Joyful Home is the easiest way to purchase your next joyful home.
+    </div>
+    <div class="au_page-content">
+      <div class="au_page-contentbox">
+        <div class="au_page-contentbox-icon" style="background-image: url('icons/People_Icon.png');"></div>
+        <div class="au_page-contentbox-text1">Lisings For Sale</div>
+        <div class="au_page-contentbox-text2">1,700,00+</div>
+      </div>
+      <div class="au_page-contentbox">
+        <div class="au_page-contentbox-icon" style="background-image: url('icons/Building_Icon.png');"></div>
+        <div class="au_page-contentbox-text1">Metropolitan Areas</div>
+        <div class="au_page-contentbox-text2">915</div>
+      </div>
+      <div class="au_page-contentbox">
+        <div class="au_page-contentbox-icon" style="background-image: url('icons/House_Icon.png');"></div>
+        <div class="au_page-contentbox-text1">Real Estate Agents</div>
+        <div class="au_page-contentbox-text2">6,271,987</div>
+      </div>
+      <div class="au_page-contentbox">
+        <div class="au_page-contentbox-icon" style="background-image: url('icons/Globe_Icon.png');"></div>
+        <div class="au_page-contentbox-text1">United States' Counties</div>
+        <div class="au_page-contentbox-text2">3,007</div>
+      </div>
+      <div class="au_page-national">
+        <div class="au_page-info1">Listings Nation wide</div>
+        <div class="au_page-info2">10,200,000+</div>
+        <div class="au_page-info3">Our U.S. offices are marked below</div>
+      </div>
+    </div>
+    <div class="au_page-pic"></div>
+    <!--About us description END-->
+  </div>
+  {{> search_module}}
+</template>

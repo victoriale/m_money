@@ -1,0 +1,83 @@
+
+<!--
+
+Author: jyothyswaroop(joe)
+Created: [06/07/2015]
+Description: made a widget called trending_companies
+Associated Files: [The trending_companies.less, trending_companies.html  file for the module]
+tredning _companies.html
+!-->
+
+<template name="trending_companies">
+
+  <div class="companies">
+    <div class="module-header">
+      <span class="module-header-line">
+      </span>
+      <span class="module-header-title" id="re_company_title">PUBLIC COMPANIES {{location}}
+      </span>
+    </div>
+    <!--************Widget Background Image  ************!-->
+    <div class="companies_all-myframe_main_body">
+      <!--*************The Wrapper for the left and right Buttons  ***************!-->
+      <div class="companies_all-myframe_center_wrapper">
+        <!--***********Left Button Creation ************!-->
+        <button class="companies_all-myframe_left_button">
+          <div class="companies_all-myframe_icons">
+            <i class="fa fa-angle-left"></i>
+          </div>
+        </button>
+        <!--**********right Button Creation ***********!-->
+        <button class="companies_all-myframe_right_button">
+          <div class="companies_all-myframe_icons2">
+            <i class="fa fa-angle-right"></i>
+          </div>
+        </button>
+      </div>
+      <!--************Wrapper for the bottom bar************!-->
+      <div class="companies_all-my_frame_bottom">
+        <!--********Wrapper for the Text at the bottom of the page ***********!-->
+        <div class="companies_all-myframe_textwrapper">
+          <!--***********Font Awesome for the Text at the bottom of the page *************!-->
+          <div class="companies_all-myframe_font_icon">
+            <i class="fa fa-map-marker"></i>
+            <span class="companies_all-myframe_font_text">
+              {{location}}
+            </span>
+          </div>
+          <!--***********Text at the bottom of the page ***********!-->
+          <div class="companies_all-myframe_text1"> {{company_name}}
+          </div>
+          <div class="companies_all-myframe_text2">Total Market Cap: {{price}}
+          </div>
+        </div>
+        <!--********Button at the bottom of the page ***********!-->
+        <!--
+        <button class="companies_all-myframe_button-wrapper">
+          <span class="companies_all-myframe_button-text">
+            VIEW THE COMPANIES
+          </span>
+          <span class="companies_all-myframe_button-icon">
+            &nbsp;<i class="fa fa-share"></i>
+          </span>
+        </button>
+      -->
+      </div>
+      <!--Profile Image at the bottom of the page!-->
+      <button class="companies_all-myframe_circle1" style="background-image: url('{{SmallImgURL}}')">
+        <div class="companies_all-myframe_circle2">
+        </div>
+      </button>
+
+      <!--Profile Image Hover at the bottom of the page!-->
+      <!--<a href="">
+        <div class="companies_all-myframe_viewprofile">
+
+          <span class="companies_all-myframe_viewprofile_txt1">View</span>
+          <span class="companies_all-myframe_viewprofile_txt2">Profile</span>
+
+        </div>
+      </a>-->
+    </div>
+  </div>
+</template>

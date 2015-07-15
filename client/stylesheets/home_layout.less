@@ -1,0 +1,40 @@
+@login-background: url('/home/login_background.png');
+@top-synapsys-logo: url('/home/top_synapsys_logo.png');
+@import (reference)"global_vars.less";
+.home-container{
+  width: 1920px;
+  height: 1080px;
+  margin: 0 auto;
+  overflow: hidden;
+  background-image: @login-background;
+
+    .home-overlay{
+      width: 1920px;
+      height: 1080px;
+      //Used instead of opacity to avoid parent-child inheritance of opacity
+      background-color: rgba(24,36,43,.85);
+    }
+
+    .top-navigation{
+      width: 1920px;
+      height: 100px;
+      //Used instead of opacity to avoid parent-child inheritance of opacity
+      background-color: rgba(255,255,255,.75);
+
+      .top-synapsys-logo{
+        width: 319px;
+        height: 31px;
+        margin: 34px 0px 35px 50px;
+        content: @top-synapsys-logo;
+      }
+    }//Close .top-navigation
+
+    .home-content-container{
+      width: 1920px;
+      height: 980px;
+      //Prevents child element margin-tops from pushing .home-content-container down
+      overflow: hidden;
+
+    }
+
+}//Close .home-container

@@ -1,0 +1,177 @@
+<!--Author:Ramakrishna Vaibhav kasibhatla [Ram]
+Created: [06/09/2015]
+Description: [Trending Realtors in Chic
+-->
+<!--starting of the html file-->
+<template name="trending_realtors">
+  <div class="module-3"><div class="module-header"><span class="module-header-line"></span><span class="module-header-title">TRENDING REALTORS IN {{trending_realtorsLocation}}, {{trending_realtorsState}}</span></div>
+  <!--the complete module is defined into 4 boxes-->
+  <!--under the major class box-->
+  <ul class="trds-boxes">
+    <!-- code for the box Today's Trending Realtors-->
+    <li class="trds-rightside">
+      <div class=trds-header>
+        <span class="trds-title2"><i class="fa fa-circle" style="color:#3098ff  "></i> TODAY'S TRENDING REALTORS</span>
+      </div>
+      <!--code for the top profile -->
+      <div class="trds-main">
+
+        <a class="trds-profile-link" href="#">
+          <div class="trds-profile">
+            <div class="trds-view-profile">
+                <div class="trds-view-profile_txt1">VIEW</div>
+                <div class="trds-view-profile_txt2">PROFILE</div>
+            </div></div> </a>
+            <!--code for nav buttons left and right-->
+            <button class='trds-left-button-hov'><i class="fa fa-angle-left fa-2x" ></i></button>
+            <button class='trds-right-button-hov'><i class="fa fa-angle-right fa-2x"></i></button>
+            <!--code for the realtors: name, comapany title, company location, and license-number-->
+            <div class="trds-realtor-name" align="center">Kevin Van Eck</div>
+            <div class="trds-top-profile" align="center">
+              <b><a class="trds-company-title" align="center" href="{{trending_realtorsBrokarageaUrl}}">{{trending_realtorsBrokarageName}}</a>
+                |</b>
+                <a class="trds-company-location">{{trending_realtorsLocation}}, {{trending_realtorsState}}
+                </a>
+                <span class="trds-location"> </span>
+                <div class="trds-licenses">
+                  License#:01884341
+                  <span class="trds-licenses number"></span>
+                </div>
+              </div>
+              <!--code for the text about the realtor-->
+              <div class="trds-primary-text">Kevin Van Eck is a full service full time agent.
+                He is rechable to his clients on their schedule.Expert Skills include: Professional
+                Marketing Response to clients Negotiation List..
+              </div>
+              <!--code for read more about the realtor link-->
+              <div class="trds-read-more"><a href="url">Read More</a></div><br>
+            </div>
+            <!--end of code for top profile-->
+            <!--code for the subprofiles.. next 3 inorder-->
+            <!--2nd profile-->
+            <div class="trds-submain">
+              <span class="trds-view-smallprofile">
+                <div class="trds-hover"></div>
+              </span>
+              <!--realtors name,company laocation and license-number-->
+              <div class="trds-realtor-name">Todd Montogome</div>
+              <a class="trds-company-title" href="{{trending_realtorsBrokarageaUrl1}}">{{trending_realtorsBrokarageName1}}</a>
+              <b>-</b>
+              <span class="trds-licenses number">#01875716</span>
+              <!--arrow mark on the right hand side of the profile-->
+              <span class="trds-miniclass">
+                <i class="fa fa-angle-right fa-3x"></i>
+              </span>
+              <!--realtors profile image-->
+            </div>
+            <!--3rd profile-->
+            <div class="trds-submain2">
+              <!--realtors name,company laocation and license-number-->
+              <span class="trds-view-smallprofile">
+                <div class="trds-hover"></div>
+              </span>
+              <span class="names">
+                <div class="trds-realtor-name">Tanja Beck/Scott Rose</div>
+                <a class="trds-company-title" href="{{trending_realtorsBrokarageaUrl2}}">{{trending_realtorsBrokarageName2}}</a>
+                <b>-</b>
+                <span class="trds-licenses number">#01407328</span>
+              </span>
+              <!--arrow mark on the right hand side of the profile-->
+              <span class="trds-miniclass">
+                <i class="fa fa-angle-right fa-3x"></i>
+              </span>
+              <!--realtors profile image-->
+            </div>
+            <!--4th profile-->
+            <div class="trds-submain3">
+              <!--realtors name,company laocation and license-number-->
+              <span class="trds-view-smallprofile">
+                <div class="trds-hover"></div>
+              </span>
+              <div class="trds-realtor-name">Danielle Lazier</div>
+              <a class="trds-company-title" href="{{trending_realtorsBrokarageaUrl3}}">{{trending_realtorsBrokarageName3}}</a>
+              <b>-</b>
+              <span class="trds-licenses number">#01340326</span>
+              <!--arrow mark on the right hand side of the profile-->
+              <span class="trds-miniclass">
+                <i class="fa fa-angle-right fa-3x"></i>
+              </span>
+              <!--realtors profile image-->
+            </div>
+            <!--end of code for the subprofiles.. next 3 inorder-->
+          </li>
+          <!--end of code for the box Today's Trending Realtors-->
+          <!--code for the grey box Realtors link-->
+          <li class="module-tile">
+            <div class="module-tile-default">
+              <div class="module-tile-default-container">
+                <div class="module-tile-default-icon">
+                  <i class="fa fa-briefcase"></i>
+                </div>
+                <div class="module-tile-default-text">
+                  Realtors
+                </div>
+              </div>
+            </div>
+            <a class="module-tile-link" href="#">
+              <div class="module-tile-hover">
+                <div class="module-tile-name">
+                  <i class="fa fa-briefcase "></i>Realtors
+                </div>
+                <div class="module-tile-info">
+                </div>
+                <button class="module-tile-button">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
+              </div>
+            </a>
+          </li>
+          <!--code for the grey box Real Estate Angencies Link-->
+          <li class="module-tile">
+            <div class="module-tile-default">
+              <div class="module-tile-default-container">
+                <div class="module-tile-default-icon">
+                  <i class="fa fa-home"></i>
+                </div>
+                <div class="trds-naming">
+                  Real Estate Agencies
+                </div>
+              </div>
+            </div>
+            <a class="module-tile-link" href="#">
+              <div class="module-tile-hover">
+                <div class="module-tile-name">
+                  <i class="fa fa-home"></i>Real Estate Agencies
+                </div>
+                <div class="module-tile-info">
+                </div>
+                <button class="module-tile-button module-tile-button-align">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
+              </div>
+            </a>
+          </li>
+          <!--code for the grey box Users link-->
+          <li class="module-tile">
+            <div class="module-tile-default">
+              <div class="module-tile-default-container">
+                <div class="module-tile-default-icon">
+                  <i class="fa fa-users"></i>
+                </div>
+                <div class="module-tile-default-text">
+                  Users
+                </div>
+              </div>
+            </div>
+            <a class="module-tile-link" href="#">
+              <div class="module-tile-hover">
+                <div class="module-tile-name">
+                  <i class="fa fa-users"></i>Users
+                </div>
+                <div class="module-tile-info">
+                </div>
+                <button class="module-tile-button">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <!--end of the major box class-->
+      </div>
+    </template>
+<!--end of the html file-->

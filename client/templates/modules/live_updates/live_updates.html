@@ -1,0 +1,64 @@
+<!--Author: [Naveen]
+Created: [6/15/2015]
+Last Modified:[6/26/2015]
+Description: [ This file includes the code for module live-updates along with comments (File name: lives_updates.html)]
+Associated Files: [The modules.less, live_updates.less ,live_updates.js for the module]-->
+<template name="live_updates"><!-- live_updates is the name provided for the template -->
+  <!-- start of primary container which wraps all sub-containers -->
+  <div class="prim-live_updates">
+    <!-- start of secondary container which wraps all the subnets of sub-containers within it -->
+    <div class="black-top_black_bar"><!--class black-top_black_bar belongs to top black portion of container which includes some blocks inside it -->
+      <div class="top-top_blue_bar"></div><!-- class top-top_blue_bar belongs to top small blue portion of the widget  -->
+      <div class="bullhorn-updates"><br><i class="fa fa-bullhorn"></i>LIVE UPDATES</div><!--class bullhorn-updates contains a font-awesone icon along with a text  -->
+     <!--<div class="shadedline-vertical"></div>--><!--class shadedline-vertical is for the vertical portion towards the left margin of the widget -->
+
+      <!--start of first block which contains image block on left-side  along with text content towards the right portion -->
+      <div class="upper-top_block1"><!--class upper-top_block1 is the name of first-block -->
+        <a href="{{link0}}"><img class="leftpart1-photo1" src="{{Back_image}}"/></a><!--class leftpart1-photo1 includes image-source with source name "profile Images3.png" -->
+        <div class="imgblk1-img_blk1">{{FullStreetAddress}} <br><!--class imageblk1-img_block1 contains texted first line  -->
+          <span class="texts-linetext1">Went on the market May 5,2015, with an asking price of <b>${{ListPrice}}.</b></span><br><!--class texts-linetext1 contains the second line of text -->
+          <span class="texts-linetext1">{{Bedroom}} Bed | {{Bathroom}} Bath | 1,500 sq ft</span><!--class texts-linetext1 contains third line of text -->
+          <div class="texts1-linetext2">{{city}},{{state}} | Updated 2 seconds ago</div><!--class texts1-linetext2 contains fourth line of text   -->
+          <i class="fa fa-angle-right upper-right1_arrow"> </i>
+        </div>
+      </div>
+      <!--End of first block which contains image block on left-side  along with text content towards the right portion -->
+
+      <!--start of second block which contains image block on left-side  along with text content towards the right portion -->
+      <div class="middle-middle_block2"><!--class middle-middle_block2 is the name of second-block -->
+        <a href="{{link1}}"><img class="leftpart2-photo2" src="{{Back_image1}}"/></a><!--class leftpart2-photo2 includes image-source with source name "profile Images3.png" -->
+        <div class="imgblk2-img_blk2">{{FullStreetAddress1}}<br><!--class imgblk2-img_blk2 contains texted first line  -->
+          <span class="texts-linetext1">Went on the market May 5,2015, with an asking price of <b>${{ListPrice1}}.</b></span><br><!--class texts-linetext1 contains the second line of text -->
+          <span class="texts-linetext1">{{Bedroom1}} Bed |{{Bathroom1}} Bath | 1,500 sq ft</span><!--class texts-linetext1 contains third line of text -->
+          <div class="texts1-linetext2">{{city1}},{{state1}} | Updated 2 seconds ago</div><!--class texts1-linetext2 contains fourth line of text   -->
+          <i class="fa fa-angle-right middle-right1_arrow"> </i>
+        </div>
+      </div>
+      <!--End of second block which contains image block on left-side along with text content towards the right portion -->
+
+      <!--start of third block which contains image block on left-side  along with text content towards the right portion -->
+      <div class="down-down_block3"><!--class down-down_block3 is the name of third-block -->
+        <a href="{{link2}}"><img class="leftpart3-photo3" src="{{Back_image2}}"/></a> <!--class leftpart3-photo3 includes image-source with source name "profile Images3.png" -->
+        <div class="imgblk2-img_blk2">{{FullStreetAddress2}} <br><!--class imgblk3-img_blk3 contains texted first line  -->
+          <span class="texts-linetext1">Went on the market May 5,2015, with an asking price of <b>${{ListPrice2}}.</b></span><br><!--class texts-linetext1 contains the second line of text -->
+          <span class="texts-linetext1">{{Bedroom2}} Bed | {{Bathroom2}} Bath | 1,500 sq ft</span><!--class texts-linetext1 contains third line of text -->
+          <div class="texts1-linetext2"></div>
+          <i class="fa fa-angle-right down-right1_arrow"> </i>
+        </div>
+      </div>
+      <!--End of third block which contains image block on left-side  along with text content towards the right portion -->
+
+      <!--start of bottom block which contains bottom blue-line and blue-button -->
+      <div class="lowbox-btn_ctr"><!--class lowbox-btn_ctr is a bottom block contains button and bottom blue line -->
+        <button class="module-footer-button"><!--class module-footer-button contains code for blue-button -->
+          <span class="module-footer-button-text">SEE THE FULL LIST</span><!--module-footer-button-text class contains text portion inside the button-->
+          <span class="module-footer-button-ellipse"><i class="fa fa-mail-forward"></i></span><!--module-footer-button-ellipse class contains a fa icon and ellipse embedded -->
+        </button>
+        <div class="bottom-bluebar"></div><!--class bottom-blue-bar contains blue portion at the bottom-->
+      </div>
+      <!--End of bottom block which contains bottom blue-line and blue-button -->
+    </div>
+    <!-- End of secondary container which wraps all the subnets of sub-containers within it -->
+  </div>
+  <!-- End of primary container which wraps all sub-containers -->
+</template>

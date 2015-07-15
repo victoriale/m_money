@@ -1,0 +1,195 @@
+@import (reference)"../global_vars.less"; //include important global vars (colors mostly)
+
+@joyful-home-footer-logo: url('joyful_home_footer_logo.png');
+
+.footer{
+  &-standard {
+    position: relative;
+    height: 420px;
+    width: 1440px;
+    margin: auto;
+    background-color:#ccc;
+  }
+
+  &-header
+  {
+    height: 60px;
+    width: 1440px;
+    background-color: #282c2e;
+    position: relative;
+    padding: 0px 130px;
+  }
+  &-joyfulhome_logo
+   {
+    width: 149px;
+    height: 22px;
+    background-image: @joyful-home-footer-logo;
+    background-size: contain;
+    background-position: center center !important;
+    background-repeat: no-repeat;
+    display: block;
+    float: left;
+    margin: 19px 0px;
+
+  }
+
+  &-btn
+  {
+    width: auto;
+    float:right;
+    height: 60px;
+    list-style-type: none;
+    padding: 10px 0px 10px 0px;
+    margin: 0px;
+
+    >li{
+      display: inline;
+      float: right;
+      margin-left: 10px;
+    }
+  }
+
+  &-right_button
+  {
+    display:block;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border: 1px solid #ffffff;
+    color:#ffffff;
+    font-size: 19px;
+    padding: 6px;
+    text-align: center;
+  }
+  &-right_button:hover
+  {
+    background: #282c2e;
+    Inner-Stroke: #959595;
+    opacity:0.5;
+  }
+  &-right_button1
+  {
+    display:block;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border: 1px solid  #ffffff;
+    color:#ffffff;
+    font-size: 19px;
+    padding: 6px;
+    text-align: center;
+  }
+  &-right_button1:hover {
+    background: #282c2e;
+    Inner-Stroke: #959595;
+    opacity:0.5;
+
+  }
+  &-right_button2 {
+    display:block;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border: 1px solid  #ffffff;
+    color:#ffffff;
+    font-size: 19px;
+    padding: 6px;
+    text-align: center;
+  }
+  &-right_button2:hover {
+    background: #282c2e;
+    Inner-Stroke: #959595;
+    opacity:0.5;
+
+  }
+  &-right_button3 {
+    display:block;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border: 1px solid  #ffffff;
+    color:#ffffff;
+    font-size: 19px;
+    padding: 6px;
+    text-align: center;
+  }
+  &-right_button3:hover {
+    background: #282c2e;
+    Inner-Stroke: #959595;
+    opacity:0.5;
+  }
+  &-right_button4
+  {
+    display:block;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border: 1px solid  #ffffff;
+    color:#ffffff;
+    font-size: 19px;
+    padding: 6px;
+    text-align: center;
+  }
+  &-right_button4:hover
+  {
+    background: #282c2e;
+    Inner-Stroke: #959595;
+    opacity:0.5;
+
+  }
+  &-home-sec_body
+  {
+    margin: 0px auto;
+    padding-top: 15px;
+    width: 1440px;
+    height: 390px;
+    width: 100%;
+    display: table;
+    text-align: center;
+    color: #fff;
+
+    //Lutz: added to make state links white
+    >p>a{
+      color: @white;
+
+      &:hover{
+        color: @blue;
+      }
+    }
+  }
+  &-home-sec_body1
+  {
+    padding-top:0px;
+    padding-bottom:0px;
+    font-size:24pt;
+    horizontal-align:center;
+  }
+  &-content{
+    height: 390px;
+    width: 1440px;
+    background-color: #3d4144;
+    position: relative;
+  }
+
+  &-p{
+    font-size:14pts;
+    font-color:#fff;
+    font-weight:lighter;
+  }
+  &-separator
+  {
+    width:1050px;
+    border-top: dotted 1px;
+    horizontal-align: center;
+    color:#fff;
+  }
+  &-b_blue>a
+  {
+    color: @blue;
+
+    &:hover{
+      color: @white;
+    }
+  }
+
+}

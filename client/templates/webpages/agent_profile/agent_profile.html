@@ -1,0 +1,290 @@
+<!-- Author : Deepika Priyanka V
+Date: 07/08/2015
+Description: Web page for Real Estate Agents
+Associated files: agent_profile.html, agent_profile.less
+Dependecies: Router.js,global_vars.less -->
+
+<template name="agent_profile">
+  <!-- The Left panel -->
+  <div class="agent_profile-leftpanel">
+    <!-- header container shows real estate agents in that locatin-->
+    <div class="agent_profile-headercontainer">
+      <div class="agent_profile-headerimg">
+        <span class="agent_profile-headericon"><i class="fa fa-reply"></i></span>
+      </div>
+      <div class="agent_profile-headertext">
+        <span class="agent_profile-timestamp">LAST UPDATED: 06/24/2015,8:30AM EST </span><br>
+        <span class="agent_profile-location"><i class="fa fa-map-marker"> Chicago, IL</i></span><br>
+        <span class="agent_profile-agents">Real Estate Agents</span><br>
+        <span class="agent_profile-area">in the Chicago, IL Area</span>
+      </div>
+    </div>
+
+    <!--frame for image holder-->
+    <div class=" agent_profile-imagebox">
+      <div class="agent_profile-leftarrow"><i class="fa fa-angle-left"></i></div>
+      <div class=" agent_profile-rightarrow"> <i class="fa fa-angle-right"></i></div>
+      <div class=" agent_profile-imageheader">
+        <span class=" agent_profile-imghdrtxt">Featured Real Estate Agent</span>
+        <i class="fa fa-heart  agent_profile-symbols"></i>
+        <span class=" agent_profile-symbol-text">Save</span>
+        <i class="fa fa-share-alt  agent_profile-symbols"></i>
+        <span class=" agent_profile-symbol-text">Share</span>
+      </div>
+      <div class=" agent_profile-imgcontainerborder ">
+        <span class=" agent_profile-agentname">Kevin Van Eck</span><br><br>
+        <span class="agent_profile-salesdetails">Broker at: </span>
+        <span class="agent_profile-propertydetails"> @Properties  </span>
+        <span class="agent_profile-salesdetails"><i class="fa fa-angle-right"></i> Homes for sale: </span>
+        <span class="agent_profile-propertydetails">  598 </span>
+        <button class=" agent_profile-borderbutton" type="button"> View Profile <i class="fa fa-angle-right"></i></button>
+      </div>
+    </div>
+    <!-- Listing box details shows the agents-->
+    <div class="agent_profile-listingcontainer">
+      <span class="agent_profile-sort">Sort by:</span>
+      <span class="agent_profile-list"> Chicago, IL Agents</span>
+      <span class="agent_profile-listboxarrow"><i class="fa fa-angle-down"></i></span>
+
+      <div class="agent_profile-listquestioncontainer">
+        <div class="agent_profile-listquestionbox">
+          <span class="agent_profile-question">What is this page? </span>
+          <span class="agent_profile-closebox"><i class="fa fa-times"></i></span>
+        </div>
+        <span class="agent_profile-contentbox"> This is a list featuring all 11,723 real estate agents serving the Chicago,IL metro area. Lists include agents in a 10 mile radius from Chicago, IL.
+          List includes various levels of agents which includes; brokers, assosiate brokers, realtors, salespersons and agents.
+        </span>
+      </div>
+    </div>
+    <!-- first agent details container-->
+    <div class="agent_profile-propertycontainer1">
+      <div class="agent_profile-propertyimg">
+        <div class="agent_profile-imgcounter">#1</div>
+        <div class="agent_profile-smallerimg"></div>
+      </div>
+      <div class="agent_profile-centerbox">
+        <span class="agent_profile-loc"><i class="fa fa-map-marker"></i></span>
+        <span class="agent_profile-loctext"> Chicago, IL</span><br>
+        <span class="agent_profile-brokername">Matt Laricy</span><br>
+        <span class="agent_profile-broker">Broker with:</span>
+        <span class="agent_profile-brokercompany"> Americorp LTD.</span>
+      </div>
+      <div class="agent_profile-rightdetailsbox">
+        <span class="agent_profile-sales">Homes for sale</span><br>
+        <span class="agent_profile-homenum">325</span><br>
+        <span class="agent_profile-tilldate">as of 06/30/2015</span>
+      </div>
+      <div class="agent_profile-infotextbox">
+        <span class="agent_profile-brokerinfo">Want more info about Matt Laricy?</span>
+        <button class=" agent_profile-borderbutton2" type="button"> View Profile <i class="fa fa-angle-right"></i></button>
+      </div>
+      <div class="agent_profile-bordericons">
+        <span><i class="fa fa-heart agent_profile-ss"></i></span>
+        <span class="agent_profile-sstext">Save</span>
+        <span><i class="fa fa-share-alt agent_profile-ss"></i></span>
+        <span class="agent_profile-sstext">Share</span>
+        <span class="agent_profile-feedbacktext">Feedback</span>
+        <span><i class="fa fa-flag agent_profile-feedback"></i></span>
+      </div>
+    </div>
+
+    <!--  second agent details container -->
+
+    <div class="agent_profile-propertycontainer2">
+      <div class="agent_profile-propertyimg">
+        <div class="agent_profile-imgcounter">#2</div>
+        <div class="agent_profile-smallerimg"></div>
+      </div>
+      <div class="agent_profile-centerbox">
+        <span class="agent_profile-loc"><i class="fa fa-map-marker"></i></span>
+        <span class="agent_profile-loctext"> Chicago, IL</span><br>
+        <span class="agent_profile-brokername">Joe Schiller</span><br>
+        <span class="agent_profile-broker">Broker with:</span>
+        <span class="agent_profile-brokercompany"> Koenig Strey</span>
+      </div>
+      <div class="agent_profile-rightdetailsbox">
+        <span class="agent_profile-sales">Homes for sale</span><br>
+        <span class="agent_profile-homenum">310</span><br>
+        <span class="agent_profile-tilldate">as of 06/30/2015</span>
+      </div>
+      <div class="agent_profile-infotextbox">
+        <span class="agent_profile-brokerinfo">Want more info about Joe Schiller?</span>
+        <button class=" agent_profile-borderbutton2" type="button"> View Profile <i class="fa fa-angle-right"></i></button>
+      </div>
+      <div class="agent_profile-bordericons">
+        <span><i class="fa fa-heart agent_profile-ss"></i></span>
+        <span class="agent_profile-sstext">Save</span>
+        <span><i class="fa fa-share-alt agent_profile-ss"></i></span>
+        <span class="agent_profile-sstext">Share</span>
+        <span class="agent_profile-feedbacktext">Feedback</span>
+        <span><i class="fa fa-flag agent_profile-feedback"></i></span>
+      </div>
+    </div>
+    <!-- Third agent details container-->
+
+    <div class="agent_profile-propertycontainer1">
+      <div class="agent_profile-propertyimg">
+        <div class="agent_profile-imgcounter"> #3 </div>
+        <div class="agent_profile-smallerimg"></div>
+      </div>
+      <div class="agent_profile-centerbox">
+        <span class="agent_profile-loc"><i class="fa fa-map-marker"></i></span>
+        <span class="agent_profile-loctext"> Chicago, IL</span><br>
+        <span class="agent_profile-brokername">Jose Hernandez</span><br>
+        <span class="agent_profile-broker">Broker with:</span>
+        <span class="agent_profile-brokercompany"> Coldwell Banker </span>
+      </div>
+      <div class="agent_profile-rightdetailsbox">
+        <span class="agent_profile-sales">Homes for sale</span><br>
+        <span class="agent_profile-homenum">302</span><br>
+        <span class="agent_profile-tilldate">as of 06/30/2015</span>
+      </div>
+      <div class="agent_profile-infotextbox">
+        <span class="agent_profile-brokerinfo">Want more info about Jose Hernandez?</span>
+        <button class=" agent_profile-borderbutton2" type="button"> View Profile <i class="fa fa-angle-right"></i></button>
+      </div>
+      <div class="agent_profile-bordericons">
+        <span><i class="fa fa-heart agent_profile-ss"></i></span>
+        <span class="agent_profile-sstext">Save</span>
+        <span><i class="fa fa-share-alt agent_profile-ss"></i></span>
+        <span class="agent_profile-sstext">Share</span>
+        <span class="agent_profile-feedbacktext">Feedback</span>
+        <span><i class="fa fa-flag agent_profile-feedback"></i></span>
+      </div>
+    </div>
+
+    <!-- Featured Real estate agents are shown -->
+    <div class="agent_profile-featuredagentscontainer">
+      <div class="agent_profile-featuredtop">
+        <span class="agent_profile-featuredtext">Featured Real Estate Agents in Chicago, IL</span>
+      </div>
+      <div class="agent_profile-imagetile1">
+        <span class="agent_profile-tile1text1">Scott Hoskins</span>
+        <span class="agent_profile-tile1text2">Agent </span>
+        <span class="agent_profile-tile1text2"><i class="fa fa-angle-right"></i></span>
+        <span class="agent_profile-tile1text3"> CMK Realty </span>
+      </div>
+      <div class="agent_profile-imagetile1 agent_profile-imagetile2">
+        <span class="agent_profile-tile1text1 agent_profile-tile2text1">Mike Kravitz</span>
+        <span class="agent_profile-tile1text2 agent_profile-tile2text2">Agent </span>
+        <span class="agent_profile-tile1text2 agent_profile-tile2text2"><i class="fa fa-angle-right"></i></span>
+        <span class="agent_profile-tile1text3 agent_profile-tile2text3"> Re/Max</span>
+      </div>
+      <div class="agent_profile-imagetile1 agent_profile-imagetile3">
+        <span class="agent_profile-tile1text1 agent_profile-tile2text1">Emily Sachs</span>
+        <span class="agent_profile-tile1text2 agent_profile-tile3text2">Broker </span>
+        <span class="agent_profile-tile1text2 agent_profile-tile3text2"><i class="fa fa-angle-right"></i></span>
+        <span class="agent_profile-tile1text3 agent_profile-tile3text3"> @Properties </span>
+      </div>
+      <div class="agent_profile-imagetile1 agent_profile-imagetile4">
+        <div class=" agent_profile-rightarrow agent_profile-tilearrow"> <i class="fa fa-angle-right"></i></div>
+        <span class="agent_profile-tile1text1 agent_profile-tile2text1">Adam Wavrunek</span>
+        <span class="agent_profile-tile1text2 agent_profile-tile4text2">Broker </span>
+        <span class="agent_profile-tile1text2 agent_profile-tile4text2"><i class="fa fa-angle-right"></i></span>
+        <span class="agent_profile-tile1text3 agent_profile-tile2text3"> Domain Reality </span>
+      </div>
+    </div>
+
+    <!-- fourth agent details container-->
+    <div class="agent_profile-propertycontainer2">
+      <div class="agent_profile-propertyimg">
+        <div class="agent_profile-imgcounter">#4</div>
+        <div class="agent_profile-smallerimg"></div>
+      </div>
+      <div class="agent_profile-centerbox">
+        <span class="agent_profile-loc"><i class="fa fa-map-marker"></i></span>
+        <span class="agent_profile-loctext"> Chicago, IL</span><br>
+        <span class="agent_profile-brokername">Dan Fowler</span><br>
+        <span class="agent_profile-broker">Agent with:</span>
+        <span class="agent_profile-brokercompany"> @Properties</span>
+      </div>
+      <div class="agent_profile-rightdetailsbox">
+        <span class="agent_profile-sales">Homes for sale</span><br>
+        <span class="agent_profile-homenum">295</span><br>
+        <span class="agent_profile-tilldate">as of 06/30/2015</span>
+      </div>
+      <div class="agent_profile-infotextbox">
+        <span class="agent_profile-brokerinfo">Want more info about Dan Fowler?</span>
+        <button class=" agent_profile-borderbutton2" type="button"> View Profile <i class="fa fa-angle-right"></i></button>
+      </div>
+      <div class="agent_profile-bordericons">
+        <span><i class="fa fa-heart agent_profile-ss"></i></span>
+        <span class="agent_profile-sstext">Save</span>
+        <span><i class="fa fa-share-alt agent_profile-ss"></i></span>
+        <span class="agent_profile-sstext">Share</span>
+        <span class="agent_profile-feedbacktext">Feedback</span>
+        <span><i class="fa fa-flag agent_profile-feedback"></i></span>
+      </div>
+    </div>
+    <!-- fifth agent details container-->
+    <div class="agent_profile-propertycontainer1">
+      <div class="agent_profile-propertyimg">
+        <div class="agent_profile-imgcounter"> #5 </div>
+        <div class="agent_profile-smallerimg"></div>
+      </div>
+      <div class="agent_profile-centerbox">
+        <span class="agent_profile-loc"><i class="fa fa-map-marker"></i></span>
+        <span class="agent_profile-loctext"> Chicago, IL</span><br>
+        <span class="agent_profile-brokername">Susan Nice</span><br>
+        <span class="agent_profile-broker">Agent with:</span>
+        <span class="agent_profile-brokercompany">Dream Town Reality </span>
+      </div>
+      <div class="agent_profile-rightdetailsbox">
+        <span class="agent_profile-sales">Homes for sale</span><br>
+        <span class="agent_profile-homenum">295</span><br>
+        <span class="agent_profile-tilldate">as of 06/30/2015</span>
+      </div>
+      <div class="agent_profile-infotextbox">
+        <span class="agent_profile-brokerinfo">Want more info about Susan Nice?</span>
+        <button class=" agent_profile-borderbutton2" type="button"> View Profile <i class="fa fa-angle-right"></i></button>
+      </div>
+      <div class="agent_profile-bordericons">
+        <span><i class="fa fa-heart agent_profile-ss"></i></span>
+        <span class="agent_profile-sstext">Save</span>
+        <span><i class="fa fa-share-alt agent_profile-ss"></i></span>
+        <span class="agent_profile-sstext">Share</span>
+        <span class="agent_profile-feedbacktext">Feedback</span>
+        <span><i class="fa fa-flag agent_profile-feedback"></i></span>
+      </div>
+    </div>
+
+    <!-- Listings border with pagination-->
+    <div class="agent_profile-listingsbottom">
+      <div class="agent_profile-pagescrollerbox">
+        <span class="agent_profile-bottomleftarrow"><i class="fa fa-angle-left"></i></span>
+        <div class="agent_profile-circle1"><span class="agent_profile-circletext">1</span></div>
+        <div class="agent_profile-circle2"><span class="agent_profile-circletext">2</span></div>
+        <div class="agent_profile-circle2 agent_profile-circle3"><span class="agent_profile-circletext">3</span></div>
+        <span class="agent_profile-dots">...</span>
+        <div class="agent_profile-circle4"><span class="agent_profile-circletext">200</span></div>
+        <span class="agent_profile-bottomrightarrow"><i class="fa fa-angle-right"></i></span>
+      </div>
+      <div class="agent_profile-viewall">
+        <span class="agent_profile-viewalltext">VIEW ALL</span>
+        <div class="agent_profile-viewallicon"></div>
+      </div>
+    </div>
+
+    <!-- Search container-->
+    <div class="agent_profile-searchcontainer">
+      <span class="agent_profile-discovertext">DISCOVER YOUR NEXT HOME</span>
+      <span class="agent_profile-planfuture">Get all the details you need to plan future. </span>
+      <div class="agent_profile-searchbox">
+        <span class="agent_profile-searchtext">Search... </span>
+        <div class="agent_profile-searchbutton">
+          <span class="agent_profile-searchicon"><i class="fa fa-search"></i></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- left panel ends here and right panel starts below -->
+
+  <div class="agent_profile-rightpanel">
+    <div class="agent_profile-widgetzone"></div>
+    <span class="agent_profile-presentedby">PRESENTED BY</span>
+    <div class="agent_profile-adspace"></div>
+    <div class="agent_profile-widgetzone agent_profile-widgetzone2"></div>
+  </div>
+  <!-- right panel ends -->
+</template>

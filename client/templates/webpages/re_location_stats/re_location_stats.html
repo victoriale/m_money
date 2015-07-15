@@ -1,0 +1,410 @@
+<head>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+</head>
+
+<template name="re_location_stats">
+
+	<!-- Page wrapper -->
+	<div class="stats">
+
+		<!-- Listing main header -->
+		<div class="stats_page-header">
+			<!-- Left-hand main header image -->
+			<div class="stats_page-header_image"></div>
+			<div class="stats_page-header_back-arrow">
+				<i class="fa fa-mail-reply stats_page-header_back-arrow_icon"></i>
+			</div>
+
+			<!-- Text in main header -->
+			<div class="stats_page-header_text">
+				<div class="stats_page-header_last-updated">
+					<span>LAST UPDATED </span>
+				</div>
+				<div class="stats_page-header_location">
+					<i class="fa fa-map-marker stats_page-header_location_icon"></i>
+					<span> Chicago, IL</span>
+				</div>
+				<div class="stats_page-header_title">
+					<span>Real Estate Location Statistics</span>
+				</div>
+				<div class="stats_page-header_title-location">
+					<span>for Chicago, IL</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- Area map section -->
+		<div class="stats_map">
+			<!-- Map header text -->
+			<div class="stats_map_location">
+				<i class="fa fa-map-marker stats_map_location_icon"></i>
+				<span> Chicago, Illinois</span>
+			</div>
+			<!-- Map dropdown menu -->
+			<div class="stats_map_dropdown">
+				<div class="stats_map_dropdown_text">
+					<i class="fa fa-credit-card"></i>
+					<span>Affordability</span>
+				</div>
+				<div class="stats_map_dropdown_icon">
+					<i class="fa fa-caret-down"></i>
+				</div>
+			</div>
+			<!-- Map legend -->
+			<div class="stats_map_legend">
+				<div class="stats_map_legend_lowend-text"><span>&lt; 66K</span></div>
+				<div class="stats_map_legend_greenbox"></div>
+				<div class="stats_map_legend_yellowbox"></div>
+				<div class="stats_map_legend_orangebox"></div>
+				<div class="stats_map_legend_redbox"></div>
+				<div class="stats_map_legend_highend-text"><span>155M+</span></div>
+			</div>
+
+			<!-- Main map -->
+			<div id="mainmap" class="stats_map_mapcontainer"></div>
+		</div>
+
+		<!-- Page info summary box -->
+		<div class="stats_infobox">
+			<div class="stats_infobox_header"><span>What is this page?</span></div>
+			<i class="fa fa-close stats_infobox_icon"></i>
+			<div class="stats_infobox_text"><span>Placeholder text</span></div>
+		</div>
+
+		<!-- Listing summary -->
+		<div class="stats_summary">
+			<div class="stats_summary_header stats_section-header">
+				<span><b>Summary</b> for Chicago, Illinois</span>
+			</div>
+			<div class="stats_summary_text"><span>Placeholder text</span></div>
+		</div>
+
+		<!-- Market overview section -->
+		<div class="stats_market-overview">
+			<div class="stats_market-overview_header stats_section-header">
+				<span><b>Real Estate Market</b> for Chicago, Illinois</span>
+			</div>
+			<div class="stats_market-overview_subheader">
+				<i class="fa fa-calculator stats_market-overview_icon"></i>
+				<span>Information calculated by PassFail, Inc.</span>
+			</div>
+
+			<!-- Market overview chart -->
+			<div class="stats_market-overview_table">
+				<!-- Market overview average listing price -->
+				<div class="stats_market-overview_table_average">
+					<div class="stats_market-overview_table_average_label">
+						<span>Average Listing Price</span>
+					</div>
+					<div class="stats_market-overview_table_average_amount">$0</div>
+					<div class="stats_market-overview_table_average_diff">
+						<span><i class="fa fa-arrow-circle-down"></i> -5,966 -1.4%</span>
+					</div>
+				</div>
+				<!-- Market overview median sale prices -->
+				<div class="stats_market-overview_table_median">
+					<div class="stats_market-overview_table_median_label">
+						<span>Median Sale Prices</span>
+					</div>
+					<div class="stats_market-overview_table_median_amount">$0</div>
+					<div class="stats_market-overview_table_median_diff">
+						<span><i class="fa fa-arrow-circle-up"></i> +15,000 +6.1%</span>
+					</div>
+				</div>
+				<!-- Market overview homes for sale -->
+				<div class="stats_market-overview_table_totalnum">
+					<div class="stats_market-overview_table_totalnum_label">
+						<span>Homes for Sale</span>
+					</div>
+					<div class="stats_market-overview_table_totalnum_amount">0</div>
+					<div class="stats_market-overview_table_totalnum_diff"></div>
+				</div>
+				<!-- Market overview recently sold homes -->
+				<div class="stats_market-overview_table_recent">
+					<div class="stats_market-overview_table_recent_label">
+						<span>Recently Sold Homes</span>
+					</div>
+					<div class="stats_market-overview_table_recent_amount">0</div>
+					<div class="stats_market-overview_table_recent_diff"></div>
+				</div>
+				<!-- Market overview foreclosures -->
+				<div class="stats_market-overview_table_foreclosure">
+					<div class="stats_market-overview_table_foreclosure_label">
+						<span>Foreclosures</span>
+					</div>
+					<div class="stats_market-overview_table_foreclosure_amount">0</div>
+					<div class="stats_market-overview_table_foreclosure_diff"></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Market trends section -->
+		<div class="stats_trends">
+			<div class="stats_trends_header stats_section-header">
+				<span><b>Market Trends</b> for Chicago, Illinois</span>
+			</div>
+			<!-- Market trends chart -->
+			<div class="stats_trends_graph">
+				<!-- Market trends chart header bar -->
+				<div class="stats_trends_graph_displayinfo">
+					<div class="stats_trends_graph_displayinfo_dropdowntext">Avg Listing Price</div>
+					<div class="stats_trends_graph_displayinfo_dropdownicon">
+						<i class="fa fa-chevron-down"></i>
+					</div>
+					<!--Market trends chart legend -->
+					<div class="stats_trends_graph_displayinfo_legend">
+						<!-- Local legend -->
+						<div class="stats_trends_graph_displayinfo_legend_local">
+							<div class="stats_trends_graph_displayinfo_legend_local_line1">
+								<div class="stats_trends_graph_displayinfo_legend_local_line1_color"></div>
+								<div class="stats_trends_graph_displayinfo_legend_local_line1_text">$419K</div>
+							</div>
+							<div class="stats_trends_graph_displayinfo_legend_local_line2">Chicago</div>
+						</div>
+						<!--VS circle -->
+						<div class="stats_trends_graph_displayinfo_legend_vs">VS</div>
+						<!--National legend -->
+						<div class="stats_trends_graph_displayinfo_legend_national">
+							<div class="stats_trends_graph_displayinfo_legend_national_line1">
+								<div class="stats_trends_graph_displayinfo_legend_national_line1_color"></div>
+								<div class="stats_trends_graph_displayinfo_legend_national_line1_text">$1.17M</div>
+							</div>
+							<div class="stats_trends_graph_displayinfo_legend_national_line2">National</div>
+						</div>
+					</div>
+				</div>
+				<!--Spline chart -->
+				<div id="markettrendsgraph"></div>
+				<!-- Filter bar which filters graph content based upon days, months and years -->
+				<div class="stats_trends_graph_filterbar">
+					<div class="stats_trends_graph_filterbar_phfb">
+						<div class="stats_trends_graph_filterbar_unseldates">1D</div>
+						<div class="stats_trends_graph_filterbar_unseldates">5D</div>
+						<div class="stats_trends_graph_filterbar_unseldates">10D</div>
+						<div class="stats_trends_graph_filterbar_unseldates">1M</div>
+						<div class="stats_trends_graph_filterbar_unseldates">3M</div>
+						<div class="stats_trends_graph_filterbar_unseldates">6M</div>
+						<div class="stats_trends_graph_filterbar_unseldates">1Y</div>
+						<div class="stats_trends_graph_filterbar_unseldates">3Y</div>
+						<div class="stats_trends_graph_filterbar_unseldates">5Y</div>
+						<div class="stats_trends_graph_filterbar_seldateellipse">
+							<div class="stats_trends_graph_filterbar_seldateellipse_seldate">10Y</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Market trends table -->
+			<div class="stats_trends_table">
+				<!-- Market trends average listing price -->
+				<div class="stats_trends_table_average">
+					<div class="stats_trends_table_average_label">
+						<span>Avg. listing price for Chicago, IL</span>
+					</div>
+					<div class="stats_trends_table_average_amount">$0</div>
+					<div class="stats_trends_table_average_diff"></div>
+				</div>
+				<!-- Market trends median listing price -->
+				<div class="stats_trends_table_median">
+					<div class="stats_trends_table_median_label">
+						<span>Median listing price for Chicago, IL</span>
+					</div>
+					<div class="stats_trends_table_median_amount">$0</div>
+					<div class="stats_trends_table_median_diff"></div>
+				</div>
+				<!-- Market trends average prices by square foot -->
+				<div class="stats_trends_table_avgsqft">
+					<div class="stats_trends_table_avgsqft_label">
+						<span>Avg. price by sqft</span>
+					</div>
+					<div class="stats_trends_table_avgsqft_amount">0</div>
+					<div class="stats_trends_table_avgsqft_diff">
+						<span>
+							<b><i class="fa fa-arrow-circle-up"></i> +741.1% </b>
+							<span style="color: #000000">since last year</span>
+						</span>
+					</div>
+				</div>
+				<!-- Market trends number of sales -->
+				<div class="stats_trends_table_sales">
+					<div class="stats_trends_table_sales_label">
+						<span>Number of Sales</span>
+					</div>
+					<div class="stats_trends_table_sales_amount">0</div>
+					<div class="stats_trends_table_sales_diff">
+						<span>
+							<b><i class="fa fa-arrow-circle-down"></i> -9.6% </b>
+							<span style="color: #000000">since last year</span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<!-- Market trends view more button -->
+			<div class="stats_trends_view-more">
+				<span>View More Chicago, IL's Market Trends</span>
+				<i class="fa fa-mail-forward stats_trends_view-more_icon"></i>
+			</div>
+		</div>
+
+		<!-- Housing prices -->
+		<div class="stats_prices">
+			<div class="stats_prices_header stats_section-header">
+				<span><b>Housing Prices</b> for Chicago, Illinois</span>
+			</div>
+			<!-- Housing prices map -->
+			<div class="stats_prices_map">
+				<div class="stats_prices_map_header">
+					<i class="fa fa-home stats_prices_map_header_icon"></i>
+					<div class="stats_prices_map_header_text">CHICAGO NEIGHBORHOOD MAP</div>
+				</div>
+				<!-- Housing prices map container -->
+				<div id="housingmap" class="stats_prices_map_mapcontainer"></div>
+				<!-- Housing prices legend -->
+				<div class="stats_prices_map_footer">
+					<div class="stats_prices_map_footer_line1">Median Sale Price</div>
+					<div class="stats_prices_map_footer_line2">
+						<div class="stats_prices_map_footer_line2_lowend-text"><span>&lt;66K</span></div>
+						<div class="stats_prices_map_footer_line2_greenbox"></div>
+						<div class="stats_prices_map_footer_line2_yellowbox"></div>
+						<div class="stats_prices_map_footer_line2_orangebox"></div>
+						<div class="stats_prices_map_footer_line2_redbox"></div>
+						<div class="stats_prices_map_footer_line2_highend-text"><span>155M+</span></div>
+					</div>
+				</div>
+			</div>
+			<!-- Housing prices neighborhood table -->
+			<div class="stats_prices_neighborhood">
+				<div class="stats_prices_neighborhood_header">
+					<div class="stats_prices_neighborhood_header_name">Most Popular<br>Neighborhoods</div>
+					<div class="stats_prices_neighborhood_header_price">Avg.<br>Listing Price</div>
+					<div class="stats_prices_neighborhood_header_wow">w-o-w</div>
+				</div>
+				<div class="stats_prices_neighborhood_listitem1">
+					<div class="stats_prices_neighborhood_listitem1_name">Near North Side</div>
+					<div class="stats_prices_neighborhood_listitem1_price">$865,556</div>
+					<div class="stats_prices_neighborhood_listitem1_wow">-1.5%</div>
+				</div>
+				<div class="stats_prices_neighborhood_listitem2">
+					<div class="stats_prices_neighborhood_listitem2_name">Lincoln Park</div>
+					<div class="stats_prices_neighborhood_listitem2_price">$1.090.869</div>
+					<div class="stats_prices_neighborhood_listitem2_wow">+2.1%</div>
+				</div>
+				<div class="stats_prices_neighborhood_listitem3">
+					<div class="stats_prices_neighborhood_listitem3_name">Loop</div>
+					<div class="stats_prices_neighborhood_listitem3_price">$559,137</div>
+					<div class="stats_prices_neighborhood_listitem3_wow">-2.6%</div>
+				</div>
+			</div>
+			<!-- Houseing prices trendsetter table -->
+			<div class="stats_prices_trendsetter">
+				<div class="stats_prices_trendsetter_header">
+					<div class="stats_prices_trendsetter_header_name">Trendsetters</div>
+					<div class="stats_prices_trendsetter_header_price">Avg.<br>Listing Price</div>
+					<div class="stats_prices_trendsetter_header_wow">w-o-w</div>
+				</div>
+				<div class="stats_prices_trendsetter_listitem1">
+					<div class="stats_prices_trendsetter_listitem1_name">Austin</div>
+					<div class="stats_prices_trendsetter_listitem1_price">$130,981</div>
+					<div class="stats_prices_trendsetter_listitem1_wow">+24.8%</div>
+				</div>
+				<div class="stats_prices_trendsetter_listitem2">
+					<div class="stats_prices_trendsetter_listitem2_name">Hermosa</div>
+					<div class="stats_prices_trendsetter_listitem2_price">$175,741</div>
+					<div class="stats_prices_trendsetter_listitem2_wow">-23.3%</div>
+				</div>
+				<div class="stats_prices_trendsetter_listitem3">
+					<div class="stats_prices_trendsetter_listitem3_name">Armour Square</div>
+					<div class="stats_prices_trendsetter_listitem3_price">$305,888</div>
+					<div class="stats_prices_trendsetter_listitem3_wow">+22.6%</div>
+				</div>
+			</div>
+			<!--Housing prices view full map button -->
+			<div class="stats_trends_view-more">
+				<span>View Full Chicago Home Price Map</span>
+				<i class="fa fa-mail-forward stats_trends_view-more_icon"></i>
+			</div>
+		</div>
+
+		<!-- School Overview -->
+		<div class="stats_schools">
+			<div class="stats_schools_header stats_section-header">
+				<span><b>School Overview</b> for Chicago, Illinois</span>
+			</div>
+			<!-- Schools table -->
+			<div class="stats_schools_table">
+				<div class="stats_schools_table_header">
+					<div class="stats_schools_table_header_district">District</div>
+					<div class="stats_schools_table_header_type">Type</div>
+					<div class="stats_schools_table_header_grades">Grades</div>
+					<div class="stats_schools_table_header_schools">Schools</div>
+					<div class="stats_schools_table_header_students">Students</div>
+				</div>
+				<div class="stats_schools_table_district">
+					<div class="stats_schools_table_district_name">
+						City Of Chicago School District 299
+					</div>
+					<div class="stats_schools_table_district_type">Public</div>
+					<div class="stats_schools_table_district_grades">PK - 12</div>
+					<div class="stats_schools_table_district_schools">0</div>
+					<div class="stats_schools_table_district_students">0</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Income stats -->
+		<div class="stats_income">
+			<div class="stats_income_header stats_section-header">
+				<span><b>Income Statistics</b> for Chicago, Illinois</span>
+			</div>
+			<!--Household Income -->
+			<div class="stats_income_household">
+				<div class="stats_income_household_label">
+					<div class="stats_income_household_label_1"><b>Household Income</b></div>
+					<div class="stats_income_household_label_2">for Chicago, IL</div>
+				</div>
+				<!-- Household income chart -->
+				<div id="household_graph" class="stats_income_household_graph">
+					{{> highchartsHelper chartId="household_graph" chartObject=householdGraph}}
+				</div>
+			</div>
+			<!-- Family Income -->
+			<div class="stats_income_family">
+				<div class="stats_income_family_label">
+					<div class="stats_income_family_label_1"><b>Family Income</b></div>
+					<div class="stats_income_family_label_2">for Chicago, IL</div>
+				</div>
+				<!-- Family income chart -->
+				<div id="family_graph" class="stats_income_family_graph">
+					{{> highchartsHelper chartId="family_graph" chartObject=familyGraph}}
+				</div>
+			</div>
+		</div>
+
+		<!-- Side-scrolling image list -->
+		<div class="stats_image-list">
+			<div class="stats_image-list_header"><span>Homes for sale in Lincoln Park. Chicago, IL</span></div>
+			<div class="stats_image-list_homes">
+				<!-- Individual image -->
+				<div class="stats_image-list_image">
+					<div class="stats_image-list_text">
+						<div class="stats_image-list_address"><span>1234 Address St.</span></div>
+						<div class="stats_image-list_price"><span>$0</span></div>
+					</div>
+				</div>
+				<!-- Navigation -->
+				<div class="stats_image-list_left-button"><i class="fa fa-angle-left"></i></div>
+				<div class="stats_image-list_right-button"><i class="fa fa-angle-right"></i></div>
+			</div>
+		</div>
+
+		<!-- New Search at bottom of page -->
+		<div class="stats_search">
+			<div class="stats_search_line1"><span>DISCOVER YOUR NEXT HOME</span></div>
+			<div class="stats_search_line2"><span>Get all the details you need to plan your future.</span></div>
+			<!-- Search bar -->
+			<form class="stats_searchbar-container">
+				<input type="text" class="stats_searchbar-text" name="search" placeholder="Search...">
+				<a class="stats_searchbar-button" href=""><i class="fa fa-search"></i></a>
+			</form>
+		</div>
+	</div>
+</template>

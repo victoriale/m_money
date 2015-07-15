@@ -1,0 +1,376 @@
+/*
+Author: [Sacchin Ranganathan]
+Created: [06-19-2015]
+Description: [stylesheet for comp_in_chicago.html]
+Associated Files: [comp_in_chicago.html templates/module/comp_in_chicago folder]
+*/
+
+@import (reference)"../global_vars.less"; //include important global vars (colors mostly)
+
+
+
+.comp_in{
+
+  &-module_new-1{
+
+    &-module_new{
+      // Class contains the basic module layout
+      //Creating new module height
+      height: 385px;
+      //Creating new module width
+      width: 680px;
+      margin: 5px;
+      background-color: @white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    // Adds blue top and bottom border
+    &_bottom_new{
+      border-top: 2px solid @blue;
+      width:680px;
+    }
+  }
+
+  //hiding the bottom widget blue line
+  &-module_border{
+    border-bottom:0px !important;
+  }
+
+  //creating a whole wrapper for all module space and giving additional properties to it
+  &-module_whole_body{
+    width: 680px;
+    height: 340px;
+    background-image: url("http://www.collabrus.com/collabrus_blog/wp-content/uploads/2013/08/building.jpg");
+    background-repeat: no-repeat;
+    position: relative;
+    background-size: cover;
+  }
+
+  //creating the left navigation button
+  &-left-nav-button {
+    background-color:  rgba(0, 0, 0, 0.5);
+    width: 36px;
+    height: 80px;
+    border-radius: ~"100%/50%";
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin: 0;
+    float: left;
+    position: relative;
+    top: ~"calc(50% - 20%)";
+    z-index: 5; // makes sure the button is on top of the content
+    padding: 0; // when a button needed to keep fa in correct spot
+    font-size: 30px;
+    text-align: left;
+    color: @white;
+
+    //left navigation button hover properties
+    &:hover {
+      background-color: @blue;
+      border-color: @blue;
+    }
+
+    &:active {
+      background-color: @grey-4;
+      border-color: @blue;
+    }
+
+    //arrow properties
+    .fa {
+      float: left;
+      position: relative;
+      top: 0;
+      top: ~"calc(50% - 15px)";
+      margin-left: 7px;
+    }
+  }
+
+  @media screen and (-webkit-min-device-pixel-ratio:0) { // for alligning features for different browsers
+    ::i-block-chrome,  &-left-nav-button {
+      background-color:  rgba(0, 0, 0, 0.5);
+      width: 36px;
+      height: 80px;
+      border-radius: ~"100%/50%";
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      margin: 0;
+      float: left;
+      position: relative;
+      top: 30%;
+      z-index: 5; // makes sure the button is on top of the content
+      padding: 0; // when a button needed to keep fa in correct spot
+      font-size: 30px;
+      text-align: left;
+      color: @white;
+
+      //left navigation button hover properties
+      &:hover {
+        background-color: @blue;
+        border-color: @blue;
+      }
+
+      &:active {
+        background-color: @grey-4;
+        border-color: @blue;
+      }
+
+      //arrow properties
+      .fa {
+        float: left;
+        position: relative;
+        top: 0;
+        top:25px;
+        margin-left: 7px;
+      }
+    }
+  }
+
+  //creating the right navigation button
+  &-right-nav-button {
+    background-color:  rgba(0, 0, 0, 0.5);
+    width: 36px;
+    height: 80px;
+    border-radius: ~"100%/50%";
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    margin: 0;
+    float: right;
+    position: relative;
+    top: ~"calc(50% - 20%)";
+    z-index: 5; // makes sure the button is on top of the content
+    padding: 0; // when a button needed to keep fa in correct spot
+    font-size: 30px;
+    text-align: left;
+    color: @white;
+
+    //right navigation button hover properties
+    &:hover {
+      background-color: @blue;
+      border-color: @blue;
+    }
+
+    &:active {
+      background-color: @grey-4;
+      border-color: @blue;
+    }
+
+    //arrow properties
+    .fa {
+      float: right;
+      position: relative;
+      top: ~"calc(50% - 15px)";
+      margin-right: 7px;
+    }
+  }
+
+  @media screen and (-webkit-min-device-pixel-ratio:0) { // for alligning features for different browsers
+    ::i-block-chrome,  &-right-nav-button {
+      background-color:  rgba(0, 0, 0, 0.5);
+      width: 36px;
+      height: 80px;
+      border-radius: ~"100%/50%";
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      margin: 0;
+      float: right;
+      position: relative;
+      top:30%;
+      z-index: 5; // makes sure the button is on top of the content
+      padding: 0; // when a button needed to keep fa in correct spot
+      font-size: 30px;
+      text-align: left;
+      color: @white;
+
+      //right navigation button hover properties
+      &:hover {
+        background-color: @blue;
+        border-color: @blue;
+      }
+
+      &:active {
+        background-color: @grey-4;
+        border-color: @blue;
+      }
+
+      //arrow properties
+      .fa {
+        float: right;
+        position: relative;
+        top: 25px;
+        margin-right: 7px;
+      }
+    }
+  }
+
+  //creating a wrapper for lower body
+  &-module_bottom_body{
+    background-color: rgba(0, 0, 0, 0.75);
+    width: 680px;
+    height: 90px;
+    position: absolute;
+    top: 250px;
+  }
+
+  // leftcolumn class is for making wrapper in the lower body for circles
+  &-leftcolumn{
+    width: 145px;
+    height: 145px;
+    float: left;
+    transform: translate(-30px, 195px);
+    -webkit-transform: translate(-30px, 195px);
+    -khtml-transform: translate(-30px, 195px);
+    z-index: 5; // makes sure the button is on top of the content
+  }
+
+  //creating a circle on the left lower body
+  &-left_circle {
+    height: 125px;
+    width: 125px;
+    background: #fff;
+    border-radius: 100%;
+    box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.35);
+    background-image:url("https://consumer.hs.llnwd.net/files/logos/walgreens_logo_601.jpg") ;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 5; // makes sure the button is on top of the content
+    margin-left: 20px;  // when a button needed to keep fa in correct spot
+  }
+
+  //creating an inner circle behind the image for hover
+  &-view-profile {
+    position: relative;
+    vertical-align: middle;
+    width: 125px;
+    height: 125px;
+    background: rgba(48,152,255,.75);
+    border-radius: 100%;
+    padding: 1em;
+    opacity: 0;
+    box-sizing: border-box;
+    transform: translate(20px, -125px);
+    -webkit-transform: translate(20px, -125px);
+    -khtml-transform: translate(20px, -125px);
+
+    //Creating an inner circle which contains the view-profile text
+    &_body {
+      position: relative;
+      vertical-align: middle;
+      background: #3098FF ;
+      color: #fff;
+      font-weight: lighter;
+      text-align: center;
+      text-transform: uppercase;
+      padding-top: 2.5em;
+      border-radius: 100%;
+      width: 127px;
+      height: 127px;
+      margin-left: auto;
+      margin-right: auto;
+      transform: translate(-14.5px, -14px);
+      -webkit-transform: translate(-14.5px, -14px);
+      -khtml-transform: translate(-14.5px, -14px);
+    }
+
+    //text inside the circle on hover
+    &_txt1 {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    //text inside the circle on hover
+    &_txt2 {
+      font-size: 22px;
+      line-height: 5px;
+      font-weight:light;
+    }
+
+    //Giving opacity so that the background image is partially visible
+    &:hover{
+      opacity:0.85;
+      box-shadow: 0 0 0 8px rgba(48,152,255,.75);
+    }
+  }
+
+  //Creating a wrapper for the txt to be implanted on the bottom-right
+  &-rightcolunm {
+    width: 520px;
+    height: 88px;
+    padding-top:5px;
+    padding-left:10px;
+    position: relative;
+    text-align: left;
+    z-index: 5;
+    float: right;
+    transform: translate(0px, 105px);
+    -webkit-transform: translate(0px, 105px);
+    -khtml-transform: translate(0px, 105px);
+    z-index: 5;
+  }
+
+  //giving color attribute to the location
+  &-blue{
+    padding-right:5px;
+    color:#3098ff;
+    font-size: 10px;
+    font-weight: 400;
+    text-align: left;
+  }
+
+  //text properties
+  &-text_place {
+    color: #fff;
+    font-size: 10px;
+    font-weight: 400;
+    text-align: left;
+    z-index: 5;
+  }
+
+  //text properties
+  &-text_place_company {
+    font-family: HelveticaNeue;
+    color:  #fff;
+    font-size: 24px; /* Approximation due to font substitution */
+    font-weight: 700;
+    line-height: 28px; /* Approximation due to font substitution */
+    text-align: left;
+  }
+
+  //text properties
+  &-text_market {
+    font-family: HelveticaNeue;
+    color:  #ffffff;
+    font-size: 18px; /* Approximation due to font substitution */
+    font-weight: 300;
+    text-align: left;
+  }
+
+  //creating a button for view profile
+  &-profile_view {
+    font-family:HelveticaNeue;
+    width: 180px;
+    height: 35px;
+    border-radius: 30px;
+    background: #3098ff;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 10px 5px 0px 5px;
+    color: #fff;
+    position: absolute;
+    vertical-align: middle;
+    transform: translate(310px, -50px);
+    -webkit-transform: translate(310px, -50px);
+    -khtml-transform: translate(310px, -50px);
+  }
+
+  //view profile's hover properties
+  &-profile_view:hover{
+    font-family: HelveticaNeue;
+    background: #fff;
+    opacity: 35%;
+    color: #000;
+  }
+}

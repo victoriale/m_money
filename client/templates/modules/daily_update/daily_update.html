@@ -1,0 +1,160 @@
+<!--Author: [Thanush Subramanian Elango]
+Created: [06/05/2015]
+Description: [Daily_Update]
+Associated Files: [Daily_Update.less][Daily_Update_logic.js]!-->
+
+
+<template name="daily_update">
+  <div class="module-2">
+    <!--Header!-->
+    <div class="module-header">
+      <!--Header line!-->
+      <span class="module-header-line">
+      </span>
+      <span class="module-header-title">{{daily_updatecity}} {{daily_updatestate}}'s Daily Update
+      </span>
+    </div>
+    <div class="module-wrapper">
+      <!--Image Wrapper!-->
+      <div class="all_daily_update_modules">
+        <!--Image Wrapper!-->
+        <div class="all_daily_update_modules-wrapper-image">
+          <div class="all_daily_update_modules-wrapper-image-img1">
+            <div class="all_daily_update_modules-opacity">
+            </div>
+            <!--Image Banner!-->
+            <div class="all_daily_update_modules-banner">
+              <div class= "all_daily_update_modules-text1">{{daily_updatecity}} {{daily_updatestate}}'s Daily Update
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Wrapper below the Image!-->
+        <div class="all_daily_update_modules-wrapper-main-body">
+          <!--Wrapper below the Image left side!-->
+          <div class="all_daily_update_modules-wrapper-left-body">
+            <div class="all_daily_update_modules-wrapper-left-body2">
+              <div class= "all_daily_update_modules-regiontext"> {{daily_updatecity}}, {{daily_updatestate}} <br>
+              </div>
+              <div class= "all_daily_update_modules-homestext"> <b>21,053</b>  Homes Available
+              </div>
+              <div class= "all_daily_update_modules-region-last-updated"> Last Updated at 4:00PM EST
+              </div><br>
+              <!--Separator below the last updated left side!-->
+              <div class="all_daily_update_modules-borderlineee">
+              </div>
+            </div>
+            <!--Font awesome icons!-->
+            <div class="all_daily_update_modules-font-icons">
+              <i class="fa fa-money"></i><br>
+              <i class="fa fa-home"> </i><br>
+              <i class="fa fa-globe"> </i><br>
+              <i class="fa fa-child"> </i>
+            </div>
+            <!--The Avg values to be plugged in!-->
+            <div class="all_daily_update_modules-Area-stats">
+              Avg. Rent:<br>
+              Avg. Mortgage:<br>
+              Population:<br>
+              Age Median:<br>
+            </div>
+            <div class="all_daily_update_modules-Area-stats-values">
+              $1,752<br>
+              $1,160<br>
+              2.719M<br>
+              45 </div>
+            </div>
+            <!--Wrapper below the Image right side!-->
+            <div class="all_daily_update_modules-wrapper-right-body">
+              <div class="all_daily_update_modules-wrapper-right-main-body2">
+                <div class="all_daily_update_modules-wrapper-right-body2">
+                  <div class="all_daily_update_modules-wrapper-right-body2-text">
+                    {{daily_updatecity}}, {{daily_updatestate}} Rent Trends
+                  </div>
+                </div>
+                <div class="all_daily_update_modules-wrapper-right-body3">
+                  <div class="all_daily_update_modules-square" >
+                  </div>
+                  <!--Wrapper for the dynamic values above the graph!-->
+                  <div class="all_daily_update_modules-trends-text-box">
+                    <!--The dynamic values above the graph to be plugged in !-->
+                    <div class="all_daily_update_modules-trends-text1">
+                      $1,200
+                    </div>
+                    <div class="all_daily_update_modules-trends-text1-blue">
+                      National
+                    </div>
+                  </div>
+                  <div class="all_daily_update_modules-square2" >
+                  </div>
+                  <div class="all_daily_update_modules-trends-text-box2">
+                    <div class="all_daily_update_modules-trends-text2">
+                      $1,752
+                    </div>
+                    <div class="all_daily_update_modules-trends-text1-blue">
+                      Chicago
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--Graph Plugin(High Charts)!-->
+              <div class="all_daily_update_modules-wrapper-graph">
+                <div id='dailyupdategraph'>
+                </div>
+              </div>
+              <!--Buttons Below the Graph!-->
+              <div class="all_daily_update_modules-graphbutton">
+                <div class="all_daily_update_modules-graphbutton_circle1">1D</div>
+                <div class="all_daily_update_modules-graphbutton_circle1">5D</div>
+                <div class="all_daily_update_modules-graphbutton_circle1">1M</div>
+                <div class="all_daily_update_modules-graphbutton_circle1">3M</div>
+                <div class="all_daily_update_modules-graphbutton_circle1">6M</div>
+                <div class="all_daily_update_modules-graphbutton_circle1">1Y</div>
+                <div class="all_daily_update_modules-graphbutton_circle1">3Y</div>
+                <div class="all_daily_update_modules-graphbutton_circle1">5Y</div>
+              </div>
+            </div>
+          </div>
+          <!--Region Separator for the profile feeds at the footer!-->
+          <div class="all_daily_update_modules-stats-region-separator">
+          </div>
+          <!--Profile Feeds wrapper!-->
+          <div class="all_daily_update_modules-wrapper-main-bottom">
+            <div class="all_daily_update_modules-wrapper-bottom-left">
+              <!--Profile Feeds image!-->
+              <div class=" all_daily_update_modules-wrapper-image-circle">
+              </div>
+            </div>
+            <!--Profile Feeds image text box!-->
+            <div class=" all_daily_update_modules-Profile-image-Text-Box">
+              <!--Profile Feeds font awesome icon!-->
+              <div class="all_daily_update_modules-Font-icons2"><i class="fa fa-calendar-o"></i></div>
+              <!--Profile Feeds time stamp!-->
+              <div class="all_daily_update_modules-Date-text">
+                May 15,2015
+              </div>
+              <!--Profile Feeds time stamp!-->
+              <div class="all_daily_update_modules-Date-text2"><ul><li>8:38AM EST</li></ul>
+              </div>
+              <!--Profile Feeds !-->
+              <div class="all_daily_update_modules-profile-text">
+                Before they sold out 90's fanny pack PBR&B. Keyffiyeh irony occupy migas street art
+                art party Esty meditation. Mustache lomo gastropub. thundercats tattooed locavore
+                chanbray fashion axe next level kitsch gentrify typewriter stumptown Truffaut. 90's
+                lumbersexual forage small batch, tote..... </div>
+                <!--Profile Feeds Continue reading Link!-->
+                <div class="all_daily_update_modules-profile-text-blue">Continue Reading Story
+                </div>
+              </div>
+            </div>
+            <!--Profile Feeds Profile Image Hover!-->
+            <div class="all_daily_update_modules-dailyupdate_viewprofile">
+              <span class="all_daily_update_modules-dailyupdate_viewprofile_txt1">View</span><br>
+              <span class="all_daily_update_modules-dailyupdate_viewprofile_txt2">Profile</span>
+            </div>
+          <div class="widget-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>

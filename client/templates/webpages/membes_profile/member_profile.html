@@ -1,0 +1,297 @@
+<!--Author: [Sacchin Ranganathan]
+Created: [07-08-2015]
+Description: [html file for members_profile module]
+Associated Files: [members_profile.less from /stylesheets/modules/  &
+called from members_profile.less from /templates/modules/  -->
+
+
+<template name="members_profile">
+
+  <!--container for the whole module-->
+  <div class="memb_prof-fullsize">
+    <!--separating the container into 2 halfs and taking the right side-->
+    <div class="memb_prof-rightside">
+      <!--area for widgets and advertisement-->
+      <div class="memb_prof-widget1-area"></div>
+      <span class="memb_prof-presented-by">Presented By</span>
+      <div class="memb_prof-add-area"></div>
+      <div class="memb_prof-widget2-area"></div>
+    </div>
+    <!--Taking the left side of the container-->
+    <div class="memb_prof-leftside">
+      <!--Creating the first block on left side-->
+      <div class="memb_prof-leftsidetop">
+        <!--Creating circles for image-->
+        <div class="memb_prof-headerimg">
+          <span class="memb_prof-headericon">
+            <i class="fa fa-reply"></i>
+          </span>
+        </div>
+        <!--Creating the first block information-->
+        <div class="memb_prof-headertext">
+          <span class="memb_prof-timestamp">LAST UPDATED: 06/24/2015,8:00AM EST </span><br>
+          <span class="memb_prof-location"><i class="fa fa-map-marker">&nbsp;&nbsp;Chicago, IL</i></span><br>
+          <span class="memb_prof-members">Real Estate Member</span><br>
+          <span class="memb_prof-area">in the Chicago, IL Area</span>
+        </div>
+      </div>
+      <!--Creating the second block and populating the header information-->
+      <div class="memb_prof-left2imagebox">
+        <div class="memb_prof-left2imagebox-header">
+          <span class="memb_prof-left2imagebox-txt">Featured Real Estate members</span>
+          <i class="fa fa-heart memb_prof-symbols"></i>
+          <span class="memb_prof-symbol-text">Save</span>
+          <i class="fa fa-share-alt memb_prof-symbols"></i>
+          <span class="memb_prof-symbol-text">Share</span>
+        </div>
+        <!--Creating the arrow for navigation-->
+        <div class="memb_prof-leftarrow">
+          <i class="fa fa-angle-left"></i>
+        </div>
+        <div class="memb_prof-rightarrow">
+          <i class="fa fa-angle-right"></i>
+        </div>
+        <!--Creating the second block lower information-->
+        <div class="memb_prof-left2imagebox-bottom">
+          <span class=" memb_prof-agentname">Vanve Banks</span><br><br>
+          <span class="memb_prof-inquiries">inquiries:</span>
+          <span class="memb_prof-number"> 135 &nbsp;</span>
+          <span class="memb_prof-inquiries"><i class="fa fa-angle-right"></i>&nbsp; Saved Homes: </span>
+          <span class="memb_prof-number">  598 </span>
+          <button class=" memb_prof-borderbutton" type="button"> View Profile <i class="fa fa-angle-right"></i></button>
+        </div>
+      </div>
+      <!--Creating the third block sor sorthing and other information-->
+      <div class="memb_prof-sortby">
+        <span class="memb_prof-sorttext">Sort by:</span>
+        <div class="memb_prof-list">Members in Chaicago, IL
+        </div>
+        <span class="memb_prof-listboxarrow"><i class="fa fa-angle-down"></i></span>
+        <!--Creating question and information-->
+        <div class="memb_prof-questioncontainer">
+          <div class="memb_prof-questionbox">
+            <span class="memb_prof-question">What is this page? </span>
+            <span class="memb_prof-closebox"><i class="fa fa-times"></i></span>
+          </div>
+          <span class="memb_prof-contentbox"> This is a list featuring all 32,458 real estate members in Chicago, IL metro area, using this service. Here you can view
+            the most active users and see how many homes they inquired about and the amount of homes saved.
+          </span>
+        </div>
+      </div>
+
+      <!--1st profile container-->
+      <div class="memb_prof-container">
+        <div class="memb_prof-member-img"> </div>
+        <div class="memb_prof-member-imgcounter">#1</div>
+        <div class="memb_prof-infobox">
+          <span class="memb_prof-loc"><i class="fa fa-map-marker"></i></span>
+          <span class="memb_prof-loctext">&nbsp; Chicago, IL</span><br>
+          <span class="memb_prof-membername"> Tommy Lofgren </span><br>
+          <span class="memb_prof-inquiries1"> Inquiries: &nbsp;</span>
+          <span class="memb_prof-value"> 30</span>
+        </div>
+        <div class="memb_prof-rightbox">
+          <span class="memb_prof-save-home">Saved Home </span><br>
+          <span class="memb_prof-save-home-number">300 </span><br>
+          <span class="memb_prof-time"> as of 06/30/2015 </span>
+        </div>
+        <div class="memb_prof-infotextbox">
+          <span class="memb_prof-member-infoque">Want more info about Tommy Lofgren?</span>
+          <button class="memb_prof-borderbutton1" type="button"> View Profile <i class="fa fa-angle-right"></i></button>
+        </div>
+        <div class="memb_prof-bottom-icons">
+          <span><i class="fa fa-heart memb_prof-icon"></i></span>
+          <span class="memb_prof-text">Save</span>
+          <span><i class="fa fa-share-alt memb_prof-icon"></i></span>
+          <span class="memb_prof-text">Share</span>
+          <span class="memb_prof-feedbacktext">Feedback</span>
+          <span><i class="fa fa-flag memb_prof-feedback"></i></span>
+        </div>
+      </div>
+
+      <!--2nd profile container-->
+      <div class="memb_prof-container1">
+        <div class="memb_prof-member-img"> </div>
+        <div class="memb_prof-member-imgcounter">#2</div>
+        <div class="memb_prof-infobox">
+          <span class="memb_prof-loc"><i class="fa fa-map-marker"></i></span>
+          <span class="memb_prof-loctext">&nbsp; Chicago, IL</span><br>
+          <span class="memb_prof-membername">Jacob Turner</span><br>
+          <span class="memb_prof-inquiries1"> Inquiries: &nbsp;</span>
+          <span class="memb_prof-value"> 30</span>
+        </div>
+        <div class="memb_prof-rightbox">
+          <span class="memb_prof-save-home">Saved Home </span><br>
+          <span class="memb_prof-save-home-number">300 </span><br>
+          <span class="memb_prof-time"> as of 06/30/2015 </span>
+        </div>
+        <div class="memb_prof-infotextbox">
+          <span class="memb_prof-member-infoque">Want more info about Adam Clyde?</span>
+          <button class="memb_prof-borderbutton1" type="button"> View Profile <i class="fa fa-angle-right"></i></button>
+        </div>
+        <div class="memb_prof-bottom-icons">
+          <span><i class="fa fa-heart memb_prof-icon"></i></span>
+          <span class="memb_prof-text">Save</span>
+          <span><i class="fa fa-share-alt memb_prof-icon"></i></span>
+          <span class="memb_prof-text">Share</span>
+          <span class="memb_prof-feedbacktext">Feedback</span>
+          <span><i class="fa fa-flag memb_prof-feedback"></i></span>
+        </div>
+      </div>
+
+      <!--3rd profile container-->
+      <div class="memb_prof-container">
+        <div class="memb_prof-member-img"> </div>
+        <div class="memb_prof-member-imgcounter">#3</div>
+        <div class="memb_prof-infobox">
+          <span class="memb_prof-loc"><i class="fa fa-map-marker"></i></span>
+          <span class="memb_prof-loctext">&nbsp; Chicago, IL</span><br>
+          <span class="memb_prof-membername"> Cameron Brocksen </span><br>
+          <span class="memb_prof-inquiries1"> Inquiries: &nbsp;</span>
+          <span class="memb_prof-value"> 12</span>
+        </div>
+        <div class="memb_prof-rightbox">
+          <span class="memb_prof-save-home">Saved Home </span><br>
+          <span class="memb_prof-save-home-number">300 </span><br>
+          <span class="memb_prof-time"> as of 06/30/2015 </span>
+        </div>
+        <div class="memb_prof-infotextbox">
+          <span class="memb_prof-member-infoque">Want more info about Cameron Brocksen?</span>
+          <button class="memb_prof-borderbutton1" type="button"> View Profile <i class="fa fa-angle-right"></i></button>
+        </div>
+        <div class="memb_prof-bottom-icons">
+          <span><i class="fa fa-heart memb_prof-icon"></i></span>
+          <span class="memb_prof-text">Save</span>
+          <span><i class="fa fa-share-alt memb_prof-icon"></i></span>
+          <span class="memb_prof-text">Share</span>
+          <span class="memb_prof-feedbacktext">Feedback</span>
+          <span><i class="fa fa-flag memb_prof-feedback"></i></span>
+        </div>
+      </div>
+
+      <!--Tile for image place inbetween the profile comtainers-->
+      <div class="memb_prof-place_hold">
+        <!--Heading for the tile-->
+        <div class="memb_prof-featuredtop">
+          <span class="memb_prof-featuredtext">Featured Real Estate Members in United States</span>
+        </div>
+
+        <!--Image tile 1-->
+        <div class="memb_prof-imagetile1">
+          <span class="memb_prof-tile1text1">Kayne West</span>
+          <span class="memb_prof-tile1text2">Saved Homes <i class="fa fa-angle-right"></i></span>
+          <span class="memb_prof-tile1text3"> 10,000 </span>
+        </div>
+
+        <!--Image tile 2-->
+        <div class="memb_prof-imagetile2">
+          <span class="memb_prof-tile1text1">Beyonce Knowles</span>
+          <span class="memb_prof-tile1text2">Saved Homes <i class="fa fa-angle-right"></i></span>
+          <span class="memb_prof-tile1text3"> 90,000 </span>
+        </div>
+
+        <!--Image tile 3-->
+        <div class="memb_prof-imagetile3">
+          <span class="memb_prof-tile1text1">Florence Welch</span>
+          <span class="memb_prof-tile1text2">Saved Homes <i class="fa fa-angle-right"></i></span>
+          <span class="memb_prof-tile1text3"> 8,000 </span>
+        </div>
+
+        <!--Image tile 4-->
+        <div class="memb_prof-imagetile4">
+          <div class=" memb_prof-rightarrow memb_prof-tilearrow"> <i class="fa fa-angle-right"></i></div>
+          <span class="memb_prof-tile1text1">Britney Spears</span>
+          <span class="memb_prof-tile1text2">Saved Homes <i class="fa fa-angle-right"></i></span>
+          <span class="memb_prof-tile1text3"> 7,000 </span>
+        </div>
+
+      </div>
+
+      <!--4th profile container-->
+      <div class="memb_prof-container1">
+        <div class="memb_prof-member-img"> </div>
+        <div class="memb_prof-member-imgcounter">#4</div>
+        <div class="memb_prof-infobox">
+          <span class="memb_prof-loc"><i class="fa fa-map-marker"></i></span>
+          <span class="memb_prof-loctext">&nbsp; Chicago, IL</span><br>
+          <span class="memb_prof-membername"> Jacob Turner </span><br>
+          <span class="memb_prof-inquiries1"> Inquiries: &nbsp;</span>
+          <span class="memb_prof-value"> 9</span>
+        </div>
+        <div class="memb_prof-rightbox">
+          <span class="memb_prof-save-home">Saved Home </span><br>
+          <span class="memb_prof-save-home-number">300 </span><br>
+          <span class="memb_prof-time"> as of 06/30/2015 </span>
+        </div>
+        <div class="memb_prof-infotextbox">
+          <span class="memb_prof-member-infoque">Want more info about Jacob Turner?</span>
+          <button class="memb_prof-borderbutton1" type="button"> View Profile <i class="fa fa-angle-right"></i></button>
+        </div>
+        <div class="memb_prof-bottom-icons">
+          <span><i class="fa fa-heart memb_prof-icon"></i></span>
+          <span class="memb_prof-text">Save</span>
+          <span><i class="fa fa-share-alt memb_prof-icon"></i></span>
+          <span class="memb_prof-text">Share</span>
+          <span class="memb_prof-feedbacktext">Feedback</span>
+          <span><i class="fa fa-flag memb_prof-feedback"></i></span>
+        </div>
+      </div>
+
+      <!--5th profile container-->
+      <div class="memb_prof-container">
+        <div class="memb_prof-member-img"> </div>
+        <div class="memb_prof-member-imgcounter">#5</div>
+        <div class="memb_prof-infobox">
+          <span class="memb_prof-loc"><i class="fa fa-map-marker"></i></span>
+          <span class="memb_prof-loctext">&nbsp; Chicago, IL</span><br>
+          <span class="memb_prof-membername"> James Mason </span><br>
+          <span class="memb_prof-inquiries1"> Inquiries: &nbsp;</span>
+          <span class="memb_prof-value"> 22</span>
+        </div>
+        <div class="memb_prof-rightbox">
+          <span class="memb_prof-save-home">Saved Home </span><br>
+          <span class="memb_prof-save-home-number">300 </span><br>
+          <span class="memb_prof-time"> as of 06/30/2015 </span>
+        </div>
+        <div class="memb_prof-infotextbox">
+          <span class="memb_prof-member-infoque">Want more info about James Mason?</span>
+          <button class="memb_prof-borderbutton1" type="button"> View Profile <i class="fa fa-angle-right"></i></button>
+        </div>
+        <div class="memb_prof-bottom-icons">
+          <span><i class="fa fa-heart memb_prof-icon"></i></span>
+          <span class="memb_prof-text">Save</span>
+          <span><i class="fa fa-share-alt memb_prof-icon"></i></span>
+          <span class="memb_prof-text">Share</span>
+          <span class="memb_prof-feedbacktext">Feedback</span>
+          <span><i class="fa fa-flag memb_prof-feedback"></i></span>
+        </div>
+      </div>
+      <!--Page scroller is created in this block-->
+      <div class="memb_prof-pagescrollerbox">
+        <span class="memb_prof-bottomleftarrow"><i class="fa fa-angle-left"></i></span>
+        <div class="memb_prof-circle1">1</div>
+        <div class="memb_prof-circle2">2</div>
+        <div class="memb_prof-circle3">3</div>
+        <span class="memb_prof-dots">...</span>
+        <div class="memb_prof-circle4">200</div>
+        <span class="memb_prof-bottomrightarrow"><i class="fa fa-angle-right"></i></span>
+        <div class="memb_prof-viewall">
+          <span class="memb_prof-viewalltext">VIEW ALL&nbsp;&nbsp;&nbsp;<i class="fa fa-lastfm"></i></span>
+        </div>
+      </div>
+
+      <!--search bar -->
+      <div class="memb_prof-searchcontainer">
+        <span class="memb_prof-discovertext">DISCOVER YOUR NEXT HOME</span>
+        <span class="memb_prof-future">Get all the details you need to plan future. </span>
+        <div class="memb_prof-searchbox">
+          <span class="memb_prof-searchtext">Search... </span>
+          <div class="memb_prof-searchbutton">
+            <span class="memb_prof-searchicon"><i class="fa fa-search"></i></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</template>

@@ -1,0 +1,511 @@
+<template name="DemoTemplateHeader">
+  <div style="width: 100%; height: 100px; background-color: #444444;"></div>
+</template>
+
+<!-- Buy Default Submenu -->
+<template name="BuySubmenuDefault">
+    <div class="realestate-header-submenu-search"><input placeholder="Chicago, IL"><i class="fa fa-search"></i></div>
+     <div class="realestate-header-submenu-dropdown-large" id="PropertyType">Property Type<i class="fa fa-caret-down"></i>
+      <div class="search-dropdown-selector">
+        <div class="caret-top"></div>
+        <ul>
+          <li class="search-dropdown-selector-property">
+            <input type="checkbox" id="All" checked>
+            <label for="All"><i class="fa fa-check"></i></label>
+            <span>All</span>
+          </li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-property">
+            <input type="checkbox" id="SingleFamily">
+            <label for="SingleFamily"><i class="fa fa-check"></i></label>
+            <span>Single Family Home</span>
+          </li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-property">
+            <input type="checkbox" id="Condo">
+            <label for="Condo"><i class="fa fa-check"></i></label>
+            <span>Condo</span>
+          </li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-property">
+            <input type="checkbox" id="Townhome">
+            <label for="Townhome"><i class="fa fa-check"></i></label>
+            <span>Townhome</span>
+          </li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-property">
+            <input type="checkbox" id="Coop">
+            <label for="Coop"><i class="fa fa-check"></i></label>
+            <span>Coop</span>
+          </li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-property">
+            <input type="checkbox" id="Apartment">
+            <label for="Apartment"><i class="fa fa-check"></i></label>
+            <span>Apartment</span>
+          </li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-property">
+            <input type="checkbox" id="Loft">
+            <label for="Loft"><i class="fa fa-check"></i></label>
+            <span>Loft</span>
+          </li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-property">
+            <input type="checkbox" id="TIC">
+            <label for="TIC"><i class="fa fa-check"></i></label>
+            <span>TIC</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="realestate-header-submenu-dropdown-small" id="MinPrice">Min. Price<i class="fa fa-caret-down"></i>
+      <div class="search-dropdown-selector">
+        <div class="caret-top"></div>
+        <ul>
+          <li class="search-dropdown-selector-item">Min. Price</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$10,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$50,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$100,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$150,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$200,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$300,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$400,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$500,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$600,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$700,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$800,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$900,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$1M</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$5M</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$10M</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$20M+</li>
+        </ul>
+      </div>
+    </div>
+    <span class="realestate-header-submenu-span">to</span>
+    <div class="realestate-header-submenu-dropdown-small" id="MaxPrice">Max Price<i class="fa fa-caret-down"></i>
+      <div class="search-dropdown-selector">
+        <div class="caret-top"></div>
+        <ul>
+          <li class="search-dropdown-selector-item">Max Price</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$10,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$50,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$100,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$150,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$200,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$300,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$400,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$500,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$600,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$700,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$800,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$900,000</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$1M</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$5M</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$10M</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">$20M+</li>
+        </ul>
+      </div>
+    </div>
+    <div class="realestate-header-submenu-dropdown-small" id="Beds">All Beds<i class="fa fa-caret-down"></i>
+      <div class="search-dropdown-selector">
+        <div class="caret-top"></div>
+        <ul>
+          <li class="search-dropdown-selector-item">All Beds</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">+0</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">+1</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">+2</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">+3</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">+4</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">+5</li>
+        </ul>
+      </div>
+    </div>
+    <div class="realestate-header-submenu-dropdown-small" id="Baths">All Baths<i class="fa fa-caret-down"></i>
+      <div class="search-dropdown-selector">
+        <div class="caret-top"></div>
+        <ul>
+          <li class="search-dropdown-selector-item">All Baths</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">+1</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">+2</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">+3</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">+4</li>
+          <li class="border-li"></li>
+          <li class="search-dropdown-selector-item">+5</li>
+        </ul>
+      </div>
+    </div>
+    <div class="realestate-header-submenu-filters">
+      <i class="fa fa-gear"></i>
+      <span>More Filters</span>
+    </div>
+    <div class="realestate-header-filters">
+      <div class="realestate-header-filters-leftcol">
+        <table>
+          <tr>
+            <td><input type="radio" name="ListType" value="ForSale" id="ForSale" checked><label for="ForSale"><div class="radio-inner-circle"></div></label>FOR SALE</td>
+            <!--<td><input type="radio" name="ListType" value="Sold" id="Sold"><label for="Sold"><div class="radio-inner-circle"></div></label>SOLD</td>-->
+          </tr>
+        </table>
+
+        <ul>
+          <li class="search-dropdown-selector-property">
+            <input type="checkbox" id="OpenHouses">
+            <label for="OpenHouses"><i class="fa fa-check"></i></label>
+            <span>Open Houses</span>
+          </li>
+          <li class="search-dropdown-selector-property">
+            <input type="checkbox" id="NewListings">
+            <label for="NewListings"><i class="fa fa-check"></i></label>
+            <span>New Listings</span>
+          </li>
+          <!--<li class="search-dropdown-selector-property">
+            <input type="checkbox" id="ReducedPrices">
+            <label for="ReducedPrices"><i class="fa fa-check"></i></label>
+            <span>Reduced Prices</span>
+          </li>-->
+          <!--<li class="search-dropdown-selector-property">
+            <input type="checkbox" id="Resale">
+            <label for="Resale"><i class="fa fa-check"></i></label>
+            <span>Resale</span>
+          </li>-->
+          <li class="search-dropdown-selector-property">
+            <input type="checkbox" id="NewConstruction">
+            <label for="NewConstruction"><i class="fa fa-check"></i></label>
+            <span>New Construction</span>
+          </li>
+          <!--<li class="search-dropdown-selector-property">
+            <input type="checkbox" id="Foreclosures">
+            <label for="Foreclosures"><i class="fa fa-check"></i></label>
+            <span>Foreclosures</span>
+          </li>-->
+        </ul>
+      </div>
+      <div class="realestate-header-filters-col">
+        <span>SQUARE FEET</span>
+        <div class="center-dropdown-large"><span id="SquareFeet">Square Feet</span><i class="fa fa-caret-down"></i>
+          <div class="search-dropdown-selector">
+            <div class="caret-top"></div>
+            <ul>
+              <li class="search-dropdown-selector-item">
+                <input type="checkbox" name="AllFoot" checked><label for="AllFoot"><i class="fa fa-check"></i></label>
+                All Square Footage
+              </li>
+              <li class="border-li"></li>
+              <li class="search-dropdown-selector-item">
+                <input type="checkbox" name="250"><label for="250"><i class="fa fa-check"></i></label>
+                250+ sqft
+              </li>
+              <li class="border-li"></li>
+              <li class="search-dropdown-selector-item">
+                <input type="checkbox" name="500"><label for="500"><i class="fa fa-check"></i></label>
+                500+ sqft
+              </li>
+              <li class="border-li"></li>
+              <li class="search-dropdown-selector-item">
+                <input type="checkbox" name="750"><label for="750"><i class="fa fa-check"></i></label>
+                750+ sqft
+              </li>
+              <li class="border-li"></li>
+              <li class="search-dropdown-selector-item">
+                <input type="checkbox" name="1000"><label for="1000"><i class="fa fa-check"></i></label>
+                1,000+ sqft
+              </li>
+              <li class="border-li"></li>
+              <li class="search-dropdown-selector-item">
+                <input type="checkbox" name="1500"><label for="1500"><i class="fa fa-check"></i></label>
+                1,500+ sqft
+              </li>
+              <li class="border-li"></li>
+              <li class="search-dropdown-selector-item">
+                <input type="checkbox" name="2000"><label for="2000"><i class="fa fa-check"></i></label>
+                2,000+ sqft
+              </li>
+              <li class="border-li"></li>
+              <li class="search-dropdown-selector-item">
+                <input type="checkbox" name="2500"><label for="2500"><i class="fa fa-check"></i></label>
+                2,500+ sqft
+              </li>
+              <li class="border-li"></li>
+              <li class="search-dropdown-selector-item">
+                <input type="checkbox" name="3000"><label for="3000"><i class="fa fa-check"></i></label>
+                3,000+ sqft
+              </li>
+              <li class="border-li"></li>
+              <li class="search-dropdown-selector-item">
+                <input type="checkbox" name="4000"><label for="4000"><i class="fa fa-check"></i></label>
+                4,000+ sqft
+              </li>
+              <li class="border-li"></li>
+              <li class="search-dropdown-selector-item">
+                <input type="checkbox" name="5000"><label for="5000"><i class="fa fa-check"></i></label>
+                5,000+ sqft
+              </li>
+              <li class="border-li"></li>
+              <li class="search-dropdown-selector-item">
+                <input type="checkbox" name="10000"><label for="10000"><i class="fa fa-check"></i></label>
+                10,000+ sqft
+              </li>
+            </ul>
+          </div>
+        </div>
+        <span>LOT SIZE</span>
+        <div class="center-dropdown-large"><span id="LotSize">Lot Size</span><i class="fa fa-caret-down"></i>
+          <div class="search-dropdown-selector">
+            <div class="caret-top"></div>
+            <ul>
+              <li class="search-dropdown-selector-item">
+                <input type="checkbox" name="AllFoot" checked><label for="AnySize"><i class="fa fa-check"></i></label>
+                Any Lot Size
+              </li>
+              <li class="border-li"></li>
+              <li class="search-dropdown-selector-item">
+                <input type="checkbox" name="2000lot"><label for="2000lot"><i class="fa fa-check"></i></label>
+                2,000+ sqft
+              </li>
+              <li class="border-li"></li>
+              <li class="search-dropdown-selector-item">
+                <input type="checkbox" name="3000lot"><label for="3000lot"><i class="fa fa-check"></i></label>
+                3,000+ sqft
+              </li>
+              <li class="border-li"></li>
+              <li class="search-dropdown-selector-item">
+                <input type="checkbox" name="4000lot"><label for="4000lot"><i class="fa fa-check"></i></label>
+                4,000+ sqft
+              </li>
+              <li class="border-li"></li>
+              <li class="search-dropdown-selector-item">
+                <input type="checkbox" name="5000lot"><label for="5000lot"><i class="fa fa-check"></i></label>
+                5,000+ sqft
+              </li>
+              <li class="border-li"></li>
+              <li class="search-dropdown-selector-item">
+                <input type="checkbox" name="6000lot"><label for="6000lot"><i class="fa fa-check"></i></label>
+                6,000+ sqft
+              </li>
+              <li class="border-li"></li>
+              <li class="search-dropdown-selector-item">
+                <input type="checkbox" name="10000"><label for="10000"><i class="fa fa-check"></i></label>
+                10,000+ sqft
+              </li>
+            </ul>
+          </div>
+        </div>
+        <span>YEAR BUILT</span>
+        <div class="center-year-container">
+          <div class="center-year-input"><input placeholder="MinYear" id="MinYear"></div>
+          <div class="centercol-year-divider">to</div>
+          <div class="center-year-input"><input placeholder="Max Year" id="MaxYear"></div>
+        </div>
+      </div>
+      <div class="realestate-header-filters-col">
+        <!--<span>KEYWORDS</span>
+        <div class="filter-keyword-input"><input placeholder="pool, loft, backyard, etc."><i class="fa fa-tags"></i></div>
+        <div class="filter-keyword-list"></div>-->
+        <span>MLS ID</span>
+        <div class="filter-mls-id"><input placeholder="MLS ID"><i class="fa fa-search"></i></div>
+        <div class="mls-id-list"></div>
+        <table class="rightcol-buttons">
+          <tr>
+            <td><span class="rightcol-buttons-reset">RESET</span></td>
+            <td class="rightcol-buttons-done">DONE</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+</template>
+<!-- END Buy Default Submenu -->
+
+<!-- Buy Listing Submenu -->
+<template name="BuySubmenuListing">
+  <div class="submenu-buy-search">
+    <input placeholder="Search for a location by name, zip, etc.">
+    <i class="fa fa-search"></i>
+  </div>
+  <!--<div class="submenu-buy-save"><i class="fa fa-heart"></i>Save</div>-->
+  <div class="submenu-buy-share">
+    <i class="fa fa-share-alt"></i>
+    <span>Share</span>
+    <div class="submenu-buy-share-underline"></div>
+    <div class="submenu-buy-share-dropdown">
+      <div class="submenu-buy-share-header"><div class="submenu-buy-share-header-side"></div>Social<i class="fa fa-times"></i></div>
+      <div class="submenu-buy-share-desc">Select desired social networks you'd like to share this page with:</div>
+      <div class="social-share-passfail"><i class="fa fa-check"></i></div>
+      <div class="social-share-facebook"><i class="fa fa-facebook"></i></div>
+      <div class="social-share-twitter"><i class="fa fa-twitter"></i></div>
+      <div class="social-share-gplus"><i class="fa fa-google-plus"></i></div>
+      <div class="social-share-linkedin"><i class="fa fa-linkedin"></i></div>
+      <div class="social-share-pinterest"><i class="fa fa-pinterest"></i></div>
+      <div class="social-share-clipboard"><i class="fa fa-clipboard"></i>COPY TO CLIPBOARD</div>
+    </div>
+  </div>
+</template>
+<!-- END Buy Listing Submenu -->
+
+<!-- nav bar -->
+<template name="navbar">
+  <div class="directory_page">
+    {{>directory_list_button}}
+  </div>
+  <div class="realestate-header-bar" id="realestate-header-bar">
+    <div class="realestate-header-logo"></div>
+    <div class="realestate-header-realestate">
+      <i class="fa fa-map-marker"></i>RealEstate<i class="fa fa-caret-down"></i>
+    </div>
+    <div class="realestate-header-button" id="BuyButton">Buy
+      <div class="realestate-header-submenu">
+        {{>BuySubmenuDefault}}
+      </div>
+    </div>
+
+    <div class="realestate-header-button">City Stats
+    <div class="realestate-header-submenu">
+      {{>BuySubmenuListing}}
+    </div>
+    </div>
+    <div class="logout_button">LOGOUT</div>
+    <!--<div class="realestate-header-button">Saved</div>-->
+
+    <div class="realestate-header-social"><i class="fa fa-user-plus"></i>Register
+      <!-- Register Dropdown Menu -->
+      <div class="realestate-header-social-dropdown">
+        <!-- Register Buttons -->
+        <ul>
+          <!-- Facebook -->
+          <li class="realestate-header-fb">
+            <i class="fa fa-facebook"></i>
+            <span>Register with Facebook</span>
+          </li>
+          <!-- END Facebook -->
+
+          <!-- LinkedIn -->
+          <li class="realestate-header-li">
+            <i class="fa fa-linkedin"></i>
+            <span>Register with LinkedIn</span>
+          </li>
+          <!-- END LinkedIn -->
+
+          <!-- Google Plus -->
+          <li class="realestate-header-gp">
+            <i class="fa fa-google-plus"></i>
+            <span>Register with Google Plus</span>
+          </li>
+          <!-- END Google Plus -->
+        </ul>
+        <!-- END Register Buttons -->
+      </div>
+      <!-- END Register Dropdown Menu -->
+    </div>
+    <div class="realestate-header-social">Sign In
+      <!-- Sign In Dropdown Menu -->
+      <div class="realestate-header-social-dropdown">
+        <!-- Dropdown Buttons -->
+        <ul>
+          <!-- Facebook -->
+          <li class="realestate-header-fb">
+            <i class="fa fa-facebook"></i>
+            <span>Sign In with Facebook</span>
+          </li>
+          <!-- END Facebook -->
+
+          <!-- LinkedIn -->
+          <li class="realestate-header-li">
+            <i class="fa fa-linkedin"></i>
+            <span>Sign In with LinkedIn</span>
+          </li>
+          <!-- END LinkedIn -->
+
+          <!-- Google Plus -->
+          <li class="realestate-header-gp">
+            <i class="fa fa-google-plus"></i>
+            <span>Sign In with Google Plus</span>
+          </li>
+          <!-- END Google Plus -->
+        </ul>
+        <!-- END Dropdown Buttons -->
+      </div>
+      <!-- END Sign In Dropdown Menu -->
+    </div>
+  </div>
+</template>
+<!-- END navbar -->
+
+<!-- Header template -->
+<template name="realestate_layout">
+  {{> yield "header"}}
+  {{> navbar}}
+
+  <table class="realestate_body">
+    <tr>
+      <td class="realestate_body_left"></td>
+      <td class="realestate_body_center">
+        {{> yield "centerarea"}}
+      </td>
+      <td class="realestate_body_faq">{{> yield "rightarea"}}</td>
+      <td class="realestate_body_right"></td>
+    </tr>
+  </table>
+  {{> Footer}}
+</template>
+<!-- END Header template -->
+
+<!-- Header template -->
+<template name="realestate_layout_single">
+  {{> yield "header"}}
+  {{> navbar}}
+
+  <table class="realestate_body">
+    <tr>
+      <td class="realestate_body_left"></td>
+      <td class="realestate_body_center">
+        {{> yield "centerarea"}}
+      </td>
+      <td class="realestate_body_right"></td>
+    </tr>
+  </table>
+  {{> Footer}}
+</template>
+<!-- END Header template -->

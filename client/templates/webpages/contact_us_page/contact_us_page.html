@@ -1,0 +1,114 @@
+<!-- Author : Larry Pham
+Date: 07/13/2015
+Description: Web page for Contact Us
+Associated files: contact_us_page.html, contact_us_page.less
+Dependecies: Router.js,global_vars.less -->
+<head>
+<script>
+function formCheck()
+{
+  if(document.submissionform.FullName.value == "")
+  {
+    alert("Please Fill in your name.");
+    return false;
+  }
+  if(document.submissionform.EmailAddress.value == "")
+  {
+    alert("Please enter in an email.");
+    return false;
+  }
+  if(document.submissionform.Message.value == "")
+  {
+    alert("Please enter in your message.");
+    return false;
+  }
+  return true;
+}
+</script>
+</head>
+<template name="contact_us_page">
+  <div class="contact_us_container">
+    <!--Top profile-->
+    <div class="cu_topbox">
+      <!--header area to display listing being featured-->
+      <div class="cu_topbox-header">
+        <div class="cu_topbox-headerimagebox">
+          <div class="cu_topbox-headerimage">
+            <div class="cu_topbox-bluebutton">
+              <i class="fa fa-mail-reply"></i>
+            </div>
+          </div>
+        </div>
+        <!--header with basic listing info-->
+        <div class="cu_topbox-listingtitle">
+          <div class="prop_feat-date">
+            LAST UPDATED: 7/13/2015 11:31 PM EST
+          </div>
+          <div class="cu_topbox-location">
+            <i class="fa fa-map-marker"></i>
+            United States
+          </div>
+          <div class="cu_topbox-headertitle">
+            Contact Us
+          </div>
+          <div class="cu_topbox-headeraddress">
+            Help us help you faster.
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Top profile END-->
+    <!--what is this page-->
+    <div class="cu_topbox-thispage">
+      <div class="cu_topbox-thispage-title">
+        Help with this page?
+      </div>
+      <div class="cu_topbox-thispage-info">
+        Need a question regarding our site answered? Please enter the details of your inquiry below and a member of our support staff will reach out to you as soon as possible.
+      </div>
+    </div>
+    <!--what is this page END-->
+    <!--* rfs = required fields all fields required-->
+    <div class="rfs">
+      <span class="rfs-red">*</span>All fields are required
+    </div>
+    <!--* all fields required END-->
+    <!--Contact us fields-->
+    <form name="submissionform" action="mailto:support@joyfulhome.com" method="post" enctype="text/plain" onsubmit="return formCheck()">
+      <div class="cu_fullname">
+        <div class="cu_fullname-text"><span class="rfs-red">*</span>Full Name</div>
+        <input class="cu_fullname-field" type="text" name="FullName">
+      </div>
+      <div class="cu_email">
+        <div class="cu_email-text"><span class="rfs-red">*</span>Email Address</div>
+        <input class="cu_email-field" type="text" name="EmailAddress">
+      </div>
+      <!--My questions-->
+      <div class="cu_q">
+      <div class="cu_questions">
+        <div class="cu_questions-text">My questions is regarding:</div>
+      </div>
+        <div class="cu_checklist">
+          <input type="checkbox" value="myprofile" name="Type"> My Profile<br>
+          <input type="checkbox" value="email" name="Type"> Email<br>
+          <input type="checkbox" value="listing" name="Type"> Listings<br>
+          <input type="checkbox" value="fraud" name="Type"> Fraud<br>
+          <input type="checkbox" value="agent" name="Type"> Finding an Agent<br>
+          <input type="checkbox" value="savedhomes" name="Type"> My Saved Homes<br>
+          <input type="checkbox" value="rentals" name="Type"> Rentals<br>
+          <input type="checkbox" value="mortgage" name="Type"> Mortgage<br>
+        </div>
+      </div>
+      <div class="cu_textarea">
+        <span class="rfs-red">*</span><textarea type="text" maxlength="500" class="cu_desc" name="Message"></textarea>
+      </div>
+      <!--My questions END-->
+      <!--Contact us fields END-->
+      <!--submission and clear button-->
+      <input type="submit" class="cu_button" value="Submit">
+      <input type="reset" class="cu_button" value="RESET">
+    </form>
+    <!--submission and clear button END-->
+  </div>
+  {{> search_module}}
+</template>
