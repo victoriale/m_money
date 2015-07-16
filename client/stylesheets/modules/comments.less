@@ -1,0 +1,201 @@
+/* Author: Navya Eetaram
+Created: [07/15/2015]
+Description: Leave_comment
+<Associated Files: comments.html, comments.less*/
+
+@import "../global_vars.less"; //include important global vars (colors mostly)
+@import "../modules.less";
+.leavecomments-module {
+  // Class contains the basic module layout
+  .module;
+  height:245px;
+  border-bottom: none;
+}
+
+.fin_user_input{
+  //input text box to insert post
+  width:640px;
+  height:165px;
+  border-bottom: 1px solid @grey-3;
+  align:center;
+  margin-left: 20px;
+  padding-top: 20px;
+  padding-bottom:20px;
+
+  &_box{
+    width:505px;
+    height:125px;
+    border: 1px solid @grey-2;
+    float:right;
+  }
+
+  &_share {
+    //container- facebook,google plus, twitter share and post button
+    width:503px;
+    height:40px;
+    background-color: @grey-1;
+    vertical-align: bottom;
+    padding:5px;
+
+    &_button{
+      //Post button
+      width: 70px;
+      height: 30px;
+      background-color: #3098ff;
+      font-size: 14px;
+      font-weight: bold;
+      color: @white;
+      border-radius: 10px;
+      text-align: center;
+      float:right;
+      margin-right: 10px;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      &:hover{
+        cursor:pointer;
+      }
+
+    }
+    &_group{
+      //container- facebook,google plus, twitter share
+      width:110px;
+      height:30px;
+      float:left;
+    }
+  }
+  &_text{
+    width:503px;
+    height: calc(~'100% - 40px');
+    margin-bottom:-5px;
+    overflow:auto;
+    resize:none;
+    border:none;
+  }
+
+  &_profile-image{
+    //class for Profile images according to given specifications
+    border-radius: 100%;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px @grey-3;
+    position: absolute;
+    display: block;
+    width: 125px;
+    height: 125px;
+
+    &:hover{
+      box-shadow: 0 0 0 3px @blue;
+    }
+  }
+}
+
+.fin_shareicons{
+  //class for ellipse -share icons
+  border-radius: 100%;
+  background-color: #acacac;
+  display: block;
+  width: 30px;
+  height: 30px;
+  font-size: 14px;
+  color:#fff;
+  margin-left: 5px;
+  padding: 5px;
+  text-align: center;
+}
+
+.fin_i_fbook{
+  //facebook ellipse
+  .fin_shareicons;
+  &:active{
+    background:#3b5998;
+    color:#fff;
+  }
+  &:hover{
+    cursor:pointer;
+    box-shadow: 0 0 0 3px #3b5998;
+    color:#fff;
+  }
+}
+.fin_i_gplus{
+  //google plus ellipse
+  .fin_shareicons;
+  &:active{
+    background:#dd4b39;
+    color:#fff;
+  }
+  &:hover{
+    cursor:pointer;
+    color:#fff;
+    box-shadow: 0 0 0 3px #dd4b39;
+  }
+}
+
+.fin_i_twitter{
+  //twitter ellipse
+  .fin_shareicons;
+  margin-left:40px;
+  &:active{
+    background:#00aced;
+    color:#fff;
+  }
+  &:hover{
+    cursor:pointer;
+    color:#fff;
+    box-shadow: 0 0 0 3px #00aced;
+  }
+
+}
+.float-r{
+  float:right;
+  position:absolute;
+}
+.float-l{
+  float:left;
+}
+
+.sort-box{
+  //container for sorting panel
+  width:640px;
+  height:52px;
+}
+.l_sort{
+  //left side of sort container
+  width:150px;
+}
+
+.sort_by{
+  font-size: 12px;
+  color:#000;
+  text-align:left;
+  margin-left:20px;
+  font-weight:600;
+}
+.result-sort{
+  //to store result from the dropdown select
+  font-weight:600;
+  color:#3098ff !important;
+  position: relative;
+}
+
+.r_sort{
+  width:200px;
+  float:right;
+  position: relative;
+  margin-right: -60px;
+}
+
+.sorted_by_downarrow{
+  font-size: 12px;
+  color:#000;
+  font-weight:600;
+}
+
+.comment-count{
+  //count of comments
+  font-size: 12px;
+  color:#000;
+  text-align:left;
+  font-weight:500;
+}
+bluetxt{
+  color:#3098ff;
+}

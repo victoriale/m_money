@@ -1,0 +1,49 @@
+<!-- Author: Navya Eetaram
+Created: [07/15/2015]
+Description: Leave_comment
+<Associated Files: comments.html,comments.less-->
+
+<head>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+<template name= "leavecomments">
+  <div class="leavecomments-module">
+    <div class="module-header">
+      <span class="module-header-line"></span>
+      <span class="module-header-title">Leave a Comment</span>
+    </div>
+    <!--Input box-->
+    <div class="fin_user_input" >
+      <span class="fin_user_input_profile-image"></span>
+      <span class="fin_user_input_box">
+        <!--Container to enter text -->
+        <textarea class="fin_user_input_text" placeholder="What is your opinion?"></textarea>
+        <div class="fin_user_input_share">
+          <span class= "fin_user_input_share_group">
+            <!-- Share Options-->
+            <a class="fin_i_gplus float-l" href="https://plus.google.com/share?url={URL}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-google-plus"></i></a>
+            <a class="fin_i_fbook float-r" style="margin-left:75px;" href="https://www.facebook.com/sharer/sharer.php?u=" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-facebook"></i></a>
+            <a class="fin_i_twitter" href="https://twitter.com/intent/tweet?text=Hello%20world" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-twitter"></i></a>
+          </span>
+          <!-- submit button-->
+          <button class="fin_user_input_share_button">post</button>
+        </div>
+      </span>
+    </div>
+    <!--Container for drop down menu -->
+    <div class="sort-box">
+      <!--left side of the sorting container-->
+      <span class="l_sort">
+        <span class="sort_by float-l"> Sorted by :
+          <span class="result-sort">No comments made yet</span>
+        </span>
+      </span>
+      <!--right side of the sorting container-->
+      <span class="r_sort">
+        <span class="comment-count"><bluetxt> 0 </bluetxt> Comments | </span>
+        <span class="sort_by_downarrow"> Sort Options
+          <i class="fa fa-sort-desc" id="sortoptions" style="cursor:pointer; color:#3098ff"></i></span>
+        </span>
+      </div>
+    </div>
+  </template>
