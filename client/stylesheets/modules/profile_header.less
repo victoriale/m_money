@@ -1,0 +1,273 @@
+/*Author:Ramakrishna Vaibhav kasibhatla [Ram]
+Created: [07/15/2015]
+Description: [profile header webpage]
+Associated Files: [profile_header.less, profile_header.html]
+*/
+@import "../global_vars.less";// to import color codes
+@grey-update-text: #959595;// to update the grey color code to #959595
+
+//the main class of the .less file
+.prf-hdr {
+  width: 680px;
+  height: 450px;
+  margin: 5px;
+  background-color: @white;
+
+  //the head box consisting of the white background
+  &-head-box {
+    width: 680px;
+    height: 120px;
+    background-color: @white;
+    text-align: left;
+    margin: 0;
+  }
+  //image inside the profile head
+  &-head-image {
+    width: 100px;
+    height: 100px;
+    margin: 10px 20px 10px 15px;
+    border: solid 2px @grey-3;
+    border-radius: 50%;
+    float: left;
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/f/f6/Mark_Zuckerberg_-_South_by_Southwest_2008.jpg");
+    background-size: cover !important;
+    background-position: center center !important;
+
+    //the plus symbol above the image
+    &-plus {
+      height: 35px;
+      width: 35px;
+      background-color: @green;
+      position: relative;
+      bottom: 5px;
+      right: 5px;
+      border-radius: 50%;
+      border: solid 1px @white;
+      color: @white;
+      line-height: 33px;
+      font-size: 32px;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+  //the text consisting the latest update
+  &-text {
+    width: 545px;
+    height: 120px;
+    margin: 0;
+    padding: 18px 0;
+    float: right;
+    color: @black;
+    text-align: left;
+    list-style-type: none;
+    //the update part
+    &-update {
+      font-size: 10px;
+      color: @grey-update-text;
+      //the font awesome icon color
+      .fa {
+        color: @black;
+      }
+    }
+    // the name of the person
+    &-name {
+      font-size: 24px;
+      color: @black;
+      font-weight: bold;
+    }
+    // the person description
+    &-type {
+      font-size: 20px;
+      color: @black;
+      font-weight: lighter;
+    }
+  }
+  //the main container with the grey background
+  &-main-conatiner {
+    width: 680px;
+    height: 250px;
+    background-image: @dark-linen;
+    text-align: left;
+    overflow: hidden;
+    margin: 0;
+    // image inside the container
+    &-image {
+      width: 172px;
+      height: 172px;
+      border: none;
+      border-radius: 50%;
+      background-size: cover !important;
+      background-position: center center !important;
+      background-image: url("https://upload.wikimedia.org/wikipedia/commons/f/f6/Mark_Zuckerberg_-_South_by_Southwest_2008.jpg");
+      //the wrapper to wrap up the container height and width
+      &-wrapper {
+        width: 180px;
+        height: 180px;
+        border: solid 4px rgb(0,0,0);
+        border: solid 4px rgba(0,0,0,0.2);
+        border-radius: 50%;
+        position: relative;
+        top: 35px;
+        margin: 0 10px 35px 35px;
+        position:relative;
+        left:20px;
+        top:40px;
+      }
+    }
+    //the sub-conatainer
+    &-container {
+
+      height: 215px;
+      width: 380px;
+      margin: 0;
+      list-style-type: none;
+      color: #ffffff;
+      text-align: left;
+      position: relative;
+      float: right;
+      padding: 0 0 0 5px;
+      top: -180px;
+      left: -53px;
+    }
+    // the title inside the conatiner
+    &-title {
+      font-size: 24px;
+      font-weight: lighter;
+      color: @white;
+      line-height: 40px;
+      width:680px;
+      position: relative;
+      left: -10px;
+
+      //the image inside the conatiner
+      &-image {
+        width: 40px;
+        height: 40px;
+        background-color: @blue;
+        border: none;
+        border-radius: 50%;
+        float: left;
+        margin-right: 10px;
+        text-align: center;
+        padding: auto;
+      }
+    }
+    // the description part
+    &-description {
+      height: 115px;
+      width: 356px;
+      overflow: hidden;
+      border-left: solid 2px #cccccc;
+      padding: 0 0 0 15px;
+      margin-left: 10px;
+      margin-top: 16px;
+      font-size: 16px;
+      font-weight: lighter;
+      color: #ffffff;
+      line-height: 17px;
+      text-align: justify;
+
+    }
+  }
+  // the read more part
+  &-read{
+    font-size: 16px;
+    font-weight: bold;
+    color: #3098ff;
+    float:right;
+    position:relative;
+    left:60px;
+    bottom:10px;
+    cursor:pointer;
+
+    a{
+      color:#3098ff;
+    }
+  }
+
+  &left{
+    height:68px;
+    width:36px;
+  }
+  //the bottom bar
+  &-bar {
+    width: 680px;
+    height: 40px;
+    background-color: @black;
+    padding-left: 10px;
+    color: @white;
+    font-size: 16px;
+    text-align: left;
+    // the font awesome icon color
+    .fa {
+      color: @white;
+    }
+    //the link color
+    a {
+      color:@white;
+    }
+    // the button for save and share
+    &-button {
+      border: none;
+      background-color: inherit;
+      margin: 0 5px 0 10px;
+      padding: 0;
+      float: left;
+      height:36px;
+      width:80px;
+    }
+    // the text part
+    &-text {
+      padding: 10px 0 10px 10px;
+      float: left;
+      line-height: normal;
+    }
+    // the font awesome icon styling
+    .fa {
+      padding: 10px 0 10px 0;
+      float: left;
+      color:@white;
+    }
+  }
+  &-lefthov{
+    border: 3px solid #000;
+    float:left;
+    height:80px;
+    width:38px;
+    background:#000;
+    border-top-right-radius:38px;
+    border-bottom-right-radius:38px;
+    padding-right:12px;
+    color:#fff;
+    position: relative;
+    top:88px;
+  }
+  /*properties for left navigation button hover*/
+  &-lefthov:hover{
+    border: 3px solid #3098ff;
+    height:80px;
+    width:38px;
+    background:#3098ff;
+    border-top-right-radius:38px;
+    border-bottom-right-radius:38px;
+  }
+
+  /*properties for right navigation button*/
+  &-righthov{
+    border: 3px solid #000;
+    float:right;
+    height:80px;
+    width:38px;
+    background:#000;
+    border-top-left-radius:38px;
+    border-bottom-left-radius:38px;
+    color:#fff;
+    padding-left:12px;
+    position: relative;
+    top:88px;
+  }
+  &-righthov:hover{
+    background: #3098ff;
+    border: 3px solid #3098ff;
+  }
+}

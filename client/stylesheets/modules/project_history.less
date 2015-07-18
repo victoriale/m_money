@@ -1,0 +1,321 @@
+/*
+  Author: Tanner Storment
+  Created: [07-16-2015]
+  Description: Project History List
+  Associated Files: project_history.html, project_history.js
+*/
+@import "../global_vars.less"; //include important global vars (colors mostly)
+@import "../modules.less";
+.project_history{
+  &-panel{
+    // Basic layout of the project history panel
+    text-align: center;
+    width:680px;
+    height:682px;
+    background-color: #fff;
+    border: 1px solid @grey-2;
+    float:right;
+    border-bottom: 2px solid @blue;
+  }
+// layout for content
+  &-content-panel{
+    width:680px;
+    height:604px;
+    background-color:#fff;
+  }
+  &-content-panel-header {
+    width:680px;
+    height:33px;
+    border-bottom:1px solid #b4b4b4;
+  }
+// styles for panel containing sort
+  &-list-sort-by-container {
+
+    /* Inline Style */
+    font-family: HelveticaNeue Arial;
+    color: #000000;
+    font-size: 12px;/* Approximation due to font substitution */
+    font-weight: 300;
+    text-align: left;
+    &-bold {
+      font-family: HelveticaNeue Arial;
+      color:#000000;
+      font-size: 12px;/* Approximation due to font substitution */
+      font-weight: 700;
+      text-align: left;
+    }
+    &-blue {
+      font-family: FontAwesome;
+      color:
+      #3098ff;
+      font-size: 12px;/* Approximation due to font substitution */
+      font-weight: 400;
+      text-align: left;
+    }
+
+    padding-top:11px;
+    padding-bottom:10px;
+    padding-left:10px;
+    border-bottom:1px solid #b4b4b4;
+  }
+//layout for tiles
+  &-list-grey-tile {
+    background:#f2f2f2;
+    color:#000;
+    width:680px;
+    height:185px;
+  }
+  &-list-white-tile {
+    background:#fff;
+    color:#000;
+    width:680px;
+    height:185px;
+    border-top:1px solid #b4b4b4;
+    border-bottom:0.5px solid #b4b4b4
+  }
+  //layout for footer
+  &-content-panel-footer {
+    background:#fff;
+    width:680px;
+    height:45px;
+    border-top:1px solid #b4b4b4;
+    display:block;
+    // styles for icon in footer
+    &-icon{
+      font-family: FontAwesome;
+      color: #000000;
+      font-size: 17.98px;/* Approximation due to font substitution */
+      font-weight: 400;
+      line-height: 21px;/* Approximation due to font substitution */
+      text-align: left;
+      transform: scaleY(1.0011);/* width and height properties ommitted due to transform */
+    }
+  }
+  // styles for company information
+  &-list-tile-information{
+    padding-top:15px;
+    padding-left:20px;
+    margin-left:155px;
+    display:block;
+    text-align:left;
+    //Fonts in the tile information blurb
+    // styles for markers,location
+    &-marker{
+      font-family: FontAwesome;
+      color: #000;
+      font-size: 10px;/* Approximation due to font substitution */
+      font-weight: 400;
+      text-align: left;
+    }
+    &-location{
+      font-family: HelveticaNeue Arial;
+      color: #000000;
+      font-size: 10px;/* Approximation due to font substitution */
+      font-weight: 400;
+      text-align: left;
+    }
+    //styles for company info
+    &-company-name{
+      font-family: HelveticaNeue Arial;
+      color: #000000;
+      font-size: 22px;/* Approximation due to font substitution */
+      font-weight: 700;
+      line-height: 26px;/* Approximation due to font substitution */
+      text-align: left;
+    }
+    &-position-name{
+      font-family: HelveticaNeue Arial;
+      color: #000000;
+      font-size: 14px;/* Approximation due to font substitution */
+      font-weight: 700;
+      line-height: 25px;/* Approximation due to font substitution */
+      text-align: left;
+    }
+    &-position-work-date{
+      font-family: HelveticaNeue Arial;
+      color: #000000;
+      font-size: 14px;/* Approximation due to font substitution */
+      font-weight: 300;
+      line-height: 25px;/* Approximation due to font substitution */
+      text-align: left;
+    }
+    //styles for time worked
+    &-position-time-passed{
+      font-family: HelveticaNeue Arial;
+      color: #959595;
+      font-size: 14px;/* Approximation due to font substitution */
+      font-style: italic;
+      line-height: 25px;/* Approximation due to font substitution */
+      text-align: left;
+      padding-left:10px;
+    }
+
+
+  }
+  //profile information
+  &-profile-info{
+    padding-top:15px;
+    padding-left:20px;
+    display:block;
+    position:absolute;
+  }
+  //profile image header
+  &-profile-image{
+    border-radius: 50%;
+    border-width: 2px;
+    border-color: #cccccc;
+    border-style: solid;
+    background-color: #ffffff;
+    width: 121px;
+    height: 121px;
+    display:block;
+    position:absolute;
+  }
+  //list of images in tile
+  &-featured-listing-image{
+    margin-top:12px;
+    margin-right:10px;
+    border-radius: 50%;
+    border-width: 2px;
+    border-color: #cccccc;
+    border-style: solid;
+    background-color: #ffffff;
+    width: 41px;
+    height: 41px;
+    float:left;
+    display:block;
+  }
+  // view all connections button
+  &-view-all-connections{
+    border-radius: 5px;
+    background-color: #3098ff;
+    width: 181px;
+    height: 35px;
+    display:block;
+    float:left;
+    margin-top:17px;
+    margin-left:18px;
+    border: 2px solid #3098ff;
+    &-text{
+      font-family: HelveticaNeue Arial;
+      color: #ffffff;
+      font-size: 14px;/* Approximation due to font substitution */
+      font-weight: 400;
+      line-height: 18px;/* Approximation due to font substitution */
+      text-align: center;
+    }
+      // icon in view all connections button
+    &-icon{
+      font-family: FontAwesome;
+      color: #ffffff;
+      font-size: 14px;/* Approximation due to font substitution */
+      font-weight: 400;
+      line-height: 18px;/* Approximation due to font substitution */
+      text-align: center;
+    }
+  }
+  //navigation icons in footer
+  &-navigation {
+    margin-top:12px;
+    margin-left:281px;
+    display:block;
+  }
+  // feedback styles
+  &-feedback {
+    margin-top:137px;
+    display:block;
+    float:left;
+    &-text{
+      font-family: HelveticaNeue Arial;
+      color: #666666;
+      font-size: 14px;/* Approximation due to font substitution */
+      font-weight: 300;
+      text-align: center;
+      margin-left:12px;
+    }
+    //feedback icon styles
+    &-icon{
+      font-family: FontAwesome;
+    color: #666666;
+    font-size: 14px;/* Approximation due to font substitution */
+    font-weight: 400;
+    text-align: center;
+    }
+  }
+  //numbers in navigation buttons
+  &-page-selector {
+    border-radius: 50%;
+    border-width: 1px;
+    border-style: solid;
+    width: 24px;
+    height: 23px;
+    display:block;
+    float:left;
+    margin-right:5px;
+    border-color: #dadada;
+    background: #fff;
+    &-font {
+      text-align:center;
+      font-family: HelveticaNeue Arial;
+      color: #000000;
+      font-size: 13.98px;/* Approximation due to font substitution */
+      font-weight: 300;
+      line-height: 21px;/* Approximation due to font substitution */
+      transform: scaleY(1.0011);/* width and height properties ommitted due to transform */
+    }
+    //selcted numbers
+    &-selected {
+      background-color: #3098ff;
+      border-color: #3098ff;
+      &-font {
+        font-family: HelveticaNeue Arial;
+        text-align:center;
+        color:  #ffffff;
+        font-size: 13.98px;/* Approximation due to font substitution */
+        font-weight: 300;
+        line-height: 21px;/* Approximation due to font substitution */
+        transform: scaleY(1.0011);/* width and height properties ommitted due to transform */
+      }
+    }
+    &:hover {
+        border-color:#3098ff;
+        background-color:#fff;
+        color:#000;
+    }
+    &:active {
+      color:#dadada;
+      background-color:#000;
+    }
+  }
+//view all button
+  &-view-all {
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #3098ff;
+    color:#3098ff;
+    border-style: solid;
+    background-color:#fff;
+    width: 113px;
+    height: 23px;
+    display:block;
+    float:right;
+    margin-right:15px;
+    &:hover {
+      background-color:#3098ff;
+      color:#fff;
+    }
+    &:active {
+      background-color: #000;
+      color:#dadada;
+    }
+    &-font{
+      font-family: HelveticaNeue Arail;
+      color: #3098ff;
+      font-size: 11.99px;/* Approximation due to font substitution */
+      font-weight: 400;
+      line-height: 18px;/* Approximation due to font substitution */
+      text-align: center;
+      transform: scaleY(1.0011);/* width and height properties ommitted due to transform */
+    }
+  }
+}

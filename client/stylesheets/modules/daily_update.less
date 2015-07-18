@@ -1,0 +1,404 @@
+/*Author: [Thanush Subramanian Elango]
+Created: [07/15/2015]
+Description: [daily_update]
+Associated Files: [daily_update_logic.js][daily_update.html]*/
+
+@import "../global_vars.less"; //include important global vars (colors mostly)
+@import "../modules.less";
+
+
+/////****************Widget Size **************//////////
+.mywidget1_dailyupdate {
+  .module;
+  height: 600px;
+}
+/////****************Wrapper for the main body below the image **************//////////
+.all_daily_update_modules{
+  &-wrapper-main-body{
+    width: 100%;
+    height:200px;
+    padding-left: 5px;
+  }
+  /////****************Wrapper for the left side below the image **************//////////
+  &-wrapper-left-body{
+    float:left;
+    width: 273px;
+    height:188px;
+    padding-left: 5px;
+    border-right: 1px solid @grey-2;
+  }
+  /////****************Wrapper for the left side below the image **************//////////
+  &-wrapper-left-body2{
+    width: 99%;
+    height:90px;
+    color: #fff;
+  }
+  /////****************Wrapper for the right side below the image **************//////////
+  &-wrapper-right-body{
+    width: 400px;
+    height:190px;
+    float:right;
+  }
+  /////****************Wrapper for the right side below the image **************//////////
+  &-wrapper-right-main-body2{
+    width: 100%;
+    height:35px;
+    border-bottom: 1px solid @grey-1;
+  }
+  /////****************Wrapper for the right side below the image **************//////////
+  &-wrapper-right-body2-text{
+    font-family: 'HelveticaNeue',helvetica;
+    color:  #272727;
+    font-size: 13.95px;
+    font-weight: 300;
+    text-align: left;
+    transform: scaleX(1.0004);
+    padding-left: 15px;
+    padding-top:6px;
+    vertical-align: text-center;
+    float:left;
+  }
+  /////****************Wrapper for the right side below the image **************//////////
+  &-wrapper-right-body3{
+    width: 181px;
+    height:35px;
+    float:right;
+    display: inline-block;
+    padding-top: 12px;
+    padding-left: 15px;
+    padding-bottom:10px;
+  }
+  /////**************** Wrapper for the footer profile details **************//////////
+  &-wrapper-main-bottom{
+    height: 145px;
+    width: 680px;
+  }
+  /////****************Wrapper for the Profile image **************//////////
+  &-wrapper-bottom-left {
+    height: 100px;
+    width: 132px;
+    position: relative;
+    bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    padding-top: 20px;
+    display: inline-block;
+    float: left;
+  }
+  &-wrapper-image-circle {
+    width: 100px;
+    //background-image: url("tribune_logo.png");
+    background-color: rgb(235, 235, 235);
+    height: 100px;
+    border-radius: 100px;
+    border: 2px solid gray;
+    background-size: 100px 100px;
+  }
+  ////////////////********* Graph Area Wrapper *************/////////////
+  &-wrapper-graph{
+    width: 400px;
+    height:102px;
+    cursor: pointer;
+    overflow:hidden;
+  }
+  ///////********** Graph Buttons **********//////////
+  &-graphbutton{
+    width: 400px;
+    height:51px;
+    background:#f2f2f2;
+  }
+  ///****Background image of the body with opactiy********* ///////
+  &-wrapper-image{
+    &-img1 {
+      //background: url("../Image_Real_Estate_daily_update.png");
+      background-color: rgb(172, 172, 172);
+      background-repeat: no-repeat;
+      background-position: relative;
+      width:100%;
+      height: 198px;
+    }
+  }
+  &-opacity{
+    background-color: #000;
+    opacity: 0.5;
+    width:100%;
+    height: 100%;
+  }
+  ////**********Banner in the center of the body **********////
+  &-banner{
+    font-family: 'HelveticaNeue',helvetica;
+    background-color: #3098FF;
+    position:relative;
+    top: -145px; left: 0; bottom: 0; right: 0;
+    opacity:0.95;
+    width: 100%;
+    height: 78px;
+  }
+  ////**********Banner Text in the center of the body **********////
+  &-text1{
+    font-family:'HelveticaNeue',helvetica;
+    font-size: 30px;
+    color: #fff;
+    font-weight: 100;
+    padding-top: 18px;
+    text-align: center;
+  }
+  ////***************region text for homes available  ********///
+  &-regiontext
+  {
+    font-family: 'HelveticaNeue',helvetica;
+    color:  #000000;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 24px;
+    text-align: left;
+    padding-left: 5px;
+    padding-top: 5px;
+  }
+  &-homestext_wrapper{
+    height: 32px;
+    width:250px;
+  }
+  //**************Facebook Inc Text Value********//
+  &-homestext{
+    font-family: 'HelveticaNeue',helvetica;
+    color:  #000000;
+    font-size: 21.93px;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: left;
+    padding-left: 5px;
+    padding-top: 5px;
+    display: inline-block;
+    float:left;
+  }
+  &-homestext2{
+    font-family: HelveticaNeue;
+    color:  #22a922;
+    font-size: 17.94px;/* Approximation due to font substitution */
+    font-weight: 700;
+    line-height: 24px;/* Approximation due to font substitution */
+    text-align: left;
+    vertical-align:baseline;
+  }
+  &-homestext_wrapper2{
+    height: 32px;
+    width:auto;
+    padding-top: 10px;
+    display: initial;
+  }
+  &-homestext_icon{
+    font-family: FontAwesome;
+    color:  #22a922;
+    font-size: 17.94px;/* Approximation due to font substitution */
+    font-weight: 400;
+    line-height: 24px;/* Approximation due to font substitution */
+    text-align: left;
+  }
+  /////*********Region Last Updated ******** //////////
+  /* Inline Style */
+  &-region-last-updated{
+    font-family: 'HelveticaNeue',helvetica;
+    color:  #959595;
+    font-size: 10px;
+    font-weight: 500;
+    text-align: left;
+    line-height: 100%;
+    transform: scaleX(1.0004);
+    padding-left: 5px;
+    bottom: 10px;
+  }
+  //****Region Last Updated Separator***/////
+  &-borderlineee{
+    background-color:  #cccccc;
+    width: 250px;
+    height: 1px;
+    transform: translate(5px, -10px);
+    -webkit-transform: translate(5px, -10px);
+    -khtml-transform: translate(5px, -10px);
+  }
+  //**************Font awesone Icons ***********/////
+  &-font-icons
+  {
+    color:  #000000;
+    font-size: 12px;
+    text-align: left;
+    transform: scaleX(1.0004);
+    line-height: 24px;
+    padding-left: 5px;
+    padding-right: 15px;
+    display: inline-block;
+    float:left;
+  }
+  ///*****************Area status****************////
+  &-Area-stats{
+    font-size: 12px;
+    color:#000000;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 24px;
+    text-align: left;
+    transform: scaleX(1.0004);
+    display: inline-block;
+    float:left;
+  }
+  ///*****************Area status Values****************////
+  &-Area-stats-values{
+    font-family: 'HelveticaNeue',helvetica;
+    color:  #000000;
+    font-size: 11.96px;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: right;
+    transform: scaleX(1.0004);
+    display: inline-block;
+    float:right;
+    transform: translate(-20px, 0px);
+    -webkit-transform: translate(-20px, 0px);
+    -khtml-transform: translate(-20px, 0px);
+  }
+  //*************** Stats region separator**********//
+  &-stats-region-separator{
+    background-color:  #cccccc;
+    width: 675px;
+    height: 2px;
+    transform: translate(0px, -12px);
+    -webkit-transform: translate(0px, -12px);
+    -khtml-transform: translate(0px, -12px);
+  }
+  /////****************buttons below the graph **************//////////
+  &-graphbutton_circle1 {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    font-family: HelveticaNeue;
+    color:  #666666;
+    font-size: 13.95px;
+    font-weight: 300;
+    font-size: 13px;
+    width: 35px;
+    height: 35px;
+    margin-left: 5px;
+    margin-right: 5px;
+    cursor:pointer;
+    -khtml-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background:@grey-3 ;
+    top: 10px;
+    padding:10px;
+  }
+  &-graphbutton_circle1:hover{
+    background: @blue;
+    color: white;
+  }
+  /////************ Profile Image Text Box ********///////
+  &-Profile-image-Text-Box{
+    width:524px;
+    height: 117px;
+    display: inline-block;
+    float: left;
+    text-align: left;
+  }
+  /////************ Profile Image Date font icon ********///////
+  &-Font-icons2{
+    font-family: FontAwesome;
+    color:  #959595;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 18px;
+    display: inline-block;
+    float: left;
+    text-align: left;
+    padding-right:2px;
+  }
+  ////************ Profile Image Date text ********///////
+  &-Date-text{
+    font-family: 'HelveticaNeue',helvetica;
+    color:  #959595;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 18px;
+    text-align: left;
+    display: inline-block;
+    float: left;
+  }
+  &-Date-text2{
+    font-family: 'HelveticaNeue',helvetica;
+    color:  #959595;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 18px;
+    text-align: left;
+    display: inline-block;
+    float: left;
+    transform: translate(-23px,0px);
+    -webkit-transform: translate(-23px,0px);
+    -khtml-transform: translate(-23px,0px);
+  }
+  ///******************Profile text***************////
+  &-profile-text{
+    font-family: 'HelveticaNeue',helvetica;
+    color:  #000000;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+    padding-right: 10px;
+    transform: translate(0px,-8px);
+    -webkit-transform: translate(0px,-8px);
+    -khtml-transform: translate(0px,-8px);
+    display: inline-block;
+  }
+  //////////******************Blue text Continue Reading****************//////////////
+  &-profile-text-blue{
+    font-family: 'HelveticaNeue',helvetica;
+    color:  #3098ff;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    text-align: right;
+    cursor:pointer;
+    transform: scaleX(1.0004);
+    display: inline-block;
+    float: left;
+  }
+  /*properties when the image is hovered*/
+  &-dailyupdate_viewprofile{
+    position:relative;
+    top:0;
+    left:0;
+    width:100px;
+    height:100px;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(48,152,255,.75);
+    border-radius:100%;
+    padding:2em;
+    opacity:0;
+    cursor:pointer;
+    transition: .3s opacity;
+    box-sizing:border-box;
+    transform: translate(-275px, -140px);
+    -khtml-transform:translate(-275px, -140px);
+  }
+  &-dailyupdate_viewprofile:hover{
+    opacity:1;
+  }
+  /*properties when the image is hovered*/
+  &-dailyupdate_viewprofile_txt1 {
+    font-size: 18px;
+    font-weight:bold;
+    text-align:left;
+    color:#fff;
+    padding-top:20px;
+  }
+  ///****View Profile image text*////
+  &-dailyupdate_viewprofile_txt2 {
+    font-size: 14px;
+    color:#fff;
+    line-height:0.4em;
+  }
+}

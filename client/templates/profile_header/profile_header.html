@@ -1,0 +1,75 @@
+<!--Author:Ramakrishna Vaibhav kasibhatla [Ram]
+Created: [07/15/2015]
+Description: [Profile header webpage]
+-->
+<!-- the main webpage template name-->
+<template name="profile_header">
+  <!--the template webpage that could be sized as required -->
+  <div class="prf-hdr">
+    <!-- the header box -->
+    <div class="prf-hdr-head-box">
+      <!-- image inside the header box-->
+      <div class="prf-hdr-head-image">
+        <!-- he add green symbol above the image-->
+        <button class="prf-hdr-head-image-plus">+</button>
+      </div>
+      <!-- the text inside the header box-->
+      <ul class="prf-hdr-text">
+        <li>
+          <!-- the latest update-->
+          <span class="prf-hdr-text-update">
+            <i class="fa fa-gear"></i> LAST UPDATED: 05/15/2015, 12:36 PM EST
+          </span>
+        </li>
+        <li>
+          <!-- the name of the person-->
+          <span class="prf-hdr-text-name">
+            Mark Zuckerberg
+          </span>
+        </li>
+        <li>
+          <!-- the description about the person-->
+          <span class="prf-hdr-text-type">
+            Facebook, Inc. Chief Executive Officer & Chairman
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div class="prf-hdr-bar">
+      <div class="prf-hdr-bar-button">
+        <!-- the save option button-->
+        <a href="#"><i class="fa fa-heart"></i><span class="prf-hdr-bar-text">Save</span></a>
+      </div>
+      <div class="prf-hdr-bar-button">
+        <!-- share option button -->
+        <a href="#"><i class="fa fa-share-alt"></i><span class="prf-hdr-bar-text">Share</span></a>
+      </div>
+    </div>
+    <div class="prf-hdr-main-conatiner">
+      <!-- the module.less file navigation buttons-->
+      <button class='prf-hdr-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+      <button class='prf-hdr-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+      <!-- end of the module.less navigation button -->
+      <!-- wrapper class-->
+      <div class="prf-hdr-main-conatiner-image-wrapper"><div class="prf-hdr-main-conatiner-image"></div></div>
+      <!-- the main conatiner -->
+      <ul class="prf-hdr-main-conatiner-container">
+        <!-- the image in blue circle-->
+        <li class="prf-hdr-main-conatiner-title"><div class="prf-hdr-main-conatiner-title-image">
+          <i class="fa fa-map-marker"></i></div>Whats happening today?</li>
+          <!-- the description about the person-->
+          <li class="prf-hdr-main-conatiner-description">Mark Zuckerberg, after taking on violence and vaccination, Facebook
+            founder Mark Zuckerberg is hoping to persuade his friends to tackle the foundation of science, after choosing Thomas Kuhn's
+            The Structue of Scientific Revolutions... </li>
+          </ul>
+          <!-- the link to read more option-->
+          <div class =prf-hdr-read> <a href="#">Read More </a></div>
+        </div>
+        <!-- the bottom bar-->
+        <div class="prf-hdr-bar">
+          <!-- the details about the comapny-->
+          <i class="fa fa-building-o"></i><span class="prf-hdr-bar-text">  Facebook, Inc | NASDAQ: FB<b>{{NumberListings}}</b></span>
+        </div>
+      </div>
+    </template>
+    <!-- end of the template -->

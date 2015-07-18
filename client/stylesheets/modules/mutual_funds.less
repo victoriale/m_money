@@ -1,0 +1,372 @@
+/*Author: Kyle Toom
+Created: [07/17/2015]
+Description: Mutual Funds Frame
+Associated Files: mutual_funds.less,mutual_funds.html
+*/
+
+@import "../global_vars.less"; //include important global vars (colors mostly)
+@import "../modules.less";
+.funds-module {
+  // Class contains the basic module layout
+
+
+  .module;
+  border-bottom: 0px solid @blue;
+  height:650px;
+}
+.funds-list-panel{
+  //  Class contains the basic panel layout for funds Lists Widget
+  .top_bottom_border;
+  border-bottom: 0px;
+  border-top: none;
+  width:455px;
+  height:566px;
+  background-color: #fff;
+  float:left;
+  margin-left: 15px;
+  margin-right:15px;
+  text-align: center;
+  // border-bottom: 2px solid @blue !important;
+  &_title{
+    // Class for the text title of the panel.
+    width:455px;
+    height:39px;
+    font-weight: bold;
+    background-color: #f2f2f2;
+    color:#000;
+    text-transform: uppercase;
+    font-size: 16px;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    border: 1px solid #dadada;
+  }
+  &_tile-ellipse{
+    //ellipse inside tile
+    bottom: 25px !important;
+    margin-right: 10px !important;
+    border: 1px solid #3098ff;
+    background-image: @dark-linen;
+    display:block;
+  }
+  &_footer{
+    text-align: center;
+    height: 35px;
+    width: 100%;
+    bottom:33px;
+    position:relative;
+  }
+}
+.blueicons{
+  //font awesome blue icons
+  padding-right: 5px;
+  color:#3098ff;
+  text-shadow: none;
+  opacity:none;
+}
+.load-more-tile{
+  //load more tile
+  width: 180px;
+  height: 55px;
+  background-color: #3098ff;
+  overflow: hidden;
+  text-align: center;
+  color: @white;
+}
+.image-panel{
+  //   Linen pattern rectangle
+  width:455px;
+  height:315px;
+  background-image:@dark-linen;
+  text-align:center !important;
+  position: relative;
+  display: block;;
+  &_title{
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 46px;
+  }
+  //location of image panel specifications
+  &_location{
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    //padding-top: 13px;
+    opacity:0.7;
+  }
+  &_button{
+    //"see the full list button" specification for image panel
+    width: 240px;
+    height: 35px;
+    background-color: #3098ff;
+    font-size: 14px;
+    font-weight: bold;
+    color: @white;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    margin-left: 108px;
+    padding-top: 8px;
+  }
+  &_middlecontainer{
+    //container for profile image, left and right navigation buttons
+    padding-top: 11px;
+    height:125px;
+  }
+  &_profile-image {
+    //class for Profile images according to given specifications
+    @shadow:2px;
+    border-radius: 100%;
+    background-color: #fff;
+    box-shadow: 0 0 0 2px @grey-2;
+    position: absolute;
+    display: block;
+    margin-left: 165px !important;
+    width: 125px;
+    height: 125px;
+    background-image: url(tribune_logo.png);
+    background-size: cover;
+    &:hover{
+      box-shadow: 0 0 0 3px @blue;
+    }
+  }
+  &_profile-image-small {
+    //class for Profile images according to given specifications
+    @shadow:2px;
+    border-radius: 100%;
+    background-color: #fff;
+    box-shadow: 0 0 0 2px @grey-2;
+    position: absolute;
+    display: block;
+    margin-top: 10px;
+    margin-left: 15px !important;
+    width: 50px;
+    height: 50px;
+    //background-image: url(tribune_logo.png);
+    &:hover{
+      box-shadow: 0 0 0 3px @blue;
+    }
+  }
+  &_nav-left{
+    //left navigation button
+    .navigation-button-left;
+    height:80px;
+    width:36px;
+  }
+  &_nav-right{
+    //right navigation button
+    .navigation-button-right;
+    height:80px;
+    width:36px;
+  }
+  //Name of fund
+  &_fund-name{
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: center;
+    position: relative;
+    margin-top: 20px;
+  }
+  //address of fund
+  &_fund-addr{
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    padding-bottom: 5px;
+    opacity:0.7;
+  }
+  &_down-arrow{
+    // down arrow for image panel
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-top-color: #4C4C4C  ;
+    border-width: 9px;
+    margin-left: -10px;
+    z-index: 900;
+  }
+}
+
+//Near by funds listings
+.funds-types {
+  background: #fff;
+  width:455px;
+  height:210px;
+  position: relative;
+  margin-bottom:0px;
+
+  &_lists{
+    height: 72px;
+    width: 100%;
+    border-top:1px solid @grey-2;
+    border-bottom: 1px solid @grey-2;
+    display:block;
+    border-left: 5px solid @grey-2;
+    border-right: 1px solid @grey-2;
+    &:hover{
+      border-left: 5px solid @blue;
+    }
+    &:hover &_seeall{
+      color:@blue;
+    }
+    &:hover &_angle-right{
+      color:@blue;
+    }
+
+    &_list-image{
+      width:70px;
+      height: 69px;
+      font-size: 30px;
+      padding-top: 15px;
+      float:left;
+      //background-color:@grey-1;
+    }
+    &_images{
+      height:40px;
+      weight:40px;
+      position:relative;
+      margin-top:15px;
+    }
+    //line one specifications for the listings
+    &_line-1{
+      padding-top: 20px;
+      color: #000000;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 18px;
+      text-align: left;
+      padding-left: 80px;
+    }
+    // Line two specifications for the listings
+    &_line-2{
+      color: #000000;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 18px;
+      text-align: left;
+      padding-left: 80px;
+    }
+    &_seeall{
+      //"see all" text specifications
+      color:  #cecece;
+      font-size: 14px; /* Approximation due to font substitution */
+      font-weight: 600;
+      height:14px;
+      width:59px;
+      padding-top:5px;
+      margin-right: 30px;
+      float:right;
+    }
+
+    &_angle-right{
+      //arrow in the list
+      font-size: 30px;
+      margin-top:16px;
+      margin-right:5px;
+      float: right;
+      color:@grey-3;
+    }
+  }
+}
+
+.tile_container{
+  //container for all tiles
+  width:180px;
+  height:635px;
+  float:right;
+  margin-left:15px;
+}
+
+.tileicon-spec{
+  //tile icons specifications
+  padding-bottom: 10px;
+}
+
+.funds-view-profile_txt1 {
+  //text line one-image hover
+  font-weight: bolder;
+  text-align: center;
+  color: #fff;
+  padding-top: 1.2em;
+  padding-bottom: 5px;
+  font-size: 18px;
+}
+
+.funds-view-profile_txt2 {
+  //text line two-image hover
+  font-weight: lighter;
+  text-align: center;
+  color: #fff;
+  font-size: 18px;
+}
+.funds-view-profile{
+  //hover image
+  position:relative;
+  top:5;
+  left:5;
+  width:130px;
+  height:130px;
+  background: rgba(48,152,255,.75);
+  border-radius:100%;
+  padding:1em;
+  opacity:0;
+  transition: .3s opacity;
+  box-sizing:border-box;
+  transform: translate(-2px, -3px);
+  -webkit-transform: translate(-4px,-3px); /* Safari */
+  &-small {
+    width:50px;
+    height:50px;
+    transform: translate(2px,3px);
+    -webkit-transform: translate(4px,3px);
+  }
+}
+.funds-view-profile:hover{
+  border:solid 3px #3098ff;
+  opacity:1;
+}
+
+.funds-green{
+  font-style: normal;
+  font-weight: bold;
+  color: @green;
+}
+
+.funds-red{
+  font-style: normal;
+  font-weight: bold;
+  color: @red;
+}
+
+.funds-nav-left {
+  transform: translate(5px,0px);
+  -webkit-transform: translate(7px,0px);
+}
+
+.funds-nav-right {
+  transform: translate(-5px,0px);
+  -webkit-transform: translate(-7px,0px);
+}
+
+.funds-smallcircle{
+  border-radius: 50%;
+  border:2px solid @grey-2;
+  background-color:  #ffffff;
+  width: 50px;
+  height: 50px;
+  float:left;
+  margin-left: 15px;
+  margin-top: -4px;
+}

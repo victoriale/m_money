@@ -1,0 +1,198 @@
+/*<!--Author: [Thanush Subramanian Elango]
+Created: [07/15/2015]
+Description: [trending_news]
+Associated Files:[trending_news.html]!-->*/
+
+
+@import "../global_vars.less"; //include important global vars (colors mostly)
+@import "../modules.less";
+
+/////****************Widget Size **************//////////
+.mynews_trendnews {
+  .module;
+  height: 430px;
+  border-bottom:none;
+}
+////*******The 3 Pixel blue left border line in the hearder*********/////////////
+.module-header-linenew{
+  font-size: 12px;
+  color: #3098ff;
+  border-left: 3px solid #3098ff;
+  position: relative;
+  top: 20%;
+}
+/////****************Widget Background Image  **************//////////
+.mynews_trendnews_all{
+  &-mynews_main_body
+  {
+    //background-image: url("frame_mod29.png");
+    background-color:rgb(191, 191, 191);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 680px;
+    height: 385px;
+  }
+  /////******************The Wrapper for the left and right Buttons  ******************//////////
+  &-mynews_center_wrapper{
+    width: 100%;
+    height: 80px;
+    position:relative;
+    top:105px;
+
+  }
+  /////****************Left Button Creation **************//////////
+  &-mynews_left_button{
+    background-color:  rgba(0, 0, 0, 0.5);
+    width: 36px;
+    height: 80px;
+    float: left;
+    border-top-right-radius: 38px;
+    border-bottom-right-radius: 38px;
+    display:inline-block;
+    border:none;
+    text-align: center;
+  }
+  &-mynews_left_button:hover{
+    background: rgba(48, 152, 255, .7);
+  }
+  /////****************Right Button Creation **************//////////
+  &-mynews_right_button{
+    background-color:  rgba(0, 0, 0, 0.5);
+    width: 36px;
+    height: 80px;
+    float: right;
+    border-top-left-radius: 38px;
+    border-bottom-left-radius: 38px;
+    display:inline-block;
+    border:none;
+  }
+  &-mynews_right_button:hover{
+    background: rgba(48, 152, 255, .7);
+  }
+  /////****************Left Button Arrows **************//////////
+  &-mynews_icons{
+    color:  #ffffff;
+    font-size: 30px; /* Approximation due to font substitution */
+    font-weight: 400;
+    text-align: left;
+  }
+  /////****************Right Button Arrows **************//////////
+  &-mynews_icons2{
+    color:  #ffffff;
+    font-size: 30px; /* Approximation due to font substitution */
+    font-weight: 400;
+    text-align: right;
+  }
+  /////****************Wrapper for the bottom bar**************//////////
+  &-my_frame_bottom{
+    background-color:  #000000;
+    width: 680px;
+    height: 90px;
+    position:relative;
+    top:213px;
+  }
+  /////****************Circle with background at the bottom of the page **************//////////
+  &-mynews_circle1{
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    position: relative;
+    top: 69px;
+    box-shadow: 0 0 0 5px rgba(213, 213, 213,0.5);
+    left: 20px;
+    //background-image: url("mynewsSmall.png");
+    background-size: 120px 120px;
+    border: 3px solid #fff;
+  }
+  /////****************Wrapper for the Text at the bottom of the page **************//////////
+  &-mynews_textwrapper{
+    width: 338px;
+    position: relative;
+    top: 15px;
+    left: 160px;
+    height: 65px;
+    display: inline-block;
+    float: left;
+  }
+  /////****************Font Awesome for the Text at the bottom of the page **************//////////
+  &-mynews_font_icon{
+    color:  #3098ff;
+    font-size: 10px; /* Approximation due to font substitution */
+    font-weight: 400;
+    text-align: left;
+  }
+  /////****************Text at the bottom of the page **************//////////
+  &-mynews_font_text{
+    //font-family: 'HelveticaNeue';
+    color:  #ffffff;
+    font-size: 11px; /* Approximation due to font substitution */
+    font-weight: 400;
+    text-align: left;
+  }
+  /////****************location Text**************//////////
+  &-mynews_text1{
+    font-family: 'HelveticaNeue';
+    color:  #ffffff;
+    font-size: 18px; /* Approximation due to font substitution */
+    font-weight: 700;
+    text-align: left;
+  }
+  /////****************Button at the bottom of the page **************//////////
+  &-mynews_button-wrapper{
+    position: relative;
+    top: 28px;
+    right: 20px;
+    background-color: #3098ff;
+    width: 140px;
+    height: 35px;
+    border-radius: 5px;
+    display: inline-block;
+    float: right;
+    border: none;
+  }
+  /////***************Text Inside the Button **************//////////
+  &-mynews_button-text{
+    font-family: HelveticaNeue;
+    color:  #ffffff;
+    font-size: 14px; /* Approximation due to font substitution */
+    font-weight: 300;
+    text-align: center;
+  }
+  /*properties when the image is hovered*/
+  &-mynews_viewprofile{
+    position:relative;
+    top:0;
+    left:0;
+    width:135px;
+    height:135px;
+    margin-left: auto;
+    margin-right: auto;
+    cursor:pointer;
+    background: rgba(48,152,255,.75);
+    border-radius:100%;
+    padding:2.5em;
+    opacity:0;
+    transition: .3s opacity;
+    box-sizing:border-box;
+    transform: translate(-258px, -62px);
+    -webkit-transform: translate(-258px, -62px);
+    -khtml-transform: translate(-258px, -66px);
+    -ms-transform:translate(-258px, -66px);
+    -moz-transform:translate(-258px, -61px);
+  }
+  &-mynews_viewprofile:hover{
+    opacity:1;
+  }
+  /*properties when the image is hovered The Text format to be displayed*/
+  &-mynews_viewprofile_txt1 {
+    font-size: 24px;
+    font-weight:bold;
+    color:#fff;
+    padding-top:20px;
+  }
+  &-mynews_viewprofile_txt2 {
+    font-size: 24px;
+    color:#fff;
+    line-height:0.4em;
+  }
+}
