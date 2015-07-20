@@ -1,0 +1,252 @@
+/* Author: Ryan Fisher
+** Created: 07/17/2015
+** Description: .less file for About Exec Page
+** Associated Files: about_exec.html, about_exec.less, about_exec_logic.js
+*/
+
+@import (reference)"../global_vars.less";
+
+.exec{
+  width: 680px;
+  height: 645px;
+  position: relative;
+  background-color: @white;
+
+  //class for blue text
+  &_blue{
+    color: @blue;
+  }//end exec_blue
+
+  //class for white text
+  &_white{
+    color: @white;
+  }//end exec_white
+
+  //Main page header
+  &_header{
+    width: 680px;
+    height: 45px;
+    border-top: 2px solid @blue;
+    background-color: @black;
+    font-size: 18px;
+    line-height: 43px;
+    padding-left: 10px;
+  }//end exec_header
+
+  //Main page body
+  &_body{
+    margin: 15px;
+    width: 455px;
+    position: relative;
+
+    //Featured executive
+    &_featured{
+      background-color: #3a3a3a;
+
+      //Featured executive header
+      &_header{
+        height: 36px;
+        border: 1px solid @grey-3;
+        background-color: @grey-1;
+        font-size: 16px;
+        line-height: 36px;
+        padding-left: 10px;
+      }//end exec_body_featured_header
+
+      //Featured executive info
+      &_info{
+        text-align: center;
+        height: 315px;
+        position: relative;
+
+        //Featured executive description
+        &_description{
+          font-size: 18px;
+          margin-top: 5px;
+          margin-bottom: 5px;
+        }//end exec_body_featured_info_description
+
+        //Featured executive education location
+        &_education-location{
+          margin-bottom: 145px;
+        }//end exec_body_featured_info_education-location
+
+        //Featured executive main image
+        &_main-image{
+          width: 125px;
+          height: 125px;
+          border-radius: 50%;
+          border: 3px solid @grey-3;
+          background-color: @white;
+          position: absolute;
+          top: 60px;
+          left: 165px;
+        }//end exec_body_featured_info_main-image
+
+        //Featured executive sub image
+        &_sub-image{
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          border: 1px solid @grey-3;
+          background-color: @white;
+          position: absolute;
+          top: 137px;
+          left: 246px;
+        }//end exec_body_featured_info_sub-image
+
+        //Featured executive name
+        &_name{
+          margin-bottom: 5px;
+        }//end exec_body_featured_info_name
+
+        //Feautured executive education info first line
+        &_education-line1{
+
+        }//end exec_body_featured_info_education-line1
+
+        //Feautured executive education info second line
+        &_education-line2{
+          margin-bottom: 10px;
+        }//end exec_body_featured_info_education-line2
+
+        //Featured executive view all button
+        &_view-all{
+          width: 240px;
+          height: 35px;
+          border-radius: 5px;
+          background-color: @blue;
+          line-height: 35px;
+          margin-left: 108px;
+          position: relative;
+
+          &_text{
+            position: absolute;
+            left: 35px;
+          }//end exec_body_featured_info_view-all_text
+
+          &_icon{
+            position: absolute;
+            top: 10px;
+            right: 35px;
+          }//end exec_body_featured_info_view-all_icon
+        }//end exec_body_featured_info_view-all
+      }//end exec_body_featured_info
+
+      //Featured executive left button
+      &_left-button{
+        border-top-right-radius: 40px;
+        border-bottom-right-radius: 40px;
+        width: 40px;
+        height: 80px;
+        background-color: @black;
+        position: absolute;
+        top: 150px;
+        left: 0px;
+        padding-top: 25px;
+        padding-right: 15px;
+        text-align: right;
+
+        &_icon{
+          font-size: 30px;
+        }
+
+        &:hover{
+          background-color: @blue;
+        }
+      }//end exec_body_featured_left-button
+
+      //Featured executive right button
+      &_right-button{
+        border-top-left-radius: 40px;
+        border-bottom-left-radius: 40px;
+        width: 40px;
+        height: 80px;
+        background-color: @black;
+        position: absolute;
+        top: 150px;
+        right: 0px;
+        padding-top: 25px;
+        padding-left: 15px;
+
+        &_icon{
+          font-size: 30px;
+        }
+
+        &:hover{
+          background-color: @blue;
+        }
+      }//end exec_body_featured_right-button
+    }//end exec_body_featured
+
+    //List of executives
+    &_list{
+
+      //Single list item
+      &_single{
+        border-left: 5px solid #e1e1e1;
+        border-bottom: 1px solid #e1e1e1;
+        border-right: 1px solid #e1e1e1;
+        background-color: @white;
+        height: 72px;
+        padding-top: 7px;
+        padding-left: 85px;
+        position: relative;
+
+        &:hover{
+          border-left-color: @blue;
+        }
+
+        &:hover &_view-more{
+          color: @blue;
+        }
+
+        //List item image
+        &_image{
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          border: 1px solid @grey-3;
+          background-color: @white;
+          position: absolute;
+          top: 10px;
+          left: 15px;
+        }//end exec_body_list_single_image
+
+        //List item name
+        &_name{
+          font-size: 18px;
+        }//end exec_body_list_single_name
+
+        //List item position
+        &_position{
+          position: relative;
+          top: -4px;
+        }//end exec_body_list_single_position
+
+        //List item education
+        &_education{
+          font-size: 12px;
+          position: relative;
+          top: -4px;
+        }//end exec_body_list_single_education
+
+        //List item view more button
+        &_view-more{
+          font-size: 18px;
+          color: @grey-3;
+          position: absolute;
+          top: 25px;
+          right: 10px;
+        }//end exec_body_list_single_view-more
+      }//end exec_body_list_single
+    }//end exec_body_list
+  }//end exec_body
+
+  //Module links at the right side
+  &_links{
+    position: absolute;
+    top: 46px;
+    right: 0px;
+  }//end exec_links
+}//end exec
