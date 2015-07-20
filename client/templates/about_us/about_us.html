@@ -1,0 +1,130 @@
+<!--Author: [Sacchin Ranganathan]
+Created: [7/17/2015]
+Description: [ contains html for about_us]
+Associated Files: [The about_us.less,about_us.html for the module]-->
+
+<template name="about_us">
+
+  <div class="module-3 abt_us-hdr_brd">  <!--creating the widget in accordance with the size specified-->
+    <div class="module-header"><!--creating the header for the module-->
+      <span class="module-header-line"></span><!--the blue color line on top of the header-->
+      <span class="module-header-title">Learn More About Us</span><!--specifying the title to be displayed inside the header-->
+    </div>
+
+    <div class="abt_us-pannel_full"><!--Creating a wrapper for the full pannel-->
+      <div class="abt_us-panel-left-frame-tile"><!--Creating a wrapper for the left pannel-->
+        <!-- Tile 1-->
+        <div class="module-tile">  <!--module-tile class wraps all element for text and button -->
+          <div class="module-tile-default">
+            <div class="module-tile-default-container"><!--The class module-tile-default-container provides a layout for container to wrap the icon and text -->
+              <div class="module-tile-default-icon"> <!-- The class module-tile-default-icon contains icon in it-->
+                <i class="fa fa-info-circle"></i>
+              </div>
+              <div class="module-tile-default-text"> <!--module-tile-default-text class contains layout belong to text containment -->
+                About Us
+              </div>
+            </div>
+          </div>
+          <a class="module-tile-link" href="#">
+            <div class="module-tile-hover"> <!--The class module-title-hover contains the hover property in it-->
+              <div class="module-tile-name">
+                <i class="fa fa-info-circle"></i>
+                About Us
+              </div>
+              <div class="module-tile-info"></div>
+              <button class="module-tile-button"><!--module-tile-button contains a portion of button property  -->
+                OPEN PAGE
+                <i class="fa fa-mail-forward"></i>
+              </button>
+            </div>
+          </a>
+        </div>
+
+        <!-- Tile 2-->
+        <div class="module-tile">  <!--module-tile class wraps all element for text and button -->
+          <div class="module-tile-default">
+            <div class="module-tile-default-container"><!--The class module-tile-default-container provides a layout for container to wrap the icon and text -->
+              <div class="module-tile-default-icon"><!-- The class module-tile-default-icon contains icon in it-->
+                <i class="fa fa-phone"></i>
+              </div>
+              <div class="module-tile-default-text"><!--module-tile-default-text class contains layout belong to text containment -->
+                Contact Us
+              </div>
+            </div>
+          </div>
+          <a class="module-tile-link" href="#">
+            <div class="module-tile-hover"><!--The class module-title-hover contains the hover property in it-->
+              <div class="module-tile-name">
+                <i class="fa fa-phone"></i>
+                Contact Us
+              </div>
+              <div class="module-tile-info"></div>
+              <button class="module-tile-button"><!--module-tile-button contains a portion of button property  -->
+                OPEN PAGE
+                <i class="fa fa-mail-forward"></i>
+              </button>
+            </div>
+          </a>
+        </div>
+
+        <!-- Tile 3-->
+        <div class="module-tile"> <!--module-tile class wraps all element for text and button -->
+          <div class="module-tile-default">
+            <div class="module-tile-default-container"><!--The class module-tile-default-container provides a layout for container to wrap the icon and text -->
+              <div class="module-tile-default-icon"><!-- The class module-tile-default-icon contains icon in it-->
+                <i class="fa fa-folder-open-o"></i>
+              </div>
+              <div class="module-tile-default-text"><!--module-tile-default-text class contains layout belong to text containment -->
+                Disclaimer
+              </div>
+            </div>
+          </div>
+          <a class="module-tile-link" href="#">
+            <div class="module-tile-hover"><!--The class module-title-hover contains the hover property in it-->
+              <div class="module-tile-name">
+                <i class="fa fa-folder-open-o"></i>
+                Disclaimer
+              </div>
+              <div class="module-tile-info"></div>
+              <button class="module-tile-button"><!--module-tile-button contains a portion of button property  -->
+                OPEN PAGE
+                <i class="fa fa-mail-forward"></i>
+              </button>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="abt_us-rightside"><!--Creating a wrapper for the right pannel-->
+        <div class="abt_us-right_header"><!--creating a header for the right side  -->
+          <i class="fa fa-circle abt_us-smalldot"></i>
+          &nbsp;PASSFAIL DISCLAIMER
+        </div>
+        <a href=""><!--Link to web-page-->
+          <div class="abt_us-circle"><!--Circle Creation for image-->
+            <div class="abt_us-view-profile"><!--View profile on hover -->
+              <div class="abt_us-view-profile_body"><!--View profile content properties on hover -->
+                <span class="abt_us-view-profile_txt1">View<br></span><!--View profile text properties on hover -->
+                <span class="abt_us-view-profile_txt2">Profile</span><!--View profile text properties on hover -->
+              </div>
+            </div>
+          </div>
+        </a>
+        <div class="abt_us-textbox"><!--Text container for information -->
+          <span class="abt_us-text-1">Disclaimer</span><br><!--text properties -->
+          <span class="abt_us-text-2">Julianet data delayed 15 minutes.</span><br><!--text properties -->
+          <span class="abt_us-text-3">This site is powered by PassFail.Ideas and opinions presented
+            on this website are for information and educational purposes only,
+            and do not reflect the openions of PassFail, or any of its affiliates,
+            subsidiaries or partners. In no way should any content conrained
+            herein be interepted to represent trading or investment advice.
+          </span><br><br>
+          <div class="abt_us-text-4">&#169; 2014 Data provided by Morningstar&#174; </div><!--text properties -->
+          <button class= "abt_us-button"><!--Creating button and giving text properties for text inside -->
+            See The Full Disclaimer &nbsp;&nbsp; <i class="fa fa-angle-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

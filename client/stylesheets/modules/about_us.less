@@ -1,0 +1,131 @@
+/*Author: [Sacchin Ranganathan]
+Created: [7/17/2015]
+Description: [provides layout for about_us.html]
+Associated Files: [The about_us.html for the module]*/
+
+@import "../global_vars.less"; //include important global vars
+
+.abt_us{
+
+  &-hdr_brd{  //removing the bottom blue border
+    border-bottom:0px !important;
+  }
+  &-pannel_full{  //creating a full pannel
+    position: relative;
+    width:100%;
+    height:601px;
+    border:2px solid #D3D3D3;
+    border-top:0px ;
+    border-bottom:2px solid #D3D3D3;
+  }
+  &-panel-left-frame-tile { //left pannel tile placement
+    float: left;
+    position:relative;
+    width: 210px;
+    height: 555px;
+    background: #fff;
+  }
+  &-rightside{  //right side container
+    float:right;
+    position:relative;
+    width:451px;
+    height:570px;
+    margin: 15px 15px 0px 0px;
+    border: 2px solid rgb(204, 204, 204);
+  }
+  &-right_header{ //right side header
+    background-color: #f2f2f2;
+    width: 100%;
+    height: 39px;
+    font-size:16px;
+    font-weight:bold;
+    text-transform:uppercase;
+    padding: 8px;
+  }
+  &-smalldot{ //right side header small-circle
+    color:#3098FF;
+    font-size:14px;
+  }
+  &-circle{ // layout for image
+    position:relative;
+    width:125px;
+    height:125px;
+    border-radius:50%;
+    color:#fff;
+    border:2px solid #44b224 ;
+    background-image:url("https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/8/005/04e/02a/110cd73.jpg");
+    background-size: 100%;
+    top:30px;
+    left:165px;
+  }
+  &-view-profile {  //image on hover
+    position: relative;
+    width: 125px;
+    height: 125px;
+    border-radius: 100%;
+    opacity: 0;
+    box-sizing: border-box;
+    bottom: 2px;
+    right: 2px;
+  }
+  &-view-profile_body { //Creating an inner circle which contains the view-profile text
+    background: rgba(48,152,255,1);
+    color: #fff;
+    font-weight: lighter;
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 2.5em;
+    border-radius: 100%;
+    width: 125px;
+    height: 125px;
+  }
+  &-view-profile_txt1 { //text inside the circle on hover
+    font-size: 22px;
+    font-weight: bold;
+  }
+  &-view-profile_txt2 { //text inside the circle on hover
+    font-size: 22px;
+    line-height: 5px;
+    font-weight:light;
+  }
+  &-view-profile:hover{ //Giving opacity so that the background image is partially visible
+    opacity:0.85;
+  }
+  &-textbox{  //textbox container for information
+    font-family: HelveticaNeue;
+    position: relative;
+    width: 395px;
+    height: 335px;
+    font-weight: 300;
+    left: 27px;
+    top: 65px;
+  }
+  &-text-1{ //text properties
+    font-size: 16px;/* Approximation due to font substitution */
+    line-height: 30px;
+  }
+  &-text-2{ //text properties
+    font-size: 12px;/* Approximation due to font substitution */
+    line-height: 30px;
+  }
+  &-text-3{ //text properties
+    font-size: 14px;/* Approximation due to font substitution */
+  }
+  &-text-4{ //text properties
+    font-size: 14px;/* Approximation due to font substitution */
+    line-height: 45px;/* Approximation due to font substitution */
+    text-align: center;
+  }
+  &-button{ //button creation
+    border-radius: 5px;
+    background-color: #3098ff;
+    width: 240px;
+    height: 35px;
+    color:#fff;
+    border:0px !important;
+    position:relative;
+    left: 80px;
+    top: 20px;
+    font-size: 14px;
+  }
+}
