@@ -1,0 +1,35 @@
+/*
+Author: [Venkatesh Mabbu]
+Created: [07/20/2015]
+JIRA ID: REAL-73
+Description: Facebook.less file used for styling for facebook module
+Associated Files: [Facebook.html, Facebook_logic.js and Facebook.less ]
+*/
+
+// This will import the modules.less file from the parent directory
+@import "../modules.less";
+
+//This class holds the complete module
+.module-finance-fb{
+  .module;
+  height: 219;
+}
+
+//This is second module header used to create a light blue box with "find us on facebook text"
+.module-header2 {
+
+//This style is used to create background style of the header2 box
+  &-backhead{
+    width:100%;
+    height:25px;
+    background: rgb(237, 239, 244)
+  }
+//This style is used to create the text inside the box
+  &-title2 {
+    float: left;
+    position: relative;
+    padding: 5px 0px 0px 10px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+}
