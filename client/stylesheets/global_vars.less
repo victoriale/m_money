@@ -1,13 +1,3 @@
-//Global Color Values
-/* commented out because of conflict with below (GVFS 6/2/15)
-@red: #ff3131;
-@green: #44b224;
-@blue: #3098ff;
-@grey-1: #ebebeb;
-@grey-2: #cccccc;
-@grey-3: #959595;
-@grey-4: #272727;
-@grey-5: #252525;*/
 
 // Global vars from specs 6/2/15
 @orange: #f7701d;
@@ -32,7 +22,7 @@
 @white: #ffffff;
 @black: #000000;
 
-@bgcolor: #aeaeae;
+@bgcolor: #ebebeb;
 
 //icons used globally
 @info-icon: url('/icons/info.png');
@@ -43,22 +33,37 @@
 @coming-soon-frame: url('onframe.png');
 @joyful-homes:url('joyfulhome_logo.png');
 @joyful-white:url('Small_JoyFulHome_WhiteText_Transparent.png');
+
 html, body { // Default vals across the board
   margin-top: auto;
-  font-family: HelveticaNeue, sans-serif, Arial !important; //HelveticaNeue, sans-serif, Arial replace with this once we get helvetica Neue
+  font-family: HN, sans-serif, Arial; //HelveticaNeue, sans-serif, Arial replace with this once we get helvetica Neue
   width: 100%;
   height: auto;
   background-color: @bgcolor;
 }
 //temporary
 div, span{
-  font-family: HelveticaNeue, sans-serif, Arial !important;
+  font-family: HN, sans-serif, Arial;
 }
 a {
   text-decoration: none !important;
 }
 // End william mod
 
+@font-face{
+  font-family: HN;
+  src: url('/fonts/HelveticaNeue.otf');
+}
+
+@font-face{
+  font-family: HN-B;
+  src: url('/fonts/HelveticaNeue-Bold.otf');
+}
+
+@font-face{
+  font-family: HN-L;
+  src: url('/fonts/HelveticaNeue-Light.otf');
+}
 
 @font-face{
   font-family: Gotham Book;
