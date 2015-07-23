@@ -1,14 +1,14 @@
 /*<!--Author: [Thanush Subramanian Elango]
 Created: [07/15/2015]
-Description: [trending_news]
-Associated Files:[trending_news.html]!-->*/
+Description: [trnding_news]
+Associated Files:[trnding_news.html]!-->*/
 
 
-@import "../global_vars.less"; //include important global vars (colors mostly)
+@import (reference)"../global_vars.less"; //include important global vars (colors mostly)
 @import "../modules.less";
 
 /////****************Widget Size **************//////////
-.mynews_trendnews {
+.news_trndnews {
   .module;
   height: 430px;
   border-bottom:none;
@@ -22,8 +22,8 @@ Associated Files:[trending_news.html]!-->*/
   top: 20%;
 }
 /////****************Widget Background Image  **************//////////
-.mynews_trendnews_all{
-  &-mynews_main_body
+.news_trndnews{
+  &-news_main_body
   {
     //background-image: url("frame_mod29.png");
     background-color:rgb(191, 191, 191);
@@ -32,8 +32,8 @@ Associated Files:[trending_news.html]!-->*/
     width: 680px;
     height: 385px;
   }
-  /////******************The Wrapper for the left and right Buttons  ******************//////////
-  &-mynews_center_wrapper{
+  /////******************The wrpr for the left and right Buttons  ******************//////////
+  &-news_center_wrpr{
     width: 100%;
     height: 80px;
     position:relative;
@@ -41,7 +41,7 @@ Associated Files:[trending_news.html]!-->*/
 
   }
   /////****************Left Button Creation **************//////////
-  &-mynews_left_button{
+  &-news_left_button{
     background-color:  rgba(0, 0, 0, 0.5);
     width: 36px;
     height: 80px;
@@ -52,11 +52,11 @@ Associated Files:[trending_news.html]!-->*/
     border:none;
     text-align: center;
   }
-  &-mynews_left_button:hover{
+  &-news_left_button:hover{
     background: rgba(48, 152, 255, .7);
   }
   /////****************Right Button Creation **************//////////
-  &-mynews_right_button{
+  &-news_right_button{
     background-color:  rgba(0, 0, 0, 0.5);
     width: 36px;
     height: 80px;
@@ -66,24 +66,18 @@ Associated Files:[trending_news.html]!-->*/
     display:inline-block;
     border:none;
   }
-  &-mynews_right_button:hover{
+  &-news_right_button:hover{
     background: rgba(48, 152, 255, .7);
   }
   /////****************Left Button Arrows **************//////////
-  &-mynews_icons{
+  &-news_icons{
     color:  #ffffff;
     font-size: 30px; /* Approximation due to font substitution */
     font-weight: 400;
     text-align: left;
   }
-  /////****************Right Button Arrows **************//////////
-  &-mynews_icons2{
-    color:  #ffffff;
-    font-size: 30px; /* Approximation due to font substitution */
-    font-weight: 400;
-    text-align: right;
-  }
-  /////****************Wrapper for the bottom bar**************//////////
+
+  /////****************wrpr for the bottom bar**************//////////
   &-my_frame_bottom{
     background-color:  #000000;
     width: 680px;
@@ -92,7 +86,7 @@ Associated Files:[trending_news.html]!-->*/
     top:213px;
   }
   /////****************Circle with background at the bottom of the page **************//////////
-  &-mynews_circle1{
+  &-news_circle1{
     width: 125px;
     height: 125px;
     border-radius: 50%;
@@ -100,12 +94,19 @@ Associated Files:[trending_news.html]!-->*/
     top: 69px;
     box-shadow: 0 0 0 5px rgba(213, 213, 213,0.5);
     left: 20px;
-    //background-image: url("mynewsSmall.png");
+    //background-image: url("newsSmall.png");
     background-size: 120px 120px;
     border: 3px solid #fff;
   }
-  /////****************Wrapper for the Text at the bottom of the page **************//////////
-  &-mynews_textwrapper{
+  /////****************Right Button Arrows **************//////////
+  &-news_icons2{
+    color:  #ffffff;
+    font-size: 30px; /* Approximation due to font substitution */
+    font-weight: 400;
+    text-align: right;
+  }
+  /////****************wrpr for the Text at the bottom of the page **************//////////
+  &-news_textwrpr{
     width: 338px;
     position: relative;
     top: 15px;
@@ -115,30 +116,22 @@ Associated Files:[trending_news.html]!-->*/
     float: left;
   }
   /////****************Font Awesome for the Text at the bottom of the page **************//////////
-  &-mynews_font_icon{
+  &-news_font_icon{
     color:  #3098ff;
     font-size: 10px; /* Approximation due to font substitution */
     font-weight: 400;
     text-align: left;
   }
-  /////****************Text at the bottom of the page **************//////////
-  &-mynews_font_text{
-    //font-family: 'HelveticaNeue';
-    color:  #ffffff;
-    font-size: 11px; /* Approximation due to font substitution */
-    font-weight: 400;
-    text-align: left;
-  }
   /////****************location Text**************//////////
-  &-mynews_text1{
-    font-family: 'HelveticaNeue';
+  &-news_text1{
+    font-family: HN-B;
     color:  #ffffff;
     font-size: 18px; /* Approximation due to font substitution */
     font-weight: 700;
     text-align: left;
   }
   /////****************Button at the bottom of the page **************//////////
-  &-mynews_button-wrapper{
+  &-news_button-wrpr{
     position: relative;
     top: 28px;
     right: 20px;
@@ -151,20 +144,28 @@ Associated Files:[trending_news.html]!-->*/
     border: none;
   }
   /////***************Text Inside the Button **************//////////
-  &-mynews_button-text{
-    font-family: HelveticaNeue;
+  &-news_button-text{
+    font-family: HN-L;
     color:  #ffffff;
     font-size: 14px; /* Approximation due to font substitution */
-    font-weight: 300;
     text-align: center;
   }
+  /////****************Text at the bottom of the page **************//////////
+  &-news_font_text{
+    font-family: HN;
+    color:  #ffffff;
+    font-size: 10px; /* Approximation due to font substitution */
+    font-weight: 400;
+    text-align: left;
+  }
   /*properties when the image is hovered*/
-  &-mynews_viewprofile{
+  &-news_viewprof{
     position:relative;
     top:0;
     left:0;
-    width:135px;
-    height:135px;
+    width:125px;
+    height:125px;
+    text-align:center;
     margin-left: auto;
     margin-right: auto;
     cursor:pointer;
@@ -180,19 +181,20 @@ Associated Files:[trending_news.html]!-->*/
     -ms-transform:translate(-258px, -66px);
     -moz-transform:translate(-258px, -61px);
   }
-  &-mynews_viewprofile:hover{
+  &-news_viewprof:hover{
     opacity:1;
   }
   /*properties when the image is hovered The Text format to be displayed*/
-  &-mynews_viewprofile_txt1 {
+  &-news_viewprof_txt1 {
     font-size: 24px;
     font-weight:bold;
     color:#fff;
     padding-top:20px;
   }
-  &-mynews_viewprofile_txt2 {
+  &-news_viewprof_txt2 {
     font-size: 24px;
-    color:#fff;
-    line-height:0.4em;
+    color: #fff;
+    line-height: 1em;
   }
+
 }

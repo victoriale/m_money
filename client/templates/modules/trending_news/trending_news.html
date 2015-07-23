@@ -1,70 +1,67 @@
 <!--Author: [Thanush Subramanian Elango]
 Created: [07/15/2015]
-Description: [trending_news]
-Associated Files:[trending_news.less]!-->
+Description: [trnding_news]
+Associated Files:[trnding_news.less]!-->
 
 <template name="trending_news">
-  <div class="mynews_trendnews">
+  <div class="news_trndnews">
     <div class="module-header">
-      <span class="module-header-linenew">
-      </span>
-      <span class="module-header-title">Trending Stories Today
-      </span>
+      <span class="module-header-linenew"></span><span class="module-header-title">trending Stories Today</span>
     </div>
     <!--************Widget Background Image  ************!-->
-    <div class="mynews_trendnews_all-mynews_main_body">
-      <!--*************The Wrapper for the left and right Buttons  ***************!-->
-      <div class="mynews_trendnews_all-mynews_center_wrapper">
+    <div class="news_trndnews-news_main_body">
+      <!--*************The wrpr for the left and right Buttons  ***************!-->
+      <div class="news_trndnews-news_center_wrpr">
         <!--***********Left Button Creation ************!-->
-        <button class="mynews_trendnews_all-mynews_left_button">
-          <div class="mynews_trendnews_all-mynews_icons">
+        <button class="news_trndnews-news_left_button">
+          <div class="news_trndnews-news_icons">
             <i class="fa fa-angle-left"></i>
           </div>
         </button>
         <!--**********right Button Creation ***********!-->
-        <button class="mynews_trendnews_all-mynews_right_button">
-          <div class="mynews_trendnews_all-mynews_icons2">
+        <button class="news_trndnews-news_right_button">
+          <div class="news_trndnews-news_icons2">
             <i class="fa fa-angle-right"></i>
           </div>
         </button>
       </div>
-      <!--************Wrapper for the bottom bar************!-->
-      <div class="mynews_trendnews_all-my_frame_bottom">
-        <!--********Wrapper for the Text at the bottom of the page ***********!-->
-        <div class="mynews_trendnews_all-mynews_textwrapper">
+      <!--************wrpr for the bottom bar************!-->
+      <div class="news_trndnews-my_frame_bottom">
+        <!--********wrpr for the Text at the bottom of the page ***********!-->
+        <div class="news_trndnews-news_textwrpr">
           <!--***********Font Awesome for the Text at the bottom of the page *************!-->
-          <div class="mynews_trendnews_all-mynews_font_icon">
+          <div class="news_trndnews-news_font_icon">
             <i class="fa fa-pencil"></i>
-            <span class="mynews_trendnews_all-mynews_font_text">
-              &nbsp;Written By: Julie Balise at 8:17am, Friday July 17th, 2015
+            <span class="news_trndnews-news_font_text">
+              &nbsp;Written By: {{trnd_writtenby}} at {{trnd_timestamp}}
             </span>
           </div>
           <!--***********Text at the bottom of the page ***********!-->
-          <!--***********Text at the bottom of the page for the trendnews name ***********!-->
-          <div class="mynews_trendnews_all-mynews_text1">Mark Zuckerberg emerges as business person of the year
+          <!--***********Text at the bottom of the page for the trndnews name ***********!-->
+          <div class="news_trndnews-news_text1">{{trnd_name}}
           </div>
         </div>
         <!--********Button at the bottom of the page ***********!-->
         <!--***********View airtcle button***********!-->
-        <button class="mynews_trendnews_all-mynews_button-wrapper">
-          <span class="mynews_trendnews_all-mynews_button-text">
+        <button class="news_trndnews-news_button-wrpr">
+          <span class="news_trndnews-news_button-text">
             View Article
           </span>
           <!--********Share icon at the bottom of the page inside the button ***********!-->
-          <span class="mynews_trendnews_all-mynews_button-text">
+          <span class="news_trndnews-news_button-text">
             &nbsp;<i class="fa fa-share"></i>
           </span>
         </button>
       </div>
       <!--Profile Image at the bottom of the page!-->
-      <button class="mynews_trendnews_all-mynews_circle1">
-        <div class="mynews_trendnews_all-mynews_circle2">
+      <button class="news_trndnews-news_circle1">
+        <div class="news_trndnews-news_circle2">
         </div>
       </button>
       <!--Profile Image Hover at the bottom of the page!-->
-      <div class="mynews_trendnews_all-mynews_viewprofile">
-        <span class="mynews_trendnews_all-mynews_viewprofile_txt1">View</span>
-        <span class="mynews_trendnews_all-mynews_viewprofile_txt2">Profile</span>
+      <div class="news_trndnews-news_viewprof">
+        <span class="news_trndnews-news_viewprof_txt1">View</span>
+        <span class="news_trndnews-news_viewprof_txt2">Profile</span>
       </div>
     </div>
   </div>
