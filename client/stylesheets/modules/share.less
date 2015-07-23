@@ -5,21 +5,16 @@ Description: Share & follow module
 Associated Files: share_logic.js and share.less
 */
 
-/* Imports global variable*/
-@import "../global_vars.less";
+@import "../global_vars.less"; //include important global vars (colors mostly)
+@import "../modules.less";
+
 /* defeined a unique name*/
 .fin_style{
-  height: 246px;
-  width: 680px;
-  background-color: white;
-  margin: 0 0 0 5px;
-
   /*defined the height and width for new_module*/
-  &-new_module
-  {
+  &-new_module{
+    .module;
     height: 246px;
-    width: 680px;
-    background-color: white;
+    border-bottom:none;
   }
   /*defined the height and width for body */
   &-body{
@@ -27,12 +22,13 @@ Associated Files: share_logic.js and share.less
     width: 680px;
   }
   /*defined the height and width for left_side */
-  &-left_side{
-    height: 211px;
-    width: 211px;
+  &-lside{
+    height: 210px;
+    width: 210px;
+    display:inline-block;
   }
   /*leftcircle will create a circle on left side in left_side class*/
-  &-left_circle{
+  &-lcircle{
     height: 180px;
     width: 180px;
     border-radius: 100%;
@@ -43,24 +39,25 @@ Associated Files: share_logic.js and share.less
     float: left;
   }
   /*defined the height and width for right_side */
-  &-right_side{
-    height: 201px;
+  &-rside{
+    height: 145px;
     width: 420px;
-    margin: -180px 30px 0px 0;
+    top:30px;
+    right:35px;
     float: right;
     position: relative;
+    display:inline-flex;
   }
   /*right_data will create a data on right side */
-  &-right_data{
-    width: 680px;
-    font-family: HelveticaNeue;
+  &-rdata{
+    width: 400px;
+    font-family: HN-L;
     color:  #272727;
-    font-size: 18px;/* Approximation due to font substitution */
-    font-weight: 300;
+    font-size: 18px;
     position: absolute;
   }
   /*defined dimensions for facebook block */
-  &-facebook{
+  &-fb{
     border-radius: 5px;
     background-color:  #3b5998;
     width: 200px;
@@ -70,21 +67,19 @@ Associated Files: share_logic.js and share.less
     text-align: center;
   }
   /*defined dimensions for facebook_text */
-  &-facebook_text{
-    font-family: HelveticaNeue;
+  &-fbtext{
+    font-family: HN-B;
     color:  #ffffff;
-    font-size: 12px;/* Approximation due to font substitution */
-    font-weight: 700;
+    font-size: 12px;
     padding: 13px 38px 0px 0;
     position: relative;
     float: right;
   }
   /*defined dimensions for facebook font_awesome*/
-  &-facebook_awesome{
-    font-family: FontAwesome;
+  &-fbicon{
+    font-family: HN;
     color:  #ffffff;
-    font-size: 18px;/* Approximation due to font substitution */
-    font-weight: 400;
+    font-size: 18px;
     padding:8px 0 0 20px;
     position: relative;
     float:left;
@@ -96,11 +91,11 @@ Associated Files: share_logic.js and share.less
     left: 215px;
   }
   /*defined dimensions for twitter_text */
-  &-twitter_text{
+  &-twtext{
     padding: 13px 52px 0px 0;
   }
   /*defined dimensions for twitter_awesome */
-  &-twitter_awesome{
+  &-twicon{
     padding:8px 0 0 20px;
   }
   /*defined dimensions for google block */
@@ -109,11 +104,11 @@ Associated Files: share_logic.js and share.less
     top:87px;
   }
   /*defined dimensions for google_text */
-  &-google_text{
-    padding: 13px 42px 0px 0;
+  &-gtext{
+    padding: 13px 44px 0px 0;
   }
   /*defined dimensions for google font_awesome */
-  &-google_awesome{
+  &-gicon{
     padding:8px 0 0 20px;
   }
   /*defined dimensions for pinterest block */
@@ -123,11 +118,11 @@ Associated Files: share_logic.js and share.less
     left:215px;
   }
   /*defined dimensions for pinterest_text */
-  &-pinterest_text{
-    padding: 13px 38px 0px 0;
+  &-ptext{
+    padding: 13px 40px 0px 0;
   }
   /*defined dimensions for pinterest font_awesome */
-  &-pinterest_awesome{
+  &-picon{
     padding:8px 0 0 20px;
   }
 }
