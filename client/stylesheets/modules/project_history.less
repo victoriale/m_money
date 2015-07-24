@@ -1,15 +1,14 @@
 /*
-  Author: Tanner Storment
-  Created: [07-16-2015]
-  Description: Project History List
-  Associated Files: project_history.html, project_history.js
+Author: Tanner Storment
+Created: [07-16-2015]
+Description: Project History List
+Associated Files: project_history.html, project_history.js
 */
 @import "../global_vars.less"; //include important global vars (colors mostly)
 @import "../modules.less";
-.project_history{
+.proj_hist{
   &-panel{
     // Basic layout of the project history panel
-    text-align: center;
     width:680px;
     height:682px;
     background-color: #fff;
@@ -17,33 +16,37 @@
     float:right;
     border-bottom: 2px solid @blue;
   }
-// layout for content
+
+  //Contains the actual interactive parts of the module
   &-content-panel{
     width:680px;
     height:604px;
     background-color:#fff;
   }
-  &-content-panel-header {
-    width:680px;
-    height:33px;
-    border-bottom:1px solid #b4b4b4;
-  }
-// styles for panel containing sort
-  &-list-sort-by-container {
 
-    /* Inline Style */
-    font-family: HelveticaNeue Arial;
-    color: #000000;
-    font-size: 12px;/* Approximation due to font substitution */
-    font-weight: 300;
-    text-align: left;
+  //Container for the Sort By: text and drop down arrow
+  &-list-sort-box {
+
+    //Font for the method of sorting (Most Recent, etc etc)
+    &-text {
+      font-family: HN;
+      color: #000000;
+      font-size: 12px;/* Approximation due to font substitution */
+      font-weight: 300;
+      text-align: left;
+      &:hover {
+        cursor:pointer;
+      }
+    }
+    //Bolded font for the Sort By: box Text
     &-bold {
-      font-family: HelveticaNeue Arial;
+      font-family: HN;
       color:#000000;
       font-size: 12px;/* Approximation due to font substitution */
       font-weight: 700;
       text-align: left;
     }
+    //Blue font for the FontAwesome drop down arrow
     &-blue {
       font-family: FontAwesome;
       color:
@@ -51,6 +54,10 @@
       font-size: 12px;/* Approximation due to font substitution */
       font-weight: 400;
       text-align: left;
+      //Hovering behaviour for the FontAwesome drop down arrow in the sort by box
+      &:hover {
+        cursor:pointer;
+      }
     }
 
     padding-top:11px;
@@ -58,29 +65,38 @@
     padding-left:10px;
     border-bottom:1px solid #b4b4b4;
   }
-//layout for tiles
-  &-list-grey-tile {
-    background:#f2f2f2;
-    color:#000;
-    width:680px;
-    height:185px;
+
+  //Container for information about the various projects/companies
+  &-list-tile {
+    //Grey version of the list-tile
+    &-grey {
+      position:relative;
+      background:#f2f2f2;
+      color:#000;
+      width:680px;
+      height:185px;
+      border-bottom:1px solid #b4b4b4;
+    }
+    //White version of the list-tile
+    &-white {
+      position:relative;
+      background:#fff;
+      color:#000;
+      width:680px;
+      height:185px;
+      border-bottom:1px solid #b4b4b4;
+    }
   }
-  &-list-white-tile {
-    background:#fff;
-    color:#000;
-    width:680px;
-    height:185px;
-    border-top:1px solid #b4b4b4;
-    border-bottom:0.5px solid #b4b4b4
-  }
-  //layout for footer
+
+  //Very bottom of the module, contains the navigation buttons and the View All button
   &-content-panel-footer {
     background:#fff;
     width:680px;
     height:45px;
-    border-top:1px solid #b4b4b4;
+    //border-top:1px solid #b4b4b4;
     display:block;
-    // styles for icon in footer
+    position:relative;
+    //Font for the navigation arrows at the bottom
     &-icon{
       font-family: FontAwesome;
       color: #000000;
@@ -91,57 +107,69 @@
       transform: scaleY(1.0011);/* width and height properties ommitted due to transform */
     }
   }
-  // styles for company information
-  &-list-tile-information{
+  //Container for the actual company info, such as the name and location
+  &-tile-info{
     padding-top:15px;
-    padding-left:20px;
-    margin-left:155px;
     display:block;
     text-align:left;
-    //Fonts in the tile information blurb
-    // styles for markers,location
-    &-marker{
+    white-space:nowrap;
+    float:right;
+    margin-right:30px;
+    padding-left:30px;
+    width:506px;
+
+    //Fonts in the tile information blurb:
+    //Font for the fontawesome map marker
+    &-mark{
       font-family: FontAwesome;
       color: #000;
       font-size: 10px;/* Approximation due to font substitution */
       font-weight: 400;
       text-align: left;
     }
-    &-location{
-      font-family: HelveticaNeue Arial;
+    //Font for the company's location
+    &-loc{
+      font-family: HN;
       color: #000000;
       font-size: 10px;/* Approximation due to font substitution */
       font-weight: 400;
       text-align: left;
     }
-    //styles for company info
-    &-company-name{
-      font-family: HelveticaNeue Arial;
+    //Font for the company's name
+    &-comp-name{
+      font-family: HN;
       color: #000000;
       font-size: 22px;/* Approximation due to font substitution */
       font-weight: 700;
       line-height: 26px;/* Approximation due to font substitution */
       text-align: left;
     }
-    &-position-name{
-      font-family: HelveticaNeue Arial;
+    //Containers for the worker's position title, start date, end date, and working time
+    &-pos-dets{
+      overflow:hidden;
+      width:506px;
+    }
+    //Name of the worker's position title
+    &-pos-name{
+      font-family: HN-B;
       color: #000000;
       font-size: 14px;/* Approximation due to font substitution */
       font-weight: 700;
       line-height: 25px;/* Approximation due to font substitution */
       text-align: left;
     }
-    &-position-work-date{
-      font-family: HelveticaNeue Arial;
+    //Font for the start and end date of the worker
+    &-pos-work-date{
+      font-family: HN-L;
       color: #000000;
       font-size: 14px;/* Approximation due to font substitution */
       font-weight: 300;
       line-height: 25px;/* Approximation due to font substitution */
       text-align: left;
     }
-    //styles for time worked
-    &-position-time-passed{
-      font-family: HelveticaNeue Arial;
+    //Font for the time the worker was employed at the company
+    &-pos-time{
+      font-family: HN;
       color: #959595;
       font-size: 14px;/* Approximation due to font substitution */
       font-style: italic;
@@ -152,27 +180,34 @@
 
 
   }
-  //profile information
+  //Container for the profile image
   &-profile-info{
     padding-top:15px;
     padding-left:20px;
+    //width:100%;
+    width:125px;
+    height:125px;
     display:block;
     position:absolute;
   }
-  //profile image header
+  //Profile image of the company
   &-profile-image{
     border-radius: 50%;
     border-width: 2px;
     border-color: #cccccc;
     border-style: solid;
     background-color: #ffffff;
-    width: 121px;
-    height: 121px;
+    width: 125px;
+    height: 125px;
     display:block;
-    position:absolute;
+    position:relative;
+    //Hovering behaviour for the big company profile image
+    &:hover {
+      cursor:pointer;
+    }
   }
-  //list of images in tile
-  &-featured-listing-image{
+  //Small images for the company
+  &-featured-image{
     margin-top:12px;
     margin-right:10px;
     border-radius: 50%;
@@ -180,31 +215,43 @@
     border-color: #cccccc;
     border-style: solid;
     background-color: #ffffff;
-    width: 41px;
-    height: 41px;
+    width: 45px;
+    height: 45px;
     float:left;
     display:block;
+    //Hovering behaviour for the small company images
+    &:hover {
+      cursor:pointer;
+    }
   }
-  // view all connections button
-  &-view-all-connections{
+  //Button to allow the user to view all the connections of the company
+  &-va-connections{
     border-radius: 5px;
     background-color: #3098ff;
     width: 181px;
     height: 35px;
     display:block;
-    float:left;
+    float:right;
     margin-top:17px;
-    margin-left:18px;
     border: 2px solid #3098ff;
+    position:relative;
+    text-align:center;
+    line-height:25px;
+    //Hovering behaviour for the View All Connections buttons
+    &:hover {
+      cursor:pointer;
+    }
+    //Font for the view all connections button
     &-text{
-      font-family: HelveticaNeue Arial;
+      font-family: HN;
       color: #ffffff;
       font-size: 14px;/* Approximation due to font substitution */
       font-weight: 400;
       line-height: 18px;/* Approximation due to font substitution */
       text-align: center;
+      vertical-align:sub;
     }
-      // icon in view all connections button
+    //Font for the fontawesome right arrow icon in the view all connections button
     &-icon{
       font-family: FontAwesome;
       color: #ffffff;
@@ -212,37 +259,62 @@
       font-weight: 400;
       line-height: 18px;/* Approximation due to font substitution */
       text-align: center;
+      vertical-align:sub;
+      padding:0px 0px 0px 5px;
     }
   }
-  //navigation icons in footer
+  //Container for the navigation buttons at the bottom of the module
   &-navigation {
     margin-top:12px;
-    margin-left:281px;
     display:block;
+    width:118px;
+    height:25px;
+    margin-left:auto;
+    margin-right:auto;
+    position:relative;
   }
-  // feedback styles
-  &-feedback {
-    margin-top:137px;
+  //Save-Share-Feedback button style
+  &-resp-btns {
+    width:100%;
+    //margin-top:137px;
+    vertical-align:bottom;
+    position:absolute;
+    bottom:0px;
+    margin-bottom:12px;
+    margin-left:15px;
+    padding-right:20px;
     display:block;
     float:left;
+    //Font for the Save-Share-Feedback buttons
     &-text{
-      font-family: HelveticaNeue Arial;
+      font-family: HN;
       color: #666666;
       font-size: 14px;/* Approximation due to font substitution */
       font-weight: 300;
-      text-align: center;
       margin-left:12px;
     }
-    //feedback icon styles
+    //Font for the icons in the save-share-feedback buttons
     &-icon{
       font-family: FontAwesome;
-    color: #666666;
-    font-size: 14px;/* Approximation due to font substitution */
-    font-weight: 400;
-    text-align: center;
+      color: #666666;
+      font-size: 14px;/* Approximation due to font substitution */
+      font-weight: 400;
+    }
+    //Styling for the share button
+    &-share{
+      margin-left:10px;
+    }
+    //Style for the feedback button
+    &-feedback{
+      float:right;
+      margin-right:20px;
+    }
+    //Cause a pointer to appear when hovering over a save-share-feedback button
+    &-btn:hover {
+      cursor:pointer;
     }
   }
-  //numbers in navigation buttons
+  //Selectors at the bottom of the page
   &-page-selector {
     border-radius: 50%;
     border-width: 1px;
@@ -251,24 +323,29 @@
     height: 23px;
     display:block;
     float:left;
-    margin-right:5px;
+    margin-left:4px;
     border-color: #dadada;
-    background: #fff;
+    background-color:#fff;
+    //Hovering behaviour for the page selectors at the bottom
+    &:hover{
+      cursor:pointer;
+    }
+    //Font for the numbers inside the selectors at the bottom of the page
     &-font {
       text-align:center;
-      font-family: HelveticaNeue Arial;
+      font-family: HN;
       color: #000000;
       font-size: 13.98px;/* Approximation due to font substitution */
       font-weight: 300;
       line-height: 21px;/* Approximation due to font substitution */
       transform: scaleY(1.0011);/* width and height properties ommitted due to transform */
     }
-    //selcted numbers
+    //Styling for the page selector that is currently selected
     &-selected {
       background-color: #3098ff;
       border-color: #3098ff;
       &-font {
-        font-family: HelveticaNeue Arial;
+        font-family: HN;
         text-align:center;
         color:  #ffffff;
         font-size: 13.98px;/* Approximation due to font substitution */
@@ -277,45 +354,64 @@
         transform: scaleY(1.0011);/* width and height properties ommitted due to transform */
       }
     }
-    &:hover {
-        border-color:#3098ff;
-        background-color:#fff;
-        color:#000;
+    //Left facing arrow for the navigation buttons at the bottom
+    &-left-arrow {
+      float:left;
+      margin-right:6px;
+      cursor:pointer;
     }
-    &:active {
-      color:#dadada;
-      background-color:#000;
+    //Right facing arrow for the navigation buttons at the bottom
+    &-right-arrow {
+      float: left;
+      margin-left:10px;
+      cursor:pointer;
+    }
+    //Hover behaviour for the navigation buttons at the bottom of the screen
+    &:hover {
+      border-color:#3098ff;
     }
   }
-//view all button
-  &-view-all {
+
+  //Styling for the View All button at the bottom of the module
+  &-va {
     border-radius: 5px;
     border-width: 1px;
     border-color: #3098ff;
     color:#3098ff;
     border-style: solid;
     background-color:#fff;
-    width: 113px;
+    width: 115px;
     height: 23px;
-    display:block;
     float:right;
     margin-right:15px;
+    position:relative;
+    text-align:center;
+    //line-height:21px;
+    //Hovering behaviour for the View All button at the bottom
     &:hover {
-      background-color:#3098ff;
-      color:#fff;
+      cursor:pointer;
     }
-    &:active {
-      background-color: #000;
-      color:#dadada;
-    }
+    //Font for the view all button at the bottom of the module
     &-font{
-      font-family: HelveticaNeue Arail;
+      font-family: HN Arail;
       color: #3098ff;
-      font-size: 11.99px;/* Approximation due to font substitution */
       font-weight: 400;
-      line-height: 18px;/* Approximation due to font substitution */
+      line-height: 21px;/* Approximation due to font substitution */
       text-align: center;
-      transform: scaleY(1.0011);/* width and height properties ommitted due to transform */
+      //transform: scaleY(1.0011);/* width and height properties ommitted due to transform */
+    }
+
+    &-text{
+      font-size: 12px;
+      float: left;
+      padding-top: 3px;
+      padding-left: 14px;
+    }
+
+    &-pos{
+      float: left;
+      padding-left: 7px;
+      transform: translateY(-1px);
     }
   }
 }

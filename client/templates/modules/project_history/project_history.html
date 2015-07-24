@@ -1,149 +1,94 @@
+<!--
+Author: Tanner Storment
+Created: [07-16-2015]
+Description: Project History List
+Associated Files: project_history.html, project_history.js
+-->
 
 <template name="project_history">
   <div class="module-4">
-
-      <div class="module-header">
-        <span class="module-header-line"></span>
-        <!--widget title-->
-        <span class="module-header-title">Top Lists That Feature Mark Zuckerberg</span>
-      </div>
-
+    <div class="module-header">
+      <span class="module-header-line"></span>
+      <!--widget title-->
+      <span class="module-header-title">Top Lists That Feature Mark Zuckerberg</span>
+    </div>
     <div class="module-wrapper">
       <!--Begin Panel-->
-        <div class="project_history-panel">
-          <div class="project_history-content-panel">
-            <!--sort container-->
-            <div class="project_history-list-sort-by-container">
-              <span class="project_history-list-sort-by-container-bold">Sort By:</span> Most Recent <i class="fa fa-angle-down project_history-list-sort-by-container-blue" style="padding-left:5px;"></i>
-            </div>
-              <!--individual tile-->
-            <div class="project_history-list-grey-tile">
-              <!--profile information-->
-              <span class="project_history-profile-info">
-                <!--profile image-->
-                <span class="project_history-profile-image"></span>
-                  <!--save , share, feedback icons-->
-                <span class="project_history-feedback">
-                  <i class="fa project_history-feedback-icon fa-heart"></i><span class="project_history-feedback-text">Save</span>
-                  <i style="margin-left:10px" class="fa project_history-feedback-icon fa-share-alt"></i><span class="project_history-feedback-text">Share</span>
-                  <i style="margin-left:410px" class="fa project_history-feedback-icon fa-flag"></i><span class="project_history-feedback-text">Feedback</span>
-                </span>
-              </span>
-                <!--profile information-->
-              <span class="project_history-list-tile-information">
-                <div>
-                  <i class="fa project_history-list-tile-information-marker fa-map-marker"></i>
-                  <span class="project_history-list-tile-information-location">Palo Alto, CA</span>
-                </div>
-                  <!--company information-->
-                <div class="project_history-list-tile-information-company-name">Internet.org</div>
-                <div><span class="project_history-list-tile-information-position-name">Founder </span><span class="project_history-list-tile-information-work-date">since August 2013 - present</span><span class="project_history-list-tile-information-position-time-passed">1 year & 9 months</span></div>
-                <!--list of images-->
-                <span class="project_history-featured-listing-image"></span>
-                <span class="project_history-featured-listing-image"></span>
-                <span class="project_history-featured-listing-image"></span>
-                <span class="project_history-featured-listing-image"></span>
-                <span class="project_history-featured-listing-image"></span>
-                  <!--connections button-->
-                <button class="project_history-view-all-connections">
-                  <span class="project_history-view-all-connections-text">View All Connections</span>
-                  <i style="margin-left:6px;" class="fa project_history-view-all-connections-icon fa-angle-right"></i>
-                </button>
-              </span>
-            </div>
-              <!--individual tile-->
-            <div class="project_history-list-white-tile">
-                <!--profile information-->
-              <span class="project_history-profile-info">
-                  <!--profile image-->
-                <span class="project_history-profile-image"></span>
-                <!--save , share, feedback icons-->
-                <span class="project_history-feedback">
-                  <i class="fa project_history-feedback-icon fa-heart"></i><span class="project_history-feedback-text">Save</span>
-                  <i style="margin-left:10px" class="fa project_history-feedback-icon fa-share-alt"></i><span class="project_history-feedback-text">Share</span>
-                  <i style="margin-left:410px" class="fa project_history-feedback-icon fa-flag"></i><span class="project_history-feedback-text">Feedback</span>
-                </span>
-              </span>
-                <!--profile information-->
-              <span class="project_history-list-tile-information">
-                <div>
-                  <i class="fa project_history-list-tile-information-marker fa-map-marker"></i>
-                  <span class="project_history-list-tile-information-location">Menlo Park, PA</span>
-                </div>
-                    <!--company information-->
-                <div class="project_history-list-tile-information-company-name">Facebook, Inc</div>
-                <div>
-                  <span class="project_history-list-tile-information-position-name">Chief Executive Officer </span>
-                  <span class="project_history-list-tile-information-work-date">since February 2004 - present</span>
-                  <span class="project_history-list-tile-information-position-time-passed">12 years & 1 month</span>
-                </div>
-                    <!--list of images-->
-                <span class="project_history-featured-listing-image"></span>
-                <span class="project_history-featured-listing-image"></span>
-                <span class="project_history-featured-listing-image"></span>
-                <span class="project_history-featured-listing-image"></span>
-                <span class="project_history-featured-listing-image"></span>
-                <button class="project_history-view-all-connections">
-                  <!--connections button-->
-                  <span class="project_history-view-all-connections-text">View All Connections</span>
-                  <i style="margin-left:6px;" class="fa project_history-view-all-connections-icon fa-angle-right"></i>
-                </button>
-              </span>
-            </div>
-              <!--individual tile-->
-            <div class="project_history-list-grey-tile">
-                <!--profile information-->
-              <span class="project_history-profile-info">
-                <!--profile image-->
-                <span class="project_history-profile-image"></span>
-                <!--save , share, feedback icons-->
-                <span class="project_history-feedback">
-                  <i class="fa project_history-feedback-icon fa-heart"></i><span class="project_history-feedback-text">Save</span>
-                  <i style="margin-left:10px" class="fa project_history-feedback-icon fa-share-alt"></i><span class="project_history-feedback-text">Share</span>
-                  <i style="margin-left:410px" class="fa project_history-feedback-icon fa-flag"></i><span class="project_history-feedback-text">Feedback</span>
-                </span>
-              </span>
-                    <!--profile information-->
-              <span class="project_history-list-tile-information">
-                <div>
-                  <i class="fa project_history-list-tile-information-marker fa-map-marker"></i>
-                  <span class="project_history-list-tile-information-location">Palo Alto, CA</span>
-                </div>
-                  <!--company information-->
-                <div class="project_history-list-tile-information-company-name">Wirehog</div>
-                <div><span class="project_history-list-tile-information-position-name">Co-founder </span>
-                  <span class="project_history-list-tile-information-work-date">since October 2004 - 2006</span>
-                  <span class="project_history-list-tile-information-position-time-passed">1 year & 2 months</span>
-                </div>
-                  <!--list of images-->
-                <span class="project_history-featured-listing-image"></span>
-                <span class="project_history-featured-listing-image"></span>
-                <span class="project_history-featured-listing-image"></span>
-                <span class="project_history-featured-listing-image"></span>
-                <span class="project_history-featured-listing-image"></span>
-                <!--connections button-->
-                <button class="project_history-view-all-connections">
-                  <span class="project_history-view-all-connections-text">View All Connections</span>
-                  <i style="margin-left:6px;" class="fa project_history-view-all-connections-icon fa-angle-right"></i>
-                </button>
-              </span>
-            </div>
-            <!--footer-->
-            <div class="project_history-content-panel-footer">
-              <span class="project_history-navigation">
-                <i style="float:left" class="fa fa-angle-left project_history-content-panel-footer-icon"></i>
-                <!--numbered navigation buttons-->
-                <button style="margin-left:10px;" class="project_history-page-selector project_history-page-selector-selected project_history-page-selector-selected-font">1</button>
-                <button class="project_history-page-selector project_history-page-selector-font">2</button>
-                <button style="margin-right:10px;" class="project_history-page-selector project_history-page-selector-font">3</button>
-                <i style="float:left" class="fa fa-angle-right project_history-content-panel-footer-icon"></i>
-                <!--viewall button-->
-                <button class="project_history-view-all project_history-view-all-font">VIEW ALL <img style="padding-bottom:4px" src="infinite-icon.png"></button>
-              </span>
-            </div>
+      <div class="proj_hist-panel">
+        <div class="proj_hist-content-panel">
+          <div class="proj_hist-list-sort-box">
+            <span class="proj_hist-list-sort-box-bold">Sort By:</span>
+            <span class="proj_hist-list-sort-box-text">
+              Most Recent
+              <i class="fa fa-angle-down proj_hist-list-sort-box-blue"></i>
+            </span>
           </div>
+          {{#each getProjectList}}
+          <div class="proj_hist-list-tile-{{getBackgroundStyle}}">
+            <!--Project Picture & Response Buttons-->
+            <span class="proj_hist-profile-info">
+              <span class="proj_hist-profile-image"></span>
+            </span>
+
+            <span class="proj_hist-resp-btns">
+              <span class="proj_hist-resp-btns-btn">
+                <i class="fa proj_hist-resp-btns-icon fa-heart"></i>
+                <span class="proj_hist-resp-btns-text">Save</span>
+              </span>
+              <span class="proj_hist-resp-btns-share proj_hist-resp-btns-btn">
+                <i class="fa proj_hist-resp-btns-icon fa-share-alt"></i>
+                <span class="proj_hist-resp-btns-text">Share</span>
+              </span>
+              <span class="proj_hist-resp-btns-feedback proj_hist-resp-btns-btn">
+                <i class="fa proj_hist-resp-btns-icon fa-flag"></i>
+                <span class="proj_hist-resp-btns-text">Feedback</span>
+              </span>
+            </span>
+            <!--/Project Picture & Response Buttons-->
+
+            <!--Project Information-->
+            <span class="proj_hist-tile-info">
+              <div>
+                <i class="fa proj_hist-tile-info-mark fa-map-marker"></i>
+                <span class="proj_hist-tile-info-loc">{{project_location}}</span>
+              </div>
+              <div class="proj_hist-tile-info-comp-name">{{project_name}}</div>
+              <div class="proj_hist-tile-info-pos-dets">
+                <span class="proj_hist-tile-info-pos-name">{{project_position_name}}</span>
+                <span class="proj_hist-tile-info-pos-work-date"> since {{project_start_date}} - {{project_end_date}}</span>
+                <span class="proj_hist-tile-info-pos-time">{{project_time_elapsed}}</span>
+              </div>
+              <span class="proj_hist-featured-image"></span>
+              <span class="proj_hist-featured-image"></span>
+              <span class="proj_hist-featured-image"></span>
+              <span class="proj_hist-featured-image"></span>
+              <span class="proj_hist-featured-image"></span>
+              <div class="proj_hist-va-connections">
+                <span class="proj_hist-va-connections-text">View All Connections</span>
+                <i class="fa proj_hist-va-connections-icon fa-angle-right"></i>
+              </div>
+            </span>
+            <!--/Project Information-->
+          </div>
+          {{/each}}
+          <!--Project Footer-->
+          <div class="proj_hist-content-panel-footer">
+            <div class="proj_hist-va project_hiview-allory-view-all-font">
+              <div class="proj_hist-va-text">VIEW ALL</div>
+              <div class="proj_hist-va-pos"><img src="infinite-icon.png"></div>
+            </div>
+            <span class="proj_hist-navigation">
+              <i class="fa fa-angle-left proj_hist-content-panel-footer-icon proj_hist-page-selector-left-arrow"></i>
+              <div class="proj_hist-page-selector proj_hist-page-selector-selected proj_hist-page-selector-selected-font">1</div>
+              <div class="proj_hist-page-selector proj_hist-page-selector-font">2</div>
+              <div class="proj_hist-page-selector proj_hist-page-selector-font">3</div>
+              <i class="fa fa-angle-right proj_hist-content-panel-footer-icon proj_hist-page-selector-right-arrow"></i>
+            </span>
+          </div>
+          <!--/Project footer-->
         </div>
-        <!--End Panel-->
+      </div>
+      <!--End Panel-->
     </div>
   </div>
 </template>
