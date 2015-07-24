@@ -1,0 +1,114 @@
+<!-- Author:Ramakrishna Vaibhav kasibhatla [Ram]
+Created: [07/21/2015]
+Description: [latest news- finance]
+Associated Files: [latest_news.less latest_news.js ]-->
+<!--starting of the html file-->
+<template name="latest_news">
+  <!-- the module considered: "4"-->
+  <div class="module-4"><div class="module-header"><span class="module-header-line"></span><span class="module-header-title">FINANCIAL NEWS: LATEST & TRENDING</span></div>
+  <!--wrapping up of the module -->
+  <div class="module-wrapper">
+    <!--the class for header -->
+    <div class="lstnws-header">
+      <!--the class for the image beside header -->
+      <div class=" lstnws-view-image1">
+      </div>
+      <!-- the head class-->
+      <div class="lstnws-headcls">
+        <!--the class for updates -->
+        <div class="lstnws-date">
+          LAST UPDATED: 05/15/2015 . 12:36 PM EST
+        </div><br>
+        <!--the class for profile location -->
+        <div class="lstnws-profileloc">
+          <i class="fa fa-map-marker"></i> &nbsp;United States</div>
+          <!--the class for text heading -->
+          <div class="lstnws-profileheading">
+            THE LATEST LOCAL NEWS ABOUT FACEBOOK, INC.
+          </div><br>
+          <!--the class for text heading 2 -->
+          <div class="lstnws-profileheading2">
+            Covering All News and Media around Facebook, Inc.
+          </div>
+        </div>
+      </div>
+      <!-- the main class -->
+      <div class="lstnws-main">
+        <!--the class for buttons -->
+        <div class="lstnws-buttons">
+          <!--the various button classes that contains the properties-->
+          <span class="lstnws-bts">BUSINESS FINANCE</span>
+          <span class="lstnws-bts">LEISURE</span>
+          <span class="lstnws-bts">NASDAQ</span>
+          <span class="lstnws-miniimage">+5</span>
+        </div>
+        <!--the class for text heading -->
+        <div class="lstnws-textheading">Technology Stock Roundup: AAPL, FB Win...</div>
+        <!--the class for text content -->
+        <div class="lstnws-textheading lstnws-textcontent">Facebook has been awarded a patent for "ifentifying experts and influencers in a social network." Simply put, the company has patented a way t...</div>
+        <!--the class for viewing the image -->
+        <div class=" lstnws-view-imagepic"></div>
+        <!--the class for detail content -->
+        <div class="lstnws-textheading lstnws-detailcontent"><i class="fa fa-newspaper-o"></i> Article Published By: <b><i>CNN</i></b> > Written By: <b><i>Alyssa Curran</i></b> > on 01/24/2015 at 8:30am </div>
+      </div>
+      <!--article1-->
+      <!--the main class for the article -->
+      <div class="lstnws-room">
+        <!--to run the loop of classes -->
+        {{#each items}}
+        <div class="lstnws-article1">
+          <!--the image class for the article -->
+          <div class=" lstnws-sub-images"></div>
+          <!--the button class for the article -->
+          <!--the various button classes that contains the properties-->
+          <div class="lstnws-buttons1">
+            <span class="lstnws-bts lstnws-bts1">BUSSINESS FINANCE</span>
+            <span class="lstnws-bts lstnws-bts1">PHARMACEUTICAL</span>
+            <span class="lstnws-miniimage lstnws-miniimage2">{{num}}</span>
+          </div>
+          <div class="lstnws-cmpl1">
+            <!--the class for text heading -->
+            <div class="lstnws-textheading1">{{heading}}</div>
+            <!--the class for text content -->
+            <div class="lstnws-textheading1 lstnws-textcontent1">{{description}}</div>
+            <!--the class for the text details-->
+            <div class="lstnws-textheading1 lstnws-detailcontent1"><i class="fa {{fontawesome}}"></i> {{loc}}</div>
+          </div>
+        </div>
+        {{/each}} <!-- end of loop-->
+      </div>
+      <!-- the main class for the article-->
+      <div class="lstnws-room2">
+        {{#each item2}}
+        <div class="lstnws-article2">
+          <!--the image class for the article -->
+          <div class=" lstnws-sub-images"></div>
+          <!--the various button classes that contains the properties-->
+          <div class="lstnws-buttons1">
+            <span class="lstnws-bts lstnws-bts1">BUSSINESS FINANCE</span>
+            <span class="lstnws-bts lstnws-bts1">SOFTWARE</span>
+            <span class="lstnws-miniimage lstnws-miniimage3">{{num}}</span>
+          </div>
+          <div class="lstnws-cmpl1">
+            <!--the class for text heading -->
+            <div class="lstnws-textheading1 lstnws-textheading2">{{heading}}</div>
+            <!--the class for text content -->
+            <div class="lstnws-textheading1 lstnws-textcontent2">{{description}}</div>
+            <!--the class for the text details-->
+            <div class="lstnws-textheading1 lstnws-detailcontent2"><i class="fa {{fontawesome}}"></i> {{loc}}</div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      <!-- module footer-->
+      <div class="module-footer">
+        <!-- can be removed if not in template -->
+        <button class="module-footer-button">
+          <span class="module-footer-button-text">LOAD MORE NEWS</span>
+          <span class="module-footer-button-ellipse"><i class="fa fa-mail-forward"></i></span>
+        </button>
+        <!-- END -->
+      </div>
+    </div>
+  </div>
+</template>
