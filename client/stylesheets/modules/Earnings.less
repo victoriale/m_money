@@ -1,4 +1,5 @@
 
+
 /*
 Author:Naveen
 Created: [07/17/2015]
@@ -9,9 +10,9 @@ Associated Files: [Earnings.html, Earnings.less file for the module]
 
 .earning_body
 {  /* intializing the total height and widht of the module body */
-    height: 600px;
-    width: 100%;
-    background: white none repeat scroll 0 0;
+  height: 600px;
+  width: 100%;
+  background: white none repeat scroll 0 0;
 
   /* partioned the module in to leftcolumn and rightcolumn */
 
@@ -35,195 +36,211 @@ Associated Files: [Earnings.html, Earnings.less file for the module]
   }
   &-reddedtext
   {/* specification's for red-coloured button in the tile  */
-    border-radius: 50px;
-    background: red;
-    padding-top: 2px;
-    width: 45px;
-    height: 25px;
-    text-align: center;
-    margin-left: 10px;
-    transform: translate(-79px, -33px);
-    position: absolute;
-    text-size:2px;
+  border-radius: 50px;
+  padding-top: 2px;
+  background-color: #ca1010;
+  width: 45px;
+  height: 25px;
+  text-align: center;
+  margin-left: 10px;
+  transform: translate(-79px, -33px);
+  position: absolute;
+  text-size:2px;
 }
 &-redbutton
 {/* specification's for red-coloured text */
-    text-align: center;
-    font-weight: lighter;
-    position: relative;
-    color: #fff;
+text-align: center;
+position: relative;
+color: #fff;
+-ms-transform:translate(98px,9px);
+-moz-transform:translate(1px,5px);
+-webkit-transform:translate(-75px,-25px);
+-khtml-transform:translate(12px,-25px);
+
 }
+
 &-header
 { /* specification's for top grey portion with given spec's */
-    width:452px;
-    height:41px;
-    background-color:#f2f2f2;
-    margin: 0 0 0 -15px;
-    font-size: 20px;
-    border-bottom: 2px solid #cccccc;
+width:452px;
+height:41px;
+background-color:#f2f2f2;
+margin: 0 0 0 -15px;
+font-size: 20px;
+border-bottom: 2px solid #cccccc;
 }
 
 &-headerinside
 { /* specification's for text inside the header  */
-    margin-left:9px;
-    font-size:12pt;
-    font-weight:bold;
-    color:#0398ff;
-    padding: 8px 0 0 6px;
-    padding-bottom:13px;
+margin-left:9px;
+font-size:12pt;
+color:#0398ff;
+padding: 8px 0 0 6px;
+padding-bottom:13px;
 }
 &-headerinsidetext
 {/* specification's for text inside the header  */
-    color:#000000;
-    text-align: left;
-    text-transform:uppercase;
-    transform: translate(17px,-22px);
-    -khtml-transform: translate(17px,-22px);
+color:#000000;
+text-align: left;
+text-transform:uppercase;
+font-family: HN-B;
+transform: translate(17px,-22px);
+-khtml-transform: translate(17px,-22px);
+-webkit-transform: translate(17px,-22px);
 }
 
 &-content_rectangle
 {
- /* specification's for content date, text and circle and text  */
-    width:452px;
-    height: 66px;
-    background-color: #fff;
-    display: block;
-    border-bottom: 1px solid #d1d0d0;
-    border-left:5px solid #dadada;
-    margin:0 0 0 -16px;
+  /* specification's for content date, text and circle and text  */
+  width:452px;
+  height: 66px;
+  background-color: #fff;
+  //display: block;
+  border-bottom: 1px solid #d1d0d0;
+  border-left:5px solid #dadada;
+  margin:0 0 0 -16px;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 &-content_rectangle:hover
 {
-    border-left:5px solid #3098FF;
+  border-left:5px solid #3098FF;
 }
 
 &-content_rectangle:hover &-neib_name
 {
-    color:#3098FF;
+  color:#3098FF;
 }
 
 &-content_rectangle:hover &-listing_name
 {
-    color:#3098FF;
+  color:#3098FF;
 }
 
 &-content_rectangle:hover &-available_name
 {
-    color:#3098FF;
+  color:#3098FF;
 }
 
 &-rect_boxtext
 { /* outer class for text(i.e, company name and newlisting and available ) bounding must be in same margin */
-    width:250px;
-    height: 65px;
-    background-color: #fff;
-    display: block;
-    margin:0 26px 0 165px;
-    text-align: left;
+  width:250px;
+  height: 65px;
+  background-color: #fff;
+  display: block;
+  margin:0 26px 0 165px;
+  text-align: left;
 }
 
 &-month_text
 { /* specifications for the month */
-    height: 70px;
-    width: 56px;
-    float: left;
-    font-size: 12px;
-    font-weight: normal;
-    padding: 12px;
-    text-align: left;
-    color: #000;
-    text-transform: uppercase;
-    margin: -5px 0 0 20px;
+  height: 70px;
+  width: 56px;
+  float: left;
+  font-size: 11.96px;
+  font-family: HN;
+  padding: 12px;
+  text-align: left;
+  color: #666666;
+  text-transform: uppercase;
+  margin: -5px 0 0 20px;
 }
 
 &-date_text
 { /* specifications for the date */
-    font-size: 38px;
-    font-weight: bold;
-    color: #000;
-    display: block;
-    margin: -10px 0 0 -10px;
+  font-size: 37.86px;
+  color: #000;
+  font-family: HN-B;
+  display: block;
+  margin: -10px 0 0 -10px;
 }
-
 &-small_circle
 { /* specifications for the small circle */
-    height: 50px;
-    width: 50px;
-    padding-left: 25px;
-    padding-right: 25px;
-    border: 1px solid #d1d0d0;
-    border-radius: 50%;
-    -khtml-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    position: relative;
-    margin: -60px 25px 0 55px;
+  height: 50px;
+  width: 50px;
+  padding-left: 25px;
+  padding-right: 25px;
+  border: 1px solid #d1d0d0;
+  border-radius: 50%;
+  -khtml-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  position: relative;
+  margin: -60px 25px 0 55px;
 }
-&-height
-{
-    transform:translate(0px,-20px);
-}
+
 &-neib_name
 { /* specs for the neibour name  */
-    font-size: 18px;
-    color:#000;
-    font-weight:bold;
-    padding:10px 0 0 0;
+  font-size: 18px;
+  color:#000;
+  padding:10px 0 0 0;
+  font-family: HN-B;
 }
 &-listing_name
 {  /*specs for the listingname */
-    font-size: 14px;
-    color: #505050;
-    font-weight: normal;
-    margin:-7px 25px 0 0;
+  font-size: 17.94px;
+  color: #505050;
+  float:left;
+  font-family: HN;
 }
 &-available_name
 { /* specs for the availble */
-    font-size: 14px;
-    color: #505050;
-    font-weight: bold;
-    display:inline-block;
+  font-size: 17.94px;
+  color: #505050;
+  font-family: HN;
 }
 &-home_footer
 { /* this class is for the outter alignment to the module fotter(which is global) for my module */
-    height:36px;
-    width:454px;
-    position:relative;
-    margin:-50px 0 0 15px;
-    border-bottom:2px solid #3098ff;
-  }
-
-
+  height:36px;
+  width:454px;
+  position:relative;
+  margin:-50px 0 0 16px;
+  border-bottom:2px solid #3098ff;
+}
+&-bottomline /* this class is to hide the border bottom */
+{
+  border-bottom:none !important;
+}
 }
 .home_images1
 {/*gives circular image inside the circle with location given in "src" */
-    background-size:cover;
-    -moz-background-size:cover;
-    -moz-background-position:center center!important;
-    background-position:center center!important;
-    margin:-2px 0 0 -26px;
-    width:51px;
-    height:51px;//59px;
-    border-radius:50%;
-    text-decoration:none;
+background-size:cover;
+-moz-background-size:cover;
+-moz-background-position:center center!important;
+background-position:center center!important;
+margin:-2px 0 0 -26px;
+width:51px;
+height:51px;//59px;
+border-radius:50%;
+text-decoration:none;
 }
-.home_images2{/*gives circular image inside the circle with location given in "src" */
-  .home_images1;
+.home_images2
+{/*gives circular image inside the circle with location given in "src" */
+.home_images1;
 }
-.home_images3{/*gives circular image inside the circle with location given in "src" */
-  .home_images1;
+.home_images3
+{/*gives circular image inside the circle with location given in "src" */
+.home_images1;
 }
-&-home_images4{/*gives circular image inside the circle with location given in "src" */
-  .home_images1;
+&-home_images4
+{/*gives circular image inside the circle with location given in "src" */
+.home_images1;
 }
-.home_images5{/*gives circular image inside the circle with location given in "src" */
-  .home_images1;
+.home_images5
+{/*gives circular image inside the circle with location given in "src" */
+.home_images1;
 }
-.home_images6{/*gives circular image inside the circle with location given in "src" */
-  .home_images1;
+.home_images6
+{/*gives circular image inside the circle with location given in "src" */
+.home_images1;
 }
-.home_images7{/*gives circular image inside the circle with location given in "src" */
-  .home_images1;
+.home_images7
+{/*gives circular image inside the circle with location given in "src" */
+.home_images1;
 }
-.home_images8{/*gives circular image inside the circle with location given in "src" */
-  .home_images1;
+.home_images8
+{/*gives circular image inside the circle with location given in "src" */
+.home_images1;
+}
+.earnings-displaynone
+{ /* this layout is specified to hide the red-button */
+  display: none;
 }
