@@ -1,0 +1,22 @@
+<!--
+Author: Deepika Priyanka V
+Created: 07/21/2015
+Description: Frequently asked questions for finance module
+Associated Files: faqs_finance.less & faqs_finance.js
+-->
+<template name="faqs_finance">
+  <div class="faqs_module-layout"> <!--layout sizing and header imported from modules.less -->
+    <div class="module-header">
+      <span class="module-header-line"></span>
+      <span class="module-header-title">FREQUENTLY ASKED QUESTIONS</span>
+    </div>
+    {{#each getquestionbox}}          <!-- loops through for all containers -->
+    <div class="faqs_module-faqtile-{{style}}"> <!-- two different containers with different background colors -->
+      <span class="faqs_module-plusicon" >
+        <i class="fa fa-plus-circle"></i></span>  <!-- displays plus icon and text for question -->
+        <span class="faqs_module-faqtext">{{ques}}</span>
+        <div class="faqs_module-subtext">{{ans}} </div>         <!-- displays the answer for question -->
+      </div>
+      {{/ each}}
+    </div>
+  </template>

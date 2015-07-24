@@ -1,0 +1,58 @@
+/*
+Author: Deepika Priyanka V
+Created: 07/21/2015
+Description: Frequently asked questions for finance module
+Associated Files: faqs_finance.html & faqs_finance.js
+*/
+@import "../global_vars.less";      // Importing less file for basic attributes and layouts
+@import "../modules.less";
+
+.faqs_module{
+
+  &-layout{                  // module specification
+    .module;
+    height: 351px;
+    border-bottom: none;
+    overflow: hidden;
+  }
+
+  &-faqtile{                // class having 2 subclases for 2 different tiles with different background
+    &-violet{
+      width: 100%;
+      background-color:  #f4f4f4;
+    }
+    &-white{
+      width: 100%;
+      background-color: #ffffff;
+    }
+  }
+
+  &-plusicon{               // styling for plus icon
+    width: 20px;
+    height: 20px;
+    font-size: 22px;
+    font-weight: 400;
+    margin-left: 30px;
+    padding-right: 10px;
+    cursor: pointer;
+  }
+  &-faqtext{                // styling for each question text
+    font-family: HN-L;
+    color:  #000000;
+    font-size: 18px;
+    line-height: 62px;
+    overflow: hidden;
+  }
+  &-subtext{            // styling for each answer text
+    position: relative;
+    width: 549px;
+    font-family: HN-L;
+    overflow: hidden;
+    padding-bottom: 10px;
+    font-size: 16px;
+    color: #272727;
+    left: 64px;
+    display:none;
+  }
+
+}
