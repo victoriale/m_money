@@ -1,0 +1,214 @@
+/*
+Author: jyothyswaroop
+Created: 07/20/2015
+Description: US securities and exchange commision documents
+Associated Files: sec_finance_logic.js and sec_finance.html
+*/
+
+/* Imports global variable*/
+@import "../global_vars.less";
+/* defeined a unique name*/
+.sec_style{
+  .sec_style-new_module{
+    margin: 0 0 0 5px;
+  }
+  /*defined the height and width for new_module*/
+  &-new_module
+  {
+    height: 590px;
+    width: 680px;
+    background-color: white;
+  }
+  /*defined the height and width of the fillbox with white background */
+  &-fillbox_white{
+    background-color:#ffffff;
+    width: 680px;
+    height: 109px;
+    border: 1px solid #dadada;
+  }
+  /*defined the height and width of the fillbox with white background */
+  &-fillbox_grey{
+    background-color:#f2f2f2;
+    width: 680px;
+    height: 109px;
+    border: 1px solid #dadada;
+  }
+  /*Gave the dimensions for the circle and data and date*/
+  &-left_box{
+    width: 260px;
+    height: 109px;
+    float: left;
+    }
+  /*circle dimensions*/
+  &-circle_dim{
+    border-radius: 50%;
+    border-width: 2px;
+    border-color: #cccccc;
+    border-style: solid;
+    background-color: #ffffff;
+    width: 75px;
+    height: 75px;
+    top: 17px;
+    left: 12px;
+    position: relative;
+  }
+  &-circle_dim:hover{
+    color:white;
+    padding:1em;
+    background-color:#3098ff;
+    opacity:.5;
+  }
+  /*dimesnions for the data(location and name)*/
+  &-data_dim{
+    width: 180px;
+    height: 70px;
+    overflow: hidden;
+    line-height: 25px;
+    position: relative;
+    left: 98px;
+    float: left;
+    top: -54px;
+  }
+  /*dimensions for the font*/
+  &-font_dim{
+   font-family: HN;
+    color:#000000;
+    font-size: 10px;
+    text-align: left;
+    overflow:hidden;
+  }
+  /*dimensions for the loacations like california etc */
+  // &-loc_data{
+  //   font-family: 'Myriad Pro';
+  // }
+  // /*dimesnions for the share_name like nasqad etc */
+  // &-share_data{
+  //   font-family: HelveticaNeue;
+  // }
+  /*dimensions for the company name  */
+  &-comp_data{
+    font-family: HN-B;
+    font-size: 18px;
+    line-height: 14px;
+    }
+  /*dimensions for the cik */
+  &-cik_data{
+    font-family: HelveticaNeue;
+    font-family: HN;
+    font-size: 12px;
+  }
+  /* dimensions for the number */
+  &-numb_data{
+    font-family: HN-B;
+  }
+  /* dimensions for the mid_box for date and cirlce*/
+  &-mid_box{
+    width: 160px;
+    height: 45px;
+    position: relative;
+    top: 37px;
+    left: 44px;
+    float: left;
+  }
+  /*dimensions for the blue_circle */
+  &-blu_circ{
+    border-radius: 50%;
+    background-color:#3098ff;
+    width: 35px;
+    height: 35px;
+  }
+  /*dimesnions for the icon_font */
+  &-icon_font{
+    font-family: HN;
+    color:#ffffff;
+    font-size: 18px;/* Approximation due to font substitution */
+    text-align: left;
+    padding: 5px 0px 0px 9px;
+  }
+  /*dimensions for the data that is present in the middle by specifying the height and width  */
+  &-middata_dim{
+    width: 104px;
+    height: 45px;
+    overflow:hidden;
+    position: relative;
+    float:left;
+    top: -34px;
+    left: 45px;
+  }
+  /*dimesions of the data for the middle data with given specifications */
+  &-filled{
+    font-family: HN;
+    color:#000000;
+    font-size: 14px;/* Approximation due to font substitution */
+    line-height: 0px;/* Approximation due to font substitution */
+    text-align: left;
+  }
+  /*dimensions of the date for the middle box */
+  &-date{
+    font-family: HN-B;
+    color:#000000;
+    font-size: 20px;/* Approximation due to font substitution */
+    line-height: 22px;/* Approximation due to font substitution */
+    text-align: left;
+    overflow:hidden;
+  }
+  /*gradient effect of the line present between mid_box to right_box */
+  &-line{
+    height: 72px;
+    float: right;
+    position: relative;
+    bottom: 50px;
+    left: 15px;
+    display: block;
+    border: none;
+    width: 1px;
+    background: #cfcfcf;
+    background-image: -webkit-linear-gradient(top, #ffffff, #cfcfcf, #ffffff);
+    background-image: -moz-linear-gradient(top, #ffffff, #cfcfcf, #ffffff);
+    background-image: -ms-linear-gradient(top, #ffffff, #cfcfcf, #ffffff);
+    background-image: -khtml-linear-gradient(top, #ffffff, #cfcfcf, #ffffff);
+    background-image: -o-linear-gradient(top, #ffffff, #cfcfcf, #ffffff);
+    background-image: linear-gradient(top, #ffffff, #cfcfcf, #ffffff);
+  }
+  /*partioned the box into the right with given outer specifications */
+  &-right_box{
+    width:124px;
+    height: 50px;
+    position: relative;
+    top: 38px;
+    right: 56px;
+    float: right;
+  }
+  /* dimensions for the data dimensions */
+  &-rightdata_dim{
+    width: 100px;
+    height: 45px;
+    overflow:hidden;
+    position: relative;
+    bottom: 34px;
+    left: 42px;
+  }
+  /* fill_name is the data dimensions for the data with given specifications*/
+  &-fill_name{
+    font-family:HN;
+    color:#000000;
+    font-size: 14px;
+    line-height: 22px;
+    text-align: left;
+  }
+  /* data has the speicfications as given for the 8-k*/
+  &-data{
+    font-family: HN-B;
+    color:#000000;
+    font-size: 20px;
+    line-height: 22px;
+    text-align: left;
+    overflow:hidden;
+  }
+  &-home_footer{ /* home_fotter class is for the outter alignment to the module fotter(which is global) for my module */
+    width:680px;
+    position:relative;
+    bottom: 0px;
+    border-bottom:2px solid #3098ff;
+  }
+}

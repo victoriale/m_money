@@ -1,0 +1,117 @@
+<!--
+Author: jyothyswaroop
+Created: 07/20/2015
+Description: US securities and exchange commision documents
+Associated Files: sec_finance_logic.js and sec_finance.less
+
+-->
+<!--Gave a template name sec_finance !-->
+<Template name="sec_finance">
+  <!--Defined a class name globally for height and width !-->
+  <div class= "sec_style">
+    <!--gave the dimensions for the module with total height and width !-->
+    <div class = "sec_style-new_module">
+      <!-- Module header called from modules !-->
+      <div class="module-header">
+        <!-- for blue line in the header!-->
+        <span class="module-header-line">
+        </span>
+        <!-- Header Title !-->
+        <span class="module-header-title">U.S. SECURITIES AND EXCHANGE COMMISION DOCUMENTS
+        </span>
+      </div>
+      <!-- run an iteration for the fillbox!-->
+      {{#each items}}
+      <!--fillbox is the total rectangle with height and width using handlebars!-->
+      <div class="sec_style-{{getBackgroundStyle}}">
+        <!--partioned the box into leftside for circle !-->
+        <div class="sec_style-left_box">
+          <!--Defined the dimensions for the circle !-->
+          <div class="sec_style-circle_dim">
+          </div>
+          <!--defined the dimensions for the data  !-->
+          <div class="sec_style-data_dim">
+            <!--defined the dimensions and font style for each class below as specified !-->
+            <span class="sec_style-font_dim">
+              <i class="fa fa-map-marker"></i>
+            </span>
+            <span class=" sec_style-font_dim sec_style-loc_data">
+              San Mateo, CA
+            </span>
+            <span class="sec_style-font_dim">
+              <i class="fa fa-angle-double-right"></i>
+            </span>
+            <span class="sec_style-font_dim sec_style-share_data">
+              NASDAQ:FB
+            </span>
+            <div class="sec_style-font_dim sec_style-comp_data">
+              Facebook, Inc.
+              <span class="sec_style-font_dim sec_style-cik_data">
+                Company CIK:
+                <span class="sec_style-font_dim sec_style-cik_data sec_style-numb_data">
+                  93896
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <!-- Partioned the box in to mid box for displaying date!-->
+        <div class="sec_style-mid_box">
+          <!-- defined the circle as given dimensions!-->
+          <div class="sec_style-blu_circ">
+            <!--defind the font and style for icons and data  !-->
+            <div class="sec_style-icon_font">
+              <i class="fa fa-calendar"></i>
+            </div>
+            <div class="sec_style-middata_dim">
+              <span class="sec_style-filled">
+                Date Filed
+              </span>
+              <div class="sec_style-date">
+                03/26/2015
+              </div>
+            </div>
+          </div>
+          <!-- for the line effect !-->
+          <div class="sec_style-line">
+          </div>
+        </div>
+
+        <!--Partioned the box into right_box for the filling names !-->
+        <div class="sec_style-right_box">
+          <!-- defined the circle as given dimensions!-->
+          <div class="sec_style-blu_circ">
+            <!--defind the font and style for icons and data  !-->
+            <div class="sec_style-icon_font">
+              <i class="fa fa-file-text-o"></i>
+            </div>
+            <div class="sec_style-rightdata_dim">
+              <span class="sec_style-fill_name">
+                Filing Name
+              </span>
+              <div class="sec_style-data">
+                <!-- called money_data from js using handle bars!-->
+                {{money_data}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {{/each}}
+      <!-- created a external fotter class to make correct alignment !-->
+      <div class="sec_style-home_footer">
+        <div class="module-footer">
+          <button class="module-footer-button">
+            <span class="module-footer-button-text">
+              SEE MORE COMMENTS
+            </span>
+            <span class="module-footer-button-ellipse">
+              <i class="fa fa-mail-forward"></i>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</Template>
