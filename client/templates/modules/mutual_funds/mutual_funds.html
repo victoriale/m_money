@@ -1,179 +1,145 @@
 <!-- Author: Kyle Toom
-Created: [07/17/2015]
+Created: [07/20/2015]
 Description: Mutual Funds Frame
-Associated Files: mutual_funds.html,mutual_funds.less-->
+Associated Files: mutual_funds.js,mutual_funds.less-->
 <template name= "mutual_funds">
-
   <div class="funds-module" >
-
     <div class="module-header">
-      <span class="module-header-line"></span>
+      <span class="module-header-line">
+      </span>
       <!--widget title-->
-      <span class="module-header-title">What mutual funds are facebook, inc in?</span>
+      <span class="module-header-title">What mutual funds are facebook, inc in?
+      </span>
     </div>
-
     <div class="module_wrapper">
       <!-- Begin Panel-->
       <div class ="funds-list-panel">
         <div class="funds-list-panel_title">
           <!--Panel Title-->
-          <i class="fa fa-circle blueicons"></i>Funds with fb stock
+          <span class="fa-size">
+            <i class="fa fa-circle blueicons"></i>
+          </span>
+          Funds with fb stock
         </div>
         <div class="image-panel ">
           <!--Linen pattern rectangle -->
-          <div class="image-panel_title">What Mutual Funds contain FB Stock?</div>
-          <div class="image-panel_location"> <i class="fa fa-map-marker blueicons"></i>San Fransisco, CA</div>
+          <div class="image-panel_title">What Mutual Funds contain FB Stock?
+          </div>
+          <div class="image-panel_location">
+            <i class="fa fa-map-marker blueicons"></i>
+            {{location}}
+          </div>
           <!--Navigation button and profile image-->
           <div class="image-panel_middlecontainer">
-            <a class="image-panel_nav-left" href="#"><i class="fa fa-angle-left"></i></a>
+            <a class="image-panel_nav-left">
+              <i class="fa fa-angle-left funds-nav-left"></i>
+            </a>
             <a class="image-panel_profile-image" href="#">
               <!--image hover-->
               <div class="funds-view-profile">
                 <div class="funds-view-profile_txt1">VIEW</div>
                 <div class="funds-view-profile_txt2">PROFILE</div>
-              </div></a>
-              <a class="image-panel_nav-right" href="#"><i class="fa fa-angle-right"></i></a>
+              </div>
+            </a>
+            <a class="image-panel_nav-right"><i class="fa fa-angle-right funds-nav-right"></i></a>
+          </div>
+          <!-- Name of the fund-->
+          <div class="image-panel_fund-name"> {{fund_name}}
+          </div>
+          <!--Address-->
+          <div class=" image-panel_fund-addr"> 1-Month Performance:
+            <i class="funds-green">{{stockpercentage}}</i>
+          </div>
+          <!-- button for linen pattern rectangle-->
+          <a href="#">
+            <div class="image-panel_button">View All Mutual Funds
+              <span class="mf_btn_icon">
+                <i class="fa fa-mail-forward">  </i>
+              </span>
             </div>
-            <!-- Name of the fund-->
-            <div class="image-panel_fund-name"> Vangaurd Total Stock Market Fund</div>
-            <!--Address-->
-            <div class=" image-panel_fund-addr"> 1-Month Performance: <i class="funds-green">+33.69%</i></div>
-            <!-- button for linen pattern rectangle-->
-            <a href="#">
-              <div class="image-panel_button">View All Mutual Funds
-                <i class="fa fa-mail-forward" style="padding-left:5px">  </i>
-              </div>
-            </a>
-            <!--Down arrow-->
-            <span class="image-panel_down-arrow"> </span>
-          </div>
-
-          <!-- fund lists at the bottom of the panel-->
-          <div class="funds-types">
-            <!--First Row in the list-->
-            <a href="">
-              <div class="funds-types_lists">
-                <span class="funds-types_lists_list-image funds-type_lists_images">
-                  <!--Business 2 image here-->
-                  <div class= "funds-smallcircle"></div>
-                </span>
-                <i class="funds-types_lists_angle-right fa fa-angle-right"></i>
-                <div class="funds-types_lists_line-1">SPDR S&amp;P 500 ETF Trust
-                </div>
-                <div class="funds-types_lists_line-2">1-Month Performance: <i class="funds-green">+24.30%</i>
-
-                </div>
-              </div>
-            </a>
-            <!--second Row in the list-->
-            <a href="">
-              <div class="funds-types_lists">
-                <span class="funds-types_lists_list-image">
-                  <!--Business 3 image here-->
-                  <div class= "funds-smallcircle"></div>
-                </span>
-                <i class="funds-types_lists_angle-right fa fa-angle-right"></i>
-                <div class="funds-types_lists_line-1">PowerShares Exchange Traded Fd
-                </div>
-                <div class="funds-types_lists_line-2">1-Month Performance: <i class="funds-green">+22.87%</i>
-                </div>
-              </div>
-            </a>
-            <!--third Row in the list-->
-            <a href="">
-              <div class="funds-types_lists">
-                <span class="funds-types_lists_list-image">
-                  <!--Business 4 image here-->
-                  <div class= "funds-smallcircle"></div>
-                </span>
-                <i class="funds-types_lists_angle-right fa fa-angle-right"></i>
-                <div class="funds-types_lists_line-1">Fidelity Contrafraud Inc
-                </div>
-                <div class="funds-types_lists_line-2">1-Month Performance: <i class="funds-green">+24.30%</i>
-                </div>
-              </div>
-            </a>
-          </div>
+          </a>
+          <!--Down arrow-->
+          <span class="image-panel_down-arrow">
+          </span>
         </div>
 
-        <!-- Begin: Module Tiles of Nearby funds frame-->
-        <!--First Tile-->
-        <div class="tile-container">
-          <div class="module-tile">
-            <div class="module-tile-default">
-              <div class="module-tile-default-container">
-                <div class="tileicon-spec">
-                  <i class="fa fa-pie-chart fa-4x"></i>
-                </div>
-                <div class="module-tile-default-text">Funds with FB Stock
-                </div>
+        <!-- fund lists at the bottom of the panel-->
+        <div class="funds-types">
+          <!--First Row in the list-->
+          {{#each getinfo}}
+          <a href="">
+            <div class="funds-types_lists">
+              <span class="funds-types_lists_list-image funds-type_lists_images">
+                <!--Business 2 image here-->
+                <a class="image-panel_profile-image-small" href="#">
+                </a>
+              </span>
+              <i class="funds-types_lists_angle-right fa fa-angle-right"></i>
+              <div class="funds-types_lists_line-1">{{trust_name}}
+              </div>
+              <div class="funds-types_lists_line-2">{{period}}-Month Performance: <i class="funds-green1">{{percentage}}</i>
               </div>
             </div>
-
-            <!--Hover effects for the tiles-->
-            <a class="module-tile-link" href="#">
-              <div class="module-tile-hover">
-                <div class="module-tile-name">
-                  <i class="fa fa-pie-chart"></i>
-                  Funds with FB Stock
-                </div>
-                <div class="module-tile-info" >
-                </div>
-                <!--Tile Button -->
-                <button class="module-tile-button module-tile-button-align">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
-              </div>
-            </a>
-          </div>
-          <!--Second Tile-->
-          <div class="module-tile">
-            <div class="module-tile-default">
-              <div class="module-tile-default-container">
-
-                <div class="tileicon-spec">
-                  <i class="fa fa-table fa-4x"></i>
-                </div>
-                <div class="module-tile-default-text">Similar Funds
-                </div>
-              </div>
-            </div>
-            <a class="module-tile-link" href="#">
-              <div class="module-tile-hover">
-                <div class="module-tile-name">
-                  <i class="fa fa-table"></i>
-                  Similar Funds
-                </div>
-                <div class="module-tile-info" >
-                </div>
-                <button class="module-tile-button">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
-              </div>
-            </a>
-          </div>
-          <!--Third Tile-->
-          <div class="module-tile">
-            <div class="module-tile-default">
-              <div class="module-tile-default-container">
-                <div class="tileicon-spec">
-                  <i class="fa fa-line-chart fa-4x"></i>
-                </div>
-                <div class="module-tile-default-text">Trending FB Funds
-                </div>
-              </div>
-            </div>
-
-            <a class="module-tile-link" href="#">
-              <div class="module-tile-hover" >
-                <div class="module-tile-name">
-                  <i class="fa fa-line-chart"></i>
-                  Trending FB Funds
-                </div>
-                <div class="module-tile-info" >
-                </div>
-                <button class="module-tile-button module-tile-button-align">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
-              </div>
-            </a>
-          </div>
-
+          </a>
+          {{/each}}
+          <!--second Row in the list-->
         </div>
       </div>
+      <!-- Begin: Module Tiles of Nearby funds frame-->
+      <!--loop of Tile-->
+      <div class="tile-container">
+        {{#each getinfo}}
+        <div class="module-tile">
+          <div class="module-tile-default">
+            <div class="module-tile-default-container">
+              <div class="{{icon1_none}}">
+                <div class="tileicon-spec">
+                  <!--SVG code for Restaurant icon inside tile-->
+                  <i class="fa fa-pie-chart fa-3x"></i>
+                </div>
+              </div>
+              <div class="{{icon2_none}}">
+                <div class="tileicon-spec">
+                  <!--SVG code for Restaurant icon inside tile-->
+                  <i class="fa fa-table fa-3x"></i>
+                </div>
+              </div>
+              <div class="{{icon3_none}}">
+                <div class="tileicon-spec">
+                  <!--SVG code for Restaurant icon inside tile-->
+                  <i class="fa fa-line-chart fa-3x"></i>
+                </div>
+              </div>
+              <div class="module-tile-default-text">{{title}}
+              </div>
+            </div>
+          </div>
+          <!--Hover effects for the tiles-->
+          <a class="module-tile-link" href="#">
+            <div class="module-tile-hover">
+              <div class="module-tile-name">
+                <span class="{{icon1_none}}">
+                  <i class="fa fa-pie-chart "></i>
+                </span>
+                <span class="{{icon2_none}}">
+                  <i class="fa fa-table"></i>
+                </span>
+                <span class="{{icon3_none}}">
+                  <i class="fa fa-line-chart "></i>
+                </span>
+                {{title}}
+              </div>
+              <div class="module-tile-info" >
+              </div>
+              <!--Tile Button -->
+              <button class="module-tile-button module-tile-button-align">OPEN PAGE
+                <i class="fa fa-mail-forward"></i>
+              </button>
+            </div>
+          </a>
+        </div>
+        {{/each}}
+      </div>
     </div>
-  </template>
+  </div>
+</template>
