@@ -1,0 +1,144 @@
+<!--
+Author:Meghana yerramillli
+Created: [07-20-2015]
+Description: featured top 100 lists
+Associated Files: featured_top_100.html, featured_top_100.js
+-->
+<template name="featured_top_100">
+  <!--whole panel for the page-->
+  <div class="top100_panel">
+    <!--header-->
+    <div class="module-header">
+      <span class="module-header-line"></span>
+      <span class="module-header-title"> FEATURED TOP 100 LISTS FOR FACEBOOK, INC.</span>
+    </div>
+    <!--body of the page-->
+    <div class="module-wrapper">
+      <div class="top100_block">
+        <!--block Title-->
+        <div class="top100_block_title">
+          <!--block title ,icon and text-->
+          <i class="fa fa-circle"></i>
+          <SPAN class="top100_title_text">FINANCE TRENDING LISTS</span>
+          </div>
+          <!--Top 100 title-->
+          <div class ="top100_ct">
+          <div class="top100_block_text"><c>T</c>op 100 Most actively Traded Local Area Stocks </div>
+        </div>
+          <div class="top100_block_underline"></div>
+          <!--company name-->
+          <div class="top100_co">
+          <div class = "top100_company-name">{{company_name}}</div>
+          <!--location-->
+          <div class = "top100_location-text">
+            <span class="top100_fa_loc">
+              <i class="fa fa-map-marker"></i>
+            </span>
+            {{company_location}}
+          </div>
+        </div>
+          <!--container containing circle for image, icon and position-->
+        <div class="top100_ico">
+          <!--left navigation button-->
+          <div class="top100_lf">
+           <button class='top100_block_leftbutton'>
+             <i class="fa fa-angle-left fa-2x" ></i>
+           </button>
+         </div>
+           <!--right navigation button-->
+           <div class="top100_rt">
+           <button class='top100_block_rightbutton'>
+             <i class="fa fa-angle-right fa-2x"></i>
+           </button>
+         </div>
+        </div>
+
+        <div class="top100_cr">
+          <!--image in the circle-->
+            <a class="top100_block_pic " href="">
+              <!--passfail icon-->
+              <div class="top100_block_pass-fail "></div>
+              <!--circle for position number-->
+              <div class = "top100_block_pic_counter">#{{counter}}</div>
+            </a>
+        </div>
+
+          <br><br><br>
+          <!--container for information about stocks-->
+          <div class="top100_bottomcontainer">
+            <!--CEO & shares information-->
+            <div class="top100_line-1" >CEO: {{company_CEO}} | NASDAQ: {{company_stock}} </div>
+            <div class="top100_line-2">Shares Traded:
+              <span class="top100_sh">{{company_shares}}</span>
+            </div>
+          </div>
+          <!--footer for see the whole list button-->
+          <div class="top100_footer">
+            <!-- See whole list Button -->
+            <button class="module-footer-button" >
+              <span class="module-footer-button-text">SEE THE FULL LIST</span>
+              <span class="module-footer-button-ellipse">
+                <i class="fa fa-mail-forward"></i>
+              </span>
+            </button>
+            <!-- END -->
+          </div>
+        </div>
+        <!--tiles beside the main block-->
+        <div class="top100_tiles">
+          <!--classes for tiles used are the tile classes in modules.less file-->
+          {{#each gettitle}}
+          <div class="module-tile">
+            <!--tile container-->
+            <div class="module-tile-default">
+              <div class="module-tile-default-container">
+                <!--icons in tile-->
+                <div class="{{tile1_icon_none}}">
+                  <div class="module-tile-default-icon">
+                    <i class="fa fa-list-ul"></i>
+                  </div>
+                </div>
+                <div class="{{tile2_icon_none}}">
+                  <div class="module-tile-default-icon">
+                    <i class="fa fa-trophy"></i>
+                  </div>
+                </div>
+                <div class="{{tile3_icon_none}}">
+                  <div class="module-tile-default-icon">
+                    <i class="fa fa-th-large"></i>
+                  </div>
+                </div>
+                <!--tile text-->
+                <div class="{{top100_none}}">
+                  <div class="top100_new">NEW</div>
+                </div>
+                <div class="module-tile-default-text">{{title}}
+                </div>
+              </div>
+            </div>
+            <!--Hover effects for the tiles-->
+            <a class="module-tile-link" href="#">
+              <div class="module-tile-hover">
+                <div class="module-tile-name">
+                  <span class="{{tile1_icon_none}}">
+                    <i class="fa fa-list-ul"></i>
+                  </span>
+                  <span class="{{tile2_icon_none}}">
+                    <i class="fa fa-trophy"></i>
+                  </span>
+                  <span class="{{tile3_icon_none}}">
+                    <i class="fa fa-th-large"></i>
+                  </span>{{title}}
+                </div>
+                <div class="module-tile-info" >
+                </div>
+                <!--Tile Button -->
+                <button class="module-tile-button module-tile-button-align">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
+              </div>
+            </a>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </template>

@@ -1,0 +1,292 @@
+/*
+Author: Meghana yerramilli
+Created: [07-20-2015]
+Description: featured top 100 lists
+Associated Files: featured_top_100.html, featured_top_100.js
+*/
+@import "../global_vars.less"; //include important global vars (colors mostly)
+@import "../modules.less";
+//height width for main & tiles
+.top100{
+
+&_panel{
+  .module;
+  border-bottom: none;
+  background-color:  #ffffff;
+  width: 680px;
+  height: 646px;
+}
+// main block
+&_block{
+  border-width: 1px;
+  border-color:  #cccccc;
+  border-style: solid;
+  background-color:  #ffffff;
+  width: 455px;
+  height: 570px;
+  float:right;
+  margin:15px 15px 16px 15px;
+}
+//title in the main block
+&_block_title{
+  background-color:  #f2f2f2;
+  width: 453px;
+  height: 39px;
+  font-family:HN-B;
+  color:  #3098ff;
+  font-size: 14px;/* Approximation due to font substitution */
+  font-weight: 700;
+  text-align: left;
+  padding-top: 8px;
+  padding-bottom: 3px;
+  padding-left: 8px;
+}
+//title text
+&_title_text{
+  padding-left: 8px;
+  font-family: HN-B;
+  font-size: 16px;
+  color: #000;
+}
+//container for top 100 top100_title_text
+&_ct{
+  width: 374px;
+  height:46px;
+  float:left;
+  position: relative;
+  left:40px;
+  top:7px;
+}
+//text for top 100 title
+&_block_text{
+  font-family: HN-B;
+  font-size: 22px;
+  color:#000;
+  text-align: center;
+  padding-top:16px;
+  padding-bottom:16px;
+}
+//underline for top 100 title
+&_block_underline{
+  background-color:  #cccccc;
+  width: 413px;
+  height: 1px;
+  position: relative;
+  top: 99px;
+  left: 20px;
+  //margin-left: 20px;
+}
+&_co{
+  width:180px;
+  height:55px;
+  float: left;
+  position: relative;
+  left: 135px;
+  top: 76px;
+  overflow:hidden;
+  }
+//company name
+&_company-name{
+  font-size:22px;
+  font-family: HN-B;
+  color:#000;
+  text-align: center;
+  //padding-top: 20px;
+}
+//for location
+&_location-text{
+  font-size:18px;
+  font-family: HN;
+  color:#000;
+  text-align: center;
+  }
+  //continer for icons
+&_ico{
+  width:453px;
+  height:80px;
+  position: absolute;
+  top: 352px;
+  left: 211px;
+}
+//container for left icon
+&_lf{
+position: absolute;
+float: left;
+bottom: 0px;
+left: 0;
+}
+//container for right icon
+&_rt{
+  position: relative;
+  float: right;
+  bottom: 0px;
+  left: 0px;
+}
+//for location icon
+&_fa_loc{
+  color: #3098ff;
+  padding-right:8px;
+}
+//container for circle
+&_cr{
+  height: 180px;
+  width: 180px;
+  float: left;
+  position: absolute;
+  left: 345px;
+  top: 306px;
+}
+//font
+&_sh{
+  font-family: HN-B;
+}
+//left navigation button
+&_block_leftbutton{
+  border: 3px solid #000;
+  float:left;
+  height:80px;
+  width:30px;
+  border-radius: ~"100%/50%";
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  background:#000;
+  color:#fff;
+  padding-right: 28px;
+}
+//button hover
+&_block_leftbutton:hover{
+  background: #3098ff;
+  border: 3px solid #3098ff;
+}
+//circle for the image & image
+&_block_pic{
+  @shadow:2px;
+  border-radius: 100%;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px @green;
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  background-size: 174px 174px;
+}
+// passfail icon circle & passfail icon image
+&_block_pass-fail{
+  @shadow:2px;
+  background-color: #fff;
+  margin: 2px;
+  border-radius: 50%;
+  border-width: 2px;
+  border-color:  #ffffff;
+  border-style: solid;
+  background-color:  #44b244;
+  width: 50px;
+  height: 50px;
+  background-image: url(Icon_Pass.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: -@shadow;
+  right: -@shadow;
+  display: block;
+  box-shadow: 0 0 0 2px #fff;
+}
+//circle for position of the company
+&_block_pic_counter{
+  @shadow:2px;
+  border-radius: 50%;
+  border-width: 2px;
+  border-color:  #ffffff;
+  border-style: solid;
+  background-color:  #000000;
+  display: block;
+  width: 41px;
+  height: 41px;
+  text-align: center;
+  padding-top: 8px;
+  bottom: -@shadow;
+  left: -@shadow;
+  position: absolute;
+  color: #fff;
+  font-size: 18px;
+  height:45px;
+  width:45px;
+  box-shadow: 0 0 0 2px #fff;
+  display: block;
+}
+//right navihation button
+&_block_rightbutton{
+  border: 3px solid #000;
+  float:right;
+  height:80px;
+  width:30px;
+  background:#000;
+  border-radius: ~"100%/50%";
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  color:#fff;
+  padding-left: 14px;
+  padding-right: 20px;
+}
+//hover button
+&_block_rightbutton:hover{
+  background: #3098ff;
+  border: 3px solid #3098ff;
+}
+//container for stock information
+&_bottomcontainer{
+  height: 54px;
+  width: 306px;
+  float: left;
+  position: absolute;
+  top: 520px;
+  left: 282px;
+}
+// for the text in first line
+&_line-1{
+  font-size: 18px;
+  font-family: HN-L;
+  color:#000;
+  text-align: center;
+}
+//for the text in second line
+&_line-2{
+  font-size: 22px;
+  font-family: HN-L;
+  color:#000;
+  text-align: center;
+  padding-top:5px;
+}
+//footer containing see the whole list button
+&_footer{
+  text-align: center;
+  display: block;
+  bottom: 2%;
+  width: 455px;
+  position: absolute;
+  border-bottom: 2px solid #3098ff;
+}
+//tiles beside main block container
+&_tiles{
+  width:180px;
+  height:570px;
+  float:left;
+}
+//new oval on the tile
+&_new{
+  background-color:  #ca1010;
+  width: 45px;
+  height: 25px;
+  border-radius: 17px;;
+  margin: -29px 0px 0px 26px;
+  font-size: 12px;
+  text-align: center;
+  padding-top: 5px;
+}
+//to hide the red button
+&_navr{
+  -khtml-transform:translateY(5px);
+}
+}
+.none{
+  display: none;
+}
