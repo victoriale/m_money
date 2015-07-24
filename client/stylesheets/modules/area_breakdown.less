@@ -1,0 +1,288 @@
+@import "../global_vars.less";
+/*
+ate: 07/21/2015
+Description: Gives Details about company Area brakdown statistics like location,population
+details,Average Rent,Description about the public market ,compensation,Total company shares
+It gives location,Nearby cities,Statistics
+Associated files: module.less,area_breakdown.less,area_breakdown.html,navigation_layout.less*/
+
+.a_brkdwn{
+  width: 680px;
+  height: 705px;
+  margin: 5px;
+  background-color: @white;
+
+  /*------------------------------------------------------------------------------*/
+  &-Innerbody{
+    margin-top: 15px;
+    margin-left: 15px;
+  }
+  /*------------------------------------------------------------------------------*/
+  &-RectBckGrnd{
+    height:570px;width:455px;
+    border:1px solid @grey-2;
+  }
+  /*------------------------------------------------------------------------------*/
+  /*which describes the location*/
+  /*ex: present location is chicago*/
+  &-Rect_hedr{  // outer header details
+    height:39px;width:453px;
+    background-color:@grey-1;
+
+    &-Hedr_cntnt{ // content of the header
+      text-transform:uppercase;
+      color:@black;
+      font-family:HN-B;
+      line-height:46px;/* Approximation due to font substitution */
+      text-align:left;
+      transform: translate(9px,-2px);
+      -webkit-transform: translate(9px,-2px);
+      -khtml-transform: translate(9px,-2px);
+
+      &-blucrcl {
+        color:#3498db;
+        font-size: 14px;/* Approximation due to font substitution */
+        font-weight:HN;
+        line-height: 46px;/* Approximation due to font substitution */
+        text-align: left;
+        top:13px;
+        left: 9px;
+      }
+    }
+  }
+  /*------------------------------------------------------------------------------*/
+  /* This space defines the description space and more details about that location */
+  &-DescSpc{
+
+    margin-top: 20px;
+    margin-left: 15px;
+    margin-bottom: 14px;
+    height:77px;width:400px;
+    //padding-top: 20px;
+    //transform: translate(0px,-5px) !important;
+    -webkit-transform: translate(0px,-5px);
+    -khtml-transform: translate(0px,-5px);
+    color: @black;
+    font-size: 16px; /* Approximation due to font substitution */
+    font-family: HN-L !important;
+    text-align:left;
+
+    &-text{
+      height: 54px;
+      line-height: 18px;
+      overflow-y: hidden;
+    }
+
+
+    &-readmrClr{
+
+      color: @blue;;
+      font-size: 14px; /* Approximation due to font substitution */
+      font-family: HN-B !important;
+      line-height: 25px; /* Approximation due to font substitution */
+      text-align: left;
+      transform: translate(0px,-5px) !important;
+      -webkit-transform: translate(0px,-16px);
+      -khtml-transform: translate(0px,-16px);
+
+    }
+  }
+
+  /*-------------------------------------------------------------------------------*/
+  /*This provides the details of population,avg rent, median income,total companies details*/
+  &-Bttom_dtls{
+    list-style-type: none;
+    // transform: translate(0px,34px);
+    // -ms-transform: translate(0px,34px);
+    // -webkit-transform: translate(0px,34px);
+    // -khtml-transform: translate(0px,34px);
+
+    &-Stnd_bx_dtls{ //description details box for adding contents od population,rent,income
+      height:70px;width:453px;
+      border-left:5px solid @grey-2;
+      outline-offset: 1px;
+    }
+    &-Stnd_bx_dtls:hover{
+      border-left:5px solid @blue;
+    }
+    &-Stnd_bx_dtls:hover &-angrit{
+      color:@blue;
+    }
+
+    &-shading_awsm{ //shading area for awesome fonts
+      height:70px;width:70px;
+      background-color: @grey-1;
+
+    }
+    &-angrit //right angle marker
+    {
+      float: right;
+      margin-top:-40px;
+      margin-right:5px;
+      color:@grey-3;
+    }
+    &-users //users image in the first box
+    {
+      margin-left:20px;
+      margin-top:25px;
+      color:#4b4b4b;
+      font-weight: HN;
+      line-height: 24px;
+      text-align: left;
+    }
+      &-Stat_txt_aln{ //to align the text next to the images for the first users
+      list-style-type: none;
+      text-align: left !important;
+      margin-left: 200px;
+      margin-top: -30px;
+    }
+    &-stat_txt_lrg{ //test font size like ex: million
+      font-size: 24px;
+      font-family: HN;
+      color: @black;
+      margin: -58px 0 0px -129px ;
+      padding: 0 0 0 5px;
+    }
+    &-Stat_txt_sml{ //small font size like ex: population
+      font-size: 14px;
+      color: @black;
+      margin:-8px 0 0 -129px;
+      padding: 0 0 0 5px;
+    }
+  }
+  /*------------------------------------------------------------------------------*/
+  /* This code for the center image for viewing profile */
+
+  &-logo-image{ // image content inside the profile view
+    background-size:cover;
+    background-position:center;
+    margin-top:15px;
+    margin-left:165px;
+    width:119px;
+    height:119px;
+    border:3px solid @grey-3;
+    border-radius:70px;
+    color:#44b244;
+    background-image:url("https://www.facebook.com");
+    &-profile-link{
+      text-decoration:none;
+    }
+
+    &-view-profile{ // hover contents
+      position:relative;
+      width:119px;
+      height:119px;
+      background: rgba(48,152,255,.75);
+      border-radius:100%;
+      padding:1em;
+      opacity:0;
+      box-sizing:border-box;
+      overflow: hidden;
+    }
+    &-view-profile:hover{ //will hover when mouse pointer moves over
+      opacity:.85;
+      margin-top: -3px;
+      margin-left: -3px;
+
+    }
+    &-body {
+      vertical-align:middle;
+      color: #fff;
+      font-family: HN-L;
+      text-align: center !important;
+      text-transform: uppercase;
+      padding-top: 2em;
+      border-radius: 70px;
+      width: 90px;
+      height: 75px;
+
+    }
+    &-lgo_txt_vw {
+      margin-top:-15px;
+      font-size: 22px;
+      font-family: HN-B;
+
+    }
+    &-lgo_txt_prfl { // unable to get very thin font as shown in the design sheet
+      margin-top:-10px;
+      font-size: 22px;
+      font-family:HN-L;
+    }
+
+  }
+  /*------------------------------------------------------------------------------*/
+  /*Description of the left tile pane which consists of 3 icon boxes*/
+  &-RightPanel{
+    float:right;
+    margin-top:-585px;
+    margin-right:0px;
+    list-style-type: none;
+
+  }
+  &-see_mr_tls{
+    background-color: #ebebeb;
+    width: 650px;
+    height: 45px;
+    margin: auto;
+    margin-top: 15px;
+
+    &-mr_tl_btn{
+      background-color: rgba(37, 37, 37, 0.85);
+      width: 180px;
+      height: 35px;
+      border-radius: 18px;
+      margin-top: 5px;
+      margin-left: 8px;
+      float: left;
+
+      &-btn_txt{
+        font-family: HelveticaNeue;
+        color: #ffffff;
+        font-size: 12px; /* Approximation due to font substitution */
+        font-family: HN-B;
+        text-align: center;
+        line-height: 35px;
+      }
+
+      &-font_awsm{
+        color: #3098ff;
+        font-size: 12px; /* Approximation due to font substitution */
+        text-align: left;
+        margin-left: 5px;
+      }
+    }
+
+    &-tip{
+      color: @red;
+      font-size: 12px; /* Approximation due to font substitution */
+      text-align: left;
+      float: left;
+      margin-left: 22px;
+      line-height: 45px;
+
+      &-tip_dtls{
+        font-family: HelveticaNeue;
+        color: #333333;
+        font-size: 12px; /* Approximation due to font substitution */
+        font-family: HN;
+        text-align: center;
+      }
+    }
+  }
+  &-line{
+    width: 453px;
+    height: 1px;
+    background-color: @grey-2;
+  }
+
+  &-stat_grap{
+    background-image:url('/icons/icon_statistics_custom.png');
+    background-repeat: no-repeat;
+    background-size:100%;
+    height: 45px;
+    width:50px;
+    margin: 0 auto;
+  }
+
+}
+/*-------------------------------------------------------------------------------*/
