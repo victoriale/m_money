@@ -1,0 +1,322 @@
+/*
+Author: Tanner Storment
+Created: [07-16-2015]
+Description: Project History List
+Associated Files: portfolio_watchlist.html, portfolio_watchlist.js
+*/
+@import "../global_vars.less"; //include important global vars (colors mostly)
+@import "../modules.less";
+.pw{
+  &-panel{
+    // Basic layout of the project history panel
+    width:680px;
+    height:682px;
+    background-color: #fff;
+    border: 1px solid @grey-2;
+    float:right;
+    border-bottom: 2px solid @blue;
+  }
+
+  &-content-panel{
+    width:680px;
+    height:604px;
+    background-color:#fff;
+  }
+  //styles for the panel header
+  &-content-panel-header {
+    width:680px;
+    height:33px;
+    border-bottom:1px solid #b4b4b4;
+  }
+  //styles for the sort by containor
+  &-sort {
+    /* Inline Style */
+    font-family:  HN;
+    color: #000000;
+    font-size: 12px;/* Approximation due to font substitution */
+    text-align: left;
+    &-bold {
+      font-family: HN-B;
+      color:#000000;
+      font-size: 12px;/* Approximation due to font substitution */
+      text-align: left;
+    }
+    &-blue {
+      font-family: FontAwesome;
+      color:#3098ff;
+      font-size: 12px;/* Approximation due to font substitution */
+      font-weight: 400;
+      text-align: left;
+    }
+    padding-top:11px;
+    padding-bottom:10px;
+    padding-left:10px;
+    border-bottom:1px solid #b4b4b4;
+  }
+  //styling for the tiles
+  &-list-tile {
+    &-grey {
+      background:#f2f2f2;
+      color:#000;
+      width:680px;
+      height:185px;
+      border-bottom:1px solid #b4b4b4;
+    }
+    &-white {
+      background:#fff;
+      color:#000;
+      width:680px;
+      height:185px;
+      border-bottom:1px solid #b4b4b4;
+    }
+  }
+
+  &-info{
+    padding-top:15px;
+    padding-left:20px;
+    margin-left:155px;
+    display:block;
+    text-align:left;
+    // fa map marker icon
+    &-map{
+      font-family: FontAwesome;
+      color: #000;
+      font-size: 10px;/* Approximation due to font substitution */
+      font-weight: 400;
+      text-align: left;
+      color: #3098ff;
+    }
+    //styes for the location
+    &-loc{
+      font-family:  HN;
+      color: #000000;
+      font-size: 10px;/* Approximation due to font substitution */
+      text-align: left;
+    }
+    //styles for the text in the tiles
+    &-earn{
+      font-family: HN-B;
+    }
+  }
+  &-cont{
+    width: 427px;
+    height: 50px;
+    overflow: hidden;
+    font-family: HN-B;
+    color: #000000;
+    font-size: 18px;
+    line-height: 26px;
+    text-align: left;
+    overflow: hidden;
+  }
+  &-profile-info{
+    padding-top:15px;
+    padding-left:20px;
+    width:100%;
+    display:block;
+    position:absolute;
+  }
+  //styles for the profile image
+  &-prof-img{
+    border-radius: 50%;
+    border-width: 2px;
+    border-color: #cccccc;
+    border-style: solid;
+    background-color: #ffffff;
+    width: 125px;
+    height: 125px;
+    display:block;
+    position:absolute;
+  }
+  //styles for the smaller images
+  &-sm-img{
+    margin-top:15px;
+    margin-right:10px;
+    border-radius: 50%;
+    border-width: 2px;
+    border-color: #cccccc;
+    border-style: solid;
+    background-color: #ffffff;
+    width: 45px;
+    height: 45px;
+    float:left;
+    display:block;
+  }
+  //stylinf for the view full list button
+  &-view-btn{
+    border-radius: 5px;
+    background-color: #3098ff;
+    width: 141px;
+    height: 35px;
+    display:block;
+    float:left;
+    margin-top:17px;
+    margin-left:55px;
+    border: 2px solid #3098ff;
+    position:relative;
+    &-text{
+      font-family: HN;
+      color: #ffffff;
+      font-size: 14px;/* Approximation due to font substitution */
+      line-height: 18px;/* Approximation due to font substitution */
+      text-align: center;
+    }
+    &-icon{
+      font-family: FontAwesome;
+      color: #ffffff;
+      font-size: 14px;/* Approximation due to font substitution */
+      font-weight: 400;
+      line-height: 18px;/* Approximation due to font substitution */
+      text-align: center;
+      margin-left:6px;
+    }
+  }
+
+  //styling for the font awesome icons
+  &-fw {
+    width:100%;
+    margin-top:137px;
+    display:block;
+    float:left;
+    &-text{
+      font-family: HN;
+      color: #666666;
+      font-size: 14px;/* Approximation due to font substitution */
+      margin-left:12px;
+    }
+    &-icon{
+      font-family: FontAwesome;
+      color: #666666;
+      font-size: 14px;/* Approximation due to font substitution */
+      font-weight: 400;
+    }
+    &-share{
+      margin-left:10px;
+    }
+    &-feedback{
+      float:right;
+      margin-right:20px;
+    }
+  }
+  //styling for the view all button
+  &-view{
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #3098ff;
+    color:#3098ff;
+    border-style: solid;
+    background-color:#fff;
+    width: 113px;
+    height: 23px;
+    position: relative;
+    left: 117px;
+
+    &-fnt{
+      font-family: HN;
+      color: #3098ff;
+      font-size: 11.99px;/* Approximation due to font substitution */
+      line-height: 18px;/* Approximation due to font substitution */
+      text-align: center;
+      transform: scaleY(1.0011);/* width and height properties ommitted due to transform */
+    }
+  }
+
+  //styling for the footer
+  &-navigation {
+    position: relative;
+    float: left;
+    right: 10px;
+  }
+  &-footer{
+    width:680px;
+    height:45px;
+  }
+  &-holder1{
+    width: 184px;
+    height: 25px;
+    position: relative;
+    float: left;
+    top:13px;
+    left:245px;
+  }
+  &-lt{
+    font-size: 17.98px;/* Approximation due to font substitution */
+    font-weight: 400;
+    line-height: 5px;/* Approximation due to font substitution */
+    text-align: left;
+  }
+  //styling for the footer circles
+  &-c1{
+    border-color:  #3098ff;
+    border-style: solid;
+    background-color:  #3098ff;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+  }
+  &-selected {
+    background-color: #3098ff;
+    border-color: #3098ff;
+    color: @white;
+  }
+  &-c1:hover{
+    border-color:#3098ff;
+  }
+  &:active {
+    color:#dadada;
+    background-color:#000;
+  }
+  &-c2{
+    border-color:  #dadada;
+    background-color:  #ffffff;
+  }
+  &-c2:hover{
+    border-color:#3098ff;
+  }
+  &-c3{
+    border-color:  #dadada;
+    background-color:  #ffffff;
+  }
+  &-c3:hover{
+    border-color:#3098ff;
+  }
+
+  &-c200{
+    border-color:  #dadada;
+    background-color:  #ffffff;
+    width: 51px;
+    height: 25px;
+    border-radius: 20px;
+  }
+  &-c200:hover{
+    border-color:#3098ff;
+  }
+  &-c1_font{
+    font-size: 13.98px;/* Approximation due to font substitution */
+    font-weight: 300;
+    line-height: 21px;/* Approximation due to font substitution */
+    text-align: left;
+    //transform: scaleY(1.0011);/* width and height properties ommitted due to transform */
+  }
+  &-dots
+  {
+    width: 10px;
+    height: 2px;
+    position: relative;
+    top: -5px;
+  }
+  &-all{
+    position:relative;
+    float: left;
+    left: 250px;
+    top: 15px;
+  }
+  &_img{
+    padding-bottom:4px;
+    padding-bottom: 4px;
+    position: relative;
+    top: -2px;
+    left: 5px;
+  }
+  //styling for the footer ends
+}

@@ -1,0 +1,108 @@
+<!--
+Author: snehalatha pappu
+Created: [07-21-2015]
+Description: portfolio watchlist
+Associated Files: portfolio_watchlist.html, portfolio_watchlist.js
+-->
+
+
+<template name="portfolio_watchlist">
+  <div class="module-4">
+
+    <div class="module-header">
+      <span class="module-header-line"></span>
+      <!--widget title-->
+      <span class="module-header-title">PORTFOLIO WATCHLIST</span>
+    </div>
+
+    <div class="module-wrapper">
+      <!--Begin Panel-->
+      <div class="pw-panel">
+        <div class="pw-content-panel">
+          <div class="pw-sort">
+            <span class="pw-sort-bold">Sort By:</span> Most Recent <i class=  "fa fa-angle-down pw-sort-blue"></i>
+          </div>
+          {{#each getPortfolioList}}
+          <div class="pw-list-tile-{{getBackgroundStyle}}">
+            <!--portfolio Picture & Response Buttons-->
+            <span class="pw-profile-info">
+              <span class="pw-prof-img"></span>
+              <span class="pw-fw">
+                <i class="fa pw-fw-icon fa-heart"></i>
+                <span class="pw-fw-text">Save</span>
+                <span class="pw-fw-share">
+                  <i class="fa pw-fw-icon fa-share-alt"></i>
+                  <span class="pw-fw-text">Share</span>
+                </span>
+                <span class="pw-fw-feedback">
+                  <i class="fa pw-fw-icon fa-flag">
+                  </i><span class="pw-fw-text">Feedback</span>
+                </span>
+              </span>
+            </span>
+            <!--/portfolio Picture & Response Buttons-->
+
+            <!--portfolio Information-->
+            <div class="pw-info">
+              <div>
+                <i class="fa pw-info-map fa-map-marker"></i>
+                <span class="pw-info-loc">{{portfolio_location}}</span>
+              </div>
+              <div class="pw-cont">
+                <div class="pw-info-earn">{{portfolio_earners}}</div>
+              </div>
+              <span class="pw-sm-img"></span>
+              <span class="pw-sm-img"></span>
+              <span class="pw-sm-img"></span>
+              <span class="pw-sm-img"></span>
+              <span class="pw-sm-img"></span>
+              <button class="pw-view-btn">
+                <span class="pw-view-btn-text">View Full List</span>
+                <i class="fa pw-view-btn-icon fa-angle-right"></i>
+              </button>
+            </div>
+            <!--/portfolio Information-->
+          </div>
+          {{/each}}
+
+          <div class="pw-footer">
+            <div class="pw-holder1">
+              <span class="pw-lt">
+                <i class="fa fa-angle-left"></i>
+              </span>
+              <button class="pw-c1 pw-selected">
+                <span class="pw-c1_font">
+                  1  </span>
+                </button>
+                <button class="pw-c1 pw-c2">
+                  <span class="pw-c2_font">
+                    2  </span>
+                  </button>
+                  <button class="pw-c1 pw-c3">
+                    <span class="pw-c3_font">
+                      3  </span>
+                    </button>
+                    <span class="pw-dots">
+                      <span class="pw-c1_font">
+                        ...  </span>
+                      </span>
+                      <button class="pw-c1 pw-c200">
+                        <span class="pw-c1_font">
+                          200  </span>
+                        </button>
+                        <span class="pw-lt">
+                          <i class="fa fa-angle-right"></i>
+                        </span>
+                      </div>
+                      <div class="pw-all">
+                        <button class="pw-view pw-view-fnt">VIEW ALL
+                          <span class="pw_img">  <img src="infinite-icon.png"></span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--End Panel-->
+              </div>
+            </div>
+          </template>
