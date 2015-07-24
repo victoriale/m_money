@@ -1,0 +1,82 @@
+//Name :[Ramakrishna Vaibhav Kasibhatla]
+//  Date: 7/24/2015
+//files:[market_bar.js, market_bar.less]
+
+@import "../global_vars.less";
+// main less class
+.mrk-br {
+  width: 680px;
+  height: 100px;
+  margin:5px;
+  background-color: #fff;
+  //properties for location
+  &-loc{
+    height:12px;
+    width:310px;
+    font-family: HN-L;
+    color:  #999999;
+    padding-left: 5px;
+    padding-top: 3px;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: left;
+  }
+  //properties for submain class
+  &-main{
+    width:200px;
+    height:60px;
+    margin:10px;
+    position: relative;
+    top:5px;
+    display:inline-block;
+    float:left;
+  }
+  // properties for line
+  &-line{
+    height:60px;
+    width:3px;
+    background-color:#d6d6d6;
+    float:left;
+  }
+  // properties for the details inside class
+  &-details{
+    height:52px;
+    width:85px;
+    display:inline-block;
+    float:left;
+    position:relative;
+    left: 14px;
+  }
+  //properties for name
+  &-name{
+    font-family: HN;
+    color:  #3193ff;
+    font-size: 18px;
+    line-height: 18px;
+    text-align: left;
+  }
+  //properties for values
+  &-value{
+    font-family: HN-L;
+    color:  #666666;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: left;
+  }
+  //properies for the green colored data
+  &-high{
+    font-family: HN;
+    color:  #44b224;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: left;
+  }
+  //properties for graph
+  &-graph{
+    width:73px;
+    height:37px;
+    float:left;
+    margin-left: 25px;
+    margin-top: 6px;
+  }
+}

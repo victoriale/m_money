@@ -1,0 +1,37 @@
+<!-- Name :[Ramakrishna Vaibhav Kasibhatla]
+Date: 7/24/2015
+files:[market_bar.js, market_bar.less]
+-->
+<!-- Calling the high chart script-->
+<head>
+<script type="text/javascript" src="jQuery/Highcharts/highcharts.js"></script>
+</head>
+<!-- Main template-->
+<template name="market_bar">
+  <!--Calllin the main class -->
+  <div class="mrk-br">
+    <!-- the div template for location-->
+    <div class="mrk-br-loc"> {{date}}
+    </div>
+    <!-- the class for each line -->
+    {{#each market}}
+    <div class="mrk-br-main">
+      <!--the horizontal line class -->
+      <div class="mrk-br-line">
+      </div>
+      <!-- the details class-->
+      <div class="mrk-br-details">
+        <div class="mrk-br-name">{{name}}</div>
+        <div class="mrk-br-value">{{value}}</div>
+        <div class="mrk-br-high">{{high}}</div>
+      </div>
+      <!-- the class properties to call the graph-->
+      <div class="mrk-br-graph">
+        <!-- to class the grpah values from js-->
+        <div id="{{graphID}}"></div>
+      </div>
+    </div>
+    {{/ each}}
+
+  </div>
+</template>
