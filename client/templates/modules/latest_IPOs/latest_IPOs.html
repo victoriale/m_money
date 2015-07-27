@@ -1,0 +1,135 @@
+<!--/*Author: [Thanush ]
+Created: [07/24/2015]
+Description: [Finance : latest_ipos Module]*/!-->
+
+<template name="latest_IPOs">
+  <!-- Html and CSS implementation-->
+  <div class="lst_ipos-layout">
+    <div class="module-header">
+      <span class="module-header-line"></span><span class="module-header-title">Latest companies hitting the market</span>
+    </div>
+    <!--wrpr to hold both left and right panels-->
+    <div class="lst_ipos-outer-wrpr">
+      <!--wrpr for left panel-->
+      <div class="lst_ipos-inner-left-wrpr">
+        <div class="lst_ipos-leftpanel-layout">
+          <div class="lst_ipos-leftpanel-titlebar">
+            <span class="lst_ipos-title-line"><i class="fa fa-circle lst_ipos-title-align"></i>RECENTLY FILED IPOS</span>
+          </div>
+          <!--Top Component-->
+          <div class="lst_ipos-leftpanel-layout-cmpt1">
+            <div class="lst_ipos-panel-topbackground">
+              <div class="lst_ipos-rpanel-line1">
+                Top {{topnumb}} recently filed IPOs in the Bay Area
+              </div>
+              <div class="lst_ipos-line2-container">
+                <!--Top city and state-->
+                <span class="lst_ipos-line2-fix"><i class="fa fa-map-marker"></i></span>&nbsp;<span class="lst_ipos-rpanel-line2">{{city}}, {{state}}</span>
+              </div>
+              <!--Top image wrpr-->
+              <div class="lst_ipos-image-wrpr">
+                <!--left and the right navigation buttons-->
+                <a href="#">
+                  <div class="lst_ipos-button-left">
+                    <div class="lst_ipos-button-align"><i class="fa fa-angle-left fa-2x"></i>
+                    </div>
+                  </div>
+                </a>
+                <a href="#">
+                  <div class="lst_ipos-button-right">
+                    <div class="lst_ipos-button-align"><i class="fa fa-angle-right fa-2x"></i>
+                    </div>
+                  </div>
+                </a>
+                <!--Profile image-->
+                <div class="lst_ipos-image-fix">
+                  <div class="lst_ipos-profile-image1">
+                    <a href="#">
+                      <!--Profile image text-->
+                      <div class="lst_ipos-profile-image2">
+                        <div class="lst_ipos-view-profile_txt1">VIEW
+                        </div>
+                        <div class="lst_ipos-view-profile_txt2">PROFILE
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <!--Company name-->
+              <div class="lst_ipos-rpanel-line3">
+                {{company}}
+              </div>
+              <!--amount displayed below the profile image!-->
+              <div class="lst_ipos-line4-container">
+                <span class="lst_ipos-rpanel-line4">
+                  {{amount}}:&nbsp; ${{money}}
+                </span>
+              </div>
+              <div class="lst_ipos-VA-wrap">
+                <button type="button" class="lst_ipos-btn-VA">
+                  View The Full List&nbsp;
+                  <i class="fa fa-share"></i>
+                </button>
+              </div>
+              <div class="lst_ipos-panel-fix">
+              </div>
+            </div>
+          </div>
+          <!--Bottom component begins-->
+          <div class="lst_ipos-rightpanel-layout-component2">
+            <!--sub-component 1-->
+            {{#each iposnames}}
+            <div class="lst_ipos-content">
+              <div class="lst_ipos-schoolcontent">
+                <i class="fa {{ipos_awesome}} lst_ipos-imgspec"></i>
+              </div>
+              <i class="lst_ipos-align-angular-bracket fa fa-angle-right"></i>
+              <div class="lst_ipos-textarea">
+                <div class="lst_ipos-textarea1">
+                  <div class="lst_ipos-text1">
+                    {{ipos_name}}
+                  </div>
+                  <div class="lst_ipos-text2">
+                    {{ipos_company}}
+                  </div>
+                </div>
+              </div>
+            </div>{{/each}}
+          </div>
+        </div>
+      </div>
+      <!--end of left panel-->
+      <!--wrpr for right panel-->
+      <div class="lst_ipos-inner-right-wrpr">
+        {{#each ipos_tiles}}
+        <!--                 tiles                 -->
+          <div class="module-tile"> <!-- global class from module.less !-->
+            <div class="module-tile-default">
+              <div class="module-tile-default-container">
+                <div class="module-tile-default-icon">
+                  <i class="fa {{font_awesome}}"></i> <!-- large icon !-->
+                </div>
+
+                <div class="module-tile-default-text">
+                  {{tile_name}}  <!-- text for the tile !-->
+                </div>
+              </div>
+            </div>
+            <a class="module-tile-link" href="#">  <!-- link class in module.less !-->
+              <div class="module-tile-hover">
+                <div class="module-tile-name">
+                  <i class="fa {{font_awesome}}"></i>
+                  {{tile_name}}
+                </div>
+                <div class="module-tile-info"></div>
+                <button class="module-tile-button module-tile-button-align">{{open_page}} <i class="fa fa-mail-forward"></i></button> <!-- button to open the page !-->
+              </div>
+            </a>
+        </div>
+        {{/each}}
+      </div>
+      <!--end of right panel-->
+    </div>
+  </div>
+</template>
