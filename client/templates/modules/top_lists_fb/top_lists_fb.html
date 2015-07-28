@@ -1,0 +1,120 @@
+<!--Name: Venkatesh
+Created:7/21/2015
+Description: Top lists Facebook
+Associated Files: top_lists_fb.html, top_lists_fb_logic.js and top_lists_fb.less
+-->
+<!-- The program starts here-->
+<template name="top_lists_fb">
+  <div class="module-toplistsfb">
+    <!-- This is the header for the module-->
+    <div class="module-header">
+      <span class="module-header-line"></span>
+      <!-- This class is used to display the title-->
+      <span class="module-header-title">Top Lists that feature Facebook, Inc.</span>
+    </div>
+    <!-- This class holds the sort by  popup menu at top-->
+    <div class="top_lists_fb-h2-bh">
+      <!-- THis class displays the text sort by in bold-->
+      <div class="top_lists_fb-h2-sy"><strong> <b> Sort by: </b> </strong></div>
+      <!-- This class displays the test most recent besides sy-->
+      <div class="top_lists_fb-h2-sy top_lists_fb-h2-mt">Most Recent</div>
+      <!-- This class creates the font awesome symbol down arrow beside the most recent -->
+      <div class="top_lists_fb-h2-dw"><i class="fa fa-angle-down"></i></div>
+    </div>
+    <div class="module-wrapper">
+      <!-- The loop starts here and the each will take each data item from the items on each iteration-->
+      {{#each items}}
+      <div class="top_lists_fb-{{getBackgroundStyle}}"><br>
+
+        <!--This is the main (circle) image-->
+        <div class="top_lists_fb-head-circ">
+        <div class="top_lists_fb-head-image">
+          <!-- Here displays the counter number which is a result of each loop-->
+          <span class="top_lists_fb-counter">#{{counter_no}}</span>
+        </div>
+      </div>
+
+        <!--Location title -->
+        <div class="top_lists_fb-sp">
+        <div  class="top_lists_fb-space">
+          <!-- This displays the font awesome map sybmol infornt of the united states-->
+          <i class="fa fa-map-marker"></i>
+          <span  class="top_lists_fb-space top_lists_fb-space2">
+            United States
+          </span>
+          <!-- Here displays the description which come from the each loop-->
+            <div class="top_lists_fb-adjust">{{ data }}</div>
+        </div>
+      </div>
+
+      <!--other profile images-->
+        <div class="ic">
+          <div class="top_lists_fb-tile-image1">  </div>
+          <div class="top_lists_fb-tile-image1 top_lists_fb-tile-image2"> </div>
+          <div class="top_lists_fb-tile-image1 top_lists_fb-tile-image2">  </div>
+          <div class="top_lists_fb-tile-image1 top_lists_fb-tile-image2">  </div>
+          <div class="top_lists_fb-tile-image1 top_lists_fb-tile-image2">  </div>
+        </div>
+        <!--contianer for the lview full list !-->
+        <div class="top_lists_fb-tile-bt">
+        <!--This displays the blue button which holds the text "View Full List"-->
+        <button class="top_lists_fb-tile-button">
+          View Full List
+          <span style="margin-left:6px"><i class="fa fa-angle-right"></i></span>
+        </button>
+      </div>
+        <!-- This displays the font awesome heart symbol beside the text "save"-->
+      <div class="top_lists_fb-sn">
+        <div  class="top_lists_fb-save">
+          <i class="fa fa-heart"></i>
+          <span  class="top_lists_fb-save top_lists_fb-st">
+            Save
+          </span>
+        </div>
+      </div>
+        <!-- This displays the font awesome share symbol beside the text "share"-->
+        <div class="top_lists_fb-sh">
+        <div  class="top_lists_fb-share">
+          <i class="fa fa-share-alt"></i>
+          <span  class="top_lists_fb-share top_lists_fb-sht">
+            Share
+          </span>
+        </div>
+      </div>
+        <!-- This displays the font awesome flag symbol beside the text "Feedback"-->
+      <div class="top_lists_fb-fe ">
+        <div  class="top_lists_fb-feedback">
+          <i class="fa fa-flag"></i>
+          <span  class="top_lists_fb-share top_lists_fb-ft">
+            Feedback
+          </span>
+        </div>
+      </div>
+      </div>
+      <!--This is the End of each loop -->
+      {{/each}}
+      <!-- Here we are writing code for footer design-->
+      <div class="top_lists_fb-footer">
+        <!-- This is outermost class of the footer which holds the other elements in the footer-->
+        <div class="top_lists_fb-holder1">
+          <!-- This is the class which holds the font awesome left arrow-->
+          <div class="top_lists_fb-navigation">
+            <i class="fa fa-angle-left top_lists_fb-footer-icon"></i>
+          </div>
+          <!-- Here we write the code for the buttons 1,2,3 and 200-->
+          <button  class="top_lists_fb-page-selector1 top_lists_fb-page-selector-font1">1</button>
+          <button class="top_lists_fb-page-selector2 top_lists_fb-page-selector-font2">2</button>
+          <button  class="top_lists_fb-page-selector3 top_lists_fb-page-selector-font3">3</button>
+          <span  class="top_lists_fb-dots" >...</span>
+          <button  class="top_lists_fb-page-selector200 top_lists_fb-page-selector-font">200</button>
+          <i class="fa fa-angle-right top_lists_fb-footer-icon"></i>
+          <!-- This is the class which holds the font awesome right arrow-->
+        </div>
+        <div class="top_lists_fb-navigation2">
+          <button class="top_lists_fb-view-all top_lists_fb-view-all-font">VIEW ALL <img style="padding-bottom:4px" src="infinite-icon.png"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End of Template-->
+</template>
