@@ -1,14 +1,12 @@
-<template name="finance_profile">
-{{> profile_header}}
-{{> daily_update}}
-{{> trending_news}}
-{{> Earnings}}
-{{> money_memory}}
-{{> mutual_funds}}
-{{> whos_who}}
-{{> project_history}}
-{{> about_exec}}
-{{> share}}
-{{> Facebook}}
-{{> about_us}}
+<template name="finance_layout">
+  <table class="finance_body">
+    <tr>
+      <td class="finance_body_left"></td>
+      <td class="finance_body_center">
+        {{> yield "centerarea"}}
+      </td>
+      <!--<td class="finance_body_faq">{{> ad_zone}}</td>-->
+      <td class="finance_body_right"></td>
+    </tr>
+  </table>
 </template>
