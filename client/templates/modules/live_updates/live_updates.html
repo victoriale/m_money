@@ -8,43 +8,38 @@ Associated Files: [The modules.less, live_updates.less ,live_updates.js for the 
   <div class="prim-live_updates">
     <!-- start of secondary container which wraps all the subnets of sub-containers within it -->
     <div class="black-top_black_bar"><!-- belongs to top black portion of container which includes some blocks inside it -->
-      <!--<div class="top-top_blue_bar"></div>  belongs to top small blue portion of the widget  -->
-      <div class="bullhorn-updates"><i class="fa fa-bullhorn"></i>LIVE UPDATES</div><!-- contains a font-awesone icon along with a text  -->
-      <!--{{#each dotted}} contains loop for dots at the right corner
-      <i class="fa fa-circle shadedline-blueshades"></i>
-      {{/each}}-->
-      <div class="shadedline-circles">
-        <div class="shadedline-blueshades"></div>
-        <div class="shadedline-blueshades"></div>
-        <div class="shadedline-blueshades"></div>
-      </div>
+      <div class="top-top_blue_bar"></div><!--  belongs to top small blue portion of the widget  -->
+      <div class="bullhorn-updates"><br><i class="fa fa-bullhorn"></i>LIVE UPDATES</div><!-- contains a font-awesone icon along with a text  -->
+      {{#each dotted}}<!--contains loop for dots at the right corner  -->
+      <i class="fa {{circle}} shadedline-blueshades"></i>
+      {{/each}}
       <!--start of first block which contains image block on left-side  along with text content towards the right portion -->
-    </div>
-    {{#each ListingList}} <!--each loop repeats the block thrice  -->
-    <a href="">
-      <div class="upper-top_block1">
-        <div class="leftpart1-photo1"><a href="#"><div class="leftpart1-photo1-img {{counter_no}}"></div></a></div>
-        <div class="imgblk1-img_blk1">
-          <div class="texts-linetexttitle">{{address}}</div><!--contains texted first line  -->
-          <div class="texts-linetext1">Went on the market <!--{{date}}-->,</div>
-          <div class="texts-linetext2">with an asking price of <span class="texts-linetext2-bold">${{price}}</span></div><!-- contains the second line of text -->
-          <div class="texts-linetext3">  {{bed}} Bed  |    {{bath}} Bath  |   {{sq}} sq ft</div><!-- contains third line of text -->
-          <div class="texts-linetext4"> {{city}}, {{state}} | Updated {{updated}} ago </div><!-- contains fourth line of text   -->
-        </div>
-        <i class="fa fa-angle-right upper-right1_arrow"></i>
-      </div>
-    </a>
-    {{/each}}
-    <!--End of loop -->
-    <!--start of bottom block which contains bottom blue-line and blue-button -->
-    <div class="lowbox-btn_ctr"><!-- bottom block contains button and bottom blue line -->
-      <button class="module-footer-button">
-        <span class="module-footer-button-text">SEE THE FULL LIST</span>
-        <span class="module-footer-button-ellipse"><i class="fa fa-mail-forward"></i></span><!--module-footer-button-ellipse class contains a fa icon and ellipse embedded -->
-      </button>
-      <div class="bottom-bluebar"></div><!--class bottom-blue-bar contains blue portion at the bottom-->
-    </div>
+      {{#each block}} <!--each loop repeats the block thrice  -->
+      <a href="">
+        <div class="upper-top_block1">
+          <a href="#"><div class="picture"></div></a>
+          <div class="imgblk1-img_blk1"><span class="texts-linetext0">{{title}}</span> <br><!--contains texted first line  -->
+            <span class="texts-linetext1">{{went}}</span><br>
+            <span class="texts-linetext3"> {{withh}} <span class="pric_color">{{price}}</span></span><br><!-- contains the second line of text -->
+            <span class="texts-linetext4">  {{bed}}   |    {{bath}}   |   {{sq}} </span><!-- contains third line of text -->
+            <div class="texts1-linetext2"> {{chic}} | {{updated}} </div><!-- contains fourth line of text   -->
 
-    <!--End of bottom block which contains bottom blue-line and blue-button -->
+          </div>
+          <i class="fa fa-angle-right upper-right1_arrow"> </i>
+        </div>
+      </a>
+      {{/each}}
+      <!--End of loop -->
+      <!--start of bottom block which contains bottom blue-line and blue-button -->
+      <div class="lowbox-btn_ctr"><!-- bottom block contains button and bottom blue line -->
+        <button class="module-footer-button">
+          <span class="module-footer-button-text">SEE THE FULL LIST</span>
+          <span class="module-footer-button-ellipse"><i class="fa fa-mail-forward"></i></span><!--module-footer-button-ellipse class contains a fa icon and ellipse embedded -->
+        </button>
+        <div class="bottom-bluebar"></div><!--class bottom-blue-bar contains blue portion at the bottom-->
+      </div>
+
+      <!--End of bottom block which contains bottom blue-line and blue-button -->
+    </div>
   </div>
 </template>

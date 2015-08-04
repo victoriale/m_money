@@ -16,34 +16,21 @@ Associated Files: [The modules.less, live_updates.html for the module]*/
 	}
 	&-blueshades:hover
 	{
-		background-color: #3b9dff;
+		color: #3b9dff;
 		border-color:#3b9dff;
 		border-width:2px;
 	}
 	&-blueshades//contains a layout for dotted buttons
 	{
 		border-radius: 50%;
+		color: #c2c2c2;
 		width: 15px;
 		height: 15px;
-		background-color: #c2c2c2;
-		float: left;
-		margin-right: 5px;
-	}
-	&-circles
-	{
-		margin-top: 10px;
-		margin-right: 5px;
 		float: right;
-		width: 60px;
-		height: 15px;
-	}
-}
-.bottom
-{ // contains a layout for the portion of blue-color at the bottom
-	&-blue-bar
-	{
-		border-top: 3px solid #3098ff;
-		width: 100%;
+		position:relative;
+		left: -23px;
+		top: -4px;
+		padding: 8px;
 	}
 }
 .prim
@@ -51,54 +38,59 @@ Associated Files: [The modules.less, live_updates.html for the module]*/
 	&-live_updates
 	{
 		width:300px;
-		height: 370px;
+		height: 364px;
 		background-color: #FDF2F2;
 		border-top: 2px solid #0398ff;
-		position: relative;
 	}
 }
-
+.top
+{ //layout for top-blue-lined box
+	&-top_blue_bar
+	{
+		border-top:3px solid #3098ff;
+		width:300px;
+		height:3px;
+	}
+}
 .black
 {  //layout for top-black-box
 	&-top_black_bar
 	{
 		background-color: #000000;
-		border-top:2px solid #3098ff;
 		width: 300px;
 		height: 40px;
+		margin-top:-3px;
 	}
 }
-
 .bullhorn
 {  //contains layout for bull-horn font awesome icon
 	&-updates
 	{
 		width: 140px;
-		//color: #0982f8;
-		font-family: HN-B;
+		color: #0982f8;
+		font-weight:bold;
+		font-family: HelveticaNeue;
 		color: #ffffff;
 		text-transform:upper;
-		// margin-left:-5px;
-		// margin-top:-7px;
-		// margin-bottom:-20px;
-		padding-top: 10px;
+		margin-left:-5px;
+		margin-top:-7px;
+		margin-bottom:-20px;
 		font-size:12px;
-		float: left;
+		padding:1px;
 	}
 }
-
 .upper
 {  //contains layout for top block
 	&-top_block1
 	{
 		width: 300px;
-		height: 108px !important;
+		height: 108px;
 		border-left: 3px solid #dadada;
 		border-bottom:1px solid #dadada;
-		position: relative;
-		// -moz-transform: translate(0px,32px);
-		// transform: translate(0px,29px);
-		// -khtml-transform: translate(0px,29.5px);
+		-moz-transform: translate(0px,28px) !important;
+		transform: translate(0px,14px);
+		-khtml-transform: translate(0px,29.5px);
+		overflow:hidden;
 	}
 
 	&-top_block1:hover
@@ -112,10 +104,10 @@ Associated Files: [The modules.less, live_updates.html for the module]*/
 	&-right1_arrow
 	{
 		float: right;
-		margin-top: 40px;
-		margin-right: 5px;
 		font-size: 30px;
 		color: #cccccc;
+	  transform: translate(-13px, -139px);
+		-khtml-transform: translate(-10px, -139px);
 	}
 }
 .bottom
@@ -125,7 +117,7 @@ Associated Files: [The modules.less, live_updates.html for the module]*/
 		background-color: #3098ff;
 		width: 300px;
 		height: 2px;
-		margin-left:-9px;
+		transform:translate(-6px,-1px);
 	}
 }
 .imgblk1-img_blk1
@@ -135,70 +127,72 @@ Associated Files: [The modules.less, live_updates.html for the module]*/
 	font-size: 14px;/* Approximation due to font substitution */
 	text-align: left;
 	width:178px;
-	height:73px;
+	height:92px;
+	text-align:left;
 	line-height: 16px;
-	float: left;
-	margin-top: 15px;
-}
-
-.texts-linetexttitle{
-	width: 175px;
-	height: 14px;
-	line-height: 14px;
+	transform: translate(91px, -61px);
+	-moz-transform: translate(86px, -63px);
+	-khtml-transform:translate(96px,-63px);
 	overflow: hidden;
-	font-family: HN-B;
+}
+.texts-linetext0
+{
+.imgblk1-img_blk1;
+overflow: hidden;
+width:100%;
 }
 .texts-linetext1
 {      //contains a layout for span elements
 	font-family: HN;
 	color:#000000;
-	font-size:12px;
+	font-size:12.5px;
 	text-align:left;
-}
-.texts-linetext2
-{
-	.texts-linetext1;
-
-	&-bold{
-		font-family: HN-B;
-	}
+  overflow: hidden;
 }
 .texts-linetext3
 {
 	.texts-linetext1;
+	font-size:10.9px;
 
 }
 .texts-linetext4
+{
+	.texts-linetext1;
+	font-size:11.4px;
+	transform: translate(1px,0.7px);
+}
+.texts1-linetext2
 {    //contains layout for last text in each block
 	color:rgb(173, 170, 170);;
 	font-weight:lighter;
 	font-size:10px;
 	text-align:left;
-
+	transform: translate(0px, -2px);
+	//-moz-transform: translate(-13px,38px);
+	-khtml-transform:translate(0px,-2px);
+	overflow:hidden;
 }
-
+.texts1-linetext3
+{
+	.texts1-linetext2;
+	transform: translate(7px,-3px);
+	//-moz-transform: translate(-13px,38px);
+	-khtml-transform:translate(13px,-30px);
+}
 .leftpart1-photo1
 {    //contains a layout for image container inside block1
 	width: 75px;
 	height: 75px;
-	margin-top: 15px;
-	margin-left: 10px;
-	margin-right: 10px;
-	border: 2px solid #cccccc !important;
-	border-radius: 50%;
+	margin-left:-194px;
+	border-width: 2px;
+	border-color:  #cccccc;
+	border-radius: 50px;
 	background-color:  #ffffff;
-	float: left;
-	z-index: 1;
-	// transform: translate(202px, 15px);
-	// -khtml-transform:translate(-2px,15px);
-
-	&-img{
-		width: 73px;
-		height: 73px;
-		border-radius: 50%;
-		z-index: 0;
-		background-position: center;
-	}
+	width: 71px;
+	height: 71px;
+	transform: translate(202px, 15px);
+	-moz-transform: translate(202px, 15px);
+	-khtml-transform:translate(-2px,15px);
 }
 .fa-bullhorn
 {   //contains a layout for font awesome icon bullhorn
@@ -211,8 +205,26 @@ Associated Files: [The modules.less, live_updates.html for the module]*/
 	&-btn_ctr
 	{
 		position: absolute;
-		bottom: 0px;
-		margin: -6px -3px 4px 9px;
+		margin: -22px -3px 4px 9px;
 		text-align:center;
+		-moz-transform: translate(-1px,13px) !important;
+		-khtml-transform:translate(-8px,16px);
 	}
+}
+.picture
+{
+	transform: translate(3px, 13px);
+	-khtml-transform: translate(8px, 13px);
+	border-radius: 51%;
+	width: 71px;
+	height: 71px;
+	border-radius: 50%;
+	border-width: 2px;
+	border-color:  #cccccc;
+	border-style: solid;
+	background-color:  #ffffff;
+}
+.pric_color
+{
+	font-family:HN-B;
 }
