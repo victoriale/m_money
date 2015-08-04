@@ -2,11 +2,11 @@
 Author:Meghana yerramillli
 Created: [07-20-2015]
 Description: featured top 100 lists
-Associated Files: featured_top_100.html, featured_top_100.js
+Associated Files: featured_list.html, featured_list.js
 -->
-<template name="featured_top_100">
+<template name="featured_list">
   <!--whole panel for the page-->
-  <div class="top100_panel">
+  <div class="fl_panel">
     <!--header-->
     <div class="module-header">
       <span class="module-header-line"></span>
@@ -14,66 +14,66 @@ Associated Files: featured_top_100.html, featured_top_100.js
     </div>
     <!--body of the page-->
     <div class="module-wrapper">
-      <div class="top100_block">
+      <div class="fl_block">
         <!--block Title-->
-        <div class="top100_block_title">
+        <div class="fl_block_title">
           <!--block title ,icon and text-->
           <i class="fa fa-circle"></i>
-          <SPAN class="top100_title_text">FINANCE TRENDING LISTS</span>
+          <SPAN class="fl_title_text">FINANCE TRENDING LISTS</span>
           </div>
           <!--Top 100 title-->
-          <div class ="top100_ct">
-          <div class="top100_block_text"><c>T</c>op 100 Most actively Traded Local Area Stocks </div>
+          <div class ="fl_ct">
+          <div class="fl_block_text"><c>T</c>op 100 Most actively Traded Local Area Stocks </div>
         </div>
-          <div class="top100_block_underline"></div>
+          <div class="fl_block_underline"></div>
           <!--company name-->
-          <div class="top100_co">
-          <div class = "top100_company-name">{{company_name}}</div>
+          <div class="fl_co">
+          <div class = "fl_company-name">{{company_name}}</div>
           <!--location-->
-          <div class = "top100_location-text">
-            <span class="top100_fa_loc">
+          <div class = "fl_location-text">
+            <span class="fl_fa_loc">
               <i class="fa fa-map-marker"></i>
             </span>
             {{company_location}}
           </div>
         </div>
           <!--container containing circle for image, icon and position-->
-        <div class="top100_ico">
+        <div class="fl_ico">
           <!--left navigation button-->
-          <div class="top100_lf">
-           <button class='top100_block_leftbutton'>
+          <div class="fl_lf">
+           <button class='fl_block_leftbutton'>
              <i class="fa fa-angle-left fa-2x" ></i>
            </button>
          </div>
            <!--right navigation button-->
-           <div class="top100_rt">
-           <button class='top100_block_rightbutton'>
+           <div class="fl_rt">
+           <button class='fl_block_rightbutton'>
              <i class="fa fa-angle-right fa-2x"></i>
            </button>
          </div>
         </div>
 
-        <div class="top100_cr">
+        <div class="fl_cr">
           <!--image in the circle-->
-            <a class="top100_block_pic " href="">
+            <a class="fl_block_pic " href="">
               <!--passfail icon-->
-              <div class="top100_block_pass-fail "></div>
+              <div class="fl_block_pass-fail "></div>
               <!--circle for position number-->
-              <div class = "top100_block_pic_counter">#{{counter}}</div>
+              <div class = "fl_block_pic_counter">#{{counter}}</div>
             </a>
         </div>
 
           <br><br><br>
           <!--container for information about stocks-->
-          <div class="top100_bottomcontainer">
+          <div class="fl_bottomcontainer">
             <!--CEO & shares information-->
-            <div class="top100_line-1" >CEO: {{company_CEO}} | NASDAQ: {{company_stock}} </div>
-            <div class="top100_line-2">Shares Traded:
-              <span class="top100_sh">{{company_shares}}</span>
+            <div class="fl_line-1" >CEO: {{company_CEO}} | NASDAQ: {{company_stock}} </div>
+            <div class="fl_line-2">Shares Traded:
+              <span class="fl_sh">{{company_shares}}</span>
             </div>
           </div>
           <!--footer for see the whole list button-->
-          <div class="top100_footer">
+          <div class="fl_footer">
             <!-- See whole list Button -->
             <button class="module-footer-button" >
               <span class="module-footer-button-text">SEE THE FULL LIST</span>
@@ -85,7 +85,7 @@ Associated Files: featured_top_100.html, featured_top_100.js
           </div>
         </div>
         <!--tiles beside the main block-->
-        <div class="top100_tiles">
+        <div class="fl_tiles">
           <!--classes for tiles used are the tile classes in modules.less file-->
           {{#each gettitle}}
           <div class="module-tile">
@@ -109,8 +109,8 @@ Associated Files: featured_top_100.html, featured_top_100.js
                   </div>
                 </div>
                 <!--tile text-->
-                <div class="{{top100_none}}">
-                  <div class="top100_new">NEW</div>
+                <div class="{{fl_none}}">
+                  <div class="fl_new">NEW</div>
                 </div>
                 <div class="module-tile-default-text">{{title}}
                 </div>
