@@ -2,17 +2,17 @@
 Name: Venkatesh
 Created:7/21/2015
 Description: Top lists Facebook
-Associated Files: top_lists_fb.html, top_lists_fb_logic.js and top_lists_fb.less
+Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists.less
 */
 //This variable is set as white as our first background is grey, the program checks whether its white and changes it to grey.
 
-Template.top_lists_fb.onRendered(function () {
-$(".top_lists_fb-page-selector1").css("background-color","#3098ff");
+Template.list_of_lists.onRendered(function () {
+$(".list_of_lists-page-selector1").css("background-color","#3098ff");
 
 });
 
 var backgroundStyle="tilewhite";
-Template.top_lists_fb.helpers({
+Template.list_of_lists.helpers({
 
   //This is the list of data the program will return to the html page
   items: [
@@ -34,41 +34,41 @@ Template.top_lists_fb.helpers({
   }
 });
 //This handles the events on button clicks of 1,2,3 and 200
-Template.top_lists_fb.events({
+Template.list_of_lists.events({
     //This function is called when user presses the button "1" and the function makes the button background turn
     //blue and make the other buttons background white
-    'click .top_lists_fb-page-selector1': function()
+    'click .list_of_lists-page-selector1': function()
     {
-        $(".top_lists_fb-page-selector1").css("background-color","#3098ff");
-        $(".top_lists_fb-page-selector2").css("background-color","#ffffff");
-        $(".top_lists_fb-page-selector3").css("background-color","#ffffff");
-        $(".top_lists_fb-page-selector200").css("background-color","#ffffff");
+        $(".list_of_lists-page-selector1").css("background-color","#3098ff");
+        $(".list_of_lists-page-selector2").css("background-color","#ffffff");
+        $(".list_of_lists-page-selector3").css("background-color","#ffffff");
+        $(".list_of_lists-page-selector200").css("background-color","#ffffff");
     },
     //This function is called when user presses the button "2" and the function makes the button background turn
     //blue and make the other buttons background white
-    'click .top_lists_fb-page-selector2': function()
+    'click .list_of_lists-page-selector2': function()
     {
-        $(".top_lists_fb-page-selector2").css("background-color","#3098ff");
-        $(".top_lists_fb-page-selector1").css("background-color","#ffffff");
-        $(".top_lists_fb-page-selector3").css("background-color","#ffffff");
-        $(".top_lists_fb-page-selector200").css("background-color","#ffffff");
+        $(".list_of_lists-page-selector2").css("background-color","#3098ff");
+        $(".list_of_lists-page-selector1").css("background-color","#ffffff");
+        $(".list_of_lists-page-selector3").css("background-color","#ffffff");
+        $(".list_of_lists-page-selector200").css("background-color","#ffffff");
     },
     //This function is called when user presses the button "3" and the function makes the button background turn
     //blue and make the other buttons background white
-    'click .top_lists_fb-page-selector3': function()
+    'click .list_of_lists-page-selector3': function()
     {
-        $(".top_lists_fb-page-selector3").css("background-color","#3098ff");
-        $(".top_lists_fb-page-selector2").css("background-color","#ffffff");
-        $(".top_lists_fb-page-selector1").css("background-color","#ffffff");
-        $(".top_lists_fb-page-selector200").css("background-color","#ffffff");
+        $(".list_of_lists-page-selector3").css("background-color","#3098ff");
+        $(".list_of_lists-page-selector2").css("background-color","#ffffff");
+        $(".list_of_lists-page-selector1").css("background-color","#ffffff");
+        $(".list_of_lists-page-selector200").css("background-color","#ffffff");
     },
     //This function is called when user presses the button "200" and the function makes the button background turn
     //blue and make the other buttons background white
-    'click .top_lists_fb-page-selector200': function()
+    'click .list_of_lists-page-selector200': function()
     {
-        $(".top_lists_fb-page-selector200").css("background-color","#3098ff");
-        $(".top_lists_fb-page-selector2").css("background-color","#ffffff");
-        $(".top_lists_fb-page-selector3").css("background-color","#ffffff");
-        $(".top_lists_fb-page-selector1").css("background-color","#ffffff");
+        $(".list_of_lists-page-selector200").css("background-color","#3098ff");
+        $(".list_of_lists-page-selector2").css("background-color","#ffffff");
+        $(".list_of_lists-page-selector3").css("background-color","#ffffff");
+        $(".list_of_lists-page-selector1").css("background-color","#ffffff");
     }
 });
