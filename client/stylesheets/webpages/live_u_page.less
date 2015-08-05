@@ -1,0 +1,550 @@
+/* Author: Kyle Toom
+Date Created: 8/3/2015
+Description: A page for displaying real time information
+Associated files: live_u_page.html, live_u_page.less, live_u_page.js
+*/
+
+@import (reference)"../global_vars.less";
+
+.lup //stands for live_u_page
+{
+  width: 680px;
+  height: 1716px;
+  background-color: @white;
+  position: relative;
+
+  &-b //lup-b: bold
+  {
+    font-family: HN-B;
+    font-style: normal;
+  }
+
+  &-l //lup-l: lighter
+  {
+    font-family: HN-L;
+    font-style: normal;
+  }
+
+  &-pa //lup-pa: position absolute
+  {
+    position: absolute;
+  }
+
+  &-pr //lup-pr: position relative
+  {
+    position: relative;
+  }
+
+  &-o140 //offset of absolute/relative 140px
+  {
+    left: 140px;
+  }
+
+  &-nav
+  {
+    top: 84px !important;
+    &-arrow
+    {
+      top: 24px !important;
+    }
+  }
+}
+
+.lup-top
+{
+  &-text1 //lup-top-text1: for "LAST UPDATED"
+  {
+    font-style: normal;
+    font-size: 10px;
+    color: @grey-6;
+    top: 15px;
+  }
+
+  &-text2 //lup-top-text2: for country
+  {
+    font-style: normal;
+    font-size: 12px;
+    top: 40px;
+  }
+
+  &-text3 //lup-top-text3: for "Live Updates"
+  {
+    font-size: 22px;
+    top: 55px;
+  }
+
+  &-text4 //lup-top-text4: for "for ... and its affiliates"
+  {
+    font-size: 22px;
+    top: 80px;
+  }
+}
+
+.lup-prfl-img
+{
+  width: 100px;
+  height: 100px;
+  border: 2px solid #cccccc;
+  border-radius: 50%;
+  left: 20px;
+  top: 20px;
+
+  &-arrow //lup-prfl-img-arrow
+  {
+    border: 2px solid @white;
+    width: 35px;
+    height: 35px;
+    background-color: @blue;
+    float: left;
+    border-radius: 50%;
+    color: @white;
+    padding: 6px 8px 8px 8px;
+    left: -8px;
+    top: 2px;
+  }
+}
+
+.lup-art-spc //lup-art-spce: article space
+{
+  top: 141px;
+  width: 100%;
+  height: 326px;
+
+  &-hd //lup-art-spc-hd: article space header
+  {
+    height: 35px;
+    background-color: rgb(10,10,10);
+    color: @white;
+
+    &-l //lup-art-spc-hd-l: article space header left
+    {
+      width: 35%;
+      height: 35px;
+      font-size: 16px;
+      padding: 5px 15px;
+      border-right: 2px solid #1F1F1F;
+      margin: 0px;
+      float: left;
+    }
+
+    &-r //lup-art-spc-hd-r: article space header right
+    {
+      float: right;
+      width: 65%;
+      font-size: 14px;
+      padding: 6px 15px;
+      height: 35px;
+
+      &-sub //lup-art-spc-hd-r-sub: subsection of article space header right
+      {
+        width: 70px;
+        float: left;
+        margin-right: 20px;
+      }
+
+      &-fa //lup-art-spc-hd-r-fa
+      {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  &-mid //lup-art-spc-mid
+  {
+    top: 35px;
+    background-image: @dark-linen;
+    height: 249px;
+    width: 100%;
+
+    &-left_arrow //lup-art-spc-mid-left_arrow
+    {
+      margin-left: 15px !important;
+    }
+
+    &-right_arrow //lup-art-spc-mid-right_arrow
+    {
+      margin-right: 15px !important;
+    }
+
+    &-prfl_img //lup-art-spc-mid-prfl_img
+    {
+      border-radius: 50%;
+      width: 180px;
+      height: 180px;
+      background-color: @white;
+      border: 3px solid @grey-2;
+      top: 34px;
+      left: 55px;
+    }
+
+    &-text //lup-art-spc-mid-text
+    {
+      top: 34px;
+      left: 235px;
+      width: 385px;
+      height: 181px;
+      color: @white;
+
+      &-circle //lup-art-spc-mid-text-circle
+      {
+        float: left;
+        background-color: @blue;
+        border-radius: 50%;
+        border: 1px transparent;
+        height: 40px;
+        width: 40px;
+        padding: 10px 9px;
+      }
+
+      &-title //lup-art-spc-mid-text-title
+      {
+        height: 47px;
+        width: 330px;
+        font-size: 22px;
+        left: 55px;
+        float: right;
+        line-height: 22px;
+        top: -2px;
+      }
+
+      &-box //lup-art-spc-mid-text-box
+      {
+        left: 20px;
+        top: 66px;
+        border-left: 2px solid @grey-2;
+        padding-left: 20px;
+        font-size: 16px;
+        line-height: 19px;
+
+        &-msg //lup-art-spc-mid-text-box-msg
+        {
+          text-align: justify;
+          hyphens: auto;
+          height: 96px;
+          overflow: hidden;
+        }
+
+        &-small //lup-art-spc-mid-text-box-small
+        {
+          font-style: normal;
+          font-family: HN;
+          font-size: 14px;
+          line-height: 25px;
+        }
+
+        &-bold //lup-art-spc-mid-text-box-bold
+        {
+          font-style: normal;
+          font-size: 14px;
+          line-height: 25px;
+        }
+      }
+    }
+  }
+
+  &-ft //lup-art-spc-ft: article space footer
+  {
+    top: 284px;
+    background-color: rgb(19,19,19);
+    width: 100%;
+    height: 76px;
+    padding: 15px 20px;
+    color: @white;
+    float: left;
+    font-size: 18px;
+    line-height: 24px;
+
+    &-s //lup-art-spc-ft-s: article space footer small
+    {
+      font-size: 14px;
+      line-height: 24px;
+    }
+
+    &-b //lup-art-spc-ft-b: article space footer big
+    {
+      font-size: 14px;
+      line-height: 24px;
+    }
+
+    &-btn //lup-art-spc-ft-btn
+    {
+      border-radius: 5px;
+      background-color: @blue;
+      color: @white;
+      width: 180px;
+      height: 35px;
+      left: 490px;
+      top: 20px;
+      font-size: 14px;
+      text-align: center;
+      padding-top: 5px;
+    }
+  }
+}
+
+.lup-art-holder //article holder
+{
+    width: 650px;
+    height: 750px;
+    top: 140px;
+    left: 15px;
+}
+
+.lup-arts //the extra 5 articles
+{
+  height: 940px;
+  width: 100%;
+  top: 501px;
+  padding: 5px 15px;
+
+  &-sort //lup-arts-sort
+  {
+    color: @black;
+    font-size: 12px;
+  }
+
+  &-sort-a //lup-arts-sort-a
+  {
+    font-size: 12px;
+    color: @blue;
+    font-style: normal;
+  }
+
+  &-what_box //lup-arts-what_box
+  {
+    left: 15px;
+    top: 38px;
+    width: 650px;
+    height: 80px;
+    border: 1px solid #ebebeb;
+
+    &-title //lup-arts-what_box-title
+    {
+      height: 20px;
+      background-color: #ebebeb;
+      padding: 2px 10px 0px 10px;
+      line-height: 16px;
+      color: #333333;
+      font-size: 12px;
+
+      &-x //lup-arts-what_box-title-x: the little 'x' in the title
+      {
+        font-size: 10px;
+        top: 2px;
+        float: right;
+      }
+    }
+
+    &-text //lup-arts-what_box
+    {
+      height: 58px;
+      background-color: #fafafa;
+      padding: 10px 20px 10px 20px;
+      color: @black;
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+  &-circle //lup-arts-circle
+  {
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    border: 3px solid @grey-2;
+    margin-bottom: 20px;
+  }
+
+  &-caret //lup-arts-caret
+  {
+    color: @white;
+    text-shadow: -1px 0px @grey-2;
+    left: 130px;
+    top: 10px;
+  }
+
+  &-location //lup-arts-location
+  {
+    color: @grey-6;
+    font-size: 10px;
+    left: -7px;
+  }
+
+  &-share_btn //lup-arts-share_btn
+  {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid @grey-2;
+    background-color: #acacac;
+    color: @grey-2;
+    text-align: center;
+    padding-top: 5px;
+    margin: 0px 2.5px;
+    float: left;
+  }
+
+  &-prfl_btn //lup-arts-prfl_btn
+  {
+    border-radius: 5px;
+    background-color: @blue;
+    text-align: center;
+    width: 140px;
+    height: 35px;
+    float: right;
+    top: -2px;
+    color: @white;
+    font-size: 14px;
+    line-height: 36px;
+  }
+
+  &-box //lup-arts-box
+  {
+    width: 505px;
+    height: 130px;
+    border: 1px solid @grey-2;
+    padding: 5px 10px 5px 10px;
+    left: 137px;
+    margin-bottom: 20px;
+
+    &-message //lup-arts-box-message
+    {
+      width: 480px;
+      height: 80px;
+      left: 7px;
+      color: @grey-4;
+      font-size: 14px;
+      line-height: 18px;
+
+      &-no_o //lup-arts-box-message-no_o: prevents overflow
+      {
+        max-height: 36px;
+        overflow: hidden;
+      }
+    }
+
+    &-ft //lup-arts-box-ft: articles box footer
+    {
+      width: 503px;
+      height: 40px;
+      left: 0px;
+      top: 89px;
+      padding: 5px;
+      background-color: @grey-2;
+    }
+  }
+
+  &-title //lup-arts-title
+  {
+      color: @grey-4;
+      font-size: 18px;
+  }
+
+  &-speaker //lup-arts-speaker
+  {
+      color: @blue;
+      font-size: 18px;
+  }
+
+  &-pages //lup-arts-pages
+  {
+    text-align: center;
+    height: 45px;
+    width: 100%;
+    top: 895px;
+    left: 0px;
+    color: @black;
+    font-size: 14px;
+    line-height: 21px;
+    padding: 10px 245px 10px 245px;
+    border-top: 1px solid @grey-3;
+
+    &-arrow //lup-arts-pages-arrow
+    {
+      font-size: 18px;
+      float: left;
+    }
+
+    &-ellipsis //lup-arts-pages-ellipsis
+    {
+      font-size: 14px;
+      float: left;
+    }
+
+    &-circle //lup-arts-pages-circle
+    {
+      border-radius: 50%;
+      height: 25px;
+      width: 25px;
+      text-align: center;
+      border: 1px solid @grey-2;
+      float: left;
+      padding-right: 1px;
+
+      &-selected
+      {
+        border-radius: 50%;
+        height: 25px;
+        width: 25px;
+        text-align: center;
+        border: 1px solid @grey-2;
+        float: left;
+        padding-right: 1px;
+        background-color: @blue;
+        color: @white;
+      }
+    }
+
+    &-oval //lup-arts-oval
+    {
+      border-radius: 12px;
+      height: 25px;
+      width: 50px;
+      text-align: center;
+      border: 1px solid @grey-2;
+      float: left;
+
+      &-selected
+      {
+        border-radius: 12px;
+        height: 25px;
+        width: 50px;
+        text-align: center;
+        border: 1px solid @grey-2;
+        float: left;
+        background-color: @blue;
+        color: @white;
+      }
+    }
+
+    &-view_all //lup-arts-view_all
+    {
+      border-radius: 5px;
+      border-width: 1px;
+      border-color: @blue;
+      color: @blue;
+      border-style: solid;
+      background-color: @white;
+      width: 115px;
+      height: 23px;
+      left: 535px;
+      top: 10px;
+      text-align: center;
+      font-size: 12px;
+      line-height: 20px;
+
+      &-i //lup-arts-view_all-i
+      {
+        padding-left: 7px;
+        top: -1px;
+      }
+    }
+  }
+}
+
+.lup-search-box
+{
+  width:680px;
+  height:275px;
+  top: 1441px;
+}

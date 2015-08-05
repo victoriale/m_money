@@ -1,0 +1,173 @@
+<!--Author: Kyle Toom
+Date Created: 8/3/2015
+Description: A page for displaying real time information
+Associated files: live_u_page.html, live_u_page.less, live_u_page.js
+-->
+
+<template name="live_u_page">
+  <script>
+    //In html instead of live_u_page.js because of inability to find function
+    //Sorry!
+    var lupPages = [];
+
+    var lupSelect = function(p)
+    {
+      lupPages = [
+        document.getElementById("lupPage1"),
+        document.getElementById("lupPage2"),
+        document.getElementById("lupPage3"),
+        document.getElementById("lupPage4")
+      ];
+      for(var i = 1; i != 5; i++)
+      {
+        if(i!=4)
+        {
+          if(i==p)
+          {
+            lupPages[i-1].className = "lup-arts-pages-circle-selected";
+          } else {
+            lupPages[i-1].className = "lup-arts-pages-circle";
+          }
+        } else {
+          if(i==p)
+          {
+            lupPages[i-1].className = "lup-arts-pages-oval-selected";
+          } else {
+            lupPages[i-1].className = "lup-arts-pages-oval";
+          }
+        }
+      }
+    }
+  </script>
+  <div class="lup">
+    <div class="lup-prfl-img lup-pr">
+      <div class="lup-prfl-img-arrow lup-pr">
+        <i class="fa fa-reply"></i>
+      </div>
+    </div>
+    <i class="lup-top-text1 lup-pa lup-o140">LAST UPDATED: 06/24/2015, 8:00 AM EST</i>
+    <div class="lup-top-text2 lup-pa lup-o140">
+      <i class="fa fa-map-marker"></i> United States
+    </div>
+    <i class="lup-top-text3 lup-pa lup-o140 lup-b">Live Updates</i>
+    <i class="lup-top-text4 lup-pa lup-o140 lup-l">For GoPro, Inc. And Its Affiliates</i>
+    <div class="lup-art-spc lup-pa">
+      <div class="lup-art-spc-hd lup-b">
+        <div class="lup-art-spc-hd-l lup-b">
+          GoPro, Inc.'s Live Updates
+        </div>
+        <div class="lup-art-spc-hd-r">
+          <div class="lup-art-spc-hd-r-sub lup-l">
+            <i class="fa fa-heart lup-art-spc-hd-r-fa"></i>
+            Save
+          </div>
+          <div class="lup-art-spc-hd-r-sub">
+            <i class="fa fa-share-alt lup-art-spc-hd-r-fa"></i>
+            Share
+          </div>
+        </div>
+      </div>
+      <div class="lup-art-spc-mid lup-pa">
+        <div class="navigation-button-left lup-nav">
+          <i class="fa fa-angle-left lup-art-spc-mid-left_arrow lup-nav-arrow"></i>
+        </div>
+        <div class="lup-art-spc-mid-prfl_img lup-pa">
+        </div>
+        <div class="lup-art-spc-mid-text lup-pa">
+          <div class="lup-art-spc-mid-text-circle">
+            <i class="fa fa-newspaper-o fa-lg"></i>
+          </div>
+          <div class="lup-art-spc-mid-text-title lup-pa">
+            GOPRO Stock - Get Into GoPro Before Another Extreme Rally.
+          </div>
+          <div class="lup-art-spc-mid-text-box lup-pa">
+            <div class="lup-art-spc-mid-text-box-msg lup-l">
+              GoPro (GPRO) just reported a supposedly picture-perfect
+              quarter, with net income surging to 24 cents in adjusted
+              earnings per share -- rougly four times what it was a year
+              ago...<br>
+              <i class="lup-art-spc-mid-text-box-small">Published By: </i>
+              <i class="lup-art-spc-mid-text-box-bold lup-b">Investorplace.com</i>
+            </div>
+          </div>
+        </div>
+        <div class="navigation-button-right lup-nav">
+          <i class="fa fa-angle-right lup-art-spc-mid-right_arrow lup-nav-arrow"></i>
+        </div>
+      </div>
+      <div class="lup-art-spc-ft lup-l lup-pa">
+        Interested in this art written by Investorplace.com?<br>
+        <i class="lup-art-spc-ft-s lup-l">Written On: </i>
+        <i class="lup-art-spc-ft-b lup-b">07/29/2015</i>
+        <div class="lup-art-spc-ft-btn lup-pa">
+          Read Full Article >
+        </div>
+      </div>
+    </div>
+    <div class="lup-arts lup-pa">
+      <i class="lup-arts-sort lup-b">Sort by: </i>
+      <i class="lup-arts-sort lup-l">Recent Updates </i>
+      <i class="fa fa-angle-down lup-arts-sort-a"></i>
+      <div class="lup-arts-what_box lup-pa">
+        <div class="lup-arts-what_box-title lup-b">
+          What is this page?
+          <i class="fa fa-times lup-arts-what_box-title-x lup-pr"></i>
+        </div>
+        <div class="lup-arts-what_box-text">
+          This is a page compiles all news, financial, social
+          activity and SEC filings about GoPro, Inc. and stores
+          it in one easy place to find.
+        </div>
+      </div>
+      <div class="lup-art-holder lup-pa">
+        {{#each article}}
+          <div class="lup-arts-circle lup-pa"></div>
+          <div class="lup-arts-box lup-pr">
+            <i class="lup-arts-speaker lup-b">{{speaker}}</i>
+            <i class="lup-arts-title lup-l">{{title}}</i><br>
+            <div class="lup-arts-box-message lup-pr">
+              <div class="lup-arts-box-message-no_o">
+                {{{lupFmtMessage type message}}}
+              </div>
+              <div class="lup-arts-location lup-pr">
+                <i class="fa fa-map-marker"></i>
+                {{location}} | posted {{elapsed_time}} ago
+              </div>
+            </div>
+            <div class="lup-arts-box-ft lup-pa">
+              <div class="lup-arts-share_btn">
+                <i class="fa fa-google-plus"></i>
+              </div>
+              <div class="lup-arts-share_btn">
+                <i class="fa fa-twitter"></i>
+              </div>
+              <div class="lup-arts-share_btn">
+                <i class="fa fa-facebook"></i>
+              </div>
+              <div class="lup-arts-prfl_btn lup-pr lup-l">
+                View Profile
+              </div>
+            </div>
+          </div>
+          <i class="fa fa-caret-left fa-2x lup-arts-caret lup-pa"></i>
+        {{/each}}
+      </div>
+      <div class="lup-arts-pages lup-l lup-pa">
+        <i class="fa fa-angle-left lup-arts-pages-arrow" style="margin-top: 3px"></i>
+        <div class="lup-arts-pages-circle" style="margin-left: 10px" id="lupPage1" onClick="lupSelect(1)">1</div>
+        <div class="lup-arts-pages-circle" style="margin-left: 4px" id="lupPage2" onClick="lupSelect(2)">2</div>
+        <div class="lup-arts-pages-circle" style="margin-left: 4px" id="lupPage3" onClick="lupSelect(3)">3</div>
+        <i class="lup-arts-pages-ellipsis lup-l" style="margin-left: 4px">...</i>
+        <div class="lup-arts-pages-oval" style="margin-left: 4px" id="lupPage4" onClick="lupSelect(4)">15</div>
+        <i class="fa fa-angle-right lup-arts-pages-arrow" style="margin-left: 10px; margin-top: 3px"></i>
+        <div class="lup-arts-pages-view_all lup-pa">
+          VIEW ALL
+          <img src="infinite-icon.png" class="lup-arts-pages-view_all-i lup-pr">
+        </div>
+      </div>
+    </div>
+    <div class="lup-search-box lup-pa">
+      {{> search_module}}
+    </div>
+  </div>
+</template>
