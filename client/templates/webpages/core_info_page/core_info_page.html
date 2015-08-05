@@ -1,0 +1,137 @@
+<!-- Author: Ryan Fisher
+**** Created: [08/04/2015]
+**** Description: Advisor Page - Core Information
+**** Associated Files: core_info_page.html, core_info_page.less, core_info_page_logic.js
+-->
+
+<template name="core_info_page">
+  <div class="cinfo">
+
+    <!--Page header-->
+    <div class="cinfo-hdr">
+      <!-- the header box -->
+      <div class="cinfo-hdr-head-box">
+        <!-- image inside the header box-->
+        <div class="cinfo-hdr-head-image">
+          <!-- he add green symbol above the image-->
+          <button class="cinfo-hdr-head-image-icon"><i class="fa fa-reply"></i></button>
+        </div>
+        <!-- the text inside the header box-->
+        <div class="cinfo-hdr-text">
+            <!-- the latest update-->
+            <div class="cinfo-hdr-text-update">
+              LAST UPDATED: 05/15/2015, 12:36 PM EST
+            </div>
+            <!-- location of the article-->
+            <div class="cinfo-hdr-text-loc">
+              <i class="fa fa-map-marker"></i> United States
+            </div>
+            <!-- the name of the article-->
+            <div class="cinfo-hdr-text-name">
+              Core Information
+            </div>
+            <!-- the person the page is about-->
+            <div class="cinfo-hdr-text-auth">
+              For {{name}}
+            </div>
+        </div>
+      </div>
+      <div class="cinfo-hdr-bar">
+        <div class="cinfo-hdr-bar-title">
+          {{name}}'s Personal Biography
+        </div>
+        <div class="cinfo-hdr-bar-button">
+          <!-- the save option button-->
+          <a href="#"><i class="fa fa-heart"></i><span class="cinfo-hdr-bar-text">Save</span></a>
+        </div>
+        <div class="cinfo-hdr-bar-button">
+          <!-- share option button -->
+          <a href="#"><i class="fa fa-share-alt"></i><span class="cinfo-hdr-bar-text">Share</span></a>
+        </div>
+      </div>
+      <div class="cinfo-hdr-main-container">
+        <!-- the module.less file navigation buttons-->
+        <button class='cinfo-hdr-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+        <button class='cinfo-hdr-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+        <!-- end of the module.less navigation button -->
+        <!-- wrapper class-->
+        <div class="cinfo-hdr-main-container-image-wrapper">
+          <div class="cinfo-hdr-main-container-image"></div>
+          <div class="cinfo-hdr-main-container-subimage"></div>
+        </div>
+        <!-- the main container -->
+        <ul class="cinfo-hdr-main-container-container">
+          <!-- the image in blue circle-->
+          <li class="cinfo-hdr-main-container-title">
+            <div class="cinfo-hdr-main-container-title-image"><i class="fa fa-book"></i></div>{{name}}
+          </li>
+          <li class="cinfo-hdr-main-container-buttons">
+            <div class="cinfo-hdr-main-container-button">
+              <!-- the save option button-->
+              <a style="color:#ffffff" href="#"><i class="fa fa-heart"></i>Save</a>
+            </div>
+            <div class="cinfo-hdr-main-container-button">
+              <!-- share option button -->
+              <a style="color:#ffffff" href="#"><i class="fa fa-share-alt"></i>Share</a>
+            </div>
+          </li>
+          <!-- the description about the person-->
+          <li class="cinfo-hdr-main-container-description">
+            {{name}} has worked for the advisor firm Morgan Stanley since June 1st, 2009.
+            Pfeifler passed the S63 on October 19th, 1992.  His office is located at 522 Fifth
+            Avenue, floors 10, 11, and 12, PWM, New York, NY 10036, United States.
+          </li>
+        </ul>
+        <!-- the bottom bar-->
+        <div class="cinfo-hdr-main-container-view_more">
+          <!-- the details about the comapny-->
+          <div class="cinfo-hdr-main-container-view_more-text">
+            <div class="cinfo-hdr-main-container-view_more-text-ln1">Interesed in discovering more about {{name}}?</div>
+            <div class="cinfo-hdr-main-container-view_more-text-ln2">Profile Last Updated On: <b>07/29/2015</b></div>
+          </div>
+          <button class="cinfo-hdr-main-container-view_more-button">
+            View Profile <i class="fa fa-angle-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--End Page header-->
+
+    <!--What is this page? box-->
+    <div class="cinfo-about">
+      <div class="cinfo-about-hdr">
+        <div class="cinfo-about-hdr-txt">What is this page?</div>
+        <button class="cinfo-about-hdr-icon"><i class="fa fa-close"></i></button>
+      </div>
+      <div class="cinfo-about-txt">
+        This page features detailed information about the financial advisor {{name}}.
+        Details include, but are not limited to, registered titles, current firm, crd#, compensation, etc.
+      </div>
+    </div>
+    <!--End What is this page? box-->
+
+    <!--Main page info-->
+    <div class="cinfo-main">
+      <div class="cinfo-main-hdr"><span class="cinfo-main-bold">Core Information</span> about this advisor</div>
+      {{#each category}}
+      <div class="cinfo-main-detail">
+        <div class="cinfo-main-detail-title">{{title}}</div>
+        <div class="cinfo-main-detail-info">
+          <ul>
+            {{#each line}}
+              {{#if isLink}}
+                <li><span class="cinfo-blue">{{text}}</span></li>
+              {{else}}
+                <li>{{text}}</li>
+              {{/if}}
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <!--End Main page info-->
+
+    {{> search_module}}
+  </div>
+</template>

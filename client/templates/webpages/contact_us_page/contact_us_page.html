@@ -1,0 +1,80 @@
+<!--
+Author:Meghana yerramilli
+Created: [07-30-2015]
+Description: conatct us webpage
+Associated Files: contact_us_page.less
+-->
+<template name="contact_us_page">
+  <!--Webpage dimensions-->
+  <div class="cup_dimensions">
+    <!--creating  image-->
+    <div class="cup_image">
+      <!--small circle & icon on image circle-->
+      <div class="cup_replyimg"><span class="cup_replyicon"><i class="fa fa-reply"></i></span></div>
+    </div>
+    <!--container for information-->
+    <div class="cup_head_cont">
+      <!--date-->
+      <div class="cup_head_date">LAST UPDATED:06/24/2015,8:00 AM EST</div>
+      <!--country-->
+      <div class="cup_country"><i class="fa fa-map-marker"></i><span class="cup_countxt">United States</span></div>
+      <!--text in the container-->
+      <div class="cup_heading">Contact Us</div>
+      <div class="cup_subheading">Help us help you faster</div>
+    </div>
+    <!--line under the container-->
+    <div class="cup_underline"></div>
+    <!--question box container-->
+    <div class="cup_qbox">
+      <!--title bar for question box-->
+      <div class="cup_bar">
+        <!--text in title bar-->
+        <span class="cup_qtxt">Help with this page</span>
+        <!--close icon in title bar-->
+        <span class="cup_close"><i class="fa fa-times"></i></span>
+      </div>
+      <!--question in question box-->
+      <div class="cup_q">Need a question regarding our site answered? Please enter the details of your inquiry below and a member of our support staff will reach out to you as soon as possible.</div>
+    </div>
+    <!--text fields -->
+    <div class="cup_fields">
+      <!--Asterisk & text-->
+      <span class="cup_ast">*</span>
+      <span class="cup_astxt">All fields are required</span>
+    </div>
+    <!--form begins-->
+    <form>
+      <!--name field-->
+      <span class="cup_fname">Full Name</span><input type="textbox" class="cup_namefield" placeholder="Vance L Banks">
+      <!--email field-->
+      <div class="cup_fmail">Email Address</div><input type="textbox" class="cup_emailfield" placeholder="vancelbanks@gmail.com">
+      <!--question category-->
+      <div class="cup_ques">My question is regarding:</div>
+      <!--options for given category-->
+      <span class="cup_pos"><input type="checkbox" class="cup_myp" value="chck1"><span class="cup_boxspace">My Profile</span></span><br>
+      <span class="cup_pos"><input type="checkbox" class="cup_myp" value="chck2"><span class="cup_boxspace">Email</span></span><br>
+      <span class="cup_pos"><input type="checkbox" class="cup_myp" value="chck3"><span class="cup_boxspace">Advertisement</span></span><br>
+      <span class="cup_pos"><input type="checkbox" class="cup_myp" value="chck4"><span class="cup_boxspace">Fraud</span></span><br>
+      <span class="cup_pos"><input type="checkbox" class="cup_myp" value="chck5"><span class="cup_boxspace">Finding an Advisor</span></span><br>
+      <span class="cup_pos"><input type="checkbox" class="cup_myp" value="chck6"><span class="cup_boxspace">Investment</span></span><br>
+      <span class="cup_pos"><input type="checkbox" class="cup_myp" value="chck7"><span class="cup_boxspace">Portfolios</span></span><br>
+      <span class="cup_pos"><input type="checkbox" class="cup_myp" value="chck8"><span class="cup_boxspace">Harrasment</span></span>
+      <!--text area -->
+      <textarea class="cup_txtarea" placeholder="Detailed description of your question here..."></textarea>
+      <!--reset button-->
+      <button class="cup_reset"><span class="cup_rstxt">RESET</span></button>
+      <!--submit button-->
+      <button class="cup_submit" type="submit"><span class="cup_subtxt">Submit</span><span class="cup_subicon"><i class="fa fa-angle-right"></i></span></button>
+    </form>
+    <!--search box-->
+    <div class="cup_srchbox">
+      <!--text in searchbox-->
+      <div class="cup_srchtxt1">SEARCHING FOR A COMPANY NOT LISTED ABOVE</div>
+      <div class="cup_srchtxt2">Search our database for all public companies in the United States</div>
+      <!--text box for searching-->
+      <input type="textbox" class="cup_inptbox" placeholder="Search...">
+      <!--search button-->
+      <button class="cup_srcbtn"><span class="cup_srchicon" ><i class="fa fa-search"></i></span></button>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,148 @@
+/*
+Author: jyothyswaroop
+Created: 07/30/2015
+Description: stock disclaimer page
+Associated Files: stock_disclaimer_page_logic.js and stock_disclaimer_page.html
+*/
+
+/* Imports global variable*/
+@import "../global_vars.less";
+/* defeined a unique name for disclaimer as dis*/
+.dis_st{
+  .dis_st-n_m{
+    margin: 5px 0 0 5px;
+  }
+  /*defined the height and width for new module(n_m)*/
+  &-n_m
+  {
+  background-color:  #ffffff;
+  width: 680px;
+  height: 969px;
+  }
+  /*defined the height and width for the container for circle (circ_d) */
+  &-cir_d{
+    background-color:#ffffff;
+    width: 100px;
+    height: 100px;
+    float: left;
+    left: 20px;
+    top: 20px;
+    position: relative;
+  }
+  /* defined the dimensions for the class circle*/
+  &-circ{
+    width:100px;
+    height: 100px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    border: 2px solid #cccccc;
+  }
+/* defines container for the smaller blue circle('sc_d') */
+&-sc_d{
+  width: 35px;
+  height: 35px;
+}
+/* defines the dimension for the small circle('sc')*/
+&-sc{
+  border-radius: 50%;
+  background-color:  #3098ff;
+  }
+/* defines the font details for the reply icon in smaller blue circle*/
+&-bfo{
+  font-family: FontAwesome;
+  color:  #ffffff;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+  float: left;
+  position: relative;
+  top: 9px;
+  left: 9px;
+}
+/*defines the container for text box*/
+&-tc{
+  width: 200px;
+  height: 100px;
+  position: relative;
+  top: 15px;
+  left: 40px;
+  float: left;
+}
+/* class date has all the font-weight and font specific*/
+&-date{
+  font-family: HN;
+  color:  #959595;
+  font-size: 10px;
+  text-align: left;
+}
+/* specified font style for location and state*/
+&-loc_st{
+  font-family: HN;
+  color:  #000000;
+  font-size: 12px;
+  line-height: 28px;
+  text-align: left;
+}
+/*specified font sytle for the stock disclaimer */
+&-disc{
+  font-family: HN-B;
+  font-size: 22px;
+}
+/* specified font style for the inveskit finance */
+&-fin{
+  font-family: HN-L;
+  font-size: 22px;
+  }
+/* created a class for the line  */
+&-line1{
+  width: 680px;
+  height: 1px;
+  position: relative;
+  top:140px;
+  background-color: #dadada;
+}
+/* specified a font style for the stock disclaimer(disc2) */
+&-disc2{
+  font-family: HN-B;
+  color:  #000000;
+  font-size: 18px;
+  line-height: 28px;
+  text-align: left;
+  position: absolute;
+  top: 13px;
+  left: 14px;
+}
+/* created a class for the line2  */
+&-line2{
+  width: 650px;
+  height: 1px;
+  float: left;
+  position: absolute;
+  top:45px;
+  left:15px;
+  background-color: #cccccc;
+}
+/* created a container name 'para' for the text  */
+&-para{
+  width: 650px;
+  height: 164px;
+  position: absolute;
+  top: 206px;
+  left: 15px;
+}
+/* class name 'parat' has the fontstyle*/
+&-parat{
+  font-family: HN;
+  color:  #000000;
+  font-size: 14px;
+  text-align: left;
+}
+/* container for the fotter('ft') */
+&-ft{
+  width: 680px;
+  height: 276px;
+  position: absolute;
+  top:699px;
+  }
+
+}

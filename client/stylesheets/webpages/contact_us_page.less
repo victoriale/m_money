@@ -1,0 +1,356 @@
+/*
+Author: Meghana yerramilli
+Created: [07-30-2015]
+Description:conatct us webpage
+Associated Files: contact_us_page.html
+*/
+
+@import "../global_vars.less"; //include important global vars (colors mostly)
+@import "../modules.less";
+// webpage dimensions
+.cup_dimensions{
+  background-color:  #ffffff;
+  width: 680px;
+  height: 1121px;
+}
+//circle with an image
+.cup_image{
+  border-radius: 50%;
+  border-width: 2px;
+  border-color:  #cccccc;
+  border-style: solid;
+  background-color:  #ffffff;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  top:20px;
+  margin-left: 20px;
+}
+//subcircle on image
+.cup_replyimg{
+  border-radius: 50%;
+  background-color:  #3098ff;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  padding-top: 7px;
+  padding-right: 2px;
+}
+//icon in subimage
+.cup_replyicon{
+  width: 15px;
+  height: 14px;
+  color:  #ffffff;
+  font-size: -15px;
+  font-weight: 400;
+}
+//container for the information
+.cup_head_cont{
+  width: 230px;
+  height: 97px;
+  margin-top: -13%;
+  margin-left: 21%;
+}
+//date
+.cup_head_date{
+  color:  #959595;
+  font-size: 10px;
+  font-family: HN;
+}
+//country
+.cup_country{
+  color:  #000000;
+  font-size: 12px;
+  font-family: HN;
+  margin-top: 16px;
+}
+.cup_countxt{
+  margin-left: 3px;
+}
+//heading
+.cup_heading{
+  color:  #000000;
+  font-size: 22px;
+  font-family: HN-B;
+}
+//subheading
+.cup_subheading{
+  color:  #000000;
+  font-size: 22px;
+  font-family: HN-L;
+  margin-top: -4px;
+}
+//underline for the information
+.cup_underline{
+  background-color:  #dadada;
+  width: 680px;
+  height: 1px;
+  margin-top: 6%;
+}
+//question box
+.cup_qbox{
+  border-width: 1px;
+  border-color:  #ebebeb;
+  border-style: solid;
+  background-color:  #fafafa;
+  width: 650px;
+  height: 81px;
+  margin-top: 10px;
+  margin-left: 15px;
+}
+//title bar in the question box
+.cup_bar{
+  width: 650px;
+  height: 20px;
+  background-color:  #ebebeb;
+  color:  #333333;
+}
+//question in the title bar
+.cup_qtxt{
+  font-size: 12px;
+  font-family: HN-B;
+  padding-top: 5px;
+  padding-left: 10px;
+}
+//close icon in the question box
+.cup_close{
+  font-size: 10px;
+  font-weight: 400px;
+  float: right;
+  padding-right: 10px;
+  padding-bottom: 7px;
+}
+//question in text box
+.cup_q{
+  color:  #000000;
+  font-size: 14px;
+  font-family: HN;
+  margin-top: 14px;
+  margin-left: 20px;
+}
+//Asterisk & text
+.cup_fields{
+  margin-top: 9px;
+  margin-left: 24px;
+}
+//Asterisk
+.cup_ast{
+  color:  #ca1010;
+  font-size: 12px;/* Approximation due to font substitution */
+  font-weight: 700;
+}
+//text with Asterisk
+.cup_astxt{
+  color:  #272727;
+  font-size: 12px;
+  font-family: HN-B;
+}
+// text for name field
+.cup_fname{
+  color:  #272727;
+  font-size: 14px;
+  font-family: HN-B;
+  position: relative;
+  top: 20px;
+  margin-left: 25px;
+}
+//field for name
+.cup_namefield{
+  border-radius: 2px;
+  border-width: 1px;
+  border-color:  #cccccc;
+  border-style: solid;
+  background-color:  #ffffff;
+  width: 464px;
+  height: 35px;
+  float: right;
+  margin-top: 7px;
+  color:  #959595;
+  font-size: 14px;
+  font-family: HN;
+  margin-right: 26px;
+  padding-left: 10px;
+}
+//text for email field
+.cup_fmail{
+  color:  #272727;
+  font-size: 14px;
+  font-family: HN-B;
+  margin-left: 25px;
+  margin-top: 9%;
+}
+//field for email
+.cup_emailfield{
+  border-radius: 2px;
+  border-width: 1px;
+  border-color:  #cccccc;
+  border-style: solid;
+  background-color:  #ffffff;
+  width: 464px;
+  height: 35px;
+  font-size: 14px;
+  font-family: HN;
+  color:  #959595;
+  margin-right: 26px;
+  padding-left: 10px;
+  float: right;
+  margin-top: -4%;
+}
+//question category
+.cup_ques{
+  color:  #272727;
+  font-size: 14px;
+  font-family: HN-B;
+  margin-left: 25px;
+  margin-top: 7%;
+  width: 96px;
+  height: 29px;
+}
+//stylings for checkbox
+.cup_myp{
+  border-color:  #cccccc;
+  border-style: solid;
+  background-color:  #ffffff;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  border-width: 1px;
+}
+.cup_pos{
+  margin-left: 28%;
+  position: relative;
+  top: -27px;
+}
+//styling for text with checkbox
+.cup_boxspace{
+  margin-left: 9px;
+  position: relative;
+  color:  #000000;
+  font-size: 14px;
+  font-family: HN;
+}
+//text area for query
+.cup_txtarea{
+  width: 464px;
+  height: 168px;
+  border-radius: 2px;
+  border-width: 1px;
+  border-color:  #cccccc;
+  border-style: solid;
+  background-color:  #ffffff;
+  color:  #959595;
+  font-size: 14px;/* Approximation due to font substitution */
+  font-style: italic;
+  font-family: HN;
+  margin-left: 28%;
+  padding-left: 10px;
+  padding-top: 11px;
+}
+//styling for reset button
+.cup_reset{
+  width: 44px;
+  height: 12px;
+  text-align: center;
+  vertical-align: middle;
+  background: #fff;
+  float: right;
+  position: relative;
+  right: 27%;
+  margin-top: 31px;
+  color: #272727;
+  border: none;
+  border-radius: 3px;
+}
+.cup_rstxt{
+  font-size: 14px;
+  font-family: HN;
+  position: relative;
+  top: -6px;
+  left: -8px;
+}
+//reset button on hover
+.cup_reset:hover{
+  color: #3098ff;
+}
+//submit button styling
+.cup_submit{
+  border-radius: 5px;
+  background-color: #3098ff;
+  width: 121px;
+  height: 35px;
+  border: none;
+  float: right;
+  margin-top: 20px;
+  position: relative;
+  left: 3%;
+}
+.cup_subtxt{
+  color:  #ffffff;
+  font-size: 14px;
+  font-family: HN;
+}
+//icon on submit button
+.cup_subicon{
+  color:  #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 9px;
+}
+//searchbox dimensions & styles
+.cup_srchbox{
+  width: 680px;
+  height: 280px;
+  margin-top: 15%;
+  background-image: url("http://www.freebiesgallery.com/wp-content/uploads/2014/02/blurred-background-21.jpg");
+  background-position: 680px 280px;
+}
+//styles for text
+.cup_srchtxt1{
+  color: #ffffff;
+  font-size: 25px;
+  font-family: HN-B;
+  margin-left: 25px;
+  position: relative;
+  top: 19%;
+}
+.cup_srchtxt2{
+  color:  #ffffff;
+  font-size: 18px;
+  font-family: HN;
+  margin-left: 11%;
+  position: relative;
+  top: 19%;
+}
+//input box
+.cup_inptbox{
+  border-radius: 5px;
+  background-color:  #ffffff;
+  width: 540px;
+  height: 40px;
+  margin-top: 13%;
+  margin-left: 10%;
+  border: none;
+  color:  #505050;
+  font-size: 20px;
+  font-family: HN-L;
+  padding-left: 20px;
+}
+//search button
+.cup_srcbtn{
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+  background-color: #3098ff;
+  width: 99px;
+  height: 40px;
+  border: none;
+  float: right;
+  position: relative;
+  margin-top: -2.85em;
+  right: 10.5%;
+}
+//icon on search button
+.cup_srchicon{
+  color:  #ffffff;
+  font-size: 22px;
+  font-weight: 400;
+}

@@ -1,0 +1,79 @@
+<!--
+Author: jyothyswaroop
+Created: 07/30/2015
+Description: stock disclaimer page
+Associated Files: stock_disclaimer_page_logic.js and stock_disclaimer_page.less
+
+-->
+<!--Gave a template name stock_disclaimer_page !-->
+<template name="stock_disclaimer_page">
+  <!--Defined a class name globally for height and width !-->
+  <div class= "dis_st">
+    <!--gave the dimensions for the module with total height and width !-->
+    <div class = "dis_st-n_m">
+      <!--dimensions for the circle container as ('cir-d') !-->
+      <div class="dis_st-cir_d">
+      <!-- dimensions for the circle as ('circ')!-->
+      <div class="dis_st-circ">
+        <!-- defines container for the smaller blue circle('sc_d') !-->
+        <div class= "dis_st-sc_d">
+        <!-- defines the dimension for the small circle('sc') !-->
+        <div class="dis_st-sc_d dis_st-sc">
+        <i class="dis_st-bfo fa fa-reply"></i>
+        </div>
+        </div>
+      </div>
+      </div>
+      <!--defines the container for text box !-->
+      <div class="dis_st-tc">
+      <!-- class date has all the font-weight and font specific !-->
+      <div class="dis_st-date">
+        LAST UPDATED: 06/24/2015, 8:00 AM EST
+      </div>
+      <!--specified font style for location !-->
+      <div class="dis_st-loc_st">
+         <i class="fa fa-map-marker"></i>
+      <!--specified font style for the state name !-->
+      <span class="dis_st-loc_st">
+        United States
+      </span>
+      </div>
+      <!-- specified font sytle for the stock disclaimer !-->
+      <div class="dis_st-loc_st dis_st-disc">
+      Stock Disclaimer
+      </div>
+      <!--specified font style for the inveskit finance  !-->
+      <div class="dis_st-loc_st dis_st-fin">
+      for Inveskit Finance
+      </div>
+      </div>
+      <!--created a line after the container !-->
+      <div class="dis_st-line1">
+      <!--created a class name dic2 for the stock disclaimer text !-->
+        <div class="dis_st-disc2">
+          Stock Disclaimer
+        </div>
+        <!--created a line after the stock disclaimer !-->
+        <div class="dis_st-line2">
+        </div>
+      </div>
+      <!--createad paragraph container for the paragraph gave class name as (para) !-->
+      <div class="dis_st-para">
+        <div class="dis_st-parat">
+        <p>  Market data delayed 15 minutes.</P>
+
+<p>  This site is powered by InvestKit. Ideas and opinions presented on this website are for informational and educational purposes only, and do not reflect the opinions of InvestKit, or any of its affiliates, subsidiaries or partners. In no way should any content contained herein be interpreted to represent trading or investment advice.</p>
+
+<p>  © 2015 Data provided by Thompson Reuters® Read Full Disclaimer. </p>
+
+<p> OTC Data provided by OTC Markets Group Inc.</p>
+
+        </div>
+      </div>
+      <!--created a container for the fotter('ft')  !-->
+      <div class="dis_st-ft">
+      {{> search_module}}
+    </div>
+  </div>
+</div>
+</template>
