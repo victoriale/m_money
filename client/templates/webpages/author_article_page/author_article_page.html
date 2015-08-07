@@ -1,0 +1,239 @@
+<!--
+Author:Meghana yerramilli
+Created: [8-06-2015]
+Description: article Webpage
+Associated Files: author_article_page.less,author_article_page.js
+-->
+
+<template name="author_article_page">
+  <div class="ap_dimensions">
+    <div class="ap-hdr">
+      <!-- the header box -->
+      <div class="ap-hdr-head-box">
+        <!-- image inside the header box-->
+        <div class="ap-hdr-head-image">
+          <!-- he add green symbol above the image-->
+          <button class="ap-hdr-head-image-icon"><i class="fa fa-reply"></i></button>
+        </div>
+        <!-- the text inside the header box-->
+        <div class="ap-hdr-text">
+          <!-- the latest update-->
+          <div class="ap-hdr-text-update">
+            LAST UPDATED: 06/24/2015, 8:00 AM EST
+          </div>
+          <!-- location of the article-->
+          <div class="ap-hdr-text-loc">
+            <i class="fa fa-map-marker"></i> United States
+          </div>
+          <!-- the name of the article-->
+          <div class="ap-hdr-text-name">
+            Published Articles
+          </div>
+          <!-- the author of the article-->
+          <div class="ap-hdr-text-auth">
+            By Robin Meade
+          </div>
+        </div>
+      </div>
+      <!--article header ,title,button-->
+      <div class="ap-hdr-bar">
+        <div class="ap-hdr-bar-title">
+          Robin Meade's Featured Articles
+        </div>
+        <div class="ap-hdr-bar-button">
+          <!-- the save option button-->
+          <a href="#"><span class="ap-hdr-bar-icon"><i class="fa fa-heart"></i></span><span class="ap-hdr-bar-text">Save</span></a>
+        </div>
+        <div class="ap-hdr-bar-button">
+          <!-- share option button -->
+          <a href="#"><span class="ap-hdr-bar-icon"><i class="fa fa-share-alt"></i></span><span class="ap-hdr-bar-text">Share</span></a>
+        </div>
+      </div>
+
+      <div class="ap-hdr-main-container">
+        <!-- the module.less file navigation buttons-->
+        <button class='ap-hdr-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+        <button class='ap-hdr-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+        <!-- end of the module.less navigation button -->
+        <!-- wrapper class-->
+        <div class="ap-hdr-main-container-image-wrapper">
+          <div class="ap-hdr-main-container-image"></div>
+        </div>
+        <!-- the main container -->
+        <ul class="ap-hdr-main-container-container">
+          <!-- the image in blue circle-->
+          <li class="ap-hdr-main-container-title">
+            <div class="ap-hdr-main-container-title-image"><i class="fa fa-newspaper-o"></i></div>
+            <div class="ap-hdr-main-container-title-txt">
+              'Ok Google' Can Now Send Messages Vis WhatsApp
+            </div>
+          </li>
+          <!-- the description about the person-->
+          <li class="ap-hdr-main-container-description">
+            <div class="ap-hdr-main-container-description-ln1">
+              <div class="ap_htextbox">Google Inc (NASDAQ: GOOG) started allowing Android users to use voice actions like the "OK Google" command for operating a third-party app a few months ago, and now, the Internet...
+              </div><br>
+              <span class="ap-hdr-main-container-description-ln2">
+                <span class="ap_subox">
+                  Written By: <span class="ap-b"> Robin Meade </span>
+
+                  <span class="ap-line"><span class="ap-space">Published By: <span class="ap-b">The Verge</span></span></span>
+                </span>
+              </span>
+            </div>
+          </li>
+        </ul>
+        <!-- the bottom bar-->
+        <div class="ap-hdr-main-container-view_more">
+          <!-- the details about the comapny-->
+          <div class="ap-hdr-main-container-view_more-text">
+            <div class="ap-hdr-main-container-view_more-text-ln1">Interested in this article written by Robin Meade?</div>
+            <div class="ap-hdr-main-container-view_more-text-ln2">Written On: <span class="ap-b">07/29/2015</span></div>
+          </div>
+          <button class="ap-hdr-main-container-view_more-button">
+            Read Full Article<i class="fa fa-angle-right"></i>
+          </button>
+        </div>
+      </div>
+
+    </div >
+    <!--End Page header-->
+    <div class="ap_sortdim">
+      <!--question box-->
+      <div class="ap-sortby">
+        <!--article title bar-->
+        Sort by:
+        <span class="ap-sortby-text">Most Recent Articles</span>
+        <i class="fa fa-angle-down ap-sortby-icon"></i>
+      </div>
+      <!--question-->
+      <div class="ap-whatis">
+        <div class="ap-whatis-header">
+          What is this page?
+          <i class="fa fa-times ap-whatis-header-x"></i>
+        </div>
+        <!--answer area-->
+        <div class="ap-whatis-text">
+          This page features all articles written,videos filmed and podcast recorded by author Robin Meade for the past # years.
+        </div>
+      </div>
+    </div>
+    <!--tiles start-->
+    <div class="ap-sim">
+      <!--loop of articles-->
+      {{#each getArticles}}
+      {{#if isMainArticle type}}
+      <!--main article-->
+      <div class="ap-sim-artcnt ap-sim-artcnt-main">
+        {{#each tags}}
+        <!--buttons in the tile-->
+        <span class="ap-sim-blbtn">{{this}}</span>
+        {{/each}}
+        <!--score circle-->
+        {{#if isLessThanTwoDigits score}}
+           <span class="ap-sim-score">+{{score}}</span>
+         {{/if}}
+
+         {{#if isTwotoFourDigits score}}
+           <span class="ap-sim-ovalscore">+{{score}}</span>
+         {{/if}}
+        <!--image circle-->
+        <span class="ap-sim-artcnt-main-image"></span>
+        <!--contianer for text-->
+        <span class="ap-sim-artcnt-main-text-cnt">
+          <!--header in the tile-->
+          <div class="ap-sim-artcnt-main-headline">
+            {{headline}}
+          </div>
+          <!--subtext in the tile-->
+          <div class="ap-sim-artcnt-main-blurb">
+            {{cutOff blurb}}
+          </div>
+          <!--small text-->
+          <div class="ap-sim-artcnt-main-smltxt">
+            {{#if isArticle type}}
+            <!--article published info-->
+            <i class="fa fa-newspaper-o ap-sim-artcnt-artinfo-fanews"></i> Article
+            {{else}}
+            <i class="fa fa-play ap-sim-artcnt-artinfo-favid"></i> Video
+            {{/if}}
+            Published By:
+            <span class="ap-sim-artcnt-main-itlsmltxt">{{publisher}}</span>
+            <!--written by & dated info-->
+            <i class="fa fa-angle-right ap-sim-artcnt-artinfo-faarr"></i>
+            Written By:
+            <span class="ap-sim-artcnt-main-itlsmltxt">{{author}}</span>
+            <i class="fa fa-angle-right ap-sim-artcnt-artinfo-faarr"></i>
+            on {{date}} at {{time}}
+          </div>
+        </span>
+      </div>
+      {{else}}
+      <!--small tiles-->
+      <div class="ap-sim-artcnt ap-sim-artcnt{{#if isSmallBox}}1{{else}}2{{/if}} {{#if onLeft}}ap-sim-artcnt-left{{else}}ap-sim-artcnt-right{{/if}}">
+        <!--buttons-->
+        {{#each tags}}
+        <span class="ap-sim-blbtn">{{this}}</span>
+        {{/each}}
+        <!--scored-->
+        {{#if isLessThanTwoDigits score}}
+           <span class="ap-sim-score">+{{score}}</span>
+         {{/if}}
+
+         {{#if isTwotoFourDigits score}}
+           <span class="ap-sim-ovalscore">+{{score}}</span>
+         {{/if}}
+        <div class="ap-sim-artcnt-artinfo">
+          <!--small image in small tile-->
+          <span class="ap-sim-artcnt-smlimg"></span>
+          <!--text in small tiles-->
+          <span class="ap-sim-artcnt-artinfo-txt">
+            <!--header-->
+            <div class="ap-sim-artcnt-artinfo-hdr {{#if isSmallBox}}ap-sim-artcnt-artinfo-hdrsml{{/if}}" lang="en">{{headline}}</div>
+            <!--publisher info-->
+            <span class="ap-sim-artcnt-artinfo-bld">{{publisher}}</span>
+            <i class="fa fa-angle-right ap-sim-artcnt-artinfo-faarr"></i>
+            <!--author info-->
+            <span class="ap-sim-artcnt-artinfo-bld">{{author}}</span>
+            <!--article info & dated time-->
+            <div class="ap-sim-artcnt-artinfo-smltxt">
+              {{#if isArticle type}}
+              <i class="fa fa-newspaper-o ap-sim-artcnt-artinfo-fanews"></i> article
+              {{else}}
+              <i class="fa fa-play ap-sim-artcnt-artinfo-favid"></i> video
+              {{/if}}
+              published on {{date}} at {{time}}
+            </div>
+          </span>
+        </div>
+      </div>
+      {{/if}}
+      {{/each}}
+    </div>
+    <!--pages-->
+    <div class="ap-pages ap-l ap-pa">
+      <!--arrows representing page number-->
+      <i class="fa fa-angle-left ap-pages-arrow" ></i>
+      <!--page numbered buttons & selection -->
+      <div class="ap-pages-circle-selected" id="artLstPage1" onClick="artLstSelect(1)">1</div>
+      <div class="ap-pages-circle"  id="artLstPage2" onClick="artLstSelect(2)">2</div>
+      <div class="ap-pages-circle" id="artLstPage3" onClick="artLstSelect(3)">3</div>
+      <i class="ap-pages-ellipsis ap-l" >...</i>
+      <div class="ap-pages-oval" id="artLstPage4" onClick="artLstSelect(4)">15</div>
+      <!--arrows representing page number-->
+      <i class="fa fa-angle-right ap-pages-arrow-right" ></i>
+      <!--view all button-->
+      <div class="ap-pages-view_all ap-pr">
+        VIEW ALL
+        <img src="infinite-icon.png" class="ap-pages-view_all-i ap-pr">
+      </div>
+    </div>
+
+    <!--search box-->
+    <div class="ap-search">
+      {{> search_module}}
+    </div>
+
+  </div>
+
+</template>
