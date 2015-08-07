@@ -1,0 +1,132 @@
+<!-- Author: Ryan Fisher
+**** Created: [08/04/2015]
+**** Description: Registered States Webpage
+**** Associated Files: reg_states_page.html, reg_states_page.less, reg_states_page_logic.js
+-->
+
+<template name="reg_states_page">
+  <div class="states">
+
+    <!--Page header-->
+    <div class="states-hdr">
+      <div class="states-hdr-head">
+        <!-- image inside the header box-->
+        <div class="states-hdr-head-image">
+          <!-- he add green symbol above the image-->
+          <button class="states-hdr-head-image-icon"><i class="fa fa-reply"></i></button>
+        </div>
+        <!-- the text inside the header box-->
+        <div class="states-hdr-text">
+          <!-- the latest update-->
+          <div class="states-hdr-text-update">
+            LAST UPDATED: 06/24/2015, 8:00 AM EST
+          </div>
+          <!-- location of the statesicle-->
+          <div class="states-hdr-text-loc">
+            <i class="fa fa-map-marker"></i> United States
+          </div>
+          <!-- the name of the statesicle-->
+          <div class="states-hdr-text-name">
+            Registered States
+          </div>
+          <!-- the person the page is about-->
+          <div class="states-hdr-text-who">
+            For Brian Pfeifler
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End page header-->
+
+    <!--Map container-->
+    <div class="states-map">
+      <div class="states-map-container" id="mainmap"></div>
+      <div class="states-map-bar">
+        <div class="states-map-bar-title">Registered States</div>
+        <div class="states-map-bar-button"><i class="fa fa-heart"></i>Save</div>
+        <div class="states-map-bar-button"><i class="fa fa-share-alt"></i>Share</div>
+      </div>
+    </div>
+    <!--End Map container-->
+
+    <!--Sort by bar-->
+    <div class="states-sort">
+      <span style="font-family:HN-B">Sort by: </span>
+      <span>Registered State: Alphabetical </span>
+      <i class="fa fa-angle-down"></i>
+    </div>
+    <!--End sort by bar-->
+
+    <!--What is this page? box-->
+    <div class="states-about">
+      <div class="states-about-hdr">
+        <div class="states-about-hdr-txt">What is this page?</div>
+        <button class="states-about-hdr-icon"><i class="fa fa-close"></i></button>
+      </div>
+      <div class="states-about-txt">
+        This is a page listing all the states Brian is registered to legally work in throughout the United States.
+      </div>
+    </div>
+    <!--End What is this page? box-->
+
+    <!--State info container-->
+    {{#each data}}
+    <div class="states-info" style="background-color:{{bgc}}">
+      <div class="states-info-images">
+        <div class="states-info-images-main"></div>
+        <div class="states-info-images-sub"></div>
+      </div>
+      <div class="states-info-text">
+        <div class="states-info-text-ln1">
+          <div class="states-info-text-left"><i class="fa fa-map-marker"></i> United States</div>
+          <div class="states-info-text-right">Total Finanacial Advisors</div>
+        </div>
+        <div class="states-info-text-ln2">
+          <div class="states-info-text-left" style="font-family:HN-B">{{state}}, USA</div>
+          <div class="states-info-text-right" style="font-family:HN-B">{{advisors}}</div>
+        </div>
+        <div class="states-info-text-ln3">
+          <div class="states-info-text-left">Registered Since: <span style="font-family:HN-B">{{startdate}}</span></div>
+          <div class="states-info-text-right">as of {{update}}</div>
+        </div>
+        <div class="states-info-text-more">
+          <div class="states-info-text-more-lbl">Want more info about {{state}}?</div>
+          <button class="states-info-text-more-btn">View Profile <i class="fa fa-angle-right"></i></button>
+        </div>
+      </div>
+      <div class="states-info-social">
+        <div class="states-info-social-button"><i class="fa fa-heart"></i>Follow</div>
+        <div class="states-info-social-button"><i class="fa fa-share-alt"></i>Share</div>
+        <div class="states-info-social-button" style="float:right"><i class="fa fa-flag"></i>Feedback</div>
+      </div>
+    </div>
+    {{/each}}
+    <!--End States info container-->
+
+    <!--feat In This Story-->
+    <div class="states-feat">
+      <div class="states-feat-head">Featured Advisors Registered In Your Local Area</div>
+      {{#each advisor}}
+      <div class="states-feat-image">
+        <div class="states-feat-image-text">
+          <div class="states-feat-image-text-ln1">{{name}}</div>
+          <div class="states-feat-image-text-ln2">
+            Registered States: <span style="font-family:HN-B">{{states}}</span>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+      <div class="states-feat-arrow fa fa-angle-right"></div>
+    </div>
+    <!--End feat In This Story-->
+
+    <!--Navigation bar-->
+    <div class="states-nav">
+      <i class="fa fa-angle-left"></i>
+      <div class="states-nav-bubble">1</div>
+      <i class="fa fa-angle-right"></i>
+    </div>
+
+    {{> search_module}}
+  </div>
+</template>

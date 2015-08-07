@@ -1,0 +1,181 @@
+<!-- Author: Ryan Fisher
+**** Created: [08/05/2015]
+**** Description: Advisor Page - Firm Statistics
+**** Associated Files: firm_statistics_page.html, firm_statistics_page.less, firm_statistics_page_logic.js
+-->
+
+<template name="firm_statistics_page">
+  <div class="fstat">
+
+    <!--Page header-->
+    <div class="fstat-hdr">
+      <!-- the header box -->
+      <div class="fstat-hdr-head-box">
+        <!-- image inside the header box-->
+        <div class="fstat-hdr-head-image">
+          <!-- he add green symbol above the image-->
+          <button class="fstat-hdr-head-image-icon"><i class="fa fa-reply"></i></button>
+        </div>
+        <!-- the text inside the header box-->
+        <div class="fstat-hdr-text">
+            <!-- the latest update-->
+            <div class="fstat-hdr-text-update">
+              LAST UPDATED: 06/24/2015, 8:00 AM EST
+            </div>
+            <!-- location of the article-->
+            <div class="fstat-hdr-text-loc">
+              <i class="fa fa-map-marker"></i> United States
+            </div>
+            <!-- the name of the article-->
+            <div class="fstat-hdr-text-name">
+              Firm Statistics
+            </div>
+            <!-- the person the page is about-->
+            <div class="fstat-hdr-text-auth">
+              For {{name}}
+            </div>
+        </div>
+      </div>
+      <div class="fstat-hdr-bar">
+        <div class="fstat-hdr-bar-title">
+          About {{name}}
+        </div>
+        <div class="fstat-hdr-bar-button">
+          <!-- the save option button-->
+          <a href="#"><i class="fa fa-heart"></i><span class="fstat-hdr-bar-text">Save</span></a>
+        </div>
+        <div class="fstat-hdr-bar-button">
+          <!-- share option button -->
+          <a href="#"><i class="fa fa-share-alt"></i><span class="fstat-hdr-bar-text">Share</span></a>
+        </div>
+      </div>
+      <div class="fstat-hdr-main-container">
+        <!-- the module.less file navigation buttons-->
+        <button class='fstat-hdr-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+        <button class='fstat-hdr-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+        <!-- end of the module.less navigation button -->
+        <!-- wrapper class-->
+        <div class="fstat-hdr-main-container-image-wrapper">
+          <div class="fstat-hdr-main-container-image"></div>
+          <div class="fstat-hdr-main-container-subimage"></div>
+        </div>
+        <!-- the main container -->
+        <ul class="fstat-hdr-main-container-container">
+          <!-- the image in blue circle-->
+          <li class="fstat-hdr-main-container-title">
+            <div class="fstat-hdr-main-container-title-image"><i class="fa fa-book"></i></div>{{name}}
+          </li>
+          <li class="fstat-hdr-main-container-buttons">
+            <div class="fstat-hdr-main-container-button">
+              <!-- the save option button-->
+              <a style="color:#ffffff" href="#"><i class="fa fa-heart"></i>Save</a>
+            </div>
+            <div class="fstat-hdr-main-container-button">
+              <!-- share option button -->
+              <a style="color:#ffffff" href="#"><i class="fa fa-share-alt"></i>Share</a>
+            </div>
+          </li>
+          <!-- the description about the person-->
+          <li class="fstat-hdr-main-container-description">
+            <span class="fstat-boldital">{{name}}</span> ranks <span class="fstat-boldital">#15</span>
+             of the <a href="#"><span class="fstat-boldblue">Top 100 Financial Advisory Firms with the Largest Assets
+             Under Management</span></a> - See who is the #1 firm on the list.
+          </li>
+        </ul>
+        <!-- the bottom bar-->
+        <div class="fstat-hdr-main-container-view_more">
+          <!-- the details about the comapny-->
+          <div class="fstat-hdr-main-container-view_more-text">
+            <div class="fstat-hdr-main-container-view_more-text-ln1">Interesed in discovering more about {{name}}?</div>
+            <div class="fstat-hdr-main-container-view_more-text-ln2">Profile Last Updated On: <b>07/29/2015</b></div>
+          </div>
+          <button class="fstat-hdr-main-container-view_more-button">
+            View Profile <i class="fa fa-angle-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--End Page header-->
+
+    <!--What is this page? box-->
+    <div class="fstat-about">
+      <div class="fstat-about-hdr">
+        <div class="fstat-about-hdr-txt">What is this page?</div>
+        <button class="fstat-about-hdr-icon"><i class="fa fa-close"></i></button>
+      </div>
+      <div class="fstat-about-txt">
+        This page features detailed information about the financial advisor Brian Pfeifler.
+        Details include, but are not limited to, registered titles, current firm, crd#, compensation, etc.
+      </div>
+    </div>
+    <!--End What is this page? box-->
+
+    <!--Biography-->
+    <div class="fstat-bio">
+      <div class="fstat-sect_hdr">
+        <span style="font-family:HN-B">Biography</span>
+         for {{name}}
+      </div>
+      <div class="fstat-bio-date">
+        <i class="fa fa-calendar"></i> Last Updated 07/30/2015
+      </div>
+      <div class="fstat-bio-text">
+        Morgan Stanely (NYSE: MS) is an American multimational financial services corporation headquartered
+        in the {{name}} Building, Midtwown Manhattan, New York City. {{name}} operates in 42
+        countries and has more than 1300 offices and 60,000 employees. The company reports US #1.9 trillion
+        in client assets under management as of the end of 2013.
+      </div>
+    </div>
+    <!--End Biography-->
+
+    <!--Firm Statistics-->
+    <div class="fstat-stats">
+      <div class="fstat-sect_hdr">
+        <span style="font-family:HN-B">Firm Statistics</span>
+         for {{name}}
+      </div>
+      {{#each category}}
+      <div class="fstat-stats-detail">
+        <div class="fstat-stats-detail-title">{{title}}</div>
+        <div class="fstat-stats-detail-info">
+          <ul>
+            {{#each line}}
+              <li>{{text}}</li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <!--End Firm Statistics-->
+
+    <!--Firm Client Breakdown-->
+    <div class="fstat-brkdn">
+      <div class="fstat-sect_hdr">
+        <span style="font-family:HN-B">Firm Client Breakdown</span>
+      </div>
+      <div class="fstat-brkdn-clnts">
+        <div class="fstat-brkdn-clnts-hdr">
+          <div class="fstat-brkdn-clnts-hdr-cat"><i class="fa fa-th-large"></i> Category</div>
+          <div class="fstat-brkdn-clnts-hdr-net">Net %</div>
+        </div>
+        {{#each client}}
+        <div class="fstat-brkdn-clnts-row" style="background:{{bgc}}">
+          <div class="fstat-brkdn-clnts-row-clr" style="background-color:{{color}}"></div>
+          <div class="fstat-brkdn-clnts-row-cat">{{type}}</div>
+          <div class="fstat-brkdn-clnts-row-net">{{num}}%</div>
+        </div>
+        {{/each}}
+      </div>
+      <div class="fstat-brkdn-chart">
+        <div class="fstat-brkdn-chart-container">
+          {{> highchartsHelper chartId="devices" chartWidth="100%" chartHeight="100%" chartObject=client_breakdwn}}
+        </div>
+        <div class="fstat-brkdn-chart-img"></div>
+      </div>
+    </div>
+    <!--End Firm Client Breakdown-->
+
+    {{> search_module}}
+  </div>
+</template>
