@@ -1,0 +1,278 @@
+<!--
+Author: jyothyswaroop
+Created: 07/30/2015
+Description: followers page
+Associated Files: followers_page_logic.js and followers_page.less
+-->
+<!--Gave a template name stock_disclaimer_page !-->
+<template name="followers_page">
+<!--Defined a class name globally for height and width !-->
+<div class= "foll_pg">
+  <!--gave the dimensions for the module with total height and width !-->
+  <div class = "foll_pg-n_m">
+    <!--dimensions for the circle container as ('cir-d') !-->
+    <div class="foll_pg-cir_d">
+    <!-- dimensions for the circle as ('circ')!-->
+    <div class="foll_pg-circ">
+      <!-- defines container for the smaller blue circle('sc_d') !-->
+      <div class= "foll_pg-sc_d">
+      <!-- defines the dimension for the small circle('sc') !-->
+      <div class="foll_pg-sc_d foll_pg-sc">
+      <i class="foll_pg-bfo fa fa-reply"></i>
+      </div>
+      </div>
+    </div>
+    </div>
+    <!--defines the container for text box !-->
+    <div class="foll_pg-tc">
+    <!-- class date has all the font-weight and font specific !-->
+    <div class="foll_pg-date">
+      LAST UPDATED: 06/24/2015, 8:00 AM EST
+    </div>
+    <!--specified font style for location !-->
+    <div class="foll_pg-loc_st">
+       <i class="fa fa-map-marker"></i>
+    <!--specified font style for the state name !-->
+    <span class="foll_pg-loc_st">
+      San Rafael, CA
+    </span>
+    </div>
+    <!-- specified font sytle for the stock disclaimer !-->
+    <div class="foll_pg-loc_st foll_pg-disc">
+    Vance Bank's Followers
+    </div>
+    <!--specified font style for the inveskit finance  !-->
+    <div class="foll_pg-loc_st foll_pg-fin">
+    in the United States
+    </div>
+    </div>
+
+    <div class="foll_pg-bar">
+      <div class="foll_pg-bar-title">
+        Featured Finance Members
+      </div>
+      <div class="foll_pg-bar-button">
+        <!-- the save option button-->
+        <a href="#"><i class="fa fa-heart"></i><span class="foll_pg-bar-text">Save</span></a>
+      </div>
+      <div class="foll_pg-bar-button">
+        <!-- share option button -->
+        <a href="#"><i class="fa fa-share-alt"></i><span class="foll_pg-bar-text">Share</span></a>
+      </div>
+    </div>
+    <div class="foll_pg-m_c">
+      <!-- the module.less file navigation buttons-->
+      <button class='foll_pg-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+      <button class='foll_pg-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+      <!-- end of the module.less navigation button -->
+      <!-- wrapper class-->
+      <div class="foll_pg-m_c-image-wr">
+        <div class="foll_pg-m_c-image"></div>
+      </div>
+      <!-- the main container -->
+      <ul class="foll_pg-m_c-cr">
+        <!-- the image in blue circle-->
+        <li class="foll_pg-m_c-title">
+          <div class="foll_pg-m_c-title-image"><i class="fa fa-user"></i></div>{{getheadername}}
+        </li>
+          <!--the follow('fbt') and share  !-->
+
+          <div class="foll_pg-fbt1">
+            <!-- the save option button-->
+            <a href="#"><i class="foll_pg-fbt1-font1 fa fa-heart"></i><span class="foll_pg-fbt1-text1">Follow</span></a>
+          </div>
+          <div class="foll_pg-fbt1 foll_pg-fbt2">
+            <!-- share option button -->
+            <a href="#"><i class="foll_pg-fbt1-font1 fa fa-share-alt"></i><span class="foll_pg-fbt1-text1">Share</span></a>
+          </div>
+
+        <!-- the description about the person-->
+        <li class="foll_pg-m_c-dp">
+          <div class="foll_pg-m_c-dp-dpct">
+            Since yesterday,<span class="foll_pg-m_c-dp-itB foll_pg-m_c-dp-itl">{{getheadername}}</span> has over<span class="foll_pg-m_c-dp-itB foll_pg-m_c-dp-itl"> 1.3 Million Followers</span> and <span class="foll_pg-m_c-dp-itB foll_pg-m_c-dp-itl">587 Saved Companies </span> with a value of <span class="foll_pg-m_c-dp-itB foll_pg-m_c-dp-itl">8.75 Million USD. </span>{{getheadername2}} is now following <span class="foll_pg-m_c-dp-itB foll_pg-m_c-dp-blue"> Apple Inc, Facebook Inc,</span> and more...
+          </div>
+        </li>
+      </ul>
+      <!-- the bottom bar-->
+      <div class="foll_pg-m_c-view_more">
+        <!-- the details about the comapny-->
+        <div class="foll_pg-m_c-view_more-text">
+          <div class="foll_pg-m_c-view_more-text-ln1">Interesed in discovering more about {{getheadername}}?</div>
+          <div class="foll_pg-m_c-view_more-text-ln2">Profile Last Updated On: <span class="foll_pg-m_c-dp-itB">07/29/2015</span></div>
+        </div>
+        <button class="foll_pg-m_c-view_more-button">
+          View Profile <i class="fa fa-angle-right"></i>
+        </button>
+      </div>
+    </div>
+    <!--container for the ct1 to 'sort by' and 'what is this list?'  !-->
+    <div class="foll_pg-ct1">
+    <!--container for the sortby !-->
+    <div class="foll_pg-sy">
+      <!-- container for the sortby font !-->
+      <div class="foll_pg-syf"> Sort by:
+      <!-- container for the members font !-->
+      <span class="foll_pg-syf foll_pg-sym"> Members who follow you <span class="foll_pg-sym foll_pg-chd"> <i class=" fa fa-chevron-down"></i> </span> </span>
+      </div>
+    </div>
+    <!-- contianer for the complete 'what is this list' class name is wl!-->
+    <div class="foll_pg-wl">
+      <!-- container for the 'what is this list' class name is wl2!-->
+      <div class="foll_pg-wlc">
+        <!-- font style for the 'what is this list'!-->
+        <div class="foll_pg-wlf">
+        What is this list?
+        <span class="foll_pg-x">
+         <i class="fa fa-times"></i>
+        </span>
+        </div>
+      </div>
+      <!--container for the text inside the 'what is this list' as wltxt!-->
+      <div class="foll_pg-wltxt">
+      <!--font style for the text !-->
+      <div class="foll_pg-wltxtf">
+        <p> This is a list featuring all 35 finance members following Vance Banks. Here you can follow users following you or remove mutual followers from your customized followe's list.</p>
+      </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="foll_pg-wrapper">
+      <!-- The loop starts here and the each will take each data item from the items on each iteration-->
+      {{#each items}}
+      {{#if imghld}}
+      <div class="foll_pg-quotes">
+        <div class="foll_pg-quotes-head">Featured Finance Members in the United States</div>
+        {{#each quote}}
+        <div class="foll_pg-quotes-image">
+          <div class="foll_pg-gap1"></div>
+          <div class="foll_pg-quotes-image-text">
+            <div class="foll_pg-quotes-image-text-ln1">{{name}}</div>
+            <div class="foll_pg-quotes-image-text-ln1 foll_pg-quotes-image-text-ln3">
+              {{text}}
+
+            <span class="foll_pg-quotes-image-text-fn">
+            <i class="fa fa-angle-right"></i>
+          </span>
+            <div class="foll_pg-quotes-image-text-ln1 foll_pg-quotes-image-text-ln4">
+              {{followers}}
+            </div>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+        <div class="foll_pg-quotes-arrow fa fa-angle-right"></div>
+      </div>
+      {{else}}
+      <div class="foll_pg-{{getBackgroundStyle}}"><br>
+        <!--This is the main (circle) image-->
+        <div class="foll_pg-head-circ">
+          <div class="foll_pg-head-image">
+            <!-- Here displays the counter number which is a result of each loop-->
+            <span class="foll_pg-counter">#{{counter_no}}</span>
+          </div>
+        </div>
+        <!--Location title -->
+        <div class="foll_pg-sp">
+          <div  class="foll_pg-space">
+            <!-- This displays the font awesome map sybmol infornt of the united states-->
+            <i class="fa fa-map-marker"></i>
+            <span  class="foll_pg-space foll_pg-space2">
+              {{location}}
+            </span>
+            <!-- Here displays the description which come from the each loop-->
+            <div class="foll_pg-adjust">{{ data }}</div>
+            <div class="foll_pg-follw1">Followers:
+              <div class="foll_pg-follw1 foll_pg-follw2">{{followers}} </div>
+            </div>
+          </div>
+        </div>
+        <!--This displays the blue button which holds the text "View Full List"-->
+        <div class="foll_pg-ctmain">
+          <span class="foll_pg-ctmaintxt">
+            Want more info about {{ data }}?
+          </span>
+          <button class="foll_pg-tile-button">
+            View Profile
+            <span style="margin-left:6px"><i class="fa fa-angle-right"></i></span>
+          </button>
+        </div>
+        <div class="foll_pg-rtct">
+          <div class="foll_pg-rttx1"> Saved Companies</div>
+          <div class="foll_pg-rttx2"> {{number}}</div>
+          <div class="foll_pg-rttx3"> {{date}} </div>
+        </div>
+        <!-- This displays the font awesome heart symbol beside the text "save"-->
+        {{#if following}}
+        <div class="foll_pg-sn">
+          <div  class="foll_pg-save">
+            <i class="fa fa-heart"></i>
+            <span  class="foll_pg-save foll_pg-st">
+              Follow
+            </span>
+          </div>
+        </div>
+        {{else}}
+        <div class="foll_pg-sn">
+          <div  class="foll_pg-save">
+            <i class="fa fa-times"></i>
+            <span  class="foll_pg-save foll_pg-st">
+              Remove
+            </span>
+          </div>
+        </div>
+        {{/if}}
+        <!-- This displays the font awesome share symbol beside the text "share"-->
+        <div class="foll_pg-sh">
+          <div  class="foll_pg-share">
+            <i class="fa fa-share-alt"></i>
+            <span  class="foll_pg-share foll_pg-sht">
+              Share
+            </span>
+          </div>
+        </div>
+        <!-- This displays the font awesome flag symbol beside the text "Feedback"-->
+        <div class="foll_pg-fe ">
+          <div  class="foll_pg-share foll_pg-feedback">
+            <i class="fa fa-flag"></i>
+            <span  class="foll_pg-share foll_pg-ft">
+              Feedback
+            </span>
+          </div>
+        </div>
+      </div>
+      {{/if}}
+      <!--This is the End of each loop -->
+      {{/each}}
+  <div class="foll_pg-footer">
+    <!-- This is outermost class of the footer which holds the other elements in the footer-->
+    <div class="foll_pg-holder1">
+      <!-- This is the class which holds the font awesome left arrow-->
+      <div class="foll_pg-navigationl">
+        <i class="fa fa-angle-left foll_pg-footer-icon"></i>
+      </div>
+      <!-- Here we write the code for the buttons 1,2,3 and 200-->
+      <button  class="foll_pg-page-selector1 foll_pg-page-selector1-font1">1</button>
+      <button class="foll_pg-page-selector2 foll_pg-page-selector2-font2">2</button>
+      <button  class="foll_pg-page-selector3 foll_pg-page-selector3-font3">3</button>
+      <span  class="foll_pg-dots" >...</span>
+      <button  class="foll_pg-page-selector200 foll_pg-page-selector200-font">200</button>
+    <span class="foll_pg-navigationr">
+      <i class="fa fa-angle-right foll_pg-footer-icon"></i>
+    </span>
+      <!-- This is the class which holds the font awesome right arrow-->
+    </div>
+    <!-- container for the View all button !-->
+    <div class="foll_pg-navigation2">
+      <button class="foll_pg-view-all foll_pg-view-all-font">VIEW ALL <img style="padding-bottom:4px" src="infinite-icon.png"></button>
+    </div>
+  </div>
+</div>
+  <!--created a container for the fotter  !-->
+<div class="foll_pg-fotter">
+{{> search_module}}
+</div>
+
+  </div>
+</div>
+</template>
