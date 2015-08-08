@@ -1,0 +1,262 @@
+/*
+Author: Meghana yerramilli
+Created: [8-06-2015]
+Description:insider_t module
+Associated Files: insider_t.html,insider_t.js
+*/
+@import (reference)"../global_vars.less";
+@import (reference)"../modules.less";
+//text in green
+.in_green{
+  font-style: normal;
+  color: @green;
+  font-family: HN-B;
+  font-size: 14px;
+}
+//text in bold
+.in_bold{
+  font-style: normal;
+  font-family: HN-B;
+  font-size: 14px;
+  color:#000;
+}
+.in_margin{
+  margin-left: 5px;
+  margin-top: -5px;
+}
+//dimensions
+.in_hbox{
+  .module;
+  background-color:  #000000;
+  width: 680px;
+  height: 45px;
+  border-top: 3px solid @blue;
+  line-height: 20px;
+  border-bottom: 0px;
+}
+//title stylings
+.in_htitle{
+  color:  #ffffff;
+  font-size: 18px;
+  font-family: HN-B;
+}
+//tabs stylings
+.in_tab{
+  background-color: #ffffff;
+  width: 680px;
+  height: 40px;
+  display: flex;
+}
+//dimensions and stylings for active tabs
+.in_eachtab_act0{
+  background-color:  #fff;
+  width: 160px;
+  height: 40px;
+  float: left;
+  text-align: center;
+  padding-top: 10px;
+  color: rgb(0,0,0);
+  font-size: 14px;
+  font-family: HN-B;
+  border-left: 1px solid #e1e1e1;
+  border-right: 1px solid #e1e1e1;
+  cursor: pointer;
+  overflow: hidden;
+}
+.in_eachtab_act1{//dimensions and stylings for active tabs
+  .in_eachtab_act0;
+  width: 135px;
+}
+.in_eachtab_act2{//dimensions and stylings for active tabs
+  .in_eachtab_act0;
+  width: 104px;
+}
+.in_eachtab_act3{//dimensions and stylings for active tabs
+  .in_eachtab_act0;
+  width: 156px;
+}
+.in_eachtab_act4{//dimensions and stylings for active tabs
+  .in_eachtab_act0;
+  width: 85px;
+}
+//dimensions and stylings for inactive tabs
+.in_eachtab_inact0{
+  background-color:  #ebebeb;
+  width: 160px;
+  height: 40px;
+  float: left;
+  text-align: center;
+  padding-top: 10px;
+  color:  #666666;
+  font-size: 14px;
+  font-family: HN;
+  border-bottom: 1px solid #e1e1e1;
+  cursor: pointer;
+  overflow: hidden;
+}
+.in_eachtab_inact1{//dimensions and stylings for inactive tabs
+  .in_eachtab_inact0;
+  width: 135px;
+}
+.in_eachtab_inact2{//dimensions and stylings for inactive tabs
+  .in_eachtab_inact0;//dimensions and stylings for inactive tabs
+  width: 104px;
+}
+.in_eachtab_inact3{//dimensions and stylings for inactive tabs
+  .in_eachtab_inact0;
+  width: 156px;
+}
+.in_eachtab_inact4{//dimensions and stylings for inactive tabs
+  .in_eachtab_inact0;
+  width: 85px;
+}
+//blue icon in the tab
+.in_blueicon{
+  color:  #3098ff;
+  font-size: 14px;/* Approximation due to font substitution */
+  font-weight: 400;
+}
+.in_space{
+  color:  #000000;
+  font-size: 14px;
+  font-family: HN-B;
+  margin-left: 5px;
+}
+//search button in title bar
+.in_srchbtn{
+  background-color:  #3098ff;
+  width: 40px;
+  height: 40px;
+  display: table-cell;
+  position: relative;
+  left: 0px;
+  cursor: pointer;
+}
+//search icon
+.in_srchicn{
+  color:  #ffffff;
+  font-size: 20px;
+  font-weight: 400;
+  margin-left: 11px;
+  margin-top: 6px;
+}
+//white colored background tiles
+.in_whitebgtiles{
+  background-color:  #ffffff;
+  width: 680px;
+  height: 155px;
+  margin-left: 5px;
+}
+//grey colored background tiles
+.in_greybgtiles{
+  background-color:  #f2f2f2;
+  width: 680px;
+  height: 155px;
+  border-top: 1px solid #e1e1e1;
+  border-bottom: 1px solid #e1e1e1;
+  margin-left: 5px;
+}
+//image circle
+.in_imgcir{
+  border-radius: 50%;
+  border-width: 3px;
+  border-color:  #cccccc;
+  border-style: solid;
+  background-color:  #ffffff;
+  width: 125px;
+  height: 125px;
+  margin-left: 20px;
+  position: relative;
+  top: 15px;
+}
+//title in information container
+.in_transaction_title{
+  position: relative;
+  top: -5px;
+  overflow: hidden;
+  width: 270px;
+  height: 27px;
+}
+//information in container
+.in_text{
+  font-size: 14px;
+  overflow: hidden;
+  font-family: HN;
+  text-overflow: ellipsis;
+  width: 463px;
+  max-height: 59px;
+}
+//twitter icon
+.in_twitter{
+  color: #999999;
+  padding-left: 10px;
+}
+//bottom information with location and date
+.in_transaction_btm{
+  line-height: 3px;
+  font-size: 10px;
+  color:  #959595;
+  overflow: hidden;
+  height: 10px;
+  width: 463px;
+}
+//dots
+.in_dot_s {
+  font-size: 4px;
+  width: 18px;
+  position: relative;
+  top: -2px;
+}
+//container for the text and other info
+.in_textcont{
+  width:464px;
+  height:125px;
+  float: right;
+  margin-top: 20px;
+  margin-right: 7.5%;
+  overflow: hidden;
+}
+//company infor stylings
+.in_cmperson{
+  color:  #000000;
+  font-size: 18px;
+  font-family: HN-B;
+  overflow: hidden;
+}
+.in_cmp{
+  .in_cmperson;
+  margin-left: 12px;
+}
+.in_dot{
+  font-size: 5px;
+  position: relative;
+  bottom: 4px;
+  left: 7px;
+}
+//footer
+.in_bottom{
+  background-color: rgba(0,0,0,0);
+  width: 680px;
+  position: relative;
+  top: -30px;
+  border-bottom: 1px solid @blue;
+  margin-bottom: -30px;
+  margin-left: 5px;
+}
+//footer button
+.in_bottom_btn{
+  background-color: @blue;
+  color: @white;
+  border-radius: 5px 5px 0px 0px;
+  text-align: center;
+  width: 200px;
+  height: 30px;
+  position: relative;
+  left: 240px;
+  padding-top: 5px;
+  cursor: pointer;
+}
+//font icon in footer button
+.in_bottom_angle{
+  width: 15px;
+}

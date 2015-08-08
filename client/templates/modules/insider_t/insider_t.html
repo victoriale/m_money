@@ -1,0 +1,55 @@
+<!--
+Author:Meghana yerramilli
+Created: [8-06-2015]
+Description: insider_t module
+Associated Files: insider_t.less,insider_t.js
+-->
+<template name="insider_t">
+  <!--dimension of module-->
+  <div class="in_hbox">
+    <!--header -->
+    <div class="module-header">
+      <span class="module-header-line"></span>
+      <span class="module-header-title"> <span class="in_htitle">{{companyname}}'s Insider Activity</span></span>
+    </div>
+  </div>
+  <!--tabs in header -->
+  <div class="in_margin">
+    <div class="in_eachtab_act0" onclick="test(0)" id="in_tab0"><span class="in_blueicon" id="in_activeicn"><i class="fa fa-circle"></i></span><span class="in_space" >All Transactions</span></div>
+    <div class="in_eachtab_inact1" onclick="test(1)" id="in_tab1">Private Purchase</div>
+    <div class="in_eachtab_inact2" onclick="test(2)" id="in_tab2"><span class="">Private Sale</span></div>
+    <div class="in_eachtab_inact3" onclick="test(3)" id="in_tab3"><span class="">Voluntarily Reported</span></div>
+    <div class="in_eachtab_inact4" onclick="test(4)" id="in_tab4"><span class="">Other</span></div>
+    <span class="in_srchbtn"><div class="in_srchicn"><i class="fa fa-search"></i></div></span>
+  </div>
+  <!--tiles in a loop-->
+  {{#each transactions}}
+  <!--class with different background color-->
+  <div class="in_{{getColor}}bgtiles">
+    <!--container for the info in the tiles-->
+    <span class="in_textcont">
+      <!--title of the company,person from company and info-->
+      <div class="in_transaction_title">
+        <span class="in_cmperson">{{name}}</span>  <span class="in_dot"><i class="fa fa-circle"></i></span>
+        <span class="in_cmp">{{company}}</span><br>
+      </div>
+      <div class="in_text">{{{message}}}<i class="fa fa-twitter in_twitter"></i></div><br>
+      <!--location & date-->
+      <div class="in_transaction_btm">
+        <br>
+        {{time}}<i class="fa fa-circle in_dot_s fa-fw"></i>{{location}}
+      </div>
+    </span>
+    <div class="in_imgcir">
+    </div>
+  </div>
+  {{/each}}
+  <!--end of each loop-->
+  <!--button in the footer-->
+  <div class="in_bottom">
+    <div class="in_bottom_btn">
+      See The Full List <i class="fa fa-angle-right fa-fw in_bottom_angle"></i>
+    </div>
+  </div>
+
+</template>
