@@ -18,9 +18,9 @@ if(Meteor.isClient){
     post3: function () {
       return POST3.find().fetch().reverse();
     },
-    cmnt:function(){
-      var cmnt = POST3.find().fetch().length;
-      return cmnt;
+    cmnt3:function(){
+      var cmnt3 = POST3.find().fetch().length;
+      return cmnt3;
     },
     reply3: function () {
       var id = String(this.cmtid);
@@ -28,10 +28,10 @@ if(Meteor.isClient){
       return reply3;
     },
 
-    rpy: function () {
+    rpy3: function () {
       var id = String(this.cmtid);
-      var rpy = REPLY3.find({replyid: id}).fetch().length;
-      return rpy;
+      var rpy3 = REPLY3.find({replyid: id}).fetch().length;
+      return rpy3;
     },
 
     time:function(){

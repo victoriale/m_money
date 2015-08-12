@@ -1,0 +1,289 @@
+<!--
+Author: jyothyswaroop
+Created: 8/12/2015
+Description: nearby_cities_page
+Associated Files: nearby_cities_page_logic.js and nearby_cities_page.less
+-->
+<!--Gave a template name stock_disclaimer_page !-->
+<template name="nearby_cities_page">
+<!--Defined a class name globally for height and width !-->
+{{#with company}}
+<div class= "nerby_pg">
+  <!--gave the dimensions for the module with total height and width !-->
+  <div class = "nerby_pg-n_m">
+    <!--dimensions for the circle container as ('cir-d') !-->
+    <div class="nerby_pg-cir_d">
+    <!-- dimensions for the circle as ('circ')!-->
+    <div class="nerby_pg-circ">
+      <!-- defines container for the smaller blue circle('sc_d') !-->
+      <div class= "nerby_pg-sc_d">
+      <!-- defines the dimension for the small circle('sc') !-->
+      <div class="nerby_pg-sc_d nerby_pg-sc">
+      <i class="nerby_pg-bfo fa fa-reply"></i>
+      </div>
+      </div>
+    </div>
+    </div>
+    <!--defines the container for text box !-->
+    <div class="nerby_pg-tc">
+    <!-- class date has all the font-weight and font specific !-->
+    <div class="nerby_pg-date">
+      LAST UPDATED: 06/24/2015, 8:00 AM EST
+    </div>
+    <!--specified font style for location !-->
+    <div class="nerby_pg-loc_st">
+       <i class="fa fa-map-marker"></i>
+    <!--specified font style for the state name !-->
+    <span class="nerby_pg-loc_st">
+      {{getheadername0}}
+    </span>
+    </div>
+    <!-- specified font sytle for the stock disclaimer !-->
+    <div class="nerby_pg-loc_st nerby_pg-disc">
+    {{getheadername1}}
+    </div>
+    <!--specified font style for the inveskit finance  !-->
+    <div class="nerby_pg-loc_st nerby_pg-fin">
+    around {{getheadername0}}
+    </div>
+    </div>
+
+    <div class="nerby_pg-bar">
+      <div class="nerby_pg-bar-title">
+      <div class="nerby_pg-bar-helper">
+        {{formalName}}'s
+      </div>
+      <div class="nerby_pg-bar-side">{{getheadername1}} </div>
+      </div>
+      <!-- </div> -->
+      <div class="nerby_pg-bar-button">
+        <!-- the save option button-->
+        <a href="#"><i class="fa fa-heart"></i><span class="nerby_pg-bar-text">Save</span></a>
+      </div>
+      <div class="nerby_pg-bar-button">
+        <!-- share option button -->
+        <a href="#"><i class="fa fa-share-alt"></i><span class="nerby_pg-bar-text">Share</span></a>
+      </div>
+
+
+
+    </div>
+    <div class="nerby_pg-m_c">
+      <!-- the module.less file navigation buttons-->
+      <button class='nerby_pg-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+      <button class='nerby_pg-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+      <!-- end of the module.less navigation button -->
+      <!-- wrapper class-->
+      <div class="nerby_pg-m_c-image-wr">
+        <div class="nerby_pg-m_c-image">
+          <div class="nerby_pg-m_c-sma_ct">
+          <div class="nerby_pg-m_c-sma_cr">
+
+          </div>
+        </div>
+        </div>
+      </div>
+      <!-- the main container -->
+      <ul class="nerby_pg-m_c-cr">
+        <!-- the image in blue circle-->
+        <li class="nerby_pg-m_c-title">
+          <div class="nerby_pg-m_c-title-image"><i class="fa fa-map-marker"></i>
+          <span class="nerby_pg-m_c-title-text"> {{getheadername}} </span>
+          </div>
+        </li>
+          <!--the follow('fbt') and share  !-->
+
+          <div class="nerby_pg-fbt1">
+            <!-- the save option button-->
+            <a href="#"><i class="nerby_pg-fbt1-font1 fa fa-heart"></i><span class="nerby_pg-fbt1-text1">Save</span></a>
+          </div>
+          <div class="nerby_pg-fbt1 nerby_pg-fbt2">
+            <!-- share option button -->
+            <a href="#"><i class="nerby_pg-fbt1-font1 fa fa-share-alt"></i><span class="nerby_pg-fbt1-text1">Share</span></a>
+          </div>
+
+        <!-- the description about the person-->
+        <li class="nerby_pg-m_c-dp">
+          <div class="nerby_pg-m_c-dp-dpct">
+          {{getheadername}} has the highest market cap out of all {{noofcities}}, with a total market cap of <span class="nerby_pg-m_c-dp-itl"> {{getheadername2}}.</span> The top performing company in this area is {{company2}}
+        </div>
+            <div class="nerby_pg-m_c-dp-itl nerby_pg-m_c-dp-it2">
+{{company2}} <span class="nerby_pg-m_c-dp-dpct">is currently priced at: <br></span>
+<span class="nerby_pg-m_c-dp-itl">{{getheadername3}} </span>
+<span class="nerby_pg-m_c-dp-itl nerby_pg-m_c-dp-it4"> <i class=" fa fa-arrow-down"></i></span>  <span class="nerby_pg-m_c-dp-itl nerby_pg-m_c-dp-it5">{{getheadername4}} </span>
+            </div>
+          <!-- </div> -->
+        </li>
+      </ul>
+      <!-- the bottom bar-->
+      <div class="nerby_pg-m_c-view_more">
+        <!-- the details about the comapny-->
+        <div class="nerby_pg-m_c-view_more-text">
+          <div class="nerby_pg-m_c-view_more-text-ln1">Interesed in discovering more about this location?</div>
+          <div class="nerby_pg-m_c-view_more-text-ln2">Profile Last Updated On: <span class="nerby_pg-m_c-dp-itl">07/29/2015</span></div>
+        </div>
+        <button class="nerby_pg-m_c-view_more-button">
+          View Profile <i class="fa fa-angle-right"></i>
+        </button>
+      </div>
+    </div>
+    <!--container for the ct1 to 'sort by' and 'what is this list?'  !-->
+    <div class="nerby_pg-ct1">
+    <!--container for the sortby !-->
+    <div class="nerby_pg-sy">
+      <!-- container for the sortby font !-->
+      <div class="nerby_pg-syf"> Sort by:
+      <!-- container for the members font !-->
+      <span class="nerby_pg-syf nerby_pg-sym"> {{getheadername1}} <span class="nerby_pg-sym nerby_pg-chd"> <i class=" fa fa-chevron-down"></i> </span> </span>
+      </div>
+    </div>
+    <!-- contianer for the complete 'what is this list' class name is wl!-->
+    <div class="nerby_pg-wl">
+      <!-- container for the 'what is this list' class name is wl2!-->
+      <div class="nerby_pg-wlc">
+        <!-- font style for the 'what is this list'!-->
+        <div class="nerby_pg-wlf">
+        What is this list?
+        <span class="nerby_pg-x">
+         <i class="fa fa-times"></i>
+        </span>
+        </div>
+      </div>
+      <!--container for the text inside the 'what is this list' as wltxt!-->
+      <div class="nerby_pg-wltxt">
+      <!--font style for the text !-->
+      <div class="nerby_pg-wltxtf">
+        <p> This is a list featuring all the surrounding cities around {{getheadername0}} ranking the locations by highest overall market cap.</p>
+      </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="nerby_pg-wrapper">
+      <!-- The loop starts here and the each will take each data item from the items on each iteration-->
+      {{#each items}}
+      {{#if imghld}}
+      <div class="nerby_pg-quotes">
+        <div class="nerby_pg-quotes-head">Featured Companies in the {{getheadername0}}</div>
+        {{#each quote}}
+        <div class="nerby_pg-quotes-image">
+          <div class="nerby_pg-gap1"></div>
+          <div class="nerby_pg-quotes-image-text">
+            <div class="nerby_pg-quotes-image-text-ln1">{{name}}</div>
+            <div class="nerby_pg-quotes-image-text-vc">
+          <span class="nerby_pg-quotes-image-text-ln1 nerby_pg-quotes-image-text-ln4">
+            Total Companies:
+          <span class="nerby_pg-quotes-image-text-ln1 nerby_pg-quotes-image-text-ln3">
+            {{text2}}
+          </span>
+          </span>
+        </div>
+          </div>
+        </div>
+        {{/each}}
+        <div class="nerby_pg-quotes-arrow fa fa-angle-right"></div>
+      </div>
+      {{else}}
+      <div class="nerby_pg-{{getBackgroundStyle}}"><br>
+        <!--This is the main (circle) image-->
+        <div class="nerby_pg-head-circ">
+          <div class="nerby_pg-head-image">
+            <!-- Here displays the counter number which is a result of each loop-->
+            <span class="nerby_pg-counter">#{{counter_no}}</span>
+            <span class="nerby_pg-counter2"></span>
+          </div>
+        </div>
+        <!--Location title -->
+        <div class="nerby_pg-sp">
+          <div  class="nerby_pg-space">
+            <!-- This displays the font awesome map sybmol infornt of the united states-->
+            <i class="fa fa-map-marker"></i>
+            <span  class="nerby_pg-space nerby_pg-space2">
+              {{location}}
+            </span>
+            <!-- Here displays the description which come from the each loop-->
+            <div class="nerby_pg-adjust">{{ data }}</div>
+            <div class="nerby_pg-follw1">Total Companies:{{totalcompanies}}
+            </div>
+          </div>
+        </div>
+        <!--This displays the blue button which holds the text "View Full List"-->
+        <div class="nerby_pg-ctmain">
+          <span class="nerby_pg-ctmaintxt">
+            Want more info about this location?
+          </span>
+          <button class="nerby_pg-tile-button">
+            View Profile
+            <span style="margin-left:6px"><i class="fa fa-angle-right"></i></span>
+          </button>
+        </div>
+        <div class="nerby_pg-rtct">
+          <div class="nerby_pg-rttx1"> Market Cap</div>
+          <div class="nerby_pg-rttx2"> {{number}}</div>
+          <div class="nerby_pg-rttx3">as of {{date}} </div>
+        </div>
+        <!-- This displays the font awesome heart symbol beside the text "save"-->
+        <div class="nerby_pg-sn">
+          <div  class="nerby_pg-save">
+            <i class="fa fa-heart"></i>
+            <span  class="nerby_pg-save nerby_pg-st">
+              Follow
+            </span>
+          </div>
+        </div>
+
+        <!-- This displays the font awesome share symbol beside the text "share"-->
+        <div class="nerby_pg-sh">
+          <div  class="nerby_pg-share">
+            <i class="fa fa-share-alt"></i>
+            <span  class="nerby_pg-share nerby_pg-sht">
+              Share
+            </span>
+          </div>
+        </div>
+    <!-- This displays the font awesome flag symbol beside the text "Feedback"-->
+        <div class="nerby_pg-fe ">
+          <div  class="nerby_pg-share nerby_pg-feedback">
+            <i class="fa fa-flag"></i>
+            <span  class="nerby_pg-share nerby_pg-ft">
+              Feedback
+            </span>
+          </div>
+        </div>
+    </div>
+      {{/if}}
+      <!--This is the End of each loop -->
+      {{/each}}
+  <div class="nerby_pg-footer">
+    <!-- This is outermost class of the footer which holds the other elements in the footer-->
+    <div class="nerby_pg-holder1">
+      <!-- This is the class which holds the font awesome left arrow-->
+      <div class="nerby_pg-navigationl">
+        <i class="fa fa-angle-left nerby_pg-footer-icon"></i>
+      </div>
+      <!-- Here we write the code for the buttons 1,2,3 and 200-->
+      <button  class="nerby_pg-page-selector1 nerby_pg-page-selector1-font1">1</button>
+      <button class="nerby_pg-page-selector2 nerby_pg-page-selector2-font2">2</button>
+      <button  class="nerby_pg-page-selector3 nerby_pg-page-selector3-font3">3</button>
+      <span  class="nerby_pg-dots" >...</span>
+      <button  class="nerby_pg-page-selector200 nerby_pg-page-selector200-font">200</button>
+    <span class="nerby_pg-navigationr">
+      <i class="fa fa-angle-right nerby_pg-footer-icon"></i>
+    </span>
+      <!-- This is the class which holds the font awesome right arrow-->
+    </div>
+    <!-- container for the View all button !-->
+    <div class="nerby_pg-navigation2">
+      <button class="nerby_pg-view-all nerby_pg-view-all-font">VIEW ALL <img style="padding-bottom:4px" src="infinite-icon.png"></button>
+    </div>
+  </div>
+</div>
+  <!--created a container for the fotter  !-->
+<div class="nerby_pg-fotter">
+    {{> didnt_find}}
+</div>
+
+  </div>
+</div>
+{{/with}}
+</template>

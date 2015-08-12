@@ -1,70 +1,69 @@
 /*
 Author: Kyle Toom
-Date: 8/10/2015
-Decription: A page for showing what has happened with a company over a period of time
-Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
+Date: 8/12/2015
+Decription: A page for showing an executive's stock holdings in his company
+Associated Files: exec_stock_hold.html, exec_stock_hold.less, exec_stock_hold.js
 */
 
 @import (reference)"../global_vars.less";
 @import (reference)"../modules.less";
 
-.cfo
+.esh
 {
-    &-pr //cfo-pr
+    &-pr //esh-pr
     {
         position: relative;
     }
-
-    &-pa //cfo-pa
+    &-pa //esh-pa
     {
         position: absolute;
     }
 
-    &-b //cfo-b
+    &-b //esh-b: bold text
     {
         font-style: normal;
         font-family: HN-B;
     }
 
-    &-n //cfo-n: normal text for use in <i> tags
+    &-n //esh-n: normal text
     {
         font-style: normal;
         font-family: HN;
     }
 
-    &-l //cfo-l
+    &-l //esh-n: light text
     {
         font-style: normal;
         font-family: HN-L;
     }
 
-    &-grn //cfo-grn
+    &-grn //esh-grn: grn
     {
         color: @green;
         font-style: normal;
         font-family: HN-B;
     }
 
-    &-blue //cfo-blue
+    &-blue //esh-blue
     {
         font-style: normal;
         color: @blue;
         font-family: HN-B;
     }
 
-    &-black //cfo-black
+    &-black //esh-black
     {
         font-family: HN-B;
         color: @black;
         font-style: normal;
     }
 
-    &-i //cfo-i
+    &-i //esh-i
     {
         font-style: italic;
     }
 
-    &-page //cfo-page
+    &-page //esh-page
     {
         width: 680px;
         height: auto;
@@ -72,12 +71,12 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
         color: @black;
     }
 
-    &-top //cfo-top
+    &-top //esh-top
     {
         width: 680px;
         height: 140px;
 
-        &-circle //cfo-top-circle
+        &-circle //esh-circle
         {
             border-radius: 50%;
             border: 2px solid @grey-2;
@@ -86,7 +85,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
             top: 20px;
             left: 20px;
 
-            &-btn //cfo-top-circle-btn
+            &-btn //esh-circle-btn
             {
                 border-radius: 50%;
                 width: 35px;
@@ -99,7 +98,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
             }
         }
 
-        &-txt1 //cfo-top-txt1
+        &-txt1 //esh-top-txt1
         {
             font-size: 10px;
             color: #959595;
@@ -107,21 +106,21 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
             top: 16px;
         }
 
-        &-txt2 //cfo-top-txt2
+        &-txt2 //esh-top-txt2
         {
             font-size: 12px;
             left: 128px;
             top: 43px;
         }
 
-        &-txt3 //cfo-top-txt3
+        &-txt3 //esh-top-txt3
         {
             font-size: 22px;
             left: 128px;
             top: 59px;
         }
 
-        &-txt4 //cfo-top-txt4
+        &-txt4 //esh-top-txt4
         {
             font-size: 22px;
             left: 128px;
@@ -129,33 +128,33 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
         }
     }
 
-    &-mid //cfo-mid: the middle section that goes black-grey-black
+    &-mid //esh-mid: the section that goes black-grey-black
     {
         width: 680px;
         height: 360px;
         background-image: @dark-linen;
         color: @white;
 
-        &-top //cfo-mid-top
+        &-top //esh-mid-top
         {
             background-color: @black;
             height: 35px;
             width: 680px;
 
-            &-txt1 //cfo-mid-top-txt1
+            &-txt1 //esh-mid-top-txt1
             {
-                font-size: 16px;
-                border-right: 1px solid #363636;
-                padding: 5px 14px;
-                max-width: 400px;
-                height: 35px;
-                float: left;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
+              font-size: 16px;
+              border-right: 1px solid #363636;
+              padding: 5px 14px;
+              max-width: 400px;
+              height: 35px;
+              float: left;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
             }
 
-            &-txt2 //cfo-mid-top-txt2
+            &-txt2 //esh-mid-top-txt2
             {
                 margin: 0px 15px;
                 width: 56px;
@@ -165,23 +164,23 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
             }
         }
 
-        &-mid //cfo-mid-mid
+        &-mid //esh-mid-mid: the grey section
         {
             top: 35px;
             width: 680px;
             height: 249px;
 
-            &-l //cfo-mid-mid-l
+            &-l //esh-mid-mid-l
             {
                 margin-left: 15px !important;
             }
 
-            &-r //cfo-mid-mid-r
+            &-r //esh-mid-mid-r
             {
                 margin-right: 15px !important;
             }
 
-            &-circle //cfo-mid-mid-circle
+            &-circle //esh-mid-mid-circle
             {
                 border-radius: 50%;
                 width: 180px;
@@ -192,7 +191,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 top: 34px;
             }
 
-            &-building //cfo-mid-mid-building
+            &-building //esh-mid-mid-building
             {
                 border-radius: 50%;
                 background-color: @blue;
@@ -204,7 +203,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 padding-left: 13px;
             }
 
-            &-txt1 //cfo-mid-mid-txt1
+            &-txt1 //esh-mid-mid-txt1
             {
                 font-size: 22px;
                 top: 30px;
@@ -214,7 +213,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 overflow: hidden;
             }
 
-            &-txt2 //cfo-mid-mid-txt2
+            &-txt2 //esh-mid-mid-txt2
             {
                 font-size: 14px;
                 top: 58px;
@@ -222,7 +221,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 color: #f2f2f2;
             }
 
-            &-txt3 //cfo-mid-mid-txt3
+            &-txt3 //esh-mid-mid-txt3
             {
                 font-size: 14px;
                 top: 58px;
@@ -230,7 +229,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 color: #f2f2f2;
             }
 
-            &-txtbox //cfo-mid-mid-txtbox
+            &-txtbox //esh-mid-mid-txtbox
             {
                 border-left: 2px solid @grey-2;
                 height: 101px;
@@ -242,19 +241,20 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 line-height: 19px;
                 overflow: hidden;
 
-                &-txt //cfo-mid-mid-txtbox-txt
+                &-txt //esh-mid-mid-txtbox-txt
                 {
                     top: -4px;
                     font-style: normal;
                 }
 
-                &-btm1 //cfo-mid-mid-txtbox-btm1
+                &-btm1 //esh-mid-mid-txt-txtbox-btm1
                 {
                     top: -4px;
                     line-height: 30px;
                     font-style: normal;
                 }
-                &-btm2 //cfo-mid-mid-txtbox-btm2
+
+                &-btm2 //esh-mid-mid-txt-txtbox-btm2
                 {
                     top: -9px;
                     font-style: normal;
@@ -262,28 +262,28 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
             }
         }
 
-        &-btm //cfo-mid-btm: the black section at the bottom of the middle
+        &-btm //esh-mid-btm: the bottom black section of the middle
         {
             top: 284px;
             height: 76px;
             width: 680px;
             background-color: @black;
 
-            &-txt1 //cfo-mid-btm-txt1
+            &-txt1 //esh-mid-btm-txt1
             {
                 left: 20px;
                 top: 14px;
                 font-size: 18px;
             }
 
-            &-txt2 //cfo-mid-btm-txt2
+            &-txt2 //esh-mid-btm-txt2
             {
                 left: 20px;
                 top: 44px;
                 font-size: 14px;
             }
 
-            &-btn //cfo-mid-btm-btn
+            &-btn //esh-mid-btm-btn
             {
                 left: 490px;
                 top: 21px;
@@ -298,25 +298,24 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
         }
     }
 
-    &-btm //cfo-btm
+    &-btm //esh-btm: where all the data is
     {
         width: 680px;
-        min-height: 978px;
         padding: 10px 15px 0px 15px;
 
-        &-txt1 //cfo-btm-txt1
+        &-txt1 //esh-btm-txt1
         {
             font-size: 12px;
             height: 12px;
             line-height: 12px;
 
-            &-blue //cfo-btm-txt1-blue
+            &-blue //esh-btm-txt1-blue
             {
                 color: @blue;
             }
         }
 
-        &-what //cfo-btm-what: the box that starts with "what is this page?"
+        &-what //esh-btm-what: box that says "what is this page?"
         {
             width: 650px;
             height: 81px;
@@ -325,7 +324,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
             font-size: 14px;
             margin-top: 15px;
 
-            &-top //cfo-btm-what-top
+            &-top //esh-btm-what-top
             {
                 width: 100%;
                 height: 20px;
@@ -334,14 +333,14 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 font-size: 12px;
                 padding: 0px 10px;
 
-                &-x //cfo-btm-what-top-x
+                &-x //esh-btm-what-top-x
                 {
                     float: right;
                     top: 3px;
                 }
             }
 
-            &-txt //cfo-btm-what-txt
+            &-txt //esh-btm-what-txt
             {
                 width: 610px;
                 height: 31px;
@@ -351,14 +350,14 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
             }
         }
 
-        &-data //cfo-btm-data
+        &-data //esh-btm-data
         {
             width: 680px;
             height: auto;
             left: -15px;
             margin-top: 13px;
 
-            &-title //cfo-btm-date-title
+            &-title //esh-btm-data-title
             {
                 width: 650px;
                 height: 28px;
@@ -367,7 +366,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 border-bottom: 1px solid @grey-2;
             }
 
-            &-date //cfo-btm-data-date
+            &-date //esh-btm-data-date
             {
                 color: #959595;
                 font-size: 12px;
@@ -375,7 +374,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 top: 5px;
             }
 
-            &-graph //cfo-btm-data-graph
+            &-graph //esh-btm-data-graph
             {
                 left: 15px;
                 width: 650px;
@@ -383,14 +382,15 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 height: 221px;
             }
 
-            &-period //cfo-btm-data-period
+            &-period //esh-btm-data-period
             {
                 width: 100%;
                 height: 50px;
                 background-color: #f2f2f2;
                 padding: 0px 37px;
+                top: 1px;
 
-                &-btn //cfo-btm-data-period-btn
+                &-btn //esh-btm-data-period-btn
                 {
                     background-color: #dadada;
                     border-radius: 50%;
@@ -404,7 +404,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                     padding-top: 7px;
                     cursor: pointer;
 
-                    &-a //cfo-btm-data-period-btn-a
+                    &-a //esh-btm-data-period-btn-a
                     {
                         background-color: @blue;
                         color: @white;
@@ -412,13 +412,13 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 }
             }
 
-            &-list //cfo-btm-data-list
+            &-list //esh-btm-data-list
             {
                 width: 680px;
                 height: 206px;
             }
 
-            &-list-l //cfo-btm-data-list-l
+            &-list-l //esh-btm-data-list-l
             {
                 width: 325px;
                 height: 185px;
@@ -428,7 +428,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 border-right: 1px dashed @grey-2;
             }
 
-            &-list-r //cfo-btm-data-list-r
+            &-list-r //esh-btm-data-list-r
             {
                 width: 325px;
                 height: 185px;
@@ -437,7 +437,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 float:right;
             }
 
-            &-list-i //cfo-btm-data-list-i
+            &-list-i //esh-btm-data-list-i
             {
                 width: 310px;
                 height: 20px;
@@ -446,7 +446,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 padding-bottom: 30px;
                 margin-bottom: 5px;
 
-                &-l //cfo-btm-data-list-i-l
+                &-l //esh-btm-data-list-i-l
                 {
                     float: left;
                     width: 50%;
@@ -455,7 +455,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                     height: 20px;
                 }
 
-                &-r //cfo-btm-data-list-i-r
+                &-r //esh-btm-data-list-i-r
                 {
                     float: right;
                     width: 50%;
@@ -464,7 +464,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                     height: 20px;
                 }
 
-                &-b //cfo-btm-data-list-i-b
+                &-b //esh-btm-data-list-i-b
                 {
                     width: 310px;
                     height: 20px;
@@ -473,12 +473,12 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 }
             }
 
-            &-list-e //cfo-btm-data-list-e: the exception in the list where there is a paragraph
+            &-list-e //esh-btm-data-list-e
             {
                 width: 310px;
                 height: 89px;
 
-                &-title //cfo-btm-data-list-e-title
+                &-title //esh-btm-data-list-e-title
                 {
                     font-size: 14px;
                     max-width: 300px;
@@ -486,7 +486,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                     height: 17px;
                 }
 
-                &-circle //cfo-btm-data-list-e-circle
+                &-circle //esh-btm-data-list-e-circle
                 {
                     border: 2px solid @grey-2;
                     width: 50px;
@@ -496,7 +496,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                     top: 5px;
                 }
 
-                &-txt //cfo-btm-data-list-e-txt
+                &-txt //esh-btm-data-list-e-txt
                 {
                     float: right;
                     width: 250px;
@@ -507,7 +507,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 }
             }
 
-            &-tile //cfo-btm-data-tile
+            &-tile //esh-btm-data-tile
             {
                 width: 680px;
                 height: auto;
@@ -522,12 +522,12 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                     display: table;
                 }
 
-                &-grey //cfo-btm-data-tile-grey
+                &-grey //esh-btm-data-tile-grey
                 {
                     width: 680px;
                     height: auto;
                     padding: 10px 15px;
-                    background-color: #f6f6f6;
+                    background-color: #f2f2f2;
                     border-top: 1px solid #c2c2c2;
                     clear: both;
 
@@ -539,14 +539,14 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                     }
                 }
 
-                &-title //cfo-btm-data-tile-title
+                &-title //esh-btm-data-tile-title
                 {
                     font-size: 16px;
                     left: 44px;
                     top: 6px;
                 }
 
-                &-l //cfo-btm-data-tile-l
+                &-l //esh-btm-data-tile-l
                 {
                     width: 325px;
                     padding-top: 55px;
@@ -555,7 +555,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                     padding-bottom: 10px;
                 }
 
-                &-r //cfo-btm-data-tile-r
+                &-r //esh-btm-data-tile-r
                 {
                     width: 325px;
                     padding-top: 55px;
@@ -564,7 +564,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                     padding-bottom: 10px;
                 }
 
-                &-circle //cfo-btm-data-tile-circle
+                &-circle //esh-btm-data-tile-circle
                 {
                     border-radius: 50%;
                     background-color: @blue;
@@ -579,14 +579,24 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                     left: 0px;
                 }
 
-                &-stat //cfo-btm-data-tile-stat
+                &-stat //esh-btm-data-tile-stat
                 {
-                    width: 300px;
+                    width: 291px;
                     height: 20px;
                     font-size: 14px;
-                    border-bottom: 1px solid #bfbfbf;
+                    margin-left: 9px;
 
-                    &-l //cfo-btm-data-tile-stat-l
+                    &-u //esh-btm-data-tile-stat-u
+                    {
+                        width: 291px;
+                        height: 25px;
+                        font-size: 14px;
+                        border-bottom: 1px solid #bfbfbf;
+                        margin-left: 9px;
+                        margin-bottom: 5px;
+                    }
+
+                    &-l //esh-btm-data-tile-stat-l
                     {
                         float: left;
                         width: 50%;
@@ -594,13 +604,77 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                         overflow: hidden;
                     }
 
-                    &-r //cfo-btm-data-tile-stat-r
+                    &-r //esh-btm-data-tile-stat-r
                     {
                         float: right;
                         width: 50%;
                         height: 20px;
                         overflow: hidden;
                         text-align: right;
+                    }
+                }
+
+                &-graph //esh-btm-data-tile-graph
+                {
+                    background-color: #cccccc;
+                    width: 310px;
+                    height: 36px;
+                    border-radius: 5px;
+
+                    &-txt1 //esh-btm-data-tile-graph-txt1
+                    {
+                        color: rgba(0, 0, 0, 0.45);
+                        font-style: italic;
+                        font-family: HN;
+                        font-size: 12px;
+                        margin-top: 3px;
+                        margin-bottom: 5px;
+                        padding-left: 8px;
+                    }
+
+                    &-txt2 //esh-btm-data-tile-graph-txt2
+                    {
+                        font-size: 12px;
+                        float: right;
+                        line-height: 36px;
+                        margin-right: 20px;
+                    }
+
+                    &-txt3 //esh-btm-data-tile-graph-txt3
+                    {
+                        font-size: 12px;
+                        float: right;
+                        line-height: 36px;
+                        margin-right: 20px;
+                        color: @white;
+                    }
+
+                    &-txt4 //esh-btm-data-tile-graph-txt4
+                    {
+                        font-size: 10px;
+                        float: left;
+                        margin-left: 40px;
+                    }
+
+                    &-txt5 //esh-btm-data-tile-graph-txt5
+                    {
+                        font-size: 10px;
+                        float: right;
+                        margin-right: 40px;
+                    }
+
+                    &-u //esh-btm-data-tile-graph-u
+                    {
+                        width: 310px;
+                        height: 16px;
+                        padding-top: 3px;
+                    }
+
+                    &-bar //esh-btm-data-tile-graph-bar
+                    {
+                        border-radius: 5px;
+                        height: 36px;
+                        background-color: #ff4040;
                     }
                 }
             }

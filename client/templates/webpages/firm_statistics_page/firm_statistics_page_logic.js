@@ -74,7 +74,7 @@ Template.firm_statistics_page.client_breakdwn = function(){
 
 
 Template.firm_statistics_page.helpers({
-  name: 'Morgan Stanleyhdskjfhsdlkhfklsdh',
+  name: 'Morgan Stanley',
 
   category:[
     {

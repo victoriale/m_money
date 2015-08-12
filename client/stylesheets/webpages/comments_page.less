@@ -66,6 +66,7 @@ Description: comments_page
       color: @black;
       text-align: left;
       list-style-type: none;
+      overflow: hidden;
       //the update part
       &-update {
         font-size: 10px;
@@ -83,6 +84,10 @@ Description: comments_page
       }
       // the person description
       &-auth {
+        max-width: 495px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         font-size: 22px;
         font-family: HN-L;
       }
@@ -96,6 +101,7 @@ Description: comments_page
       color: @white;
       font-size: 16px;
       text-align: left;
+      overflow: hidden;
       // the font awesome icon color
       .fa {
         color: @white;
@@ -110,9 +116,14 @@ Description: comments_page
         background-color: inherit;
         text-align: center;
         float: left;
+        max-width: 490px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         height:35px;
         line-height: 35px;
-        padding: 0 15px;
+        //width:270px;
+        padding: 0px 15px;
         font-size: 16px;
         font-family: HN-B;
       }

@@ -1,7 +1,7 @@
 /*Author: Navya Eetaram
 Created: [07/08/2015]
 Description: Leave_comment
-<Associated Files: comments.html, commets.js, comments.less, commentserver.js*/
+<Associated Files: comments.html, comments.js, comments.less, commentserver.js*/
 
 //Collection Creation
 POST = new Mongo.Collection('post');
@@ -13,7 +13,7 @@ if(Meteor.isClient){
   Meteor.subscribe('reply');
 
   //Helper class
-  Template.comments.helpers({
+  Template.leavecomments.helpers({
 
     post: function () {
       return POST.find().fetch().reverse();
@@ -40,7 +40,7 @@ if(Meteor.isClient){
     }
   });
   //Event Handlers
-  Template.comments.events({
+  Template.leavecomments.events({
     'click .u_input_share_button': function(e) {
       e.preventDefault();
       var id = POST.find().fetch().length;

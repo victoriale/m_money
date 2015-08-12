@@ -1,0 +1,233 @@
+<!--
+Author: Kyle Toom
+Date: 8/12/2015
+Decription: A page for showing what has happened with a company over a period of time
+Associated Files: exec_stock_hold.html, exec_stock_hold.less, exec_stock_hold.js
+-->
+
+<template name="exec_stock_hold">
+    {{#with executive}} <!--object used throughout the page for things like the company name-->
+        <div class="esh-page"> <!--container for whole page-->
+            <div class="esh-pr esh-top"> <!--container for white background area at top-->
+                <div class="esh-pr esh-top-circle"> <!--back arrow in top-->
+                    <div class="esh-pr esh-top-circle-btn">
+                        <i class="fa fa-reply"></i>
+                    </div>
+                </div>
+                <i class="esh-pa esh-n esh-top-txt1">
+                    LAST UPDATED: 06/25/2015, 8:00 AM EST
+                </i>
+                <i class="esh-pa esh-n esh-top-txt2">
+                    <i class="fa fa-map-marker"></i>
+                    United States
+                </i>
+                <i class="esh-pa esh-b esh-top-txt3">
+                    Stock Holdings
+                </i>
+                <i class="esh-pa esh-l esh-top-txt4">
+                    for {{name}}
+                </i>
+            </div>
+            <div class="esh-pr esh-mid"> <!--the black-grey-black section in the middle-ish-->
+                <div class="esh-pa esh-mid-top"> <!--the black header of the middle-->
+                    <div class="esh-b esh-mid-top-txt1"> <!--the left part of the header-->
+                        {{name}}'s Stock Holdings
+                    </div>
+                    <div class="esh-l esh-mid-top-txt2"> <!--the first right part of the header-->
+                        <i class="fa fa-heart"></i>
+                        Save
+                    </div>
+                    <div class="esh-l esh-mid-top-txt2"> <!--the second right part of the header-->
+                        <i class="fa fa-share-alt"></i>
+                        Share
+                    </div>
+                </div>
+                <div class="esh-pa esh-mid-mid"> <!--the grey section in the middle-->
+                    <div class="navigation-button-left">
+                        <i class="fa fa-angle-left esh-mid-mid-l"></i>
+                    </div>
+                    <div class="esh-pa esh-mid-mid-circle">
+                    </div>
+                    <div class="esh-pa esh-mid-mid-building">
+                        <i class="fa fa-building-o fa-lg"></i>
+                    </div>
+                    <i class="esh-pa esh-b esh-mid-mid-txt1">
+                        {{name}}
+                    </i>
+                    <i class="esh-pa esh-l esh-mid-mid-txt2">
+                        <i class="fa fa-heart"></i>
+                        Save
+                    </i>
+                    <i class="esh-pa esh-l esh-mid-mid-txt3">
+                        <i class="fa fa-share-alt"></i>
+                        Share
+                    </i>
+                    <div class="esh-pa esh-l esh-mid-mid-txtbox"> <!--the part of the middle-middle that has the important and long text-->
+                        <i class="esh-mid-mid-txtbox-txt">
+                            <i class="esh-b">{{name}}</i>'s currently owns 28% of
+                            {{company}}'s ({{ticker}}) shares, with a value of 3.64
+                            Billion USD.
+                            <br>
+                        </i>
+                        <i class="esh-mid-mid-txtbox-btm1">
+                            <i class="esh-b">{{name}}</i> is currently priced at:<br>
+                        </i>
+                        <i class="esh-pr esh-mid-mid-txtbox-btm2">
+                            <i class="esh-b">$94.31 </i> <i class="esh-grn"><i class="fa fa-arrow-up"></i> +0.22 (+0.23%)</i>
+                        </i>
+                    </div>
+                    <div class="navigation-button-right">
+                        <i class="fa fa-angle-right esh-mid-mid-r"></i>
+                    </div>
+                </div>
+                <div class="esh-pa esh-mid-btm"> <!--the footer of the middle area-->
+                    <div class="esh-pa esh-l esh-mid-btm-txt1">
+                        Want more information about {{name}}?
+                    </div>
+                    <div class="esh-pa esh-l esh-mid-btm-txt2">
+                        Profile Last Updated On: <i class="esh-b">07/29/2015</i>
+                    </div>
+                    <div class="esh-pa esh-mid-btm-btn">
+                        View Profile <i class="fa fa-angle-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="esh-pr esh-btm"> <!--holds anything but the search module below the middle area-->
+                <div class="esh-b esh-btm-txt1">
+                    Sort by: <i class="esh-l">Personal Stock Holdings </i><i class="fa fa-angle-down esh-btm-txt1-blue"></i>
+                </div>
+                <div class="esh-btm-what"> <!--a box that looks like it can be closed-->
+                    <div class="esh-b esh-btm-what-top">
+                        What is this page?
+                        <i class="fa fa-times esh-pr esh-btm-what-top-x"></i>
+                    </div>
+                    <div class="esh-btm-what-txt">
+                        This page details {{name}}'s stock holding and ownership of {{company}} ({{ticker}}) shares
+                        along with the worth of the shares and his current compensation.
+                    </div>
+                </div>
+                <div class="esh-pr esh-btm-data"> <!--a divide to seperate data from the box above-->
+                    <div class="esh-pr esh-btm-data-title">
+                        Stock Holdings <i class="esh-l">for {{name}}</i>
+                    </div>
+                    <div class="esh-pr esh-btm-data-date">
+                        <i class="fa fa-calendar"></i>
+                        Updated 08/03/2015 at 4PM EST
+                    </div>
+                    <div class="esh-pr esh-btm-data-graph" id="eshGraph">
+                        <!--Put graph here-->
+                        {{> highchartsHelper chartId="eshChart" chartWidth="650px" chartHeight="221px" chartObject=getGraphObject}}
+                    </div>
+                    <div class="esh-pr esh-btm-data-period"> <!--this holds the buttons that change the x scale of the graph-->
+                        {{#each btns}}
+                            <div class="esh-btm-data-period-btn{{isInitial num}}" id="eshBtn{{num}}" onclick="eshBtns({{num}})">
+                                {{text}}
+                            </div>
+                        {{/each}}
+                    </div>
+                    {{#each tiles}} <!--tiles are the alternating grey-white spaces at the bottom which have a left and right side-->
+                        <div class="esh-pr {{getTileColor}}">
+                            {{#with left}}
+                                <div class="esh-pr esh-btm-data-tile-l" id="eshTileL{{num}}">
+                                    <div class="esh-pa esh-btm-data-tile-circle">
+                                        <i class="fa fa-question"></i>
+                                    </div>
+                                    <div class="esh-b esh-pa esh-btm-data-tile-title">
+                                        {{title}}
+                                    </div>
+                                    {{#each item}}
+                                        {{#if graph}} <!--draws a bar graph-like shape if specified else a normal piece of tile data-->
+                                            <div class="esh-btm-data-tile-graph-txt1">
+                                                Relative to Industry
+                                            </div>
+                                            <div class="esh-btm-data-tile-graph">
+                                                {{#if exceptableForLargeBar value}}
+                                                    <i class="esh-btm-data-tile-graph-txt2 esh-n">
+                                                        100%
+                                                    </i>
+                                                {{/if}}
+                                                <div class="esh-btm-data-tile-graph-bar" style="width: {{value}}">
+                                                    {{#if exceptableForSmallBar value}}
+                                                        <i class="esh-btm-data-tile-graph-txt3 esh-n">
+                                                            {{value}}
+                                                        </i>
+                                                    {{/if}}
+                                                </div>
+                                            </div>
+                                            <div class="esh-btm-data-tile-graph-u">
+                                                <div class="esh-btm-data-tile-graph-txt4 esh-b">
+                                                    Below Average
+                                                </div>
+                                                <div class="esh-btm-data-tile-graph-txt5 esh-b">
+                                                    Above Average
+                                                </div>
+                                            </div>
+                                        {{else}}
+                                            <div class="esh-btm-data-tile-stat{{itemClass}}">
+                                                <div class="esh-btm-data-tile-stat-l">
+                                                    {{text}}
+                                                </div>
+                                                <div class="esh-b esh-btm-data-tile-stat-r">
+                                                    {{value}}
+                                                </div>
+                                            </div>
+                                        {{/if}}
+                                    {{/each}}
+                                </div>
+                            {{/with}}
+                            {{#with right}}
+                                <div class="esh-pr esh-btm-data-tile-r" id="eshTileR{{num}}">
+                                    <div class="esh-pa esh-btm-data-tile-circle">
+                                        <i class="fa fa-question"></i>
+                                    </div>
+                                    <div class="esh-b esh-pa esh-btm-data-tile-title">
+                                        {{title}}
+                                    </div>
+                                    {{#each item}}
+                                        {{#if graph}}
+                                            <div class="esh-btm-data-tile-graph-txt1">
+                                                Relative to Industry
+                                            </div>
+                                            <div class="esh-btm-data-tile-graph">
+                                                {{#if exceptableForLargeBar value}}
+                                                    <i class="esh-btm-data-tile-graph-txt2 esh-n">
+                                                        100%
+                                                    </i>
+                                                {{/if}}
+                                                <div class="esh-btm-data-tile-graph-bar" style="width: {{value}}">
+                                                    {{#if exceptableForSmallBar value}}
+                                                        <i class="esh-btm-data-tile-graph-txt3 esh-n">
+                                                            {{value}}
+                                                        </i>
+                                                    {{/if}}
+                                                </div>
+                                            </div>
+                                            <div class="esh-btm-data-tile-graph-u">
+                                                <div class="esh-btm-data-tile-graph-txt4 esh-b">
+                                                    Below Average
+                                                </div>
+                                                <div class="esh-btm-data-tile-graph-txt5 esh-b">
+                                                    Above Average
+                                                </div>
+                                            </div>
+                                        {{else}}
+                                            <div class="esh-btm-data-tile-stat{{itemClass}}">
+                                                <div class="esh-btm-data-tile-stat-l">
+                                                    {{text}}
+                                                </div>
+                                                <div class="esh-b esh-btm-data-tile-stat-r">
+                                                    {{value}}
+                                                </div>
+                                            </div>
+                                        {{/if}}
+                                    {{/each}}
+                                </div>
+                            {{/with}}
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+            {{> search_module}}
+        </div>
+    {{/with}}
+</template>

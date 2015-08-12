@@ -1,0 +1,251 @@
+<!--
+Author: Kyle Toom
+Date: 8/12/2015
+Decription: A page for showing what has happened with a company over a period of time
+Associated Files: co_stock_graph.html, co_stock_graph.less, co_stock_graph.js
+-->
+
+<template name="co_stock_graph">
+    {{#with company}} <!--object that holds data that is used throughout the page-->
+        <div class="csg-page"> <!--container for whole page-->
+            <div class="csg-pr csg-top"> <!--container for white background area at top-->
+                <div class="csg-pr csg-top-circle"> <!--back arrow in top-->
+                    <div class="csg-pr csg-top-circle-btn">
+                        <i class="fa fa-reply"></i>
+                    </div>
+                </div>
+                <i class="csg-pa csg-n csg-top-txt1">
+                    LAST UPDATED: 06/25/2015, 8:00 AM EST
+                </i>
+                <i class="csg-pa csg-n csg-top-txt2">
+                    <i class="fa fa-map-marker"></i>
+                    United States
+                </i>
+                <i class="csg-pa csg-b csg-top-txt3">
+                    Stock Graph
+                </i>
+                <i class="csg-pa csg-l csg-top-txt4">
+                    for {{formalName}}
+                </i>
+            </div>
+            <div class="csg-pr csg-mid"> <!--the black-grey-black section in the middle-ish-->
+                <div class="csg-pa csg-mid-top"> <!--the black header of the middle-->
+                    <div class="csg-b csg-mid-top-txt1"> <!--the left part of the header-->
+                        {{formalName}}'s Stock Graph
+                    </div>
+                    <div class="csg-l csg-mid-top-txt2"> <!--the first right part of the header-->
+                        <i class="fa fa-heart"></i>
+                        Save
+                    </div>
+                    <div class="csg-l csg-mid-top-txt2"> <!--the second right part of the header-->
+                        <i class="fa fa-share-alt"></i>
+                        Share
+                    </div>
+                </div>
+                <div class="csg-pa csg-mid-mid"> <!--the grey section in the middle-->
+                    <div class="navigation-button-left">
+                        <i class="fa fa-angle-left csg-mid-mid-l"></i>
+                    </div>
+                    <div class="csg-pa csg-mid-mid-circle">
+                    </div>
+                    <div class="csg-pa csg-mid-mid-building">
+                        <i class="fa fa-building-o fa-lg"></i>
+                    </div>
+                    <i class="csg-pa csg-b csg-mid-mid-txt1">
+                        {{formalName}}
+                    </i>
+                    <i class="csg-pa csg-l csg-mid-mid-txt2">
+                        <i class="fa fa-heart"></i>
+                        Save
+                    </i>
+                    <i class="csg-pa csg-l csg-mid-mid-txt3">
+                        <i class="fa fa-share-alt"></i>
+                        Share
+                    </i>
+                    <div class="csg-pa csg-l csg-mid-mid-txtbox"> <!--the part of the middle-middle that has the important and long text-->
+                        <i class="csg-mid-mid-txtbox-txt">
+                            <i class="csg-b">{{formalName}}</i>'s overall annual financials are <i class="csg-b csg-i">up
+                            10%</i> from 2014. With an <i class="csg-b csg-i">$20 increase</i> in stock
+                            price bringing individual <i class="csg-b csg-i">share price to $94.01.</i>
+                            <br>
+                        </i>
+                        <i class="csg-mid-mid-txtbox-btm1">
+                            <i class="csg-b">{{formalName}}</i> is currently priced at:<br>
+                        </i>
+                        <i class="csg-pr csg-mid-mid-txtbox-btm2">
+                            <i class="csg-b">$94.31 </i> <i class="csg-grn"><i class="fa fa-arrow-up"></i> +0.22 (+0.23%)</i>
+                        </i>
+                    </div>
+                    <div class="navigation-button-right">
+                        <i class="fa fa-angle-right csg-mid-mid-r"></i>
+                    </div>
+                </div>
+                <div class="csg-pa csg-mid-btm"> <!--the footer of the middle area-->
+                    <div class="csg-pa csg-l csg-mid-btm-txt1">
+                        Want more information about {{informalName}}'s stock?
+                    </div>
+                    <div class="csg-pa csg-l csg-mid-btm-txt2">
+                        Profile Last Updated On: <i class="csg-b">07/29/2015</i>
+                    </div>
+                    <div class="csg-pa csg-mid-btm-btn">
+                        View Profile <i class="fa fa-angle-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="csg-pr csg-btm"> <!--holds anything but the search module below the middle area-->
+                <div class="csg-b csg-btm-txt1">
+                    Sort by: <i class="csg-l">Stock Graph </i><i class="fa fa-angle-down csg-btm-txt1-blue"></i>
+                </div>
+                <div class="csg-btm-what"> <!--a box that looks like it can be closed-->
+                    <div class="csg-b csg-btm-what-top">
+                        What is this page?
+                        <i class="fa fa-times csg-pr csg-btm-what-top-x"></i>
+                    </div>
+                    <div class="csg-btm-what-txt">
+                        This page features a glance at {{formalName}}'s stock graph that's updated daily betwween 8am to 4pm.
+                    </div>
+                </div>
+                <div class="csg-pr csg-btm-data"> <!--a divide to seperate data from the box above-->
+                    <div class="csg-pr csg-btm-data-title">
+                        Stock Graph <i class="csg-l">for {{formalName}}:</i>
+                    </div>
+                    <div class="csg-pr csg-btm-data-date">
+                        <i class="fa fa-calendar"></i>
+                        Updated 08/03/2015 at 4PM EST
+                    </div>
+                    <div class="csg-pr csg-btm-data-graph" id="csgGraph">
+                        <!--Put graph here-->
+                        {{> highchartsHelper chartId="csgChart" chartWidth="650px" chartHeight="221px" chartObject=getGraphObject}}
+                    </div>
+                    <div class="csg-btm-data-period"> <!--this holds the buttons that change the x scale of the graph-->
+                        {{#each btns}}
+                            <div class="csg-btm-data-period-btn{{isInitial num}}" id="csgBtn{{num}}" onclick="csgBtns({{num}})">
+                                {{text}}
+                            </div>
+                        {{/each}}
+                    </div>
+                    <div class="csg-pr csg-btm-data-list"> <!--List various figures but is not a tile-->
+                        <div class="csg-pr csg-btm-data-list-l">
+                            <div class="csg-btm-data-list-i">
+                                <i class="csg-l csg-btm-data-list-i-l">
+                                    Current Price
+                                </i>
+                                <i class="csg-b csg-btm-data-list-i-r">
+                                    $94.31
+                                </i>
+                            </div>
+                            <div class="csg-btm-data-list-i">
+                                <i class="csg-l csg-btm-data-list-i-l">
+                                    Open Price
+                                </i>
+                                <i class="csg-b csg-btm-data-list-i-r">
+                                    $93.53
+                                </i>
+                            </div>
+                            <div class="csg-btm-data-list-i">
+                                <i class="csg-l csg-btm-data-list-i-l">
+                                    Close Price
+                                </i>
+                                <i class="csg-b csg-btm-data-list-i-r">
+                                    $95.21
+                                </i>
+                            </div>
+                            <div class="csg-btm-data-list-i">
+                                <i class="csg-l csg-btm-data-list-i-l">
+                                    Day Change $-%
+                                </i>
+                                <i class="csg-grn csg-btm-data-list-i-r">
+                                    <i class="fa fa-arrow-up"></i> +0.52 <i class="csg-black">|</i> +0.57%
+                                </i>
+                            </div>
+                            <div class="csg-btm-data-list-i-b">
+                                <i class="csg-l csg-btm-data-list-i-l">
+                                    Day Range
+                                </i>
+                                <i class="csg-b csg-btm-data-list-i-r">
+                                    $93.53 - $93.21
+                                </i>
+                            </div>
+                        </div>
+                        <div class="csg-pr csg-btm-data-list-r">
+                            <div class="csg-btm-data-list-i">
+                                <i class="csg-l csg-btm-data-list-i-l">
+                                    52 Week Range
+                                </i>
+                                <i class="csg-b csg-btm-data-list-i-r">
+                                    $99.24 - $70.32
+                                </i>
+                            </div>
+                            <div class="csg-btm-data-list-i">
+                                <i class="csg-l csg-btm-data-list-i-l">
+                                    Vol/Avg.
+                                </i>
+                                <i class="csg-b csg-btm-data-list-i-r">
+                                    4M/10M
+                                </i>
+                            </div>
+                            <div class="csg-btm-data-list-e"> <!--the abnormal list item-->
+                                <div class="csg-btm-data-list-e-title csg-l">
+                                    <i class="csg-b">Learn why </i>{{formalName}} is <i class="csg-grn"><i class="fa fa-arrow-up"></i> +0.52%</i> today:
+                                </div>
+                                <div class="csg-pr csg-btm-data-list-e-circle">
+                                </div>
+                                <div class="csg-pr csg-btm-data-list-e-txt">
+                                    {{formalName}} ({{ticker}}) stock is currently priced
+                                    at $94.31 per share. Yesterday, <i class="csg-blue">3 articles</i>
+                                    were written about {{ticker}}: 100% are positive.
+                                    <i class="csg-blue">Click here</i> to read more about {{formalName}} in the news.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{#each tiles}} <!--tiles are the alternating grey-white spaces at the bottom which have a left and right side-->
+                        <div class="csg-pr {{getTileColor}}">
+                            {{#with left}}
+                                <div class="csg-pr csg-btm-data-tile-l" id="csgTileL{{num}}">
+                                    <div class="csg-pa csg-btm-data-tile-circle">
+                                        <i class="fa fa-question"></i>
+                                    </div>
+                                    <div class="csg-b csg-pa csg-btm-data-tile-title">
+                                        {{title}}
+                                    </div>
+                                    {{#each item}}
+                                        <div class="csg-btm-data-tile-stat">
+                                            <div class="csg-btm-data-tile-stat-l">
+                                                {{text}}
+                                            </div>
+                                            <div class="csg-b csg-btm-data-tile-stat-r">
+                                                {{value}}
+                                            </div>
+                                        </div>
+                                    {{/each}}
+                                </div>
+                            {{/with}}
+                            {{#with right}}
+                                <div class="csg-pr csg-btm-data-tile-r" id="csgTileR{{num}}">
+                                    <div class="csg-pa csg-btm-data-tile-circle">
+                                        <i class="fa fa-question"></i>
+                                    </div>
+                                    <div class="csg-b csg-pa csg-btm-data-tile-title">
+                                        {{title}}
+                                    </div>
+                                    {{#each item}}
+                                        <div class="csg-btm-data-tile-stat">
+                                            <div class="csg-btm-data-tile-stat-l">
+                                                {{text}}
+                                            </div>
+                                            <div class="csg-b csg-btm-data-tile-stat-r">
+                                                {{value}}
+                                            </div>
+                                        </div>
+                                    {{/each}}
+                                </div>
+                            {{/with}}
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+            {{> search_module}}
+        </div>
+    {{/with}}
+</template>

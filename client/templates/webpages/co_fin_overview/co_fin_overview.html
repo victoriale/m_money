@@ -6,10 +6,10 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
 -->
 
 <template name="co_fin_overview">
-    {{#with company}}
-        <div class="cfo-page">
-            <div class="cfo-pr cfo-top">
-                <div class="cfo-pr cfo-top-circle">
+    {{#with company}} <!--object used throughout the page for things like the company name-->
+        <div class="cfo-page"> <!--container for whole page-->
+            <div class="cfo-pr cfo-top"> <!--container for white background area at top-->
+                <div class="cfo-pr cfo-top-circle"> <!--back arrow in top-->
                     <div class="cfo-pr cfo-top-circle-btn">
                         <i class="fa fa-reply"></i>
                     </div>
@@ -28,21 +28,21 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                     for {{formalName}}
                 </i>
             </div>
-            <div class="cfo-pr cfo-mid">
-                <div class="cfo-pa cfo-mid-top">
-                    <div class="cfo-b cfo-mid-top-txt1">
+            <div class="cfo-pr cfo-mid"> <!--the black-grey-black section in the middle-ish-->
+                <div class="cfo-pa cfo-mid-top"> <!--the black header of the middle-->
+                    <div class="cfo-b cfo-mid-top-txt1"> <!--the left part of the header-->
                         {{formalName}}'s Financial Overview
                     </div>
-                    <div class="cfo-l cfo-mid-top-txt2">
+                    <div class="cfo-l cfo-mid-top-txt2"> <!--the first right part of the header-->
                         <i class="fa fa-heart"></i>
                         Save
                     </div>
-                    <div class="cfo-l cfo-mid-top-txt2">
+                    <div class="cfo-l cfo-mid-top-txt2"> <!--the second right part of the header-->
                         <i class="fa fa-share-alt"></i>
                         Share
                     </div>
                 </div>
-                <div class="cfo-pa cfo-mid-mid">
+                <div class="cfo-pa cfo-mid-mid"> <!--the grey section in the middle-->
                     <div class="navigation-button-left">
                         <i class="fa fa-angle-left cfo-mid-mid-l"></i>
                     </div>
@@ -62,7 +62,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                         <i class="fa fa-share-alt"></i>
                         Share
                     </i>
-                    <div class="cfo-pa cfo-l cfo-mid-mid-txtbox">
+                    <div class="cfo-pa cfo-l cfo-mid-mid-txtbox"> <!--the part of the middle-middle that has the important and long text-->
                         <i class="cfo-mid-mid-txtbox-txt">
                             <i class="cfo-b">{{formalName}}</i>'s overall annual financials are <i class="cfo-b cfo-i">up
                             10%</i> from 2014. With an <i class="cfo-b cfo-i">$20 increase</i> in stock
@@ -80,7 +80,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                         <i class="fa fa-angle-right cfo-mid-mid-r"></i>
                     </div>
                 </div>
-                <div class="cfo-pa cfo-mid-btm">
+                <div class="cfo-pa cfo-mid-btm"> <!--the footer of the middle area-->
                     <div class="cfo-pa cfo-l cfo-mid-btm-txt1">
                         Want more information about {{informalName}}'s stock?
                     </div>
@@ -92,11 +92,11 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                     </div>
                 </div>
             </div>
-            <div class="cfo-pr cfo-btm">
+            <div class="cfo-pr cfo-btm"> <!--holds anything but the search module below the middle area-->
                 <div class="cfo-b cfo-btm-txt1">
                     Sort by: <i class="cfo-l">Annual Financials </i><i class="fa fa-angle-down cfo-btm-txt1-blue"></i>
                 </div>
-                <div class="cfo-btm-what">
+                <div class="cfo-btm-what"> <!--a box that looks like it can be closed-->
                     <div class="cfo-b cfo-btm-what-top">
                         What is this page?
                         <i class="fa fa-times cfo-pr cfo-btm-what-top-x"></i>
@@ -106,7 +106,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                         cap and more.
                     </div>
                 </div>
-                <div class="cfo-pr cfo-btm-data">
+                <div class="cfo-pr cfo-btm-data"> <!--a divide to seperate data from the box above-->
                     <div class="cfo-pr cfo-btm-data-title">
                         Stock Graph <i class="cfo-l">for {{formalName}}:</i>
                     </div>
@@ -118,14 +118,14 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                         <!--Put graph here-->
                         {{> highchartsHelper chartId="cfoChart" chartWidth="650px" chartHeight="221px" chartObject=getGraphObject}}
                     </div>
-                    <div class="cfo-btm-data-period">
+                    <div class="cfo-btm-data-period"> <!--this holds the buttons that change the x scale of the graph-->
                         {{#each btns}}
                             <div class="cfo-btm-data-period-btn{{isInitial num}}" id="cfoBtn{{num}}" onclick="cfoBtns({{num}})">
                                 {{text}}
                             </div>
                         {{/each}}
                     </div>
-                    <div class="cfo-pr cfo-btm-data-list">
+                    <div class="cfo-pr cfo-btm-data-list"> <!--List various figures but is not a tile-->
                         <div class="cfo-pr cfo-btm-data-list-l">
                             <div class="cfo-btm-data-list-i">
                                 <i class="cfo-l cfo-btm-data-list-i-l">
@@ -185,7 +185,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                                     4M/10M
                                 </i>
                             </div>
-                            <div class="cfo-btm-data-list-e">
+                            <div class="cfo-btm-data-list-e"> <!--the abnormal list item-->
                                 <div class="cfo-btm-data-list-e-title cfo-l">
                                     <i class="cfo-b">Learn why </i>{{formalName}} is <i class="cfo-grn"><i class="fa fa-arrow-up"></i> +0.52%</i> today:
                                 </div>
@@ -200,7 +200,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                             </div>
                         </div>
                     </div>
-                    {{#each tiles}}
+                    {{#each tiles}} <!--tiles are the alternating grey-white spaces at the bottom which have a left and right side-->
                         <div class="cfo-pr {{getTileColor}}">
                             {{#with left}}
                                 <div class="cfo-pr cfo-btm-data-tile-l" id="cfoTileL{{num}}">
