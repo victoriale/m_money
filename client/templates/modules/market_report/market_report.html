@@ -1,0 +1,128 @@
+<!-- Author: meghana yerramilli
+**** Created: [08/28/2015]
+**** Description: market_report page
+**** Associated Files: market_report.html, market_report.less, market_report.js,module.less, global_vars.less
+-->
+
+<template name="market_report">
+  <!--Page wrapper-->
+  <div class="mreport">
+    <!--Main page header-->
+    <div class="mreport_header">
+      <span class="mreport_blue">I</span>
+      <span style="font-family: HN-B;">{{title}}?</span>
+    </div>
+
+
+    <!--Modules to the left of the module-->
+    <div class="mreport_links">
+      {{#each mreport_tiles}}
+      <!--                 tile s                 -->
+      <!--Top box-->
+      <div class="module-tile">
+        <div class="module-tile-default">
+          <div class="module-tile-default-container">
+            <div class="module-tile-default-icon mreport-tile_adjust">
+              <button class="{{class_name}}"></button>
+            </div>
+            <div class="module-tile-default-text">
+              {{tile_name}}
+            </div>
+          </div>
+        </div>
+        <a class="module-tile-link" href="#">
+          <div class="module-tile-hover">
+            <div class="module-tile-name">
+              <button class="{{class_name}}" style="width:17px; height:17px; margin:0 10px 0 0;"></button>{{tile_name}}
+            </div>
+            <div class="module-tile-info"></div>
+            <button class="module-tile-button module-tile-button-align">{{open_page}} <i class="fa fa-mail-forward"></i></button>
+          </div>
+        </a>
+      </div>
+      {{/each}}
+    </div>
+
+
+    <!--Main page body-->
+    <div class="mreport_body">
+      <!--Main page body header-->
+      <div class="mreport_body_header">
+        <i class="fa fa-circle mreport_blue"></i>
+        <span style="font-family: HN-B;">{{subtitle}}</span>
+      </div>
+
+      <div class="mreport-bts_mtabs">
+        <span class="mreport-mtabs mreport-active_tab" data-dir="DOW" id="mreport_tab1" onclick="mreportTabChange(1)"><span class="mreport-underline" id="mreport_tab1_i">DOW</span></span>
+        <span class="mreport-mtabs mreport-inactive_tab" data-dir="NASDAQ" id="mreport_tab2" onclick="mreportTabChange(2)"><span class="" id="mreport_tab2_i">NASDAQ</span></span>
+        <span class="mreport-mtabs mreport-inactive_tab" data-dir="S&P" id="mreport_tab3" onclick="mreportTabChange(3)"><span class="" id="mreport_tab3_i">S&P</span></span>
+        <span class="mreport-mtabs mreport-inactive_tab" data-dir="SEARCH" id="mreport_tab4" onclick="mreportTabChange(4)"><span class="" id="mreport_tab4_i"><i class="fa fa-search"></i> SEARCH</span></span>
+      </div>
+
+      <!--Company image-->
+      <div class="mreport-b3wrap">
+        <div class="mreport_body_image"></div>
+        <div class="mreport-b3info">
+          <div class="mreport_body_company">
+            <span style="font-family: HN-B;">{{index_name}}</span>
+          </div>
+          <!--Price of stock-->
+          <div class="mreport_body_stock">
+            <span class="mreport_body_stock_price">{{stock_price}} </span>
+            <span class="mreport_body_stock_history">
+              <i class="fa fa-arrow-circle-o-up mreport_body_stock_history_icon"></i>
+              <span class="mreport_body_stock_history_text">+{{stock_price_number}} ({{stock_price_percent}})</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <!--Main chart-->
+      <div id="markreportid" class="mreport_body_chart"></div>
+      <!--"You could have earned..."-->
+      <div class="mreport-line"></div>
+      <div class="mreport-fc">
+        <div class="mreport-tb1">
+          <span><i class="fa fa-map-marker mreport-fam"></i>&nbsp;<span class="mreport-l1">{{national_market}}</span></span><br>
+          <span class="mreport-l2">TODAY'S {{stock_name}} LOSERS</span><br>
+          <span class="mreport-l3">{{number_down}} {{stock_name}} companies that are down today.</span>
+        </div>
+        <!--******************buttons starts here*********************-->
+        <div class="mreport-bb3">
+          <button class="mreport-lbb3">
+            <div class="mreport-ib3">
+              <i class="fa fa-angle-left"></i>
+            </div>
+          </button>
+          <!--**********right Button Creation ***********!-->
+          <button class="mreport-rbb3">
+            <div class="mreport-i2b3">
+              <i class="fa fa-angle-right"></i>
+            </div>
+          </button>
+        </div>
+        <!--******************buttons ends here*********************-->
+        <!--***************circlewrapper  in mreport.less starts here ****************************-->
+        <div class="mreport-cw">
+          <div class="mreport-c5b3 mreport_body_image">
+          </div><button class="mreport-c6b3 mreport_body_image">
+            <span class="mreport-fc6b3">#{{counter_number}}</span>
+          </button>
+        </div>
+        <!--***************circlewrapper  in mreport.less ends here ****************************-->
+        <!--***************textbox 3 starts here ****************************-->
+        <div class="mreport-tb3">
+          <span class="mreport-w1tb3">{{company_name}}&nbsp;<i class="fa fa-angle-right mreport-fatb3"></i>&nbsp;<span class="mreport-w2tb3">{{lost_percent}}</span>&nbsp;
+          <span class="mreport-w3tb3">Today</span>
+        </span>
+      </div>
+      <!--***************textbox 3 ends here****************************-->
+      <!--*************list view button starts here******************-->
+      <button class="mreport-blbb3">
+        <span class="mreport-flbb3">View The Full List <i class="fa fa-share mreport-falbb3"></i></span>
+      </button>
+      <!--*************list view button ends here******************-->
+    </div>
+  </div><!--End Main page body-->
+  <div class="module-footer"></div>
+</div><!--End Page wrapper-->
+</template>
