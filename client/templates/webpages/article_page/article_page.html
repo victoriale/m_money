@@ -1,0 +1,367 @@
+<!-- Author: Ryan Fisher, Navya Eetaram
+**** Created: [07/30/2015]
+**** Description: Article Webpage
+**** Associated Files: article_page.html, article_page.less, comments.less, article_page_logic.js
+-->
+
+<head>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+<template name="article_page">
+  <div class="art">
+
+
+    <!--Page header-->
+    <div class="art-hdr">
+      <!-- the header box -->
+      <div class="art-hdr-head-box">
+        <!-- image inside the header box-->
+        <div class="art-hdr-head-image">
+          <!-- he add green symbol above the image-->
+          <button class="art-hdr-head-image-icon"><i class="fa fa-reply"></i></button>
+        </div>
+        <!-- the text inside the header box-->
+        <div class="art-hdr-text">
+          <!-- the latest update-->
+          <div class="art-hdr-text-update">
+            LAST UPDATED: 05/15/2015, 12:36 PM EST
+          </div>
+          <!-- location of the article-->
+          <div class="art-hdr-text-loc">
+            <i class="fa fa-map-marker"></i> San Rafael, CA
+          </div>
+          <!-- the name of the article-->
+          <div class="art-hdr-text-name">
+            {{a_name}}s Since Twitter
+          </div>
+          <!-- the author of the article-->
+          <div class="art-hdr-text-auth">
+            InvestKit Article
+          </div>
+        </div>
+      </div>
+      <div class="art-hdr-bar">
+        <div class="art-hdr-bar-title">
+          {{a_name}}s Since Twitter, Inc.
+        </div>
+        <div class="art-hdr-bar-button">
+          <!-- the save option button-->
+          <a href="#"><i class="fa fa-heart"></i><span class="art-hdr-bar-text">Save</span></a>
+        </div>
+        <div class="art-hdr-bar-button">
+          <!-- share option button -->
+          <a href="#"><i class="fa fa-share-alt"></i><span class="art-hdr-bar-text">Share</span></a>
+        </div>
+      </div>
+      <div class="art-hdr-main-container">
+        <!-- the module.less file navigation buttons-->
+        <button class='art-hdr-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+        <button class='art-hdr-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+        <!-- end of the module.less navigation button -->
+        <!-- wrapper class-->
+        <div class="art-hdr-main-container-image-wrapper">
+          <div class="art-hdr-main-container-image"></div>
+        </div>
+        <!-- the main container -->
+        <ul class="art-hdr-main-container-container">
+          <!-- the image in blue circle-->
+          <li class="art-hdr-main-container-title">
+            <div class="art-hdr-main-container-title-image"><i class="fa fa-building-o"></i></div>GoPro, Inc.
+          </li>
+          <!-- the description about the person-->
+          <li class="art-hdr-main-container-description">
+            <div class="art-hdr-main-container-description-ln1">
+              At the end of the day yesterday GoPro, Inc's stock was valued at <b>$60.51</b> with a <b>-0.20% decrease</b> in the day before.
+            </div>
+            <div class="art-hdr-main-container-description-ln2">
+              <b>GoPro, Inc.</b> is currently priced at:
+            </div>
+            <div class="art-hdr-main-container-description-ln3">
+              <b>$62.42 <span class="art-green"><i class="fa fa-arrow-up"></i> +1.15 (+1.88%)</span></b>
+            </div>
+          </li>
+        </ul>
+        <!-- the bottom bar-->
+        <div class="art-hdr-main-container-view_more">
+          <!-- the details about the comapny-->
+          <div class="art-hdr-main-container-view_more-text">
+            <div class="art-hdr-main-container-view_more-text-ln1">Interesed in discovering more about GoPro, Inc?</div>
+            <div class="art-hdr-main-container-view_more-text-ln2">Profile Last Updated On: <span style="font-family:HN-B">07/29/2015</span></div>
+          </div>
+          <button class="art-hdr-main-container-view_more-button">
+            View Profile <i class="fa fa-angle-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--End Page header-->
+
+
+
+    <!--Main article-->
+    <div class="art-main">
+      <div class="art-main-text">
+        No Bay Area company has matched Twitter's blockbuster initial public offering since it
+        went public a year ago.  But it's not due to a lack of activity.  Here are the 15 National
+        IPOs that have rasied $100 million US dollars or more since November 7, 2014, ranked
+        by how much they raised, according to InvestKit.com
+      </div>
+      <div class="art-main-quote">
+        <div class="art-main-quote-pic"></div>
+        <div class="art-main-quote-info">
+          <div class="art-main-quote-info-name">
+            John S Watson
+          </div>
+          <div class="art-main-quote-info-ln2">
+            <i class="fa fa-quote-left"></i>
+            <div class="art-main-quote-info-ln2-mid">
+              If I didn't follow my passion for surfing... I would have never come up
+              with the concept to make an affordable gasoline for everyone.
+            </div>
+            <i class="fa fa-quote-right"></i>
+          </div>
+          <div class="art-main-quote-info-source">
+            via <span class="art-main-quote-info-source-b">Dow Jones Index</span> | article <span class="art-main-quote-info-source-b">The Greatest Idea I've Ever Had</span>
+          </div>
+        </div>
+      </div>
+      <div class="art-main-read">
+        <button class="art-main-read-button">Read the Full Article: <b>Click Here</b></button>
+      </div>
+    </div>
+    <!--End Main article-->
+
+
+    <!--Quotes In This Story-->
+    <div class="art-quotes">
+      <div class="art-quotes-head">Quotes In This Story</div>
+      {{#each quote}}
+      <div class="art-quotes-image">
+        <div class="art-quotes-image-text">
+          <div class="art-quotes-image-text-ln1">{{name}}</div>
+          <div class="art-quotes-image-text-ln2">
+            <i class="fa fa-quote-left"></i>
+            <div class="art-quotes-image-text-ln2-mid">
+              {{text}}
+            </div>
+            <i class="fa fa-quote-right"></i>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+      <div class="art-quotes-arrow fa fa-angle-right"></div>
+    </div>
+    <!--End Quotes In This Story-->
+
+
+    <!--Comments-->
+    <!-- {{> comments}} -->
+    <div class="art-cmnts">
+      <div class="art-sect_hdr">
+        <div class="art-sect_hdr-text"><span class="art-sect_hdr-text-first">Comments</span> for this article</div>
+        <div class="art-sect_hdr-icon"><i class="fa fa-comments"></i></div>
+      </div>
+
+      <div class="u_input" >
+        <span class="u_input_image"></span>
+        <span class="u_input_box">
+          <!--Container to enter text -->
+          <textarea class="u_input_text" id="comment-l" placeholder="What is your opinion?"></textarea>
+
+          <div class="u_input_share">
+            <span class= "u_input_share_group">
+              <!-- Share Options-->
+              <a class="i_gplus f-left" href="https://plus.google.com/share?url={URL}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-google-plus"></i></a>
+              <a class="i_fbook f-right" style="margin-left:75px;" href="https://www.facebook.com/sharer/sharer.php?u=" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-facebook"></i></a>
+              <a class="i_twitter" href="https://twitter.com/intent/tweet?text=Hello%20world" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-twitter"></i></a>
+            </span>
+            <!-- submit button-->
+            <span class="u_input_share_button">post</span>
+          </div>
+        </span>
+      </div>
+      <!--Container for drop down menu -->
+      <div class="comment-sort">
+        <span class="left_sort">
+          <span class="sorted_by f-left"> Sorted by :
+            <span class="result-sort">Most Recent</span>
+          </span>
+        </span>
+        <span class="right_sort">
+          <span class="comment-count"><bluetext> {{cmnt}} </bluetext> Comments | </span>
+          <span class="sorted_by_downarrow"> Sort Options
+            <i class="fa fa-sort-desc" id="sortoptions" style="cursor:pointer; color:#3098ff"></i></span>
+
+            <div class="dropdown-menu aligndropdown">
+              <div class="menutextalign removeborder" id="mostrecent">
+                <i class="fa fa-calendar"></i>
+                <span> Most Recent</span>
+              </div>
+              <div class="menutextalign" id="topcomments">
+                <i class="fa fa-star-o"></i>
+                <span> Top Comments</span>
+              </div>
+
+            </div>
+          </span>
+        </div>
+        <!-- Container for comments-->
+        <div class="c-box">
+          {{#each post2}}
+          <div class="c-box_row">
+            <span class="c-box_row_image"></span>
+            <span class="c-box_row_text">
+              <div class = "c-box_row_name"> User Name </div>
+              <div class = "c-box_row_u-cmnt" id="{{cmtid}}">
+                {{text}}
+              </div>
+
+              <div class ="c-box_row_u-reply">
+                <i class="fa fa-reply f-left">
+                  <span class="underline" id="Reply" onclick="display('box{{cmtid}}')">  {{rpy}} Replies
+
+                  </span></i>
+                  <i class="fa fa-circle f-left" style="color:#959595; font-size:3px; margin-top:5px; margin-left:10px; margin-left:10px; margin-right:15px"></i>
+                  <i class="fa fa-share-alt f-left"> <span class="underline">Share This </span></i>
+                  <i class="fa fa-circle f-left" style="color:#959595; font-size:3px; margin-top:5px; margin-left:10px; margin-right:15px"></i>
+                  <i class="fa fa-plus f-left"><span class="underline"> Add To</span></i>
+                  <i class="fa fa-circle f-left" style="color:#959595; font-size:3px; margin-top:5px; margin-left:10px; margin-right:15px "></i>
+                  <span class="c-box_row_time f-left">{{time}}</span>
+
+                </div>
+
+              </span>
+              <!--Container for reply -->
+              <div class="boxnum" id="box{{cmtid}}" style="display:none">
+                {{#each reply2}}
+                <div class="on-reply_row">
+                  <span class="on-reply_row_image"></span>
+                  <span class="on-reply_row_text" id="{{replyid}}">
+                    <span class="on-reply_row_text_reply">
+                      <span class = "on-reply_row_profile_name"> User Name :  </span> {{replyy}}</span>
+                      <!--sharing options -->
+                      <div class ="on-reply_row_user-reply">
+                        <i class="fa fa-share-alt f-left"> <span class="underline">Share This </span></i>
+                        <i class="fa fa-circle f-left" style="color:#959595; font-size:3px; margin-top:5px; margin-left:10px; margin-right:15px"></i>
+                        <i class="fa fa-plus f-left"><span class="underline"> Add To</span></i>
+                        <i class="fa fa-circle f-left" style="color:#959595; font-size:3px; margin-top:5px; margin-left:10px; margin-right:15px "></i>
+                        <span class="c-box_row_time f-left">{{time}}</span>
+                      </div>
+                    </span>
+                  </div>
+                  {{/each}}
+                  <!--image for reply box -->
+                  <span class="r-box_row_image"> </span>
+                  <span class="r-text">
+                    <textarea class="r-box_row_text r-box_{{cmtid}}" placeholder="What is your opinion?"></textarea>
+                    <span class="reply_button"><i class="fa fa-paper-plane"></i></span>
+                  </span>
+
+                </div>
+              </div>
+              {{/each}}
+            </div>
+            <br>
+            <!-- Script for displaying reply input box-->
+            <script type="text/javascript">
+            function display(id) {
+              var cmt = document.getElementById(id)
+
+              if (cmt.style.display == "none") {
+                cmt.style.display = "block"
+              }
+              else {
+                cmt.style.display = "none"
+              }
+              return false;
+            }
+            </script>
+          </div>
+          <!--End Comments-->
+
+
+          <!--Similar Articles-->
+          <div class="art-sim">
+            <div class="art-sect_hdr">
+              <div class="art-sect_hdr-text"><span class="art-sect_hdr-text-first">Similar</span> articles</div>
+              <div class="art-sect_hdr-icon"><i class="fa fa-newspaper-o"></i></div>
+            </div>
+
+            <div class="art-sim-main">
+              <!--the class for buttons -->
+              <div class="art-sim-buttons">
+                <!--the various button classes that contains the properties-->
+                <span class="art-sim-bts">BUSINESS FINANCE</span>
+                <span class="art-sim-bts">LEISURE</span>
+                <span class="art-sim-bts">NASDAQ</span>
+                <span class="art-sim-miniimage">+5</span>
+              </div>
+              <!--the class for text heading -->
+              <div class="art-sim-textheading">Technology Stock Roundup: AAPL, FB Win...</div>
+              <!--the class for text content -->
+              <div class="art-sim-textheading art-sim-textcontent">Facebook has been awarded a patent for "ifentifying experts and influencers in a social network." Simply put, the company has patented a way t...</div>
+              <!--the class for viewing the image -->
+              <div class=" art-sim-view-imagepic"></div>
+              <!--the class for detail content -->
+              <div class="art-sim-textheading art-sim-detailcontent"><i class="fa fa-newspaper-o"></i> Article Published By: <b><i>CNN</i></b> > Written By: <b><i>Alyssa Curran</i></b> > on 01/24/2015 at 8:30am </div>
+            </div>
+            <!--article1-->
+            <!--the main class for the article -->
+            <div class="art-sim-roomcontainer">
+              <div class="art-sim-room">
+                <!--to run the loop of classes -->
+                {{#each items}}
+                <div class="art-sim-article1">
+                  <!--the image class for the article -->
+                  <div class=" art-sim-sub-images"></div>
+                  <!--the button class for the article -->
+                  <!--the various button classes that contains the properties-->
+                  <div class="art-sim-buttons1">
+                    <span class="art-sim-bts art-sim-bts1">BUSSINESS FINANCE</span>
+                    <span class="art-sim-bts art-sim-bts1">PHARMACEUTICAL</span>
+                    <span class="art-sim-miniimage art-sim-miniimage2">{{num}}</span>
+                  </div>
+                  <div class="art-sim-cmpl1">
+                    <!--the class for text heading -->
+                    <div class="art-sim-textheading1">{{heading}}</div>
+                    <!--the class for text content -->
+                    <div class="art-sim-textheading1 art-sim-textcontent1">{{description}}</div>
+                    <!--the class for the text details-->
+                    <div class="art-sim-textheading1 art-sim-detailcontent1"><i class="fa {{fontawesome}}"></i> {{loc}}</div>
+                  </div>
+                </div>
+                {{/each}} <!-- end of loop-->
+              </div>
+              <!-- the main class for the article-->
+              <div class="art-sim-room2">
+                {{#each item2}}
+                <div class="art-sim-article2">
+                  <!--the image class for the article -->
+                  <div class=" art-sim-sub-images"></div>
+                  <!--the various button classes that contains the properties-->
+                  <div class="art-sim-buttons1">
+                    <span class="art-sim-bts art-sim-bts1">BUSSINESS FINANCE</span>
+                    <span class="art-sim-bts art-sim-bts1">SOFTWARE</span>
+                    <span class="art-sim-miniimage art-sim-miniimage3">{{num}}</span>
+                  </div>
+                  <div class="art-sim-cmpl1">
+                    <!--the class for text heading -->
+                    <div class="art-sim-textheading1 art-sim-textheading2">{{heading}}</div>
+                    <!--the class for text content -->
+                    <div class="art-sim-textheading1 art-sim-textcontent2">{{description}}</div>
+                    <!--the class for the text details-->
+                    <div class="art-sim-textheading1 art-sim-detailcontent2"><i class="fa {{fontawesome}}"></i> {{loc}}</div>
+                  </div>
+                </div>
+                {{/each}}
+              </div>
+            </div>
+          </div>
+          <!--End Similar Articles-->
+
+
+
+          <!--Search module-->
+          {{> search_module}}
+        </div>
+      </template>

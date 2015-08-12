@@ -1,18 +1,18 @@
 /* Author: Navya Eetaram
-Created: [07/15/2015]
+Created: [07/08/2015]
 Description: Leave_comment
-<Associated Files: comments.html, comments.less*/
+<Associated Files: comments.html, commets.js, comments.less, commentserver.js*/
 
 @import "../global_vars.less"; //include important global vars (colors mostly)
 @import "../modules.less";
-.leavecomments-module {
+.comments-module {
   // Class contains the basic module layout
+
   .module;
-  height:245px;
-  border-bottom: none;
+  max-height:687px;
 }
 
-.fin_user_input{
+.u_input{
   //input text box to insert post
   width:640px;
   height:165px;
@@ -30,12 +30,12 @@ Description: Leave_comment
   }
 
   &_share {
-    //container- facebook,google plus, twitter share and post button
     width:503px;
     height:40px;
     background-color: @grey-1;
     vertical-align: bottom;
     padding:5px;
+    -moz-transform: translateY(3px);
 
     &_button{
       //Post button
@@ -43,12 +43,13 @@ Description: Leave_comment
       height: 30px;
       background-color: #3098ff;
       font-size: 14px;
-      font-weight: bold;
+      font-family: HN-B;
       color: @white;
-      border-radius: 10px;
+      border-radius: 5px;
       text-align: center;
       float:right;
       margin-right: 10px;
+      padding-top: 5px;
       margin-bottom: 5px;
       text-transform: uppercase;
       &:hover{
@@ -57,11 +58,12 @@ Description: Leave_comment
 
     }
     &_group{
-      //container- facebook,google plus, twitter share
       width:110px;
       height:30px;
       float:left;
+
     }
+
   }
   &_text{
     width:503px;
@@ -72,7 +74,7 @@ Description: Leave_comment
     border:none;
   }
 
-  &_profile-image{
+  &_image{
     //class for Profile images according to given specifications
     border-radius: 100%;
     background-color: #fff;
@@ -88,8 +90,8 @@ Description: Leave_comment
   }
 }
 
-.fin_shareicons{
-  //class for ellipse -share icons
+.shareicons{
+  //container for g-plus, twitter, facebook icons
   border-radius: 100%;
   background-color: #acacac;
   display: block;
@@ -97,96 +99,105 @@ Description: Leave_comment
   height: 30px;
   font-size: 14px;
   color:#fff;
-  margin-left: 5px;
-  padding: 5px;
   text-align: center;
+  margin-left: 5px;
+  padding: 5px 5px;
+
+
 }
 
-.fin_i_fbook{
+.i_fbook{
   //facebook ellipse
-  .fin_shareicons;
+  .shareicons;
   &:active{
     background:#3b5998;
-    color:#fff;
   }
   &:hover{
     cursor:pointer;
     box-shadow: 0 0 0 3px #3b5998;
     color:#fff;
   }
+  &:visited{
+    color:#fff;
+  }
 }
-.fin_i_gplus{
+.i_gplus{
   //google plus ellipse
-  .fin_shareicons;
+  .shareicons;
   &:active{
     background:#dd4b39;
-    color:#fff;
   }
   &:hover{
     cursor:pointer;
     color:#fff;
     box-shadow: 0 0 0 3px #dd4b39;
   }
+  &:visited{
+    color:#fff;
+  }
 }
 
-.fin_i_twitter{
+.i_twitter{
   //twitter ellipse
-  .fin_shareicons;
+  .shareicons;
   margin-left:40px;
   &:active{
     background:#00aced;
-    color:#fff;
   }
   &:hover{
     cursor:pointer;
     color:#fff;
     box-shadow: 0 0 0 3px #00aced;
   }
+  &:visited{
+    color:#fff;
+  }
 
 }
-.float-r{
+.f-right{
   float:right;
   position:absolute;
 }
-.float-l{
+.f-left{
   float:left;
 }
 
-.sort-box{
-  //container for sorting panel
+.comment-sort{
+  //container for sortting panel
   width:640px;
   height:52px;
 }
-.l_sort{
+.left_sort{
   //left side of sort container
   width:150px;
 }
 
-.sort_by{
+.sorted_by{
   font-size: 12px;
   color:#000;
   text-align:left;
   margin-left:20px;
-  font-weight:600;
+  font-family: HN-B;
 }
 .result-sort{
   //to store result from the dropdown select
-  font-weight:600;
+  font-family: HN-B;
   color:#3098ff !important;
   position: relative;
 }
 
-.r_sort{
+.right_sort{
+
   width:200px;
   float:right;
   position: relative;
-  margin-right: -60px;
+  margin-right: -40px;
 }
 
 .sorted_by_downarrow{
   font-size: 12px;
   color:#000;
-  font-weight:600;
+  font-family: HN-B;
 }
 
 .comment-count{
@@ -194,8 +205,271 @@ Description: Leave_comment
   font-size: 12px;
   color:#000;
   text-align:left;
-  font-weight:500;
+  font-family: HN;
 }
-bluetxt{
-  color:#3098ff;
+
+.c-box{
+  //  comment box
+  width:640px;
+  border: 1px solid @grey-1;
+  max-height: 400px;
+  margin-left: 20px;
+  margin-bottom: 30px;
+  overflow-y: scroll;
+
+  &_row{
+    padding: 12px;
+    width:100%;
+    min-height:100px;
+    border-bottom: 1px solid @grey-1;
+    padding-left: 15px !important;
+
+    &_image{
+      padding:2.5px;
+      border-radius: 100%;
+      background-color: #fff;
+      box-shadow: 0 0 0 2px @grey-3;
+      display: block;
+      width:75px;
+      height:75px;
+
+    }
+
+    &_text{
+      float:right;
+      width:500px;
+      min-height:80px;
+      display: block;
+      margin-top: -75px;
+    }
+
+    &_name{
+      font-size: 14px;
+      font-family: HN-B;
+      color: @blue;
+      text-align: left;
+    }
+    &_u-cmnt{
+      //user comment
+      width:100%;
+      height:40px;
+      background: #fff;
+      display: block;
+      text-align: left;
+      word-wrap:break-word;
+      overflow:auto;
+    }
+    &_u-reply{
+      width:100%;
+      height:20px;
+      background: #fff;
+      font-size: 12px;
+      font-family: HN-B;
+      display: block;
+      color:@blue;
+      padding-top: 5px;
+      position:relative;
+    }
+    &_time{
+      //to display time
+      margin-left: 5px;
+      font-size: 12px;
+      color:#959595;
+    }
+  }
+}
+
+.underline{
+  // to create underline when hovered
+  &:hover{
+    cursor:pointer;
+    text-decoration:underline;
+  }
+}
+bluetext{
+  color:@blue;
+}
+
+.r-box{
+  //reply box
+  width: 535px;;
+
+  border: 1px solid @grey-1;
+  max-height: 250px;
+  margin-left: 57px;
+  margin-bottom: 10px;
+  overflow-y:scroll;
+
+
+  &_row{
+    //row for reply box
+    width:100%;
+    height:55px;
+    border-bottom: 1px solid @grey-1;
+
+    &_image{
+      padding:2.5px;
+      border-radius: 100%;
+      background-color: #fff;
+      box-shadow: 0 0 0 2px #ccc;
+      display: block;
+      width:45px;
+      height:45px;
+      margin-top: 8px;
+      margin-left: 12px;
+
+    }
+
+    &_text{
+      //text box for reply
+      width:100%;
+      height:35px;
+      resize:none;
+    }
+    &_user-reply{
+      width:100%;
+      height:20px;
+      background: #fff;
+      font-size: 12px;
+      font-family: HN-B;
+      display: block;
+      color:@blue;
+    }
+  }
+}
+.boxnum{
+  // class attributes for user replies
+  .r-box;
+  width:570px;
+  min-height: 65px;
+  border-left: 5px solid @grey-3;
+  border-bottom: none;
+}
+.reply_button{
+  //ellipse for posting reply
+  width: 25px;
+  Height:25px;
+  border-radius: 100%;
+  background-color: #3098ff;
+  display: block;
+  color:#fff;
+  float:right;
+  position: relative;
+  margin-top: -35px;
+  font-size: 12px;
+  padding-top: 3px;
+  margin-right: 12px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.r-text{
+  float:right;
+  width:470px;
+  height:35px;
+  display: block;
+  border: 1px solid #ccc;
+  margin-top: -40px;
+  margin-right: 10px;
+}
+
+
+.on-reply{
+
+  //  Display reply box
+  width:100%;
+  border: 1px solid @grey-1;
+  &_row{
+    width:100%;
+    height:55px;
+    border-bottom: 1px solid @grey-1;
+
+
+    &_profile_name{
+      font-size: 12px;
+      font-family: HN-B;
+      color: @blue;
+      text-align: left;
+    }
+
+    &_image{
+
+      border-radius: 100%;
+      background-color: #fff;
+      box-shadow: 0 0 0 2px #ccc;
+      display: block;
+      width:45px;
+      height:45px;
+      margin-top: 15px;
+      margin-left: 12px;
+
+    }
+
+    &_text{
+      float:right;
+      width:480px;
+      height:55px !important;
+      margin-top:-60px;
+      margin-right: 10px;
+
+      &_reply{
+        width:471px;
+        height:45px !important;
+        float:right;
+        text-align: left;
+        padding: 5px;
+        word-wrap: break-word;
+        overflow: auto;
+        margin-bottom: 5px;
+
+      }
+    }
+    &_user-reply{
+      width:100%;
+      height:20px;
+      background: #fff;
+      font-size: 12px;
+      font-family: HN-B;
+      display: block;
+      color:@blue;
+      margin-bottom: 0px;
+      margin-left: 10px;
+    }
+    &_time{
+      margin-left: 5px;
+      font-size: 12px;
+      color:#959595;
+    }
+  }
+  &_loadmore{
+    width:100%;
+    height:50px;
+    background: #eaeaea;
+    &_button{
+      width:243px;
+      height:35px;
+      font-size: 14px;
+      color:#fff;
+      background-color: #b7b7b7;
+      padding:5px;
+      text-align: center;
+    }
+  }
+}
+
+.aligndropdown{
+  //drop down
+  left: 50px !important;
+  min-width: 145px !important;
+  border-color: @blue;
+}
+.menutextalign{
+  padding-left: 10px;
+  border-bottom:1px solid @grey-3;
+  height:25px;
+  cursor: pointer;
+  border-radius: 10%;
+}
+.removeborder{
+  border: none;
 }

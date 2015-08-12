@@ -1,0 +1,884 @@
+/* Author: Ryan Fisher, Navya Eetaram
+** Created: 07/30/2015
+** Description: .less file for Article Page
+** Associated Files:  comments.less, article_page.html, article_page.less, article_page_logic.js
+*/
+
+@import "../global_vars.less";
+@import "../modules.less";
+
+.art{
+  width: 680px;
+  margin: 5px;
+  background-color: @white;
+
+  &-green{
+    color: @green;
+  }
+
+  &-blue{
+    color: @blue;
+  }
+
+  &-light{
+    color: @grey-6;
+    font-family: HN-L !important;
+  }
+
+  //**********************************HEADER*****************************//
+  &-hdr {
+    width: 680px;
+    height: 500px;
+    background-color: @white;
+
+    //the head box consisting of the white background
+    &-head-box {
+      width: 680px;
+      height: 140px;
+      background-color: @white;
+      text-align: left;
+      margin: 0;
+    }
+    //image inside the article head
+    &-head-image {
+      width: 100px;
+      height: 100px;
+      margin: 20px;
+      border: solid 2px @grey-3;
+      border-radius: 50%;
+      float: left;
+      background-image: url("");
+      background-size: cover !important;
+      background-position: center center !important;
+
+      //the symbol above the image
+      &-icon {
+        height: 35px;
+        width: 35px;
+        background-color: @blue;
+        position: relative;
+        bottom: 5px;
+        right: 5px;
+        border-radius: 50%;
+        border: solid 1px @white;
+        color: @white;
+        line-height: 33px;
+        font-size: 15px;
+        text-align: center;
+
+        .fa{
+          position: relative;
+          bottom: 2px;
+          right: 1px;
+        }
+      }
+    }
+    //the text consisting the latest update
+    &-text {
+      //width: 545px;
+      //height: 120px;
+      //margin: 0;
+      padding: 15px;
+      float: left;
+      color: @black;
+      text-align: left;
+      list-style-type: none;
+      //the update part
+      &-update {
+        font-size: 10px;
+        color: #959595;
+        margin-bottom: 10px;
+      }
+      //the location
+      &-loc {
+        font-size: 12px;
+      }
+      // the name of the person
+      &-name {
+        max-width: 495px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 22px;
+        font-family: HN-B;
+      }
+      // the person description
+      &-auth {
+        max-width: 495px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 22px;
+        font-family: HN-L;
+      }
+    }
+
+    //the bottom bar
+    &-bar {
+      width: 680px;
+      height: 35px;
+      background-color: @black;
+      //padding-left: 10px;
+      color: @white;
+      font-size: 16px;
+      text-align: left;
+      // the font awesome icon color
+      .fa {
+        color: @white;
+      }
+      //the link color
+      a {
+        color:@white;
+      }
+      //the title next to save and share
+      &-title{
+        border-right: 1px solid #363636;
+        background-color: inherit;
+        text-align: center;
+        float: left;
+        max-width: 490px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height:35px;
+        line-height: 35px;
+        //width:270px;
+        padding: 0px 15px;
+        font-size: 16px;
+        font-family: HN-B;
+      }
+      // the button for save and share
+      &-button {
+        border: none;
+        text-align: center;
+        float: left;
+        line-height: 35px;
+        height:35px;
+        width:85px;
+        margin-right: 8px;
+        font-family: HN-L;
+
+        .fa{
+          margin-right: 10px;
+        }
+      }
+    }
+    //the main container with the grey background
+    &-main-container {
+      width: 680px;
+      height: 325px;
+      background-image: @dark-linen;
+      text-align: left;
+      overflow: hidden;
+      margin: 0;
+      position: relative;
+      // image inside the container
+      &-image {
+        width: 172px;
+        height: 172px;
+        border: none;
+        border-radius: 50%;
+        background-size: cover !important;
+        background-position: center center !important;
+        //background-image: url("");
+        background-color: @white;
+
+        //the wrapper to wrap up the container height and width
+        &-wrapper {
+          width: 180px;
+          height: 180px;
+          border: solid 4px rgb(0,0,0);
+          border: solid 4px rgba(0,0,0,0.2);
+          border-radius: 50%;
+          position: relative;
+          top: 35px;
+          margin: 0 10px 35px 35px;
+          position:relative;
+          left:20px;
+          top:40px;
+        }
+      }
+
+      &-subimage{
+        width: 75px;
+        height: 75px;
+        background-color: @white;
+        border-radius: 50%;
+        border: 2px solid @grey-3;
+        position: absolute;
+        bottom: -10px;
+        right: -10px;
+      }
+      //the sub-conatainer
+      &-container {
+
+        height: 215px;
+        width: 380px;
+        margin: 0;
+        list-style-type: none;
+        color: #ffffff;
+        text-align: left;
+        position: relative;
+        float: right;
+        padding: 0 0 0 5px;
+        top: -180px;
+        left: -53px;
+
+        li {
+          overflow: hidden;
+        }
+      }
+      // the title inside the container
+      &-title {
+        font-size: 22px;
+        font-weight: lighter;
+        color: @white;
+        line-height: 40px;
+        width:380px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        position: relative;
+        left: -10px;
+
+        //the image inside the container
+        &-image {
+          width: 40px;
+          height: 40px;
+          background-color: @blue;
+          border: none;
+          border-radius: 50%;
+          float: left;
+          margin-right: 10px;
+          margin-bottom: 25px;
+          text-align: center;
+          padding: auto;
+          font-size: 20px;
+        }
+      }
+
+      //Buttons under the title
+      &-buttons{
+        margin-left: 25px;
+
+      }
+
+      &-button{
+        border: none;
+        text-align: center;
+        float: left;
+        width: 85px;
+        margin-right: 8px;
+        margin-bottom: 10px;
+        font-family: HN-L;
+
+        .fa{
+          margin-right: 10px;
+        }
+      }
+
+      // the description part
+      &-description {
+        width: 356px;
+        max-height: 123px;
+        overflow: hidden;
+        border-left: solid 2px #cccccc;
+        padding: 0 0 0 15px;
+        margin-left: 10px;
+        font-size: 16px;
+        font-family: HN-L;
+        color: #ffffff;
+        line-height: 17px;
+        text-align: justify;
+
+        &-ln1{
+          margin-bottom: 32px;
+        }
+
+      }
+      &-view_more{
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        height: 75px;
+        color: @white;
+        background-color: @black;
+        opacity: 0.75;
+        filter: alpha(opacity=75); /* For IE8 and earlier */
+
+        // the text part
+        &-text {
+          margin-left: 20px;
+          margin-top: 15px;
+          float: left;
+          text-align: left;
+
+          &-ln1{
+            width: 460px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 18px;
+            font-family: HN-L;
+          }
+
+          &-ln2{
+            font-size: 14px;
+            font-family: HN-L;
+          }
+        }
+
+        //the button
+        &-button{
+          width: 180px;
+          height: 35px;
+          border-radius: 5px;
+          background-color: @blue;
+          color: @white;
+          text-align: center;
+          float: right;
+          margin-top: 20px;
+          margin-right: 10px;
+          border: none;
+          opacity: 1.0;
+          filter: alpha(opacity=100);
+
+
+          .fa{
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+    &-lefthov{
+      border: 3px solid #000;
+      float:left;
+      height:80px;
+      width:38px;
+      background:#000;
+      border-top-right-radius:38px;
+      border-bottom-right-radius:38px;
+      padding-right:12px;
+      color:#fff;
+      position: relative;
+      top:88px;
+    }
+    /*properties for left navigation button hover*/
+    &-lefthov:hover{
+      border: 3px solid #3098ff;
+      height:80px;
+      width:38px;
+      background:#3098ff;
+      border-top-right-radius:38px;
+      border-bottom-right-radius:38px;
+    }
+
+    /*properties for right navigation button*/
+    &-righthov{
+      border: 3px solid #000;
+      float:right;
+      height:80px;
+      width:38px;
+      background:#000;
+      border-top-left-radius:38px;
+      border-bottom-left-radius:38px;
+      color:#fff;
+      padding-left:12px;
+      position: relative;
+      top:88px;
+    }
+    &-righthov:hover{
+      background: #3098ff;
+      border: 3px solid #3098ff;
+    }
+  }
+  //*****************************END HEADER******************************//
+
+  //***************************ARTICLE BLURB****************************//
+  &-main{
+
+    &-text{
+      width: 630px;
+      //height: 135px;
+      padding-left: 25px;
+      padding-top: 15px;
+      text-align: justify;
+
+      &::first-letter{
+        color: @blue;
+        font-size: 28px;
+        line-height: 22px;
+        font-family: HN-B;
+      }
+    }
+
+    &-quote{
+      margin-top: 30px;
+      height: 100px;
+
+      &-pic{
+        border: 2px solid @grey-3;
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        float: left;
+        margin-left: 40px;
+      }
+
+      &-info{
+        float: left;
+        margin-left: 20px;
+
+        &-name{
+          color: @blue;
+          font-size: 16px;
+          font-family: HN-B;
+        }
+
+        &-ln2{
+          margin-top: 10px;
+          height: 32px;
+          .fa{
+            color: @blue;
+            font-size: 18px;
+            float: left;
+
+            &-quote-right{
+              position: relative;
+              top: 18px;
+            }
+          }
+
+          &-mid{
+            float: left;
+            margin-left: 10px;
+            margin-right: 10px;
+            width: 420px;
+            height: 32px;
+            line-height: 16px;
+            text-align: left;
+            overflow: hidden;
+          }
+        }
+
+        &-source{
+          margin-top: 10px;
+          font-size: 12px;
+          color: @grey-6;
+
+          &-b{
+            font-family: HN-B;
+            color: @blue;
+          }
+        }
+      }
+    }
+
+    &-read{
+      margin-top: 25px;
+      width: 100%;
+      height: 35px;
+      text-align: center;
+
+      &-button{
+        width: 240px;
+        height: 35px;
+        border-radius: 5px;
+        background-color:  #3098ff;
+        font-family: HN-L;
+        color: @white;
+        border: none;
+      }
+    }
+  }
+  //*************************END ARTICLE BLURB**************************//
+
+  //***************************QUOTES IMAGES****************************//
+  &-quotes{
+    width: 100%;
+    height: 185px;
+    margin-top: 30px;
+    border-top: 1px solid @grey-3;
+    position: relative;
+
+    &-head{
+      width: 165px;
+      height: 35px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      color: @white;
+      font-family: HN-B;
+      line-height: 33px;
+      text-align: center;
+      background-color: @black;
+      opacity: 0.75;
+      filter: alpha(opacity=75);
+      z-index: 1;
+    }
+
+    &-image{
+      width: 338px;
+      height: 185px;
+      margin: 0px 1px;
+      float: left;
+      position: relative;
+      background: -webkit-linear-gradient(90deg, rgba(21, 21, 21, 0.5) 0%, rgba(21, 21, 21, 0) 100%);
+      background: -moz-linear-gradient(90deg, rgba(21, 21, 21, 0.5) 0%, rgba(21, 21, 21, 0) 100%);
+      background: -o-linear-gradient(90deg, rgba(21, 21, 21, 0.5) 0%, rgba(21, 21, 21, 0) 100%);
+      background: -ms-linear-gradient(90deg, rgba(21, 21, 21, 0.5) 0%, rgba(21, 21, 21, 0) 100%);
+      background: linear-gradient(0deg, rgba(21, 21, 21, 0.5) 0%, rgba(21, 21, 21, 0) 100%);
+
+      &-text{
+        width: 310px;
+        height: 50px;
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        color: @white;
+
+        &-ln1{
+          font-family: HN-B;
+          margin-bottom: 5px;
+        }
+
+        &-ln2{
+          margin-top: 5px;
+          height: 24px;
+          .fa{
+            font-size: 10px;
+            float: left;
+
+            &-quote-right{
+              position: relative;
+              top: 14px;
+            }
+          }
+
+          &-mid{
+            font-family: HN-L;
+            float: left;
+            margin-left: 10px;
+            margin-right: 10px;
+            width: 265px;
+            height: 26px;
+            font-size: 12px;
+            line-height: 13px;
+            text-align: left;
+            overflow: hidden;
+          }
+        }
+      }
+    }
+
+    &-arrow{
+      position: absolute;
+      right: 10px;
+      top: 82px;
+      color: @white;
+      font-size: 40px;
+    }
+  }
+  //*************************END QUOTES IMAGES**************************//
+
+  //Section header
+  &-sect_hdr{
+    margin: 30px 15px 20px 15px;
+    border-bottom: 1px solid @grey-3;
+    width: 100%;
+    height: 30px;
+    position: relative;
+
+    &-text{
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      font-size: 18px;
+      font-family: HN-L;
+      padding-bottom: 10px;
+
+      &-first{
+        font-family: HN-B;
+      }
+    }
+
+    &-icon{
+      color: @grey-3;
+      font-size: 24px;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 5px;
+    }
+  }
+
+  //******************************COMMENTS******************************//
+
+  .art-cmnts{
+    width:640px;
+    max-height:750px;
+    margin-bottom: -50px;
+  }
+  //****************************END COMMENTS****************************//
+
+  //**************************SIMILAR ARTICLES**************************//
+  &-sim{
+    width: 650px;
+    height: auto;
+
+    &-main{
+      border-top: 4px solid #3098ff;
+      margin-right:15px;
+      margin-left: 15px;
+      margin-bottom: 5px;
+      width:650px;
+      height:164px;
+      background-image: url('/drk-linen.png');
+      display:inline-block;
+    }
+    /*properties for the image consisting the tweeter symbol*/
+    &-view-imagepic{
+      float:right;
+      border: solid 2px #3b3b3b;
+      top:-70px;
+      position: relative;
+      bottom: 100px;
+      right:20px;
+      width:130px;
+      height:130px;
+      border-radius:100%;
+      background-color: #fff;
+    }
+    /* the button class*/
+    &-buttons{
+      padding-top: 15px;
+      padding-left:10px;
+      float:left;
+      height: 40px;
+      width: 300px;
+    }
+    /*properties for text head in main article*/
+    &-textheading{
+      float:left;
+      padding-top: 12px;
+      padding-bottom: 10px;
+      text-align: left;
+      font-size: 20px;
+      font-family: HN-B;
+      color: #fff;
+      padding-left: 10px;
+      float:left;
+      height: 46px;
+      width: 470px;
+      overflow: hidden;
+    }
+    /*properties for text content in main article*/
+    &-textcontent{
+      padding-top: 1px;
+      color: #fff;
+      font-size: 12px;
+      font-family: HN;
+      float:left;
+    }
+    /*properties for details of content in main article*/
+    &-detailcontent{
+      font-family: HN-L;
+      position:relative;
+      top:-20px;
+      text-align: left;
+      color: #fff;
+      font-size: 10px;
+    }
+    &-roomcontainer{
+      width: 680px;
+      height: auto;
+      overflow-y: auto;
+    }
+    /* the class for articles*/
+    &-room{
+      width:320px;
+      height: auto;
+      overflow-y: auto;
+      float: left;
+      display:inline-block;
+      margin-left: 15px;
+    }
+    /* the article class*/
+    &-article1{
+      border-top: 4px solid #3098ff;
+      background-image: url('/drk-linen.png');
+      margin-bottom:10px;
+      height:150px;
+      width:320px;
+    }
+    /*the circle with number*/
+    &-miniimage{
+      margin-top:3px;
+      font-size: 10px;
+      padding-top: 17px;
+      position:relative;
+      padding: 4px;
+      height:20px;
+      width:20px;
+      font-family: HN;
+      cursor: pointer;
+      border: solid 1px #3098ff;
+      color:#fff;
+      background: #000;
+      border-radius: 100%;
+    }
+    /*properties for buttons in sub article*/
+    &-buttons1{
+      padding-top: 2px;
+      float:left;
+      height: 30px;
+      width: 100%;
+    }
+    &-miniimage2{
+      position:relative;
+      top: -41px;
+      margin-left: 12px;
+      padding:3px !important;
+      cursor: pointer;
+    }
+    &-miniimage3{
+      height:20px;
+      width:30px;
+      border-radius: 9px;
+      position:relative;
+      top: -41px;
+      margin-left: 12px;
+      padding:3px !important;
+      cursor: pointer;
+    }
+    /*properties for headings in sub articles*/
+    &-textheading1{
+      padding-top: 5px;
+      padding-right: 10px;
+      text-align:left;
+      font-size:18px;
+      position: relative;
+      top: -50px;
+      left:5px;
+      line-height:20px;
+      font-family: HN-L;
+      color: #fff;
+      float:right;
+      margin-right:5px;
+      height: 50px;
+      width: 250px;
+      overflow: hidden;
+    }
+    /* properties inherited from Heading1*/
+    &-textheading2{
+      line-height: 20px;
+      height: 75px;
+      width: 250px;
+      pading-right: 10px
+    }
+    /* properties inherited from heading1*/
+    &-textcontent1{
+      font-size: 12px;
+      font-family:HN-B;
+      height: 25px;
+      top:-63px;
+    }
+    /* properties inherited from heading1*/
+    &-textcontent2{
+      font-size: 12px;
+      font-family:HN-B;
+      height: 25px;
+      top:-68px
+    }
+    /* properties inherited from heading1*/
+    &-detailcontent1{
+      font-size: 10px;
+      font-family:HN-L;
+      position: relative;
+      top: -70px;
+      line-height:14px;
+      height: 30px;
+    }
+    /* properties inherited from heading1*/
+    &-detailcontent2{
+      font-size: 10px;
+      font-family:HN-L;
+      position: relative;
+      top: -75px;
+      line-height:14px;
+      height: 30px;
+    }
+    /*properties for the images inside the small articles*/
+    &-sub-images{
+      position:relative;
+      top:50px;
+      left:10px;
+      background: #fff;
+      float:left;
+      border: solid 2px #3b3b3b;
+      width:54px;
+      height:54px;
+      border-radius:100%;
+    }
+    /* the class for article 2*/
+    &-room2{
+      width:320px;
+      height: auto;
+      overflow-y: auto;
+      display: inline-block;
+      float: right;
+      margin-right: 15px;
+    }
+    /* article 2 class*/
+    &-article2{
+      margin-bottom:10px;
+      border-top: 4px solid #3098ff;
+      background-image: url('/drk-linen.png');
+      margin-right: 15px;
+      height:172px;
+      width:320px;
+    }
+    /* complete class*/
+    &-cmpl1{
+      position :relative;
+      top:10px;
+    }
+    /* the button classes*/
+    &-bts{
+      float: left;
+      background: #3098ff;
+      border-radius: 50px;
+      color: #ffffff;
+      display: inline-block;
+      font-size: 10px;
+      font-family:HN-L;
+      padding-top:3px;
+      padding-bottom:4px;
+      padding-left:8px;
+      padding-right:8px;
+      margin-right:3px;
+      position: relative;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    /*hover of the buton class*/
+    &-bts:hover{
+      background: #000000  ;
+      text-decoration: none;
+
+    }
+    /* button class 1*/
+    &-bts1{
+      cursor: pointer;
+      position: relative;
+      top: -41px;
+      left: 10px;
+      height:20px !important;
+    }
+  }
+  //************************END SIMILAR ARTICLES************************//
+}
+::-webkit-scrollbar {
+  display: none;
+}

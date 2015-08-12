@@ -1,49 +1,140 @@
 <!-- Author: Navya Eetaram
-Created: [07/15/2015]
+Created: [07/08/2015]
 Description: Leave_comment
-<Associated Files: comments.html,comments.less-->
+<Associated Files: comments.html, commets.js, comments.less, commentserver.js-->
 
 <head>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
-<template name= "leavecomments">
-  <div class="leavecomments-module">
+<template name= "comments">
+  <div class="comments-module" >
+
     <div class="module-header">
       <span class="module-header-line"></span>
+
       <span class="module-header-title">Leave a Comment</span>
     </div>
     <!--Input box-->
-    <div class="fin_user_input" >
-      <span class="fin_user_input_profile-image"></span>
-      <span class="fin_user_input_box">
+    <div class="u_input" >
+      <span class="u_input_image"></span>
+      <span class="u_input_box">
         <!--Container to enter text -->
-        <textarea class="fin_user_input_text" placeholder="What is your opinion?"></textarea>
-        <div class="fin_user_input_share">
-          <span class= "fin_user_input_share_group">
+        <textarea class="u_input_text" id="comment-l" placeholder="What is your opinion?"></textarea>
+
+        <div class="u_input_share">
+          <span class= "u_input_share_group">
             <!-- Share Options-->
-            <a class="fin_i_gplus float-l" href="https://plus.google.com/share?url={URL}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-google-plus"></i></a>
-            <a class="fin_i_fbook float-r" style="margin-left:75px;" href="https://www.facebook.com/sharer/sharer.php?u=" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-facebook"></i></a>
-            <a class="fin_i_twitter" href="https://twitter.com/intent/tweet?text=Hello%20world" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-twitter"></i></a>
+            <a class="i_gplus f-left" href="https://plus.google.com/share?url={URL}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-google-plus"></i></a>
+            <a class="i_fbook f-right" style="margin-left:75px;" href="https://www.facebook.com/sharer/sharer.php?u=" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-facebook"></i></a>
+            <a class="i_twitter" href="https://twitter.com/intent/tweet?text=Hello%20world" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-twitter"></i></a>
           </span>
           <!-- submit button-->
-          <button class="fin_user_input_share_button">post</button>
+          <span class="u_input_share_button">post</span>
         </div>
       </span>
     </div>
     <!--Container for drop down menu -->
-    <div class="sort-box">
-      <!--left side of the sorting container-->
-      <span class="l_sort">
-        <span class="sort_by float-l"> Sorted by :
-          <span class="result-sort">No comments made yet</span>
+    <div class="comment-sort">
+      <span class="left_sort">
+        <span class="sorted_by f-left"> Sorted by :
+          <span class="result-sort">Most Recent</span>
         </span>
       </span>
-      <!--right side of the sorting container-->
-      <span class="r_sort">
-        <span class="comment-count"><bluetxt> 0 </bluetxt> Comments | </span>
-        <span class="sort_by_downarrow"> Sort Options
+      <span class="right_sort">
+        <span class="comment-count"><bluetext> {{cmnt}} </bluetext> Comments | </span>
+        <span class="sorted_by_downarrow"> Sort Options
           <i class="fa fa-sort-desc" id="sortoptions" style="cursor:pointer; color:#3098ff"></i></span>
+
+          <div class="dropdown-menu aligndropdown">
+            <div class="menutextalign removeborder" id="mostrecent">
+              <i class="fa fa-calendar"></i>
+              <span> Most Recent</span>
+            </div>
+            <div class="menutextalign" id="topcomments">
+              <i class="fa fa-star-o"></i>
+              <span> Top Comments</span>
+            </div>
+
+          </div>
         </span>
       </div>
-    </div>
-  </template>
+      <!-- Container for comments-->
+      <div class="c-box">
+        {{#each post}}
+        <div class="c-box_row">
+          <span class="c-box_row_image"></span>
+          <span class="c-box_row_text">
+            <div class = "c-box_row_name"> User Name </div>
+            <div class = "c-box_row_u-cmnt" id="{{cmtid}}">
+              {{text}}
+            </div>
+
+            <div class ="c-box_row_u-reply">
+              <i class="fa fa-reply f-left">
+                <span class="underline" value="Reply" onclick="display('box{{cmtid}}')">{{rpy}} Replies</span></i>
+                <i class="fa fa-circle f-left" style="color:#959595; font-size:3px; margin-top:5px; margin-left:10px; margin-left:10px; margin-right:15px"></i>
+                <i class="fa fa-share-alt f-left"> <span class="underline">Share This </span></i>
+                <i class="fa fa-circle f-left" style="color:#959595; font-size:3px; margin-top:5px; margin-left:10px; margin-right:15px"></i>
+                <i class="fa fa-plus f-left"><span class="underline"> Add To</span></i>
+                <i class="fa fa-circle f-left" style="color:#959595; font-size:3px; margin-top:5px; margin-left:10px; margin-right:15px "></i>
+                <span class="c-box_row_time f-left">{{time}}</span>
+
+              </div>
+
+            </span>
+            <!--Container for reply -->
+            <div class="boxnum" id="box{{cmtid}}" style="display:none">
+              {{#each reply}}
+              <div class="on-reply_row">
+                <span class="on-reply_row_image"></span>
+                <span class="on-reply_row_text" id="{{replyid}}">
+                  <span class="on-reply_row_text_reply">
+                    <span class = "on-reply_row_profile_name"> User Name :  </span> {{replyy}}</span>
+                    <!--sharing options -->
+                    <div class ="on-reply_row_user-reply">
+                      <i class="fa fa-share-alt f-left"> <span class="underline">Share This </span></i>
+                      <i class="fa fa-circle f-left" style="color:#959595; font-size:3px; margin-top:5px; margin-left:10px; margin-right:15px"></i>
+                      <i class="fa fa-plus f-left"><span class="underline"> Add To</span></i>
+                      <i class="fa fa-circle f-left" style="color:#959595; font-size:3px; margin-top:5px; margin-left:10px; margin-right:15px "></i>
+                      <span class="c-box_row_time f-left">{{time}}</span>
+                    </div>
+                  </span>
+                </div>
+                {{/each}}
+                <!--image for reply box -->
+                <span class="r-box_row_image"> </span>
+                <span class="r-text">
+                  <textarea class="r-box_row_text r-box_{{cmtid}}" placeholder="What is your opinion?"></textarea>
+                  <span class="reply_button"><i class="fa fa-paper-plane"></i></span>
+                </span>
+
+              </div>
+            </div>
+            {{/each}}
+          </div>
+          <br>
+          <!-- Script for displaying reply input box-->
+          <script type="text/javascript">
+          function display(id) {
+            var cmt = document.getElementById(id)
+
+            if (cmt.style.display == "none") {
+              cmt.style.display = "block"
+            }
+            else {
+              cmt.style.display = "none"
+            }
+            return false;
+          }
+          </script>
+          <!-- footer-->
+          <div class="module-footer" >
+            <button class="module-footer-button">
+              <span class="module-footer-button-text">SEE MORE COMMENTS</span>
+              <span class="module-footer-button-ellipse"><i class="fa fa-mail-forward" ></i></span>
+            </button>
+            <!-- END -->
+          </div>
+        </div>
+
+      </template>

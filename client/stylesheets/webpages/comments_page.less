@@ -1,0 +1,146 @@
+/* Author: Navya Eetaram
+Created: [07/31/2015]
+Description: comments_page
+<Associated Files: comments_page.html, comments_page.js, comments.less, commentserver.js, comments_page.less*/
+
+@import "../global_vars.less";
+@import "../modules.less";
+
+.c_page{
+  width: 680px;
+  margin: 5px;
+  background-color: @white;
+  max-height:1207px;
+
+  &-hdr {
+  width: 680px;
+  background-color: @white;
+
+    //the head box consisting of the white background
+    &-head-box {
+      width: 680px;
+      height: 140px;
+      background-color: @white;
+      text-align: left;
+      margin: 0;
+    }
+    //image inside the article head
+    &-head-image {
+      width: 100px;
+      height: 100px;
+      margin: 20px;
+      border: solid 2px @grey-3;
+      border-radius: 50%;
+      float: left;
+      background-image: url("");
+      background-size: cover !important;
+      background-position: center center !important;
+
+      //the symbol above the image
+      &-icon {
+        height: 35px;
+        width: 35px;
+        background-color: @blue;
+        position: relative;
+        bottom: 5px;
+        right: 5px;
+        border-radius: 50%;
+        border: solid 1px @white;
+        color: @white;
+        line-height: 33px;
+        font-size: 15px;
+        text-align: center;
+
+        .fa{
+          position: relative;
+          bottom: 2px;
+          right: 1px;
+        }
+      }
+    }
+    //the text consisting the latest update
+    &-text {
+
+      padding: 15px;
+      float: left;
+      color: @black;
+      text-align: left;
+      list-style-type: none;
+      //the update part
+      &-update {
+        font-size: 10px;
+        color: #959595;
+        margin-bottom: 10px;
+      }
+      //the location
+      &-loc {
+        font-size: 12px;
+      }
+      // the name of the person
+      &-name {
+        font-size: 22px;
+        font-family: HN-B;
+      }
+      // the person description
+      &-auth {
+        font-size: 22px;
+        font-family: HN-L;
+      }
+    }
+
+    //the bottom bar
+    &-bar {
+      width: 680px;
+      height: 35px;
+      background-color: @black;
+      color: @white;
+      font-size: 16px;
+      text-align: left;
+      // the font awesome icon color
+      .fa {
+        color: @white;
+      }
+      //the link color
+      a {
+        color:@white;
+      }
+      //the title next to save and share
+      &-title{
+        border-right: 1px solid #363636;
+        background-color: inherit;
+        text-align: center;
+        float: left;
+        height:35px;
+        line-height: 35px;
+        padding: 0 15px;
+        font-size: 16px;
+        font-family: HN-B;
+      }
+      // the button for save and share
+      &-button {
+        border: none;
+        text-align: center;
+        float: left;
+        line-height: 35px;
+        height:35px;
+        width:85px;
+        margin-right: 8px;
+        font-family: HN-L;
+
+        .fa{
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+.cspace {
+  // Class for comments module
+
+  width:640px;
+  max-height:750px;
+}
+.c_footer{
+  //container for search_module
+  width: 100%;
+}
