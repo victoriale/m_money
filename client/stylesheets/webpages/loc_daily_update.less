@@ -1,0 +1,547 @@
+/*
+Author: Kyle Toom
+Date: 8/13/2015
+Decription: A page for showing what's happening in a city or area
+Associated Files: loc_daily_update.html, loc_daily_update.less, loc_daily_update.js
+*/
+
+@import (reference)"../global_vars.less";
+@import (reference)"../modules.less";
+
+.ldu
+{
+    &-pr //ldu-pr
+    {
+        position: relative;
+    }
+
+    &-pa //ldu-pa
+    {
+        position: absolute;
+    }
+
+    &-b //ldu-b
+    {
+        font-style: normal;
+        font-family: HN-B;
+    }
+
+    &-n //ldu-n: normal text for use in <i> tags
+    {
+        font-style: normal;
+        font-family: HN;
+    }
+
+    &-l //ldu-l
+    {
+        font-style: normal;
+        font-family: HN-L;
+    }
+
+    &-grn //ldu-grn
+    {
+        color: @green;
+        font-style: normal;
+        font-family: HN-B;
+    }
+
+    &-blue //ldu-blue
+    {
+        font-style: normal;
+        color: @blue;
+        font-family: HN-B;
+    }
+
+    &-black //ldu-black
+    {
+        font-family: HN-B;
+        color: @black;
+        font-style: normal;
+    }
+
+    &-i //ldu-i
+    {
+        font-style: italic;
+    }
+
+    &-page //ldu-page
+    {
+        width: 680px;
+        height: auto;
+        background-color: @white;
+        color: @black;
+    }
+
+    &-top //ldu-top
+    {
+        width: 680px;
+        height: 140px;
+
+        &-circle //ldu-top-circle
+        {
+            border-radius: 50%;
+            border: 2px solid @grey-2;
+            width: 100px;
+            height: 100px;
+            top: 20px;
+            left: 20px;
+
+            &-btn //ldu-top-circle-btn
+            {
+                border-radius: 50%;
+                width: 35px;
+                height: 35px;
+                background-color: @blue;
+                left: -8px;
+                color: @white;
+                text-align: center;
+                padding-top: 7px;
+            }
+        }
+
+        &-txt1 //ldu-top-txt1
+        {
+            font-size: 10px;
+            color: #959595;
+            left: 128px;
+            top: 16px;
+        }
+
+        &-txt2 //ldu-top-txt2
+        {
+            font-size: 12px;
+            left: 128px;
+            top: 43px;
+        }
+
+        &-txt3 //ldu-top-txt3
+        {
+            font-size: 22px;
+            left: 128px;
+            top: 59px;
+        }
+
+        &-txt4 //ldu-top-txt4
+        {
+            font-size: 22px;
+            left: 128px;
+            top: 87px;
+            height: 30px;
+            width: 550px;
+            overflow: hidden;
+        }
+    }
+
+    &-mid //ldu-mid: the middle section that goes black-grey-black
+    {
+        width: 680px;
+        height: 360px;
+        background-image: @dark-linen;
+        color: @white;
+
+        &-top //ldu-mid-top
+        {
+            background-color: @black;
+            height: 35px;
+            width: 680px;
+
+            &-txt1 //ldu-mid-top-txt1
+            {
+                font-size: 16px;
+                border-right: 1px solid #363636;
+                padding: 5px 14px;
+                width: auto;
+                height: 30px;
+                float: left;
+                max-width: 500px;
+                overflow: hidden;
+
+                &-name //ldu-mid-top-txt1-name
+                {
+                    max-width: 370px;
+                    height: 30px;
+                    float: left;
+                }
+
+                &-static //ldu-mid-top-txt1-static
+                {
+                    width: 100px;
+                    height: 30px;
+                    float: left;
+                    padding-left: 5px;
+                }
+            }
+
+            &-txt2 //ldu-mid-top-txt2
+            {
+                margin: 0px 15px;
+                width: 56px;
+                float: left;
+                padding-top: 7px;
+                font-size: 14px;
+            }
+        }
+
+        &-mid //ldu-mid-mid
+        {
+            top: 35px;
+            width: 680px;
+            height: 249px;
+
+            &-l //ldu-mid-mid-l
+            {
+                margin-left: 15px !important;
+            }
+
+            &-r //ldu-mid-mid-r
+            {
+                margin-right: 15px !important;
+            }
+
+            &-circle //ldu-mid-mid-circle
+            {
+                border-radius: 50%;
+                width: 180px;
+                height: 180px;
+                border: 3px solid @grey-2;
+                background-color: @white;
+                left: 55px;
+                top: 34px;
+            }
+
+            &-building //ldu-mid-mid-building
+            {
+                border-radius: 50%;
+                background-color: @blue;
+                width: 40px;
+                height: 40px;
+                left: 235px;
+                top: 32px;
+                padding-top: 10px;
+                padding-left: 13px;
+            }
+
+            &-txt1 //ldu-mid-mid-txt1
+            {
+                font-size: 22px;
+                top: 30px;
+                left: 291px;
+                width: 380px;
+                height: 31px;
+                overflow: hidden;
+            }
+
+            &-txt2 //ldu-mid-mid-txt2
+            {
+                font-size: 14px;
+                top: 58px;
+                left: 291px;
+                color: #f2f2f2;
+            }
+
+            &-txt3 //ldu-mid-mid-txt3
+            {
+                font-size: 14px;
+                top: 58px;
+                left: 385px;
+                color: #f2f2f2;
+            }
+
+            &-txtbox //ldu-mid-mid-txtbox
+            {
+                border-left: 2px solid @grey-2;
+                height: 101px;
+                width: 361px;
+                left: 255px;
+                top: 98px;
+                padding-left: 19px;
+                font-size: 16px;
+                line-height: 19px;
+                overflow: hidden;
+
+                &-txt //ldu-mid-mid-txtbox-txt
+                {
+                    top: -4px;
+                    font-style: normal;
+                }
+
+                &-btm1 //ldu-mid-mid-txtbox-btm1
+                {
+                    top: -4px;
+                    line-height: 34px;
+                    font-style: normal;
+                }
+                &-btm2 //ldu-mid-mid-txtbox-btm2
+                {
+                    top: -9px;
+                    font-style: normal;
+                }
+            }
+        }
+
+        &-btm //ldu-mid-btm: the black section at the bottom of the middle
+        {
+            top: 284px;
+            height: 76px;
+            width: 680px;
+            background-color: @black;
+
+            &-txt1 //ldu-mid-btm-txt1
+            {
+                left: 20px;
+                top: 14px;
+                font-size: 18px;
+                width: 450px;
+                height: 30px;
+                overflow: hidden;
+            }
+
+            &-txt2 //ldu-mid-btm-txt2
+            {
+                left: 20px;
+                top: 44px;
+                font-size: 14px;
+            }
+
+            &-btn //ldu-mid-btm-btn
+            {
+                left: 490px;
+                top: 21px;
+                background-color: @blue;
+                border-radius: 5px;
+                width: 180px;
+                height: 35px;
+                font-size: 14px;
+                text-align: center;
+                padding-top: 7px;
+            }
+        }
+    }
+
+    &-btm //ldu-btm
+    {
+        width: 680px;
+        padding: 10px 15px 0px 15px;
+
+        &-txt1 //ldu-btm-txt1
+        {
+            font-size: 12px;
+            height: 12px;
+            line-height: 12px;
+
+            &-blue //ldu-btm-txt1-blue
+            {
+                color: @blue;
+            }
+        }
+
+        &-what //ldu-btm-what: the box that starts with "what is this page?"
+        {
+            width: 650px;
+            height: 81px;
+            background-color: #fafafa;
+            border: 1px solid #ebebeb;
+            font-size: 14px;
+            margin-top: 15px;
+
+            &-top //ldu-btm-what-top
+            {
+                width: 100%;
+                height: 20px;
+                background-color: #ebebeb;
+                color: #333333;
+                font-size: 12px;
+                padding: 0px 10px;
+
+                &-x //ldu-btm-what-top-x
+                {
+                    float: right;
+                    top: 3px;
+                }
+            }
+
+            &-txt //ldu-btm-what-txt
+            {
+                width: 610px;
+                height: 31px;
+                margin-top: 14px;
+                margin-left: 20px;
+                line-height: 16px;
+            }
+        }
+
+        &-data //ldu-btm-data
+        {
+            width: 680px;
+            height: auto;
+            left: -15px;
+            margin-top: 13px;
+
+            &-title //ldu-btm-data-title
+            {
+                width: 650px;
+                height: 28px;
+                font-size: 18px;
+                left: 15px;
+                border-bottom: 1px solid @grey-2;
+                overflow: hidden;
+            }
+
+            &-date //ldu-btm-data-date
+            {
+                color: #959595;
+                font-size: 12px;
+                left: 15px;
+                top: 5px;
+            }
+
+            &-text //ldu-btm-data-text
+            {
+                padding-top: 10px;
+                padding-right: 15px;
+                padding-left: 15px;
+                font-size: 14px;
+                margin-bottom: 40px;
+                line-height: 18px;
+            }
+
+            &-graph //ldu-btm-data-graph
+            {
+                left: 15px;
+                width: 650px;
+                margin-top: 5px;
+                height: 221px;
+            }
+
+            &-period //ldu-btm-data-period
+            {
+                width: 100%;
+                height: 50px;
+                background-color: #f2f2f2;
+                padding: 0px 37px;
+
+                &-btn //ldu-btm-data-period-btn
+                {
+                    background-color: #dadada;
+                    border-radius: 50%;
+                    width: 35px;
+                    height: 35px;
+                    font-size: 14px;
+                    color: #272727;
+                    margin: 8px 10px;
+                    float: left;
+                    text-align: center;
+                    padding-top: 7px;
+                    cursor: pointer;
+
+                    &-a //ldu-btm-data-period-btn-a
+                    {
+                        background-color: @blue;
+                        color: @white;
+                    }
+                }
+            }
+
+            &-list //ldu-btm-data-list
+            {
+                width: 680px;
+                height: 162px;
+            }
+
+            &-list-l //ldu-btm-data-list-l
+            {
+                width: 325px;
+                height: 136px;
+                float:left;
+                left: 15px;
+                top: 10px;
+                border-right: 1px dashed @grey-2;
+            }
+
+            &-list-r //ldu-btm-data-list-r
+            {
+                width: 325px;
+                height: 141px;
+                right: 0px;
+                top: 10px;
+                float:right;
+            }
+
+            &-list-i //ldu-btm-data-list-i
+            {
+                width: 310px;
+                height: 20px;
+                border-bottom: 1px solid #404040;
+                font-size: 14px;
+                padding-bottom: 30px;
+                margin-bottom: 5px;
+
+                &-l //ldu-btm-data-list-i-l
+                {
+                    float: left;
+                    width: 50%;
+                    text-align: left;
+                    overflow: hidden;
+                    height: 20px;
+
+                    &-fa //ldu-btm-data-list-i-l-fa
+                    {
+                        margin-right: 10px;
+                    }
+                }
+
+                &-r //ldu-btm-data-list-i-r
+                {
+                    float: right;
+                    width: 50%;
+                    text-align: right;
+                    overflow: hidden;
+                    height: 20px;
+                }
+
+                &-b //ldu-btm-data-list-i-b
+                {
+                    width: 310px;
+                    height: 20px;
+                    font-size: 14px;
+                    padding-bottom: 30px;
+                }
+            }
+
+            &-list-e //ldu-btm-data-list-e: the exception in the list where there is a paragraph
+            {
+                width: 310px;
+                height: 89px;
+
+                &-title //ldu-btm-data-list-e-title
+                {
+                    font-size: 14px;
+                    max-width: 300px;
+                    overflow: hidden;
+                    height: 17px;
+                }
+
+                &-circle //ldu-btm-data-list-e-circle
+                {
+                    border: 2px solid @grey-2;
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    float: left;
+                    top: 5px;
+                }
+
+                &-txt //ldu-btm-data-list-e-txt
+                {
+                    float: right;
+                    width: 250px;
+                    height: 100px;
+                    font-size: 12px;
+                    top: 5px;
+                    overflow: hidden;
+                    line-height: 14px;
+                }
+            }
+        }
+    }
+}

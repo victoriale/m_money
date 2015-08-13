@@ -1,0 +1,241 @@
+<!--
+Author: Kyle Toom
+Date: 8/13/2015
+Decription: A page for showing what's happening in a business
+Associated Files: daily_update_page.html, daily_update_page.less, daily_update_page.js
+-->
+
+<template name="daily_update_page">
+    {{#with company}} <!--object used throughout the page for things like the company name-->
+        <div class="dup-page"> <!--container for whole page-->
+            <div class="dup-pr dup-top"> <!--container for white background area at top-->
+                <div class="dup-pr dup-top-circle"> <!--back arrow in top-->
+                    <div class="dup-pr dup-top-circle-btn">
+                        <i class="fa fa-reply"></i>
+                    </div>
+                </div>
+                <i class="dup-pa dup-n dup-top-txt1">
+                    LAST UPDATED: 06/24/2015, 8:00 AM EST
+                </i>
+                <i class="dup-pa dup-n dup-top-txt2">
+                    <i class="fa fa-map-marker"></i>
+                    United States
+                </i>
+                <i class="dup-pa dup-b dup-top-txt3">
+                    Daily Update
+                </i>
+                <i class="dup-pa dup-l dup-top-txt4">
+                    for {{name}}
+                </i>
+            </div>
+            <div class="dup-pr dup-mid"> <!--the black-grey-black section in the middle-ish-->
+                <div class="dup-pa dup-mid-top"> <!--the black header of the middle-->
+                    <div class="dup-b dup-mid-top-txt1"> <!--the left part of the header-->
+                        <div class="dup-mid-top-txt1-name">{{name}}'s </div>
+                        <div class="dup-mid-top-txt1-static"> Daily Update</div>
+                    </div>
+                    <div class="dup-l dup-mid-top-txt2"> <!--the first right part of the header-->
+                        <i class="fa fa-heart"></i>
+                        Save
+                    </div>
+                    <div class="dup-l dup-mid-top-txt2"> <!--the second right part of the header-->
+                        <i class="fa fa-share-alt"></i>
+                        Share
+                    </div>
+                </div>
+                <div class="dup-pa dup-mid-mid"> <!--the grey section in the middle-->
+                    <div class="navigation-button-left">
+                        <i class="fa fa-angle-left dup-mid-mid-l"></i>
+                    </div>
+                    <div class="dup-pa dup-mid-mid-circle">
+                    </div>
+                    <div class="dup-pa dup-mid-mid-building">
+                        <i class="fa fa-building-o fa-lg"></i>
+                    </div>
+                    <i class="dup-pa dup-b dup-mid-mid-txt1">
+                        {{name}}
+                    </i>
+                    <i class="dup-pa dup-l dup-mid-mid-txt2">
+                        <i class="fa fa-heart"></i>
+                        Save
+                    </i>
+                    <i class="dup-pa dup-l dup-mid-mid-txt3">
+                        <i class="fa fa-share-alt"></i>
+                        Share
+                    </i>
+                    <div class="dup-pa dup-l dup-mid-mid-txtbox"> <!--the part of the middle-middle that has the important and long text-->
+                        <i class="dup-l dup-mid-mid-txtbox-txt">
+                            <i class="dup-b">{{name}}</i>'s overall annual financials are <i class="dup-i">up
+                            10%</i> from 2014. With an <i class="dup-i">$20 increase</i> in stock
+                            price bringing individual <i class="dup-i">share price to $94.01.</i>
+                            <br>
+                        </i>
+                        <i class="dup-l dup-mid-mid-txtbox-btm1">
+                            <i class="dup-b">{{name}}</i> is currently priced at:<br>
+                        </i>
+                        <i class="dup-pr dup-mid-mid-txtbox-btm2">
+                            <i class="dup-b">$94.31</i> <i class="dup-grn"><i class="fa fa-arrow-up"></i> +0.22 (+0.23%)</i>
+                        </i>
+                    </div>
+                    <div class="navigation-button-right">
+                        <i class="fa fa-angle-right dup-mid-mid-r"></i>
+                    </div>
+                </div>
+                <div class="dup-pa dup-mid-btm"> <!--the footer of the middle area-->
+                    <div class="dup-pa dup-l dup-mid-btm-txt1">
+                        Want more information about {{name}}?
+                    </div>
+                    <div class="dup-pa dup-l dup-mid-btm-txt2">
+                        Profile Last Updated On: <i class="dup-b">07/29/2015</i>
+                    </div>
+                    <div class="dup-pa dup-mid-btm-btn">
+                        View Profile <i class="fa fa-angle-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="dup-pr dup-btm"> <!--holds anything but the search module below the middle area-->
+                <div class="dup-b dup-btm-txt1">
+                    Sort by: <i class="dup-l">Daily Update </i><i class="fa fa-angle-down dup-btm-txt1-blue"></i>
+                </div>
+                <div class="dup-btm-what"> <!--a box that looks like it can be closed-->
+                    <div class="dup-b dup-btm-what-top">
+                        What is this page?
+                        <i class="fa fa-times dup-pr dup-btm-what-top-x"></i>
+                    </div>
+                    <div class="dup-btm-what-txt">
+                        This page features a detailed look at {{name}}'s daily financial
+                        information including today's price, today's high, etc.
+                    </div>
+                </div>
+                <div class="dup-pr dup-btm-data"> <!--a divide to seperate data from the box above-->
+                    <div class="dup-pr dup-btm-data-title">
+                        Daily Update <i class="dup-l">for the {{name}}:</i>
+                    </div>
+                    <div class="dup-pr dup-btm-data-date">
+                        <i class="fa fa-calendar"></i>
+                        Last Updated 07/30/2015
+                    </div>
+                    <div class="dup-btm-data-text">
+                        Sartorial banh mi fingerstache direct trade. Intelligentsia Neutra pork belly, Pitchfork American Apparel
+                        mumblecore try-hard skateboard. Mustache flexitarian cray Neutra post-iconic. High Life street art +1,
+                        mustache Bushwick Blue Bottle wolf biodiesel lumbersexual McSweeney's. Echo Park meditation bitters,
+                        letterpress ennui Tumblr messenger bag mlkshk you probably haven't heard of them Kickstarter
+                        Vice XOXO. Echo Park normcore disrupt, High life PBR&B Blue Bottle leggings Marfa banh mi Portland.
+                        Brunch iPhone Truffaut McSweeney's cred narwhal skateboard keytar next level PBR cornhole, hashtag
+                        mlkshk vinyl.
+                        <br><br>
+                        Hoodie wayfarers vegan, asymmetrical DIY mlkshk High Life. Cold-pressed chilwave Godard XOXO
+                        shabby chic. Jean shorts actually Odd Future, gastropub Schlitz beard Bushwick mixtape. Cliche
+                        normcore cold-pressed crucifix occupy paleo. Flannel raw denim dreamcatcher, food truck migas
+                        brunch vegan farm-to-trade synth 90's. Truffaut taxidermy tattooed sartorial small batch. Stumptown
+                        Brooklyn ennui gentrify, Carles PBR&B put a bird on it.
+                        <br><br>
+                        Slow-carb direct trade cronut, seitan quinoa wayfarers fap readymade Etsy brunch. Biodiesel brunch
+                        put a bird on it, chia Carles tote bag Blue Bottle. Chambray brunch lo-fi mixtape tattooed, blog messenger
+                        bag mustache flexitarian. Typewriter cliche locavore kale chips. Yr ethical Blue Bottle forage, photo
+                        booth messenger bag fingerstache YOLO sustainable heirloom fap quinoa cold-pressed typewriter.
+                        Salvia skateboard cardigan, Etsy swag migas YOLO art party organic 3 wolf moon Shoreditch seitan
+                        sustainable. Squid deep v vegan, put a bird on it next level small batch stumptown scenester Brooklyn
+                        XOXO bespoke.
+                    </div>
+                </div>
+                <div class="dup-pr dup-btm-data"> <!--a divide to seperate data from the box above-->
+                    <div class="dup-pr dup-btm-data-title">
+                        Stock Graph <i class="dup-l">for the {{name}}:</i>
+                    </div>
+                    <div class="dup-pr dup-btm-data-date">
+                        <i class="fa fa-calendar"></i>
+                        Updated 08/03/2015 at 4PM EST
+                    </div>
+                    <div class="dup-pr dup-btm-data-graph" id="dupGraph">
+                        <!--Put graph here-->
+                        {{> highchartsHelper chartId="dupChart" chartWidth="650px" chartHeight="221px" chartObject=getGraphObject}}
+                    </div>
+                    <div class="dup-btm-data-period"> <!--this holds the buttons that change the x scale of the graph-->
+                        {{#each btns}}
+                            <div class="dup-btm-data-period-btn{{isInitial num}}" id="dupBtn{{num}}" onclick="dupBtns({{num}})">
+                                {{text}}
+                            </div>
+                        {{/each}}
+                    </div>
+                    <div class="dup-pr dup-btm-data-list"> <!--List various figures but is not a tile-->
+                        <div class="dup-pr dup-btm-data-list-l">
+                            <div class="dup-btm-data-list-i">
+                                <i class="dup-l dup-btm-data-list-i-l">
+                                    Current Price
+                                </i>
+                                <i class="dup-b dup-btm-data-list-i-r">
+                                    $94.31
+                                </i>
+                            </div>
+                            <div class="dup-btm-data-list-i">
+                                <i class="dup-l dup-btm-data-list-i-l">
+                                    Open Price
+                                </i>
+                                <i class="dup-b dup-btm-data-list-i-r">
+                                    $93.53
+                                </i>
+                            </div>
+                            <div class="dup-btm-data-list-i">
+                                <i class="dup-l dup-btm-data-list-i-l">
+                                    Close Price
+                                </i>
+                                <i class="dup-b dup-btm-data-list-i-r">
+                                    $95.21
+                                </i>
+                            </div>
+                            <div class="dup-btm-data-list-i">
+                                <i class="dup-l dup-btm-data-list-i-l">
+                                    Day Change $-%
+                                </i>
+                                <i class="dup-grn dup-btm-data-list-i-r">
+                                    <i class="fa fa-arrow-up"></i> +0.52 <i class="dup-black">|</i> +0.57%
+                                </i>
+                            </div>
+                            <div class="dup-btm-data-list-i-b">
+                                <i class="dup-l dup-btm-data-list-i-l">
+                                    Day Range
+                                </i>
+                                <i class="dup-b dup-btm-data-list-i-r">
+                                    $93.53 - $93.21
+                                </i>
+                            </div>
+                        </div>
+                        <div class="dup-pr dup-btm-data-list-r">
+                            <div class="dup-btm-data-list-i">
+                                <i class="dup-l dup-btm-data-list-i-l">
+                                    52 Week Range
+                                </i>
+                                <i class="dup-b dup-btm-data-list-i-r">
+                                    $99.24 - $70.32
+                                </i>
+                            </div>
+                            <div class="dup-btm-data-list-i">
+                                <i class="dup-l dup-btm-data-list-i-l">
+                                    Vol/Avg.
+                                </i>
+                                <i class="dup-b dup-btm-data-list-i-r">
+                                    4M/10M
+                                </i>
+                            </div>
+                            <div class="dup-btm-data-list-e"> <!--the abnormal list item-->
+                                <div class="dup-btm-data-list-e-title dup-l">
+                                    <i class="dup-b">Learn why </i>{{name}} is <i class="dup-grn"><i class="fa fa-arrow-up"></i> +0.52%</i> today:
+                                </div>
+                                <div class="dup-pr dup-btm-data-list-e-circle">
+                                </div>
+                                <div class="dup-pr dup-btm-data-list-e-txt">
+                                    {{name}} ({{ticker}}) stock is currently priced
+                                    at $94.31 per share. Yesterday, <i class="dup-blue">3 articles</i>
+                                    were written about {{ticker}}: 100% are positive.
+                                    <i class="dup-blue">Click here</i> to read more about {{name}} in the news.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{> search_module}}
+        </div>
+    {{/with}}
+</template>
