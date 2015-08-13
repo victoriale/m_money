@@ -1,0 +1,314 @@
+<!--
+Author: jyothyswaroop
+Created: 8/12/2015
+Description: market_recap_page
+Associated Files: market_recap_page_logic.js and market_recap_page.less
+-->
+<!--Gave a template name stock_disclaimer_page !-->
+<template name="market_recap_page">
+<!--Defined a class name globally for height and width !-->
+<div class= "mark_pg">
+  <!--gave the dimensions for the module with total height and width !-->
+  <div class = "mark_pg-n_m">
+    <!--dimensions for the circle container as ('cir-d') !-->
+    <div class="mark_pg-cir_d">
+    <!-- dimensions for the circle as ('circ')!-->
+    <div class="mark_pg-circ">
+      <!-- defines container for the smaller blue circle('sc_d') !-->
+      <div class= "mark_pg-sc_d">
+      <!-- defines the dimension for the small circle('sc') !-->
+      <div class="mark_pg-sc_d mark_pg-sc">
+      <i class="mark_pg-bfo fa fa-reply"></i>
+      </div>
+      </div>
+    </div>
+    </div>
+    <!--defines the container for text box !-->
+    <div class="mark_pg-tc">
+    <!-- class date has all the font-weight and font specific !-->
+    <div class="mark_pg-date">
+      LAST UPDATED: 06/24/2015, 8:00 AM EST
+    </div>
+    <!--specified font style for location !-->
+    <div class="mark_pg-loc_st">
+       <i class="fa fa-map-marker"></i>
+    <!--specified font style for the state name !-->
+    <span class="mark_pg-loc_st">
+      {{getheadername0}}
+    </span>
+    </div>
+    <!-- specified font sytle for the stock disclaimer !-->
+    <div class="mark_pg-loc_st mark_pg-disc">
+    {{getheadername1}} Companies By Largest Market Cap
+    </div>
+    <!--specified font style for the inveskit finance  !-->
+    <div class="mark_pg-loc_st mark_pg-fin">
+    in the {{getheadername0}}
+    </div>
+    </div>
+
+    <div class="mark_pg-bar">
+      <div class="mark_pg-bar-title">
+        Today's Most Traded {{getheadername1}} Companies
+      </div>
+      <div class="mark_pg-bar-button">
+        <!-- the save option button-->
+        <a href="#"><i class="fa fa-heart"></i><span class="mark_pg-bar-text">Save</span></a>
+      </div>
+      <div class="mark_pg-bar-button">
+        <!-- share option button -->
+        <a href="#"><i class="fa fa-share-alt"></i><span class="mark_pg-bar-text">Share</span></a>
+      </div>
+    </div>
+    <div class="mark_pg-m_c">
+      <!-- the module.less file navigation buttons-->
+      <button class='mark_pg-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+      <button class='mark_pg-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+      <!-- end of the module.less navigation button -->
+      <!-- wrapper class-->
+      <div class="mark_pg-m_c-image-wr">
+        <div class="mark_pg-m_c-image">
+          <div class="mark_pg-m_c-sma_ct">
+          <div class="mark_pg-m_c-sma_cr">
+
+          </div>
+        </div>
+        </div>
+      </div>
+      <!-- the main container -->
+      <ul class="mark_pg-m_c-cr">
+        <!-- the image in blue circle-->
+        <li class="mark_pg-m_c-title">
+          <div class="co_commi-m_c-title-image"><i class="fa fa-building-o"></i>
+          <span class="co_commi-m_c-title-text"> {{getheadername}} </span>
+          </div>
+        </li>
+          <!--the follow('fbt') and share  !-->
+
+          <div class="mark_pg-fbt1">
+            <!-- the save option button-->
+            <a href="#"><i class="mark_pg-fbt1-font1 fa fa-heart"></i><span class="mark_pg-fbt1-text1">Save</span></a>
+          </div>
+          <div class="mark_pg-fbt1 mark_pg-fbt2">
+            <!-- share option button -->
+            <a href="#"><i class="mark_pg-fbt1-font1 fa fa-share-alt"></i><span class="mark_pg-fbt1-text1">Share</span></a>
+          </div>
+
+        <!-- the description about the person-->
+        <li class="mark_pg-m_c-dp">
+          <div class="mark_pg-m_c-dp-dpct">
+          {{getheadername}} ({{getheadername1}}: AAPL) current market cap is valued at <span class="mark_pg-m_c-dp-itl">{{getheadername2}} USD</span>
+        </div>
+            <div class="mark_pg-m_c-dp-itl mark_pg-m_c-dp-it2">
+{{getheadername}} <span class="mark_pg-m_c-dp-dpct">is currently priced at: <br></span>
+<span class="mark_pg-m_c-dp-itl">{{getheadername3}} </span>
+<span class="mark_pg-m_c-dp-itl mark_pg-m_c-dp-it4"> <i class=" fa fa-arrow-down"></i></span>  <span class="mark_pg-m_c-dp-itl mark_pg-m_c-dp-it5">{{getheadername4}} </span>
+            </div>
+          <!-- </div> -->
+        </li>
+      </ul>
+      <!-- the bottom bar-->
+      <div class="mark_pg-m_c-view_more">
+        <!-- the details about the comapny-->
+        <div class="mark_pg-m_c-view_more-text">
+          <div class="mark_pg-m_c-view_more-text-ln1">Interesed in discovering more about {{getheadername}}?</div>
+          <div class="mark_pg-m_c-view_more-text-ln2">Profile Last Updated On: <span class="mark_pg-m_c-dp-itl">07/29/2015</span></div>
+        </div>
+        <button class="mark_pg-m_c-view_more-button">
+          View Profile <i class="fa fa-angle-right"></i>
+        </button>
+      </div>
+    </div>
+    <!--container for the ct1 to 'sort by' and 'what is this list?'  !-->
+    <div class="mark_pg-ct1">
+    <!--container for the sortby !-->
+    <div class="mark_pg-sy">
+      <!-- container for the sortby font !-->
+      <div class="mark_pg-syf"> Sort by:
+      <!-- container for the members font !-->
+      <span class="mark_pg-syf mark_pg-sym"> {{getheadername1}} Companies - Market Cap: Highest Lowest <span class="mark_pg-sym mark_pg-chd"> <i class=" fa fa-chevron-down"></i> </span> </span>
+      </div>
+    </div>
+    <!-- contianer for the complete 'what is this list' class name is wl!-->
+    <div class="mark_pg-wl">
+      <!-- container for the 'what is this list' class name is wl2!-->
+      <div class="mark_pg-wlc">
+        <!-- font style for the 'what is this list'!-->
+        <div class="mark_pg-wlf">
+        What is this list?
+        <span class="mark_pg-x">
+         <i class="fa fa-times"></i>
+        </span>
+        </div>
+      </div>
+      <!--container for the text inside the 'what is this list' as wltxt!-->
+      <div class="mark_pg-wltxt">
+      <!--font style for the text !-->
+      <div class="mark_pg-wltxtf">
+        <p> This is a list featuring the top {{getheadername1}} companies in the {{getheadername0}} with the highest market cap value, sorted from highest to lowest.</p>
+      </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="mark_pg-wrapper">
+      <!-- The loop starts here and the each will take each data item from the items on each iteration-->
+      {{#each items}}
+      {{#if imghld}}
+      <div class="mark_pg-quotes">
+        <div class="mark_pg-quotes-head">Featured Companies in the {{getheadername0}}</div>
+        {{#each quote}}
+        <div class="mark_pg-quotes-image">
+          <div class="mark_pg-gap1"></div>
+          <div class="mark_pg-quotes-image-text">
+            <div class="mark_pg-quotes-image-text-ln1">{{name}}</div>
+            <div class="co_commi-quotes-image-text-vc">
+          <span class="co_commi-quotes-image-text-ln1 co_commi-quotes-image-text-ln4">
+            {{text}}
+          <span class="co_commi-quotes-image-text-ln1 co_commi-quotes-image-text-ln3">
+            {{text2}}
+          </span>
+          </span>
+        </div>
+          </div>
+        </div>
+        {{/each}}
+        <div class="mark_pg-quotes-arrow fa fa-angle-right"></div>
+      </div>
+      {{else}}
+      <div class="mark_pg-{{getBackgroundStyle}}"><br>
+        <!--This is the main (circle) image-->
+        <div class="mark_pg-head-circ">
+          <div class="mark_pg-head-image">
+            <!-- Here displays the counter number which is a result of each loop-->
+            <span class="mark_pg-counter">#{{counter_no}}</span>
+            <span class="mark_pg-counter2"></span>
+          </div>
+        </div>
+        <!--Location title -->
+        <div class="mark_pg-sp">
+          <div  class="mark_pg-space">
+            <!-- This displays the font awesome map sybmol infornt of the united states-->
+            <i class="fa fa-map-marker"></i>
+            <span  class="mark_pg-space mark_pg-space2">
+              {{location}} <span class="mark_pg-space mark_pg-space2"><i class="fa fa-angle-double-right"></i> </span>
+              <span class="sect_pg-space sect_pg-space2"> {{stocks}}:{{sname}} </span>
+            </span>
+            <!-- Here displays the description which come from the each loop-->
+            <div class="mark_pg-adjust">{{ data }}</div>
+            {{#if fall}}
+            <div class="mark_pg-follw1">{{stck1}}
+              <span class="mark_pg-follws1">  <i class="fa fa-arrow-down"></i> </span>
+              <span class="mark_pg-follw3">{{stck2}} </span>
+            </div>
+            {{else}}
+            <div class="mark_pg-follw1">{{stck1}}
+              <span class="mark_pg-follws2">  <i class="fa fa-arrow-up"></i> </span>
+              <span class="mark_pg-follw4">{{stck2}} </span>
+            </div>
+            {{/if}}
+          </div>
+        </div>
+        <!--This displays the blue button which holds the text "View Full List"-->
+        <div class="mark_pg-ctmain">
+          <span class="mark_pg-ctmaintxt">
+            Want more info about this company?
+          </span>
+          <button class="mark_pg-tile-button">
+            View Profile
+            <span style="margin-left:6px"><i class="fa fa-angle-right"></i></span>
+          </button>
+        </div>
+        <div class="mark_pg-rtct">
+          <div class="mark_pg-rttx1"> Market Cap</div>
+          <div class="mark_pg-rttx2"> {{number}}</div>
+          <div class="mark_pg-rttx3"> {{date}} </div>
+        </div>
+        <!-- This displays the font awesome heart symbol beside the text "save"-->
+        <div class="mark_pg-sn">
+          <div  class="mark_pg-save">
+            <i class="fa fa-heart"></i>
+            <span  class="mark_pg-save mark_pg-st">
+              Follow
+            </span>
+          </div>
+        </div>
+
+        <!-- This displays the font awesome share symbol beside the text "share"-->
+        <div class="mark_pg-sh">
+          <div  class="mark_pg-share">
+            <i class="fa fa-share-alt"></i>
+            <span  class="mark_pg-share mark_pg-sht">
+              Share
+            </span>
+          </div>
+        </div>
+        <!-- continer with all font style as specified !-->
+        {{#if google}}
+        <div class="mark_pg-middle">
+         <div class="mark_pg-qt">
+           <i class="fa fa-bell"></i>
+        <span class="mark_pg-texm">
+          Multiple Tickers for {{ data }}
+        </span>
+        <span class="mark_pg-qt"> <i class=" fa fa-chevron-down"> </i></span>
+         </div>
+        </div>
+
+        <div class="mark_pg-fe2">
+          <div  class="mark_pg-share mark_pg-feedback">
+            <i class="fa fa-flag"></i>
+            <span  class="mark_pg-share mark_pg-ft">
+              Feedback
+            </span>
+          </div>
+        </div>
+        {{else}}
+        <!-- This displays the font awesome flag symbol beside the text "Feedback"-->
+        <div class="mark_pg-fe ">
+          <div  class="mark_pg-share mark_pg-feedback">
+            <i class="fa fa-flag"></i>
+            <span  class="mark_pg-share mark_pg-ft">
+              Feedback
+            </span>
+          </div>
+        </div>
+
+      {{/if}}
+
+</div>
+      {{/if}}
+      <!--This is the End of each loop -->
+      {{/each}}
+  <div class="mark_pg-footer">
+    <!-- This is outermost class of the footer which holds the other elements in the footer-->
+    <div class="mark_pg-holder1">
+      <!-- This is the class which holds the font awesome left arrow-->
+      <div class="mark_pg-navigationl">
+        <i class="fa fa-angle-left mark_pg-footer-icon"></i>
+      </div>
+      <!-- Here we write the code for the buttons 1,2,3 and 200-->
+      <button  class="mark_pg-page-selector1 mark_pg-page-selector1-font1">1</button>
+      <button class="mark_pg-page-selector2 mark_pg-page-selector2-font2">2</button>
+      <button  class="mark_pg-page-selector3 mark_pg-page-selector3-font3">3</button>
+      <span  class="mark_pg-dots" >...</span>
+      <button  class="mark_pg-page-selector200 mark_pg-page-selector200-font">200</button>
+    <span class="mark_pg-navigationr">
+      <i class="fa fa-angle-right mark_pg-footer-icon"></i>
+    </span>
+      <!-- This is the class which holds the font awesome right arrow-->
+    </div>
+    <!-- container for the View all button !-->
+    <div class="mark_pg-navigation2">
+      <button class="mark_pg-view-all mark_pg-view-all-font">VIEW ALL <img style="padding-bottom:4px" src="infinite-icon.png"></button>
+    </div>
+  </div>
+</div>
+  <!--created a container for the fotter  !-->
+<div class="mark_pg-fotter">
+    {{> search_module}}
+</div>
+
+  </div>
+</div>
+</template>

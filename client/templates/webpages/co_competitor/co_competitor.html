@@ -1,0 +1,291 @@
+<!--
+Author: jyothyswaroop
+Created: 08/10/2015
+Description: co_competitor page
+Associated Files: co_competitor_logic.js and co_competitor.less
+-->
+<!--Gave a template name stock_disclaimer_page !-->
+<template name="co_competitor">
+<!--Defined a class name globally for height and width !-->
+{{#with company}}
+<div class= "co_comp">
+  <!--gave the dimensions for the module with total height and width !-->
+  <div class = "co_comp-n_m">
+    <!--dimensions for the circle container as ('cir-d') !-->
+    <div class="co_comp-cir_d">
+    <!-- dimensions for the circle as ('circ')!-->
+    <div class="co_comp-circ">
+      <!-- defines container for the smaller blue circle('sc_d') !-->
+      <div class= "co_comp-sc_d">
+      <!-- defines the dimension for the small circle('sc') !-->
+      <div class="co_comp-sc_d co_comp-sc">
+      <i class="co_comp-bfo fa fa-reply"></i>
+      </div>
+      </div>
+    </div>
+    </div>
+    <!--defines the container for text box !-->
+    <div class="co_comp-tc">
+    <!-- class date has all the font-weight and font specific !-->
+    <div class="co_comp-date">
+      LAST UPDATED: 06/24/2015, 8:00 AM EST
+    </div>
+    <!--specified font style for location !-->
+    <div class="co_comp-loc_st">
+       <i class="fa fa-map-marker"></i>
+    <!--specified font style for the state name !-->
+    <span class="co_comp-loc_st">
+      United States
+    </span>
+    </div>
+    <!-- specified font sytle for the stock disclaimer !-->
+    <div class="co_comp-loc_st co_comp-disc">
+    The Biggest Competitors
+    </div>
+    <!--specified font style for the inveskit finance  !-->
+    <div class="co_comp-loc_st co_comp-fin">
+    for {{getheadername}}
+    </div>
+    </div>
+
+    <div class="co_comp-bar">
+      <div class="co_comp-bar-title">
+      <div class="co_comp-bar-helper">
+        {{formalName}}'s
+      </div>
+      <div class="co_comp-bar-side">Competitors </div>
+      </div>
+      <div class="co_comp-bar-button">
+        <!-- the save option button-->
+        <a href="#"><i class="fa fa-heart"></i><span class="co_comp-bar-text">Save</span></a>
+      </div>
+      <div class="co_comp-bar-button">
+        <!-- share option button -->
+        <a href="#"><i class="fa fa-share-alt"></i><span class="co_comp-bar-text">Share</span></a>
+      </div>
+    </div>
+    <div class="co_comp-m_c">
+      <!-- the module.less file navigation buttons-->
+      <button class='co_comp-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+      <button class='co_comp-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+      <!-- end of the module.less navigation button -->
+      <!-- wrapper class-->
+      <div class="co_comp-m_c-image-wr">
+        <div class="co_comp-m_c-image">
+          <div class="co_comp-m_c-sma_ct">
+          <div class="co_comp-m_c-sma_cr">
+
+          </div>
+        </div>
+        </div>
+      </div>
+      <!-- the main container -->
+      <ul class="co_comp-m_c-cr">
+        <!-- the image in blue circle-->
+        <li class="co_comp-m_c-title">
+          <div class="co_comp-m_c-title-image"><i class="fa fa-building-o"></i>
+              <span class="co_comp-m_c-title-text"> {{getheadername}} </span>
+          </div>
+        </li>
+          <!--the follow('fbt') and share  !-->
+
+          <div class="co_comp-fbt1">
+            <!-- the save option button-->
+            <a href="#"><i class="co_comp-fbt1-font1 fa fa-heart"></i><span class="co_comp-fbt1-text1">Save</span></a>
+          </div>
+          <div class="co_comp-fbt1 co_comp-fbt2">
+            <!-- share option button -->
+            <a href="#"><i class="co_comp-fbt1-font1 fa fa-share-alt"></i><span class="co_comp-fbt1-text1">Share</span></a>
+          </div>
+
+        <!-- the description about the person-->
+        <li class="co_comp-m_c-dp">
+          <div class="co_comp-m_c-dp-dpct">
+          {{getheadername}}. ranks #3 out of its 4 competitors in the United States Masrket.
+        </div>
+            <div class="co_comp-m_c-dp-itl co_comp-m_c-dp-it2">
+{{getheadername}} <span class="co_comp-m_c-dp-dpct">is currently priced at: <br></span>
+<span class="co_comp-m_c-dp-itl">{{getheadername2}} </span>
+<span class="co_comp-m_c-dp-itl co_comp-m_c-dp-it4"> <i class=" fa fa-arrow-up"></i></span>  <span class="co_comp-m_c-dp-itl co_comp-m_c-dp-it5">{{getheadername3}} </span>
+            </div>
+          <!-- </div> -->
+        </li>
+      </ul>
+      <!-- the bottom bar-->
+      <div class="co_comp-m_c-view_more">
+        <!-- the details about the comapny-->
+        <div class="co_comp-m_c-view_more-text">
+          <div class="co_comp-m_c-view_more-text-ln1">Interesed in discovering more about {{formalName}}?</div>
+          <div class="co_comp-m_c-view_more-text-ln2">Profile Last Updated On: <span class="co_comp-m_c-dp-itl">07/29/2015</span></div>
+        </div>
+        <button class="co_comp-m_c-view_more-button">
+          View Profile <i class="fa fa-angle-right"></i>
+        </button>
+      </div>
+    </div>
+    <!--container for the ct1 to 'sort by' and 'what is this list?'  !-->
+    <div class="co_comp-ct1">
+    <!--container for the sortby !-->
+    <div class="co_comp-sy">
+      <!-- container for the sortby font !-->
+      <div class="co_comp-syf"> Sort by:
+      <!-- container for the members font !-->
+      <span class="co_comp-syf co_comp-sym"> Competitors: Highest Lowest <span class="co_comp-sym co_comp-chd"> <i class=" fa fa-chevron-down"></i> </span> </span>
+      </div>
+    </div>
+    <!-- contianer for the complete 'what is this list' class name is wl!-->
+    <div class="co_comp-wl">
+      <!-- container for the 'what is this list' class name is wl2!-->
+      <div class="co_comp-wlc">
+        <!-- font style for the 'what is this list'!-->
+        <div class="co_comp-wlf">
+        What is this page?
+        <span class="co_comp-x">
+         <i class="fa fa-times"></i>
+        </span>
+        </div>
+      </div>
+      <!--container for the text inside the 'what is this list' as wltxt!-->
+      <div class="co_comp-wltxt">
+      <!--font style for the text !-->
+      <div class="co_comp-wltxtf">
+        <p> This is a page features a detailed list of all the competeing companies with Facebook, Inc. Competitor items include latest market cap and share value.</p>
+      </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="co_comp-wrapper">
+      <!-- The loop starts here and the each will take each data item from the items on each iteration-->
+      {{#each items}}
+      {{#if imghld}}
+      <div class="co_comp-quotes">
+        <div class="co_comp-quotes-head">Featured Tech Companies in the United States</div>
+        {{#each quote}}
+        <div class="co_comp-quotes-image">
+          <div class="co_comp-gap1"></div>
+          <div class="co_comp-quotes-image-text">
+            <div class="co_comp-quotes-image-text-ln1">{{name}}</div>
+              <div class="co_comp-quotes-image-text-vc">
+            <span class="co_comp-quotes-image-text-ln1 co_comp-quotes-image-text-ln4">
+              {{text}}
+            <span class="co_comp-quotes-image-text-ln1 co_comp-quotes-image-text-ln3">
+              {{text2}}
+            </span>
+            </span>
+          </div>
+          </div>
+        </div>
+        {{/each}}
+        <div class="co_comp-quotes-arrow fa fa-angle-right"></div>
+      </div>
+      {{else}}
+      <div class="co_comp-{{getBackgroundStyle}}"><br>
+        <!--This is the main (circle) image-->
+        <div class="co_comp-head-circ">
+          <div class="co_comp-head-image">
+            <!-- Here displays the counter number which is a result of each loop-->
+            <span class="co_comp-counter">#{{counter_no}}</span>
+            <span class="co_comp-counter2"></span>
+          </div>
+        </div>
+        <!--Location title -->
+        <div class="co_comp-sp">
+          <div  class="co_comp-space">
+            <!-- This displays the font awesome map sybmol infornt of the united states-->
+            <i class="fa fa-map-marker"></i>
+            <span  class="co_comp-space co_comp-space2">
+              {{location}} <span class="co_comp-space co_comp-space2"><i class="fa fa-angle-double-right"></i> </span>
+              <span class="co_comp-space co_comp-space2"> {{stocks}}:{{sname}} </span>
+            </span>
+            <!-- Here displays the description which come from the each loop-->
+            <div class="co_comp-adjust">{{ data }}</div>
+            <div class="co_comp-follw3">Market Cap: <span class="co_comp-follw4"> {{number}} </span> </div>
+          </div>
+        </div>
+        <!--This displays the blue button which holds the text "View Full List"-->
+        <div class="co_comp-ctmain">
+          <span class="co_comp-ctmaintxt">
+            Want an in-depth comparison?
+          </span>
+          <button class="co_comp-tile-button">
+            View Stock Comparison
+            <span style="margin-left:6px"><i class="fa fa-angle-right"></i></span>
+          </button>
+        </div>
+        <div class="co_comp-rtct">
+          <div class="co_comp-rttx1"> Stock Price</div>
+          {{#if fall}}
+          <div class="co_comp-follwt">
+          <span class="co_comp-follw1"> {{stck1}}</span>
+            <span class="co_comp-follw1 co_comp-follwg co_comp-follwr">{{stck2}} </span>
+          </div>
+          {{else}}
+          <div class="co_comp-follwt">
+          <span class="co_comp-follw1"> {{stck1}}</span>
+          <span class="co_comp-follw1 co_comp-follwg">{{stck2}} </span>
+          </div>
+          {{/if}}
+        {{#if diffg}}
+         <div class="co_comp-rttxg"> <i class="fa fa-arrow-up"> </i> <span class="co_comp-rttx2">{{diff}} </span> <span class="co_comp-follws">{{comp}} </span></div>
+        {{else}}
+         <div class="co_comp-rttxg co_comp-rttxr"> <i class="fa fa-arrow-down"> </i> <span class="co_comp-rttx2 co_comp-rttxr">{{diff}} </span><span class="co_comp-follws">{{comp}} </span></div>
+         {{/if}}
+        </div>
+        <!-- This displays the font awesome heart symbol beside the text "save"-->
+        <div class="co_comp-sn">
+          <div  class="co_comp-save">
+            <i class="fa fa-heart"></i>
+            <span  class="co_comp-save co_comp-st">
+              Follow
+            </span>
+          </div>
+        </div>
+
+        <!-- This displays the font awesome share symbol beside the text "share"-->
+        <div class="co_comp-sh">
+          <div  class="co_comp-share">
+            <i class="fa fa-share-alt"></i>
+            <span  class="co_comp-share co_comp-sht">
+              Share
+            </span>
+          </div>
+        </div>
+        <!-- This displays the font awesome flag symbol beside the text "Feedback"-->
+        <div class="co_comp-fe ">
+          <div  class="co_comp-share co_comp-feedback">
+            <i class="fa fa-flag"></i>
+            <span  class="co_comp-share co_comp-ft">
+              Feedback
+            </span>
+          </div>
+        </div>
+      </div>
+      {{/if}}
+      <!--This is the End of each loop -->
+      {{/each}}
+  <div class="co_comp-footer">
+    <!-- This is outermost class of the footer which holds the other elements in the footer-->
+    <div class="co_comp-holder1">
+      <!-- This is the class which holds the font awesome left arrow-->
+      <div class="co_comp-navigationl">
+        <i class="fa fa-angle-left co_comp-footer-icon"></i>
+      </div>
+      <!-- Here we write the code for the buttons 1,2,3 and 200-->
+      <button  class="co_comp-page-selector1 co_comp-page-selector1-font1">1</button>
+    <span class="co_comp-navigationr">
+      <i class="fa fa-angle-right co_comp-footer-icon"></i>
+    </span>
+      <!-- This is the class which holds the font awesome right arrow-->
+    </div>
+  </div>
+</div>
+  <!--created a container for the fotter  !-->
+<div class="co_comp-fotter">
+    {{> search_module}}
+</div>
+
+  </div>
+</div>
+{{/with}}
+</template>

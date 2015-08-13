@@ -1,0 +1,281 @@
+<!--
+Author: jyothyswaroop
+Created: 08/10/2015
+Description: co_board_committee page
+Associated Files: co_board_committee_logic.js and co_board_committee.less
+-->
+<!--Gave a template name stock_disclaimer_page !-->
+<template name="co_board_committee">
+<!--Defined a class name globally for height and width !-->
+{{#with company}}
+<div class= "co_commi">
+  <!--gave the dimensions for the module with total height and width !-->
+  <div class = "co_commi-n_m">
+    <!--dimensions for the circle container as ('cir-d') !-->
+    <div class="co_commi-cir_d">
+    <!-- dimensions for the circle as ('circ')!-->
+    <div class="co_commi-circ">
+      <!-- defines container for the smaller blue circle('sc_d') !-->
+      <div class= "co_commi-sc_d">
+      <!-- defines the dimension for the small circle('sc') !-->
+      <div class="co_commi-sc_d co_commi-sc">
+      <i class="co_commi-bfo fa fa-reply"></i>
+      </div>
+      </div>
+    </div>
+    </div>
+    <!--defines the container for text box !-->
+    <div class="co_commi-tc">
+    <!-- class date has all the font-weight and font specific !-->
+    <div class="co_commi-date">
+      LAST UPDATED: 06/24/2015, 8:00 AM EST
+    </div>
+    <!--specified font style for location !-->
+    <div class="co_commi-loc_st">
+       <i class="fa fa-map-marker"></i>
+    <!--specified font style for the state name !-->
+    <span class="co_commi-loc_st">
+      United States
+    </span>
+    </div>
+    <!-- specified font sytle for the stock disclaimer !-->
+    <div class="co_commi-loc_st co_commi-disc">
+    {{getheadername0}}
+    </div>
+    <!--specified font style for the inveskit finance  !-->
+    <div class="co_commi-loc_st co_commi-fin">
+    at {{getheadername1}}
+    </div>
+    </div>
+
+    <div class="co_commi-bar">
+      <div class="co_commi-bar-title">
+      <div class="co_commi-bar-helper">
+        {{formalName}}'s
+      </div>
+      <div class="co_commi-bar-side">{{getheadername0}} </div>
+      </div>
+      <div class="co_commi-bar-button">
+        <!-- the save option button-->
+        <a href="#"><i class="fa fa-heart"></i><span class="co_commi-bar-text">Save</span></a>
+      </div>
+      <div class="co_commi-bar-button">
+        <!-- share option button -->
+        <a href="#"><i class="fa fa-share-alt"></i><span class="co_commi-bar-text">Share</span></a>
+      </div>
+    </div>
+    <div class="co_commi-m_c">
+      <!-- the module.less file navigation buttons-->
+      <button class='co_commi-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+      <button class='co_commi-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+      <!-- end of the module.less navigation button -->
+      <!-- wrapper class-->
+      <div class="co_commi-m_c-image-wr">
+        <div class="co_commi-m_c-image">
+          <div class="co_commi-m_c-sma_ct">
+          <div class="co_commi-m_c-sma_cr">
+
+          </div>
+        </div>
+        </div>
+      </div>
+      <!-- the main container -->
+      <ul class="co_commi-m_c-cr">
+        <!-- the image in blue circle-->
+        <li class="co_commi-m_c-title">
+          <div class="co_commi-m_c-title-image"><i class="fa fa-briefcase"></i>
+          <span class="co_commi-m_c-title-text"> {{getheadername2}} </span>
+          </div>
+        </li>
+          <!--the follow('fbt') and share  !-->
+
+          <div class="co_commi-fbt1">
+            <!-- the save option button-->
+            <a href="#"><i class="co_commi-fbt1-font1 fa fa-heart"></i><span class="co_commi-fbt1-text1">Save</span></a>
+          </div>
+          <div class="co_commi-fbt1 co_commi-fbt2">
+            <!-- share option button -->
+            <a href="#"><i class="co_commi-fbt1-font1 fa fa-share-alt"></i><span class="co_commi-fbt1-text1">Share</span></a>
+          </div>
+
+        <!-- the description about the person-->
+        <li class="co_commi-m_c-dp">
+          <div class="co_commi-m_c-dp-dpct">
+          {{getheadername2}} is the Cheif Executive Officer and Chairman of {{getheadername1}} {{getheadername2}}'s net worth is valued at <span class="co_commi-m_c-dp-itl co_commi-m_c-dp-itB2">{{getheadername3}}</span> as of {{getheadername4}}.
+        </div>
+        </li>
+      </ul>
+      <!-- the bottom bar-->
+      <div class="co_commi-m_c-view_more">
+        <!-- the details about the comapny-->
+        <div class="co_commi-m_c-view_more-text">
+          <div class="co_commi-m_c-view_more-text-ln1">Want to know more about {{getheadername2}}?</div>
+          <div class="co_commi-m_c-view_more-text-ln2">Profile Last Updated On: <span class="co_commi-m_c-dp-itl">07/29/2015</span></div>
+        </div>
+        <button class="co_commi-m_c-view_more-button">
+          View Profile <i class="fa fa-angle-right"></i>
+        </button>
+      </div>
+    </div>
+    <!--container for the ct1 to 'sort by' and 'what is this list?'  !-->
+    <div class="co_commi-ct1">
+    <!--container for the sortby !-->
+    <div class="co_commi-sy">
+      <!-- container for the sortby font !-->
+      <div class="co_commi-syf"> Sort by:
+      <!-- container for the members font !-->
+      <span class="co_commi-syf co_commi-sym"> Active Members <span class="co_commi-sym co_commi-chd"> <i class=" fa fa-chevron-down"></i> </span> </span>
+      </div>
+    </div>
+    <!-- contianer for the complete 'what is this list' class name is wl!-->
+    <div class="co_commi-wl">
+      <!-- container for the 'what is this list' class name is wl2!-->
+      <div class="co_commi-wlc">
+        <!-- font style for the 'what is this list'!-->
+        <div class="co_commi-wlf">
+        What is this list?
+        <span class="co_commi-x">
+         <i class="fa fa-times"></i>
+        </span>
+        </div>
+      </div>
+      <!--container for the text inside the 'what is this list' as wltxt!-->
+      <div class="co_commi-wltxt">
+      <!--font style for the text !-->
+      <div class="co_commi-wltxtf">
+        <p> This is a list detailing all executive for {{getheadername1}} including CEO, COO, CFO, CTO, Marketing, Directors, etc.</p>
+      </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="co_commi-wrapper">
+      <!-- The loop starts here and the each will take each data item from the items on each iteration-->
+      {{#each items}}
+      {{#if imghld}}
+      <div class="co_commi-quotes">
+        <div class="co_commi-quotes-head">Featured Companies in the United States</div>
+        {{#each quote}}
+        <div class="co_commi-quotes-image">
+          <div class="co_commi-gap1"></div>
+          <div class="co_commi-quotes-image-text">
+            <div class="co_commi-quotes-image-text-ln1">{{name}}</div>
+              <div class="co_commi-quotes-image-text-vc">
+            <span class="co_commi-quotes-image-text-ln1 co_commi-quotes-image-text-ln4">
+              {{text}}
+            <span class="co_commi-quotes-image-text-ln1 co_commi-quotes-image-text-ln3">
+              {{text2}}
+            </span>
+            </span>
+          </div>
+          </div>
+        </div>
+        {{/each}}
+        <div class="co_commi-quotes-arrow fa fa-angle-right"></div>
+      </div>
+      {{else}}
+      <div class="co_commi-{{getBackgroundStyle}}"><br>
+        <!--This is the main (circle) image-->
+        <div class="co_commi-head-circ">
+          <div class="co_commi-head-image">
+            <!-- Here displays the counter number which is a result of each loop-->
+            <span class="co_commi-counter">#{{counter_no}}</span>
+            <span class="co_commi-counter2"></span>
+          </div>
+        </div>
+        <!--Location title -->
+        <div class="co_commi-sp">
+          <div  class="co_commi-space">
+            <!-- This displays the font awesome map sybmol infornt of the united states-->
+            <i class="fa fa-map-marker"></i>
+            <span  class="co_commi-space co_commi-space2">
+              {{location}}
+            </span>
+            <!-- Here displays the description which come from the each loop-->
+            <div class="co_commi-adjust">{{ data }}</div>
+            <div class="co_commi-follw3">{{comp}} </div>
+          </div>
+        </div>
+        <!--This displays the blue button which holds the text "View Full List"-->
+        <div class="co_commi-ctmain">
+          <span class="co_commi-ctmaintxt">
+            Want more info about this director?
+          </span>
+          <button class="co_commi-tile-button">
+            View profile
+            <span style="margin-left:6px"><i class="fa fa-angle-right"></i></span>
+          </button>
+        </div>
+        <div class="co_commi-rtct">
+          <div class="co_commi-rttx1"> FB Shares Held</div>
+          <div class="co_commi-follwt">
+          <span class="co_commi-follw1"> {{number}}</span>
+          </div>
+          <div class="co_commi-rttxg"> <span class="co_commi-follws">as of {{getheadername4}} </span></div>
+        </div>
+        <!-- This displays the font awesome heart symbol beside the text "save"-->
+        <div class="co_commi-sn">
+          <div  class="co_commi-save">
+            <i class="fa fa-heart"></i>
+            <span  class="co_commi-save co_commi-st">
+              Follow
+            </span>
+          </div>
+        </div>
+
+        <!-- This displays the font awesome share symbol beside the text "share"-->
+        <div class="co_commi-sh">
+          <div  class="co_commi-share">
+            <i class="fa fa-share-alt"></i>
+            <span  class="co_commi-share co_commi-sht">
+              Share
+            </span>
+          </div>
+        </div>
+        <!-- This displays the font awesome flag symbol beside the text "Feedback"-->
+        <div class="co_commi-fe ">
+          <div  class="co_commi-share co_commi-feedback">
+            <i class="fa fa-flag"></i>
+            <span  class="co_commi-share co_commi-ft">
+              Feedback
+            </span>
+          </div>
+        </div>
+      </div>
+      {{/if}}
+      <!--This is the End of each loop -->
+      {{/each}}
+  <div class="co_commi-footer">
+    <!-- This is outermost class of the footer which holds the other elements in the footer-->
+    <div class="co_commi-holder1">
+      <!-- This is the class which holds the font awesome left arrow-->
+      <div class="co_commi-navigationl">
+        <i class="fa fa-angle-left co_commi-footer-icon"></i>
+      </div>
+      <!-- Here we write the code for the buttons 1,2,3 and 200-->
+      <button  class="co_commi-page-selector1 co_commi-page-selector1-font1">1</button>
+      <button class="co_commi-page-selector2 co_commi-page-selector2-font2">2</button>
+      <button  class="co_commi-page-selector3 co_commi-page-selector3-font3">3</button>
+      <span  class="co_commi-dots" >...</span>
+      <button  class="co_commi-page-selector200 co_commi-page-selector200-font">200</button>
+      <!-- for navigation !-->
+    <span class="co_commi-navigationr">
+      <i class="fa fa-angle-right co_commi-footer-icon"></i>
+    </span>
+      <!-- This is the class which holds the font awesome right arrow-->
+    </div>
+    <!-- container for the View all button !-->
+    <div class="exm_tk-navigation2">
+      <button class="exm_tk-view-all exm_tk-view-all-font">VIEW ALL <img style="padding-bottom:4px" src="infinite-icon.png"></button>
+    </div>
+  </div>
+</div>
+  <!--created a container for the fotter  !-->
+<div class="co_commi-fotter">
+    {{> didnt_find}}
+</div>
+
+  </div>
+</div>
+{{/with}}
+</template>
