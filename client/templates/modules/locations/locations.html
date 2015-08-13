@@ -1,0 +1,36 @@
+<!--
+Author:Meghana yerramilli
+Created: [8-12-2015]
+Description: locations module
+Associated Files: locations.less,locations.js
+-->
+<Template name="locations">
+  <!--dimensions-->
+  <div class="loc_dim">
+    <!--header -->
+    <div class="module-header">
+      <span class="module-header-line"></span>
+      <span class="module-header-title"> <span class="loc_htitle">Trending locations</span></span>
+    </div>
+    <!--navigation buttons-->
+    <div class="loc_leftbtn"><span class="loc_lefticon"><i class="fa fa-angle-right"></i></span></div>
+    <div class="loc_righttbtn"><span class="loc_lefticon"><i class="fa fa-angle-left"></i></span></div>
+    <!--bottom container-->
+    <div class="loc_infocont">
+      <!--image in container-->
+      <div class="loc_image">
+        <div class="loc_image1"></div>
+      </div>
+      <!--info in container-->
+      <div class="loc_info">
+        <span class="loc_person">{{location}}</span>
+        <span class="loc_company">Local Companies: {{fig}}</span>
+      </div>
+      <!-- view profile button-->
+      <div class="loc_viewbtn">
+        <span class="loc_viewtext">View Profile</span>
+        <span class="loc_viewicon"><i class="fa fa-share"></i></span>
+      </div>
+    </div>
+  </div>
+</template>

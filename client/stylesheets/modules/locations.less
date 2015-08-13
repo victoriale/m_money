@@ -1,0 +1,168 @@
+/*
+Author: Meghana yerramilli
+Created: [8-12-2015]
+Description:locations module
+Associated Files: locations.html,locations.js
+*/
+@import (reference)"../global_vars.less";
+@import (reference)"../modules.less";
+//dimensions
+.loc_dim{
+  .module;
+  width: 680px;
+  height: 430px;
+  background-color:  rgba(0, 0, 0, 0.25);
+  border-bottom: none;
+}
+.loc_htitle{
+  color:  #ffffff;
+  font-size: 18px;
+  font-family: HN-B;
+}
+//left navigation button
+.loc_leftbtn{
+  width: 40px;
+  height: 80px;
+  background-color:  rgba(0, 0, 0, 0.5);
+  border-top-right-radius: 38px;
+  border-bottom-right-radius: 38px;
+  color:#fff;
+  position:relative;
+  position: relative;
+  top: 27%;
+  text-align: center;
+  padding-top: 19px;
+  cursor: pointer;
+}
+.loc_leftbtn:hover{
+  background: #3098ff;
+}
+//icon in nav button
+.loc_lefticon{
+  color:  #ffffff;
+  font-size: 30px;/* Approximation due to font substitution */
+  font-weight: 400;
+}
+//right nav button
+.loc_righttbtn{
+  .loc_leftbtn;
+  float: right;
+  border-top-left-radius: 38px;
+  border-bottom-left-radius: 38px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  top: 8.5%;
+}
+.loc_righttbtn:hover{
+  background: #3098ff
+}
+//bottom container
+.loc_infocont{
+  background-color:  rgba(0, 0, 0, 0.75);
+  width: 680px;
+  height: 94px;
+  margin-top: 31%;
+}
+//image
+.loc_image{
+  border-radius: 50%;
+  border-width: 5px;
+  border-color:  #ffffff;
+  border-style: solid;
+  background-color:  #ffffff;
+  width: 125px;
+  height: 125px;
+  margin-left: 22px;
+  position: relative;
+  top:-58%;
+  cursor: pointer;
+}
+.loc_image1{
+  .loc_image;
+  box-shadow: 0 0 0 5px #D8D8D8;
+  opacity: 0.5;
+  margin-left: -5px;
+  top: -5px;
+}
+//information in the container
+.loc_info{
+  width: 333px;
+  height: 59px;
+  position: relative;
+  top: -113px;
+  left: 170px;
+  line-height: 20px;
+  overflow: hidden;
+}
+//location
+.loc_loc{
+  color: #fff;
+  font-size: 10px;
+  font-family: HN-L;
+  position: relative;
+  top: -6px;
+  width: 100px;
+  height: 14px;
+  display: block;
+  overflow: hidden;
+}
+//map icon
+.loc_locicon{
+  color:  #3098ff;
+  font-size: 10px;/* Approximation due to font substitution */
+  font-weight: 400;
+}
+.loc_space{
+  margin-left: 3px;
+}
+//details
+.loc_person{
+  color:  #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+  position: relative;
+  width: 325px;
+  height:26px;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+//styles for details
+.loc_company{
+  color:  #ffffff;
+  font-size: 18px;
+  font-family: HN-L;
+  position: relative;
+  width: 336px;
+  height: 21px;
+  overflow: hidden;
+  display: block;
+}
+//view profile button
+.loc_viewbtn{
+  border-radius: 5px;
+  background-color:  #3098ff;
+  width: 140px;
+  height: 35px;
+  float: right;
+  position: relative;
+  top: -167%;
+  right: 20px;
+  color: #fff;
+  text-align: center;
+  padding-top: 7px;
+  cursor: pointer;
+}
+//text in button
+.loc_viewtext{
+  color:  #ffffff;
+  font-size: 14px;
+  font-family: HN-L;
+}
+//icon in button
+.loc_viewicon{
+  color:  #ffffff;
+  font-size: 14px;
+  margin-left: 3px;
+  font-weight: 400;
+}

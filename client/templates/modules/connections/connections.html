@@ -1,0 +1,38 @@
+<!--
+Author:Meghana yerramilli
+Created: [8-12-2015]
+Description: connections module
+Associated Files: connections.less,connections.js
+-->
+<Template name="connections">
+  <!--dimensions-->
+  <div class="conn_dim">
+    <!--header -->
+    <div class="module-header">
+      <span class="module-header-line"></span>
+      <span class="module-header-title"> <span class="conn_htitle">{{ceo}}'s Trending connections</span></span>
+    </div>
+    <!--navigation buttons-->
+    <div class="conn_leftbtn"><span class="conn_lefticon"><i class="fa fa-angle-right"></i></span></div>
+    <div class="conn_righttbtn"><span class="conn_lefticon"><i class="fa fa-angle-left"></i></span></div>
+    <!--bottom container-->
+    <div class="conn_infocont">
+      <!--image in container-->
+      <div class="conn_image">
+        <div class="conn_image1"></div>
+      </div>
+      <!--info in container-->
+      <div class="conn_info">
+        <span class="conn_loc"><span class="conn_locicon"><i class="fa fa-map-marker"></i></span><span class="conn_space">{{location}}</span></span><br>
+        <span class="conn_person">{{cmperson}}</span>
+        <span class="conn_company">{{postion}} at {{company}}.</span>
+      </div>
+      <!-- view profile button-->
+      <div class="conn_viewbtn">
+        <span class="conn_viewtext">View Profile</span>
+        <span class="conn_viewicon"><i class="fa fa-share"></i></span>
+      </div>
+    </div>
+  </div>
+
+</template>
