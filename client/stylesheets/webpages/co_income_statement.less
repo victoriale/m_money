@@ -1,0 +1,901 @@
+/*
+Author: Tanner Storment
+Date: 08/10/2015
+Description: CSS Styling for displaying income info about various companies
+Related Files:
+- /client/templates/webpages/co_income_statement.html
+- /client/templates/webpages/co_income_statement.js
+*/
+@import (reference)"../global_vars.less";
+@import (reference)"../modules.less";
+.co-inc-stmt {
+  width: 680px;
+  margin: 5px;
+  height: auto;
+  background-color: @white;
+  &-clickable { //co-inc-stmt-clickable
+    cusor:pointer;
+  }
+
+  &-pa //co-inc-stmt-pa
+  {
+    position: absolute;
+  }
+
+  &-pr //co-inc-stmt-pr
+  {
+    position: relative;
+  }
+
+  &-b //co-inc-stmt-b
+  {
+    font-family: HN-B;
+    font-style: normal;
+  }
+
+  &-l //co-inc-stmt-l
+  {
+    font-family: HN-L;
+  }
+
+  &-green{ //co-inc-stmt-green
+    color: @green;
+  }
+
+  &-blue{ //co-inc-stmt-blue
+    color: @blue;
+  }
+
+  &-light{ //co-inc-stmt-light
+    color: @grey-6;
+    font-family: HN-L !important;
+  }
+
+  &-hdr { //co-inc-stmt-hdr
+    width: 680px;
+    height: 500px;
+    background-color: @white;
+
+    &-lefthov{ //co-inc-stmt-hdr-lefthov
+      border: 3px solid #000;
+      float:left;
+      height:80px;
+      width:40px;
+      background:#000;
+      border-top-right-radius:38px;
+      border-bottom-right-radius:38px;
+      padding-right:12px;
+      color:#fff;
+      position: relative;
+      top:88px;
+    }
+    /*properties for left navigation button hover*/
+    &-lefthov:hover{ //co-inc-stmt-hdr-lefthov:hover
+      border: 3px solid #3098ff;
+      height:80px;
+      width:40px;
+      background:#3098ff;
+      border-top-right-radius:38px;
+      border-bottom-right-radius:38px;
+    }
+
+    /*properties for right navigation button*/
+    &-righthov{ //co-inc-stmt-hdr-righthov
+      border: 3px solid #000;
+      float:right;
+      height:80px;
+      width:40px;
+      background:#000;
+      border-top-left-radius:38px;
+      border-bottom-left-radius:38px;
+      color:#fff;
+      padding-left:12px;
+      position: relative;
+      top:88px;
+    }
+    &-righthov:hover{ //co-inc-stmt-hdr-righthov:hover
+      background: #3098ff;
+      border: 3px solid #3098ff;
+    }
+
+    //the head box consisting of the white background
+    &-head-box { //co-inc-stmt-hdr-head-box
+      width: 680px;
+      height: 140px;
+      background-color: @white;
+      text-align: left;
+      margin: 0;
+    }
+    //image inside the article head
+    &-head-image { //co-inc-stmt-hdr-head-image
+      width: 100px;
+      height: 100px;
+      margin: 20px;
+      border: solid 2px @grey-3;
+      border-radius: 50%;
+      float: left;
+      background-color:#fff;
+      //the symbol above the image
+      &-icon { //co-inc-stmt-hdr-head-image-icon
+        height: 35px;
+        width: 35px;
+        background-color: @blue;
+        position: relative;
+        bottom: 5px;
+        right: 10px;
+        border-radius: 50%;
+        border: solid 1px @white;
+        color: @white;
+        line-height: 33px;
+        font-size: 15px;
+        text-align: center;
+
+        .fa{ //co-inc-stmt-hdr-head-image.fa
+          position: relative;
+          bottom: 1px;
+          right: 1px;
+        }
+      }
+    }
+    //the text consisting the latest update
+    &-text { //co-inc-stmt-hdr-text
+      //width: 545px;
+      //height: 120px;
+      //margin: 0;
+      padding-top: 15px;
+      float: left;
+      color: @black;
+      text-align: left;
+      list-style-type: none;
+      //the update part
+      &-update { //co-inc-stmt-hdr-text-update
+        font-size: 10px;
+        color: #959595;
+        margin-bottom: 10px;
+        position: relative;
+        top: -2px;
+      }
+      //the location
+      &-loc { //co-inc-stmt-hdr-text-loc
+        font-size: 12px;
+      }
+      // the name of the person
+      &-name { //co-inc-stmt-hdr-text-name
+        font-size: 22px;
+        font-family: HN-B;
+      }
+      // the person description
+      &-auth { //co-inc-stmt-hdr-text-auth
+        font-size: 22px;
+        font-family: HN-L;
+        line-height: 26px;
+        white-space:nowrap;
+        overflow:hidden;
+        max-width:500px; //I have no clue how big a company's name will be, but I have to cut it off /somewhere/
+
+      }
+    }
+
+    //the bottom bar
+    &-bar { //co-inc-stmt-hdr-bar
+      width: 680px;
+      height: 35px;
+      background-color: rgba(0,0,0,85);
+      //padding-left: 10px;
+      color: @white;
+      font-size: 16px;
+      text-align: left;
+      // the font awesome icon color
+      .fa { //co-inc-stmt-hdr-bar.fa
+        color: @white;
+      }
+      //the link color
+      a { //co-inc-stmt-hdr-bar-a? or something
+        color:@white;
+      }
+      //the title next to save and share
+      &-title{ //co-inc-stmt-hdr-bar-title
+        border-right: 1px solid #363636;
+        background-color: inherit;
+        text-align: center;
+        float: left;
+        height:35px;
+        line-height: 35px;
+        max-width:300px;
+        margin-left:15px;
+        font-size: 16px;
+        font-family: HN-B;
+        &-comp //co-inc-stmt-hdr-bar-title-comp
+        {
+          max-width:140px;
+          overflow:hidden;
+          white-space:nowrap;
+          float:left;
+        }
+      }
+      // the button for save and share
+      &-button { //co-inc-stmt-hdr-bar-button
+        border: none;
+        text-align: center;
+        float: left;
+        line-height: 35px;
+        height:35px;
+        width:85px;
+        margin-right: 8px;
+        font-family: HN-L;
+
+        .fa{ //co-inc-stmt-hdr-bar-button.fa
+          margin-right: 10px;
+          font-size:14px;
+        }
+      }
+
+      &-text { //co-inc-stmt-hdr-bar-text
+        font-family: HN-L;
+        font-size:14px;
+
+      }
+    }
+    //the main container with the grey background
+    &-main-container { //co-inc-stmt-main-container
+      width: 680px;
+      height: 325px;
+      background-image: @dark-linen;
+      text-align: left;
+      overflow: hidden;
+      margin: 0;
+      position: relative;
+      // image inside the container
+      &-image { //co-inc-stmt-main-container-image
+        width: 180px;
+        height:180px;
+        border-color:#ccc;
+        border-width:3px;
+        border-radius: 50%;
+        background-color:#fff;
+        border-style:solid;
+
+        //the wrapper to wrap up the container height and width
+        &-wrapper { //co-inc-stmt-main-container-image-wrapper
+          width: 180px;
+          height: 180px;
+          border-radius: 50%;
+          position: relative;
+          top: 35px;
+          margin: 0 10px 35px 35px;
+          position:relative;
+          left:20px;
+          top:40px;
+        }
+      }
+      //the sub-conatainer
+      &-container { //co-inc-stmt-main-container-container
+
+        height: 215px;
+        width: 380px;
+        margin: 0;
+        list-style-type: none;
+        color: #ffffff;
+        text-align: left;
+        position: relative;
+        float: right;
+        padding: 0 0 0 5px;
+        top: -180px;
+        left: -53px;
+      }
+      // the title inside the container
+      &-title { //co-inc-stmt-hdr-main-container-title
+        width:680px;
+
+        &-txt { //co-inc-stmt-hdr-main-container-title-txt
+          font-size: 22px;
+          font-weight: lighter;
+          color: @white;
+          line-height: 22px;
+          position: relative;
+          left: -12px;
+          top:5px;
+          width:300px;
+          display:inline-block;
+          white-space:nowrap;
+        }
+        &-save {//co-inc-stmt-hdr-main-container-title-save
+          font-family:HN-L;
+          color:#f2f2f2;
+          font-size:14px;
+          &-icn{ //co-inc-stmt-hdr-main-container-title-save-icn
+            font-family:fontawesome;
+            margin-right:5px;
+          }
+        }
+        &-share { //co-inc-stmt-hdr-main-container-title-share
+          font-family:HN-L;
+          color:#f2f2f2;
+          font-size:14px;
+          &-icn{ //co-inc-stmt-hdr-main-container-title-share-icn
+            font-family:fontawesome;
+            margin-right:5px;
+            margin-left:38px;
+          }
+        }
+        //the image inside the container
+        &-image { //co-inc-stmt-hdr-main-container-title-image
+          width: 40px;
+          height: 40px;
+          background-color: @blue;
+          border: none;
+          border-radius: 50%;
+          float: left;
+          margin-right: 10px;
+          text-align: center;
+          padding: auto;
+          font-size: 20px;
+          line-height:40px;
+          position: relative;
+          left: -17px;
+          top:5px;
+        }
+      }
+      // the description part
+      &-description { //co-inc-stmt-hdr-main-container-description
+        max-height: 107px;
+        width: 356px;
+        overflow: hidden;
+        border-left: solid 2px #cccccc;
+        padding: 0 0 0 15px;
+        margin-left: 3px;
+        margin-top: 25px;
+        font-size: 16px;
+        font-family: HN-L;
+        color: #ffffff;
+        line-height: 17px;
+        //text-align: justify;
+
+        &-ln1{ //co-inc-stmt-hdr-main-container-description-ln1
+          font-family: HN-L;
+          height:20px;
+          line-height:20px;
+          margin-bottom:7px;
+          overflow:hidden;
+          position:relative;
+          top:-5px
+        }
+
+        &-ln2 //co-inc-stmt-hdr-main-container-description-ln2
+        {
+          line-height: 18px;
+          font-size: 14px;
+          position:relative;
+        }
+      }
+      &-view_more{ //co-inc-stmt-hdr-main-container-view_more
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        height: 75px;
+        color: @white;
+        background-color: rgba(0,0,0,75);
+
+        // the text part
+        &-text { //co-inc-stmt-hdr-main-container-view_more-text
+          margin-left: 20px;
+          margin-top: 15px;
+          float: left;
+          text-align: left;
+
+          &-ln1{ //co-inc-stmt-hdr-main-container-view_more-ln1
+            font-size: 18px;
+            font-family: HN-L;
+            width:450px;
+            white-space:nowrap;
+            overflow:hidden;
+          }
+
+          &-ln2{ //co-inc-stmt-hdr-main-container-view_more-ln2
+            font-size: 14px;
+            font-family: HN-L;
+            width:450px;
+            white-space:nowrap;
+            overflow:hidden;
+          }
+        }
+
+        //the button
+        &-button{ //co-inc-stmt-main-container-button
+          width: 180px;
+          height: 35px;
+          border-radius: 5px;
+          background-color: @blue;
+          color: @white;
+          text-align: center;
+          float: right;
+          margin-top: 20px;
+          margin-right: 10px;
+          border: none;
+          opacity: 1.0;
+          filter: alpha(opacity=100);
+
+
+          .fa{
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+  }
+  &-sortby { //co-inc-stmt-sortby
+    font-family: HN-B;
+    font-size: 12px;
+    color:#000;
+    margin-left:15px;
+    margin-top:3px;
+    //small font for the sort by text
+    &-text { //co-inc-stmt-sortby-text
+      font-family: HN-L;
+    }
+    //Down arrow for the sort by box
+    &-icon{ //co-inc-stmt-sortby-icon
+      font-family: FontAwesome;
+      color: #3098ff;
+      font-size:12px;
+      margin-left:7px;
+
+    }
+  }
+  &-whatis { //co-inc-stmt-whatis
+    font-family:HN;
+    line-height:20px;
+    color:#000;
+    background-color:#fafafa;
+    border-width:1px;
+    border-color:#ebebeb;
+    border-style:solid;
+    width:650px;
+    height:104px;
+    font-size:14px;
+    margin: 15px;
+    &-text { //co-inc-stmt-whatis-text
+      padding: 10px 35px 12px 21px;
+    }
+    //Darker grey box on the top of the "what is this list" box
+    &-header { //co-inc-stmt-whatis-header
+      background-color:#ebebeb;
+      width:648px;
+      height:20px;
+      font-family:HN-B;
+      color:#333;
+      font-size:12px;
+      padding-left:11px;
+
+      &-x //co-inc-stmt-whatis-header-x
+      {
+        float: right;
+        margin-right: 7px;
+        padding-top: 3px;
+      }
+    }
+  }
+  &-metrics { //co-inc-stmt-metrics
+    padding-left:10px;
+    &-header { //co-inc-stmt-metrics-header
+      font-family:HN;
+      line-height:28px;
+      font-size:18px;
+      margin-left:15px;
+      margin-top:25px;
+      width:auto;
+      white-space:nowrap;
+      overflow:hidden;
+      &-light-txt { //co-inc-stmt-metrics-header-light-txt
+        font-family:HN-L;
+      }
+      &-line { //co-inc-stmt-metrics-header-line
+        width:650px;
+        height:1px;
+        background-color:#ccc;
+        margin-bottom:15px;
+        margin-top:7px;
+      }
+    }
+    &-graph{ //co-inc-stmt-metrics-graph
+      &-cont { //co-inc-stmt-metrics-graph-cont
+        //background-color:#f2f2f2;
+        height:330px;
+        width:650px;
+        margin-left:15px;
+        &-title { //co-inc-stmt-metrics-graph-cont-title
+          background-color:#f2f2f2;
+          width:650px;
+          height:49px;
+          color:#666;
+          font-family:HN-L;
+          line-height:49px;
+          font-size:18px;
+          padding-left:10px;
+          &-comp {
+            max-width:140px;
+            overflow:hidden;
+            white-space:nowrap;
+            float:left;
+          }
+          &-lblcnt { //co-inc-stmt-metrics-graph-cont-title-lblcnt
+            float:right;
+            //margin-right:20px;
+            width:406px;
+          }
+          &-lbl { //co-inc-stmt-metrics-graph-cont-title-lbl
+            height:49px;
+            width: 115px;//122
+            overflow:hidden;
+            position:relative;
+            top:-10px;
+            display:inline-block;
+            margin-right:17px;
+            &-bigtxt { //co-inc-stmt-metrics-graph-cont-title-lbl-bigtxt
+              font-family:HN-B;
+              font-size:14px;
+              color:#272727;
+              white-space:nowrap;
+              overflow:ellipsis;
+            }
+            &-smltxt { //co-inc-stmt-metrics-graph-cont-title-smltxt
+              font-family:HN;
+              color:@blue;
+              font-size:12px;
+              white-space:nowrap;
+              overflow:ellipsis;
+              position:relative;
+              top:-34px;
+              left:16px;
+              width:100px;
+            }
+            &-circle { //co-inc-stmt-metrics-graph-cont-title-lbl-circle
+              width:10px;
+              height:10px;
+              border-radius:3px;
+              margin-top:2px;
+              display:inline-block;
+            }
+            &blue { //co-inc-stmt-metrics-graph-cont-title-lbl-blue
+              background-color:@blue;
+            }
+            &orange { //co-inc-stmt-metrics-graph-cont-title-lbl-orange
+              background-color: #f7701d;
+            }
+            &red { //co-inc-stmt-metrics-graph-cont-title-lbl-red
+              background-color:#ca1010;
+            }
+          }
+        }
+      }
+        &-graph //co-inc-stmt-metrics-graph-graph
+        {
+            //left: 15px;
+            width: 650px;
+            margin-top: 5px;
+            height: 221px;
+        }
+
+        &-period //co-inc-stmt-metrics-graph-period
+        {
+            width: 100%;
+            height: 50px;
+            background-color: #f2f2f2;
+            padding: 0px 14px;
+            margin-top:14px;
+            &-btn //co-inc-stmt-metrics-graph-period-btn
+            {
+                background-color: #f2f2f2;
+                border-radius: 50%;
+                width: 35px;
+                height: 35px;
+                font-size: 14px;
+                color: #272727;
+                margin: 6px 26px 6px 0px;
+                float: left;
+                text-align: center;
+                padding-top: 7px;
+                cursor: pointer;
+
+                &-a //co-inc-stmt-metrics-graph-period-btn-a
+                {
+                    background-color: @blue;
+                    color: @white;
+                }
+            }
+        }
+
+    }
+    &-tile { //co-inc-stmt-metrics-tile
+      width:680px;
+      //height:296px;
+      padding-top:12px;
+      padding-bottom:10px;
+      border-bottom: 1px solid @grey-3;
+      &-white { //co-inc-stmt-metrics-tile-white
+        background-color:@white;
+      }
+      &-grey { //co-inc-stmt-metrics-tile-grey
+        background-color:#efefef; //determined by using a color picker on the specs.
+      }
+      &-right-side-cnt { //co-inc-stmt-metrics-tile-right-side-cnt
+        //height:272px;
+        width:331px; //If you increase this to 334, safari on the old macs will throw a fit.
+        display:inline-block;
+        padding-left:10px;
+        padding-right:15px;
+        float:right;
+
+      }
+      &-left-side-cnt { //co-inc-stmt-metrics-tile-left-side-cnt
+        //height:272px;
+        width:345px;
+        border-right: 1px dashed #bfbfbf;
+        display:inline-block;
+
+        padding-left:15px;
+        padding-right:15px;
+      }
+      &-miss { //co-inc-stmt-metrics-tile-miss
+
+        position:relative;
+        &-blurred { //co-inc-stmt-metrics-tile-miss-blurred
+          filter:blur(2px);
+          -moz-filter:blur(2px);
+          -webkit-filter:blur(2px);
+          opacity: 0.2;
+          position:absolute;
+          top:-25px;
+          left:0px;
+        }
+        &-cnt { //co-inc-stmt-metrics-tile-miss-cnt
+          height:75px;
+          width:300px;
+          &-hdr { //co-inc-stmt-metrics-tile-miss-cnt-hdr
+            color:#ffc600;
+            font-family:HN-B;
+            font-size:14px;
+            margin-bottom:5px;
+          }
+          &-txt { //co-inc-stmt-metrics-tile-miss-cnt-txt
+            font-family:HN;
+            color:#000;
+            font-size:12px;
+            display:inline-block;
+            width:240px;
+
+          }
+          &-circle { //co-inc-stmt-metrics-tile-miss-cnt-circle
+            width:46px;
+            height:46px;
+            border-radius:50%;
+            border: 1px solid #ffc600;
+            display:inline-block;
+            text-align:center;
+            float:left;
+            margin-right:10px;
+          }
+          &-icon { //co-inc-stmt-metrics-tile-miss-cnt-icon
+            font-family: FontAwesome;
+            color:#ffc600;
+            font-size:20px;
+            line-height:46px;
+            height:46px;
+            width:46px;
+          }
+        }
+      }
+
+      &-hdr { //co-inc-stmt-metrics-tile-hdr
+
+        overflow:hidden;
+        //margin-left:15px;
+        position:relative;
+        &-txt { //co-inc-stmt-metrics-tile-hdr-txt
+          line-height:20px;
+          //height:35px;
+          font-family:HN-B;
+          font-size:16px;
+          white-space:nowrap;
+          overflow:hidden;
+        }
+        &2 { //co-inc-stmt-metrics-tile-hdr2
+          font-size: 14px;
+          font-family: HN;
+          line-height: auto;
+
+          white-space:nowrap;
+          overflow:hidden;
+          /*float:left;
+          position:absolute;
+          left:45px;
+          top:15px;*/
+        }
+        &-circle { //co-inc-stmt-metrics-tile-hdr-circle
+          border-radius:50%;
+          width:35px;
+          height:35px;
+          background-color:@blue;
+          display:inline-block;
+          align-content:center;
+          float:left;
+          margin-right:10px;
+          &-icon { //co-inc-stmt-metrics-tile-hdr-circle-icon
+            color:@white;
+            font-family: FontAwesome;
+            line-height:35px;
+            text-align:center;
+            font-size:16px;
+            width:100%;
+          }
+        }
+      }
+      &-line { //co-inc-stmt-metrics-tile-line
+        width:310px;
+        height:35px;
+        border-bottom:1px solid @grey-3;
+        overflow:hidden;
+        position:relative;
+
+        &-bottom { //co-inc-stmt-metrics-tile-line-bottom
+          border-bottom:0px;
+        }
+        &-txt { //co-inc-stmt-metrics-tile-line-txt
+          line-height:35px;
+          font-family:HN-L;
+          font-size:14px;
+          color:#000;
+          float:left;
+          position:absolute;
+          left:0px;
+        }
+        &-bold { //co-inc-stmt-metrics-tile-bold
+          font-family:HN-B;
+          line-height:35px;
+          font-size:14px;
+          color:#000;
+          float:right;
+          position:absolute;
+          right:0px;
+        }
+      }
+      &-lines { //co-inc-stmt-metrics-tile-lines
+        margin-left:5px;
+        margin-top:6px;
+      }
+            &-chartcont { //co-inc-stmt-metrics-tile-chartcont
+        margin-top:20px;
+        &-fake { //co-inc-stmt-metrics-tile-chartcont-fake
+          position:relative;
+          top:-10px;
+        }
+        &-chart { //co-inc-stmt-metrics-tile-chartcont-chart
+          width:310px;
+          height:36px;
+          background-color:@grey-3;
+          border-radius: 5px;
+          overflow:hidden;
+          &-red { //co-inc-stmt-metrics-tile-chartcont-chart-red
+            background-color:#ff4040;
+            border-radius: 5px;
+            padding-right:15px;
+            height:100%;
+            display:inline-block;
+          }
+          &-blue { //co-inc-stmt-metrics-tile-chartcont-blue
+            background-color:@blue;
+            border-radius: 5px;
+            padding-right:15px;
+            height:100%;
+            display:inline-block;
+          }
+          &-innertext { //co-inc-stmt-metrics-tile-chartcont-chart-innertext
+            color:@white;
+            font-family:HN-B;
+            font-size:12px;
+            float:right;
+            line-height:35px;
+          }
+          &-text { //co-inc-stmt-metrics-tile-chartcont-chart-text
+            color:#000;
+            font-size:12px;
+            font-family:HN;
+            right:20px;
+            float:right;
+            line-height:35px;
+            right:10px;
+            position:relative;
+          }
+        }
+        &-title { //co-inc-stmt-metrics-tile-chartcont-title
+          font-family:HN;
+          font-size:12px;
+          color: rgba(0,0,0,0.45);
+          font-style:italic;
+          margin-bottom:10px;
+          margin-left:10px;
+        }
+        &-below { //co-inc-stmt-metrics-tile-chartcont-below
+          float:left;
+          font-family:HN-B;
+          font-size:10px;
+          position:relative;
+          left:40px;
+        }
+        &-above { //co-inc-stmt-metrics-tile-chartcont-above
+          float:right;
+          font-family:HN-B;
+          font-size:10px;
+          position:relative;
+          right:40px;
+
+        }
+      }
+    }
+    &-growth-tile { //co-inc-stmt-metrics-growth-tile
+      width:680px;
+      height:219px;
+      //padding-left:10px;
+      padding-top:15px;
+      &-hdr { //co-inc-stmt-metrics-growth-tile-hdr
+        padding-left:15px !important;
+      }
+      &-white { //co-inc-stmt-metrics-growth-tile-white
+        background-color:@white;
+      }
+      &-grey { //co-inc-stmt-metrics-growth-tile-grey
+        background-color:@grey-1;
+        border-top: 1px solid #c2c2c2;
+        border-bottom: 1px solid #c2c2c2;
+      }
+      &-graphcont { //co-inc-stmt-metrics-growth-tile-graphcont
+        height:150px;
+        width: 360px;
+        margin-top:20px;
+        float:left;
+      }
+      &-legend { //co-inc-stmt-metrics-growth-tile-legend
+        float:right;
+        width:310px;
+        height:167px;
+        //background-color:#00f;
+        border-top: 1px solid #ccc;
+        &-line { //co-inc-stmt-metrics-growth-tile-legend-line
+          height:50px;
+          width:310px;
+          border-bottom:1px solid #ccc;
+          overflow:hidden;
+          white-space:nowrap;
+          &-txt { //co-inc-stmt-metrics-growth-tile-legend-line-txt
+            line-height:50px;
+            color:#000;
+            font-size:14px;
+            font-family:HN;
+            float:left;
+            margin-left:15px;
+
+          }
+          &-bld { //co-inc-stmt-metrics-growth-tile-legend-line-bld
+            font-family:HN-B;
+            color:#000;
+            line-height:50px;
+            font-size:14px;
+            float:right;
+            margin-right:30px;
+          }
+
+          &blue { //co-inc-stmt-metrics-growth-tile-legend-lineblue
+            border-left:5px solid @blue;
+          }
+          &orange { //co-inc-stmt-metrics-growth-tile-legend-lineorange
+            border-left:5px solid #ffc600;
+          }
+          &red { //co-inc-stmt-metrics-growth-tile-legendred
+            border-left:5px solid #ff3131;
+          }
+
+        }
+      }
+    }
+  }
+}

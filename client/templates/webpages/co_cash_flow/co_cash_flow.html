@@ -1,0 +1,278 @@
+<!--
+  Author: Tanner Storment
+  Date: [08/13/2015]
+  Description: Templates for the Company Cash Flow Page
+  Related Files:
+    - /client/templates/webpages/co_cash_flow.js
+    - /client/stylesheets/webpages/co_cash_flow.less
+-->
+
+<template name="co_cash_flow">
+  <div class="ccf">
+    {{#with getMainCompany}}
+    {{> ccf_hdr}}
+    <div class="ccf-sortby">
+      Sort by:
+      <span class="ccf-sortby-text">Annual Financials</span>
+      <i class="fa fa-angle-down ccf-sortby-icon"></i>
+    </div>
+    {{> ccf_whatis_box header="What is Cash Flow?" text="A Cash Flow statement shows the amount of cash generated and used by a company during a given time. Cash flow statements are typically prepared quarterly and annualy. Cash flow is a key metric of a company's financial health and indictive of its strength."}}
+    {{> ccf_sec_header bold_text="Key Metrics" before_name="for" name=name}}
+    {{#with key_metrics}}
+    {{> ccf_tile context_left=getFreeCashFlows title_left="Free Cash Flow" context_right=getOperatingCashFlows title_right="Operating Cash Flow" color="white" second_line=false}}
+    {{/with}}
+
+    {{> ccf_sec_header bold_text="Key Metrics" before_name="for" name=name colour="grey"}}
+    {{#with growth_metrics}}
+    {{> ccf_tile context_left=getCashFlowGrowths title_left="Free Cash Flow" context_right=getCashFlowGrowths title_right="Free Cash Flow" color="grey" second_line=true}}
+    {{> ccf_tile context_left=getOperatingCashFlowGrowths title_left="Operating Cash Flow" context_right=getOperatingCashFlowGrowths title_right="Operating Cash Flow" color="white" second_line=true}}
+    {{/with}}
+    {{/with}}
+    {{> didnt_find}}
+  </div>
+</template>
+
+<!--Big Black Header at the top of the page-->
+<template name="ccf_hdr">
+  <!--Page header-->
+  <div class="ccf-hdr">
+    <!-- the header box -->
+    <div class="ccf-hdr-head-box">
+      <!-- image inside the header box-->
+      <div class="ccf-hdr-head-image">
+        <!-- he add green symbol above the image-->
+        <button class="ccf-hdr-head-image-icon"><i class="fa fa-reply"></i></button>
+      </div>
+      <!-- the text inside the header box-->
+      <div class="ccf-hdr-text">
+        <!-- the latest update-->
+        <div class="ccf-hdr-text-update">
+          LAST UPDATED: 06/24/2015, 8:00 AM EST
+        </div>
+        <!-- location of the article-->
+        <div class="ccf-hdr-text-loc">
+          <i class="fa fa-map-marker"></i> United States
+        </div>
+        <!-- the name of the article-->
+        <div class="ccf-hdr-text-name">
+          Cash Flow
+        </div>
+        <!-- the author of the article-->
+        <div class="ccf-hdr-text-auth">
+          for {{name}}
+        </div>
+      </div>
+    </div>
+    <div class="ccf-hdr-bar">
+      <div class="ccf-hdr-bar-title">
+        <span class="ccf-hdr-bar-title-comp">{{name}}</span>'s Cash Flow
+      </div>
+      <div class="ccf-hdr-bar-button">
+        <!-- the save option button-->
+        <a href="#"><i class="fa fa-heart ccf-hdr-bar-button-fa"></i><span class="ccf-hdr-bar-text">Save</span></a>
+      </div>
+      <div class="ccf-hdr-bar-button">
+        <!-- share option button -->
+        <a href="#"><i class="fa fa-share-alt ccf-hdr-bar-button-fa"></i><span class="ccf-hdr-bar-text">Share</span></a>
+      </div>
+    </div>
+    <div class="ccf-hdr-main-container">
+      <!-- the module.less file navigation buttons-->
+      <button class='ccf-hdr-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+      <button class='ccf-hdr-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+      <!-- end of the module.less navigation button -->
+      <!-- wrapper class-->
+      <div class="ccf-hdr-main-container-image-wrapper">
+        <div class="ccf-hdr-main-container-image"></div>
+      </div>
+      <!-- the main container -->
+
+      <ul class="ccf-hdr-main-container-container">
+        <!-- the image in blue circle-->
+        <li class="ccf-hdr-main-container-title">
+          <div class="ccf-hdr-main-container-title-image"><i class="fa fa-building-o"></i></div>
+          <div class="ccf-hdr-main-container-title-txt">
+            <div>{{name}}</div>
+            <span class="ccf-hdr-main-container-title-save">
+              <i class="fa fa-heart ccf-hdr-main-container-title-save-icn"></i>
+              Save
+            </span>
+            <span class="ccf-hdr-main-container-title-share">
+              <i class="fa fa-share-alt ccf-hdr-main-container-title-share-icn"></i>
+              Share
+            </span>
+          </div>
+        </li>
+        <!-- the description about the person-->
+        <li class="ccf-hdr-main-container-description">
+          <div class="ccf-hdr-main-container-description-ln1">
+            How are <b>{{name}}'s</b> financials performing?
+          </div>
+          <span class="ccf-hdr-main-container-description-ln2">
+            Take a look at key metrics from their <b>Cash Flow</b> and analyze their financial health in comparison to the industry.
+          </span>
+        </li>
+      </ul>
+      <!-- the bottom bar-->
+      <div class="ccf-hdr-main-container-view_more">
+        <!-- the details about the comapny-->
+        <div class="ccf-hdr-main-container-view_more-text">
+          <div class="ccf-hdr-main-container-view_more-text-ln1">Discover more information about {{name}}?</div>
+          <div class="ccf-hdr-main-container-view_more-text-ln2">Profile Last Updated On: <i class="ccf-b">{{last_updated}}</i></div>
+        </div>
+        <button class="ccf-hdr-main-container-view_more-button">
+          View Profile<i class="fa fa-angle-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!--End Page header-->
+</template>
+<!--/Big Black Header at the top of the page-->
+
+<!--What Is This Page? Box-->
+<!--Reusable-->
+<template name="ccf_whatis_box">
+  <div class="ccf-whatis">
+    <div class="ccf-whatis-header">
+      {{header}}
+      <i class="fa fa-times ccf-whatis-header-x"></i>
+    </div>
+    <div class="ccf-whatis-text">
+      {{text}}
+    </div>
+  </div>
+</template>
+<!--/What Is This Page? Box-->
+
+<!--Header of each "section"-->
+<template name="ccf_sec_header">
+  <div class="ccf-metrics-header ccf-metrics-header-{{colour}}">
+    <b>{{bold_text}}</b>
+    <span class="ccf-metrics-header-light-text">
+      {{before_name}} {{name}}{{after_name}}
+    </span>
+    <div class="ccf-metrics-header-line"></div>
+  </div>
+</template>
+
+<!--Header of the small tiles-->
+<template name="ccf_tile_header">
+  <div class="ccf-metrics-tile-hdr {{type}}">
+    <span class="ccf-metrics-tile-hdr-circle">
+      <i class="fa fa-question ccf-metrics-tile-hdr-circle-icon"></i>
+    </span>
+    <div class="ccf-metrics-tile-hdr-txt">{{title}}</div>
+    <div class="ccf-metrics-tile-hdr2">{{second}}</div>
+  </div>
+</template>
+
+<!--Big Tiles that contain two little tiles-->
+<template name="ccf_tile">
+  <div class="ccf-metrics-tile ccf-metrics-tile-{{color}}">
+
+    <!--Left side of the big tiles-->
+    <div class="ccf-metrics-tile-left-side-cnt">
+      {{> ccf_tile_cnt title=title_left context=context_left second="One Year Average" second_line=second_line colour=colour}}
+    </div>
+    <!--/Left Side of the big tiles-->
+
+    <!--Right Side of the big tiles-->
+    <div class="ccf-metrics-tile-right-side-cnt">
+      {{> ccf_tile_cnt title=title_right context=context_right second="Three Year Average" second_line=second_line colour=colour}}
+    </div>
+    <!--/Right Side of the big tiles-->
+  </div>
+</template>
+
+<!--Template for the little tiles-->
+<template name="ccf_tile_cnt">
+  {{#if fake}}
+  {{else}}
+  {{#if second_line}}
+  {{> ccf_tile_header title=title second=second}}
+  {{else}}
+  {{> ccf_tile_header title=title}}
+  {{/if}}
+  {{/if}}
+
+  {{#if isEmpty context}}
+  {{> ccf_tile_err}}
+  {{else}}
+  {{> ccf_tile_lines context=context}}
+  {{> ccf_tile_chart fake=fake}}
+  {{/if}}
+</template>
+<!--/Template for the little tiles-->
+
+<!--The tile to display when there's no data-->
+<!--This template will infinitely recurse if you type something wrong. If your browser keeps freezing make sure that fakeData() exists and that its a helper of ccf_tile_err.-->
+<template name="ccf_tile_err">
+  <div class="ccf-metrics-tile-miss">
+    <div class="ccf-metrics-tile-miss-cnt">
+      <div class="ccf-metrics-tile-miss-blurred">
+        {{> ccf_tile_cnt title="Data Not Available" second="Data Not Available" context=fakeData fake=true}}
+      </div>
+      <div class="ccf-metrics-tile-miss-cnt-hdr">
+        Missing Content Alert
+      </div>
+
+      <span class="ccf-metrics-tile-miss-cnt-circle">
+        <i class="fa fa-exclamation-triangle ccf-metrics-tile-miss-cnt-icon"></i>
+      </span>
+
+      <span class="ccf-metrics-tile-miss-cnt-txt">
+        Unfortunately we were unable to generate information for this section, either refresh the page or come back on a later date for more content...
+      </span>
+
+    </div>
+  </div>
+</template>
+
+<!--Shows a list of year  data lines-->
+<template name="ccf_tile_lines">
+  <div class="ccf-metrics-tile-lines">
+    {{{genLines context}}}
+  </div>
+</template>
+
+<!--Charts in the small tiles-->
+<template name="ccf_tile_chart">
+  {{#if fake}}
+  <div class="ccf-metrics-tile-chartcont ccf-metrics-tile-chartcont-fake">
+    <div class="ccf-metrics-tile-chartcont-title">
+      Relative to Industry
+    </div>
+    <div class="ccf-metrics-tile-chartcont-chart">
+      <span class="ccf-metrics-tile-chartcont-chart-text">100%</span>
+    </div>
+    <div class="ccf-metrics-tile-chartcont-below">
+      Below Average
+    </div>
+    <div class="ccf-metrics-tile-chartcont-above">
+      Above Average
+    </div>
+  </div>
+  {{else}}
+  {{#with ../../../..}}
+  {{#if chartInfoDefined}}
+  <div class="ccf-metrics-tile-chartcont">
+    <div class="ccf-metrics-tile-chartcont-title">
+      Relative to Industry
+    </div>
+    <div class="ccf-metrics-tile-chartcont-chart">
+      {{{drawChart}}}
+      <span class="ccf-metrics-tile-chartcont-chart-text">100%</span>
+    </div>
+    <div class="ccf-metrics-tile-chartcont-below">
+      Below Average
+    </div>
+    <div class="ccf-metrics-tile-chartcont-above">
+      Above Average
+    </div>
+  </div>
+  {{/if}}
+  {{/with}}
+  {{/if}}
+</template>

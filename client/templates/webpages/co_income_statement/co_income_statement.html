@@ -1,0 +1,384 @@
+<!--
+Author: Tanner Storment
+Date: 08/10/2015
+Description: HTML Template Displays income info about various companies
+Related Files:
+- /client/stylesheets/webpages/co_income_statement.less
+- /client/templates/webpages/co_income_statement.js
+-->
+
+<template name="co_income_statement">
+  <div class="co-inc-stmt">
+    {{#with getMainCompany}}
+
+    <!--Header-->
+    {{> co_income_statement_header}}
+    <!--/Header-->
+
+    <!--Sort By-->
+    <div class="co-inc-stmt-sortby">
+      Sort by:
+      <span class="co-inc-stmt-sortby-text">Annual Financials</span>
+      <i class="fa fa-angle-down co-inc-stmt-sortby-icon"></i>
+    </div>
+    <!--/Sort By-->
+
+    <!--What Is This Page? Section-->
+    {{> co_income_statement_whatis_box header="What is an Income Statement" text="A financial statement that summarized a company's revenues and expenses incurred during a specific quarter or year. The income statement is typically considered an important measurement of a company's financial performance during the period assessed."}}
+    {{> co_income_statement_sec_header bold_text="Compare" name=name after_name="'s Income and Revenue:"}}
+    <!--/What Is This Page? Section-->
+
+    <!--Big Graph in the middle of the page-->
+    {{> co_income_statement_big_chart}}
+    <!--/Big Graph-->
+
+    <!--Key Metrics Section-->
+    {{#with keyMetrics}}
+    {{> co_income_statement_sec_header bold_text="Key Metrics" before_name="for" name=../name}}
+    {{> co_income_statement_tile context_left=getRevenues context_right=getOperatingIncomes title_left="Revenue" title_right="Operating Income" color="white"}}
+    {{> co_income_statement_tile context_left=getNetIncomes context_right=getEBITDAs title_left="Net Income" title_right="EBITDA" color="grey"}}
+    {{/with}}
+    <!--/Key Metrics Section-->
+
+    <!--Growth Averages Section-->
+    {{#with growthAverages}}
+    {{> co_income_statement_sec_header bold_text="Growth Metrics" before_name="for" name=../name}}
+    {{> co_income_statement_tile context_left=getRevenueGrowths         context_right=getRevenueGrowths         title_left="Revenue Growth"    title_right="Revenue Growth"    color="white" second_line=true}}
+    {{> co_income_statement_tile context_left=getOperatingIncomeGrowths context_right=getOperatingIncomeGrowths title_left="Operating Income"  title_right="Operating Income"  color="grey"  second_line=true}}
+    {{> co_income_statement_tile context_left=getNetIncomeGrowths       context_right=getNetIncomeGrowths       title_left="Net Income Growth" title_right="Net Income Growth" color="white" second_line=true}}
+    {{> co_income_statement_tile context_left=getEBITDAGrowths          context_right=getEBITDAGrowths          title_left="EBITDA Growth"     title_right="EBITDA Growth"     color="grey"  second_line=true}}
+    {{/with}}
+    <!--/Growth Averages Section-->
+
+    <!--Comparison Metrics Section-->
+    {{#with chartInfo}}
+    {{> co_income_statement_sec_header bold_text="Comparison Metrics" before_name="for" name=../name}}
+    {{> co_income_statement_growth_chart_tile title="2013 Revenue Growth" colour="white"}}
+    {{> co_income_statement_growth_chart_tile title="2013 Operating Income Growth" colour="grey"}}
+    {{> co_income_statement_growth_chart_tile title="2013 Net Income Growth" colour="white"}}
+    {{> co_income_statement_growth_chart_tile title="2013 EBITDA Growth" colour="grey"}}
+    {{/with}}
+    <!--/Comparision Metrics Section-->
+    {{/with}}
+    {{> didnt_find}}
+  </div>
+
+</template>
+
+<!--Big black header at the top of the page.-->
+<template name="co_income_statement_header">
+  <!--Page header-->
+  <div class="co-inc-stmt-hdr">
+    <!-- the header box -->
+    <div class="co-inc-stmt-hdr-head-box">
+      <!-- image inside the header box-->
+      <div class="co-inc-stmt-hdr-head-image">
+        <!-- he add green symbol above the image-->
+        <button class="co-inc-stmt-hdr-head-image-icon"><i class="fa fa-reply"></i></button>
+      </div>
+      <!-- the text inside the header box-->
+      <div class="co-inc-stmt-hdr-text">
+        <!-- the latest update-->
+        <div class="co-inc-stmt-hdr-text-update">
+          LAST UPDATED: 06/24/2015, 8:00 AM EST
+        </div>
+        <!-- location of the article-->
+        <div class="co-inc-stmt-hdr-text-loc">
+          <i class="fa fa-map-marker"></i> United States
+        </div>
+        <!-- the name of the article-->
+        <div class="co-inc-stmt-hdr-text-name">
+          Cash Flow
+        </div>
+        <!-- the author of the article-->
+        <div class="co-inc-stmt-hdr-text-auth">
+          for {{name}}
+        </div>
+      </div>
+    </div>
+    <div class="co-inc-stmt-hdr-bar">
+      <div class="co-inc-stmt-hdr-bar-title">
+        <span class="co-inc-stmt-hdr-bar-title-comp">{{name}}</span>'s Income Statement
+      </div>
+      <div class="co-inc-stmt-hdr-bar-button">
+        <!-- the save option button-->
+        <a href="#"><i class="fa fa-heart co-inc-stmt-hdr-bar-button-fa"></i><span class="co-inc-stmt-hdr-bar-text">Save</span></a>
+      </div>
+      <div class="co-inc-stmt-hdr-bar-button">
+        <!-- share option button -->
+        <a href="#"><i class="fa fa-share-alt co-inc-stmt-hdr-bar-button-fa"></i><span class="co-inc-stmt-hdr-bar-text">Share</span></a>
+      </div>
+    </div>
+    <div class="co-inc-stmt-hdr-main-container">
+      <!-- the module.less file navigation buttons-->
+      <button class='co-inc-stmt-hdr-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+      <button class='co-inc-stmt-hdr-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+      <!-- end of the module.less navigation button -->
+      <!-- wrapper class-->
+      <div class="co-inc-stmt-hdr-main-container-image-wrapper">
+        <div class="co-inc-stmt-hdr-main-container-image"></div>
+      </div>
+      <!-- the main container -->
+
+      <ul class="co-inc-stmt-hdr-main-container-container">
+        <!-- the image in blue circle-->
+        <li class="co-inc-stmt-hdr-main-container-title">
+          <div class="co-inc-stmt-hdr-main-container-title-image"><i class="fa fa-building-o"></i></div>
+          <div class="co-inc-stmt-hdr-main-container-title-txt">
+            <div>{{name}}</div>
+            <span class="co-inc-stmt-hdr-main-container-title-save">
+              <i class="fa fa-heart co-inc-stmt-hdr-main-container-title-save-icn"></i>
+              Save
+            </span>
+            <span class="co-inc-stmt-hdr-main-container-title-share">
+              <i class="fa fa-share-alt co-inc-stmt-hdr-main-container-title-share-icn"></i>
+              Share
+            </span>
+          </div>
+        </li>
+        <!-- the description about the person-->
+        <li class="co-inc-stmt-hdr-main-container-description">
+          <div class="co-inc-stmt-hdr-main-container-description-ln1">
+            How are <b>{{name}}'s</b> financials performing?
+          </div>
+          <span class="co-inc-stmt-hdr-main-container-description-ln2">
+            Take a look at key metrics from their <b>Income Statement</b> and analyze their financial health in comparison to the industry.
+          </span>
+        </li>
+      </ul>
+      <!-- the bottom bar-->
+      <div class="co-inc-stmt-hdr-main-container-view_more">
+        <!-- the details about the comapny-->
+        <div class="co-inc-stmt-hdr-main-container-view_more-text">
+          <div class="co-inc-stmt-hdr-main-container-view_more-text-ln1">Discover more information about {{name}}?</div>
+          <div class="co-inc-stmt-hdr-main-container-view_more-text-ln2">Profile Last Updated On: <i class="co-inc-stmt-b">{{last_updated}}</i></div>
+        </div>
+        <button class="co-inc-stmt-hdr-main-container-view_more-button">
+          View Profile<i class="fa fa-angle-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!--End Page header-->
+</template>
+
+<!--What Is This Page? Box-->
+<!--Reusable-->
+<template name="co_income_statement_whatis_box">
+  <div class="co-inc-stmt-whatis">
+    <div class="co-inc-stmt-whatis-header">
+      {{header}}
+      <i class="fa fa-times co-inc-stmt-whatis-header-x"></i>
+    </div>
+    <div class="co-inc-stmt-whatis-text">
+      {{text}}
+    </div>
+  </div>
+</template>
+
+<!--Template for the big chart in the middle of the page-->
+<template name="co_income_statement_big_chart">
+  <div class="co-inc-stmt-metrics-graph-cont">
+    <div class="co-inc-stmt-metrics-graph-cont-title">
+      <span class="co-inc-stmt-metrics-graph-cont-title-comp">{{name}}</span>'s Income
+      <span class="co-inc-stmt-metrics-graph-cont-title-lblcnt">
+        {{>co_income_statement_big_chart_label num=getOperatingIncome lblName="Operating Income" colour="blue"}}
+        {{>co_income_statement_big_chart_label num=getRevenue lblName="Revenue" colour="orange"}}
+        {{>co_income_statement_big_chart_label num=getNetIncome lblName="Net Income" colour="red"}}
+
+      </span>
+    </div>
+    <div class="co-inc-stmt-pr co-inc-stmt-metrics-graph-graph" id="cisGraph">
+      <!--Put graph here-->
+      {{> highchartsHelper chartId="cisChart" chartWidth="650px" chartHeight="221px" chartObject=getGraphObject}}
+    </div>
+    <div class="co-inc-stmt-metrics-graph-period"> <!--this holds the buttons that change the x scale of the graph-->
+      {{#each btns}}
+      <div class="co-inc-stmt-metrics-graph-period-btn{{isInitial num}}" id="cisBtn{{num}}" onclick="cisBtns({{num}})">
+        {{text}}
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</template>
+<!--/Template for the big chart in the middle of the page-->
+
+<!--Template for the big chart in the middle of the page's title-->
+<template name="co_income_statement_big_chart_label">
+  <span class="co-inc-stmt-metrics-graph-cont-title-lbl">
+    <span class="co-inc-stmt-metrics-graph-cont-title-lbl-circle co-inc-stmt-metrics-graph-cont-title-lbl{{colour}}"></span>
+    <span class="co-inc-stmt-metrics-graph-cont-title-lbl-bigtxt">
+      {{formatNum num}}
+    </span>
+    <div class="co-inc-stmt-metrics-graph-cont-title-lbl-smltxt">
+      {{lblName}}
+    </div>
+  </span>
+</template>
+<!--/Template for the big chart in the middle of the page's title-->
+
+<!--Header of each "section"-->
+<template name="co_income_statement_sec_header">
+  <div class="co-inc-stmt-metrics-header">
+    <b>{{bold_text}}</b>
+    <span class="co-inc-stmt-metrics-header-light-text">
+      {{before_name}} {{name}}{{after_name}}
+    </span>
+    <div class="co-inc-stmt-metrics-header-line"></div>
+  </div>
+</template>
+
+<!--Header of the small tiles-->
+<template name="co_income_statement_tile_header">
+  <div class="co-inc-stmt-metrics-tile-hdr {{type}}">
+    <span class="co-inc-stmt-metrics-tile-hdr-circle">
+      <i class="fa fa-question co-inc-stmt-metrics-tile-hdr-circle-icon"></i>
+    </span>
+    <div class="co-inc-stmt-metrics-tile-hdr-txt">{{title}}</div>
+    <div class="co-inc-stmt-metrics-tile-hdr2">{{second}}</div>
+  </div>
+</template>
+
+<!--Big Tiles that contain two little tiles-->
+<template name="co_income_statement_tile">
+  <div class="co-inc-stmt-metrics-tile co-inc-stmt-metrics-tile-{{color}}">
+
+    <!--Left side of the big tiles-->
+    <div class="co-inc-stmt-metrics-tile-left-side-cnt">
+      {{> co_income_statement_tile_cnt title=title_left context=context_left second="One Year Average" second_line=second_line colour=colour}}
+    </div>
+    <!--/Left Side of the big tiles-->
+
+    <!--Right Side of the big tiles-->
+    <div class="co-inc-stmt-metrics-tile-right-side-cnt">
+      {{> co_income_statement_tile_cnt title=title_right context=context_right second="Three Year Average" second_line=second_line colour=colour}}
+    </div>
+    <!--/Right Side of the big tiles-->
+  </div>
+</template>
+
+<!--Template for the little tiles-->
+<template name="co_income_statement_tile_cnt">
+  {{#if fake}}
+  {{else}}
+  {{#if second_line}}
+  {{> co_income_statement_tile_header title=title second=second}}
+  {{else}}
+  {{> co_income_statement_tile_header title=title}}
+  {{/if}}
+  {{/if}}
+
+  {{#if isEmpty context}}
+  {{> co_income_statement_tile_err}}
+  {{else}}
+  {{> co_income_statement_tile_lines context=context}}
+  {{> co_income_statement_tile_chart fake=fake}}
+  {{/if}}
+</template>
+<!--/Template for the little tiles-->
+
+<!--The tile to display when there's no data-->
+<template name="co_income_statement_tile_err">
+  <div class="co-inc-stmt-metrics-tile-miss">
+    <div class="co-inc-stmt-metrics-tile-miss-cnt">
+      <div class="co-inc-stmt-metrics-tile-miss-blurred">
+        {{> co_income_statement_tile_cnt title="Data Not Available" second="Data Not Available" context=fakeData fake=true}}
+      </div>
+      <div class="co-inc-stmt-metrics-tile-miss-cnt-hdr">
+        Missing Content Alert
+      </div>
+
+      <span class="co-inc-stmt-metrics-tile-miss-cnt-circle">
+        <i class="fa fa-exclamation-triangle co-inc-stmt-metrics-tile-miss-cnt-icon"></i>
+      </span>
+
+      <span class="co-inc-stmt-metrics-tile-miss-cnt-txt">
+        Unfortunately we were unable to generate information for this section, either refresh the page or come back on a later date for more content...
+      </span>
+
+    </div>
+  </div>
+</template>
+
+<!--Shows a list of year  data lines-->
+<template name="co_income_statement_tile_lines">
+  <div class="co-inc-stmt-metrics-tile-lines">
+    {{{genLines context}}}
+  </div>
+</template>
+
+<!--Charts in the small tiles-->
+<template name="co_income_statement_tile_chart">
+  {{#if fake}}
+  <div class="co-inc-stmt-metrics-tile-chartcont co-inc-stmt-metrics-tile-chartcont-fake">
+    <div class="co-inc-stmt-metrics-tile-chartcont-title">
+      Relative to Industry
+    </div>
+    <div class="co-inc-stmt-metrics-tile-chartcont-chart">
+      <span class="co-inc-stmt-metrics-tile-chartcont-chart-text">100%</span>
+    </div>
+    <div class="co-inc-stmt-metrics-tile-chartcont-below">
+      Below Average
+    </div>
+    <div class="co-inc-stmt-metrics-tile-chartcont-above">
+      Above Average
+    </div>
+  </div>
+  {{else}}
+  {{#with ../../../..}}
+  {{#if chartInfoDefined}}
+  <div class="co-inc-stmt-metrics-tile-chartcont">
+    <div class="co-inc-stmt-metrics-tile-chartcont-title">
+      Relative to Industry
+    </div>
+    <div class="co-inc-stmt-metrics-tile-chartcont-chart">
+      {{{drawChart}}}
+      <span class="co-inc-stmt-metrics-tile-chartcont-chart-text">100%</span>
+    </div>
+    <div class="co-inc-stmt-metrics-tile-chartcont-below">
+      Below Average
+    </div>
+    <div class="co-inc-stmt-metrics-tile-chartcont-above">
+      Above Average
+    </div>
+  </div>
+  {{/if}}
+  {{/with}}
+  {{/if}}
+</template>
+
+<!--Template for growth metrics tiles at the bottom of the page-->
+<template name = "co_income_statement_growth_chart_tile">
+  <div class="co-inc-stmt-metrics-growth-tile co-inc-stmt-metrics-growth-tile-{{colour}}">
+    {{> co_income_statement_tile_header title=title second="Relative to Sector & Industry Averages" type="co-inc-stmt-metrics-growth-tile-hdr"}}
+    {{#with ../..}}
+    <div class="co-inc-stmt-metrics-growth-tile-graphcont">
+      {{> highchartsHelper chartId=idGraph chartWidth="100%" chartHeight="100%" chartObject=compGraph}}
+    </div>
+    <div class="co-inc-stmt-metrics-growth-tile-legend">
+      {{> co_income_statement_growth_chart_tile_line colour="blue" title=name value=getGrowthAvg}}
+      {{> co_income_statement_growth_chart_tile_line colour="orange" title="Sector" value=getSectorAvg}}
+      {{> co_income_statement_growth_chart_tile_line colour="red" title="Industry" value=getIndustryAvg}}
+
+
+    </div>
+    {{/with}}
+  </div>
+</template>
+<!--/Template for growth metrics tiles at the bottom of the page-->
+
+
+<!--Template for the legends for the growth charts at the bottom of the page-->
+<template name="co_income_statement_growth_chart_tile_line">
+  <div class="co-inc-stmt-metrics-growth-tile-legend-line co-inc-stmt-metrics-growth-tile-legend-line{{colour}}">
+
+    <span class="co-inc-stmt-metrics-growth-tile-legend-line-txt">
+      {{title}}
+    </span>
+    <span class="co-inc-stmt-metrics-growth-tile-legend-line-bld">
+      {{formatPercent value}}
+    </span>
+  </div>
+</template>
+<!--/Template for the legends for the growth charts at the bottom of the page-->
