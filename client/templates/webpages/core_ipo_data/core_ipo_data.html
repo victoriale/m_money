@@ -1,0 +1,239 @@
+<!--
+Author:Meghana yerramilli
+Created: [8-10-2015]
+Description: core_ipo_data Webpage
+Associated Files: core_ipo_data.less,core_ipo_data.js
+-->
+<Template name="core_ipo_data">
+  <!--dimensions of the page-->
+  <div class="core_dim">
+    <div class="core-hdr-head-box">
+      <!-- image inside the header box-->
+      <div class="core-hdr-head-image">
+        <!-- he add green symbol above the image-->
+        <button class="core-hdr-head-image-icon"><i class="fa fa-reply"></i></button>
+      </div>
+      <!-- the text inside the header box-->
+      <div class="core-hdr-text">
+        <!-- the latest update-->
+        <div class="core-hdr-text-update">
+          LAST UPDATED: 06/24/2015, 8:00 AM EST
+        </div>
+        <!-- location of the article-->
+        <div class="core-hdr-text-loc">
+          <i class="fa fa-mcore-marker"></i> United States
+        </div>
+        <!-- the name of the article-->
+        <div class="core-hdr-text-name">
+          Core IPO Data
+        </div>
+        <!-- the author of the article-->
+        <div class="core-hdr-text-auth">
+          for {{usename}}.
+        </div>
+      </div>
+    </div>
+    <!--header bar-->
+    <div class="core-hdr-bar">
+      <div class="core-hdr-bar-title">
+        {{usename}}.'s Core IPO Data
+      </div>
+      <div class="core-hdr-bar-button">
+        <!-- the save option button-->
+        <a href="#"><span class="core-hdr-bar-icon"><i class="fa fa-heart"></i></span><span class="core-hdr-bar-text">Save</span></a>
+      </div>
+      <div class="core-hdr-bar-button">
+        <!-- share option button -->
+        <a href="#"><span class="core-hdr-bar-icon"><i class="fa fa-share-alt"></i></span><span class="core-hdr-bar-text">Share</span></a>
+      </div>
+    </div>
+    <div class="core-hdr-main-container">
+      <!-- the module.less file navigation buttons-->
+      <button class='core-hdr-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+      <button class='core-hdr-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+      <!-- end of the module.less navigation button -->
+      <!-- wrapper class-->
+      <div class="core-hdr-main-container-image-wrapper">
+        <div class="core-hdr-main-container-image"></div>
+      </div>
+      <!-- the main container -->
+      <ul class="core-hdr-main-container-container">
+        <!-- the image in blue circle-->
+        <li class="core-hdr-main-container-title">
+          <div class="core-hdr-main-container-title-image"><i class="fa fa-building-o"></i></div>
+          <div class="core-hdr-main-container-title-txt">
+            {{usename}}
+          </div>
+          <!--save & share icons-->
+          <div class="core_hdr_save">
+            <a href="#"><span class="core_saveicon"><i class="fa fa-heart"></i></span><span class="core_save">Save</span></a>
+          </div>
+          <div class="core_hdr_share">
+            <a href="#"><span class="core_shareicon"><i class="fa fa-share-alt"></i></span><span class="core_share">Share</span></a>
+          </div>
+        </li>
+        <!-- the description about the person-->
+        <div class="core-hdr-main-container-description">
+          <div class="core_desc_text1">
+            <span class="core_bold"> {{usename}}</span> went from an IPO to a public company on 05/28/2012. This was seen as one of the biggest IPOs in the technology and Internet history, with a peak market capitalization of over $104 billion.
+          </div>
+        </div>
+      </ul>
+      <!-- the bottom bar-->
+      <div class="core-hdr-main-container-view_more">
+        <!-- the details about the comapny-->
+        <div class="core-hdr-main-container-view_more-text">
+          <div class="core-hdr-main-container-view_more-text-ln1">Discover more information about Facebook,Inc.?</div>
+          <div class="core-hdr-main-container-view_more-text-ln2">Profile Last Updated On: <span class="core-b">07/29/2015</span></div>
+        </div>
+        <button class="core-hdr-main-container-view_more-button">
+          View Profile<i class="fa fa-angle-right"></i>
+        </button>
+      </div>
+    </div>
+    <div class="core_sortdim">
+      <!--question box-->
+      <div class="core-sortby">
+        <!--article title bar-->
+        Sort by:
+        <span class="core-sortby-text">IPO Data</span>
+        <i class="fa fa-angle-down core-sortby-icon"></i>
+      </div>
+      <!--question-->
+      <div class="core-whatis">
+        <div class="core-whatis-header">
+          What is this page?
+          <i class="fa fa-times core-whatis-header-x"></i>
+        </div>
+        <!--answer area-->
+        <div class="core-whatis-text">
+          This page contains all of facebook,Inc's initial public offering (IPO) data,including: money raised in IPO, IPO shares, expected share price, etc.
+        </div>
+      </div>
+    </div>
+    <!--overview heading-->
+    <div class="core_ovtext"><span class="core_ovbold">IPO Overview</span> for {{usename}}.:</div>
+    <div class="core_line"></div>
+    <!--updated date-->
+    <div class="core_time"><i class="fa fa-calendar"></i> <span class="core_pad">Updated 08/03/2015 at 4PM EST</span></div>
+    <!--tiles with icons in loop-->
+    {{#each getCoredata}}
+    <div class="core_icontiles">
+      <!--icons in tile-->
+      <div class={{core_none1}}>
+        <div class="core_subtile"><span class="core_iconstyle"><i class="fa fa-asterisk"></i></span></div>
+      </div>
+      <div class={{core_none2}}>
+        <div class="core_subtile"><span class="core_iconstyle"><i class="fa fa-money"></i></span></div>
+      </div>
+      <div class={{core_none3}}>
+        <div class="core_subtile"><span class="core_iconstyle"><i class="fa fa-book"></i></span></div>
+      </div>
+      <div class={{core_none4}}>
+        <div class="core_subtile"><span class="core_iconstyle"><i class="fa fa-money"></i></span></div>
+      </div>
+      <!--category-->
+      <div class="core_companyname">{{name}}</div>
+      <!--sub text-->
+      <div class="core_subname">{{subname}}</div>
+      <!--icon on right-->
+      <div class="core_righticon">  <i class="fa fa-angle-right"></i></div>
+    </div>
+    {{/each}}
+    <!--loop ends-->
+    <!--icon tiles on right-->
+    <div class="core_righttiles">
+      <!--tiles with icons in loop-->
+      {{#each getCorerightdata}}
+      <div class="core_icontiles">
+        <!--icons in tile-->
+        <div class={{core_none1}}>
+          <div class="core_subtile"><span class="core_iconstyle"><i class="fa fa-bell"></i></span></div>
+        </div>
+        <div class={{core_none2}}>
+          <div class="core_subtile"><span class="core_iconstyle"><i class="fa fa-money"></i></span></div>
+        </div>
+        <div class={{core_none3}}>
+          <div class="core_subtile"><span class="core_iconstyle"><i class="fa fa-gavel"></i></span></div>
+        </div>
+        <div class={{core_none4}}>
+          <div class="core_subtile"><span class="core_iconstyle"><i class="fa fa-unlock"></i></span></div>
+        </div>
+        <!--category-->
+        <div class="core_companyname">{{name}}<span class="core_light">{{lighttext}}</span></div>
+        <!--sub text-->
+        <div class="core_subname">{{subname}}</div>
+        <!--icon on right-->
+        <div class="core_righticon">  <i class="fa fa-angle-right"></i></div>
+      </div>
+      {{/each}}
+      <!--loop ends-->
+    </div>
+    <!--category &info-->
+    <div class="core_statspace">
+      <!--in loop-->
+      {{#each getstats}}
+      <div class="core_{{color}}stats">
+        <!--name-->
+        <span class="core_statname">{{stat_name}} </span>
+        <!--info-->
+        <span class="core_fig">{{figure}}</span>
+      </div>
+      {{/each}}
+      <!--loop ends-->
+    </div>
+    <!--heading-->
+    <div class="core_ovtext1"><span class="core_ovbold">IPO Company Info</span> for {{usename}}.:</div>
+    <!--grey line-->
+    <div class="core_line"></div>
+    <!--updated date-->
+    <div class="core_time"><i class="fa fa-calendar"></i> <span class="core_pad">Updated 08/03/2015 at 4PM EST</span></div>
+    <!--category & info-->
+    <div class="core_statspace">
+      <!--in loop-->
+      {{#each getinfo}}
+      <div class="core_{{color}}stats">
+        <!--name-->
+        <span class="core_statname">{{stat_name}} </span>
+        <!--info-->
+        <span class="core_fig">{{figure}}</span>
+      </div>
+      {{/each}}
+      <!--loop ends-->
+    </div>
+    <!--heading-->
+    <div class="core_ovtext1"><span class="core_ovbold">Competitors</span> for {{usename}}.:</div>
+    <!--grey line-->
+    <div class="core_line"></div>
+    <!--text -->
+    <div class="core_paradiv">
+      <!--all the text in paragraph-->
+      <p class="core_para">
+        We face significant competition in almost every aspect of our business, including from companies such as Google, Microsoft, and Twitter, which offer a variety of Internet products, services, content, and online advertising offerings, as well as from mobile companies and smaller Internet companies that offer products and services that may compete with specific Facebook features. We also face competition from traditional and online media businesses for a share of advertisers budgets and in the development of the tools and systems for managing and optimizing advertising campaigns. We compete broadly with Googles social networking offerings, including Google+, which it has integrated with certain of its products, including search and Android. In addition, we compete with other, largely regional, social networks that have strong positions in particular countries, including Cyworld in Korea, Mixi in Japan, Orkut (owned by Google) in Brazil and India, and vKontakte in Russia. As we introduce new products, as our existing products evolve, or as other companies introduce new products and services, we may become subject to additional competition.
+      </p>
+      <p class="core_para">The areas in which we compete include: </p>
+      <p class="core_hpara">Users and Engagement</p>
+      <p class="core_para1">We compete to attract, engage, and retain users. Because our products for users are free of charge, we compete based on the utility, ease of use, performance, and quality of our products
+      </p>
+      <p class="core_hpara">Advertising</p>
+      <p class="core_para1">We compete to attract and retain advertisers. We distinguish our products by providing reach, relevance, social context, and engagement to amplify the effectiveness of advertisers messages.  </p>
+      <p class="core_hpara">Platform</p>
+      <p class="core_para1">We compete to attract and retain developers to build compelling apps and websites that integrate with Facebook. We compete in this area primarily based on the value of the tools and APIs we provide to developers to enable them to access our large global base of engaged users and their connections and to drive traffic to their apps and websites. </p>
+      <p class="core_hpara">Talent</p>
+      <p class="core_para1">We compete to attract and retain highly talented individuals, especially software engineers, designers, and product managers. Competition for employee talent is particularly intense in the San Francisco Bay Area, where we are headquartered. We compete for these potential employees by providing a work environment that fosters and rewards creativity and innovation and by providing compensation packages that we believe will enable us to attract and retain key employees. </p>
+      <p class="core_para">While our industry is evolving rapidly and is becoming increasingly competitive, we believe that we compete favorably on the factors described above.</p>
+    </div>
+    <div class="core_ovtext2"><span class="core_ovbold">Use Of Proceeds</span> for Facebook, Inc.:</div>
+    <div class="core_line"></div>
+    <div class="core_paradiv2">
+      <p class="core_para2">We estimate that our net proceeds from the sale of the Class A common stock that we are offering will be approximately $6.8 billion, or approximately $6.9 billion if the underwriters exercise in full their right to purchase additional shares to cover over-allotments, based on the initial public offering price of $38.00 per share, after deducting underwriting discounts and commissions and estimated offering expenses payable by us. </p>
+      <p class="core_para2">The principal purposes of our initial public offering are to create a public market for our Class A common stock and thereby enable future access to the public equity markets by us and our employees, obtain additional capital, and facilitate an orderly distribution of shares for the selling stockholders. We intend to use the net proceeds to us from our initial public offering for working capital and other general corporate purposes; however, we do not currently have any specific uses of the net proceedsplanned. We may use a portion of the net proceeds to us to satisfy a portion of the anticipated tax withholding and remittance obligations related to the initial settlement of our outstanding RSUs. Additionally,we may use a portion of the proceeds to us for acquisitions of complementary businesses, technologies, or other assets. However, we have no commitments to use the proceeds from this offering for any such acquisitions or investments at this time. </p>
+      <p class="core_para2">Pending other uses, we intend to invest the proceeds to us in investment-grade, interest-bearing securities such as money market funds, certificates of deposit, or direct or guaranteed obligations of the U.S. government, or hold as cash. We cannot predict whether the proceeds invested will yield a favorable return. Our management will have broad discretion in the application of the net proceeds we receive from our initial public offering, and investors will be relying on the judgment of our management regarding the application of the net proceeds. </p>
+      <p class="core_para2">We will not receive any proceeds from the sale of shares of Class A common stock by the selling stockholders. Mark Zuckerberg, our founder, Chairman, and CEO, will offer and sell 30,200,000 shares in our initial public offering. The substantial majority of the net proceeds Mr. Zuckerberg will receive upon such sale will be used to satisfy taxes that he will incur in connection with the partial exercise of an outstanding stock option.</p>
+    </div>
+    <!-- search module-->
+    <div class="core_search">
+      {{> search_module}}
+    </div>
+  </div>
+</Template>
