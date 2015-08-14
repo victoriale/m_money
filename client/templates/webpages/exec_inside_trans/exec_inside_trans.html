@@ -1,0 +1,160 @@
+<!--
+Author:Meghana yerramilli
+Created: [8-06-2015]
+Description: exec_inside_trans Webpage
+Associated Files: exec_inside_trans.less,exec_inside_trans.js
+-->
+<Template name="exec_inside_trans">
+  <div class="eit_dim">
+    <div class="eit-hdr-head-box">
+      <!-- image inside the header box-->
+      <div class="eit-hdr-head-image">
+        <!-- he add green symbol above the image-->
+        <button class="eit-hdr-head-image-icon"><i class="fa fa-reply"></i></button>
+      </div>
+      <!-- the text inside the header box-->
+      <div class="eit-hdr-text">
+        <!-- the latest update-->
+        <div class="eit-hdr-text-update">
+          LAST UPDATED: 06/24/2015, 8:00 AM EST
+        </div>
+        <!-- location of the article-->
+        <div class="eit-hdr-text-loc">
+          <i class="fa fa-meit-marker"></i> United States
+        </div>
+        <!-- the name of the article-->
+        <div class="eit-hdr-text-name">
+          Insider Transactions
+        </div>
+        <!-- the author of the article-->
+        <div class="eit-hdr-text-auth">
+          for {{person}}
+        </div>
+      </div>
+    </div>
+    <div class="eit-hdr-bar">
+      <div class="eit-hdr-bar-title">
+        <span class="eit_titlspace"> {{person}}'s</span> Insider Transactions
+      </div>
+      <div class="eit-hdr-bar-button">
+        <!-- the save option button-->
+        <a href="#"><span class="eit-hdr-bar-icon"><i class="fa fa-heart"></i></span><span class="eit-hdr-bar-text">Save</span></a>
+      </div>
+      <div class="eit-hdr-bar-button">
+        <!-- share option button -->
+        <a href="#"><span class="eit-hdr-bar-icon"><i class="fa fa-share-alt"></i></span><span class="eit-hdr-bar-text">Share</span></a>
+      </div>
+    </div>
+    <div class="eit-hdr-main-container">
+      <!-- the module.less file navigation buttons-->
+      <button class='eit-hdr-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+      <button class='eit-hdr-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+      <!-- end of the module.less navigation button -->
+      <!-- wrapper class-->
+      <div class="eit-hdr-main-container-image-wrapper">
+        <div class="eit-hdr-main-container-image"></div>
+      </div>
+      <!-- the main container -->
+      <ul class="eit-hdr-main-container-container">
+        <!-- the image in blue circle-->
+        <li class="eit-hdr-main-container-title">
+          <div class="eit-hdr-main-container-title-image"><i class="fa fa-building-o"></i></div>
+          <div class="eit-hdr-main-container-title-txt">
+          {{person}}
+          </div>
+          <!--save & share icons-->
+          <div class="eit_hdr_save">
+            <a href="#"><span class="eit_saveicon"><i class="fa fa-heart"></i></span><span class="eit_save">Save</span></a>
+          </div>
+          <div class="eit_hdr_share">
+            <a href="#"><span class="eit_shareicon"><i class="fa fa-share-alt"></i></span><span class="eit_share">Share</span></a>
+          </div>
+        </li>
+        <!-- the description about the person-->
+        <div class="eit-hdr-main-container-description">
+          <div class="eit_desc_text1">
+            On<span class="eit_bold"> {{person}}</span>'s most recent transaction,he<span class="eit_italic"> sold 41,350,000 shares</span> for a value of<span class="eit_italic"> $2.27 Billion USD</span>.
+          </div>
+          <div class="eit_desc_text2">
+            <span class="eit_bold">Facebook, Inc.</span> is currently priced at:
+            <span class="eit_bold">$94.31</span>
+            <span class="eit_greentext"><i class="fa fa-arrow-up"></i><span class="eit_left">+0.22 (+0.23%)</span></span>
+          </div>
+        </div>
+      </ul>
+      <!-- the bottom bar-->
+      <div class="eit-hdr-main-container-view_more">
+        <!-- the details about the comapny-->
+        <div class="eit-hdr-main-container-view_more-text">
+          <div class="eit-hdr-main-container-view_more-text-ln1">Want more information about {{person}}?</div>
+          <div class="eit-hdr-main-container-view_more-text-ln2">Profile Last Updated On: <span class="eit-b">07/29/2015</span></div>
+        </div>
+        <button class="eit-hdr-main-container-view_more-button">
+          View Profile<i class="fa fa-angle-right"></i>
+        </button>
+      </div>
+    </div>
+    <div class="eit_sortdim">
+      <!--question box-->
+      <div class="eit-sortby">
+        <!--article title bar-->
+        Sort by:
+        <span class="eit-sortby-text">All Transactions</span>
+        <i class="fa fa-angle-down eit-sortby-icon"></i>
+      </div>
+      <!--question-->
+      <div class="eit-whatis">
+        <div class="eit-whatis-header">
+          What is this page?
+          <i class="fa fa-times eit-whatis-header-x"></i>
+        </div>
+        <!--answer area-->
+        <div class="eit-whatis-text">
+          This page details all of {{person}}'s latest insider transactions filed with the SEC by Facebook Inc.See the detals, dollar, and values of all the Form 4 transactions.
+        </div>
+      </div>
+    </div>
+    {{#each info}}
+    <div class="eit_{{getColor}}bgtiles">
+      <!--container for the info in the tiles-->
+      <span class="eit_textcont">
+        <!--title of the company,person from company and info-->
+        <div class="eit_transaction_title">
+          <span class="eit_cmperson">{{name}}</span>  <span class="eit_dot"><i class="fa fa-circle"></i></span>
+          <span class="eit_cmp">{{company}}</span><br>
+        </div>
+        <div class="eit_text">On {{date}}, Mark Zuckerberg sold<span class="eit_boldtiletext"> {{shares}}</span> of NASDAQ:FB at {{price}} per security. A value of<span class="eit_green"> {{amount}}</span><i class="fa fa-twitter eit_twitter"></i></div><br>
+        <!--location & date-->
+        <div class="eit_transaction_btm">
+          <br>
+          {{time}}<i class="fa fa-circle eit_dot_s fa-fw"></i>{{location}}
+        </div>
+      </span>
+      <div class="eit_imgcir">
+      </div>
+    </div>
+    {{/each}}
+    <!--pages-->
+    <div class="eit-pages eit-l eit-pa">
+      <!--arrows representing page number-->
+      <i class="fa fa-angle-left eit-pages-arrow" ></i>
+      <!--page numbered buttons & selection -->
+      <div class="eit-pages-circle-selected" id="eitPage1" onClick="eitSelect(1)">1</div>
+      <div class="eit-pages-circle"  id="eitPage2" onClick="eitSelect(2)">2</div>
+      <div class="eit-pages-circle" id="eitPage3" onClick="eitSelect(3)">3</div>
+      <i class="eit-pages-ellipsis eit-l" >...</i>
+      <div class="eit-pages-oval" id="eitPage4" onClick="eitSelect(4)">200</div>
+      <!--arrows representing page number-->
+      <i class="fa fa-angle-right eit-pages-arrow-right" ></i>
+      <!--view all button-->
+      <div class="eit-pages-view_all eit-pr">
+        VIEW ALL
+        <img src="infinite-icon.png" class="eit-pages-view_all-i eit-pr">
+      </div>
+    </div>
+    <!--search box-->
+    <div class="eit-search">
+      {{> search_module}}
+    </div>
+  </div>
+</Template>
