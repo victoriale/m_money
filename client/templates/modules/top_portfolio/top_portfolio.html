@@ -1,0 +1,157 @@
+<!--
+Author:Meghana yerramillli
+Created: [08-14-2015]
+Description: top_portfolio
+Associated Files: top_portfolio.html, top_portfolio.js
+-->
+<template name= "top_portfolio">
+  <div class="toprt" >
+    <div class="module-header">
+      <span class="module-header-line">
+      </span>
+      <!--widget title-->
+      <span class="module-header-title"><span class="toprt_headst">TOP PORTFOLIOS ON THE MARKET</span>
+    </span>
+  </div>
+  <div class="module_wrapper">
+    <!-- Begin Panel-->
+    <div class ="toprt-panel">
+      <div class="toprt-panel_title">
+        <!--Panel Title-->
+        <span class="fa-size">
+          <i class="fa fa-circle blueicons"></i>
+        </span>
+        TOP GAINING PORTFOLIOS OF ALL TIME
+      </div>
+      <div class="toprtimage-panel ">
+        <!--Linen pattern rectangle -->
+        <div class="toprtimage-panel_title">Top portfolios in the {{city}} Bay Area
+        </div>
+        <div class="toprtimage-panel_location">
+          <i class="fa fa-map-marker toprtblueicons"></i>
+          {{location}}
+        </div>
+        <!--Navigation button and profile image-->
+        <div class="toprtimage-panel_middlecontainer">
+          <a class="toprtimage-panel_nav-left">
+            <i class="fa fa-angle-left toprt-nav-left"></i>
+          </a>
+          <a class="toprtimage-panel_profile-image" >
+            <div class="toprt_blackcir">#4</div>
+          </a>
+          <a class="toprtimage-panel_nav-right"><i class="fa fa-angle-right toprt-nav-right"></i></a>
+        </div>
+        <!-- Name of the ceo-->
+        <div class="toprtimage-panel_toprt-name">{{name}}
+        </div>
+        <!--salary-->
+        <div class=" toprtimage-panel_toprt-sal"> Passed Auto-Gen Portfolio:
+          <span class="toprt-green">{{money}} +({{perc}})</span>
+        </div>
+        <!-- button for linen pattern rectangle-->
+        <a href="#">
+          <div class="toprtimage-panel_button">View the Full List
+            <span class="toprt_btn_icon">
+              <i class="fa fa-mail-forward">  </i>
+            </span>
+          </div>
+        </a>
+        <!--Down arrow-->
+        <span class="toprtimage-panel_down-arrow">
+        </span>
+      </div>
+
+      <!-- fund lists at the bottom of the panel-->
+      <div class="toprt-types">
+        <!--First Row in the list-->
+        {{#each getinfo}}
+        <div class="toprt_tile">
+          <!--tiles in loop-->
+          <div class="{{toprt_midicon1}}">
+            <div class="toprt_subtile">
+              <i class="fa fa-building-o"></i>
+            </div>
+          </div>
+          <div class="{{toprt_midicon2}}">
+            <div class="toprt_subtile">
+              <i class="fa fa-usd"></i>
+            </div>
+          </div>
+          <div class="{{toprt_midicon3}}">
+            <div class="toprt_subtile">
+              <i class="fa fa-gavel"></i>
+            </div>
+          </div>
+          <!--info in loop-->
+          <span class="toprt_infocont">
+            <span class="toprt_sal"> {{rem}}</span><br>
+            <span class="toprt_text"> {{text}}</span>
+          </span>
+
+          <span class='toprt_tile_righticon'>   <i class="fa fa-angle-right"></i></span>
+        </div>
+        {{/each}}
+        <!--info in loop-->
+
+      </div>
+    </div>
+    <!-- Begin: Module Tiles of Nearby funds frame-->
+    <!--loop of Tile-->
+    <div class="dettile-container">
+      {{#each getinfo}}
+      <div class="module-tile">
+        <div class="module-tile-default">
+          <div class="module-tile-default-container">
+
+            <div class="{{toprticon1_none}}">
+              <div class="dettileicon-spec">
+                <!--SVG code for Restaurant icon inside tile-->
+                <i class="fa fa-briefcase fa-3x"></i>
+              </div>
+            </div>
+            <div class="{{toprticon2_none}}">
+              <div class="dettileicon-spec">
+                <!--SVG code for Restaurant icon inside tile-->
+                <i class="fa fa-arrow-circle-o-up fa-3x"></i>
+              </div>
+            </div>
+            <div class="{{toprticon3_none}}">
+              <div class="dettileicon-spec">
+                <!--SVG code for Restaurant icon inside tile-->
+                <i class="fa fa-list-ol fa-3x"></i>
+              </div>
+            </div>
+
+            <div class="module-tile-default-text">{{title}}
+            </div>
+          </div>
+        </div>
+        <!--Hover effects for the tiles-->
+        <a class="module-tile-link" href="#">
+          <div class="module-tile-hover">
+            <div class="module-tile-name">
+              <span class="{{toprticon1_none}}">
+                <i class="fa fa-briefcase"></i>
+              </span>
+              <span class="{{toprticon2_none}}">
+                <i class="fa fa-usd"></i>
+              </span>
+              <span class="{{toprticon3_none}}">
+                <i class="fa fa-list-ol"></i>
+              </span>
+              {{title}}<br>
+            </div>
+            <div class="module-tile-info" >
+            </div>
+            <!--Tile Button -->
+            <button class="module-tile-button module-tile-button-align">OPEN PAGE
+              <i class="fa fa-mail-forward"></i>
+            </button>
+          </div>
+        </a>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
+</template>

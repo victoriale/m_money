@@ -1,0 +1,172 @@
+<!--
+Author:Meghana yerramillli
+Created: [08-13-2015]
+Description: detailed_look
+Associated Files: detailed_look.html, detailed_look.js
+-->
+<template name= "detailed_look">
+  <div class="detl" >
+    <div class="module-header">
+      <span class="module-header-line">
+      </span>
+      <!--widget title-->
+      <span class="module-header-title"><span class="detl_headst">DETAILED LOOK INTO MARK'S PERSONAL FILES</span>
+    </span>
+  </div>
+  <div class="module_wrapper">
+    <!-- Begin Panel-->
+    <div class ="detl-panel">
+      <div class="detl-panel_title">
+        <!--Panel Title-->
+        <span class="fa-size">
+          <i class="fa fa-circle blueicons"></i>
+        </span>
+        EXECUTIVE COMPENSATION
+      </div>
+      <div class="detlimage-panel ">
+        <!--Linen pattern rectangle -->
+        <div class="detlimage-panel_title">What's {{getceo}}'s annual salary?
+        </div>
+        <div class="detlimage-panel_location">
+          <i class="fa fa-map-marker detlblueicons"></i>
+          {{location}}
+        </div>
+        <!--Navigation button and profile image-->
+        <div class="detlimage-panel_middlecontainer">
+          <a class="detlimage-panel_nav-left">
+            <i class="fa fa-angle-left detl-nav-left"></i>
+          </a>
+          <a class="detlimage-panel_profile-image" href="#">
+            <!--image hover-->
+          </a>
+          <a class="detlimage-panel_nav-right"><i class="fa fa-angle-right detl-nav-right"></i></a>
+        </div>
+        <!-- Name of the ceo-->
+        <div class="detlimage-panel_detl-name"> {{getceo}}
+        </div>
+        <!--salary-->
+        <div class=" detlimage-panel_detl-sal"> Annual Salary:
+          {{getsalary}}
+        </div>
+        <!-- button for linen pattern rectangle-->
+        <a href="#">
+          <div class="detlimage-panel_button">View Executive Compensation
+            <span class="detl_btn_icon">
+              <i class="fa fa-mail-forward">  </i>
+            </span>
+          </div>
+        </a>
+        <!--Down arrow-->
+        <span class="detlimage-panel_down-arrow">
+        </span>
+      </div>
+
+      <!-- fund lists at the bottom of the panel-->
+      <div class="detl-types">
+        <!--First Row in the list-->
+        {{#each getinfo}}
+        <div class="detl_tile">
+          <!--tiles in loop-->
+          <div class="{{detl_midicon1}}">
+            <div class="detl_subtile">
+              <i class="fa fa-briefcase"></i>
+            </div>
+          </div>
+          <div class="{{detl_midicon2}}">
+            <div class="detl_subtile">
+              <i class="fa fa-gift"></i>
+            </div>
+          </div>
+          <div class="{{detl_midicon3}}">
+            <div class="detl_subtile">
+              <i class="fa fa-bell-o"></i>
+            </div>
+          </div>
+          <!--info in loop-->
+          <span class="detl_infocont">
+            <span class="detl_sal"> {{rem}}</span><br>
+            <span class="detl_text"> {{text}}</span>
+          </span>
+          <span class="detl_greentxt"><span class="{{detl_greenone}}"><span class="detl_greenicon"><i class="fa fa-arrow-up"></i></span></span>{{{percentage}}}</span>
+          <span class='detl_tile_righticon'>   <i class="fa fa-angle-right"></i></span>
+        </div>
+        {{/each}}
+        <!--info in loop-->
+
+      </div>
+    </div>
+    <!-- Begin: Module Tiles of Nearby funds frame-->
+    <!--loop of Tile-->
+    <div class="dettile-container">
+      {{#each getinfo}}
+      <div class="module-tile">
+        <div class="module-tile-default">
+          <div class="module-tile-default-container">
+            <!--circle in tiles -->
+            <div class="{{detl_cirnone}}">
+              <div class="detl_circle">
+                <i class="fa fa-share"></i>
+              </div>
+            </div>
+            <div class="{{detlicon1_none}}">
+              <div class="dettileicon-spec">
+                <!--SVG code for Restaurant icon inside tile-->
+                <i class="fa fa-money fa-3x"></i>
+              </div>
+            </div>
+            <div class="{{detlicon2_none}}">
+              <div class="dettileicon-spec">
+                <!--SVG code for Restaurant icon inside tile-->
+                <img src="/icon_statistics_custom.png"/>
+              </div>
+            </div>
+            <div class="{{detlicon3_none}}">
+              <div class="dettileicon-spec">
+                <!--SVG code for Restaurant icon inside tile-->
+                <i class="fa fa-bar-chart fa-3x"></i>
+              </div>
+            </div>
+            <div class="{{detl_none}}">
+              <div class="detl_new">NEW</div>
+            </div>
+            <div class="module-tile-default-text">{{title}}
+            </div>
+          </div>
+        </div>
+        <!--Hover effects for the tiles-->
+        <a class="module-tile-link" href="#">
+          <div class="module-tile-hover">
+            <div class="module-tile-name">
+              <span class="{{detlicon1_none}}">
+                <i class="fa fa-money"></i>
+              </span>
+              <span class="{{detlicon2_none}}">
+                <img src='/icon_statistics_custom.png' width="21" height="17"/>&nbsp;
+              </span>
+              <span class="{{detlicon3_none}}">
+                <i class="fa fa-bar-chart"></i>
+              </span>
+              {{title}}<br>
+            </div>
+            <div class="module-tile-info" >
+            </div>
+            <!--Tile Button -->
+          <div class="{{detl_ednone}}">
+          <button class="module-tile-button module-tile-button-align">OPEN PAGE
+            <i class="fa fa-mail-forward"></i>
+          </button>
+        </div>
+          <div class="{{detl_ed}}">
+          <button class="module-tile-button module-tile-button-align">OPEN PAGE
+            <i class="fa fa-mail-forward"></i>
+          </button>
+        </div>
+
+          </div>
+        </a>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
+</template>
