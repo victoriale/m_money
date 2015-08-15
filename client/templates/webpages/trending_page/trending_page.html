@@ -1,0 +1,244 @@
+<!-- Author: Navya Eetaram
+** Created: 08/14/2015
+** Description: .less file for trending_page
+** Associated Files: trending_page.html, trending_page.less, trending_page_logic.js, portfolio_watchlist.less
+-->
+
+<template name="trending_page">
+  <div class="t-p">
+
+    <!--Page header-->
+    <div class="t-p-hdr">
+      <!-- the header box -->
+      <div class="t-p-hdr-head-box">
+        <!-- image inside the header box-->
+        <div class="t-p-hdr-head-image">
+          <!-- he add green symbol above the image-->
+          <button class="t-p-hdr-head-image-icon"><i class="fa fa-reply"></i></button>
+        </div>
+        <!-- the text inside the header box-->
+        <div class="t-p-hdr-text">
+          <!-- the latest update-->
+          <div class="t-p-hdr-text-update">
+            LAST UPDATED: 06/24/2015, 8:00 AM EST
+          </div>
+          <!-- location-->
+          <div class="t-p-hdr-text-loc">
+            <i class="fa fa-map-marker"></i> United States
+          </div>
+          <!-- the name of the page-->
+          <div class="t-p-hdr-text-name">
+            Today's Trending Companies
+          </div>
+          <!-- the name of the company-->
+          <div class="t-p-hdr-text-auth">
+            In The United States
+          </div>
+        </div>
+      </div>
+      <div class="t-p-hdr-bar">
+        <div class="t-p-hdr-bar-title">
+          Today's Trending Companies Lists
+        </div>
+        <div class="t-p-hdr-bar-button">
+          <!-- the save option button-->
+          <a href="#"><i class="fa fa-heart"></i><span class="t-p-hdr-bar-text">Save</span></a>
+        </div>
+        <div class="t-p-hdr-bar-button">
+          <!-- share option button -->
+          <a href="#"><i class="fa fa-share-alt"></i><span class="t-p-hdr-bar-text">Share</span></a>
+        </div>
+      </div>
+      <div class="t-p-hdr-main-container">
+        <!-- the module.less file navigation buttons-->
+        <button class='t-p-hdr-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+        <button class='t-p-hdr-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+        <!-- end of the module.less navigation button -->
+        <!-- wrapper class-->
+        <div class="t-p-hdr-main-container-image-wrapper">
+          <div class="t-p-hdr-main-container-image"></div>
+          <div class="t-p-hdr-main-container-subimage"></div>
+        </div>
+        <!-- the main container -->
+        <ul class="t-p-hdr-main-container-container">
+          <!-- the image in blue circle-->
+          <li class="t-p-hdr-main-container-title">
+            <div class="t-p-hdr-main-container-title-image"><i class="fa fa-list"></i></div>
+            Top Largest Market Cap. Public Companies Over $1 in U.S. Today
+          </li>
+
+          <!-- the description about the person-->
+          <li class="t-p-hdr-main-container-description">
+            This list contains all public companies in the U.S. with a market cap over $1.
+            <span style="font-family:HN-B">{{company}}</span>
+            takes the lead in the list with a total market cap of <span style="font-family:HN-B">{{price}}</span>
+
+            <div class="t-p-hdr-main-container_cntr">  This list also  <span style="font-family:HN-B">Facebook, Inc.</span>, <span style="font-family:HN-B">Google, Inc.</span>, and more.</div>
+          </li>
+        </ul>
+        <!-- the bottom bar-->
+        <div class="t-p-hdr-main-container-view_more">
+          <!-- the details about the comapny-->
+          <div class="t-p-hdr-main-container-view_more-text">
+            <div class="t-p-hdr-main-container-view_more-text-ln1">Want to uncover more about this list? </div>
+            <div class="t-p-hdr-main-container-view_more-text-ln2">
+              Profile Last Updated On:
+              <span style="font-family:HN-B">07/29/2015</span>
+            </div>
+          </div>
+          <button class="t-p-hdr-main-container-view_more-button">
+            View Profile <i class="fa fa-angle-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--End Page header-->
+
+    <!--Sort by bar-->
+    <div class="t-p-sort">
+      <span style="font-family:HN-B">Sort by: </span>
+      <span>Most Recent </span>
+      <i class="fa fa-angle-down"></i>
+    </div>
+    <!--End sort by bar-->
+
+    <!--What is this page? box-->
+    <div class="t-p-about">
+      <div class="t-p-about-hdr">
+        <div class="t-p-about-hdr-txt">What is this page?</div>
+        <button class="t-p-about-hdr-icon"><i class="fa fa-close"></i></button>
+      </div>
+      <div class="t-p-about-txt">
+        This page features a list of lists of the top public companies in the United States sorted by "highest market cap","highest traded stocks" and more.
+      </div>
+    </div>
+    <!--End What is this page? box-->
+    <div class="spacet_p">
+      <!--trending_page info container-->
+      {{#each gettrending_page}}
+      <div class="pw-list-tile-{{getBackgroundStyle}}">
+        <!--trending_page Picture & Response Buttons-->
+        <span class="pw-profile-info">
+          <span class="pw-prof-img"></span>
+          <span class="pw-fw">
+            <i class="fa pw-fw-icon fa-heart"></i>
+            <span class="pw-fw-text">Save</span>
+            <span class="pw-fw-share">
+              <i class="fa pw-fw-icon fa-share-alt"></i>
+              <span class="pw-fw-text">Share</span>
+            </span>
+            <span class="spacet_p_fback">
+              <i class="fa pw-fw-icon fa-flag">
+              </i><span class="pw-fw-text">Feedback</span>
+            </span>
+          </span>
+        </span>
+        <!--trending_page Buttons-->
+
+        <!--trending_page Information-->
+        <div class="pw-info">
+          <div>
+            <i class="fa pw-info-map fa-map-marker"></i>
+            <span class="pw-info-loc">{{t_location}}</span>
+          </div>
+          <div class="pw-cont">
+            <div class="pw-info-earn">{{Top_trending}}</div>
+          </div>
+          <span class="pw-sm-img"></span>
+          <span class="pw-sm-img"></span>
+          <span class="pw-sm-img"></span>
+          <span class="pw-sm-img"></span>
+          <span class="pw-sm-img"></span>
+          <button class="pw-view-btn">
+            <span class="pw-view-btn-text">View Full List</span>
+            <i class="fa pw-view-btn-icon fa-angle-right"></i>
+          </button>
+        </div>
+        <!--trending_page Information-->
+      </div>
+      {{/each}}
+    </div>
+    <!--featured companies-->
+    <div class="t-p-feat">
+      <div class="t-p-feat-head">Featured Companies in the United States</div>
+      {{#each featt_p}}
+      <div class="t-p-feat-image">
+        <div class="t-p-feat-image-text">
+          <div class="t-p-feat-image-text-ln1">{{name}}</div>
+          <div class="t-p-feat-image-text-ln2">
+            <span style="font-family:HN-B">${{stockprice}}</span>
+            {{stockdiff}}
+          </div>
+        </div>
+      </div>
+      {{/each}}
+      <div class="t-p-feat-arrow fa fa-angle-right"></div>
+    </div>
+    <!--End feat companies-->
+
+    <!--trending_page info container (cont)-->
+    <div class="space2t_p">
+      <!--trending_page info container-->
+      {{#each gettrending_page2}}
+      <div class="pw-list-tile-{{getBackgroundStyle}}">
+        <!--trending_page Picture & Response Buttons-->
+        <span class="pw-profile-info">
+          <span class="pw-prof-img"></span>
+          <span class="pw-fw">
+            <i class="fa pw-fw-icon fa-heart"></i>
+            <span class="pw-fw-text">Save</span>
+            <span class="pw-fw-share">
+              <i class="fa pw-fw-icon fa-share-alt"></i>
+              <span class="pw-fw-text">Share</span>
+            </span>
+            <span class="spacet_p_fback">
+              <i class="fa pw-fw-icon fa-flag">
+              </i><span class="pw-fw-text">Feedback</span>
+            </span>
+          </span>
+        </span>
+        <!--trending_page Picture & Response Buttons-->
+
+        <!--trending_page Information-->
+        <div class="pw-info">
+          <div>
+            <i class="fa pw-info-map fa-map-marker"></i>
+            <span class="pw-info-loc">{{t_location}}</span>
+          </div>
+          <div class="pw-cont">
+            <div class="pw-info-earn">{{Top_trending}}</div>
+          </div>
+          <span class="pw-sm-img"></span>
+          <span class="pw-sm-img"></span>
+          <span class="pw-sm-img"></span>
+          <span class="pw-sm-img"></span>
+          <span class="pw-sm-img"></span>
+          <button class="pw-view-btn">
+            <span class="pw-view-btn-text">View Full List</span>
+            <i class="fa pw-view-btn-icon fa-angle-right"></i>
+          </button>
+        </div>
+        <!--trending_page Information-->
+      </div>
+      {{/each}}
+    </div>
+    <!--End trending_page info container (cont)-->
+
+    <!--Navigation bar-->
+    <div class="t-p-nav">
+      <i class="fa fa-angle-left"></i>
+      <div class="t-p-nav-bubble t-p-nav-bubble-selected">1</div>
+      <div class="t-p-nav-bubble">2</div>
+      <div class="t-p-nav-bubble">3</div>
+      <div class="t-p-nav-ellipsis">&middot;&middot;&middot;</div>
+      <div class="t-p-nav-bubble">200</div>
+      <i class="fa fa-angle-right"></i>
+      <div class="t-p-nav-view_all">
+        VIEW ALL
+        <img src="../infinite-icon.png">
+      </div>
+    </div>
+
+    {{> search_module}}
+  </div>
+</template>
