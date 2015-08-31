@@ -1,0 +1,102 @@
+<!-- Author: Ryan Fisher
+**** Created: [08/14/2015]
+**** Description: IPO Page - Office Location
+**** Associated Files: IPO_page.html, IPO_page.less, IPO_page_logic.js
+-->
+
+<template name="IPO_page">
+  <div class="ipopg">
+
+    <!--Page header-->
+    <div class="ipopg-hdr">
+      <div class="ipopg-hdr-head">
+        <!-- image inside the header box-->
+        <div class="ipopg-hdr-head-image">
+          <!-- he add green symbol above the image-->
+          <button class="ipopg-hdr-head-image-icon"><i class="fa fa-reply"></i></button>
+        </div>
+        <!-- the text inside the header box-->
+        <div class="ipopg-hdr-text">
+          <!-- the latest update-->
+          <div class="ipopg-hdr-text-update">
+            LAST UPDATED: 06/24/2015, 8:00 AM EST
+          </div>
+          <!-- location of the ipopgicle-->
+          <div class="ipopg-hdr-text-loc">
+            <i class="fa fa-map-marker"></i> {{location}}
+          </div>
+          <!-- the name of the page-->
+          <div class="ipopg-hdr-text-name">
+            Office Location
+          </div>
+          <!-- the person the page is about-->
+          <div class="ipopg-hdr-text-who">
+            For {{company}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End page header-->
+
+    <!--Map container-->
+    <div class="ipopg-map">
+      <div class="ipopg-map-container" id="mainmap"></div>
+      <div class="ipopg-map-bar">
+        <div class="ipopg-map-bar-title">{{company}}'s Office Location</div>
+        <div class="ipopg-map-bar-button"><i class="fa fa-heart"></i>Save</div>
+        <div class="ipopg-map-bar-button"><i class="fa fa-share-alt"></i>Share</div>
+      </div>
+    </div>
+    <!--End Map container-->
+
+    <!--Sort by bar-->
+    <div class="ipopg-sort">
+      <span style="font-family:HN-B">Sort by: </span>
+      <span>Company's Office Location </span>
+      <i class="fa fa-angle-down"></i>
+    </div>
+    <!--End sort by bar-->
+
+    <!--What is this page? box-->
+    <div class="ipopg-about">
+      <div class="ipopg-about-hdr">
+        <div class="ipopg-about-hdr-txt">What is this page?</div>
+        <button class="ipopg-about-hdr-icon"><i class="fa fa-close"></i></button>
+      </div>
+      <div class="ipopg-about-txt">
+        This page features an in-depth map of {{company}}'s office location, along with the address and
+        numbers associated with the office.
+      </div>
+    </div>
+    <!--End What is this page? box-->
+
+    <!--Main page info-->
+    <div class="ipopg-main">
+      <div class="ipopg-main-hdr">
+        <span class="ipopg-main-bold">Office</span> for {{company}}
+      </div>
+      <div class="ipopg-main-update">
+        <i class="fa fa-calendar"></i> Last Updated 07/30/2015
+      </div>
+      {{#each data}}
+      <div class="ipopg-main-detail">
+        <div class="ipopg-main-detail-title">{{title}}</div>
+        <div class="ipopg-main-detail-info">
+          <ul>
+            {{#each line}}
+              {{#if isLink}}
+                <li><a href="{{text}}">{{text}}</a></li>
+              {{else}}
+                <li>{{text}}</li>
+              {{/if}}
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <!--End Main page info-->
+
+    {{> search_module}}
+  </div>
+</template>
