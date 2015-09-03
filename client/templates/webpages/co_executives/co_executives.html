@@ -1,0 +1,228 @@
+<!-- Author: Ryan Fisher
+**** Created: [08/10/2015]
+**** Description: Company Page - Executives
+**** Associated Files: co_executives.html, co_executives.less, co_executives_logic.js
+-->
+
+<template name="co_executives">
+  <div class="coex">
+
+    <!--Page header-->
+    <div class="coex-hdr">
+      <!-- the header box -->
+      <div class="coex-hdr-head-box">
+        <!-- image inside the header box-->
+        <div class="coex-hdr-head-image">
+          <!-- he add green symbol above the image-->
+          <button class="coex-hdr-head-image-icon"><i class="fa fa-reply"></i></button>
+        </div>
+        <!-- the text inside the header box-->
+        <div class="coex-hdr-text">
+            <!-- the latest update-->
+            <div class="coex-hdr-text-update">
+              LAST UPDATED: 06/24/2015, 8:00 AM EST
+            </div>
+            <!-- location of the executive-->
+            <div class="coex-hdr-text-loc">
+              <i class="fa fa-map-marker"></i> United States
+            </div>
+            <!-- the name of the page-->
+            <div class="coex-hdr-text-name">
+              Executives
+            </div>
+            <!-- the name of the company-->
+            <div class="coex-hdr-text-auth">
+              at {{company}}
+            </div>
+        </div>
+      </div>
+      <div class="coex-hdr-bar">
+        <div class="coex-hdr-bar-title">
+          {{company}}'s Executives
+        </div>
+        <div class="coex-hdr-bar-button">
+          <!-- the save option button-->
+          <a href="#"><i class="fa fa-heart"></i><span class="coex-hdr-bar-text">Save</span></a>
+        </div>
+        <div class="coex-hdr-bar-button">
+          <!-- share option button -->
+          <a href="#"><i class="fa fa-share-alt"></i><span class="coex-hdr-bar-text">Share</span></a>
+        </div>
+      </div>
+      <div class="coex-hdr-main-container">
+        <!-- the module.less file navigation buttons-->
+        <button class='coex-hdr-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+        <button class='coex-hdr-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+        <!-- end of the module.less navigation button -->
+        <!-- wrapper class-->
+        <div class="coex-hdr-main-container-image-wrapper">
+          <div class="coex-hdr-main-container-image"></div>
+          <div class="coex-hdr-main-container-subimage"></div>
+        </div>
+        <!-- the main container -->
+        <ul class="coex-hdr-main-container-container">
+          <!-- the image in blue circle-->
+          <li class="coex-hdr-main-container-title">
+            <div class="coex-hdr-main-container-title-image"><i class="fa fa-briefcase"></i></div>{{executive}}
+          </li>
+          <li class="coex-hdr-main-container-buttons">
+            <div class="coex-hdr-main-container-button">
+              <!-- the save option button-->
+              <a style="color:#ffffff" href="#"><i class="fa fa-heart"></i>Save</a>
+            </div>
+            <div class="coex-hdr-main-container-button">
+              <!-- share option button -->
+              <a style="color:#ffffff" href="#"><i class="fa fa-share-alt"></i>Share</a>
+            </div>
+          </li>
+          <!-- the description about the person-->
+          <li class="coex-hdr-main-container-description">
+            Mark Zuckerberg is the Cheif Executive Officer and Chairman of Facebook, Inc.  Mark
+            Zuckerberg's net worth is vauled at <span style="font-family:HN-B">44.98 Billion USD</span>
+            as of 08/03/2015.
+          </li>
+        </ul>
+        <!-- the bottom bar-->
+        <div class="coex-hdr-main-container-view_more">
+          <!-- the details about the comapny-->
+          <div class="coex-hdr-main-container-view_more-text">
+            <div class="coex-hdr-main-container-view_more-text-ln1">Interesed in discovering more about {{executive}}?</div>
+            <div class="coex-hdr-main-container-view_more-text-ln2">
+              Profile Last Updated On:
+              <span style="font-family:HN-B">07/29/2015</span>
+            </div>
+          </div>
+          <button class="coex-hdr-main-container-view_more-button">
+            View Profile <i class="fa fa-angle-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--End Page header-->
+
+    <!--Sort by bar-->
+    <div class="coex-sort">
+      <span style="font-family:HN-B">Sort by: </span>
+      <span>Executives </span>
+      <i class="fa fa-angle-down"></i>
+    </div>
+    <!--End sort by bar-->
+
+    <!--What is this page? box-->
+    <div class="coex-about">
+      <div class="coex-about-hdr">
+        <div class="coex-about-hdr-txt">What is this page?</div>
+        <button class="coex-about-hdr-icon"><i class="fa fa-close"></i></button>
+      </div>
+      <div class="coex-about-txt">
+        This is a list detailing all executives for {{company}} including CEO, COO, CFO, CTO, Marketing, Directors, etc.
+      </div>
+    </div>
+    <!--End What is this page? box-->
+
+    <!--Exec info container-->
+    {{#each exec}}
+    <div class="coex-info" style="background-color:{{bgc}}">
+      <div class="coex-info-images">
+        <div class="coex-info-images-main"></div>
+        <div class="coex-info-images-num">#{{num}}</div>
+        <div class="coex-info-images-sub"></div>
+      </div>
+      <div class="coex-info-text">
+        <div class="coex-info-text-ln1">
+          <div class="coex-info-text-left"><i class="fa fa-map-marker"></i> {{location}}</div>
+          <div class="coex-info-text-right">FB Shares Held</div>
+        </div>
+        <div class="coex-info-text-ln2">
+          <div class="coex-info-text-left" style="font-family:HN-B">{{name}}</div>
+          <div class="coex-info-text-right" style="font-family:HN-B">{{shares}}</div>
+        </div>
+        <div class="coex-info-text-ln3">
+          <div class="coex-info-text-left">{{position}}</div>
+          <div class="coex-info-text-right">as of {{update}}</div>
+        </div>
+        <div class="coex-info-text-more">
+          <div class="coex-info-text-more-lbl">Want more info about this executive?</div>
+          <button class="coex-info-text-more-btn">View Profile <i class="fa fa-angle-right"></i></button>
+        </div>
+      </div>
+      <div class="coex-info-social">
+        <div class="coex-info-social-button"><i class="fa fa-heart"></i>Follow</div>
+        <div class="coex-info-social-button"><i class="fa fa-share-alt"></i>Share</div>
+        <div class="coex-info-social-button" style="float:right"><i class="fa fa-flag"></i>Feedback</div>
+      </div>
+    </div>
+    {{/each}}
+    <!--End exec info container-->
+
+    <!--feat companies-->
+    <div class="coex-feat">
+      <div class="coex-feat-head">Featured Companies in the United States</div>
+      {{#each feat}}
+      <div class="coex-feat-image">
+        <div class="coex-feat-image-text">
+          <div class="coex-feat-image-text-ln1">{{name}}</div>
+          <div class="coex-feat-image-text-ln2">
+              <span style="font-family:HN-B">${{stockprice}}</span>
+              {{stockdiff}}
+          </div>
+        </div>
+      </div>
+      {{/each}}
+      <div class="coex-feat-arrow fa fa-angle-right"></div>
+    </div>
+    <!--End feat companies-->
+
+    <!--Exec info container (cont)-->
+    {{#each exec2}}
+    <div class="coex-info" style="background-color:{{bgc}}">
+      <div class="coex-info-images">
+        <div class="coex-info-images-main"></div>
+        <div class="coex-info-images-num">#{{num}}</div>
+        <div class="coex-info-images-sub"></div>
+      </div>
+      <div class="coex-info-text">
+        <div class="coex-info-text-ln1">
+          <div class="coex-info-text-left"><i class="fa fa-map-marker"></i> {{location}}</div>
+          <div class="coex-info-text-right">FB Shares Held</div>
+        </div>
+        <div class="coex-info-text-ln2">
+          <div class="coex-info-text-left" style="font-family:HN-B">{{name}}</div>
+          <div class="coex-info-text-right" style="font-family:HN-B">{{shares}}</div>
+        </div>
+        <div class="coex-info-text-ln3">
+          <div class="coex-info-text-left">{{position}}</div>
+          <div class="coex-info-text-right">as of {{update}}</div>
+        </div>
+        <div class="coex-info-text-more">
+          <div class="coex-info-text-more-lbl">Want more info about this executive?</div>
+          <button class="coex-info-text-more-btn">View Profile <i class="fa fa-angle-right"></i></button>
+        </div>
+      </div>
+      <div class="coex-info-social">
+        <div class="coex-info-social-button"><i class="fa fa-heart"></i>Follow</div>
+        <div class="coex-info-social-button"><i class="fa fa-share-alt"></i>Share</div>
+        <div class="coex-info-social-button" style="float:right"><i class="fa fa-flag"></i>Feedback</div>
+      </div>
+    </div>
+    {{/each}}
+    <!--End exec info container (cont)-->
+
+    <!--Navigation bar-->
+    <div class="coex-nav">
+      <i class="fa fa-angle-left"></i>
+      <div class="coex-nav-bubble coex-nav-1">1</div>
+      <div class="coex-nav-bubble coex-nav-2">2</div>
+      <div class="coex-nav-bubble coex-nav-3">3</div>
+      <div class="coex-nav-ellipsis">&middot;&middot;&middot;</div>
+      <div class="coex-nav-bubble coex-nav-200">200</div>
+      <i class="fa fa-angle-right"></i>
+      <div class="coex-nav-view_all">
+        VIEW ALL
+        <img src="../infinite-icon.png">
+      </div>
+    </div>
+
+    {{> didnt_find}}
+  </div>
+</template>
