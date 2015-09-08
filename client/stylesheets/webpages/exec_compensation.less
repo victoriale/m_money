@@ -1,0 +1,706 @@
+/*
+Author: Prashanth Diddi
+Date: 09/02/2015
+Decription: A page for showing executive compensation
+Associated Files: exec_compensation.html, exec_compensation.less, exec_compensation.js
+*/
+
+@import (reference)"../global_vars.less";
+@import (reference)"../modules.less";
+
+.excmp
+{
+  //to hide a class
+  &-hide{
+    display: none;
+    width: 0px;
+    height: 0px;
+  }
+  //to show the hidden class
+  &-show{
+    display:inline;
+  }
+  //for values in dropdown
+  &-choseyr{
+    background-color:  #f3f2f2;
+    width: 650px;
+    height: 49px;
+    font-size: 18px;
+    padding-top: 10px;
+    padding-left: 15px;
+    margin-top: 10px;
+  }
+  //for dropdown
+  &-dropdown{
+    border-radius: 2px;
+    border-style: solid;
+    border-width: 1px;
+    border-color:  #cccccc;
+    background-color:  #ffffff;
+    width: 180px;
+    height: 35px;
+    font-size: 14px;
+    float: right;
+    text-align: left;
+    padding-top: 5px;
+    padding-left: 15px;
+    margin-right: 10px;
+    margin-top: -3px;
+    cursor: pointer;
+    //for font style in dropdown
+    &-yr{
+      font-family: HN-B;
+    }
+    &-faicon{
+      float: right;
+      padding-right: 17px;
+      padding-top: 3px;
+    }
+  }
+  //for aligning font to right
+  &-right{
+    padding-left: 10px;
+  }
+  &-pr //cfo-pr
+  {
+    position: relative;
+  }
+
+  &-pa //cfo-pa
+  {
+    position: absolute;
+  }
+  &-b //cfo-b
+  {
+    font-style: normal;
+    font-family: HN-B;
+  }
+
+  &-n //cfo-n: normal text for use in <i> tags
+  {
+    font-style: normal;
+    font-family: HN;
+  }
+
+  &-l //cfo-l
+  {
+    font-style: normal;
+    font-family: HN-L;
+  }
+
+  &-grn //cfo-grn
+  {
+    color: @green;
+    font-style: normal;
+    font-family: HN-B;
+  }
+
+  &-blue //cfo-blue
+  {
+    font-style: normal;
+    color: @blue;
+    font-family: HN-B;
+  }
+
+  &-black //cfo-black
+  {
+    font-family: HN-B;
+    color: @black;
+    font-style: normal;
+  }
+
+  &-i //cfo-i
+  {
+    font-style: italic;
+  }
+
+  &-page //cfo-page
+  {
+    width: 680px;
+    height: 2170px;
+    background-color: @white;
+    color: @black;
+  }
+
+  &-top //cfo-top
+  {
+    width: 680px;
+    height: 140px;
+
+    &-circle //cfo-top-circle
+    {
+      border-radius: 50%;
+      border: 2px solid @grey-2;
+      width: 100px;
+      height: 100px;
+      top: 20px;
+      left: 20px;
+
+      &-btn //cfo-top-circle-btn
+      {
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        background-color: @blue;
+        left: -8px;
+        color: @white;
+        text-align: center;
+        padding-top: 7px;
+      }
+    }
+
+    &-txt1 //cfo-top-txt1
+    {
+      font-size: 10px;
+      color: #959595;
+      left: 128px;
+      top: 16px;
+    }
+
+    &-txt2 //cfo-top-txt2
+    {
+      font-size: 12px;
+      left: 128px;
+      top: 43px;
+    }
+
+    &-txt3 //cfo-top-txt3
+    {
+      font-size: 22px;
+      left: 128px;
+      top: 59px;
+    }
+
+    &-txt4 //cfo-top-txt4
+    {
+      font-size: 22px;
+      left: 128px;
+      top: 87px;
+    }
+  }
+
+  &-mid //cfo-mid: the middle section that goes black-grey-black
+  {
+    width: 680px;
+    height: 361px;
+    background-image: @dark-linen;
+    color: @white;
+
+    &-top //cfo-mid-top
+    {
+      background-color: @black;
+      height: 35px;
+      width: 680px;
+
+      &-txt1 //cfo-mid-top-txt1
+      {
+        font-size: 16px;
+        border-right: 1px solid #363636;
+        padding: 5px 14px;
+        max-width: 400px;
+        height: 35px;
+        float: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      &-txt2 //cfo-mid-top-txt2
+      {
+        margin: 0px 15px;
+        width: 56px;
+        float: left;
+        padding-top: 7px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+    }
+
+    &-mid //cfo-mid-mid
+    {
+      top: 35px;
+      width: 680px;
+      height: 250px;
+
+      &-l //cfo-mid-mid-l
+      {
+        margin-left: 15px !important;
+      }
+
+      &-r //cfo-mid-mid-r
+      {
+        margin-right: 15px !important;
+      }
+
+      &-circle //cfo-mid-mid-circle
+      {
+        border-radius: 50%;
+        width: 180px;
+        height: 180px;
+        border: 3px solid @grey-2;
+        background-color: @white;
+        left: 55px;
+        top: 34px;
+      }
+
+      &-building //cfo-mid-mid-building
+      {
+        border-radius: 50%;
+        background-color: @blue;
+        width: 40px;
+        height: 40px;
+        left: 235px;
+        top: 32px;
+        padding-top: 10px;
+        padding-left: 13px;
+      }
+
+      &-txt1 //cfo-mid-mid-txt1
+      {
+        font-size: 22px;
+        top: 30px;
+        left: 291px;
+        width: 380px;
+        height: 31px;
+        overflow: hidden;
+      }
+
+      &-txt2 //cfo-mid-mid-txt2
+      {
+        font-size: 14px;
+        top: 58px;
+        left: 291px;
+        color: #f2f2f2;
+        cursor: pointer;
+      }
+
+      &-txt3 //cfo-mid-mid-txt3
+      {
+        font-size: 14px;
+        top: 58px;
+        left: 385px;
+        color: #f2f2f2;
+        cursor: pointer;
+      }
+
+      &-txtbox //cfo-mid-mid-txtbox
+      {
+        border-left: 2px solid @grey-2;
+        height: auto;
+        width: 361px;
+        left: 255px;
+        top: 98px;
+        padding-left: 19px;
+        font-size: 16px;
+        line-height: 19px;
+        overflow: hidden;
+
+        &-txt //cfo-mid-mid-txtbox-txt
+        {
+          top: -4px;
+          font-style: normal;
+        }
+
+        &-btm1 //cfo-mid-mid-txtbox-btm1
+        {
+          top: -4px;
+          line-height: 30px;
+          font-style: normal;
+        }
+        &-btm2 //cfo-mid-mid-txtbox-btm2
+        {
+          top: -9px;
+          font-style: normal;
+        }
+      }
+    }
+
+    &-btm //cfo-mid-btm: the black section at the bottom of the middle
+    {
+      top: 284px;
+      height: 76px;
+      width: 680px;
+      background-color: @black;
+
+      &-txt1 //cfo-mid-btm-txt1
+      {
+        left: 20px;
+        top: 16px;
+        font-size: 18px;
+      }
+
+      &-txt2 //cfo-mid-btm-txt2
+      {
+        left: 20px;
+        bottom: 14px;
+        font-size: 14px;
+      }
+
+      &-btn //cfo-mid-btm-btn
+      {
+        left: 490px;
+        top: 21px;
+        background-color: @blue;
+        border-radius: 5px;
+        width: 180px;
+        height: 35px;
+        font-size: 14px;
+        text-align: center;
+        padding-top: 7px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &-btm //cfo-btm
+  {
+    width: 680px;
+    //min-height: 978px;
+    padding: 10px 15px 0px 15px;
+
+    &-txt1 //cfo-btm-txt1
+    {
+      font-size: 12px;
+      height: 12px;
+      line-height: 12px;
+
+      &-blue //cfo-btm-txt1-blue
+      {
+        color: @blue;
+      }
+    }
+
+    &-what //cfo-btm-what: the box that starts with "what is this page?"
+    {
+      width: 650px;
+      height: 81px;
+      background-color: #fafafa;
+      border: 1px solid #ebebeb;
+      font-size: 14px;
+      margin-top: 15px;
+
+      &-top //cfo-btm-what-top
+      {
+        width: 100%;
+        height: 20px;
+        background-color: #ebebeb;
+        color: #333333;
+        font-size: 12px;
+        padding: 0px 10px;
+
+        &-x //cfo-btm-what-top-x
+        {
+          cursor: pointer;
+          float: right;
+          top: 3px;
+        }
+      }
+
+      &-txt //cfo-btm-what-txt
+      {
+        width: 610px;
+        height: 31px;
+        margin-top: 14px;
+        margin-left: 20px;
+        line-height: 16px;
+      }
+    }
+
+    &-data //cfo-btm-data
+    {
+      width: 680px;
+      height: auto;
+      left: -15px;
+      margin-top: 13px;
+
+      &-title //cfo-btm-date-title
+      {
+        width: 650px;
+        height: 28px;
+        font-size: 18px;
+        left: 15px;
+        border-bottom: 1px solid @grey-2;
+      }
+
+      &-date //cfo-btm-data-date
+      {
+        color: #959595;
+        font-size: 12px;
+        left: 15px;
+        top: 5px;
+      }
+
+      &-graph //cfo-btm-data-graph
+      {
+        left: 15px;
+        width: 675px;
+        margin-top: 5px;
+        height: 265px;
+        margin-left: -25px;
+      }
+
+      &-period //cfo-btm-data-period
+      {
+        width: 100%;
+        height: 50px;
+        background-color: #f2f2f2;
+        padding: 0px 37px;
+
+        &-btn //cfo-btm-data-period-btn
+        {
+          background-color: #dadada;
+          border-radius: 50%;
+          width: 35px;
+          height: 35px;
+          font-size: 14px;
+          color: #272727;
+          margin: 8px 10px;
+          float: left;
+          text-align: center;
+          padding-top: 7px;
+          cursor: pointer;
+
+          &-a //cfo-btm-data-period-btn-a
+          {
+            background-color: @blue;
+            color: @white;
+          }
+        }
+      }
+
+      &-list //cfo-btm-data-list
+      {
+        width: 680px;
+        height: 206px;
+      }
+
+      &-list-l //cfo-btm-data-list-l
+      {
+        width: 325px;
+        height: 185px;
+        float:left;
+        left: 15px;
+        top: 10px;
+        border-right: 1px dashed @grey-2;
+      }
+
+      &-list-r //cfo-btm-data-list-r
+      {
+        width: 325px;
+        height: 185px;
+        right: 0px;
+        top: 10px;
+        float:right;
+      }
+
+      &-list-i //cfo-btm-data-list-i
+      {
+        width: 310px;
+        height: 20px;
+        border-bottom: 1px solid #404040;
+        font-size: 14px;
+        padding-bottom: 30px;
+        margin-bottom: 5px;
+
+        &-l //cfo-btm-data-list-i-l
+        {
+          float: left;
+          width: 50%;
+          text-align: left;
+          overflow: hidden;
+          height: 20px;
+        }
+
+        &-r //cfo-btm-data-list-i-r
+        {
+          float: right;
+          width: 50%;
+          text-align: right;
+          overflow: hidden;
+          height: 20px;
+        }
+
+        &-b //cfo-btm-data-list-i-b
+        {
+          width: 310px;
+          height: 20px;
+          font-size: 14px;
+          padding-bottom: 30px;
+        }
+      }
+
+      &-list-e //cfo-btm-data-list-e: the exception in the list where there is a paragraph
+      {
+        width: 310px;
+        height: 89px;
+
+        &-title //cfo-btm-data-list-e-title
+        {
+          font-size: 14px;
+          max-width: 300px;
+          overflow: hidden;
+          height: 17px;
+        }
+
+        &-circle //cfo-btm-data-list-e-circle
+        {
+          border: 2px solid @grey-2;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          float: left;
+          top: 5px;
+        }
+
+        &-txt //cfo-btm-data-list-e-txt
+        {
+          float: right;
+          width: 250px;
+          height: 90px;
+          font-size: 12px;
+          top: 5px;
+          overflow: hidden;
+        }
+      }
+
+      &-tile //cfo-btm-data-tile
+      {
+        width: 680px;
+        height: 216px;
+        padding: 10px 15px;
+        clear: both;
+
+        &:after
+        {
+          clear: both;
+          content: "";
+          display: table;
+        }
+
+        &-grey //cfo-btm-data-tile-grey
+        {
+          width: 680px;
+          height: 216px;
+          padding: 10px 15px;
+          background-color: #f6f6f6;
+          border-top: 1px solid #c2c2c2;
+          border-bottom: 1px solid #c2c2c2;
+          clear: both;
+
+          &:after
+          {
+            clear: both;
+            content: "";
+            display: table;
+          }
+        }
+
+        &-title //cfo-btm-data-tile-title
+        {
+          font-size: 16px;
+          left: 44px;
+          top: 6px;
+        }
+
+        &-l //cfo-btm-data-tile-l
+        {
+          width: 325px;
+          padding-top: 55px;
+          border-right: 1px dashed rgb(215,215,215);
+          float: left;
+          padding-bottom: 10px;
+        }
+
+        &-r //cfo-btm-data-tile-r
+        {
+          width: 325px;
+          padding-top: 55px;
+          left: 15px;
+          float: left;
+          padding-bottom: 10px;
+        }
+
+        &-circle //cfo-btm-data-tile-circle
+        {
+          border-radius: 50%;
+          background-color: @blue;
+          color: @white;
+          width: 35px;
+          height: 35px;
+          float: left;
+          font-size: 16px;
+          padding-top: 5px;
+          padding-left: 13px;
+          top: 10px;
+          left: 0px;
+        }
+
+        &-stat //cfo-btm-data-tile-stat
+        {
+          width: 300px;
+          height: 35px;
+          padding-top: 5px;
+          font-size: 14px;
+          border-bottom: 1px solid #bfbfbf;
+
+          &-noborder //cfo-btm-data-tile-stat-noborder
+          {
+            width: 300px;
+            height: 30px;
+            font-size: 14px;
+            padding-top: 5px;
+            border-bottom: 0px  !important;
+          }
+          &-l //cfo-btm-data-tile-stat-l
+          {
+            float: left;
+            width: 20%;
+            height: 20px;
+            overflow: hidden;
+            position: relative;
+          }
+          &-m
+          {
+            float: right;
+            width: 33%;
+            height: 20px;
+            overflow: hidden;
+            text-align: right;
+            position: relative;
+          }
+          &-r //cfo-btm-data-tile-stat-r
+          {
+            float: right;
+            width: 43%;
+            height: 20px;
+            overflow: hidden;
+            text-align: right;
+            position: relative;
+            color:#959595;
+
+            &-greencolor{ // green color in for up arrow
+              font-family: HN-B;
+              float: right;
+              width: 43%;
+              height: 20px;
+              overflow: hidden;
+              text-align: right;
+              position: relative;
+              color: #44b224;
+            }
+            &-redcolor{ //red color in down arrow
+              font-family: HN-B;
+              float: right;
+              width: 43%;
+              height: 20px;
+              overflow: hidden;
+              text-align: right;
+              position: relative;
+              color: #ca1010;
+            }
+          }
+        }
+      }
+    }
+  }
+}

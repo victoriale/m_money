@@ -1,0 +1,176 @@
+<!--
+Author: Prashanth Diddi
+Date: 09/04/2015
+Decription: A page for showing company executive compensation
+Associated Files: co_exec_comp.html, co_exec_comp.less, co_exec_comp.js
+-->
+
+<template name="co_exec_comp">
+  {{#with company}}
+  <div class="coexcmp-page"> <!--container for whole page-->
+
+    <div class="coexcmp-pr coexcmp-top"> <!--container for white background area at top-->
+      <div class="coexcmp-pr coexcmp-top-circle"> <!--back arrow in top-->
+        <div class="coexcmp-pr coexcmp-top-circle-btn">
+          <i class="fa fa-reply"></i>
+        </div>
+      </div>
+      <i class="coexcmp-pa coexcmp-n coexcmp-top-txt1">LAST UPDATED: {{lastUpdated}}</i>
+      <i class="coexcmp-pa coexcmp-n coexcmp-top-txt2"><i class="fa fa-map-marker"></i> United States </i>
+      <i class="coexcmp-pa coexcmp-b coexcmp-top-txt3">Overall Executive Compensation</i>
+      <i class="coexcmp-pa coexcmp-l coexcmp-top-txt4">at {{formalName}}</i>
+    </div>
+
+    <div class="coexcmp-pr coexcmp-mid"> <!--the black-grey-black section in the middle-ish-->
+
+      <div class="coexcmp-pa coexcmp-mid-top"> <!--the black header of the middle-->
+        <div class="coexcmp-b coexcmp-mid-top-txt1"> <!--the left part of the header-->
+          Executive Compensation
+        </div>
+        <div class="coexcmp-l coexcmp-mid-top-txt2"> <!--the first right part of the header-->
+          <i class="fa fa-heart"></i>  Save
+        </div>
+        <div class="coexcmp-l coexcmp-mid-top-txt2"> <!--the second right part of the header-->
+          <i class="fa fa-share-alt"></i>  Share
+        </div>
+      </div>
+
+      <div class="coexcmp-pa coexcmp-mid-mid"> <!--the grey section in the middle-->
+        <div class="navigation-button-left"><!-- Navigation left button-->
+          <i class="fa fa-angle-left coexcmp-mid-mid-l"></i>
+        </div>
+        <div class="coexcmp-pa coexcmp-mid-mid-circle"><!--Profile Image -->
+        </div>
+        <div class="coexcmp-pa coexcmp-mid-mid-building">
+          <i class="fa fa-building-o fa-lg"></i>
+        </div>
+        <i class="coexcmp-pa coexcmp-b coexcmp-mid-mid-txt1">{{formalName}}</i>
+        <i class="coexcmp-pa coexcmp-l coexcmp-mid-mid-txt2"><i class="fa fa-heart"></i>  Save</i>
+        <i class="coexcmp-pa coexcmp-l coexcmp-mid-mid-txt3"><i class="fa fa-share-alt"></i>  Share</i>
+        <div class="coexcmp-pa coexcmp-l coexcmp-mid-mid-txtbox"> <!--the part of the middle-middle that has the important and long text-->
+          <i class="coexcmp-mid-mid-txtbox-txt">
+
+            <i class="coexcmp-b">{{formalName}}</i>’s overall annual financials are <i class="coexcmp-b coexcmp-i">{{annualFinancial}}</i> from 2014.  With an <i class="coexcmp-b coexcmp-i">{{stockStatus}}</i> in stock price bringing individual <i class="coexcmp-b coexcmp-i">share price to {{sharePrice}}.</i>
+            <br><br>
+            <i class="coexcmp-b">{{formalName}}</i> is currently priced at:
+            <br>
+            <i class="coexcmp-b">{{currentPrice}}   <i class="fa fa-arrow-up coexcmp-green"></i> <i class="coexcmp-b coexcmp-green"> {{percIncrease}}</i>
+          </i>
+          <br>
+        </i>
+      </div>
+      <div class="navigation-button-right">
+        <i class="fa fa-angle-right coexcmp-mid-mid-r"></i>
+      </div>
+    </div>
+
+    <div class="coexcmp-pa coexcmp-mid-btm"> <!--the footer of the middle area-->
+      <div class="coexcmp-pa coexcmp-l coexcmp-mid-btm-txt1">
+        Want more information about {{formalName}}?
+      </div>
+      <div class="coexcmp-pa coexcmp-l coexcmp-mid-btm-txt2">
+        Profile Last Updated On: <i class="coexcmp-b">{{profLstUpdate}}</i>
+      </div>
+      <div class="coexcmp-pa coexcmp-mid-btm-btn">
+        View Profile <i class="fa fa-angle-right coexcmp-right"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="coexcmp-pr coexcmp-btm"> <!--holds anything but the search module below the middle area-->
+    <div class="coexcmp-b coexcmp-btm-txt1">
+      Sort by: <i class="coexcmp-l">Executive Compensation </i><i class="fa fa-angle-down coexcmp-btm-txt1-blue"></i>
+    </div>
+    <div class="coexcmp-btm-what"> <!--a box that looks like it can be closed-->
+      <div class="coexcmp-b coexcmp-btm-what-top">
+        What is this page?
+        <i class="fa fa-times coexcmp-pr coexcmp-btm-what-top-x"></i>
+      </div>
+      <div class="coexcmp-btm-what-txt">
+        This page features a high leveled detail view of the executive compensation at {{formalName}}  These results include all exeutives and their annual compensation.
+      </div>
+    </div>
+    <div class="coexcmp-pr coexcmp-btm-data"> <!--a divide to seperate data from the box above-->
+      <div class="coexcmp-pr coexcmp-btm-data-title">
+        Compensation Overview <i class="coexcmp-l">for {{formalName}}:</i>
+      </div>
+    </div>
+    <div class="coexcmp-choseyr">
+      Compensation
+      <div class="coexcmp-dropdown">
+        Chose Year: <span class="coexcmp-dropdown-yr">2014</span>  <i class="fa fa-caret-down coexcmp-dropdown-faicon"></i>
+      </div>
+    </div>
+    <!-- Graph Starts-->
+    <div class="coexcmp-pr coexcmp-btm-data-graph" id="coexcmpChart">
+      {{> highchartsHelper chartId="coexcmpChart" chartWidth="675px" chartHeight="265px"  chartObject=getCoExecCompGraphObject}}
+    </div>
+    <!-- Graph Ends-->
+    <div class="coexcmp-pr coexcmp-btm-data"> <!--a divide to seperate data from the box above-->
+      <div class="coexcmp-pr coexcmp-btm-data-title">
+        Annual Breakdown <i class="coexcmp-l">for {{formalName}}</i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tiles Starts-->
+  {{#each tiles}}
+  <div class="coexcmp-pr {{getTileColor}}">
+    {{#with left}}<!-- left Tiles Starts-->
+    <div class="coexcmp-pr coexcmp-btm-data-tile-l" >
+      <div class="coexcmp-pa coexcmp-btm-data-tile-circle">
+        <i class="fa fa-question"></i>
+      </div>
+      <div class="coexcmp-pa coexcmp-btm-data-tile-title">
+        <span class="coexcmp-b">{{title}}</span>
+        <br>Numbers in USD
+      </div>
+      {{#each item}}
+      <div class="coexcmp-btm-data-tile-{{noBorder}}">
+        <span class="coexcmp-btm-data-tile-stat-l">
+          {{text}}
+        </span>
+        <span class="coexcmp-btm-data-tile-stat-r{{leftPercColor}}">
+          <i class="fa fa-arrow-up coexcmp-{{upArrow}}"></i><i class="fa fa-arrow-down coexcmp-{{downArrow}}"></i> {{changePercent}}%
+        </span>
+        <span class="coexcmp-btm-data-tile-stat-m">
+          <span class="coexcmp-{{isDollarHidden}}">$</span>{{value}}
+        </span>
+      </div>
+      {{/each}}
+    </div>
+    {{/with}}
+    <!-- left Tiles ends-->
+    <!-- Right Tiles Starts-->
+    {{#with right}}
+    <div class="coexcmp-pr coexcmp-btm-data-tile-r coexcmp-{{isTileHidden}}" >
+      <div class="coexcmp-pa coexcmp-btm-data-tile-circle">
+        <i class="fa fa-question"></i>
+      </div>
+      <div class="coexcmp-pa coexcmp-btm-data-tile-title">
+        <span class="coexcmp-b">{{title}}</span>
+        <br>Numbers in USD
+      </div>
+      {{#each item}}
+      <div class="coexcmp-btm-data-tile-{{noBorder}}">
+        <span class="coexcmp-btm-data-tile-stat-l">
+          {{text}}
+        </span>
+        <span class="coexcmp-btm-data-tile-stat-r{{rightPercColor}}">
+          <i class="fa fa-arrow-up coexcmp-{{upArrow}}"></i><i class="fa fa-arrow-down coexcmp-{{downArrow}}"></i> {{changePercent}}%
+        </span>
+        <span class="coexcmp-btm-data-tile-stat-m">
+          <span class="coexcmp-{{isDollarHidden}}">$</span>{{value}}
+        </span>
+      </div>
+      {{/each}}
+    </div>
+    {{/with}}
+    <!-- Right Tiles Ends-->
+  </div>
+  {{/each}}
+  <!-- Tiles Ends-->
+  {{> didnt_find}} <!-- Didn't Find-->
+</div>
+{{/with}}
+</template>

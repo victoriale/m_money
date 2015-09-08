@@ -7,7 +7,6 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
 <!--Gave a template name stock_disclaimer_page !-->
 <template name="co_board_committee">
 <!--Defined a class name globally for height and width !-->
-{{#with company}}
 <div class= "co_commi">
   <!--gave the dimensions for the module with total height and width !-->
   <div class = "co_commi-n_m">
@@ -50,10 +49,7 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
 
     <div class="co_commi-bar">
       <div class="co_commi-bar-title">
-      <div class="co_commi-bar-helper">
-        {{formalName}}'s
-      </div>
-      <div class="co_commi-bar-side">{{getheadername0}} </div>
+        {{getheadername1}}'s {{getheadername0}}
       </div>
       <div class="co_commi-bar-button">
         <!-- the save option button-->
@@ -101,7 +97,7 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
         <!-- the description about the person-->
         <li class="co_commi-m_c-dp">
           <div class="co_commi-m_c-dp-dpct">
-          {{getheadername2}} is the Cheif Executive Officer and Chairman of {{getheadername1}} {{getheadername2}}'s net worth is valued at <span class="co_commi-m_c-dp-itl co_commi-m_c-dp-itB2">{{getheadername3}}</span> as of {{getheadername4}}.
+          {{getheadername2}} is the Cheif Executive Officer and Chairman of {{getheadername1}} {{getheadername2}}'s net worth is valued at <span class="co_comp-m_c-dp-itl co_comp-m_c-dp-itB2">{{getheadername3}}</span> as of {{getheadername4}}.
         </div>
         </li>
       </ul>
@@ -277,5 +273,4 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
 
   </div>
 </div>
-{{/with}}
 </template>

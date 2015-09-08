@@ -49,17 +49,6 @@ Template.co_board_committee.helpers({
     today = mm+'/'+dd+'/'+yyyy;
     return today;
   },
-  // get the name for heading
-  company: function()
-       {
-           //object that is used throughout the html
-           var c = {
-               formalName: "Facebook, Inc",
-               informalName: "San Francisco",
-               ticker: "FB"
-           };
-           return c;
-       },
   //loads data for the image
   quote:[
     {name: 'Exxon Mobil Corp.', text: '$46.69', text2: '+0.39(+0.85%)'},

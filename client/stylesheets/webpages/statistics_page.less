@@ -1,0 +1,571 @@
+/*
+Author: Kyle Toom
+Date: 8/30/2015
+Decription: A page for showing statistics of an area
+Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
+*/
+
+@import (reference)"../global_vars.less";
+@import (reference)"../modules.less";
+
+.stat
+{
+    &-pr //stat-pr
+    {
+        position: relative;
+    }
+
+    &-pa //stat-pa
+    {
+        position: absolute;
+    }
+
+    &-b //stat-b
+    {
+        font-style: normal;
+        font-family: HN-B;
+    }
+
+    &-n //stat-n: normal text for use in <i> tags
+    {
+        font-style: normal;
+        font-family: HN;
+    }
+
+    &-l //stat-l
+    {
+        font-style: normal;
+        font-family: HN-L;
+    }
+
+    &-blue //stat-blue
+    {
+        font-style: normal;
+        color: @blue;
+        font-family: HN-B;
+    }
+
+    &-black //stat-black
+    {
+        font-family: HN-B;
+        color: @black;
+        font-style: normal;
+    }
+
+    &-i //stat-i
+    {
+        font-style: italic;
+        font-family: HN;
+    }
+
+    &-cap //stat-cap: capitalize
+    {
+      text-transform: capitalize;
+      font-style: normal;
+    }
+
+    &-page //stat-page
+    {
+        width: 680px;
+        height: auto;
+        background-color: @white;
+        color: @black;
+    }
+
+    &-top //stat-top
+    {
+        width: 680px;
+        height: 140px;
+
+        &-circle //stat-top-circle
+        {
+            border-radius: 50%;
+            border: 2px solid @grey-2;
+            width: 100px;
+            height: 100px;
+            top: 20px;
+            left: 20px;
+
+            &-btn //stat-top-circle-btn
+            {
+                border-radius: 50%;
+                width: 35px;
+                height: 35px;
+                background-color: @blue;
+                left: -8px;
+                color: @white;
+                text-align: center;
+                padding-top: 7px;
+            }
+        }
+
+        &-txt1 //stat-top-txt1
+        {
+            font-size: 10px;
+            color: #959595;
+            left: 128px;
+            top: 16px;
+        }
+
+        &-txt2 //stat-top-txt2
+        {
+            font-size: 12px;
+            left: 128px;
+            top: 43px;
+        }
+
+        &-txt3 //stat-top-txt3
+        {
+            font-size: 22px;
+            left: 128px;
+            top: 59px;
+        }
+
+        &-txt4 //stat-top-txt4
+        {
+            font-size: 22px;
+            left: 128px;
+            top: 87px;
+            height: 30px;
+            width: 550px;
+            overflow: hidden;
+        }
+    }
+
+    &-mid //stat-mid: the middle section that goes black-grey-black
+    {
+        width: 680px;
+        height: 360px;
+        background-image: @dark-linen;
+        color: @white;
+
+        &-top //stat-mid-top
+        {
+            background-color: @black;
+            height: 35px;
+            width: 680px;
+
+            &-txt1 //stat-mid-top-txt1
+            {
+                font-size: 16px;
+                border-right: 1px solid #363636;
+                padding: 5px 14px;
+                width: auto;
+                height: 30px;
+                float: left;
+                max-width: 500px;
+                overflow: hidden;
+
+                &-name //stat-mid-top-txt1-name
+                {
+                    max-width: 370px;
+                    height: 30px;
+                    float: left;
+                }
+
+                &-static //stat-mid-top-txt1-static
+                {
+                    width: 100px;
+                    height: 30px;
+                    float: left;
+                    padding-right: 5px;
+                }
+            }
+
+            &-txt2 //stat-mid-top-txt2
+            {
+                margin: 0px 15px;
+                width: 56px;
+                float: left;
+                padding-top: 7px;
+                font-size: 14px;
+            }
+        }
+
+        &-mid //stat-mid-mid
+        {
+            top: 35px;
+            width: 680px;
+            height: 249px;
+
+            &-l //stat-mid-mid-l
+            {
+                margin-left: 15px !important;
+            }
+
+            &-r //stat-mid-mid-r
+            {
+                margin-right: 15px !important;
+            }
+
+            &-circle //stat-mid-mid-circle
+            {
+                border-radius: 50%;
+                width: 180px;
+                height: 180px;
+                border: 3px solid @grey-2;
+                background-color: @white;
+                left: 55px;
+                top: 34px;
+            }
+
+            &-building //stat-mid-mid-building
+            {
+                border-radius: 50%;
+                background-color: @blue;
+                width: 40px;
+                height: 40px;
+                left: 235px;
+                top: 32px;
+                padding-top: 10px;
+                padding-left: 13px;
+            }
+
+            &-txt1 //stat-mid-mid-txt1
+            {
+                font-size: 22px;
+                top: 30px;
+                left: 291px;
+                width: 380px;
+                height: 31px;
+                overflow: hidden;
+            }
+
+            &-txt2 //stat-mid-mid-txt2
+            {
+                font-size: 14px;
+                top: 58px;
+                left: 291px;
+                color: #f2f2f2;
+            }
+
+            &-txt3 //stat-mid-mid-txt3
+            {
+                font-size: 14px;
+                top: 58px;
+                left: 385px;
+                color: #f2f2f2;
+            }
+
+            &-txtbox //stat-mid-mid-txtbox
+            {
+                border-left: 2px solid @grey-2;
+                height: 101px;
+                width: 361px;
+                left: 255px;
+                top: 98px;
+                padding-left: 19px;
+                font-size: 16px;
+                line-height: 19px;
+                overflow: hidden;
+
+                &-txt //stat-mid-mid-txtbox-txt
+                {
+                    top: -4px;
+                    font-style: normal;
+                }
+
+                &-btm1 //stat-mid-mid-txtbox-btm1
+                {
+                    top: -4px;
+                    line-height: 34px;
+                    font-style: normal;
+                }
+                &-btm2 //stat-mid-mid-txtbox-btm2
+                {
+                    top: -9px;
+                    font-style: normal;
+                }
+            }
+        }
+
+        &-btm //stat-mid-btm: the black section at the bottom of the middle
+        {
+            top: 284px;
+            height: 76px;
+            width: 680px;
+            background-color: @black;
+
+            &-txt1 //stat-mid-btm-txt1
+            {
+                left: 20px;
+                top: 14px;
+                font-size: 18px;
+                width: 450px;
+                height: 30px;
+                overflow: hidden;
+            }
+
+            &-txt2 //stat-mid-btm-txt2
+            {
+                left: 20px;
+                top: 44px;
+                font-size: 14px;
+            }
+
+            &-btn //stat-mid-btm-btn
+            {
+                left: 490px;
+                top: 21px;
+                background-color: @blue;
+                border-radius: 5px;
+                width: 180px;
+                height: 35px;
+                font-size: 14px;
+                text-align: center;
+                padding-top: 7px;
+            }
+        }
+    }
+
+    &-btm //stat-btm
+    {
+        width: 680px;
+        padding: 10px 15px 0px 15px;
+
+        &-txt1 //stat-btm-txt1
+        {
+            font-size: 12px;
+            height: 12px;
+            line-height: 12px;
+
+            &-blue //stat-btm-txt1-blue
+            {
+                color: @blue;
+            }
+        }
+
+        &-what //stat-btm-what: the box that starts with "what is this page?"
+        {
+            width: 650px;
+            height: 81px;
+            background-color: #fafafa;
+            border: 1px solid #ebebeb;
+            font-size: 14px;
+            margin-top: 15px;
+
+            &-top //stat-btm-what-top
+            {
+                width: 100%;
+                height: 20px;
+                background-color: #ebebeb;
+                color: #333333;
+                font-size: 12px;
+                padding: 0px 10px;
+
+                &-x //stat-btm-what-top-x
+                {
+                    float: right;
+                    top: 3px;
+                }
+            }
+
+            &-txt //stat-btm-what-txt
+            {
+                width: 610px;
+                height: 31px;
+                margin-top: 14px;
+                margin-left: 20px;
+                line-height: 16px;
+            }
+        }
+
+        &-data //stat-btm-data
+        {
+            width: 680px;
+            height: auto;
+            left: -15px;
+            margin-top: 13px;
+
+            &-title //stat-btm-data-title
+            {
+                width: 650px;
+                height: 28px;
+                font-size: 18px;
+                left: 15px;
+                border-bottom: 1px solid @grey-2;
+                overflow: hidden;
+                margin-top: 10px;
+            }
+
+            &-date //stat-btm-data-date
+            {
+                color: #959595;
+                font-size: 12px;
+                left: 15px;
+                margin-top: 5px;
+                height: 17px;
+            }
+
+            &-sector //stat-btm-data-sector: for the "sector" text
+            {
+              margin-left:28px;
+              float: left;
+            }
+
+            &-net //stat-btm-data-net: for the "net" text
+            {
+              margin-left:250px;
+              float: left;
+            }
+
+            &-text //stat-btm-data-text
+            {
+                padding-top: 10px;
+                padding-right: 15px;
+                padding-left: 15px;
+                font-size: 14px;
+                margin-bottom: 20px;
+                line-height: 18px;
+
+                &::after //used to allow floating elements
+                {
+                  content: "";
+                  clear: both;
+                  display: block;
+                }
+            }
+
+            &-graph //stat-btm-data-graph
+            {
+                top:55px;
+                left: 485px;
+                width: 180px;
+                height: 180px;
+
+                &-circle //stat-btm-data-graph-circle: the circle in the graph
+                {
+                  width: 102px;
+                  height: 102px;
+                  border-radius: 50%;
+                  border: 3px solid #cccccc;
+
+                  &-o //stat-btm-data-graph-circle-o: the outer circle in the graph
+                  {
+                    border-radius:50%;
+                    border: 10px solid rgba(0,0,0,.20);
+                    position: relative;
+                    top: -10px;
+                    left: -10px;
+                  }
+                }
+
+                &-grad //stat-btm-data-graph-grad: the gradient that makes a fading effect
+                {
+                  top:55px;
+                  left: 50%;
+                  width: 150px;
+                  height: 501px;
+                  background-image: -webkit-linear-gradient(left, rgba(255,255,255,0), rgb(255,255,255)); /* For Safari 5.1 to 6.0 */
+                  background: -o-linear-gradient(right, rgba(0,0,0,0), rgb(255,255,255)); /* For Opera 11.1 to 12.0 */
+                  background: -moz-linear-gradient(right, rgba(0,0,0,0), rgb(255,255,255)); /* For Firefox 3.6 to 15 */
+                  background: linear-gradient(to right, rgba(255,255,255,0),rgb(255,255,255));
+                }
+
+                &-lst //stat-btm-data-graph-lst: list of graph legend keys
+                {
+                  border-bottom: 1px solid #cccccc;
+                  margin-left: 15px;
+                  margin-top: 5px;
+                  width: 461px;
+
+                  &-itm //stat-btm-data-graph-lst-itm: an item in the list
+                  {
+                    height: 50px;
+                    width: 461px;
+                    border-top: 1px solid #cccccc;
+                    border-left: 1px solid #cccccc;
+                  }
+
+                  &-g //stat-btm-dat-graph-lst-g: for grey background items
+                  {
+                    background-color: #f2f2f2;
+                  }
+
+                  &-s //stat-btm-data-graph-lst-s: sector part of list item
+                  {
+                    top: 14px;
+                    left: 26px;
+                  }
+
+                  &-n //stat-btm-data-graph-lst-n: net part of list item
+                  {
+                    top: 14px;
+                    left: 315px;
+                    text-align: right;
+                    width: 50px;
+                  }
+                }
+            }
+
+            &-stat //stat-btm-data-stat: stuff dealing with the statistic tiles
+            {
+              &-l //stat-btm-data-stat-l: holds left tiles
+              {
+                float: left;
+                width: 320px;
+                height: auto;
+              }
+
+              &-r //stat-btm-data-stat-r: holds right tiles
+              {
+                float: right;
+                width: 320px;
+                height: auto;
+              }
+
+              &-box //stat-btm-data-stat-box: stat box
+              {
+                border: 1px solid #cccccc;
+                width: 320px;
+                height: 68px;
+                margin-bottom: 10px;
+              }
+
+              &-bar //stat-btm-data-stat-bar: the dark bar on the left of a tile
+              {
+                width: 5px;
+                height: 100%;
+                background-color: #e1e1e1;
+                float: left;
+              }
+
+              &-fa //stat-btm-data-stat-fa: box holding fa symbol
+              {
+                width: 68px;
+                height: 100%;
+                float: left;
+                background-color: #f2f2f2;
+                color: #535353;
+                font-size: 30px;
+                text-align: center;
+                padding-top: 18px;
+              }
+
+              &-value //stat-btm-data-stat-value: formats text of tile's value
+              {
+                top: 17px;
+                left: 88px;
+                font-size: 18px;
+                color: @black;
+              }
+
+              &-lbl //stat-btm-data-stat-lbl: formats text of tile's label
+              {
+                top: 35px;
+                left: 88px;
+                color: @black;
+                font-size: 14px;
+              }
+
+              &-arrow //stat-btm-data-stat-arrow: arrow in tile
+              {
+                left: 298px;
+                top: 16px;
+                color: #cccccc;
+                font-size: 30px;
+              }
+            }
+        }
+    }
+}
