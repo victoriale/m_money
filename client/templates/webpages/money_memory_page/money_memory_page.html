@@ -1,0 +1,164 @@
+<!-- Author: Ryan Fisher
+**** Created: [09/09/2015]
+**** Description: Company Executive Page - Money Memory
+**** Associated Files: money_memory_page.html, money_memory_page.less, money_memory_page_logic.js
+-->
+
+<template name="money_memory_page">
+  <div class="mmpg">
+    <!--Page header-->
+    <div class="mmpg-hdr">
+      <!-- the header box -->
+      <div class="mmpg-hdr-head-box">
+        <!-- image inside the header box-->
+        <div class="mmpg-hdr-head-image">
+          <!-- he back button symbol above the image-->
+          <button class="mmpg-hdr-head-image-icon"><i class="fa fa-reply"></i></button>
+        </div>
+        <!-- the text inside the header box-->
+        <div class="mmpg-hdr-text">
+          <!-- the latest update-->
+          <div class="mmpg-hdr-text-update">
+            LAST UPDATED: 06/24/2015, 8:00 AM EST
+          </div>
+          <!-- location of the executive-->
+          <div class="mmpg-hdr-text-loc">
+            <i class="fa fa-map-marker"></i> United States
+          </div>
+          <!-- the name of the page-->
+          <div class="mmpg-hdr-text-name">
+            Money Memory
+          </div>
+          <!-- the name of the company-->
+          <div class="mmpg-hdr-text-auth">
+            at {{company}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--What is this page? box-->
+    <div class="mmpg-about">
+      <div class="mmpg-about-hdr">
+        <div class="mmpg-about-hdr-txt">Help with this page?</div>
+        <button class="mmpg-about-hdr-icon"><i class="fa fa-close"></i></button>
+      </div>
+      <div class="mmpg-about-txt">
+        Money memory allows you to see how much you could have made if you invested in {{company}}
+        at a certain point in time.  To get started 1.) input your desired date of investment, 2.) Select
+        your start & end dates and lastly 3.) Click "Submit" and watch discover the outcome
+      </div>
+    </div>
+    <!--End What is this page? box-->
+
+    <!--Money Memory section -->
+    <div class="mmpg-secthdr">
+      <div class="mmpg-secthdr-above">
+        <span style="font-family:HN-B">Money Memory</span> for {{company}}:
+      </div>
+    </div>
+
+    <div class="mmpg-monmem">
+      <div class="mmpg-monmem-lbls">
+        <div class="mmpg-monmem-lbl">Initial Investment</div>
+        <div class="mmpg-monmem-lbl">Start Date</div>
+        <div class="mmpg-monmem-lbl">End Date</div>
+      </div>
+      <div class="mmpg-monmem-inputs">
+        <div class="mmpg-monmem-input">
+          <input type="text" name="amount" class="mmpg-monmem-amt" placeholder="Amount here...">
+          <i class="fa fa-money"></i>
+        </div>
+        <div class="mmpg-monmem-input">
+          Select a date <i class="fa fa-caret-down"></i><i class="fa fa-calendar"></i>
+        </div>
+        <div class="mmpg-monmem-input">
+          Select a date <i class="fa fa-caret-down"></i><i class="fa fa-calendar"></i>
+        </div>
+      </div>
+      <div class="mmpg-monmem-result">
+        <div class="mmpg-monmem-result-lbl">you would have earned</div>
+        <div class="mmpg-monmem-result-amt">$0.00</div>
+        <div class="mmpg-monmem-result-bot">
+          <div class="mmpg-monmem-result-reset">RESET</div>
+          <button class="mmpg-monmem-result-submit">Submit <i class="fa fa-angle-right"></i></button>
+        </div>
+      </div>
+    </div>
+    <!-- End Money Memory Section-->
+
+    <!--Stock Graph section -->
+    <div class="mmpg-secthdr">
+      <div class="mmpg-secthdr-above">
+        <span style="font-family:HN-B">Stock Graph</span> for {{company}}:
+      </div>
+      <div class="mmpg-secthdr-below">
+        <i class="fa fa-calendar"></i> Updated {{updated}}
+      </div>
+    </div>
+
+    <!--graph container-->
+    <div class="mmpg-graph">
+      {{> highchartsHelper chartId="monmemChart" chartWidth="650px" chartHeight="200px" chartObject=getMonMemChart}}
+    </div>
+
+    <!--sort bar-->
+    <div class="mmpg-stock-sort">
+      <div class="mmpg-stock-sort-bbl mmpg-stock-sort-bbl-selected" id="mmbbl-0" onclick="monmemChangeSort(0)">1D</div>
+      <div class="mmpg-stock-sort-bbl" id="mmbbl-1" onclick="monmemChangeSort(1)">5D</div>
+      <div class="mmpg-stock-sort-bbl" id="mmbbl-2" onclick="monmemChangeSort(2)">10D</div>
+      <div class="mmpg-stock-sort-bbl" id="mmbbl-3" onclick="monmemChangeSort(3)">1M</div>
+      <div class="mmpg-stock-sort-bbl" id="mmbbl-4" onclick="monmemChangeSort(4)">3M</div>
+      <div class="mmpg-stock-sort-bbl" id="mmbbl-5" onclick="monmemChangeSort(5)">6M</div>
+      <div class="mmpg-stock-sort-bbl" id="mmbbl-6" onclick="monmemChangeSort(6)">9M</div>
+      <div class="mmpg-stock-sort-bbl" id="mmbbl-7" onclick="monmemChangeSort(7)">1Y</div>
+      <div class="mmpg-stock-sort-bbl" id="mmbbl-8" onclick="monmemChangeSort(8)">3Y</div>
+      <div class="mmpg-stock-sort-bbl" id="mmbbl-9" onclick="monmemChangeSort(9)">5Y</div>
+      <div class="mmpg-stock-sort-bbl" id="mmbbl-10" onclick="monmemChangeSort(10)">10Y</div>
+    </div>
+
+    <div class="mmpg-stock-stats">
+      <div class="mmpg-stock-stats-left">
+        <div class="mmpg-stock-stats-data">
+          <div class="mmpg-stock-stats-data-lbl">Current Price</div>
+          <div class="mmpg-stock-stats-data-amt">${{current}}</div>
+        </div>
+        <div class="mmpg-stock-stats-data">
+          <div class="mmpg-stock-stats-data-lbl">Open Price</div>
+          <div class="mmpg-stock-stats-data-amt">${{open}}</div>
+        </div>
+        <div class="mmpg-stock-stats-data">
+          <div class="mmpg-stock-stats-data-lbl">Close Price</div>
+          <div class="mmpg-stock-stats-data-amt">${{close}}</div>
+        </div>
+        <div class="mmpg-stock-stats-data" style="border:none">
+          <div class="mmpg-stock-stats-data-lbl">Day Change $-%</div>
+          <div class="mmpg-stock-stats-data-amt">
+            <span><i class="fa {{icon}}"></i>{{changeamt}}</span>
+             |
+            <span style="margin-right:0px">{{changepct}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="mmpg-stock-stats-right">
+        <div class="mmpg-stock-stats-data">
+          <div class="mmpg-stock-stats-data-lbl">Day Range</div>
+          <div class="mmpg-stock-stats-data-amt">${{rangebot}} - ${{rangetop}}</div>
+        </div>
+        <div class="mmpg-stock-stats-data">
+          <div class="mmpg-stock-stats-data-lbl">52 Week Range</div>
+          <div class="mmpg-stock-stats-data-amt">${{range52bot}} - ${{range52top}}</div>
+        </div>
+        <div class="mmpg-stock-stats-data" style="border:none">
+          <div class="mmpg-stock-stats-data-lbl">Vol/Avg.</div>
+          <div class="mmpg-stock-stats-data-amt">{{vol}}/{{avg}}</div>
+        </div>
+      </div>
+    </div>
+    <!-- End Stock Graph Section-->
+
+
+
+    {{> didnt_find}}
+  </div>
+</template>

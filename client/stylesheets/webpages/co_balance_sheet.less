@@ -1,0 +1,791 @@
+/* Author: Ryan Fisher
+** Created: 09/02/2015
+** Description: .less file for Company Page - Balance Sheets
+** Associated Files: co_balance_sheet.html, co_balance_sheet.less, co_balance_sheet_logic.js
+*/
+
+@import "../global_vars.less";
+@import "../modules.less";
+
+.cobal{
+  width: 680px;
+  margin: 5px;
+  background-color: @white;
+
+
+//**********************************HEADER*****************************//
+  &-hdr {
+  width: 680px;
+  height: 500px;
+  background-color: @white;
+
+    //the head box consisting of the white background
+    &-head-box {
+      width: 680px;
+      height: 140px;
+      background-color: @white;
+      text-align: left;
+      margin: 0;
+    }
+    //image inside the article head
+    &-head-image {
+      width: 100px;
+      height: 100px;
+      margin: 20px;
+      border: solid 2px @grey-3;
+      border-radius: 50%;
+      float: left;
+      background-image: url("");
+      background-size: cover !important;
+      background-position: center center !important;
+
+      //the symbol above the image
+      &-icon {
+        height: 35px;
+        width: 35px;
+        background-color: @blue;
+        position: relative;
+        bottom: 5px;
+        right: 5px;
+        border-radius: 50%;
+        border: solid 1px @white;
+        color: @white;
+        line-height: 33px;
+        font-size: 15px;
+        text-align: center;
+
+        .fa{
+          position: relative;
+          bottom: 2px;
+          right: 1px;
+        }
+      }
+    }
+    //the text consisting the latest update
+    &-text {
+      //width: 545px;
+      //height: 120px;
+      //margin: 0;
+      padding: 15px;
+      float: left;
+      color: @black;
+      text-align: left;
+      list-style-type: none;
+      //the update part
+      &-update {
+        font-size: 10px;
+        color: #959595;
+        margin-bottom: 10px;
+      }
+      //the location
+      &-loc {
+        font-size: 12px;
+      }
+      // the name of the person
+      &-name {
+        max-width: 495px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 22px;
+        font-family: HN-B;
+      }
+      // the person description
+      &-auth {
+        max-width: 495px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 22px;
+        font-family: HN-L;
+      }
+    }
+
+    //the bottom bar
+    &-bar {
+      width: 680px;
+      height: 35px;
+      background-color: @black;
+      //padding-left: 10px;
+      color: @white;
+      font-size: 16px;
+      text-align: left;
+      // the font awesome icon color
+      .fa {
+        color: @white;
+      }
+      //the link color
+      a {
+        color:@white;
+      }
+      //the title next to save and share
+      &-title{
+        border-right: 1px solid #363636;
+        background-color: inherit;
+        text-align: center;
+        float: left;
+        max-width: 490px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height:35px;
+        line-height: 35px;
+        //width:270px;
+        padding: 0px 15px;
+        font-size: 16px;
+        font-family: HN-B;
+      }
+      // the button for save and share
+      &-button {
+        border: none;
+        text-align: center;
+        float: left;
+        line-height: 35px;
+        height:35px;
+        width:85px;
+        margin-right: 8px;
+        font-family: HN-L;
+
+        .fa{
+          margin-right: 10px;
+        }
+      }
+    }
+    //the main container with the grey background
+    &-main-container {
+      width: 680px;
+      height: 325px;
+      background-image: @dark-linen;
+      text-align: left;
+      overflow: hidden;
+      margin: 0;
+      position: relative;
+      // image inside the container
+      &-image {
+        width: 172px;
+        height: 172px;
+        border: none;
+        border-radius: 50%;
+        background-size: cover !important;
+        background-position: center center !important;
+        //background-image: url("");
+        background-color: @white;
+
+        //the wrapper to wrap up the container height and width
+        &-wrapper {
+          width: 180px;
+          height: 180px;
+          border: solid 4px rgb(0,0,0);
+          border: solid 4px rgba(0,0,0,0.2);
+          border-radius: 50%;
+          position: relative;
+          top: 35px;
+          margin: 0 10px 35px 35px;
+          position:relative;
+          left:20px;
+          top:40px;
+        }
+      }
+
+      &-subimage{
+        width: 75px;
+        height: 75px;
+        background-color: @white;
+        border-radius: 50%;
+        border: 2px solid @grey-3;
+        position: absolute;
+        bottom: -10px;
+        right: -10px;
+      }
+      //the sub-conatainer
+      &-container {
+
+        height: 215px;
+        width: 380px;
+        margin: 0;
+        list-style-type: none;
+        color: #ffffff;
+        text-align: left;
+        position: relative;
+        float: right;
+        padding: 0 0 0 5px;
+        top: -180px;
+        left: -53px;
+
+        li {
+          overflow: hidden;
+        }
+      }
+      // the title inside the container
+      &-title {
+        font-size: 22px;
+        font-weight: lighter;
+        color: @white;
+        width:380px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        position: relative;
+        left: -10px;
+
+        //the image inside the container
+        &-image {
+          width: 40px;
+          height: 40px;
+          line-height: 40px;
+          background-color: @blue;
+          border: none;
+          border-radius: 50%;
+          float: left;
+          margin-right: 10px;
+          text-align: center;
+          padding: auto;
+          font-size: 20px;
+        }
+      }
+
+      //Buttons under the title
+      &-buttons{
+        margin-left: 25px;
+
+      }
+
+      &-button{
+        border: none;
+        text-align: left;
+        float: left;
+        width: 85px;
+        margin-right: 8px;
+        margin-bottom: 10px;
+        font-family: HN-L;
+        font-size: 14px;
+
+        .fa{
+          margin-right: 10px;
+        }
+      }
+
+      // the description part
+      &-description {
+        width: 356px;
+        max-height: 123px;
+        overflow: hidden;
+        border-left: solid 2px #cccccc;
+        padding: 0 0 0 15px;
+        margin-left: 10px;
+        font-size: 16px;
+        font-family: HN-L;
+        color: #ffffff;
+        line-height: 17px;
+        text-align: justify;
+
+        &-ln1{
+          margin-bottom: 32px;
+        }
+
+      }
+      &-view_more{
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        height: 75px;
+        color: @white;
+        background-color: rgba(0, 0, 0, 0.75);
+
+        // the text part
+        &-text {
+          margin-left: 20px;
+          margin-top: 15px;
+          float: left;
+          text-align: left;
+
+          &-ln1{
+            width: 460px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 18px;
+            font-family: HN-L;
+          }
+
+          &-ln2{
+            font-size: 14px;
+            font-family: HN-L;
+          }
+        }
+
+        //the button
+        &-button{
+          width: 180px;
+          height: 35px;
+          border-radius: 5px;
+          background-color: @blue;
+          color: @white;
+          text-align: center;
+          float: right;
+          margin-top: 20px;
+          margin-right: 10px;
+          border: none;
+
+
+          .fa{
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+    &-lefthov{
+      border: 3px solid #000;
+      float:left;
+      height:80px;
+      width:40px;
+      background:#000;
+      border-top-right-radius:38px;
+      border-bottom-right-radius:38px;
+      padding-right:12px;
+      color:#fff;
+      position: relative;
+      top:88px;
+    }
+    /*properties for left navigation button hover*/
+    &-lefthov:hover{
+      border: 3px solid #3098ff;
+      height:80px;
+      width:40px;
+      background:#3098ff;
+      border-top-right-radius:38px;
+      border-bottom-right-radius:38px;
+    }
+
+    /*properties for right navigation button*/
+    &-righthov{
+      border: 3px solid #000;
+      float:right;
+      height:80px;
+      width:40px;
+      background:#000;
+      border-top-left-radius:38px;
+      border-bottom-left-radius:38px;
+      color:#fff;
+      padding-left:12px;
+      position: relative;
+      top:88px;
+    }
+    &-righthov:hover{
+      background: #3098ff;
+      border: 3px solid #3098ff;
+    }
+  }
+//*****************************END HEADER******************************//
+
+//Sort bar
+&-sort{
+  margin: 10px 15px;
+  font-size: 12px;
+  font-family: HN-L;
+
+  .fa{
+    color: @blue;
+  }
+}
+
+//*****************************ABOUT PAGE******************************//
+  &-about{
+    margin: 10px 15px;
+    width: 650px;
+    border: 1px solid #ebebeb;
+
+    &-hdr{
+      margin-right: 15px;
+      background-color: #ebebeb;
+      width: 650px;
+      height: 20px;
+
+      &-txt{
+        float: left;
+        font-size: 12px;
+        font-family: HN-B;
+        margin-left: 10px;
+        line-height: 20px;
+      }
+
+      &-icon{
+        float: right;
+        border: none;
+        background-color: #ebebeb;
+        height: 20px;
+        line-height: 0px;
+      }
+    }
+
+    &-txt{
+      padding: 15px 20px;
+
+    }
+  }
+//***************************END ABOUT PAGE****************************//
+
+  //Section headers
+  &-secthdr{
+    margin: 25px 15px 10px 15px;
+
+    &-above{
+      font-size: 18px;
+      text-align: left;
+      font-family: HN-L;
+      padding-bottom: 10px;
+      border-bottom: 1px solid @grey-3;
+    }
+
+    &-below{
+      padding-top: 5px;
+      font-size: 12px;
+      color: @grey-6;
+    }
+  }
+
+  //bars in white
+  &-whitebar{
+    background-color: @white;
+    padding: 10px 15px 15px 15px;
+    border-bottom: 1px solid @grey-3;
+    min-height: 150px;
+    overflow-y: hidden;
+  }
+
+  //bars in grey-3
+  &-greybar{
+    background-color: #f2f2f2;
+    padding: 10px 15px 15px 15px;
+    border-bottom: 1px solid @grey-3;
+    min-height: 150px;
+    overflow-y: hidden;
+  }
+
+  //subsections on the left
+  &-lefthalf{
+    padding-right: 15px;
+    width: 325px;
+    float: left;
+    border-right: 1px dashed @grey-3;
+    min-height: 150px;
+  }
+
+  //subsections on the right
+  &-righthalf{
+    padding-left: 15px;
+    width: 325px;
+    float: right;
+  }
+
+  //graph
+  &-graph{
+    width: 650px;
+
+    &-chart{
+      width: 310px;
+      height: 180px;
+      margin-top: 20px;
+      float:left;
+    }
+
+    &-lbls{
+      float: right;
+      width: 325px;
+      position: relative;
+      left: 15px;
+    }
+
+    &-lbl{
+      width: 100%;
+      height: 50px;
+      border-bottom: 1px solid @grey-3;
+      line-height: 48px;
+      border-left: 5px solid;
+
+      .cobal-listitem-left{
+        padding: 0px 15px;
+        height: 50px;
+      }
+
+      .cobal-listitem-right{
+        padding: 0px 30px;
+        height: 50px;
+      }
+
+      &-hdr{
+        position: absolute;
+        top: -25px;
+        width: 100%;
+        border-bottom: 1px solid @grey-3;
+        text-align: right;
+        padding-right: 35px;
+        color: @grey-6;
+        font-style: italic;
+        font-size: 12px;
+        line-height: 25px;
+      }
+    }
+  }
+
+  //Subheaders
+  &-subhdr{
+    height: 35px;
+    line-height: 32px;
+    font-size: 16px;
+    font-family: HN-B;
+
+    &-icon{
+      width: 35px;
+      height: 35px;
+      margin-right: 10px;
+      border-radius: 50%;
+      background-color: @blue;
+      font-family: HN-B;
+      color: @white;
+      text-align: center;
+      float: left;
+    }
+
+    &-2ln{
+      float: left;
+    }
+
+    &-top{
+      font-size: 16px;
+      font-family: HN-B;
+      line-height: 20px;
+    }
+
+    &-btm{
+      font-size: 14px;
+      font-family: HN-L;
+      line-height: 14px;
+    }
+  }
+
+  //set data container as relative so the missing data overlay can be absolute
+  &-datacont{
+    margin-top: 10px;
+    position: relative;
+    z-index: 0;
+  }
+
+  //list item in data container
+  &-listitem{
+    width: 310px;
+    border-bottom: 1px solid @grey-3;
+    overflow-y: auto;
+
+    &-left{
+      float: left;
+      font-family: HN-L;
+      padding: 7px 5px;
+    }
+
+    &-right{
+      float: right;
+      font-family: HN-B;
+      padding: 7px 5px;
+    }
+
+    &-last{
+      width: 310px;
+      border: none !important;
+      overflow-y: auto;
+    }
+  }
+
+  //Relative to industry text
+  &-relative{
+    width: 310px;
+    font-size: 12px;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.45);
+    line-height: 18px;
+    margin-top: 20px;
+    padding-left: 5px;
+  }
+
+  //Average bar
+  &-avg{
+    margin-top: 10px;
+    width: 310px;
+
+    &-bar{
+      width: 100%;
+      height: 35px;
+      border-radius: 5px;
+      background-color: @grey-3;
+      text-align: right;
+      padding-right: 20px;
+      font-size: 12px;
+      line-height: 35px;
+      position: relative;
+    }
+
+    &-fill{
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      height: 35px;
+      border-radius: 5px;
+      color: @white;
+      text-align: right;
+      padding-right: 20px;
+      font-size: 12px;
+      font-family: HN-B;
+      line-height: 35px;
+    }
+
+    &-labels{
+      width: 100%;
+    }
+
+    &-text{
+      margin: 0px 40px;
+      font-size: 10px;
+      font-family: HN-B;
+      line-height: 24px;
+    }
+  }
+
+  //Missing Data Display
+  &-missing{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 315px;
+    min-height: 75px;
+    height: 100%;
+    z-index: 1;
+
+    &-title{
+      color: #ffc600;
+      font-family: HN-B;
+      margin-bottom: 5px;
+    }
+
+    &-icon{
+      width: 45px;
+      height: 45px;
+      margin-right: 15px;
+      border-radius: 50%;
+      border: 1px solid #ffc600;
+      color: #ffc600;
+      text-align: center;
+      line-height: 43px;
+      font-size: 20px;
+      float: left;
+    }
+
+    &-text{
+      width: 240px;
+      overflow-y: hidden;
+      font-size: 12px;
+    }
+  }
+
+  //ratio equation
+  &-eqtn{
+    width: 310px;
+    height: 95px;
+    margin-top: 20px;
+
+    &-left{
+      color: @grey-4;
+      font-size: 24px;
+      font-family: HN-B;
+      float: left;
+      line-height: 95px;
+    }
+
+    &-ctr{
+      color: @grey-4;
+      font-size: 30px;
+      font-family: HN-B;
+      float: left;
+      line-height: 95px;
+      margin: 0px 20px;
+    }
+
+    &-right{
+      float: left;
+
+      &-top{
+        margin-top: 20px;
+        height: 30px;
+        color: @grey-4;
+        font-size: 18px;
+        font-family: HN-B;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+      }
+
+      &-bot{
+        height: 30px;
+        color: @grey-4;
+        font-size: 18px;
+        font-family: HN-B;
+        margin-top: 4px;
+      }
+
+      .fa{
+        margin-right: 5px;
+        color: #c2c2c2;
+      }
+    }
+
+    &-lbls{
+      float: left;
+      margin-left: 5px;
+    }
+
+    &-lbl{
+      font-family: HN-L;
+      font-size: 12px;
+      line-height: 12px;
+    }
+  }
+
+  //ratio explanation
+  &-ratio{
+
+    &-q{
+      margin-bottom: 5px;
+      text-align: left;
+    }
+
+    &-icon{
+      width: 50px;
+      height: 50px;
+      float: left;
+      border-radius: 50%;
+      border: 2px solid @grey-3;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    &-text{
+      width: 305px;
+      overflow-y: hidden;
+      font-size: 12px;
+      text-align: justify;
+    }
+
+    &-btn{
+      width: 180px;
+      height: 35px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: none;
+      font-family: HN-L;
+      background-color: @blue;
+      color: @white;
+
+      .fa{
+        margin-left: 5px;
+      }
+    }
+  }
+}

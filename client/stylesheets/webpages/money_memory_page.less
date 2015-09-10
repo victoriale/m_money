@@ -1,0 +1,367 @@
+/* Author: Ryan Fisher
+** Created: 09/09/2015
+** Description: .less file for Company Executive Page - Money Memory
+** Associated Files: money_memory_page.html, money_memory_page.less, money_memory_page_logic.js
+*/
+
+@import "../global_vars.less";
+@import "../modules.less";
+
+.mmpg{
+  width: 680px;
+  margin: 5px;
+  background-color: @white;
+
+
+//**********************************HEADER*****************************//
+  &-hdr {
+
+    //the head box consisting of the white background
+    &-head-box {
+      width: 680px;
+      height: 140px;
+      background-color: @white;
+      text-align: left;
+      margin: 0;
+      border-bottom: 1px solid #dadada;
+    }
+    //image inside the article head
+    &-head-image {
+      width: 100px;
+      height: 100px;
+      margin: 20px;
+      border: solid 2px @grey-3;
+      border-radius: 50%;
+      float: left;
+      background-image: url("");
+      background-size: cover !important;
+      background-position: center center !important;
+
+      //the symbol above the image
+      &-icon {
+        height: 35px;
+        width: 35px;
+        background-color: @blue;
+        position: relative;
+        bottom: 5px;
+        right: 5px;
+        border-radius: 50%;
+        border: solid 1px @white;
+        color: @white;
+        line-height: 33px;
+        font-size: 15px;
+        text-align: center;
+
+        .fa{
+          position: relative;
+          bottom: 2px;
+          right: 1px;
+        }
+      }
+    }
+    //the text consisting the latest update
+    &-text {
+      //width: 545px;
+      //height: 120px;
+      //margin: 0;
+      padding: 15px;
+      float: left;
+      color: @black;
+      text-align: left;
+      list-style-type: none;
+      //the update part
+      &-update {
+        font-size: 10px;
+        color: #959595;
+        margin-bottom: 10px;
+      }
+      //the location
+      &-loc {
+        font-size: 12px;
+      }
+      // the name of the person
+      &-name {
+        max-width: 495px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 22px;
+        font-family: HN-B;
+      }
+      // the person description
+      &-auth {
+        max-width: 495px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 22px;
+        font-family: HN-L;
+      }
+    }//end mmpg-hdr-text
+  }//end mmpg-hdr
+
+  //*****************************END HEADER******************************//
+
+  //*****************************ABOUT PAGE******************************//
+    &-about{
+      margin: 10px 15px;
+      width: 650px;
+      border: 1px solid #ebebeb;
+
+      &-hdr{
+        margin-right: 15px;
+        background-color: #ebebeb;
+        width: 650px;
+        height: 20px;
+
+        &-txt{
+          float: left;
+          font-size: 12px;
+          font-family: HN-B;
+          margin-left: 10px;
+          line-height: 20px;
+        }
+
+        &-icon{
+          float: right;
+          border: none;
+          background-color: #ebebeb;
+          height: 20px;
+          line-height: 0px;
+        }
+      }
+
+      &-txt{
+        padding: 15px 20px;
+
+      }
+    }
+  //***************************END ABOUT PAGE****************************//
+
+  //Section headers
+  &-secthdr{
+    margin: 25px 15px 10px 15px;
+
+    &-above{
+      font-size: 18px;
+      text-align: left;
+      font-family: HN-L;
+      padding-bottom: 10px;
+      border-bottom: 1px solid @grey-3;
+    }
+
+    &-below{
+      padding-top: 5px;
+      font-size: 12px;
+      color: @grey-6;
+    }
+  }
+
+  //************************MONEY MEMORY SECTION*************************//
+  &-monmem{
+    margin: 0px 15px;
+    width: 650px;
+    height: 200px;
+
+    &-lbls{
+      margin-left: 10px;
+      float: left;
+      width: 165px;
+    }
+
+    &-lbl{
+      font-family: HN-B;
+      line-height: 35px;
+      margin-bottom: 20px;
+    }
+
+    &-inputs{
+      float: left;
+      width: 180px;
+    }
+
+    &-amt{
+      font-family:HN-L;
+      width:140px;
+      height:35px;
+      position:relative;
+      top:-1px;
+      color:@grey-3;
+      font-style:italic;
+      text-align: left;
+      border-left: none;
+      border-right: none;
+      border-top: 1px solid @grey-3;
+      border-bottom: 1px solid @grey-3;
+      float: left;
+      outline: 0;
+    }
+
+    &-input{
+      height: 35px;
+      line-height: 35px;
+      margin-bottom: 20px;
+      border: 1px solid @grey-3;
+      padding-left: 10px;
+
+      .fa{
+        float: right;
+        margin-top: 10px;
+        margin-right: 10px;
+        color: @grey-3;
+
+        &-caret-down{
+          color: @black;
+
+          &:hover{
+            cursor:pointer;
+          }
+        }
+      }
+    }
+
+    &-result{
+      float: left;
+      text-align: center;
+      margin-left: 15px;
+      width: 280px;
+
+      &-lbl{
+        width: 100%;
+        font-size: 16px;
+        font-family: HN-L;
+      }
+
+      &-amt{
+        width: 100%;
+        color: #999999;
+        font-size: 50px;
+        font-family: HN-B;
+        margin-bottom: 17px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow-x: hidden;
+      }
+
+      &-bot{
+        width: 100%;
+        height: 35px;
+        line-height: 35px;
+      }
+
+      &-reset{
+        color: @grey-4;
+        font-family: HN-L;
+        float: left;
+        margin-left: 30px;
+      }
+
+      &-submit{
+        width: 120px;
+        height: 35px;
+        background-color: @blue;
+        border-radius: 5px;
+        border: none;
+        color: @white;
+        float: right;
+        margin-right: 30px;
+
+        .fa{
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+  //**********************END MONEY MEMORY SECTION***********************//
+
+
+  //*************************STOCK GRAPH SECTION*************************//
+  //graph
+  &-graph{
+    margin: 15px;
+    width: 650px;
+    height: 200px;
+  }
+
+  //sort bubbles
+  &-stock-sort{
+    width: 100%;
+    text-align: center;
+    background-color: @grey-1;
+    height: 50px;
+    line-height: 50px;
+
+    &-bbl{
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background-color: @grey-2;
+      color: @grey-4;
+      margin: 0px 10px;
+      text-align: center;
+      line-height: 35px;
+      font-family: HN-L;
+      display: inline-block;
+
+      &:hover{
+        color: @white;
+        background-color: @blue;
+        font-family: HN-B;
+        cursor: pointer;
+      }
+
+      &-selected{
+        color: @white;
+        background-color: @blue;
+        font-family: HN-B;
+      }
+    }
+  }
+
+  &-stock-stats{
+    width: 650px;
+    margin: 15px 15px 20px 15px;
+    overflow: auto;
+
+    &-left{
+      float: left;
+      width: 324px;
+      padding-right: 10px;
+      border-right: 1px dashed #b8b8b8;
+    }
+
+    &-right{
+      float: right;
+      width: 325px;
+      padding-left: 15px;
+    }
+
+    &-data{
+      width: 310px;
+      height: 34px;
+      line-height: 34px;
+      border-bottom: 1px solid rgba(0,0,0,0.25);
+
+      &-lbl{
+        float: left;
+        font-family: HN-L;
+      }
+
+      &-amt{
+        float: right;
+        font-family: HN-B;
+
+        span{
+          color: @green;
+          font-family: HN-B;
+          margin: 0px 5px;
+
+          .fa{
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+  }
+  //***********************END STOCK GRAPH SECTION***********************//
+}

@@ -1,0 +1,916 @@
+/*
+Author: jyothyswaroop
+Created: 8/12/2015
+Description: market_recap_page
+Associated Files: market_recap_page_logic.js and market_recap_page_page.html
+*/
+
+
+/* Imports global variable*/
+@import "../global_vars.less";
+/* defeined a unique name for disclaimer as dis*/
+.area_pg{
+  .area_pg-n_m{
+    margin: 5px 0 0 5px;
+  }
+  /*defined the height and width for new module(n_m)*/
+  &-n_m
+  {
+    background-color:  #ffffff;
+    width: 680px;
+    //height: 2074px;
+  }
+
+  //**********************************HEADER*****************************//
+    &-hdr {
+
+      //the head box consisting of the white background
+      &-head-box {
+        width: 680px;
+        height: 140px;
+        background-color: @white;
+        text-align: left;
+        margin: 0;
+        border-bottom: 1px solid #dadada;
+      }
+      //image inside the article head
+      &-head-image {
+        width: 100px;
+        height: 100px;
+        margin: 20px 15px 20px 20px;
+        border: solid 2px @grey-3;
+        border-radius: 50%;
+        float: left;
+        background-image: url("");
+        background-size: cover !important;
+        background-position: center center !important;
+
+        //the symbol above the image
+        &-icon {
+          height: 35px;
+          width: 35px;
+          background-color: @blue;
+          position: relative;
+          bottom: 5px;
+          right: 5px;
+          border-radius: 50%;
+          border: solid 1px @white;
+          color: @white;
+          line-height: 33px;
+          font-size: 15px;
+          text-align: center;
+
+          .fa{
+            position: relative;
+            bottom: 2px;
+            right: 1px;
+          }
+        }
+      }
+      //the text consisting the latest update
+      &-text {
+        //width: 545px;
+        //height: 120px;
+        //margin: 0;
+        padding: 15px 0px;
+        float: left;
+        color: @black;
+        text-align: left;
+        list-style-type: none;
+        //the update part
+        &-update {
+          font-size: 10px;
+          color: #959595;
+          margin-bottom: 10px;
+        }
+        //the location
+        &-loc {
+          font-size: 12px;
+        }
+        // the name of the person
+        &-name {
+          max-width: 495px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-size: 22px;
+          font-family: HN-B;
+        }
+        // the person description
+        &-auth {
+          max-width: 495px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-size: 22px;
+          font-family: HN-L;
+          line-height: 22px;
+        }
+      }//end area_pg-hdr-text
+    }//end area_pg-hdr
+
+    //*****************************END HEADER******************************//
+
+  /* specified for map container */
+  &-map{
+    width: 680px;
+    height: 360px;
+    position: relative;
+
+    &-container{
+      width: 680px;
+      height: 360px;
+    }
+
+    &-hdr{
+      width: 680px;
+      height: 35px;
+      background-color: @black;
+      opacity: 0.85;
+      filter: alpha(opacity=85);
+      position: absolute;
+      top: 0px;
+      left: 0px;
+
+      &-text{
+        margin: 0px 15px;
+        font-size: 16px;
+        font-family: HN-B;
+        color: @white;
+        line-height: 35px;
+        float: left;
+      }
+
+      &-menu{
+        padding: 0px 30px 0px 20px;
+        font-family: HN-L;
+        color: @white;
+        line-height: 35px;
+        float: left;
+        background-color: @blue;
+        position: relative;
+
+        .fa{
+          margin-right: 10px;
+        }
+
+        .fa-caret-down{
+          position: absolute;
+          top: 11px;
+          right: 0px;
+        }
+      }
+    }
+  }
+
+
+  /*container for the ct1 to 'sort by' and 'what is this list?' */
+  &-ct1{
+    width:680px;
+    height:133px;
+    position: relative;
+    //top: 175px;
+  }
+  /*container for the sortby */
+  &-sy{
+    width: 360px;
+    height: 16px;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+  }
+  /*  container for the sortby font */
+  &-syf{
+    font-family: HN-B;
+    color:  #000000;
+    font-size: 12px;
+    text-align: left;
+  }
+  /* container for the members font  */
+  &-sym{
+    font-family: HN-L;
+    }
+  /* font sytle for the chevron-down*/
+  &-chd{
+    font-family: HN;
+    color:  #3098ff;
+    cursor:pointer;
+    position: relative;
+    left: 3px;
+  }
+  /*contianer for the complete 'what is this list' class name is wl */
+  &-wl{
+    width:650px;
+    height:81px;
+    position:absolute;
+    left:15px;
+    top:40px;
+    border: 1px solid #ebebeb;
+    background-color: #fafafa;
+  }
+  /*  container for the 'what is this list' class name is wl2 */
+  &-wlc{
+    width: 650px;
+    height: 20px;
+    background-color: #ebebeb;
+  }
+  /* font style for the 'what is this list */
+  &-wlf{
+    font-family: HN-B;
+    color: #333333;
+    font-size:12px;
+    text-align:left;
+    position: relative;
+    left: 10px;
+  }
+  /*icon font fot the 'x' */
+  &-x{
+    font-family: FontAwesome;
+    color:  #000000;
+    font-size: 10px;
+    font-weight: 400;
+    text-align: left;
+    float:right;
+    position: relative;
+    right: 21px;
+    top: 3px;
+  }
+  /* container for the text inside the 'what is this list' as wltxt */
+  &-wltxt{
+    width:600px;
+    height:38px;
+    position:absolute;
+    text-align:center;
+    vertical-align:sub;
+    left:20px;
+    top:34px;
+  }
+  /*font style for the text  */
+  &-wltxtf{
+    font-family: HN;
+    color:  #000000;
+    font-size: 14px;
+    text-align: left;
+  }
+
+  // &-wrapper{
+  // //  height:970px;
+  //   position: relative;
+  //   top: 175px;
+  // }
+  &-quotes{
+    width: 100%;
+    height: 185px;
+    //border-top: 1px solid @grey-3;
+    position: relative;
+
+    &-head{
+      width: 309px;
+      height: 35px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      color: #ffffff;
+      font-family: HN-B;
+      line-height: 33px;
+      text-align: center;
+      background-color: #000000;
+      opacity: 0.75;
+      filter: alpha(opacity=75);
+      z-index: 1;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    &-image{
+      background-color:  #f2f2f2;
+      background: -webkit-linear-gradient(90deg, rgba(21, 21, 21, 0.5) 0%, rgba(21, 21, 21, 0) 100%);
+      background: -moz-linear-gradient(90deg, rgba(21, 21, 21, 0.5) 0%, rgba(21, 21, 21, 0) 100%);
+      background: -o-linear-gradient(90deg, rgba(21, 21, 21, 0.5) 0%, rgba(21, 21, 21, 0) 100%);
+      background: -ms-linear-gradient(90deg, rgba(21, 21, 21, 0.5) 0%, rgba(21, 21, 21, 0) 100%);
+      background: linear-gradient(0deg, rgba(21, 21, 21, 0.5) 0%, rgba(21, 21, 21, 0) 100%);
+      /* Layer contains multiple layer styles that cannot be represented in CSS. Use the color picker or extract the layer as an image. */
+      width: 170px;
+      height: 185px;
+      float: left;
+      position: relative;
+      left: -2px;
+
+      &-text{
+        width: 150px;
+        height: 50px;
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        color: @white;
+
+        &-ln1{
+          font-family: HN-B;
+          color:  #ffffff;
+          font-size: 14px;
+          line-height: 18px;
+          text-align: left;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+        &-vc{
+          position: relative;
+          top: 5px;
+          width: 150px;
+        }
+        &-ln3{
+          font-family: HN-L;
+          overflow: hidden;
+          white-space: nowrap;
+          width: 91px;
+          position: absolute;
+          left: 60px;
+          }
+
+        &-ln4{
+          display: inline-block;
+          width: 66px;
+        }
+        &-fn{
+          font-family: FontAwesome;
+          color:  #ffffff;
+          font-size: 14px;
+          font-weight: 400;
+          text-align: left;
+          position: relative;
+          top: -4px;
+          padding: 0px 5px 0px 5px;
+        }
+
+      }
+    }
+    &-arrow{
+      position: absolute;
+      right: 10px;
+      top: 82px;
+      color: @white;
+      font-size: 40px;
+      cursor: pointer;
+    }
+  }
+  &-gap1
+  {
+    width: 2px;
+    height: 185px;
+    background-color: #ffffff;
+    display: inline-block;
+  }
+  &-follw1
+  {
+    font-family: HN;
+    color:  #000000;
+    font-size: 14px;
+    line-height: 25px;
+    text-align: left;
+    display: inline-block;
+  }
+  &-follw2
+  {
+    font-family: HN-B;
+    color:  #000000;
+    font-size: 14px;
+    line-height: 25px;
+    text-align: left;
+    display: inline-block;
+  }
+  &-follw3
+  {
+    font-family: HN;
+    color:  #ca1010;
+    font-size: 14px;/* Approximation due to font substitution */
+    text-align: left;
+  }
+  &-follw4
+  {
+    font-family: HN;
+    color:  #44b224;
+    font-size: 14px;/* Approximation due to font substitution */
+    text-align: left;
+  }
+  &-follws1
+  {
+    font-family: FontAwesome;
+    color:  #ca1010;
+    font-size: 14px;/* Approximation due to font substitution */
+    text-align: left;
+  }
+  &-follws2
+  {
+    font-family: FontAwesome;
+    color:  #44b224;
+    font-size: 14px;/* Approximation due to font substitution */
+    text-align: left;
+  }
+
+  &-rtct
+  {
+    height: 60px;
+    width: 240px;
+    float: right;
+    position: relative;
+    top: -48px;
+    right: 3%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  &-rttx1
+  {
+    font-family: HN;
+    color:  #000000;
+    font-size: 10px;
+    text-align: right;
+  }
+  &-rttx2
+  {
+    /* Inline Style */
+    font-family: HN-B;
+    color:  #000000;
+    font-size: 20px;
+    line-height: 26px;
+    text-align: right;
+
+  }
+  &-rttx3
+  {
+    font-family: HN;
+    color:  #000000;
+    font-size: 12px;
+    line-height: 25px;
+    text-align: right;
+  }
+  //This style is used to create the tile background as grey
+  &-tilegrey{
+    background:#f2f2f2;
+    width:680px;
+    height: 185px;
+    color: #000;
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+  }
+  //This style is used to create the tile background as white
+  &-tilewhite{
+    background:#ffffff;
+    width:680px;
+    height: 185px;
+    color: #000
+  }
+  // container for the text data
+  &-sp{
+  //  width:480px;
+    width:240px;
+    height:60px;
+    float: left;
+    position: relative;
+    top:0px;
+    left:48px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  //contianer for the save
+  &-sn{
+    width: 73px;
+    height: 17px;
+    float: left;
+    position: relative;
+    top: 83px;
+    right:52%;
+    //right: 42%;
+    }
+  //continer for the share
+  &-sh{
+    width: 68px;
+    height: 17px;
+    float: left;
+    position: relative;
+    top: 67px;
+    right: 5%;
+    // top: 83px;
+    // right: 41%;
+    }
+  //container for the feedback
+  &-fe{
+    width: 86px;
+    height: 18px;
+    float: left;
+    position: relative;
+    top: 68px;
+    left: 56%;
+    }
+    &-fe2{
+      width: 86px;
+      height: 18px;
+      float: left;
+      position: relative;
+      top: 50px;
+      left: 66%;
+    }
+  //This style is used to create the font awesome symbol marker
+  &-space{
+    font-family: HN;
+    color:  #3098ff;
+    font-size: 10px;/* Approximation due to font substitution */
+    text-align: left;
+
+    .fa{
+      padding: 0px 5px;
+    }
+  }
+  //This style is used to create the text "United States"
+  &-space2{
+    color: #000000;
+  }
+  //This style is used to create the font awesome symbol heart
+  &-save{
+    font-family: HN;
+    color: #666666;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+  }
+  //This style is used to create the text "Save"
+  &-st{
+    text-align: center;
+    font-family: HN-L;
+    padding-left: 5px;
+  }
+  //This style is used to create the image with black groud which holds the counter number
+  &-counter
+  {
+    text-align:center;
+    line-height:2.3em;
+    border-radius: 100%;
+    border-width: 1px;
+    border-color:  #acacac;
+    border-style: solid;
+    background-color:  #ffffff;
+    width: 40px;
+    height: 40px;
+    display:block;
+    font-family: HN;
+    color:  #000000;
+    font-size: 18px;
+    text-align: center;
+  }
+  &-counter2
+  {
+    text-align:center;
+    line-height:2.3em;
+    border-radius: 100%;
+    border-width: 1px;
+    display:block;
+    font-family: HN;
+    color:  #000000;
+    font-size: 18px;
+    text-align: center;
+    border-color:  #acacac;
+    border-style: solid;
+    background-color:  #ffffff;
+    width: 48px;
+    height: 48px;
+    margin-left: 70%;
+    margin-top: 26%;
+
+  }
+  //This style is used to create the content panel header and footer and the respective font inside it
+  &-footer {
+    background:#fff;
+    width:680px;
+    height:45px;
+    line-height: 45px;
+    &-icon{
+      font-family: FontAwesome;
+      color: #000000;
+      font-size: 17.98px;
+      font-weight: 400;
+      line-height: 21px;
+      text-align: left;
+      padding-left: 6px;
+      transform: scaleY(1.0011);
+    }
+  }
+  //This style is used to create the navigation buttons at bottom of the template
+  &-navigationl {
+    position: relative;
+    float: left;
+    right: 10px;
+    top: -9px;
+  }
+  &-navigationr {
+    position: relative;
+    float: left;
+    //left: 142px;
+    top: -9px;
+  }
+  &-navigation2 {
+    position: relative;
+    float: right;
+    left: -132px;
+    top: 16px;
+  }
+  //This style is for the first page selector button
+  &-page-selector1 {
+    border-radius: 50%;
+    border-width: 1px;
+    border-style: solid;
+    width: 26px;
+    height: 25px;
+    display:block;
+    float:left;
+    margin:0px 5px;
+    border-color: #dadada;
+    background-color:#ffffff;
+    text-align: center;
+    &-font {
+      text-align:center;
+      font-family: HN-L;
+      color: #ffffff;
+      font-size: 13.98px;
+      line-height: 21px;
+      transform: scaleY(1.0011);
+    }
+    &:hover {
+      border-color:#3098ff;
+      color:#000;
+    }
+  }
+  //This style is for the second page selector button
+  &-page-selector2 {
+    border-radius: 50%;
+    border-width: 1px;
+    width: 26px;
+    height: 25px;
+    display:block;
+    float:left;
+    border-style: solid;
+    border-color: #dadada;
+    background-color:#ffffff;
+    &-font {
+      text-align:center;
+      font-family: HN-L;
+      color: #000000;
+      font-size: 13.98px;
+      line-height: 21px;
+      transform: scaleY(1.0011);
+    }
+    &:hover {
+      border-color:#3098ff;
+      color:#000;
+    }
+  }
+  //This style is for the third page selector button
+  &-page-selector3 {
+    border-radius: 50%;
+    border-width: 1px;
+    width: 26px;
+    height: 25px;
+    display:block;
+    float:left;
+    margin:0px 5px;
+    border-style: solid;
+    border-color: #dadada;
+    background-color:#ffffff;
+    &-font {
+      text-align:center;
+      font-family: HN-L;
+      color: #000000;
+      font-size: 13.98px;
+      line-height: 21px;
+      transform: scaleY(1.0011);
+    }
+    &:hover {
+      border-color:#3098ff;
+      color:#000;
+    }
+  }
+  //This style is for the 200th page selector button
+  &-page-selector200{
+    border-radius: 20px;
+    border-width: 1px;
+    background-color: #ffffff;
+    border-style: solid;
+    border-color: #dadada;
+    width: 51px;
+    height: 25px;
+    display:block;
+    float:left;
+    margin:0px 5px;
+    &-font {
+      text-align:center;
+      font-family: HN-L;
+      color: #000000;
+      font-size: 13.98px;
+      line-height: 21px;
+      transform: scaleY(1.0011);
+    }
+    &:hover {
+      border-color:#3098ff;
+      color:#000;
+    }
+  }
+  &-view-all {
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #3098ff;
+    color:#3098ff;
+    border-style: solid;
+    background-color:#fff;
+    width: 113px;
+    height: 23px;
+    position: relative;
+    left: 117px;
+    top: -12px;
+    &-font{
+      font-family: HN;
+      color: #3098ff;
+      font-size: 11.99px;
+      line-height: 18px;
+      text-align: center;
+      transform: scaleY(1.0011);
+    }
+  }
+  //This style is used for the holder we use at footer
+  &-holder1{
+    width: 204px;
+    height: 45px;
+    margin-top: 15px;
+    position: relative;
+    float: left;
+    //top:17px;
+    left:245px;
+  }
+  //Here we declare how the box which hold "View Full List" look like and how the text inside could be
+  &-tile-button
+  {
+    border-radius: 5px;
+    background-color: #3098ff;
+    width: 141px;
+    height: 35px;
+    border-width: 0px;
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    float: right;
+    position:absolute;
+    top: 5px;
+    right: 5px;
+
+  }
+  &-ctmain
+  {
+    border-radius: 5px;
+    border-width: 1px;
+    border-color:  #ebebeb;
+    border-style: solid;
+    background-color:  #ffffff;
+    width: 485px;
+    height: 45px;
+    position: relative;
+    top: 75px;
+    left: 175px;
+  }
+  &-ctmaintxt
+  {
+    font-family: HN;
+    color:  #000000;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 40px;
+    position: absolute;
+    left: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    }
+  //This style is used to create the font awesome symbol share
+  &-share{
+    font-family: HN;
+    color: #666666;
+    font-size: 14px;
+    text-align: right;
+    cursor: pointer;
+  }
+  //This style is used to create the text "Share"
+  &-sht{
+    text-align: right;
+    font-family: HN-L;
+    margin-left: 5px;
+  }
+  // middle container text
+  &-middle{
+    width: 232px;
+    height: 18px;
+    position: relative;
+    top: 67px;
+    left: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  //font syle for the quetion mark
+  &-qt{
+    font-family: FontAwesome;
+    color:  #f86f1d;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+
+    .fa{
+      padding-right: 5px;
+    }
+  }
+  //font syle for the text
+  &-texm{
+    font-family: HN-L;
+    color:  #666666;
+    font-size: 14px;
+    text-align: center;
+  }
+  //This style is used to create the font awesome symbol flag
+  &-feedback{
+
+  }
+  //This style is used to create the text "Feedback"
+  &-ft{
+    font-family: HN-L;
+  }
+  //This style is used to hold the main content of the page
+  &-adjust{
+    font-family: HN-B;
+    color:  #000000;
+    font-size: 18px;
+    text-align: left;
+  }
+  // this is the container for the circle
+  &-head-circ{
+    width: 125px;
+    height:125px;
+    position: relative;
+    float: left;
+    top:0px;
+    left:20px;
+  }
+  //This style is used to hold the main image of the template of diameter 125px
+  &-head-image{
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    border: 2px solid gray;
+    border-radius: 50%;
+    border-width: 2px;
+    border-color: #acacac;
+    border-style: solid;
+    background-color: #ffffff;
+    width: 125px;
+    height: 125px;
+  }
+  //This style is used to hold the first small images of diameter 45px;
+  &-tile-image1
+  {
+    display: block;
+    float: left;
+    border-radius: 50%;
+    border-width: 2px;
+    border-color: #cccccc;
+    border-style: solid;
+    background-color: #ffffff;
+    width: 45px;
+    height: 45px;
+  }
+  //This style is used to create the second to fifth small image
+  &-tile-image2
+  {
+    //The remaining images inherit the same properties of the first image
+    margin-left: 10px;
+  }
+  &-tile-bt{
+    width:150px;
+    height:35px;
+    position:relative;
+    float:right;
+    top: 17px;
+    right: 40px;
+  }
+  &-dots{
+    width: 10px;
+    height: 2px;
+    display:block;
+    float:left;
+    position: relative;
+    top: -13px;
+  }
+  /* container for the fotter('ft') */
+  &-fotter{
+    width: 680px;
+    height: 276px;
+    position: relative;
+    top:5px;
+  }
+}

@@ -1,0 +1,307 @@
+<!-- Author: Ryan Fisher
+**** Created: [08/10/2015]
+**** Description: Company Page - Key Financials
+**** Associated Files: co_key_financials.html, co_key_financials.less, co_key_financials_logic.js
+-->
+
+<template name="co_key_financials">
+  <div class="cokey">
+
+    <!--Page header-->
+    <div class="cokey-hdr">
+      <!-- the header box -->
+      <div class="cokey-hdr-head-box">
+        <!-- image inside the header box-->
+        <div class="cokey-hdr-head-image">
+          <!-- he back button symbol above the image-->
+          <button class="cokey-hdr-head-image-icon"><i class="fa fa-reply"></i></button>
+        </div>
+        <!-- the text inside the header box-->
+        <div class="cokey-hdr-text">
+            <!-- the latest update-->
+            <div class="cokey-hdr-text-update">
+              LAST UPDATED: 06/24/2015, 8:00 AM EST
+            </div>
+            <!-- location of the executive-->
+            <div class="cokey-hdr-text-loc">
+              <i class="fa fa-map-marker"></i> United States
+            </div>
+            <!-- the name of the page-->
+            <div class="cokey-hdr-text-name">
+              Key Financials
+            </div>
+            <!-- the name of the company-->
+            <div class="cokey-hdr-text-auth">
+              at {{company}}
+            </div>
+        </div>
+      </div>
+      <div class="cokey-hdr-bar">
+        <div class="cokey-hdr-bar-title">
+          {{company}}'s Key Financials
+        </div>
+        <div class="cokey-hdr-bar-button">
+          <!-- the save option button-->
+          <a href="#"><i class="fa fa-heart"></i><span class="cokey-hdr-bar-text">Save</span></a>
+        </div>
+        <div class="cokey-hdr-bar-button">
+          <!-- share option button -->
+          <a href="#"><i class="fa fa-share-alt"></i><span class="cokey-hdr-bar-text">Share</span></a>
+        </div>
+      </div>
+      <div class="cokey-hdr-main-container">
+        <!-- the module.less file navigation buttons-->
+        <button class='cokey-hdr-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+        <button class='cokey-hdr-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+        <!-- end of the module.less navigation button -->
+        <!-- wrapper class-->
+        <div class="cokey-hdr-main-container-image-wrapper">
+          <div class="cokey-hdr-main-container-image"></div>
+          <!-- <div class="cokey-hdr-main-container-subimage"></div> -->
+        </div>
+        <!-- the main container -->
+        <ul class="cobal-hdr-main-container-container">
+          <!-- the image in blue circle-->
+          <li class="cobal-hdr-main-container-title">
+            <div class="cobal-hdr-main-container-title-image"><i class="fa fa-building-o"></i></div>
+            <div class="cobal-hdr-main-container-title-text">{{company}}</div>
+            <div class="cobal-hdr-main-container-buttons">
+              <div class="cobal-hdr-main-container-button">
+                <!-- the save option button-->
+                <a style="color:#ffffff" href="#"><i class="fa fa-heart"></i>Save</a>
+              </div>
+              <div class="cobal-hdr-main-container-button">
+                <!-- share option button -->
+                <a style="color:#ffffff" href="#"><i class="fa fa-share-alt"></i>Share</a>
+              </div>
+            </div>
+          </li>
+          <!-- the description about the person-->
+          <li class="cokey-hdr-main-container-description">
+            How are <span style="font-family:HN-B">{{company}}</span>'s financials performing?
+            <br><br>
+            Take a look at key metrics from their <span style="font-family:HN-B">Key Financials</span>
+            and analyze their financial health in comparison to the industry.
+          </li>
+        </ul>
+        <!-- the bottom bar-->
+        <div class="cokey-hdr-main-container-view_more">
+          <!-- the details about the comapny-->
+          <div class="cokey-hdr-main-container-view_more-text">
+            <div class="cokey-hdr-main-container-view_more-text-ln1">Discover more about {{company}}?</div>
+            <div class="cokey-hdr-main-container-view_more-text-ln2">
+              Profile Last Updated On:
+              <span style="font-family:HN-B">07/29/2015</span>
+            </div>
+          </div>
+          <button class="cokey-hdr-main-container-view_more-button">
+            View Profile <i class="fa fa-angle-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--End Page header-->
+
+    <!--Sort by bar-->
+    <div class="cokey-sort">
+      <span style="font-family:HN-B">Sort by: </span>
+      <span>Annual Financials </span>
+      <i class="fa fa-angle-down"></i>
+    </div>
+    <!--End sort by bar-->
+
+    <!--What is this page? box-->
+    <div class="cokey-about">
+      <div class="cokey-about-hdr">
+        <div class="cokey-about-hdr-txt">What are Key Financials?</div>
+        <button class="cokey-about-hdr-icon"><i class="fa fa-close"></i></button>
+      </div>
+      <div class="cokey-about-txt">
+        A group of common financial data points or metrics that measure a company's valuations, growth
+        and financial health.  Key Financials can be indicative of and are often used evaluating a company's
+        health, performanc, and stock price.
+      </div>
+    </div>
+    <!--End What is this page? box-->
+
+    <!--Key Metrics Section header-->
+    {{> co_key_financials_secthdr title="Key Metrics" updated="08/03/2015 at 4PM EST"}}
+
+    <!--Key Metrics-->
+    <div class="cokey-whitebar">
+      {{> co_key_financials_subhead PriceMet}}
+      {{> co_key_financials_subhead CashDiv}}
+    </div>
+    <div class="cokey-greybar">
+      {{> co_key_financials_subhead PriceEarn}}
+      {{> co_key_financials_subhead PriceBook}}
+    </div>
+    <div class="cokey-whitebar">
+      {{> co_key_financials_subhead PriceCash}}
+      {{> co_key_financials_subhead PriceSales}}
+    </div>
+    <div class="cokey-greybar">
+      <div class="cokey-subhdr">
+        <div class="cokey-subhdr-icon">?</div>
+        <div class="cokey-subhdr-2ln">
+          <div class="cokey-subhdr-top">E.P.S. - Earnings Per Share</div>
+          <div class="cokey-subhdr-btm">vs Sector & Industry Average</div>
+        </div>
+      </div>
+      <div class="cokey-graph">
+        <div class="cokey-graph-chart">
+          {{> highchartsHelper chartId="cokeyChartId" chartWidth="100%" chartHeight="100%" chartObject=cokeyChart}}
+        </div>
+        <div class="cokey-graph-lbls">
+          <div class="cokey-graph-lbl-hdr">EPS</div>
+          <div class="cokey-graph-lbl" style="border-left-color:#3193ff">
+            <div class="cokey-listitem-left">Facebook, Inc.</div>
+            <div class="cokey-listitem-right">0.66</div>
+          </div>
+          <div class="cokey-graph-lbl" style="border-left-color:#ffc600">
+            <div class="cokey-listitem-left">Sector</div>
+            <div class="cokey-listitem-right">-0.4</div>
+          </div>
+          <div class="cokey-graph-lbl" style="border-left-color:#ff3131">
+            <div class="cokey-listitem-left">Industry</div>
+            <div class="cokey-listitem-right">0.3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End Key Metrics-->
+
+    <!--Growth Ratio-->
+    {{> co_key_financials_secthdr title="Growth Ratio" updated="08/03/2015 at 4PM EST"}}
+
+    <div class="cokey-whitebar">
+      {{> co_key_financials_subhead GrowthCash}}
+      {{> co_key_financials_subhead GrowthEquity}}
+    </div>
+    <div class="cokey-greybar">
+      {{> co_key_financials_subhead GrowthRev}}
+      {{> co_key_financials_subhead GrowthNet}}
+    </div>
+    <!--End Growth Ratio-->
+
+    <!--Profitability Ratio-->
+    {{> co_key_financials_secthdr title="Profitability Ratio" updated="08/03/2015 at 4PM EST"}}
+
+    <div class="cokey-whitebar">
+      {{> co_key_financials_subhead GrossMargin}}
+      {{> co_key_financials_subhead OpMargin}}
+    </div>
+    <div class="cokey-greybar">
+      {{> co_key_financials_subhead NetMargin}}
+    </div>
+    <!--End Profitability Ratio-->
+
+    <!--Efficiency Ratio-->
+    {{> co_key_financials_secthdr title="Efficiency Ratio" updated="08/03/2015 at 4PM EST"}}
+
+    <div class="cokey-whitebar">
+      {{> co_key_financials_subhead RetEq}}
+      {{> co_key_financials_subhead RetAsset}}
+    </div>
+    <!--End Efficiency Ratio-->
+
+    <!--Financial Health-->
+    {{> co_key_financials_secthdr title="Financial Health" updated="08/03/2015 at 4PM EST"}}
+
+    <div class="cokey-whitebar">
+      {{> co_key_financials_subhead DebtToCap}}
+      {{> co_key_financials_subhead DebtToEq}}
+    </div>
+    <!--End Financial Health-->
+
+    {{> didnt_find}}
+  </div>
+</template>
+
+<!--Template for section header-->
+<template name="co_key_financials_secthdr">
+  <div class="cokey-secthdr">
+    <div class="cokey-secthdr-above">
+      <span style="font-family:HN-B">{{title}}</span> for {{company}}:
+    </div>
+    <div class="cokey-secthdr-below">
+      <i class="fa fa-calendar"></i> Updated {{updated}}
+    </div>
+  </div>
+</template>
+
+<!--Template for subheaders-->
+<template name="co_key_financials_subhead">
+  <div class="cokey-{{side}}half">
+    <div class="cokey-subhdr">
+      <div class="cokey-subhdr-icon">?</div>
+      {{#if twoline}}
+      <div class="cokey-subhdr-2ln">
+        <div class="cokey-subhdr-top">{{title}}</div>
+        <div class="cokey-subhdr-btm">{{title2}}</div>
+      </div>
+      {{else}}
+      {{title}}
+      {{/if}}
+    </div>
+    {{#with this}}
+    <div class="cokey-datacont">
+    {{#each data}}
+      {{#unless noBorder}}
+      <div class="cokey-listitem">
+        <div class="cokey-listitem-left">{{label}}</div>
+        <div class="cokey-listitem-right">{{num}}</div>
+      </div>
+      {{else}}
+      <div class="cokey-listitem-last">
+        <div class="cokey-listitem-left">{{label}}</div>
+        <div class="cokey-listitem-right">{{num}}</div>
+      </div>
+      {{/unless}}
+    {{/each}}
+    {{#if average}}
+    <div class="cokey-relative">Relative to Industry</div>
+    <div class="cokey-avg">
+      <div class="cokey-avg-bar">100%
+       <div class="cokey-avg-fill" style="background-color:{{average.clr}};width:{{average.w}}">{{average.pct}}%</div>
+      </div>
+      <div class="cokey-avg-labels">
+        <div class="cokey-avg-text" style="float:left">Below Average</div>
+        <div class="cokey-avg-text" style="float:right">Above Average</div>
+      </div>
+    </div>
+    {{/if}}
+    {{#if isMissing}}
+    <div class="cokey-missing">
+      <div class="cokey-missing-title">Missing Content Alert</div>
+      <div>
+        <div class="cokey-missing-icon"><i class="fa fa-warning"></i></div>
+        <div class="cokey-missing-text">
+          Unfortunately, we were unable to generate information for this section, either
+          refresh the page or come back on a later date for more content...
+        </div>
+      </div>
+    </div>
+    {{/if}}
+    </div>
+    {{/with}}
+    {{#if isDividend}}
+    <div class="cokey-divid">
+      <div class="cokey-divid-q">
+        <span style="font-family: HN-B">Q: </span>
+        What are
+        <span style="font-family: HN-B">Dividends?</span>
+      </div>
+      <div>
+        <div class="cokey-divid-icon"></div>
+        <div class="cokey-divid-text">
+          <span style="font-family: HN-B">A: </span>
+          A distribution of a portion of a company's earnings, decided by the board of directors,
+          to a class of its shareholders.
+        </div>
+      </div>
+      <button class="cokey-divid-btn">View Dividends <i class="fa fa-angle-right"></i></button>
+    </div>
+    {{/if}}
+  </div>
+</template>

@@ -1,0 +1,248 @@
+<!--
+Author: jyothyswaroop
+Created: 8/12/2015
+Description: market_recap_page
+Associated Files: market_recap_page_logic.js and market_recap_page.less
+-->
+<!--Gave a template name stock_disclaimer_page !-->
+<template name="area_page">
+<!--Defined a class name globally for height and width !-->
+<div class= "area_pg">
+  <!--gave the dimensions for the module with total height and width !-->
+  <div class = "area_pg-n_m">
+    <!--Page header-->
+    <div class="area_pg-hdr">
+      <!-- the header box -->
+      <div class="area_pg-hdr-head-box">
+        <!-- image inside the header box-->
+        <div class="area_pg-hdr-head-image">
+          <!-- he back button symbol above the image-->
+          <button class="area_pg-hdr-head-image-icon"><i class="fa fa-reply"></i></button>
+        </div>
+        <!-- the text inside the header box-->
+        <div class="area_pg-hdr-text">
+          <!-- the latest update-->
+          <div class="area_pg-hdr-text-update">
+            LAST UPDATED: 06/24/2015, 8:00 AM EST
+          </div>
+          <!-- location of the executive-->
+          <div class="area_pg-hdr-text-loc">
+            <i class="fa fa-map-marker"></i> {{city}}
+          </div>
+          <!-- the name of the page-->
+          <div class="area_pg-hdr-text-name">
+            All Public Companies
+          </div>
+          <!-- the name of the company-->
+          <div class="area_pg-hdr-text-auth">
+            In {{city}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="area_pg-map">
+      <div class="area_pg-map-container" id="map"></div>
+      <div class="area_pg-map-hdr">
+        <div class="area_pg-map-hdr-text">
+          <i class="fa fa-map-marker"></i> {{city}}
+        </div>
+        <div class="area_pg-map-hdr-menu">
+          <i class="fa fa-building-o"></i> All Public companies <i class="fa fa-caret-down"></i>
+        </div>
+      </div>
+    </div>
+
+
+    <!--container for the ct1 to 'sort by' and 'what is this list?'  !-->
+    <div class="area_pg-ct1">
+    <!--container for the sortby !-->
+    <div class="area_pg-sy">
+      <!-- container for the sortby font !-->
+      <div class="area_pg-syf"> Sort by:
+      <!-- container for the members font !-->
+      <span class="area_pg-syf area_pg-sym"> Companies in {{city}} <span class="area_pg-sym area_pg-chd"> <i class=" fa fa-angle-down"></i> </span> </span>
+      </div>
+    </div>
+    <!-- contianer for the complete 'what is this list' class name is wl!-->
+    <div class="area_pg-wl">
+      <!-- container for the 'what is this list' class name is wl2!-->
+      <div class="area_pg-wlc">
+        <!-- font style for the 'what is this list'!-->
+        <div class="area_pg-wlf">
+        What is this list?
+        <span class="area_pg-x">
+         <i class="fa fa-times"></i>
+        </span>
+        </div>
+      </div>
+      <!--container for the text inside the 'what is this list' as wltxt!-->
+      <div class="area_pg-wltxt">
+      <!--font style for the text !-->
+      <div class="area_pg-wltxtf">
+        <p> This is a list featuring the top {{getheadername1}} companies in the {{city}} with the highest market cap value, sorted from highest to lowest.</p>
+      </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="area_pg-wrapper">
+      <!-- The loop starts here and the each will take each data item from the items on each iteration-->
+      {{#each items}}
+      {{#if imghld}}
+      <div class="area_pg-quotes">
+        <div class="area_pg-quotes-head">Featured Companies in {{city}}</div>
+        {{#each quote}}
+        <div class="area_pg-quotes-image">
+          <div class="area_pg-gap1"></div>
+          <div class="area_pg-quotes-image-text">
+            <div class="area_pg-quotes-image-text-ln1">{{name}}</div>
+            <div class="co_commi-quotes-image-text-vc">
+          <span class="co_commi-quotes-image-text-ln1 co_commi-quotes-image-text-ln4">
+            {{text}}
+          <span class="co_commi-quotes-image-text-ln1 co_commi-quotes-image-text-ln3">
+            {{text2}}
+          </span>
+          </span>
+        </div>
+          </div>
+        </div>
+        {{/each}}
+        <div class="area_pg-quotes-arrow fa fa-angle-right"></div>
+      </div>
+      {{else}}
+      <div class="area_pg-{{getBackgroundStyle}}"><br>
+        <!--This is the main (circle) image-->
+        <div class="area_pg-head-circ">
+          <div class="area_pg-head-image">
+            <!-- Here displays the counter number which is a result of each loop-->
+            <span class="area_pg-counter">#{{counter_no}}</span>
+            <span class="area_pg-counter2"></span>
+          </div>
+        </div>
+        <!--Location title -->
+        <div class="area_pg-sp">
+          <div  class="area_pg-space">
+            <!-- This displays the font awesome map sybmol infornt of the united states-->
+            <i class="fa fa-map-marker"></i>
+            <span  class="area_pg-space area_pg-space2">
+              {{location}}
+            </span>
+            <!-- Here displays the description which come from the each loop-->
+            <div class="area_pg-adjust">{{ data }}</div>
+            {{#if fall}}
+            <div class="area_pg-follw1">{{stck1}}
+              <span class="area_pg-follws1">  <i class="fa fa-arrow-down"></i> </span>
+              <span class="area_pg-follw3">{{stck2}} </span>
+            </div>
+            {{else}}
+            <div class="area_pg-follw1">{{stck1}}
+              <span class="area_pg-follws2">  <i class="fa fa-arrow-up"></i> </span>
+              <span class="area_pg-follw4">{{stck2}} </span>
+            </div>
+            {{/if}}
+          </div>
+        </div>
+        <!--This displays the blue button which holds the text "View Full List"-->
+        <div class="area_pg-ctmain">
+          <span class="area_pg-ctmaintxt">
+            Want more info about this company?
+          </span>
+          <button class="area_pg-tile-button">
+            View Profile
+            <span style="margin-left:6px"><i class="fa fa-angle-right"></i></span>
+          </button>
+        </div>
+        <div class="area_pg-rtct">
+          <div class="area_pg-rttx1"> Market Cap</div>
+          <div class="area_pg-rttx2"> {{number}}</div>
+          <div class="area_pg-rttx3"> {{date}} </div>
+        </div>
+        <!-- This displays the font awesome heart symbol beside the text "save"-->
+        <div class="area_pg-sn">
+          <div  class="area_pg-save">
+            <i class="fa fa-heart"></i>
+            <span  class="area_pg-save area_pg-st">
+              Follow
+            </span>
+          </div>
+        </div>
+
+        <!-- This displays the font awesome share symbol beside the text "share"-->
+        <div class="area_pg-sh">
+          <div  class="area_pg-share">
+            <i class="fa fa-share-alt"></i>
+            <span  class="area_pg-share area_pg-sht">
+              Share
+            </span>
+          </div>
+        </div>
+        <!-- continer with all font style as specified !-->
+        {{#if google}}
+        <div class="area_pg-middle">
+         <div class="area_pg-qt">
+           <i class="fa fa-bell"></i>
+        <span class="area_pg-texm">
+          Multiple Tickers for {{ data }}
+        </span>
+        <span class="area_pg-qt"> <i class=" fa fa-angle-down"> </i></span>
+         </div>
+        </div>
+
+        <div class="area_pg-fe2">
+          <div  class="area_pg-share area_pg-feedback">
+            <i class="fa fa-flag"></i>
+            <span  class="area_pg-share area_pg-ft">
+              Feedback
+            </span>
+          </div>
+        </div>
+        {{else}}
+        <!-- This displays the font awesome flag symbol beside the text "Feedback"-->
+        <div class="area_pg-fe ">
+          <div  class="area_pg-share area_pg-feedback">
+            <i class="fa fa-flag"></i>
+            <span  class="area_pg-share area_pg-ft">
+              Feedback
+            </span>
+          </div>
+        </div>
+
+      {{/if}}
+
+</div>
+      {{/if}}
+      <!--This is the End of each loop -->
+      {{/each}}
+  <div class="area_pg-footer">
+    <!-- This is outermost class of the footer which holds the other elements in the footer-->
+    <div class="area_pg-holder1">
+      <!-- This is the class which holds the font awesome left arrow-->
+      <div class="area_pg-navigationl">
+        <i class="fa fa-angle-left area_pg-footer-icon"></i>
+      </div>
+      <!-- Here we write the code for the buttons 1,2,3 and 200-->
+      <button  class="area_pg-page-selector1 area_pg-page-selector1-font">1</button>
+      <button class="area_pg-page-selector2 area_pg-page-selector2-font">2</button>
+      <button  class="area_pg-page-selector3 area_pg-page-selector3-font">3</button>
+      <span  class="area_pg-dots" >...</span>
+      <button  class="area_pg-page-selector200 area_pg-page-selector200-font">200</button>
+    <span class="area_pg-navigationr">
+      <i class="fa fa-angle-right area_pg-footer-icon"></i>
+    </span>
+      <!-- This is the class which holds the font awesome right arrow-->
+    </div>
+    <!-- container for the View all button !-->
+    <div class="area_pg-navigation2">
+      <button class="area_pg-view-all area_pg-view-all-font">VIEW ALL <img style="padding-bottom:4px" src="infinite-icon.png"></button>
+    </div>
+  </div>
+</div>
+  <!--created a container for the fotter  !-->
+<div class="area_pg-fotter">
+    {{> search_module}}
+</div>
+
+  </div>
+</div>
+</template>

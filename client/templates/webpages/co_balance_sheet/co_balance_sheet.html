@@ -1,0 +1,285 @@
+<!-- Author: Ryan Fisher
+**** Created: [09/02/2015]
+**** Description: Company Page - Balance Sheets
+**** Associated Files: co_balance_sheet.html, co_balance_sheet.less, co_balance_sheet_logic.js
+-->
+
+<template name="co_balance_sheet">
+  <div class="cobal">
+
+    <!--Page header-->
+    <div class="cobal-hdr">
+      <!-- the header box -->
+      <div class="cobal-hdr-head-box">
+        <!-- image inside the header box-->
+        <div class="cobal-hdr-head-image">
+          <!-- he back button symbol above the image-->
+          <button class="cobal-hdr-head-image-icon"><i class="fa fa-reply"></i></button>
+        </div>
+        <!-- the text inside the header box-->
+        <div class="cobal-hdr-text">
+            <!-- the latest update-->
+            <div class="cobal-hdr-text-update">
+              LAST UPDATED: 06/24/2015, 8:00 AM EST
+            </div>
+            <!-- location of the executive-->
+            <div class="cobal-hdr-text-loc">
+              <i class="fa fa-map-marker"></i> United States
+            </div>
+            <!-- the name of the page-->
+            <div class="cobal-hdr-text-name">
+              Balance Sheet
+            </div>
+            <!-- the name of the company-->
+            <div class="cobal-hdr-text-auth">
+              for {{company}}
+            </div>
+        </div>
+      </div>
+      <div class="cobal-hdr-bar">
+        <div class="cobal-hdr-bar-title">
+          {{company}}'s Balance Sheet
+        </div>
+        <div class="cobal-hdr-bar-button">
+          <!-- the save option button-->
+          <a href="#"><i class="fa fa-heart"></i><span class="cobal-hdr-bar-text">Save</span></a>
+        </div>
+        <div class="cobal-hdr-bar-button">
+          <!-- share option button -->
+          <a href="#"><i class="fa fa-share-alt"></i><span class="cobal-hdr-bar-text">Share</span></a>
+        </div>
+      </div>
+      <div class="cobal-hdr-main-container">
+        <!-- the module.less file navigation buttons-->
+        <button class='cobal-hdr-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+        <button class='cobal-hdr-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+        <!-- end of the module.less navigation button -->
+        <!-- wrapper class-->
+        <div class="cobal-hdr-main-container-image-wrapper">
+          <div class="cobal-hdr-main-container-image"></div>
+          <!-- <div class="cobal-hdr-main-container-subimage"></div> -->
+        </div>
+        <!-- the main container -->
+        <ul class="cobal-hdr-main-container-container">
+          <!-- the image in blue circle-->
+          <li class="cobal-hdr-main-container-title">
+            <div class="cobal-hdr-main-container-title-image"><i class="fa fa-building-o"></i></div>
+            <div class="cobal-hdr-main-container-title-text">{{company}}</div>
+            <div class="cobal-hdr-main-container-buttons">
+              <div class="cobal-hdr-main-container-button">
+                <!-- the save option button-->
+                <a style="color:#ffffff" href="#"><i class="fa fa-heart"></i>Save</a>
+              </div>
+              <div class="cobal-hdr-main-container-button">
+                <!-- share option button -->
+                <a style="color:#ffffff" href="#"><i class="fa fa-share-alt"></i>Share</a>
+              </div>
+            </div>
+          </li>
+          <!-- the description about the person-->
+          <li class="cobal-hdr-main-container-description">
+            How are <span style="font-family:HN-B">{{company}}</span>'s financials performing?
+            <br><br>
+            Take a look at key metrics from their <span style="font-family:HN-B">Balance Sheet</span>
+            and analyze their financial health in comparison to the industry..
+          </li>
+        </ul>
+        <!-- the bottom bar-->
+        <div class="cobal-hdr-main-container-view_more">
+          <!-- the details about the comapny-->
+          <div class="cobal-hdr-main-container-view_more-text">
+            <div class="cobal-hdr-main-container-view_more-text-ln1">Discover more about {{company}}?</div>
+            <div class="cobal-hdr-main-container-view_more-text-ln2">
+              Profile Last Updated On:
+              <span style="font-family:HN-B">07/29/2015</span>
+            </div>
+          </div>
+          <button class="cobal-hdr-main-container-view_more-button">
+            View Profile <i class="fa fa-angle-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--End Page header-->
+
+    <!--Sort by bar-->
+    <div class="cobal-sort">
+      <span style="font-family:HN-B">Sort by: </span>
+      <span>Annual Financials </span>
+      <i class="fa fa-angle-down"></i>
+    </div>
+    <!--End sort by bar-->
+
+    <!--What is this page? box-->
+    <div class="cobal-about">
+      <div class="cobal-about-hdr">
+        <div class="cobal-about-hdr-txt">What is a Balance Sheet?</div>
+        <button class="cobal-about-hdr-icon"><i class="fa fa-close"></i></button>
+      </div>
+      <div class="cobal-about-txt">
+        A financial statement that summarizes a company's assets, liabilities and shareholders' equity at
+        a specific point in time. These three balance sheet segments give investors an idea as to what
+        the company owns and owes, as well as the amount invested by the shareholders.
+      </div>
+    </div>
+    <!--End What is this page? box-->
+
+    <!--Key Metrics Section header-->
+    {{> co_balance_sheet_secthdr title="Key Metrics"}}
+
+    <!--Key Metrics-->
+    <div class="cobal-whitebar">
+      {{> co_balance_sheet_subhead TotAssets}}
+      {{> co_balance_sheet_subhead TotLiab}}
+    </div>
+    <div class="cobal-greybar">
+      {{> co_balance_sheet_subhead TotCash}}
+      {{> co_balance_sheet_subhead StockEq}}
+    </div>
+    <!--End Key Metrics-->
+
+    <!--Current Ratio-->
+    {{> co_balance_sheet_secthdr title="Current Ratio"}}
+
+    <div class="cobal-whitebar">
+      <div class="cobal-lefthalf">
+        <div class="cobal-subhdr">
+          <div class="cobal-subhdr-icon">?</div>
+          <div class="cobal-subhdr-2ln">
+            <div class="cobal-subhdr-top">Current Ratio</div>
+            <div class="cobal-subhdr-btm" style="font-style:italic">
+              ** Equation is equivalent to <span style="font-family:HN-B">a=b/c</span>
+            </div>
+          </div>
+        </div>
+        <div class="cobal-eqtn">
+          <div class="cobal-eqtn-left">
+            <div style="float:left">{{currRatio}}</div>
+            <div class="cobal-eqtn-lbls" style="margin-top:36px">
+              <div class="cobal-eqtn-lbl">CURRENT</div>
+              <div class="cobal-eqtn-lbl">RATIO</div>
+            </div>
+          </div>
+          <div class="cobal-eqtn-ctr">=</div>
+          <div class="cobal-eqtn-right">
+            <div class="cobal-eqtn-right-top">
+              <div style="float:left"><i class="fa fa-key"></i> {{currAsset}}</div>
+              <div class="cobal-eqtn-lbls">
+                <div class="cobal-eqtn-lbl">CURRENT</div>
+                <div class="cobal-eqtn-lbl">ASSETS</div>
+              </div>
+            </div>
+            <div class="cobal-eqtn-right-bot">
+              <div style="float:left"><i class="fa fa-exclamation-triangle"></i> {{currLiab}}</div>
+              <div class="cobal-eqtn-lbls">
+                <div class="cobal-eqtn-lbl">CURRENT</div>
+                <div class="cobal-eqtn-lbl">LIABILITIES</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cobal-righthalf">
+        <div class="cobal-ratio">
+          <div class="cobal-ratio-q">
+            <span style="font-family: HN-B">Q: </span>
+            What is
+            <span style="font-family: HN-B">Current Ratio?</span>
+          </div>
+          <div class="cobal-ratio-text">
+            <div class="cobal-ratio-icon"></div>
+            <span style="font-family: HN-B">A: </span>
+            Current Ratio is one of the strongest indicators of a company's liquidity; or a
+            good measure of a company's financial health with regards to behing able to pay its
+            immediate debts and obligations.  It is calculated by dividing a company's current
+            assets by its current liabilities.
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End Current Ratio-->
+
+    <!--Working Capital-->
+    <div class="cobal-greybar" style="padding:0px">
+      {{> co_balance_sheet_secthdr title="Working Capital"}}
+      <div class="cobal-greybar">
+        {{> co_balance_sheet_subhead WorkCap}}
+        {{> co_balance_sheet_subhead WorkCapPct}}
+      </div>
+    </div>
+    <!--End Working Captial-->
+
+
+    {{> didnt_find}}
+  </div>
+</template>
+
+<!--Template for section header-->
+<template name="co_balance_sheet_secthdr">
+  <div class="cobal-secthdr">
+    <div class="cobal-secthdr-above">
+      <span style="font-family:HN-B">{{title}}</span> for {{company}}:
+    </div>
+    <!-- <div class="cobal-secthdr-below">
+      <i class="fa fa-calendar"></i> Updated {{updated}}
+    </div> -->
+  </div>
+</template>
+
+<!--Template for subheaders-->
+<template name="co_balance_sheet_subhead">
+  <div class="cobal-{{side}}half">
+    <div class="cobal-subhdr">
+      <div class="cobal-subhdr-icon">?</div>
+      {{#if twoline}}
+      <div class="cobal-subhdr-2ln">
+        <div class="cobal-subhdr-top">{{title}}</div>
+        <div class="cobal-subhdr-btm">{{title2}}</div>
+      </div>
+      {{else}}
+      {{title}}
+      {{/if}}
+    </div>
+    {{#with this}}
+    <div class="cobal-datacont">
+    {{#each data}}
+      {{#unless noBorder}}
+      <div class="cobal-listitem">
+        <div class="cobal-listitem-left">{{label}}</div>
+        <div class="cobal-listitem-right">{{num}}</div>
+      </div>
+      {{else}}
+      <div class="cobal-listitem-last">
+        <div class="cobal-listitem-left">{{label}}</div>
+        <div class="cobal-listitem-right">{{num}}</div>
+      </div>
+      {{/unless}}
+    {{/each}}
+    {{#if average}}
+    <div class="cobal-relative">Relative to Industry</div>
+    <div class="cobal-avg">
+      <div class="cobal-avg-bar">100%
+       <div class="cobal-avg-fill" style="background-color:{{average.clr}};width:{{average.w}}">{{average.pct}}%</div>
+      </div>
+      <div class="cobal-avg-labels">
+        <div class="cobal-avg-text" style="float:left">Below Average</div>
+        <div class="cobal-avg-text" style="float:right">Above Average</div>
+      </div>
+    </div>
+    {{/if}}
+    {{#if isMissing}}
+    <div class="cobal-missing">
+      <div class="cobal-missing-title">Missing Content Alert</div>
+      <div>
+        <div class="cobal-missing-icon"><i class="fa fa-warning"></i></div>
+        <div class="cobal-missing-text">
+          Unfortunately, we were unable to generate information for this section, either
+          refresh the page or come back on a later date for more content...
+        </div>
+      </div>
+    </div>
+    {{/if}}
+    </div>
+    {{/with}}
+  </div>
+</template>
