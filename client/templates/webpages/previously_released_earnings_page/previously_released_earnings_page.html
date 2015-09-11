@@ -1,0 +1,273 @@
+<!--
+Author: Zachary Pearson
+Created: 9/10/2015
+Description: previously_released_earnings_page
+Associated Files: previously_released_earnings_page_logic.js and previously_released_earnings_page.less
+-->
+<!--Gave a template name stock_disclaimer_page !-->
+<template name="previously_released_earnings_page">
+<!--Defined a class name globally for height and width !-->
+{{#with company}}
+<div class= "cokey_fin">
+  <!--gave the dimensions for the module with total height and width !-->
+  <div class = "cokey_fin-n_m">
+    <!--dimensions for the circle container as ('cir-d') !-->
+    <div class="cokey_fin-cir_d">
+    <!-- dimensions for the circle as ('circ')!-->
+    <div class="cokey_fin-circ">
+      <!-- defines container for the smaller blue circle('sc_d') !-->
+      <div class= "cokey_fin-sc_d">
+      <!-- defines the dimension for the small circle('sc') !-->
+      <div class="cokey_fin-sc_d cokey_fin-sc">
+      <i class="cokey_fin-bfo fa fa-reply"></i>
+      </div>
+      </div>
+    </div>
+    </div>
+    <!--defines the container for text box !-->
+    <div class="cokey_fin-tc">
+    <!-- class date has all the font-weight and font specific !-->
+    <div class="cokey_fin-date" id="date">
+    </div>
+    <!--specified font style for location !-->
+    <div class="cokey_fin-loc_st">
+       <i class="fa fa-map-marker"></i>
+    <!--specified font style for the state name !-->
+    <span class="cokey_fin-loc_st">
+      {{getheadername0}}
+    </span>
+    </div>
+    <!-- specified font sytle for the stock disclaimer !-->
+    <div class="cokey_fin-loc_st cokey_fin-disc">
+    {{getheadername1}}
+    </div>
+    <!--specified font style for the inveskit finance  !-->
+    <div class="cokey_fin-loc_st cokey_fin-fin">
+    For {{compname}}
+    </div>
+    </div>
+
+    <div class="cokey_fin-bar">
+      <div class="cokey_fin-bar-title">
+        {{getheadername1}}
+      </div>
+      <!-- </div> -->
+      <div class="cokey_fin-bar-button">
+        <!-- the save option button-->
+        <a href="#"><i class="fa fa-heart" style="margin-right:15px;"></i><span class="cokey_fin-bar-text">Save</span></a>
+      </div>
+      <div class="cokey_fin-bar-button">
+        <!-- share option button -->
+        <a href="#"><i class="fa fa-share-alt" style="margin-right:15px;"></i><span class="cokey_fin-bar-text">Share</span></a>
+      </div>
+    </div>
+    <div class="cokey_fin-m_c">
+      <!-- the module.less file navigation buttons-->
+      <button class='cokey_fin-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+      <button class='cokey_fin-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+      <!-- end of the module.less navigation button -->
+      <!-- wrapper class-->
+      <div class="cokey_fin-m_c-image-wr">
+        <div class="cokey_fin-m_c-image">
+          <div class="cokey_fin-m_c-sma_ct">
+          <div class="cokey_fin-m_c-sma_cr">
+
+          </div>
+        </div>
+        </div>
+      </div>
+      <!-- the main container -->
+      <div class="cokey_fin-m_c-cr">
+        <!-- the image in blue circle-->
+        <div class="cokey_fin-m_c-title">
+          <div class="cokey_fin-m_c-title-image"><i class="fa fa-briefcase"></i>
+            <span class="cokey_fin-m_c-title-text"> {{getheadername2}} </span>
+          </div>
+        </div>
+        <div class="cokey_fin-m_c-share">
+          <a href="#"><i class="fa fa-heart" style="margin-right:10px; color:#ffffff;"></i><span class="cokey_fin-bar-text">Save</span></a>
+          <a href="#" style="margin-left:38px; font-size:14px;"><i class="fa fa-share-alt" style="margin-right:10px; color:#ffffff;"></i><span class="cokey_fin-bar-text">Share</span></a>
+        </div>
+      <!-- the description about the person-->
+        <div class="cokey_fin-m_c-dp" style="color: #ffffff">
+          <div class="cokey_fin-m_c-dp-bl"></div><!--left border-->
+          {{getheadername2}} filed their Q2 Earnings last week and revealed that their sales were down 15%. Apple plans to make up for the loss in their Q3 and anticipate sales to be up 35% from last year.
+          <!-- </div> -->
+        </div>
+      </div>
+      <!-- the bottom bar-->
+      <div class="cokey_fin-m_c-view_more">
+        <!-- the details about the comapny-->
+        <div class="cokey_fin-m_c-view_more-text">
+          <div class="cokey_fin-m_c-view_more-text-ln1">Want to know more about {{getheadername2}}?</div>
+          <div class="cokey_fin-m_c-view_more-text-ln2">Profile Last Updated On: <span class="cokey_fin-m_c-dp-itl cokey_fin-m_c-dp-itl2">07/29/2015</span></div>
+        </div>
+        <button class="cokey_fin-m_c-view_more-button">
+          View Profile <i class="fa fa-angle-right"></i>
+        </button>
+      </div>
+    </div>
+    <!--container for the ct1 to 'sort by' and 'what is this list?'  !-->
+    <div class="cokey_fin-ct1">
+    <!--container for the sortby !-->
+    <div class="cokey_fin-sy">
+      <!-- container for the sortby font !-->
+      <div class="cokey_fin-syf"> Sort by:
+      <!-- container for the members font !-->
+      <span class="cokey_fin-syf cokey_fin-sym"> Previously Released Earnings <span class="cokey_fin-sym cokey_fin-chd"> <i class=" fa fa-angle-down"></i> </span> </span>
+      </div>
+    </div>
+    <!-- contianer for the complete 'what is this list' class name is wl!-->
+    <div class="cokey_fin-wl">
+      <!-- container for the 'what is this list' class name is wl2!-->
+      <div class="cokey_fin-wlc">
+        <!-- font style for the 'what is this list'!-->
+        <div class="cokey_fin-wlf">
+        What is this page?
+        <span class="cokey_fin-x">
+         <i class="fa fa-times"></i>
+        </span>
+        </div>
+      </div>
+      <!--container for the text inside the 'what is this list' as wltxt!-->
+      <div class="cokey_fin-wltxt">
+      <!--font style for the text !-->
+      <div class="cokey_fin-wltxtf">
+        <p> This is a page listing all of the recently released earning for public companies in the United States sorted by most recent.</p>
+      </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="cokey_fin-wrapper">
+      <!-- The loop starts here and the each will take each data item from the items on each iteration-->
+      {{#each items}}
+      {{#if imghld}}
+      <div class="cokey_fin-quotes">
+        <div class="cokey_fin-quotes-head">Featured Companies With the Highest Earnings in 2014</div>
+        {{#each quote}}
+        <div class="cokey_fin-quotes-image">
+          <div class="cokey_fin-gap1"></div>
+          <div class="cokey_fin-quotes-image-text">
+            <div class="cokey_fin-quotes-image-text-ln1">{{name}}</div>
+            <div class="cokey_fin-quotes-image-text-vc">
+          <span class="cokey_fin-quotes-image-text-ln1 cokey_fin-quotes-image-text-ln4">
+            {{text1}}
+          <span class="cokey_fin-quotes-image-text-ln1 cokey_fin-quotes-image-text-ln3">
+            {{text2}}
+          </span>
+          </span>
+        </div>
+          </div>
+        </div>
+        {{/each}}
+        <div class="cokey_fin-quotes-arrow fa fa-angle-right"></div>
+      </div>
+      {{else}}
+      <div class="cokey_fin-{{getBackgroundStyle}}"><br>
+        <!--This is the main (circle) image-->
+        <div class="cokey_fin-head-circ">
+          <div class="cokey_fin-head-image">
+            <!-- Here displays the counter number which is a result of each loop-->
+            <span class="cokey_fin-counter">#{{counter_no}}</span>
+          </div>
+        </div>
+        <!--Location title -->
+        <div class="cokey_fin-sp">
+          <div  class="cokey_fin-space">
+            <!-- This displays the font awesome map sybmol infornt of the united states-->
+            <i class="fa fa-map-marker" style="margin-right:3px;"></i>
+            <span  class="cokey_fin-space cokey_fin-space2">
+              {{location}}
+            </span>
+            <!-- Here displays the description which come from the each loop-->
+            <div class="cokey_fin-adjust">{{ data }}</div>
+            <div class="cokey_fin-follw1">{{repo}}
+            </div>
+          </div>
+        </div>
+        <!--This displays the blue button which holds the text "View Full List"-->
+        <div class="cokey_fin-ctmain">
+          <span class="cokey_fin-ctmaintxt">
+            Want more info about this company?
+          </span>
+          <button class="cokey_fin-tile-button">
+            View Profile
+            <span style="margin-left:6px"><i class="fa fa-angle-right"></i></span>
+          </button>
+        </div>
+        <div class="cokey_fin-rtct">
+          <div class="cokey_fin-rttx1">Earnings Released On:</div>
+          <div class="cokey_fin-rttx2"> {{ndata}}</div>
+          <div class="cokey_fin-rttx3" style="color:#3098ff">View Report &nbsp;<i class="fa fa-share"></i></div>
+        </div>
+        <!-- This displays the font awesome heart symbol beside the text "save"-->
+        <div class="cokey_fin-sn">
+          <div  class="cokey_fin-save">
+            <i class="fa fa-heart" style="margin-right:5px;"></i>
+            <span  class="cokey_fin-save cokey_fin-st">
+              Follow
+            </span>
+          </div>
+        </div>
+
+        <!-- This displays the font awesome share symbol beside the text "share"-->
+        <div class="cokey_fin-sh">
+          <div  class="cokey_fin-share">
+            <i class="fa fa-share-alt" style="margin-right:5px;"></i>
+            <span  class="cokey_fin-share cokey_fin-sht">
+              Share
+            </span>
+          </div>
+        </div>
+    <!-- This displays the font awesome flag symbol beside the text "Feedback"-->
+        <div class="cokey_fin-fe ">
+          <div  class="cokey_fin-share cokey_fin-feedback">
+            <i class="fa fa-flag"></i>
+            <span  class="cokey_fin-share cokey_fin-ft">
+              Feedback
+            </span>
+          </div>
+        </div>
+    </div>
+      {{/if}}
+      <!--This is the End of each loop -->
+      {{/each}}
+  <div class="cokey_fin-footer">
+    <!-- This is outermost class of the footer which holds the other elements in the footer-->
+    <div class="cokey_fin-holder1">
+      <!-- This is the class which holds the font awesome left arrow-->
+      <div class="cokey_fin-navigationl">
+        <i class="fa fa-angle-left cokey_fin-footer-icon"></i>
+      </div>
+      <!-- Here we write the code for the buttons 1,2,3 and 200-->
+      <button  class="cokey_fin-page-selector1 cokey_fin-page-selector1-font1">1</button>
+      <button class="cokey_fin-page-selector2 cokey_fin-page-selector2-font2">2</button>
+      <button  class="cokey_fin-page-selector3 cokey_fin-page-selector3-font3">3</button>
+      <span  class="cokey_fin-dots" >...</span>
+      <button  class="cokey_fin-page-selector200 cokey_fin-page-selector200-font">200</button>
+    <span class="cokey_fin-navigationr">
+      <i class="fa fa-angle-right cokey_fin-footer-icon"></i>
+    </span>
+      <!-- This is the class which holds the font awesome right arrow-->
+    </div>
+    <!-- container for the View all button !-->
+    <div class="cokey_fin-navigation2">
+      <button class="cokey_fin-view-all cokey_fin-view-all-font">VIEW ALL <img style="padding-bottom:4px" src="infinite-icon.png"></button>
+    </div>
+  </div>
+</div>
+  <!--created a container for the fotter  !-->
+<div class="cokey_fin-fotter">
+    {{> didnt_find}}
+</div>
+
+  </div>
+</div>
+{{/with}}
+
+<script>
+  var v = document.lastModified;
+  document.getElementById("date").innerHTML="LAST UPDATED: "+v;
+</script>
+</template>
