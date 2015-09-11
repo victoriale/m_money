@@ -1,0 +1,381 @@
+/*
+Author: Prashanth Diddi
+Date: 09/08/2015
+Decription: A page for showing about advisors
+Associated Files: about_advisor_page.html, about_advisor_page.less, about_advisor_page.js
+*/
+
+@import (reference)"../global_vars.less";
+@import (reference)"../modules.less";
+
+.abtadv
+{
+  //for aligning font to right
+  &-right{
+    padding-left: 10px;
+  }
+  &-pr //cfo-pr
+  {
+    position: relative;
+  }
+
+  &-pa //cfo-pa
+  {
+    position: absolute;
+  }
+  &-b //cfo-b
+  {
+    font-style: normal;
+    font-family: HN-B;
+  }
+
+  &-n //cfo-n: normal text for use in <i> tags
+  {
+    font-style: normal;
+    font-family: HN;
+  }
+
+  &-l //cfo-l
+  {
+    font-style: normal;
+    font-family: HN-L;
+  }
+
+  &-grn //cfo-grn
+  {
+    color: @green;
+    font-style: normal;
+    font-family: HN-B;
+  }
+
+  &-blue //cfo-blue
+  {
+    font-style: normal;
+    color: @blue;
+    font-family: HN-B;
+  }
+  &-r_pad{
+      padding-right: 10px;
+  }
+  &-black //cfo-black
+  {
+    font-family: HN-B;
+    color: @black;
+    font-style: normal;
+  }
+
+  &-i //cfo-i
+  {
+    font-style: italic;
+  }
+
+  &-page //cfo-page
+  {
+    width: 680px;
+    height: auto;
+    background-color: @white;
+    color: @black;
+  }
+
+  &-top //cfo-top
+  {
+    width: 680px;
+    height: 140px;
+
+    &-circle //cfo-top-circle
+    {
+      border-radius: 50%;
+      border: 2px solid @grey-2;
+      width: 100px;
+      height: 100px;
+      top: 20px;
+      left: 20px;
+
+      &-btn //cfo-top-circle-btn
+      {
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        background-color: @blue;
+        left: -8px;
+        color: @white;
+        text-align: center;
+        padding-top: 7px;
+      }
+    }
+
+    &-txt1 //cfo-top-txt1
+    {
+      font-size: 10px;
+      color: #959595;
+      left: 128px;
+      top: 16px;
+    }
+
+    &-txt2 //cfo-top-txt2
+    {
+      font-size: 12px;
+      left: 128px;
+      top: 43px;
+    }
+
+    &-txt3 //cfo-top-txt3
+    {
+      font-size: 22px;
+      left: 128px;
+      top: 59px;
+    }
+
+    &-txt4 //cfo-top-txt4
+    {
+      font-size: 22px;
+      left: 128px;
+      top: 87px;
+    }
+  }
+
+  &-mid //cfo-mid: the middle section that goes black-grey-black
+  {
+    width: 680px;
+    height: 361px;
+    background-image: @dark-linen;
+    color: @white;
+
+    &-top //cfo-mid-top
+    {
+      background-color: @black;
+      height: 35px;
+      width: 680px;
+
+      &-txt1 //cfo-mid-top-txt1
+      {
+        font-size: 16px;
+        border-right: 1px solid #363636;
+        padding: 5px 14px;
+        max-width: 400px;
+        width: 375px;
+        height: 35px;
+        float: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      &-txt2 //cfo-mid-top-txt2
+      {
+        margin: 0px 15px;
+        width: 70px;
+        float: left;
+        padding-top: 7px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+    }
+
+    &-mid //cfo-mid-mid
+    {
+      top: 35px;
+      width: 680px;
+      height: 250px;
+
+      &-l //cfo-mid-mid-l
+      {
+        margin-left: 15px !important;
+      }
+
+      &-r //cfo-mid-mid-r
+      {
+        margin-right: 15px !important;
+      }
+
+      &-circle //cfo-mid-mid-circle
+      {
+        border-radius: 50%;
+        width: 180px;
+        height: 180px;
+        border: 3px solid @grey-2;
+        background-color: @white;
+        left: 55px;
+        top: 34px;
+      }
+      &-sma_cr{
+        border-radius: 50%;
+        border-width: 2px;
+        border-color:  #cccccc;
+        border-style: solid;
+        background-color:  #ffffff;
+        width: 75px;
+        height: 75px;
+        background-image: url("");
+        left: 110px;
+        top: 110px;
+      }
+
+      &-briefcase //cfo-mid-mid-building
+      {
+        border-radius: 50%;
+        background-color: @blue;
+        width: 40px;
+        height: 40px;
+        left: 235px;
+        top: 32px;
+        padding-top: 10px;
+        padding-left: 13px;
+      }
+      &-icon_align
+      {
+        margin-left: -3px;
+        font-size: 20px;
+        vertical-align: -17%;
+      }
+
+      &-txt1 //cfo-mid-mid-txt1
+      {
+        font-size: 22px;
+        top: 25px;
+        left: 291px;
+        width: 380px;
+        height: 31px;
+        overflow: hidden;
+      }
+
+      &-txt2 //cfo-mid-mid-txt2
+      {
+        font-size: 14px;
+        top: 58px;
+        left: 291px;
+        color: #f2f2f2;
+        cursor: pointer;
+      }
+
+      &-txt3 //cfo-mid-mid-txt3
+      {
+        font-size: 14px;
+        top: 58px;
+        left: 385px;
+        color: #f2f2f2;
+        cursor: pointer;
+      }
+
+      &-txtbox //cfo-mid-mid-txtbox
+      {
+        border-left: 2px solid @grey-2;
+        height: auto;
+        width: 361px;
+        left: 255px;
+        top: 98px;
+        padding-left: 19px;
+        font-size: 16px;
+        line-height: 19px;
+        overflow: hidden;
+
+        &-txt //cfo-mid-mid-txtbox-txt
+        {
+          top: -4px;
+          font-style: normal;
+        }
+
+        &-btm1 //cfo-mid-mid-txtbox-btm1
+        {
+          top: -4px;
+          line-height: 30px;
+          font-style: normal;
+        }
+        &-btm2 //cfo-mid-mid-txtbox-btm2
+        {
+          top: -9px;
+          font-style: normal;
+        }
+      }
+    }
+
+    &-btm //cfo-mid-btm: the black section at the bottom of the middle
+    {
+      top: 284px;
+      height: 76px;
+      width: 680px;
+      background-color: @black;
+
+      &-txt1 //cfo-mid-top-txt1
+      {
+        left: 20px;
+        top: 16px;
+        font-size: 18px;
+        max-width: 450px;
+        float: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        position: relative;
+      }
+
+      &-qstn //cfo-mid-top-txt2
+      {
+        width: 10px;
+        float: left;
+        font-size: 18px;
+        left: 25px;
+        cursor: pointer;
+        position: relative;
+        top: 16px;
+      }
+
+
+      &-txt2 //cfo-mid-btm-txt2
+      {
+        left: 20px;
+        bottom: 14px;
+        font-size: 14px;
+      }
+
+      &-btn //cfo-mid-btm-btn
+      {
+        left: 490px;
+        top: 21px;
+        background-color: @blue;
+        border-radius: 5px;
+        width: 180px;
+        height: 35px;
+        font-size: 14px;
+        text-align: center;
+        padding-top: 7px;
+        cursor: pointer;
+      }
+    }
+  }
+  &-btm
+  {
+    width: 680px;
+    padding: 0px 15px 0px 15px;
+    &-data //cfo-btm-data
+    {
+      width: 680px;
+      height: auto;
+      left: -15px;
+      margin-top: 13px;
+
+      &-title //cfo-btm-date-title
+      {
+        width: 650px;
+        height: 28px;
+        font-size: 18px;
+        left: 15px;
+        margin-bottom: 15px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid @grey-2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      &-text
+      {
+          font-size: 14px;
+          font-family: HN;
+          margin-left: 24px;
+          margin-right: 24px;
+          text-align: left;
+          padding-bottom: 30px;
+      }
+    }
+  }
+}

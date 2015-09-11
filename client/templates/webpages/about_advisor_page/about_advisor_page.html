@@ -1,0 +1,99 @@
+<!--
+Author: Prashanth Diddi
+Date: 09/08/2015
+Decription: A page for showing about advisors
+Associated Files: about_advisor_page.html, about_advisor_page.less, about_advisor_page.js
+-->
+
+<template name="about_advisor_page">
+  {{#with advisor}}
+  <div class="abtadv-page"> <!--container for whole page-->
+
+    <div class="abtadv-pr abtadv-top"> <!--container for white background area at top-->
+      <div class="abtadv-pr abtadv-top-circle"> <!--back arrow in top-->
+        <div class="abtadv-pr abtadv-top-circle-btn">
+          <i class="fa fa-reply"></i>
+        </div>
+      </div>
+      <i class="abtadv-pa abtadv-n abtadv-top-txt1">LAST UPDATED: {{lastUpdated}}</i>
+      <i class="abtadv-pa abtadv-n abtadv-top-txt2"><i class="fa fa-map-marker"></i> {{location}} </i>
+      <i class="abtadv-pa abtadv-b abtadv-top-txt3">About</i>
+      <i class="abtadv-pa abtadv-l abtadv-top-txt4">{{execName}}</i>
+    </div>
+
+    <div class="abtadv-pr abtadv-mid"> <!--the black-grey-black section in the middle-ish-->
+
+      <div class="abtadv-pa abtadv-mid-top"> <!--the black header of the middle-->
+        <div class="abtadv-b abtadv-mid-top-txt1"> <!--the left part of the header-->
+          About {{execName}}'s
+        </div>
+        <div class="abtadv-l abtadv-mid-top-txt2"> <!--the first right part of the header-->
+          <i class="fa fa-heart abtadv-r_pad"></i>  Save
+        </div>
+        <div class="abtadv-l abtadv-mid-top-txt2"> <!--the second right part of the header-->
+          <i class="fa fa-share-alt abtadv-r_pad"></i>  Share
+        </div>
+      </div>
+
+      <div class="abtadv-pa abtadv-mid-mid"> <!--the grey section in the middle-->
+        <div class="navigation-button-left"><!-- Navigation left button-->
+          <i class="fa fa-angle-left abtadv-mid-mid-l"></i>
+        </div>
+        <div class="abtadv-pa abtadv-mid-mid-circle"><!--Profile Image -->
+          <div class="abtadv-pa abtadv-mid-mid-sma_cr"><!--Profile Image -->
+          </div>
+        </div>
+        <div class="abtadv-pa abtadv-mid-mid-briefcase">
+          <i class="fa fa-briefcase fa-lg abtadv-mid-mid-icon_align"></i>
+        </div>
+        <i class="abtadv-pa abtadv-b abtadv-mid-mid-txt1">{{execName}}</i>
+        <i class="abtadv-pa abtadv-l abtadv-mid-mid-txt2"><i class="fa fa-heart abtadv-r_pad"></i>Save</i>
+        <i class="abtadv-pa abtadv-l abtadv-mid-mid-txt3"><i class="fa fa-share-alt abtadv-r_pad"></i>  Share</i>
+        <div class="abtadv-pa abtadv-l abtadv-mid-mid-txtbox"> <!--the part of the middle-middle that has the important and long text-->
+          <i class="abtadv-mid-mid-txtbox-txt">
+            {{execName}} attended Harvard University in 2010 and earnning his MBA after 5 years of studying. {{execName}} attended school with {{college1}}, {{college2}} and {{college3}}.
+            <br>
+          </i>
+        </div>
+        <div class="navigation-button-right">
+          <i class="fa fa-angle-right abtadv-mid-mid-r"></i>
+        </div>
+      </div>
+
+      <div class="abtadv-pa abtadv-mid-btm"> <!--the footer of the middle area-->
+        <div class="abtadv-pa abtadv-l abtadv-mid-btm-txt1">
+          Want to know more about {{execName}}
+        </div>
+        <div class="abtadv-pa abtadv-l abtadv-mid-btm-qstn">
+          ?
+        </div>
+        <div class="abtadv-pa abtadv-l abtadv-mid-btm-txt2">
+          Profile Last Updated On: <i class="abtadv-b">{{profLstUpdate}}</i>
+        </div>
+        <div class="abtadv-pa abtadv-mid-btm-btn">
+          View Profile <i class="fa fa-angle-right abtadv-right"></i>
+        </div>
+      </div>
+    </div>
+    <div class="abtadv-btm">
+      <div class="abtadv-pr abtadv-btm-data"> <!--a divide to seperate data from the box above-->
+        <div class="abtadv-pr abtadv-btm-data-title">
+          About <i class="abtadv-l">{{execName}}:</i>
+        </div>
+        <div class="abtadv-btm-data-text">
+          sLorem ipsum dolor sit amet, tale homero dolores at pro, eam eu graeco civibus antiopam. Ut congue quaeque iudicabit nec, duo ut tollit electram. Eum ludus corpora ne, te erat aperiam vel, sit ei accumsan epicurei temporibus. Cu eos dolorem laboramus. Habeo congue has ad, ea etiam suscipit eos, duo an fabellas salutatus comprehensam. Nisl illud an vix.<br><br>
+
+          Ut duo docendi qualisque, fugit principes evertitur an has, meis aliquam reprimique ei cum. Eu eum vero magna quodsi, pri ex nobis salutandi, qui id homero quaestio. In cum quodsi fastidii platonem. Vis eu percipit antiopam argumentum, nam ad eius mandamus. Ut duo hinc accumsan petentium.<br><br>
+
+          Mei ea quando utinam, everti accusam consetetur te sed, ea suas stet expetenda sed. His augue everti molestiae ne. Est alia suavitate an, cu quot affert suscipit est. Eum hinc mazim theophrastus eu, nec quod corpora consulatu no. Eirmod delicatissimi cum ut. Sea lorem audire adolescens an, id homero graeci labore cum, etiam munere convenire cu sit.<br><br>
+
+          Ius ridens qualisque theophrastus ea. In eos audiam platonem splendide, mei ei dicit paulo tempor, ut mea harum voluptua. Eos ei odio vulputate, melius persecuti id vel. Per ei primis posidonium. Molestie sententiae scripserit et sed, at dolore pertinacia has, sed id novum postea assueverit.<br><br>
+
+          Sed patrioque intellegam complectitur ei, eos cu ferri suscipiantur. Pro putant fuisset pericula at, purto veniam docendi mei no. Imperdiet euripidis pri at, te quas dicam molestiae cum, vitae indoctum philosophia at sed. Sea latine atomorum et, eos inermis facilisis te. Ne sea simul exerci tritani, at sed purto indoctum delicatissimi.
+        </div>
+      </div>
+    </div>
+    {{> didnt_find}} <!-- Didn't Find-->
+  </div>
+{{/with}}
+</template>
