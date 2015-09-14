@@ -1,12 +1,8 @@
 @import (reference)"global_vars.less"; //include important global vars (colors mostly)
 
 .top_bottom_border {
-  border-top: 2px solid @blue;
-  border-bottom: 2px solid @blue;
-}
-
-button {
-  outline: none;
+  border-top: 2px solid @orange;
+  border-bottom: 2px solid @orange;
 }
 
 .module {
@@ -14,11 +10,12 @@ button {
   // shouldn't be used on it's own (included in module-[1-5])
   .top_bottom_border; // Adds blue top and bottom border
   width: 680px;
-  margin: 5px;
+  margin: 0 10px 10px;
   background-color: @white;
   position: relative;
   overflow: hidden;
 }
+
 
 .module-header {
   // Class to add the header bar (black) to the top of the module
@@ -32,8 +29,8 @@ button {
 
   &-line{
     font-size:12px;
-    color:@blue;
-    border-left: 2px solid @blue;
+    color:@orange;
+    border-left: 3px solid @orange;
     position: relative;
     top:20%;
   }
@@ -42,14 +39,14 @@ button {
     // Class for the text title of the module. Also includes the left blue bar
     // span
     // Add left blue bar
-    //border-left: 2px solid @blue;
+    //border-left: 2px solid @orange;
 
     padding-left: 7px;
 
     // Font stuff
     font-size: 18px;
     font-weight: bold;
-    text-transform: uppercase;
+    // text-transform: uppercase;
     color: @white;
 
     // Centers the span in the title bar
@@ -64,70 +61,6 @@ button {
   width: 100%;
 }
 
-.module-footer {
-  // wrapper for the module footer
-  text-align: center;
-  height: 35px;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-
-  // *************************** BUTTON FOR BOTTOM OF module **************************************
-  &-button {
-    margin: 0 auto;
-    vertical-align: bottom;
-    text-align: center;
-    background-color: @blue;
-    width: 225px;
-    height: 35px;
-    position: relative;
-    z-index: 5;
-    border-radius: 15px 15px 0 0;
-    border-style: none;
-
-    &-text{
-      text-align: center;
-      font-size: 14px;
-      color: #fff;
-      font-weight: bold;
-      vertical-align: middle;
-      margin: auto;
-      position: relative;
-      top: 4px;
-    }
-
-    &-ellipse{
-      height: 25px;
-      width: 25px;
-      font-size: 12px;
-      padding: 5px;
-      border-radius: 50%;
-      position: relative;
-      float: right;
-      vertical-align: middle;
-      text-align: center;
-      margin: auto;
-      color: @white;
-      background-color: @grey-4;
-    }
-
-    &:hover {
-      background-color: #1c79ff;
-    }
-
-    &:active {
-      border: 1px solid @blue;
-      background-color: @grey-4;
-
-      .module-footer-button-ellipse {
-        color: @white;
-        background-color: @blue;
-      }
-    }
-  }
-  // *************************** END BUTTON FOR BOTTOM OF module **************************************
-}
-
 // ****** START LEFT NAV BUTTON MODULE ******
 .navigation-button-left {
   /* Required inner HTML (provides the arrow):
@@ -140,7 +73,7 @@ button {
   width: 40px;
   height: 80px;
   border: solid 1px @black;
-  border-radius: ~"100%/50%";
+  border-radius: 40px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   margin: 0;
@@ -156,21 +89,22 @@ button {
   color: @white;
 
   &:hover {
-    background-color: @blue;
-    border-color: @blue;
+    background-color: @orange;
+    border-color: @orange;
   }
 
   &:active {
-    background-color: @grey-4;
-    border-color: @blue;
+    background-color: @grey-5;
+    border-color: @orange;
   }
 
   .fa {
     float: left;
     position: relative;
-    top: 0;
+    left: 2.5px;
     top: ~"calc(50% - 15px)";
-    margin-left: 3px;
+    margin-left: 10px;
+    text-shadow: -3px 0 #404040, 0 3px #404040, 3px 0 #404040, 0 -3px #404040, 1.5px 1.5px #404040, 1.5px -1.5px #404040;
   }
 
 }
@@ -198,7 +132,7 @@ e.g.
 
   .navigation-button-left;
 
-  border-radius: ~"100%/50%";
+  border-radius: 40px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   float: right;
@@ -206,7 +140,10 @@ e.g.
 
   .fa {
     float: right;
-    margin-right: 3px;
+    margin-right: 10px;
+    left: -2.5px;
+    text-shadow: -3px 0 #404040, 0 3px #404040, 3px 0 #404040, 0 -3px #404040, -1.5px 1.5px #404040, -1.5px -1.5px #404040;
+
   }
 
 }
@@ -301,6 +238,7 @@ demo HTML:
       // div
 
       font-size: 48px;
+      font-weight: lighter;
       margin-bottom: 24px;
       padding: 0;
       line-height: 1em;
@@ -311,7 +249,7 @@ demo HTML:
       // div
 
       font-size: 22px;
-      font-weight: lighter;
+      font-family:HN-T;
       padding: 0 15px 30px 15px;
     } // end .module-tile-default-text
   } // end .module-tile-default
@@ -320,17 +258,18 @@ demo HTML:
     // Class for the tile description/information
     // div
 
-    height: 65px;
+    height: 30%;
     width: 160px;
     margin: 0 10px 20px;
     padding: 0;
     font-size: 12px;
+    font-weight: lighter;
     //font-family: 'Helvetica Neue', sans-serif;
   } // end .module-tile-info
 
   &-link:active .module-tile-button {
     // controls the button bg color on active
-    background-color: @grey-4;
+    background-color: @grey-5;
   }
 
   &-hover {
@@ -343,7 +282,8 @@ demo HTML:
     padding: auto;
     font-family: 'Helvetica Neue', sans-serif;
     text-align: left;
-    padding-bottom: 20px !important;
+    padding-bottom: 30px !important;
+    position: relative;
   } // end .module-tile-hover
 
   &-name {
@@ -354,7 +294,8 @@ demo HTML:
     color: @white;
     font-weight: light;
     margin: 10px 10px 5px 10px;
-
+    height:40%;
+    width:160px;
     .fa {
       margin: 0 10px 0 0;
     }
@@ -367,15 +308,15 @@ demo HTML:
   margin: 0 20px 20px;
   width: 139px;
   height: 34px;
-  background-color: @green;
+  background-color: @orange;
   font-size: 12px;
   font-weight: bold;
   color: @white;
   font-family: 'Helvetica Neue', sans-serif;
-  border: solid 1px @green;
-  border-radius: 17px;
+  border: solid 1px @orange;
+  border-radius: 5px;
   padding: 0;
-
+  position: absolute;
   .fa {
     // Controls the FA on the button
     margin-left: 3px;
@@ -384,7 +325,96 @@ demo HTML:
     transform: translate(0px, -20px);
     -webkit-transform: translate(0px, -20px); // code for safari
       -khtml-transform: translate(0px, -20px); // code for safari
+      -moz-transform: translate(0px, -20px); //code for firefox
     }
 
   } // end .module-tile-button
 } // end .module-tile
+
+
+/* FOR EXPAND BUTTON
+<div class="expand_container">
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="image_btn1" data-toggle="modal" data-target="#myModal">Expand</button>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog expand_lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="expand-title">{{listname}}</h4>
+        </div>
+        <div class="expand-body">
+          <!--PUT EXPAND STUFF IN HERE-->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+*/
+.expand_container{
+  width:100%;
+}
+.expand{
+  &-body{
+    position: relative;
+    padding: 15px;
+    height:85%;
+  }
+  &-footer{
+    padding:15px;
+    text-align: right;
+    border-top: 1px solid @grey-3;
+  }
+}
+/*
+<button class="image_btn1"> TEXT HERE
+</button>
+*/
+.image_btn1{
+  font-family: HN-T;
+  font-size: 14px;
+  line-height: 1em;
+  padding:8px 15px;
+  margin:0 15px;
+  color:@white;
+  border-width: 0;
+  border-radius: 5px;
+  outline:none;
+  background-color:  #363636;
+  float:right;
+  &:hover{
+    border-radius:5px;
+    box-shadow: 0 0 0 3px rgba(54,54,54, 0.35);
+  }
+}
+.image_btn2{
+  font-family: HN;
+  font-size: 14px;
+  line-height: 1em;
+  padding:8px 15px;
+  margin:0 15px;
+  color:@white;
+  border-width: 0;
+  border-radius: 5px;
+  outline:none;
+  background-color: @black;
+  float:right;
+  &:hover{
+    background-color: @orange;
+    border-radius:5px;
+    box-shadow: 0 0 0 3px rgba(68,178,36, 0.35);
+  }
+}
+.expand_box{
+  width:100%;
+  height:auto;
+  margin:30px auto;
+}
+.expand_lg{
+  width:85%;
+  height:85%;
+}
