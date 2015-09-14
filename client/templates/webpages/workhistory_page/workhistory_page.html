@@ -1,0 +1,141 @@
+<!-- Author: Sri Sindhusha Kuchipudi
+ Created: 09/08/2015
+ Description: .html file for workhistory_page
+ Associated Files: workhistory_page.html, workhistory_page.less, workhistory_page_logic.js
+-->
+<template name="workhistory_page">
+  <div class="wrkh-p">
+    <!--page header-->
+    <div class="wrkh-p_pghead">
+    <!--  contaner for content in page header-->
+      <div class="wrkh-p_pghead_pgloc">
+          <!--date part-->
+        <div class="wrkh-p_pghead_pgloc_lstdate">Last Updated: {{getdtime}}</div>
+          <!--location part-->
+        <div class="wrkh-p_pghead_pgloc_headloc"><i class="fa fa-map-marker faicons-mark"></i> {{getlocNm}}</div>
+        <!-- work and project details-->
+        <div class="wrkh-p_pghead_pgloc_wrkNm">{{getWrkdetails}}</div>
+        <!-- Name-->
+        <div class="wrkh-p_pghead_pgloc_ComNm">For {{getName}}</div>
+      </div>
+      <!--images in header section-->
+      <div class="wrkh-p_pghead_headimg"></div>
+      <div class="wrkh-p_pghead_headimg_headcir">
+        <i class="fa fa-reply"></i>
+      </div>
+    </div>
+    <!--end of page header-->
+    <!-- start of linen framework-->
+    <div class="wrkh-p_lnfrmwrk">
+      <!--header part of the linen framework-->
+      <div class="wrkh-p_lnfrmwrk_lntop">
+        <span class="wrkh-p_lnfrmwrk_lntop_lntildiv">
+        <span class="wrkh-p_lnfrmwrk_lntop_lntildiv_lntilnam">{{getName}}</span>
+        <span class="wrkh-p_lnfrmwrk_lntop_lntildiv_lntilnam">{{getWrkdetails}}</span>
+      </span>
+      <!--  <span class="wrkh-p_lnfrmwrk_lntop_lntildiv_vline"></span>-->
+
+        <span class="wrkh-p_lnfrmwrk_lntop_lnshare"><i class="fa fa-share-alt" style="margin-right:8px"></i> Share</span>
+        <span class="wrkh-p_lnfrmwrk_lntop_lnsave"><i class="fa fa-heart" style="margin-right:8px" ></i> Save</span>
+      </div>
+      <!--end of header part of linen framework-->
+      <!--content part of the linen framework-->
+      <div class="wrkh-p_lnfrmwrk_lncon">
+        <div class="wrkh-p_lnfrmwrk_lncon_carousel">
+          <div class="wrkh-p_lnfrmwrk_lncon_carousel_lntitle"> {{getorgNm}}</div>
+          <div class="wrkh-p_lnfrmwrk_lncon_carousel_lntxt">
+            <p class="wrkh-p_lnfrmwrk_lncon_carousel_lntxt_p">Internet.org is a partnership between social networking services company
+              Facebook and six companies (Samsung, Ericsson, MediaTek, Opera Software, Nokia and Qualcomm) that
+              plans to bring affordable access to selected Internet services to less developed...</p>
+          </div></div>
+          <div class="wrkh-p_lnfrmwrk_lncon_lnimg"></div>
+          <div class="wrkh-p_lnfrmwrk_lncon_lnimg_lnsimg"></div>
+          <div class="wrkh-p_lnfrmwrk_lncon_conid">
+            <div class="wrkh-p_lnfrmwrk_lncon_conid_lncir">
+              <i class="fa fa-briefcase"></i>
+            </div>
+            <div class="wrkh-p_lnfrmwrk_lncon_conid_lnvln"></div></div>
+
+          <button class="prf-hdr-lefthov arw">
+            <i class="fa fa-angle-left fa-2x"></i>
+          </button>
+          <button class="prf-hdr-righthov arw">
+            <i class="fa fa-angle-right fa-2x"></i>
+          </button>
+
+      </div>
+      <!--end of content part of linen framework-->
+      <!-- start of footer part of linen framework-->
+      <div class="wrkh-p_lnfrmwrk_lnbtm">
+        <div class="wrkh-p_lnfrmwrk_lnbtm_infobr">
+          <div class="wrkh-p_lnfrmwrk_lnbtm_infobr_infotp">Want to know more about this document?</div>
+          <div class="wrkh-p_lnfrmwrk_lnbtm_infobr_infobtm1">Profile Last Updated On:</div>
+          <div class="wrkh-p_lnfrmwrk_lnbtm_infobr_infobtm2">{{getdate}}</div>
+        </div>
+        <div class="wrkh-p_lnfrmwrk_lnbtm_blubtn">View Website<span style="margin-left:6px">
+        <i class="fa fa-angle-right"></i></span></div>
+      </div>
+      <!--end of footer part of linen framework-->
+    </div>
+    <!--end of linen framework-->
+    <!-- start of sort by most recent section-->
+    <div class="wrkh-p_srtbr">
+      <div class="wrkh-p_srtbr_srt">
+        <div class="wrkh-p_srtbr_srt_srtby">Sort by:</div>
+        <div class="wrkh-p_srtbr_srt_mstrec">Most Recent <i class="fa fa-angle-down arwd"></i></div>
+      </div>
+      <!--content part in srtby most recent-->
+      <div class="wrkh-p_srtbr_srtcon">
+        <div class="wrkh-p_srtbr_srtcon_srthead"></div>
+        <div class="wrkh-p_srtbr_srtcon_srthead_srtheadcon">What is this page?</div>
+        <div class="wrkh-p_srtbr_srtcon_srthead_srtheadcross"><i class="fa fa-times"></i></div>
+        <div class="wrkh-p_srtbr_srtcon_srttxt">This page features all the SEC documents associated with Facebook, Inc and all of its executives.</div>
+      </div>
+
+    </div>
+    <!--start of listings section-->
+    <div class="wrkh-p_lstcon">
+    {{#each listings}}
+      <div class="wrkh-p_lstcon_lsttile_{{getBackgroundStyle}}">
+      <div class="wrkh-p_lstcon_txtlft">
+        <div class="wrkh-p_lstcon_txtlft_place"><i class="fa fa-map-marker faicons-mark"></i> &nbsp;{{location}}</div>
+        <div class="wrkh-p_lstcon_txtlft_wrkNM">{{wrkNam}}</div>
+        <div class="wrkh-p_lstcon_txtlft_posdur">
+          <div class="wrkh-p_lstcon_txtlft_posdur_positiontxt">{{position}}</div>
+          <div class="wrkh-p_lstcon_txtlft_posdur_fyear">since {{strdate}} - {{enddate}}</div>
+          <div class="wrkh-p_lstcon_txtlft_posdur_numofmnts">{{numofmonths}}</div>
+        </div>
+      </div>
+      <div class="wrkh-p_lstcon_imgs"></div>
+      <div class="wrkh-p_lstcon_Listvw">
+        <div class="wrkh-p_lstcon_Listvw_lstcir"></div>
+        <div class="wrkh-p_lstcon_Listvw_lstcir"></div>
+        <div class="wrkh-p_lstcon_Listvw_lstcir"></div>
+        <div class="wrkh-p_lstcon_Listvw_lstcir"></div>
+        <div class="wrkh-p_lstcon_Listvw_lstcir"></div>
+        <div class="wrkh-p_lstcon_morebtn">View All Connections<span style="margin-left:6px"><i class="fa fa-angle-right"></i></span></div>
+      </div>
+      <div class="wrkh-p_lstcon_sav-shr">
+        <div class="wrkh-p_lstcon_sav-shr_sav"><i class="fa fa-heart" style="margin-right: 8px"></i> Save</div>
+        <div class="wrkh-p_lstcon_sav-shr_shr"> <i class="fa fa-share-alt" style="margin-right: 8px"></i> Share</div>
+        <div class="wrkh-p_lstcon_sav-shr_fb"><i class="fa fa-flag" style="margin-right: 8px"></i> Feedback</div>
+      </div>
+    </div>
+      {{/each}}
+    </div>
+    <div class="wrkh-p_lstpaging">
+      <i class="fa fa-angle-left faarwlft"></i>
+        <div class="wrkh-p_lstpaging_pagcir1">1</div>
+        <div class="wrkh-p_lstpaging_pagcir2">2</div>
+        <div class="wrkh-p_lstpaging_pagcir3">3</div>
+        <div class="wrkh-p_lstpaging_lstcir">...</div>
+        <div class="wrkh-p_lstpaging_pagoval">200</div>
+        <i class="fa fa-angle-right faarwrgt"></i>
+        <div class="wrkh-p_lstpaging_Vwall">VIEW ALL <img style="padding-bottom:4px" src="infinite-icon.png"></div>
+    </div>
+    <div class="wrkh-p_srchpanel">
+      {{> didnt_find}}
+    </div>
+  </div>
+
+</template>

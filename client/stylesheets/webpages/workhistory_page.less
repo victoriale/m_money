@@ -1,0 +1,898 @@
+/* Author: Sri Sindhusha Kuchipudi
+** Created: 09/08/2015
+** Description: .less file for workhistory_page
+** Associated Files: workhistory_page.html, workhistory_page.less, workhistory_page.js
+*/
+@import "../global_vars.less";
+@import "../modules.less";
+/* Total page header */
+.wrkh-p{
+  position:relative;;
+  width: 680px;
+  height: 1884px;
+  margin:5px 5px 0 5px;
+  /*page header*/
+  &_pghead{
+    position:relative;
+    width: 680px;
+    height: 142px;
+    background-color: white;
+    top: 0px;
+    left: 0px;
+    /*content on the header*/
+    &_pgloc{
+      position:relative;
+      width: 245px;
+      height: 97px;
+      left:134px;
+      top:15px;
+
+      /*last updated date and time*/
+      &_lstdate{
+        position:relative;
+        color:  #959595;
+        font-size: 10px;/* Approximation due to font substitution */
+        font-family: HN;
+        overflow: hidden;
+        max-width: 245px;
+        text-transform:uppercase;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      /*location*/
+      &_headloc{
+        position:relative;
+        color:  #000000;
+        font-size: 12px;/* Approximation due to font substitution */
+        line-height: 28px;
+        font-family: HN;
+        overflow: hidden;
+        max-width: 245px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      /* related work*/
+      &_wrkNm{
+        position:relative;
+        color:  #000000;
+        font-size: 22px;/* Approximation due to font substitution */
+        line-height: 28px;/* Approximation due to font substitution */
+        font-family: HN-B;
+        overflow: hidden;
+        max-width: 245px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      /* company details*/
+      &_ComNm{
+        position:relative;
+        color:  #000000;
+        font-size: 22px;/* Approximation due to font substitution */
+        line-height: 28px;/* Approximation due to font substitution */
+        font-family: HN-L;
+        overflow: hidden;
+        max-width: 245px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+    /*Image placeholder in header*/
+    &_headimg{
+      position:relative;
+      width: 100px;
+      height: 100px;
+      top: -78px;
+      left: 20px;
+      //top: -85px;
+      //left: 38px;
+      border-radius: 50%;
+      border: 2px #cccccc solid;
+      background-color:  #ffffff;
+      /* blue circle in the header*/
+      &_headcir{
+        position:relative;
+        width: 35px;
+        height: 35px;
+        //top: -94px;
+        //left: 31px;
+        top: -172px;
+        left:12px;
+        color: white;
+        font-size: large;
+        padding-left: 8px;
+        padding-top: 6px;
+        border-radius: 50%;
+        //border: 2px solid;
+        background-color: #3098ff;
+      }
+    }
+  }
+  /* Linen Framework*/
+  &_lnfrmwrk{
+    position:relative;
+    width: 680px;
+    height: 361px;
+    /*head part of linen framework*/
+    &_lntop{
+      position:relative;
+      width: 680px;
+      height: 35px;
+      background-color: black;
+      &_lntildiv{
+        border-right: 1px solid #363636;
+        color:white;
+        text-align: center;
+        float: left;
+        height: 35px;
+        line-height: 35px;
+        max-width: 490px;
+        font-size: 16px;
+        font-family: HN-B;
+        text-align: left;
+        left: 16px;
+        padding-right: 10px;
+        position: relative;
+
+        &:after {
+          display:"block";
+          content: "";
+          clear: both;
+        }
+
+        &_lntilnam{
+          max-width:194px;
+          height: 30px;
+          float: left;
+          font-size: 16px;
+          font-family: HN-B;
+          padding-right: 6px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          transform: scaleX(1.0018);
+        }
+        &_lntilwrk{
+          width: 129px;
+          height: 30px;
+          float:left;
+          font-size: 16px;
+          font-family: HN-B;
+          overflow: hidden;
+          max-width: 194px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          transform: scaleX(1.0018);
+        }
+
+    }
+      /*save icon*/
+      &_lnsave{
+        position:relative;
+        color:  #ffffff;
+        float: left;
+        left: -31px;
+        top:8px;
+        overflow: hidden;
+        max-width: 100px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 14px;/* Approximation due to font substitution */
+        font-family: HN-L;
+        text-align: right;
+        transform: scaleX(1.0018);/* width and height properties ommitted due to transform */
+      }
+      /* share icon*/
+      &_lnshare{
+        position:relative;
+        font-family: HN-L;
+        color:  #ffffff;
+        top:8px;
+        overflow: hidden;
+        max-width: 100px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 14px;/* Approximation due to font substitution */
+        font-weight: 300;
+        text-align: right;
+        //margin-right: 156px;
+        float: left;
+        left: 125px;
+        transform: scaleX(1.0018);/* width and height properties ommitted due to transform */
+      }
+    }
+    /*content part of linen Framework*/
+    &_lncon{
+      position:relative;;
+      width: 680px;
+      height: 249px;
+      background-color: #4E4E4E;
+      /*large image place holder*/
+      &_lnimg{
+        position:relative;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        left: 55px;
+        top:-127px;
+        border: 2px #cccccc solid;
+        background-color:  #ffffff;
+        /*small image place holder*/
+        &_lnsimg{
+          position:relative;
+          width: 75px;
+          height: 75px;
+          left: 165px;
+          top: -197px;
+          border-radius: 50%;
+          border: 2px #cccccc solid;
+          background-color:  #ffffff;
+        }
+      }
+      /*container identifier section*/
+      &_conid{
+        position:relative;
+        width: 40px;
+        height: 174px;
+        top: -390px;
+        left: 256px;
+        /*blue circle in content part of linen framework*/
+        &_lncir{
+          position:relative;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          color: white;
+          left: -20px;
+          font-size: 20px;
+          padding-left: 11px;
+          padding-top: 7px;
+          background-color: #3098ff;
+        }
+        /*vertical line in linen framework*/
+        &_lnvln{
+          position:relative;
+          width: 2px;
+          top: 26px;
+          height: 97px;
+          background-color:  #cccccc;
+        }
+      }
+      /*carausel part (content)*/
+      &_carousel{
+        position:relative;
+        width: 312px;
+        height: 166px;
+        left: 277px;
+        padding-top: 46px;
+        /*paragraph*/
+        &_lntxt{
+          position:relative;
+          width: 328px;
+          height: 111px;
+          top:17px;
+          color:  #ffffff;
+          &_p{
+            font-size:16px;
+            margin: 0 0 10px;
+            white-space: normal;
+            position: relative;
+            text-align: left;
+            overflow: hidden;
+            font-family: HN-L;
+            text-overflow: ellipsis;
+            max-width: 328px;
+            max-height: 111px;
+          }
+        }
+        /*title*/
+        &_lntitle{
+          position:relative;
+          width: 286px;
+          height: 26px;
+          left: 16px;
+          top: -5%;
+          color:  #ffffff;
+          font-family: HN;
+          overflow: hidden;
+          max-width: 312px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          font-size: 22px;/* Approximation due to font substitution */
+          line-height: 22px;/* Approximation due to font substitution */
+          text-align: left;
+        }
+      }
+
+      /*arrows to go to next page*/
+      .arw{
+        top:-518px;
+        position:relative;
+      }
+    }
+    /*footer part in linen framework*/
+    &_lnbtm{
+      position:relative;
+      width: 680px;
+      height: 76px;
+      background-color: black;
+      /*information bar*/
+      &_infobr{
+        width: 327px;
+        position:relative;
+        height: 41px;
+        top:14px;
+        left: 20px;
+        /*content or text in the info bar divided into two parts*/
+
+        &_infotp{
+          position:relative;
+          font-family: HN-L;
+          overflow: hidden;
+          max-width: 346px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          color:  #ffffff;
+          font-size: 18px;/* Approximation due to font substitution */
+          line-height: 24px;/* Approximation due to font substitution */
+          text-align: left;
+          width:360px;
+
+        }
+        &_infobtm1{
+          position:relative;
+          color:  #ffffff;
+          font-family: HN-L;
+          overflow: hidden;
+          max-width: 167px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          font-size: 14px;/* Approximation due to font substitution */
+          line-height: 24px;/* Approximation due to font substitution */
+          text-align: left;
+        }
+        &_infobtm2{
+          position:relative;
+          color:  #ffffff;
+          font-family: HN-B;
+          float: left;
+          top: -322px;
+          left: 115px;
+          overflow: hidden;
+          max-width: 120px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          font-size: 14px;/* Approximation due to font substitution */
+          line-height: 24px;/* Approximation due to font substitution */
+          text-align: left;
+        }
+      }
+      /*button on the rightside of info bar*/
+      &_blubtn{
+        position:relative;
+        width: 180px;
+        cursor:pointer;
+        height: 35px;
+        top: -325px;
+        right: -28px;
+        float: right;
+        color: white;
+        font-size:14px;
+        overflow: hidden;
+        max-width: 245px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-family:HN;
+        padding-left: 40px;
+        padding-top: 7px;
+        //padding-left: 15px;
+        border-radius: 5px;
+        border-color: #3098ff;
+        background-color: #3098ff;
+      }
+    }
+  }
+  /*sorting the most recent items*/
+  &_srtbr{
+    width: 680px;
+    position:relative;
+    height: 133px;
+    background-color: white;
+    /*sorting*/
+    /*arrow down*/
+    .arwd{
+      color: #3098ff;
+      position: relative;
+      font-weight: bolder;
+      font-size: 12px;
+      left: 2px;
+      }
+    &_srt{
+      width: 128px;
+      position:relative;
+      height: 20px;
+      top:8px;
+      left: 16px;
+      /*text Sort by*/
+      &_srtby{
+        color:  #000000;
+        position:relative;
+        font-size: 12px;/* Approximation due to font substitution */
+        text-align: left;
+        font-family:HN-B;
+        overflow: hidden;
+        max-width: 48px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      /*text most recent*/
+      &_mstrec{
+        color:  #000000;
+        font-family:HN-L;
+        position:relative;
+        font-size: 12px;/* Approximation due to font substitution */
+        text-align: left;
+        overflow: hidden;
+        max-width: 120px;
+        top: -17px;
+        left: 48px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+    /*content in sort section*/
+    &_srtcon{
+      width: 650px;
+      position:relative;
+      height: 81px;
+      left: 15px;
+      top: 16px;
+      border: 1px #cccccc solid;
+      /*head or title*/
+      &_srthead{
+        width: 650px;
+        height: 20px;
+        position:relative;
+        background-color: #E9E9E9;
+        &_srtheadcon{
+          width: 106px;
+          height: 18px;
+          position:relative;
+          color:  #333333;
+          top: -20px;
+          font-family:HN-B;
+          left: 8px;
+          font-size: 12px;
+          text-align: left;
+          overflow: hidden;
+          max-width: 106px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        /*close button or cross mark*/
+        &_srtheadcross{
+          width: 8px;
+          height: 7px;
+          font-size: 10px;
+          font-weight: bold;
+          position:relative;
+          font-family:HN;
+          float: right;
+          top: -247px;
+          right: -181px;
+        }
+      }
+      /*text in the content part*/
+      &_srttxt{
+        width: 584px;
+        height: 40px;
+        position:relative;
+        color:  #000000;
+        top: -6px;
+        font-family:HN;
+        overflow: hidden;
+        max-width: 584px;
+        text-overflow: ellipsis;
+        padding-left: 23px;
+        font-size: 14px;/* Approximation due to font substitution */
+        font-weight: 400;
+        text-align: left;
+      }
+    }
+  }
+  /*listing 1*/
+  &_lstcon{
+    width: 680px;
+    //position:relative;
+    //height: 185px;
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    &-list-tile {
+      //Grey version of the list-tile
+      &-grey {
+        position:relative;
+        background:#f2f2f2;
+        color:#000;
+        width:680px;
+        height:185px;
+        border-bottom:1px solid #b4b4b4;
+      }
+      //White version of the list-tile
+      &-white {
+        position:relative;
+        background:#fff;
+        color:#000;
+        width:680px;
+        height:185px;
+        border-bottom:1px solid #b4b4b4;
+      }
+    }
+    &_lsttile {
+      //Grey version of the list-tile
+      &_greycolor {
+        background:#f2f2f2;
+        color:#000;
+        width:inherit;
+        height:185px;
+        position:relative;
+        border-bottom:1px solid #b4b4b4;
+      }
+      //White version of the list-tile
+      &_whitecolor {
+        background:#fff;
+        color:#000;
+        width:inherit;
+        position:relative;
+        height:185px;
+        border-bottom:1px solid #b4b4b4;
+
+      }
+    }
+    /*image place holder in listing sec*/
+    &_imgs{
+      width: 125px;
+      height: 125px;
+      position:absolute;
+      top: 24px;
+      left: 20px;
+      border-radius: 50%;
+      border: 2px #cccccc solid;
+      background-color:  #ffffff;
+    }
+    /*content on the left side*/
+    .faicons-mark{
+    font-family: FontAwesome;
+    color: #000;
+    font-size: 10px;
+    font-weight: 400;
+    text-align: left;
+    }
+    &_txtlft{
+      width: 475px;
+      position:absolute;
+      height: 85px;
+      left: 173px;
+      top:21px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 475px;
+      //padding-top: 18px;
+      /*location details*/
+      &_place{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color:black;
+        font-size: 10px;/* Approximation due to font substitution */
+        font-family:HN;
+        text-align: left;
+        //position:relative;
+      }
+      /* workdone for*/
+      &_wrkNM{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color:  #000000;
+        font-size: 22px;/* Approximation due to font substitution */
+        font-family: HN-B;
+      }
+      /*position  and duration*/
+      &_posdur{
+        height:26px;
+        width:470px;
+        //position:relative;
+        //top: -6px;
+        //left: -2px;
+        /*position name*/
+        &_positiontxt{
+          float:left;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          color:  #000000;
+          font-size: 14px;/* Approximation due to font substitution */
+          font-family: HN-B;
+          line-height: 25px;/* Approximation due to font substitution */
+          text-align: left;
+            max-width:180px;
+          //position:relative;
+        }
+        /*duration*/
+        &_fyear{
+          color:  #000000;
+          float:left;
+          margin-left: 5px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          font-size: 14px;/* Approximation due to font substitution */
+          font-family: HN-L;
+          line-height: 25px;/* Approximation due to font substitution */
+          text-align: left;
+          margin-right:8px;
+          max-width:245px;
+
+        }
+        /*number of months worked*/
+        &_numofmnts{
+          font-style: italic;
+          font-size: 14px;/* Approximation due to font substitution */
+          font-family: HN;
+          color:  #959595;
+          padding-top: 3px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          max-width:140px;
+        }
+      }
+    }
+    /*list for image placeholders*/
+    &_Listvw{
+      height:51px;
+      width:325px;
+      left: 174px;
+      top: 100px;
+      position:absolute;
+        /* image placeholder's in listings section*/
+      &_lstcir{
+        cursor:pointer;
+        width: 45px;
+        height: 45px;
+        margin-left:5px;
+        border-radius: 50%;
+        display:inline-block;
+        border: 2px #cccccc solid;
+        background-color: #ffffff;
+      }
+    }
+      /*buttons for more connections*/
+    &_morebtn{
+      overflow: hidden;
+      max-width: 181px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      cursor:pointer;
+      width: 181px;
+      height: 35px;
+      position:absolute;
+      right: -154px;
+      top:8px;
+      padding-left: 20px;
+      padding-top: 6px;
+      color: white;
+      float: right;
+      border-color: #3098ff;
+      border-radius: 5px;
+      background-color: #3098ff;
+    }
+
+    /*save, share and feedback section*/
+    &_sav-shr{
+      position: absolute;
+      width: 664px;
+      height: 19px;
+      top: 155px;
+      color: #666666;
+      font-size: 14px;
+      /*Save link*/
+      &_sav{
+        cursor:pointer;
+        width: 56px;
+        height: 19px;
+        float:left;
+        font-family:HN-L;
+        position:absolute;
+        left:15px;
+        font-size: 14px;
+        overflow: hidden;
+        max-width: 100px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      /*Share link*/
+      &_shr{
+        cursor:pointer;
+        width: 60px;
+        height: 19px;
+        left: 89px;
+        font-size: 14px;
+        font-family:HN-L;
+        float:left;
+        position:absolute;
+        overflow: hidden;
+        max-width: 100px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      /*feedback link*/
+      &_fb{
+        cursor:pointer;
+        float:right;
+        font-family:HN-L;
+        position:absolute;
+        width: 86px;
+        height: 19px;
+        font-size: 14px;
+        margin-right:-8px;
+        left: 574px;
+        overflow: hidden;
+        max-width: 100px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        //top: -18px;
+      }
+    }
+  }
+  /*paging and view all part*/
+  &_lstpaging{
+    width: 680px;
+    height: 45px;
+    //padding-left: 211px;
+    position:relative;
+    background-color: white;
+    //padding-top: 10px;
+    /*for ... in between circles*/
+    &_lstcir{
+      left: 273px;
+      float:left;
+      top:11px;
+      position:relative;
+    }
+      /*fonticon for numbering*/
+    .faarwlft{
+      cursor:pointer;
+      left: 162px;
+      padding-top: 10px;
+      position:relative;
+      font-size: 20px;
+    }
+    /*fonticon for numbering*/
+    .faarwrgt{
+      cursor:pointer;
+      left: 265px;
+      padding-top: 13px;
+      position:relative;
+      font-size: 20px;
+    }
+    /*pagenumber oval*/
+    &_pagoval{
+      position: relative;
+      top: 6px;
+      left: 264px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      min-width: 25px;
+      padding: 0px 8px;
+      height: 25px;
+      margin: 0px 1px;
+      border-radius: 12.5px;
+      border: 1px solid #dadada;
+      text-align: center;
+      line-height: 25px;
+      display: inline-block;
+      cursor: pointer;
+      }
+
+    /*pagenumber circle*/
+    &_pagcir1{
+      float:left;
+      cursor:pointer;
+      position:relative;
+      font-size:14px;
+      font-family:HN-L;
+      width: 26px;
+      height: 25px;
+      border-radius: 50%;
+      overflow: hidden;
+      max-width: 25px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      left: 261px;
+      top: 10px;
+      text-align: center;
+      padding-top:1px;
+      border: 1px #dadada solid;
+      background-color:  #ffffff;
+      &:hover{
+        border-color: #3098ff
+        }
+    }
+    &_pagcir2{
+      float:left;
+      cursor:pointer;
+      overflow: hidden;
+      max-width: 25px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      position:relative;
+      width: 26px;
+      height: 25px;
+      border-radius: 50%;
+      font-size:14px;
+      font-family:HN-L;
+      left: 265px;
+      top: 11px;
+      text-align: center;
+      padding-top:1px;
+      border: 1px #dadada solid;
+      background-color:  #ffffff;
+      &:hover{
+        border-color: #3098ff
+        }
+    }
+    &_pagcir3{
+      cursor:pointer;
+      float:left;
+      position:relative;
+      width: 26px;
+      height: 25px;
+      border-radius: 50%;
+      left: 269px;
+      top: 11px;
+      overflow: hidden;
+      max-width: 25px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-align: center;
+      padding-top:1px;
+      font-size:14px;
+      font-family:HN-L;
+      border: 1px #dadada solid;
+      background-color:  #ffffff;
+      &:hover{
+        border-color: #3098ff
+        }
+    }
+    /*viewall*/
+    &_Vwall{
+      width: 115px;
+      cursor:pointer;
+      height: 25px;
+      padding-top: 4px;
+      position:relative;
+      padding-left: 21px;
+      border-radius: 5px;
+      overflow: hidden;
+      max-width: 110px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      top:9px;
+      border: 1px #3098ff solid;
+      color:  #3098ff;
+      font-family:HN;
+      background-color: white;
+      font-size: 11.99px;/* Approximation due to font substitution */
+      float: right;
+      right: 15px;
+    }
+  }
+  &_srchpanel {
+    background:#fff;
+    width:680px;
+    height:275px;
+  }
+}
