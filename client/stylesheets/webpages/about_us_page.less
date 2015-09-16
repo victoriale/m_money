@@ -1,0 +1,456 @@
+/*
+Author: Meghana yerramilli
+Created: [07-30-2015]
+Description:conatct us webpage
+Associated Files: contact_us_page.html
+*/
+
+@import "../global_vars.less"; //include important global vars (colors mostly)
+@import "../modules.less";
+.abt_us{
+// webpage dimensions
+&-dimensions{
+  background-color:  #ffffff;
+  width: 680px;
+  height: 1362px;
+  margin: 5px 0px 0px 5px;
+}
+//circle with an image
+&-image{
+  border-radius: 50%;
+  border-width: 2px;
+  border-color:  #cccccc;
+  border-style: solid;
+  background-color:  #ffffff;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  top:20px;
+  margin-left: 20px;
+}
+//subcircle on image
+&-replyimg{
+  border-radius: 50%;
+  background-color:  #3098ff;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  padding-top: 7px;
+  padding-right: 2px;
+}
+//icon in subimage
+&-replyicon{
+  width: 15px;
+  height: 14px;
+  color:  #ffffff;
+  font-size: -15px;
+  font-weight: 400;
+}
+//container for the information
+&-head_cont{
+  width: 370px;
+  height: 99px;
+  margin-top: -13%;
+  margin-left: 21%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+//date
+&-head_date{
+  color:  #959595;
+  font-size: 10px;
+  font-family: HN;
+}
+//country
+&-country{
+  color:  #000000;
+  font-size: 12px;
+  font-family: HN;
+  margin-top: 12px;
+}
+&-countxt{
+  margin-left: 3px;
+}
+//heading
+&-heading{
+  color:  #000000;
+  font-size: 22px;
+  font-family: HN-B;
+}
+//subheading
+&-subheading{
+  color:  #000000;
+  font-size: 22px;
+  font-family: HN-L;
+  margin-top: -4px;
+}
+//underline for the information
+&-blackhd{
+  background-color: rgba(0, 0, 0, 0.85);
+  width: 680px;
+  height: 35px;
+  position: relative;
+  top: 29px;
+}
+//line
+&-linee{
+  width: 1px;
+  height: 35px;
+  float: left;
+  position: relative;
+  left:38px;
+  background-color: #363636;
+  margin-right: 15px;
+}
+
+&-bar {
+    width: 680px;
+    height: 35px;
+    background-color: @black;
+    color: @white;
+    font-size: 16px;
+    text-align: left;
+    top: 42px;
+    position: relative;
+    float: left;
+    // the font awesome icon color
+    .fa {
+    //  color: @white;
+      color: #ffffff;
+    }
+    //the link color
+    a {
+      //color:@white;
+      color: #ffffff;
+    }
+
+    &-text{
+      font-family: HN-L;
+      color:  #ffffff;
+      font-size: 14px;
+      text-align: right;
+    }
+    //the title next to save and share
+    &-title{
+      border-right: 1px solid #363636;
+      float: left;
+      height: 23px;
+      max-width: 121px;
+      left: 20px;
+      top: 6px;
+      position: relative;
+      padding-right: 118px;
+      background-repeat: no-repeat;
+      background-image: url("Logo_InvestKit.png");
+      background-size: 117px 23px;
+      cursor: pointer;
+
+      &:after {
+        display:"block";
+        content: "";
+        clear: both;
+      }
+}
+    // giving the specifications data for the helper
+    &-helper{
+      max-width:350px;
+      height: 30px;
+      float: left;
+      font-size: 16px;
+      font-family: HN-B;
+      padding-right: 6px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    //side data specifications
+    &-side{
+      width: 170px;
+      height: 30px;
+      float:left;
+      font-size: 16px;
+      font-family: HN-B;
+}
+    // the button for save and share
+    &-button {
+      border: none;
+      text-align: center;
+      float: left;
+      line-height: 35px;
+      height:35px;
+      width:85px;
+      margin-right: 8px;
+      font-family: HN-L;
+      left: 28px;
+      position: relative;
+
+      .fa{
+        margin-right: 10px;
+        color: #ffffff;
+      }
+    }
+  }
+
+  &-wt{
+    width: 150px;
+    height: 15px;
+    position: relative;
+    left:15px;
+    top:41px;
+    float: left;
+    text-align: left;
+  }
+  //what is font sytle
+  &-wtft{
+    font-family:HN;
+    color:  #000000;
+    font-size: 18px;
+    line-height: 28px;
+    text-align: left;
+  }
+  // font family for the invest kit
+  &-wtin{
+    font-family:HN-L;
+    color:  #272727;
+    font-size: 18px;
+    line-height: 28px;
+    text-align: left;
+  }
+
+  // long line after what is invest kit
+  &-lgline{
+    background-color:  #cccccc;
+    width: 650px;
+    height: 1px;
+    position: relative;
+    top: 76px;
+    left: 15px;
+  }
+  //contianer for the text paragraph
+  &-txtct{
+    width: 630px;
+    height: 218px;
+    position: relative;
+    top:73px;
+    left:24px;
+    float: left;
+
+  }
+  //font style for the text
+  &-txtft{
+    font-family: HN;
+    color:  #000000;
+    font-size: 14px;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  //whole container
+  &-wct{
+    width: 640px;
+    height: 70px;
+    position: relative;
+    top:326px;
+    margin-bottom: 20px;
+  }
+  //container for the box
+  &-smb1{
+    border-style: solid;
+    border-width: 1px;
+    border-color:  #cccccc;
+    box-sizing: border-box;
+    background-color:  #f2f2f2;
+    width: 310px;
+    height: 70px;
+    position: relative;
+    left:20px;
+  }
+  // left padding
+  &-lftp{
+    background-color:  #e1e1e1;
+    width: 5px;
+    height: 68px;
+  }
+  //for image
+  &-img{
+    width: 50px;
+    height: 50px;
+    position: relative;
+    top:-60px;
+    left:40px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-position: center;
+  }
+  //smaller container
+  &-smbct{
+    width: 165px;
+    height: 50px;
+    position: absolute;
+    top: 7px;
+    left: 114px;
+
+  //font style for total
+  &-total{
+    font-family: HN-B;
+    color:  #959595;
+    font-size: 12px;
+    line-height: 24px;/* Approximation due to font substitution */
+    text-align: left;
+    float: left;
+  }
+  //font sytle for number
+  &-num{
+    font-family: HN-B;
+    color:  #000000;
+    font-size: 24px;
+    line-height: 14px;
+    text-align: left;
+    float: left;
+  }
+}
+//container for smb2
+&-smb2{
+  border-style: solid;
+  border-width: 1px;
+  border-color:  #cccccc;
+  box-sizing: border-box;
+  background-color:  #f2f2f2;
+  width: 310px;
+  height: 70px;
+  position: relative;
+  top:-70px;
+  left:350px;
+}
+// left padding
+&-lftp2{
+  background-color:  #e1e1e1;
+  width: 5px;
+  height: 68px;
+}
+//member fontstyle
+&-member{
+  width: 150px;
+  height: 55px;
+  position: relative;
+  //top: 278px;
+  left: 167px;
+  float: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+//font style for member
+&-memft{
+  font-family: HN-B;
+  color:  #959595;
+  font-size: 14px;
+  line-height: 24px;/* Approximation due to font substitution */
+  text-align: center;
+}
+//font syle for the number
+&-number{
+  font-family: HN-B;
+  color:  #000000;
+  font-size: 28px;
+  line-height: 32px;/* Approximation due to font substitution */
+  text-align: center;
+}
+//conatiner for map image
+&-mapct{
+  width: 462px;
+  height: 352px;
+  position: relative;
+  top:-10px;
+  left: 15px;
+  float: left;
+  background-image: url("Icon_US_Map.png");
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+//complete contianer
+&-compct{
+  width: 462px;
+  height: 400px;
+  float: left;
+  position: relative;
+  top: 282px;
+  left: 109px;
+}
+/* container for the fotter('ft') */
+&-fotter{
+  width: 680px;
+  height: 276px;
+  position: relative;
+  top: 760px;
+}
+//searchbox dimensions & styles
+&-srchbox{
+  width: 680px;
+  height: 280px;
+  background-image: url("http://www.freebiesgallery.com/wp-content/uploads/2014/02/blurred-background-21.jpg");
+  background-position: 680px 280px;
+}
+&-srcctt{
+  width: 665px;
+  height: 60px;
+  position: relative;
+  top:-408px;
+  left: 8px;
+  float: left;
+}
+//styles for text
+&-srchtxt1{
+  color: #ffffff;
+  font-size: 35px;
+  font-family: HN-B;
+  line-height: 30.027px;/* Approximation due to font substitution */
+  text-align: center;
+  padding-bottom: 5px;
+}
+&-srchtxt2{
+  color:  #ffffff;
+  font-size: 18px;
+  font-family: HN;
+  line-height: 30.027px;/* Approximation due to font substitution */
+  text-align: center;
+}
+//input box
+&-inptbox{
+  border-radius: 5px;
+  background-color:  #ffffff;
+  width: 540px;
+  height: 40px;
+  border: none;
+  color:  #505050;
+  font-size: 20px;
+  font-family: HN-L;
+  padding-left: 20px;
+  position: relative;
+  top: 94px;
+  left: -393px;
+}
+//search button
+&-srcbtn{
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+  background-color: #3098ff;
+  width: 99px;
+  height: 40px;
+  border: none;
+  float: right;
+  position: relative;
+  margin-top: -2.8em;
+  right: 10.5%;
+  top: -327px;
+}
+//icon on search button
+&-srchicon{
+  color:  #ffffff;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+
+}
