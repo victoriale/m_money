@@ -1,0 +1,198 @@
+<template name = "insider_t_page">
+	<div class = "in">
+
+      <!-- HEADER -->
+      <div class = "in-hdr">
+        <!-- Header Image -->
+        <div class = "in-hdr-cir">
+          <button class = "in-hdr-cir-rep"><i class = "fa fa-reply"></i></button>
+        </div>
+        <!-- Header Text -->
+        <div class = "in-hdr-txt">
+          <div class = "in-hdr-txt-upd">Last Updated: {{date}}, {{time}}</div>
+          <div class = "in-hdr-txt-loc"><i class = "fa fa-map-marker"></i>&nbsp;{{locat}}</div>
+          <div class = "in-hdr-txt-ttl">Insider Connections</div>
+          <div class = "in-hdr-txt-nm">For {{name}}</div>
+        </div>
+    	</div>
+      <!-- END HEADER -->
+
+      <!-- SLIDER -->
+      <div class = "in-sldr">
+        <div class = "in-sldr-top">
+          <div class = "in-sldr-top-ttl">
+            <div class = "in-sldr-top-ttl-txt1">{{name}}'s</div>
+						<div class = "in-sldr-top-ttl-txt2">&nbsp;Insider Connections</div>
+          </div>
+          <a href = "#" class = "in-sldr-sv" style = "margin-left: 15px;"><i class = "fa fa-heart"></i>&nbsp;&nbsp;&nbsp;Save</a>
+          <a href = "#" class = "in-sldr-shr"><i class = "fa fa-share-alt"></i>&nbsp;&nbsp;&nbsp;Share</a>
+        </div>
+
+        <div class = "in-sldr-mid">
+          <div class = "navigation-button-left"><i class="fa fa-angle-left"></i></div>
+          <div class = "navigation-button-right"><i class="fa fa-angle-right"></i></div>
+          <div class = "in-sldr-mid-img">
+            <div class = "in-sldr-mid-img-sml"></div>
+          </div>
+          <div class = "in-sldr-mid-div">
+            <div class = "in-sldr-mid-div-cir"><i class = "fa fa-briefcase"></i></div>
+          </div>
+          <div class = "in-sldr-mid-ttl">
+            <div class = "in-sldr-mid-ttl-nm">{{con1}}</div>
+						<a href = "#" class = "in-sldr-sv" style = "margin-top: 5px;"><i class = "fa fa-heart"></i>&nbsp;&nbsp;&nbsp;Save</a>
+						<a href = "#" class = "in-sldr-shr" style = "margin-top: 5px;"><i class = "fa fa-share-alt"></i>&nbsp;&nbsp;&nbsp;Share</a>
+          </div>
+					<div class = "in-sldr-mid-desc-1">
+          	<div class = "in-sldr-mid-desc">{{con1desc}}</div>
+					</div>
+        </div>
+
+        <div class = "in-sldr-bttm">
+          <div class = "in-sldr-bttm-txt">
+            <div class = "in-sldr-bttm-txt-ques1">Want to know more about&nbsp;</div>
+						<div class = "in-sldr-bttm-txt-ques2">{{con1}}</div>
+						<div class = "in-sldr-bttm-txt-ques3">?</div>
+            <div class = "in-sldr-bttm-txt-upd">Profile Last Updated On: <strong>{{date2}}</strong></div>
+          </div>
+          <a class = "in-sldr-bttm-bttn" href = "#">
+						<p>View Profile&nbsp;&nbsp;&nbsp;<i class = "fa fa-angle-right"></i></p>
+					</a>
+        </div>
+      </div>
+      <!-- END SLIDER -->
+
+      <!-- SORT -->
+      <div class = "in-sort">
+				<div class = "in-sort-txt">
+					<strong>Sort by:</strong> {{option}}<i class="fa fa-angle-down"></i>
+				</div>
+				<div class = "in-sort-box">
+					<div class = "in-sort-box-hdr">
+						<p>What is this List?<i class="fa fa-times" style = "cursor: pointer"></i></p>
+					</div>
+					<div class = "in-sort-box-desc">
+						This is a list detailing all {{prftyp}} located in the {{locat}} area.
+						{{name2}}s are sorted by Most Connections.
+					</div>
+				</div>
+      </div>
+      <!-- END SORT -->
+
+      <!-- LIST 1 -->
+      <div class = "in-list1">
+				{{#each tile1}}
+				<div class = "in-tile" style = "background-color: {{color}}">
+					<div class = "in-tile-lft">
+						<div class = "in-tile-lft-img">
+							<div class = "in-tile-lft-img-top"><p>#{{rank}}</p></div>
+							<div class = "in-tile-lft-img-bttm"></div>
+						</div>
+						<div class = "in-tile-lft-link">
+							<a href = "#" class = "in-tile-lft-link-fllw"><i class = "fa fa-heart"></i>Follow</a>
+							<a href = "#" class = "in-tile-lft-link-shr"><i class = "fa fa-share-alt"></i>Share</a>
+						</div>
+					</div>
+
+					<div class = "in-tile-rgt">
+						<div class = "in-tile-rgt-txt">
+							<div class = "in-tile-rgt-txt-lft">
+								<div class = "in-tile-rgt-txt-lft-loc"><i class = "fa fa-map-marker"></i>{{city}}, {{state}}</div>
+								<div class = "in-tile-rgt-txt-lft-nm">{{name1}}</div>
+								<div class = "in-tile-rgt-txt-lft-pos">{{pos}}</div>
+								<div class = "in-tile-rgt-txt-lft-comp">&nbsp;at {{comp}}</div>
+							</div>
+							<div class = "in-tile-rgt-txt-rgt">
+								<div class = "in-tile-rgt-txt-rgt-ttl">Insider Connections</div>
+								<div class = "in-tile-rgt-txt-rgt-num">{{connect}}</div>
+								<div class = "in-tile-rgt-txt-rgt-upd">as of {{date3}}</div>
+							</div>
+						</div>
+						<div class = "in-tile-rgt-prf">
+							<div class = "in-tile-rgt-prf-txt">Want more info about this advisor?</div>
+							<a href = "#"><div class = "in-tile-rgt-prf-bttn">View Profile<i class = "fa fa-angle-right"></i></div></a>
+						</div>
+						<div class = "in-tile-rgt-fdbk"><i class = "fa fa-flag"></i>Feedback</div>
+					</div>
+					<div class = "in-tile-bttm"></div>
+				</div>
+				{{/each}}
+      </div>
+      <!-- END LIST 1 -->
+
+      <!-- FEATURED COMPANIES -->
+      <div class = "in-fc">
+				<div class = "in-fc-hdr">Featured Companies in the United States</div>
+				{{#each fc}}
+				<div class = "in-fc-img" style = "margin-right: {{margin}}; width: {{width}}">
+					<div class = "in-fc-img-txt">
+						<div class = "in-fc-img-txt-nm">{{c_nm}}</div>
+						<div class = "in-fc-img-txt-stck">{{c_stckprc}}</div>
+						<div class = "in-fc-img-txt-inc">{{c_stckinc}}</div>
+					</div>
+				</div>
+				{{/each}}
+				<div class = "in-fc-arrw fa fa-angle-right"></div>
+      </div>
+      <!-- END FEATURED COMPANIES -->
+
+      <!-- LIST 2 -->
+      <div class = "in-list2">
+				{{#each tile2}}
+				<div class = "in-tile" style = "background-color: {{color}}">
+					<div class = "in-tile-lft">
+						<div class = "in-tile-lft-img">
+							<div class = "in-tile-lft-img-top"><p>#{{rank}}</p></div>
+							<div class = "in-tile-lft-img-bttm"></div>
+						</div>
+						<div class = "in-tile-lft-link">
+							<a href = "#" class = "in-tile-lft-link-fllw"><i class = "fa fa-heart"></i>Follow</a>
+							<a href = "#" class = "in-tile-lft-link-shr"><i class = "fa fa-share-alt"></i>Share</a>
+						</div>
+					</div>
+
+					<div class = "in-tile-rgt">
+						<div class = "in-tile-rgt-txt">
+							<div class = "in-tile-rgt-txt-lft">
+								<div class = "in-tile-rgt-txt-lft-loc"><i class = "fa fa-map-marker"></i>{{city}}, {{state}}</div>
+								<div class = "in-tile-rgt-txt-lft-nm">{{name1}}</div>
+								<div class = "in-tile-rgt-txt-lft-pos">{{pos}} at <strong>{{comp}}</strong></div>
+							</div>
+							<div class = "in-tile-rgt-txt-rgt">
+								<div class = "in-tile-rgt-txt-rgt-ttl">Insider Connections</div>
+								<div class = "in-tile-rgt-txt-rgt-num">{{connect}}</div>
+								<div class = "in-tile-rgt-txt-rgt-upd">as of {{date3}}</div>
+							</div>
+						</div>
+						<div class = "in-tile-rgt-prf">
+							<div class = "in-tile-rgt-prf-txt">Want more info about this advisor?</div>
+							<a href = "#"><div class = "in-tile-rgt-prf-bttn">View Profile<i class = "fa fa-angle-right"></i></div></a>
+						</div>
+						<div class = "in-tile-rgt-fdbk"><i class = "fa fa-flag"></i>Feedback</div>
+					</div>
+					<div class = "in-tile-bttm"></div>
+				</div>
+				{{/each}}
+      </div>
+      <!-- END LIST 2 -->
+
+      <!-- PAGE SELECTOR -->
+      <div class = "in-pgnum">
+	      <i class="fa fa-angle-left"></i>
+	      <div class="in-pgnum-bbl in-pgnum-1">1</div>
+	      <div class="in-pgnum-bbl in-pgnum-2">2</div>
+	      <div class="in-pgnum-bbl in-pgnum-3">3</div>
+	      <div class="in-pgnum-ellipsis">&middot;&middot;&middot;</div>
+	      <div class="in-pgnum-bbl in-pgnum-200">200</div>
+	      <i class="fa fa-angle-right"></i>
+	      <div class="in-pgnum-view_all">
+	        VIEW ALL
+	        <img src="../infinite-icon.png">
+	      </div>
+      </div>
+      <!-- END PAGE SELECTOR -->
+
+      <!-- SEARCH PAGES -->
+      {{> didnt_find}}
+      <!-- END SEARCH PAGES -->
+	</div>
+</template>
