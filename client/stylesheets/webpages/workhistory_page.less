@@ -764,7 +764,7 @@
       /*fonticon for numbering*/
     .faarwlft{
       cursor:pointer;
-      left: 162px;
+      left: 113px;
       padding-top: 10px;
       position:relative;
       font-size: 20px;
@@ -772,30 +772,35 @@
     /*fonticon for numbering*/
     .faarwrgt{
       cursor:pointer;
-      left: 265px;
+      left: 271px;
       padding-top: 13px;
       position:relative;
       font-size: 20px;
     }
     /*pagenumber oval*/
     &_pagoval{
+      cursor: pointer;
+      float: left;
       position: relative;
-      top: 6px;
-      left: 264px;
+      width: 48px;
+      height: 25px;
+      border-radius: 12.5px;
+      left: 276px;
+      top: 11px;
       overflow: hidden;
+      /* max-width: 25px; */
       text-overflow: ellipsis;
       white-space: nowrap;
-      min-width: 25px;
-      padding: 0px 8px;
-      height: 25px;
-      margin: 0px 1px;
-      border-radius: 12.5px;
-      border: 1px solid #dadada;
       text-align: center;
-      line-height: 25px;
-      display: inline-block;
-      cursor: pointer;
-      }
+      padding-top: 1px;
+      font-size: 14px;
+      font-family: HN-L;
+      border: 1px #dadada solid;
+      &:hover{
+        border-color: #3098ff
+        }
+    }
+
 
     /*pagenumber circle*/
     &_pagcir1{
