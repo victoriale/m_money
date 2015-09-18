@@ -11,7 +11,7 @@ if(Meteor.isClient){
 
   Meteor.subscribe('post');
   Meteor.subscribe('reply');
-
+  var cmnt;
   //Helper class
   Template.leavecomments.helpers({
 
@@ -19,7 +19,7 @@ if(Meteor.isClient){
       return POST.find().fetch().reverse();
     },
     cmnt:function(){
-      var cmnt = POST.find().fetch().length;
+      cmnt = POST.find().fetch().length;
       return cmnt;
 
     },
@@ -59,9 +59,12 @@ if(Meteor.isClient){
       $('.r-box_' + String(this.cmtid)).val("");
     },
     'click #sortoptions': function(e) {
+      if(cmnt!=0){
       $('.dropdown-menu').slideToggle();
+    }
     },
     'click #topcomments': function(e) {
+
       $('.result-sort').html("Top Comments");
       $('.dropdown-menu').hide();
     },

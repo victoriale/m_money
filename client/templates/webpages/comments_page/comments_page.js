@@ -12,6 +12,7 @@ if(Meteor.isClient){
   Meteor.subscribe('reply3');
 
   //Helper class
+  var cmnt3;
   Template.comments_page.helpers({
     c_name:'GoPro, Inc.',
 
@@ -19,7 +20,7 @@ if(Meteor.isClient){
       return POST3.find().fetch().reverse();
     },
     cmnt3:function(){
-      var cmnt3 = POST3.find().fetch().length;
+      cmnt3 = POST3.find().fetch().length;
       return cmnt3;
     },
     reply3: function () {
@@ -63,7 +64,9 @@ if(Meteor.isClient){
       $('.r-box_' + String(this.cmtid)).val("");
     },
     'click #sortoptions': function(e) {
+      if(cmnt3!=0){
       $('.dropdown-menu').slideToggle();
+    }
     },
     'click #topcomments': function(e) {
       $('.result-sort').html("Top Comments");
