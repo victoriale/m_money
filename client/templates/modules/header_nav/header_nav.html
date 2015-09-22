@@ -1,0 +1,97 @@
+<!-- Author: Sri Sindhusha Kuchipudi
+** Created: 09/18/2015
+** Description: .html file for header_nav
+** Associated Files: header_nav.html, header_nav.less, header_nav_logic.js
+-->
+<head>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+<!-- This is the template for header-->
+<template name="header_nav">
+  <!-- This is the Div for total header-->
+  <div class="pgheader-nav">
+   <!-- This is the Div for top part of the header-->
+    <div class="pgheader-nav_divtp">
+        <!-- This is the Div for Logo header-->
+      <div class="pgheader-nav_divtp_Finlogo"><img style="padding-bottom:4px" src="financial_logo.png"></div>
+        <!-- This is the Div for research button-->
+        <div class="pgheader-nav_divtp_Resrch">
+            <div class="pgheader-nav_divtp_Resrch_restxt">Research</div>
+        </div>
+          <!-- This is the Div for top list button-->
+        <div class="pgheader-nav_divtp_tplst">
+            <div class="pgheader-nav_divtp_tplst_tptxt">Top Lists</div>
+        </div>
+          <!-- This is the Div for saved button-->
+        <div class="pgheader-nav_divtp_sav">
+            <div class="pgheader-nav_divtp_sav_savetxt">Saved</div>
+        </div>
+          <!-- This is the Div for sign In button-->
+        <div class="pgheader-nav_divtp_signin">
+            <div class="pgheader-nav_divtp_signin_signtxt">Sign In</div>
+        </div>
+          <!-- This is the Div for Register button-->
+        <div class="pgheader-nav_divtp_restr">
+            <span class="pgheader-nav_divtp_restr_faregicon"><i class="fa fa-user-plus"></i></span>
+            <span class="pgheader-nav_divtp_restr_rgsrtxt">Register</span>
+        </div>
+    </div>
+      <!-- This is the Div for bottom part of the header-->
+    <div class="pgheader-nav_divbtm">
+        <!-- This is the Div for search button-->
+      <div class="pgheader-nav_divbtm_srchbr">
+        <input type=text class="pgheader-nav_divbtm_srchbr_srcbrtxt" placeholder="Where do you want to invest?">
+        <div class="pgheader-nav_divbtm_srchbr_fasrchicon"><i class="fa fa-search"></i></div>
+      </div>
+        <!-- This is the Div for Exchange Type drop down list-->
+      <div class="pgheader-nav_divbtm_ddexc  ddbox">
+        <div class="pgheader-nav_divbtm_ddexc_ddextxt">Exchange Type</div>
+        <div id=exdd class="pgheader-nav_divbtm_ddexc_ddETfaicon"><i id=dropEX class="fa fa-sort-desc"></i>
+      </div>
+        <!-- This is the Div for drop down list-->
+        <div class="dropdown-menu dropdown-meEX">
+          <div class="menualign removeborder" id="ExchangeType1">
+            <span> Exchange Type1</span>
+          </div>
+          <div class="menualign removeborder" id="ExchangeType2">
+            <span> Exchange Type2</span>
+          </div>
+          <div class="menualign removeborder" id=ExchangeType3>
+            <span> Exchange Type3</span>
+          </div>
+          <div class="menualign removeborder" id=ExchangeType4>
+            <span> Exchange Type4</span>
+        </div>
+     </div>
+    </div>
+    {{#each drpdwns}}
+      <!-- This is the Div for Sector Type drop down list-->
+      <div  id={{listname}} class="pgheader-nav_divbtm_ddSectr  ddbox">
+        <div class="pgheader-nav_divbtm_ddSectr_ddsttxt">{{listtype}}</div>
+        <div  class="pgheader-nav_divbtm_ddSectr_ddSTfaicon"><i class="fa fa-sort-desc"></i></div>
+          <!-- This is the Div for drop down list-->
+        <div class="dropdown-menu dropdown-meST" id={{listno}}>
+          <div class="menualign removeborder" id={{option1}}>
+            <span> {{option1}}</span>
+          </div>
+          <div class="menualign removeborder" id={{option2}}>
+            <span> {{option2}}</span>
+          </div>
+          <div class="menualign removeborder" id={{option3}}>
+            <span> {{option3}}</span>
+          </div>
+          <div class="menualign removeborder" id={{option4}}>
+            <span> {{option4}}</span>
+        </div>
+      </div>
+    </div>
+      {{/each}}
+
+        <!-- This is the Div more options button-->
+      <div class="pgheader-nav_divbtm_mroptns">
+      <span class="pgheader-nav_divbtm_mroptns_faiconmr"><i class="fa fa-cog"></i></span>
+      <span class="pgheader-nav_divbtm_mroptns_mroptxt"> More Filters</span>
+    </div>
+    </div>
+  </div>
+</template>

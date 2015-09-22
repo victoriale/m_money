@@ -1,0 +1,371 @@
+/* Author: Sri Sindhusha Kuchipudi
+** Created: 09/18/2015
+** Description: .less file for header_nav
+** Associated Files: header_nav.html, header_nav.less, header_nav_logic.js
+*/
+@import "../global_vars.less";
+@import "../modules.less";
+/* the whole header file*/
+.pgheader-nav{
+  width: 1442px;
+  height: 107px;
+  position: relative;
+  border: #cccccc 1px solid;
+  margin: 5px 5px 0px 5px;
+/* top part of the header*/
+  &_divtp{
+    position:relative;
+    width: 1440px;
+    height: 55px;
+    background-color:  #f2f2f2;
+    /*logo for Finance */
+    &_Finlogo{
+      position:relative;
+      width: 175px;
+      height: 35px;
+      top: 6px;
+      left: 70px;
+      float:left;
+    }
+    /*Research button */
+    &_Resrch{
+      float:left;
+      width: 110px;
+      position:absolute;
+      height: 55px;
+      top: 2px;
+      left: 260px;
+      cursor: pointer;
+      &_restxt{
+        padding-top: 8px;
+        font-family: HN;
+        color:  #272727;
+        font-size: 20px;/* Approximation due to font substitution */
+        padding-left: 11px;
+        overflow: hidden;
+        max-width: 100px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+        /*Top List button */
+    &_tplst{
+      width: 97px;
+      height: 55px;
+      float:left;
+      position: relative;
+      top: 0px;
+      left: 205px;
+      cursor: pointer;
+      &_tptxt{
+        position: relative;
+        font-family: HN-L;
+        color: #272727;
+        font-size: 20px;
+        padding-left: 9px;
+        padding-top: 8px;
+        overflow: hidden;
+        max-width: 100px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+        /*Saved button */
+    &_sav{
+      width: 89px;
+      height: 55px;
+      float:left;
+      position: relative;
+      top: 0px;
+      left: 217px;
+      cursor: pointer;
+      &_savetxt{
+        position: relative;
+        font-family: HN-L;
+        color: #272727;
+        font-size: 20px;
+        padding-top: 8px;
+        padding-left:13px;
+        overflow: hidden;
+        max-width: 79px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+        /*Sign In button */
+    &_signin{
+      width: 110px;
+      height: 55px;
+      float:left;
+      position:relative;
+      top: 2px;
+      left: 795px;;
+      cursor: pointer;
+      &_signtxt
+      {
+        position: relative;
+        font-family: HN-L;
+        color:  #272727;
+        font-size: 20px;/* Approximation due to font substitution */
+        padding-top: 9px;
+        text-align: center;
+        overflow: hidden;
+        max-width: 95px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+        /*Register button */
+    &_restr{
+      width: 110px;
+      height: 55px;
+      position: relative;
+      left: 1274px;
+      top: 0px;
+      cursor: pointer;
+
+      &_faregicon{
+        color:  #272727;
+        font-size: 20px;/* Approximation due to font substitution */
+        font-family: HN;
+        position: relative;
+        text-align: center;
+        top: -41px;
+        float:left;
+        overflow: hidden;
+        max-width: 25px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      &_rgsrtxt{
+        font-family: HN-L;
+        color:  #272727;
+        font-size: 20px;/* Approximation due to font substitution */
+        position: relative;
+        text-align: center;
+        top: -42px;
+        left:10px;
+        overflow: hidden;
+        max-width: 110px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+  /*bottom part of the header*/
+  &_divbtm{
+    /*shape of the dropdown button*/
+   .ddbox{
+      border-radius: 22px;
+      border: solid 1px #cccccc;
+      background-color:  #ebebeb;
+      margin-right:10px;
+      cursor:pointer;
+    }
+    width: 1440px;
+    height: 55px;
+    position: relative;
+    top: -5px;
+    left: 0px;
+    background-color:white;
+    /*dropdown lists*/
+    .dropdown-meEX{
+      min-width: 145px !important;
+      border-color: #3098ff;
+      width: 150px;
+      height: 125px;
+      position: relative;
+      border-radius:18px;
+      top: -3px;
+      left: 0px;
+      min-width: 125px !important;
+      border: #3098ff 1px solid;
+    }
+    /*dropdown for Sector Type*/
+    .dropdown-meST{
+      width: 125px;
+      height: 125px;
+      position: relative;
+      border-radius:18px;
+      top: -3px;
+      left: 0px;
+      min-width: 125px !important;
+      border: #3098ff 1px solid;
+    }
+
+    /*Search bar*/
+    &_srchbr{
+      float:left;
+      width: 455px;
+      height: 35px;
+      border: solid 1px #cccccc;
+      box-sizing: border-box;
+      background-color:  #ffffff;
+      border-bottom-left-radius: 22px;
+      border-bottom-right-radius: 22px;
+      border-top-left-radius: 22px;
+      border-top-right-radius: 22px;
+      position: relative;
+      left: 55px;
+      top:9px;
+      &_srcbrtxt{
+        font-family: HN;
+      padding-left: 9px;
+      top: 0px;
+      width: 411px;
+      position: relative;
+      color: #999999;
+      height: 33px;
+      border-radius: 17px;
+      font-size: 14px;
+      left: 6px;
+      border: none;
+      border-style: initial;
+      padding-left: 0px;
+      max-width: 411px;
+      overflow: hidden;
+      white-space: nowrap;
+      &:focus{
+        outline:none;
+        }
+      }
+      /*Search icon*/
+      &_fasrchicon{
+        color:  #3098ff;
+        font-size: 18px;/* Approximation due to font substitution */
+        font-weight: 400;
+        text-align: right;
+        position:relative;
+        top: 3px;
+        float: right;
+        left: -9px;
+        cursor: pointer;
+      }
+    }
+    /*dropdown buttons and text inside that*/
+    .menualign{
+      padding-left: 10px;
+      height:25px;
+      cursor: pointer;
+      border-radius: 10%;
+      overflow: hidden;
+      max-width: 120px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .removeborder{
+      border: none;
+    }
+    &_ddexc{
+      float:left;
+      width: 150px;
+      height: 35px;
+      position:relative;
+      top: 9px;
+      left: 75px;
+      &_ddextxt{
+         font-family: HN;
+         color:  #000000;
+         font-size: 12px;/* Approximation due to font substitution */
+         text-align: center;
+         position: relative;
+         top: 7px;
+         left: -7px;
+         padding-left: 20px;
+         overflow: hidden;
+         max-width: 130px;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+       }
+       &_ddETfaicon{
+         color:  #cccccc;
+         font-size: 15px;/* Approximation due to font substitution */
+         font-weight: 400;
+         text-align: right;
+         position:relative;
+         top: -15px;
+         float: right;
+         right: 9px;
+         cursor: pointer;
+         overflow: hidden;
+         max-width: 25px;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+       }
+    }
+    /*dropdown button for Sector Type and text inside that*/
+    &_ddSectr{
+      float:left;
+      width: 125px;
+      height: 35px;
+      position:relative;
+      top: 9px;
+      left: 75px;
+      right:10px;
+      &_ddsttxt{
+         font-family: HN;
+         color:  #000000;
+         font-size: 12px;/* Approximation due to font substitution */
+         position: relative;
+         top: 7px;
+         left: 21px;
+         overflow: hidden;
+         max-width: 88px;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+       }
+       &_ddSTfaicon{
+         color:  #cccccc;
+         font-size: 15px;/* Approximation due to font substitution */
+         font-weight: 400;
+         text-align: right;
+         position:relative;
+         top: -15px;
+         float: right;
+         right: 9px;
+         cursor: pointer;
+         overflow: hidden;
+         max-width: 25px;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+       }
+    }
+
+    /*more option button and text inside that*/
+    &_mroptns{
+      float:left;
+      background-color:  #3098ff;
+      width: 115px;
+      height: 35px;
+      position:relative;
+      cursor:pointer;
+      border-bottom-left-radius: 22px;
+      border-bottom-right-radius: 22px;
+      border-top-left-radius: 22px;
+      border-top-right-radius: 22px;
+      top: 9px;
+      left: 100px;
+      &_faiconmr{
+        font-family: HN;
+        color:  #ffffff;
+        font-size: 12px;/* Approximation due to font substitution */
+        position:relative;
+        top: 7px;
+        left: 19px;
+
+      }
+      &_mroptxt{
+        font-family: HN;
+        color:  #ffffff;
+        position:relative;
+        font-size: 12px;/* Approximation due to font substitution */
+        top: 7px;
+        left: 22px;
+        overflow: hidden;
+        max-width: 86px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+}
