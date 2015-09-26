@@ -15,7 +15,7 @@ $(".pgheader-nav_divbtm_dropdown-meDR").hide();
 /* this is for on click events */
 Template.header_nav.events({
 
-  
+
     /*the color of the background will change for the coressponding button*/
     'click .pgheader-nav_divtp_Resrch': function()
     {
@@ -48,6 +48,7 @@ Template.header_nav.events({
     },
     /* this function will show the dropdown list for Exchange type*/
     'click .pgheader-nav_divbtm_ddexc': function() {
+      event.stopPropagation();
       $('.dropdown-meEX').slideToggle();
       $('#ST').slideUp();
       $('#IT').slideUp();
@@ -56,6 +57,7 @@ Template.header_nav.events({
     },
     /* this function will show the dropdown list for Sector type*/
     'click #Sector': function() {
+      event.stopPropagation();
       $('#ST').slideToggle();
       $('.dropdown-meEX').slideUp();
       $('#IT').slideUp();
@@ -64,27 +66,30 @@ Template.header_nav.events({
     },
     /* this function will show the dropdown list for Industry type*/
     'click #Industry': function() {
+      event.stopPropagation();
+      $('#IT').slideToggle();
       $('#ST').slideUp();
       $('.dropdown-meEX').slideUp();
-      $('#IT').slideToggle();
       $('#KM').slideUp();
       $('#DR').slideUp();
     },
     /* this function will show the dropdown list for Key Metric*/
     'click #Key': function() {
+      event.stopPropagation();
+      $('#KM').slideToggle();
       $('#ST').slideUp();
       $('.dropdown-meEX').slideUp();
       $('#IT').slideUp();
-      $('#KM').slideToggle();
       $('#DR').slideUp();
     },
     /* this function will show the dropdown list for Date Range*/
     'click #Date': function() {
+      event.stopPropagation();
+      $('#DR').slideToggle();
       $('#ST').slideUp();
       $('.dropdown-meEX').slideUp();
       $('#IT').slideUp();
       $('#KM').slideUp();
-      $('#DR').slideToggle();
     }
   });
 Template.header_nav.helpers({
@@ -94,4 +99,12 @@ Template.header_nav.helpers({
   { listname:"Key", listtype:"Key Metric", listno:"KM", option1: "Key Metric1", option2: "Key Metric2", option3: "Key Metric3", option4: "Key Metric4"},
   { listname:"Date", listtype:"Date Range", listno:"DR", option1: "Date Range1", option2: "Date Range2", option3: "Date Range3", option4: "Date Range4"},
 ]
+});
+//To hide the dropdown menu when clicked on body of the page
+$(document).click( function(){
+  $('#ST').slideUp();
+  $('.dropdown-meEX').slideUp();
+  $('#IT').slideUp();
+  $('#KM').slideUp();
+  $('#DR').slideUp();
 });
