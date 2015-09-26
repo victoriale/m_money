@@ -12,6 +12,8 @@ POST2 = new Mongo.Collection('post2');
 REPLY2 = new Mongo.Collection('reply2');
 POST3 = new Mongo.Collection('post3');
 REPLY3 = new Mongo.Collection('reply3');
+POST4 = new Mongo.Collection('post4');
+REPLY4 = new Mongo.Collection('reply4');
 
 POST.allow({
   insert: function(userId, doc) {
@@ -76,6 +78,28 @@ REPLY3.allow({
   remove: function(userId, doc) {
     return true;
   }
+});
+
+  POST4.allow({
+    insert: function(userId, doc) {
+      return true;
+    }
+  });
+
+  POST4.allow({
+    remove: function(userId, doc) {
+      return true;
+    }
+  });
+  REPLY4.allow({
+    insert: function(userId, doc) {
+      return true;
+    }
+  });
+  REPLY4.allow({
+    remove: function(userId, doc) {
+      return true;
+    }
 });
 
 
@@ -97,5 +121,11 @@ if (Meteor.isServer) {
   });
   Meteor.publish('reply3', function() {
     return REPLY3.find();
+  });
+  Meteor.publish('post4', function() {
+    return POST4.find();
+  });
+  Meteor.publish('reply4', function() {
+    return REPLY4.find();
   });
 }

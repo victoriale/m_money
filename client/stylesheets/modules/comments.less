@@ -209,7 +209,7 @@ Description: Leave_comment
 
 .right_sort{
 
-  width:200px;
+  width:185px;
   float:right;
   position: relative;
   margin-right: -40px;
@@ -220,7 +220,15 @@ Description: Leave_comment
   color:#000;
   font-family: HN-B;
 }
-
+.com
+{
+  &-grey{
+      background-color: #f8f8f8 !important;
+  }
+  &-not-grey{
+    background-color: #ffffff !important;
+  }
+}
 .comment-count{
   //count of comments
   font-size: 12px;
@@ -240,7 +248,7 @@ Description: Leave_comment
 
   &_row{
     padding: 12px;
-    width:620px;
+    width:640px;
     min-height:100px;
     border-bottom: 1px solid @grey-1;
     padding-left: 15px !important;
@@ -258,7 +266,7 @@ Description: Leave_comment
 
     &_text{
       float:right;
-      width:485px;
+      width:500px;
       min-height:80px;
       display: block;
       margin-top: -13%;
@@ -276,7 +284,6 @@ Description: Leave_comment
       //user comment
       width:100%;
       height:40px;
-      background: #fff;
       display: block;
       text-align: left;
       word-wrap:break-word;
@@ -285,7 +292,6 @@ Description: Leave_comment
     &_u-reply{
       width:100%;
       height:20px;
-      background: #fff;
       font-size: 12px;
       font-family: HN-B;
       display: block;

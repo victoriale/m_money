@@ -1,0 +1,298 @@
+<!--
+Author: Navya Eetaram
+Created: [09/25/2015]
+Description: FIN - Company Location Page - Market Recap
+<Associated Files: market_recap_news.html, market_recap_news.js, market_recap_news.less, comments.less, commentserver.js
+-->
+
+
+<template name = "market_recap_news">
+
+  <!-- Header Section -->
+  <div class = "mr">
+    <div class = "mr-hdr">
+      <div class = "mr-hdr-img">
+        <a href = "{{back_link}}">
+          <div class = "mr-hdr-img-icon"><i class = "fa fa-reply"></i></div>
+        </a>
+      </div>
+      <div class = "mr-hdr-txt">
+        <div class = "mr-hdr-txt-upd">LAST UPDATED: {{date1}}</div>
+        <div class = "mr-hdr-txt-loc"><i class = "fa fa-map-marker"> {{loc}}</i></div>
+        <div class = "mr-hdr-txt-ttl">Market Recap</div>
+        <div class = "mr-hdr-txt-cmpy">For {{company}}</div>
+      </div>
+    </div>
+    <!-- END Header Section -->
+
+    <!-- News Slider Section -->
+    <div class = "mr-sldr">
+      <!-- Top -->
+      <div class = "mr-sldr-top">
+        <div class = "mr-sldr-top-lft">
+          <div class = "mr-sldr-top-lft-txt">
+            <div class = "mr-sldr-top-lft-txt-cmpy">{{company}}'s</div>
+            <div class = "mr-sldr-top-lft-txt-rem">&nbsp;Market Recap</div>
+          </div>
+        </div>
+        <div class = "mr-sldr-top-rgt">
+          <div class = "mr-sldr-top-rgt-sv"><i class = "fa fa-heart"></i>Save</div>
+          <div class = "mr-sldr-top-rgt-shr"><i class = "fa fa-share-alt"></i>Share</div>
+        </div>
+      </div>
+      <!-- END Top -->
+      <!-- Middle -->
+      <div class = "mr-sldr-mid">
+        <div class = "navigation-button-left"><i class = "fa fa-angle-left"></i></div>
+        <div class = "navigation-button-right"><i class = "fa fa-angle-right"></i></div>
+        <div class = "mr-sldr-mid-img"></div>
+        <div class = "mr-sldr-mid-ttl">
+          <div class = "mr-sldr-mid-ttl-icon"></div>
+          <div class = "mr-sldr-mid-ttl-txt">
+            <div class = "mr-sldr-mid-ttl-txt-cmpy">{{company}}</div>
+            <div class = "mr-sldr-mid-ttl-txt-link">
+              <div class = "mr-sldr-mid-ttl-txt-link-sv"><i class = "fa fa-heart"></i>Save</div>
+              <div class = "mr-sldr-mid-ttl-txt-link-shr"><i class = "fa fa-share-alt"></i>Share</div>
+            </div>
+          </div>
+        </div>
+        <div class = "mr-sldr-mid-desc">
+          <div class = "mr-sldr-mid-desc-txt">
+            <div class = "mr-sldr-mid-desc-txt-desc">
+              <strong>{{company}}</strong>'s overall annual financials are <em>{{percent}}</em> from {{year}}.
+              With an <em>{{price_change}}</em> in stock price bringing individual <em>share price to {{stock_price}}.</em>
+            </div>
+            <div class = "mr-sldr-mid-desc-txt-stck">
+              <strong>{{company}}</strong> is currently priced at:<br>
+              <strong>{{actual_price}}</strong>
+              <em style = "{{color}}"><i class = {{arrow}}></i> {{inc}}</em>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END Middle -->
+      <!-- Bottom -->
+      <div class = "mr-sldr-bttm">
+        <div class = "mr-sldr-bttm-txt">
+          <div class = "mr-sldr-bttm-txt-top">Interested in discovering more about {{company}}?</div>
+          <div class = "mr-sldr-bttm-txt-bttm">Profile Last Updated On: <strong>{{date2}}</strong></div>
+        </div>
+        <div class = "mr-sldr-bttm-bttn">
+          <div class = "mr-sldr-bttm-bttn-txt">View Profile<i class = "fa fa-angle-right"></i></div>
+        </div>
+      </div>
+      <!-- END Bottom -->
+    </div>
+    <!-- END News Slider Section -->
+
+
+    <!-- Article Section -->
+    <div class = "mr-art">
+      <!-- Article Header -->
+      <div class = "mr-art-hdr">
+        <div class = "mr-art-hdr-info">
+          <div class = "mr-art-hdr-info-img"></div>
+          <div class = "mr-art-hdr-info-txt">
+            <div class = "mr-art-hdr-info-txt-auth">by <strong>{{auth}}</strong></div>
+            <div class = "mr-art-hdr-info-txt-upd">
+              <div class = "mr-art-hdr-info-txt-upd-dt">{{date3}}</div>
+              <i class = "fa fa-circle"></i>
+              <div class = "mr-art-hdr-info-txt-upd-time">{{time1}}</div>
+            </div>
+          </div>
+        </div>
+        <div class = "mr-art-hdr-links">
+          <div class = "mr-art-hdr-links-fb"><i class = "fa fa-facebook"></i></div>
+          <div class = "mr-art-hdr-links-twttr"><i class = "fa fa-twitter"></i></div>
+          <div class = "mr-art-hdr-links-gplus"><i class = "fa fa-google-plus"></i></div>
+        </div>
+      </div>
+      <!-- END Article Header -->
+
+      <!-- Article Graph -->
+      <div class = "mr-gph">
+        <div class = "mr-gph-gs">
+          <div class = "mr-gph-gs-t">
+            Stock Graph
+          </div>
+          <div class = "mr-gph-gs-is">
+            <div class = "mr-gph-gs-is-c">
+
+            </div>
+            <div class = "mr-gph-gs-is-tx">
+              <div class = "mr-gph-gs-is-tx-ttl">
+                {{company}}
+              </div>
+              <div class = "mr-gph-gs-is-tx-st">
+                $94.31
+                <em style = "color:#22a922"><i class = {{arrow}}></i> {{inc}}</em>
+              </div>
+              <div class = "mr-gph-gs-is-tx-lu">
+                Last updated at 4:00 PM EST
+              </div>
+
+
+            </div>
+
+          </div>
+          <div class = "mr-gph-gs-ts">
+            <div class="mr-gph-gs-ts-1t mr-gph-gs-ts-1t-sel" id="tab-0" onclick="tabselct(0)">TODAY</div>
+            <div class="mr-gph-gs-ts-1t" id="tab-1" onclick="tabselct(1)">1 WEEK</div>
+            <div class="mr-gph-gs-ts-1t" id="tab-2" onclick="tabselct(2)">1 MONTH</div>
+            <div class="mr-gph-gs-ts-1t" id="tab-3" onclick="tabselct(3)">1 YEAR</div>
+          </div>
+          <div class = "mr-gph-gs-g">
+            {{> highchartsHelper chartId="stockgraph-n" chartWidth="300px" chartHeight="140px" chartObject=getstocksg}}
+          </div>
+        </div>
+        <span class = "mr-gph-txt">
+          <p class="DoubleSpace"> <span class = "mr-gph-txt-b">F</span>acebook, Inc. (NASDAQ:FB) has received a hold rating for the short term, according to the latest rank of 3 from research firm, <span class = "mr-gph-txt-sb">Zacks</span>. The company received an average rating of 1.28 from 29 analysts. 23 have rated it as a strong buy. 4 analysts recommended buying the shares. 2 analysts have rated the company at hold. </p>
+
+          <p class="DoubleSpace"><span class = "mr-gph-txt-sb">Facebook, Inc.</span> (NASDAQ:FB) stock has received a short term price target of $ 112.08 from 25 Analyst. The share price can be expected to fluctuate from the mean short term target, can be seen from the standard deviation reading of $11.61. The higher estimate of target price is $146 , while the lower price target estimate is $90</p>
+
+          <p class="DoubleSpace">Many analysts have commented on the company rating. Brokerage firm Barclays maintains its rating on Facebook, Inc. (NASDAQ:FB). As per the latest information, the brokerage house raises the price target to $105 per share from a prior target of $98. The shares have been rated Overweight . The rating by the firm was issued on July 30, 2015.</p>
+
+          <p class="DoubleSpace">Facebook, Inc. (NASDAQ:FB) witnessed a decline in the market cap on Monday as its shares dropped 0.16% or 0.15 points. After the session commenced at $95.68, the stock reached the higher end at $95.9 while it hit a low of $93.63. With the volume soaring to 21,617,818 shares, the last trade was called at $94.15. The company has a 52-week high of $99.24. The company has a market cap of $212,754 million and there are 2,259,737,000 shares in outstanding. The 52-week low of the share price is $70.32.</p>
+
+          <p class="DoubleSpace">On a different note, The Company has disclosed insider buying and selling activities to the Securities Exchange, The Securities and Exchange Commission has divulged that Stretch Colin, officer (VP, Gen. Counsel & Secretary) of Facebook Inc, had unloaded 1,000 shares at an average price of $93.81 in a transaction dated on August 4, 2015. The total value of the transaction was worth $93,810. Currently the company Insiders own 0.3% of Facebook, Inc. Company shares. In the past six months, there is a change of -16.71% in the total insider ownership. Institutional Investors own 67.1% of Company shares. During last 3 month period, 0.31% of total institutional ownership has changed in the company shares.</p>
+
+          <p class="DoubleSpace"> er what is going on in the world around them, and to share and express what matters to them to the people they care about. Developers can use the Facebook Platform to build applications and Websites that integrate with Facebook to reach its global network of users and to build</p>
+        </span>
+      </div>
+      <!-- END Aricle Graph-->
+    </div>
+    <!-- END Article Section -->
+
+    <!-- Comment Section -->
+    <div class = "mr-cmnt">
+      <div class = "mr-cmnt-h">
+        <div class = "mr-cmnt-h-b"> Comments </div>
+        <div class = "mr-cmnt-h-tt"> &nbsp; for this article</div>
+      </div>
+      <div class = "mr-cmnt-h-c"><i class="fa fa-comments"></i></div>
+      <div class="cspace" >
+        <!--Input box-->
+        <div class="u_input" >
+          <div class="u_input_image"></div>
+          <div class="u_input_crt" ></div>
+          <div class="u_input_box">
+            <!--Container to enter text -->
+            <textarea class="u_input_text" id="comment-3" placeholder="What is your opinion?"></textarea>
+
+            <div class="u_input_share">
+              <span class= "u_input_share_group">
+                <!-- Share Options-->
+                <a class="i_gplus f-left" href="https://plus.google.com/share?url={URL}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-google-plus"></i></a>
+                <a class="i_fbook f-right" style="margin-left:75px;" href="https://www.facebook.com/sharer/sharer.php?u=" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-facebook"></i></a>
+                <a class="i_twitter" href="https://twitter.com/intent/tweet" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-twitter"></i></a>
+              </span>
+              <!-- submit button-->
+              <span class="u_input_share_button">post</span>
+            </div>
+          </div>
+        </div>
+        <!--Container for drop down menu -->
+        <div class="comment-sort">
+          <span class="left_sort">
+            <span class="sorted_by f-left"> Sorted by :
+              <span class="result-sort">Most Recent</span>
+            </span>
+          </span>
+          <span class="right_sort">
+            <span class="comment-count"><bluetext> {{cnt4}} </bluetext> Comments | </span>
+            <span class="sorted_by_downarrow"> Sort Options
+              <i class="fa fa-sort-desc" id="sortingo" style="cursor:pointer; color:#3098ff; margin-left:3px"></i></span>
+
+              <div class="dropdown-menu aligndropdown">
+                <div class="menutextalign removeborder" id="mr">
+                  <i class="fa fa-calendar"></i>
+                  <span> Most Recent</span>
+                </div>
+                <div class="menutextalign" id="tc">
+                  <i class="fa fa-star-o"></i>
+                  <span> Top Comments</span>
+                </div>
+
+              </div>
+            </span>
+          </div>
+          <!-- Container for comments-->
+          <div class="c-box">
+            {{#each post4}}
+            <div class="c-box_row {{isGreyfn}}">
+              <span class="c-box_row_image"></span>
+              <span class="c-box_row_text">
+                <div class = "c-box_row_name"> User Name </div>
+                <div class = "c-box_row_u-cmnt" id="{{cmtid}}">
+                  {{inserted}}
+                </div>
+
+                <div class ="c-box_row_u-reply">
+                  <i class="fa fa-reply f-left">
+                    <span class="underline" id="Reply" onclick="dsp('box{{cmtid}}')">  {{rpycnt}} Replies
+
+                    </span></i>
+                    <i class="fa fa-circle f-left" style="color:#959595; font-size:3px; margin-top:5px; margin-left:10px; margin-left:10px; margin-right:15px"></i>
+                    <i class="fa fa-share-alt f-left"> <span class="underline">Share This </span></i>
+                    <i class="fa fa-circle f-left" style="color:#959595; font-size:3px; margin-top:5px; margin-left:10px; margin-right:15px"></i>
+                    <i class="fa fa-plus f-left"><span class="underline"> Add To</span></i>
+                    <i class="fa fa-circle f-left" style="color:#959595; font-size:3px; margin-top:5px; margin-left:10px; margin-right:15px "></i>
+                    <span class="c-box_row_time f-left">{{clockn}}</span>
+
+                  </div>
+
+                </span>
+                <!--Container for reply -->
+                <div class="boxnum" id="box{{cmtid}}" style="display:none">
+                  {{#each reply4}}
+                  <div class="on-reply_row">
+                    <span class="on-reply_row_image"></span>
+                    <span class="on-reply_row_text" id="{{replyid}}">
+                      <span class="on-reply_row_text_reply">
+                        <span class = "on-reply_row_profile_name"> User Name :  </span> {{replyy}}</span>
+                        <!--sharing options -->
+                        <div class ="on-reply_row_user-reply">
+                          <i class="fa fa-share-alt f-left"> <span class="underline">Share This </span></i>
+                          <i class="fa fa-circle f-left" style="color:#959595; font-size:3px; margin-top:5px; margin-left:10px; margin-right:15px"></i>
+                          <i class="fa fa-plus f-left"><span class="underline"> Add To</span></i>
+                          <i class="fa fa-circle f-left" style="color:#959595; font-size:3px; margin-top:5px; margin-left:10px; margin-right:15px "></i>
+                          <span class="c-box_row_time f-left">{{time}}</span>
+                        </div>
+                      </span>
+                    </div>
+                    {{/each}}
+                    <!--image for reply box -->
+                    <span class="r-box_row_image"> </span>
+                    <span class="r-text">
+                      <textarea class="r-box_row_text r-box_{{cmtid}}" placeholder="What is your opinion?"></textarea>
+                      <span class="reply_button"><i class="fa fa-paper-plane"></i></span>
+                    </span>
+
+                  </div>
+                </div>
+                {{/each}}
+              </div>
+              <br>
+              <!-- Script for displaying reply input box-->
+              <script type="text/javascript">
+              function dsp(id) {
+                var cmt = document.getElementById(id)
+
+                if (cmt.style.display == "none") {
+                  cmt.style.display = "block"
+                }
+                else {
+                  cmt.style.display = "none"
+                }
+                return false;
+              }
+              </script>
+            </div>
+          </div>
+          <!-- END Comment Section -->
+
+          <!-- Search Section -->
+          {{>didnt_find}}
+          <!-- END Search Section -->
+        </div>
+      </template>
