@@ -1,0 +1,77 @@
+<template name="finance_loading">
+  <div class="finance_loading">LOADING DATA<br><img src="http://cdn.joyfulhome.com/loading.gif"></div>
+</template>
+
+<template name="magazine_loading">
+  <div class="finance_loading">Writing Your Magazine</div> <!-- <br> -->
+  <div style="text-align: center; margin-bottom: 60px;">
+    <span class="loader"><span class="loader-inner"></span></span>
+    <span class="loader"><span class="loader-inner"></span></span>
+    <span class="loader"><span class="loader-inner"></span></span>
+  </div>
+</template>
+
+<template name="magazine_error">
+  <div style="width: 585px; height: 230px; margin: 100px auto">
+    <div style="width: 100%; height: 40px; background-color: #44b244; color: #fff; font-size: 18px; text-align: left; line-height: 40px; padding-left: 10px;">
+      <i class="fa fa-bell-o" style="margin-right: 5px;"></i>Notification
+    </div>
+    <div style="width: 100%; height: 190px; background-color: #fff; color: #000; padding: 30px; font-family: HN; border: solid 1px #000">
+      <div style="font-size: 32px; font-family: HN-L; line-height: 36px">We're sorry. The magazine is not available for this player.</div>
+      <div style="font-size: 18px; font-family: HN-L; margin-top: 20px">Please try another player</div>
+    </div>
+  </div>
+</template>
+
+<template name="finance_error">
+  <div class="finance_loading">
+    ERROR LOADING DATA
+    <div class="finance_loading_text">Please try refreshing your page</div>
+  </div>
+
+</template>
+
+<template name="finance_noresults">
+  <div class="finance_loading">
+    YOUR SEARCH HAD NO RESULTS
+    <div class="finance_loading_text">Please try a different search or look for a team below</div>
+  </div>
+
+</template>
+
+<template name="finance_404">
+  <div class="finance_loading">
+    Oops! That page doesn't exist!
+    <div class="finance_loading_text">Try looking for a Company below or go to <a href="/">our home page</a>!</div>
+  </div>
+
+</template>
+
+<template name='maintenance'>
+  <div style="height:1000px; width:1000px; margin:100px auto; text-align:center">
+    <div style="font-size:50px; color:#000">InvestKit is Under Maintenance</div>
+    <div style="font-size:40px; color:#000">We will be back up soon!</div>
+    <img src="http://cdn.joyfulhome.com/loading.gif">
+  </div>
+</template>
+
+<template name='no_company'>
+  <div style="height:1000px; width:1000px; margin:100px auto; text-align:center">
+    <div style="font-size:50px; color:#000">This Page Is Unavailable</div>
+    <div style="font-size:30px; color:#000">“Sorry. Player information is unavailable for this team right now."</div>
+    <a href="/"><img src="http://localhost:3000/public/helm.gif"></a>
+    <div>Go Home</div>
+  </div>
+
+</template>
+
+<template name='no_executive'>
+  <div style="height:1000px; width:1000px; margin:100px auto; text-align:center">
+    <div style="font-size:50px; color:#000">This Page Is Unavailable</div>
+    <div style="font-size:35px; color:#000">“Sorry. Information is no longer available for this Executive."</div>
+    <div style="font-size:20px; color:#000">Data may have been removed for some other reason.</div>
+    <a href="/"><img src="http://localhost:3000/public/helm.gif"></a>
+    <div>Go Home</div>
+  </div>
+
+</template>
