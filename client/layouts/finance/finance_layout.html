@@ -3,10 +3,16 @@
     <tr>
       <td class="finance_body_left"></td>
       <td class="finance_body_center">
-        {{> yield "centerarea"}}
+        {{> yield}}
       </td>
-      <!--<td class="finance_body_faq">{{> ad_zone}}</td>-->
+      <td class="finance_body_faq">{{> ad_zone}}</td>
       <td class="finance_body_right"></td>
     </tr>
   </table>
+</template>
+
+<template name="finance_layout_home">
+  {{> yield "header"}}
+  {{> yield}}
+  {{> Footer}}
 </template>

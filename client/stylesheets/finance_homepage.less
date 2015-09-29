@@ -1,0 +1,496 @@
+@import (reference)"global_vars.less"; //include important global vars (colors mostly)
+.fi_home_container{
+  min-width: 1042px;
+  max-width: 1460px;
+  padding: 0 10px;
+  text-align: center;
+  width: 100%;
+  margin: 10px auto;
+}
+
+.fi_search_recommendations {
+  width: inherit;
+  position: absolute;
+  top: 65px;
+  left: 0px;
+  list-style: none;
+  padding: 10px 0px 0px 0px;
+  display: none;
+  height: auto;
+  background-color: @white;
+  border: 1px solid @blue;
+  border-radius: 5px;
+  z-index: 2;
+  text-align: left;
+  font-size: 16px;
+
+  &.active {
+    display: block;
+  }
+
+  &_item {
+    height: 55px;
+    line-height: 55px;
+    width: 100%;
+    padding: 0px 20px;
+    cursor: pointer;
+    font-size: 18px;
+
+    &:hover {
+      color: @white;
+      background-color: @blue;
+    }
+
+    &:hover .fa{
+      visibility: visible;
+    }
+
+    .fa{
+      float: right;
+      font-size: 30px;
+      line-height: 55px;
+      visibility: hidden;
+    }
+  } // END .search_recommendations_item
+
+  .caret-top {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    border-bottom: 10px solid @blue;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      right: -6px;
+      border-bottom: 8px solid @white;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+    }
+  }
+
+  .border-li {
+    margin: 0px 16px;
+    height: 1px;
+    background-color: #ebebeb;
+    cursor: default;
+  }
+
+  &_close {
+    color: @black;
+    cursor: pointer;
+    position: absolute;
+    top: 7px;
+    right: 16px;
+
+    &:hover {
+      color: @red;
+    }
+  }
+}
+
+//Discover Your Home Search Area
+.fi_discover{
+  width: 100%;
+  height:495px;
+  background-image: url('http://cdn.joyfulhome.com/HQ_TopPhoto.jpg');
+  background-size: cover;
+  background-position: center center;
+  margin-bottom: 50px;
+  &-title{
+    font-size:60px;
+    font-family: HN-B;
+    text-align: center;
+    padding-top:124px;
+    color:@white;
+  }
+  &-subtitle{
+    font-size:24px;
+    font-family:HN-L;
+    text-align: center;
+    color:@white;
+  }
+  .fi_mainsearch{
+    margin: 20px auto;
+    width:600px;
+    height:50px;
+    background-color: @white;
+    border-radius: 5px;
+    //box-shadow: 0 0 3px 3px rgba(48,152,255, 0.7);
+    display:inherit;
+    box-sizing: border-box;
+    position: relative;
+    &-text{
+      font-family:HN-L;
+      font-size: 18px;
+      width:83%;
+      height:100%;
+      color:@black;
+      text-align: left;
+      border: none;
+      border-radius: 5px;
+      padding-left:10px;
+    }
+    .fi_searchbtn{
+      width:17%;
+      height:100%;
+      background-color: @blue;
+      color:@white;
+      font-size:24px;
+      text-align:center;
+      float:right;
+      border:none;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+  }
+.boxhighlight{
+  box-shadow: 0 0 3px 3px rgba(48,152,255, 0.75);
+
+  &-black{
+    box-shadow: 0 0 3px 3px rgba(0,0,0, 0.75);
+  }
+}
+}
+//Discover Your Home Search Area END
+//Explore Your Local Area
+.fi_explore{
+  width: 100%;
+  //height:997px;
+  margin: 0 auto 50px;
+  color:@black;
+  //display: none;
+
+  a {
+    color: @white;
+  }
+
+  &-blue{
+    width:34px;
+    height:35px;
+    color:@blue;
+    display: -webkit-inline-box;
+    display: inline-block;
+    position:relative;
+    right:5px;
+    top:3px;
+  }
+  &-title{
+    margin: 0 0 20px;
+    font-size: 32px;
+    text-transform: uppercase;
+    font-family:HN-L;
+    &-first{
+      font-family: HN-B;
+    }
+  }
+  &-box{
+    margin: 0 auto;
+    width:970px;
+    height:770px;
+    color:@white;
+    font-size:32px;
+  }
+  &-cont{
+
+  }
+  &-bg{
+    -webkit-filter: blur(0px);
+    -moz-filter: blur(0px);
+    -o-filter: blur(0px);
+    -ms-filter: blur(0px);
+    filter: blur(0px);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+  }
+  &-btn{
+    width: 204px;
+    height: 54px;
+    border-radius: 5px;
+    border: 2px solid @white;
+    background-color: rgba(0, 0, 0, 0.25);
+    color: @white;
+    text-align: center;
+    font-size: 18px;
+    font-family: HN-L;
+    line-height: 50px;
+    display: inline-block;
+    position: relative;
+    top: -75px;
+    visibility: hidden;
+    z-index: 1;
+
+    .fa{
+      margin-left: 5px;
+    }
+
+    &:hover{
+      background-color: @blue;
+      border: none;
+      line-height: 54px;
+    }
+  }
+  &-txt{
+    visibility: visible;
+    font-family: HN-L;
+    font-size: 30px;
+
+    div{
+      font-family: HN-L;
+    }
+  }
+  &-image1{
+    width: ~"calc(66% - 6px)";
+    height:250px;
+    margin:5px;
+    padding: 80px 0;
+    z-index: 0;
+    position: relative;
+    text-align: center;
+
+    &:hover .fi_explore-bg{
+      -webkit-filter: blur(10px);
+  	  -moz-filter: blur(10px);
+  	  -o-filter: blur(10px);
+  	  -ms-filter: blur(10px);
+      filter: blur(10px);
+    }
+
+    &:hover .fi_explore-btn{
+      visibility: visible;
+    }
+
+    &:hover .fi_explore-txt{
+      visibility: hidden;
+    }
+  }
+  &-image2{
+    width: ~"calc(33% - 5px)";
+    height:250px;
+    margin:5px;
+    padding: 80px 0;
+    font-family: HN-L;
+    z-index: 0;
+    position: relative;
+    text-align: center;
+
+    &:hover .fi_explore-bg{
+      -webkit-filter: blur(10px);
+      -moz-filter: blur(10px);
+      -o-filter: blur(10px);
+      -ms-filter: blur(10px);
+      filter: blur(10px);
+    }
+
+    &:hover .fi_explore-btn{
+      visibility: visible;
+    }
+
+    &:hover .fi_explore-txt{
+      visibility: hidden;
+    }
+  }
+  &-image3{
+    width: ~"calc(33% - 5px)";
+    height:250px;
+    margin:5px;
+    padding: 80px 0;
+    font-family: HN-L;
+    position: relative;
+  }
+  #explore3{
+    font-size:30px;
+    padding-top: 80px;
+      // &::first-line{
+      //   font-family: HN-B;
+      // }
+  }
+  &-more{
+    width:160px;
+    font-size:24px;
+    font-family: HN-L;
+    padding: 10px 25px;
+    margin:40px auto;
+    border:2px solid @blue;
+    color:@blue;
+    background-color: @white;
+    border-radius: 5px;
+    &:hover{
+      background-color: @blue;
+      color:@white;
+      cursor:pointer;
+    }
+
+    .fa{
+      margin-left: 5px;
+    }
+  }
+}
+//Explore Your Local Area END
+//Top Properties Right Now
+.fi_properties_now{
+  //display: none;
+  width: 100%;
+  height:450px;
+  background-image: url('http://cdn.joyfulhome.com/HQ_BottomPhoto.jpg');
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  &-title{
+    font-size:60px;
+    font-family: HN-B;
+    text-align: center;
+    padding-top:124px;
+    color:@white;
+  }
+
+  &-subtitle{
+    font-size:24px;
+    font-family:HN-L;
+    text-align: center;
+    color:@white;
+  }
+  &-more{
+    width:200px;
+    font-family:HN-L;
+    font-size:24px;
+    padding: 10px 25px;
+    margin:40px auto;
+    border-radius: 5px;
+    border:2px solid @blue;
+    color:@blue;
+    background-color: @white;
+    &:hover{
+      background-color: @blue;
+      color:@white;
+      cursor:pointer;
+    }
+
+    &-arrow{
+      width: 100px;
+      height: 100px;
+      line-height: 94px;
+      font-size: 72px;
+      color: @white;
+      text-align: center;
+      border-radius: 50%;
+      border: none;
+      background-color: rgba(0, 0, 0, 0);
+      position: absolute;
+      top: 175px;
+      right: 40px;
+
+      &:hover{
+        line-height: 88px;
+        border: 3px solid @white;
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}
+//Top Properties Right Now END
+//Features to Note
+.fi_features_note{
+  //display: none;
+  width: 100%;
+  //height:726px;
+  margin-bottom: 30px;
+
+  a {
+    color: @white;
+  }
+
+  &-blue{
+    width:45px;
+    height:40px;
+    color:@blue;
+    display: -webkit-inline-box;
+    display: inline-block;
+    position:relative;
+    right:5px;
+    top:8px;
+  }
+  &-title{
+    margin:20px 0;
+    font-size: 32px;
+    font-family: HN-L;
+    &-first{
+      font-family: HN-B;
+    }
+  }
+  &-box{
+    margin: 0 auto;
+    width:970px;
+    height:520px;
+    color:@white;
+    font-size:32px;
+  }
+  &-image1{
+    width: ~"calc(66% - 6px)";
+    height:250px;
+    margin:5px;
+    padding:90px 0;
+  }
+  &-image2{
+    width: ~"calc(33% - 5px)";
+    height:250px;
+    margin:5px;
+    padding:90px 0;
+  }
+  #feature2{
+    font-size:30px;
+    padding: 75px 30px;
+    &::first-line{
+      font-family: HN-B;
+    }
+  }
+  &-more{
+    width:160px;
+    font-size:24px;
+    font-family: HN-L;
+    padding: 10px 25px;
+    margin:20px auto;
+    border:2px solid @blue;
+    color:@blue;
+    background-color: @white;
+    border-radius: 5px;
+    &:hover{
+      background-color: @blue;
+      color:@white;
+      cursor:pointer;
+    }
+
+    .fa{
+      margin-left: 5px;
+    }
+  }
+}
+//Features to Note END
+
+#explore1 {
+  float: left;
+}
+#explore2 {
+  float: right;
+}
+#explore3 {
+  background-color: @black;
+  float: left;
+}
+#explore4 {
+  float: right;
+}
+#explore5 {
+  float: left;
+}
+#explore6 {
+  float: right;
+}

@@ -1,0 +1,150 @@
+<!-- Author: Ryan Fisher
+**** Created: [09/16/2015]
+**** Description: Footer template
+**** Associated Files: footer.html, footer.less, footer.js
+-->
+
+<template name="Footer">
+  <div class="footer-standard" ><!--This class is the main container for all sub-container -->
+    <div class ="footer-header"><!--This class corresponds -->
+      <div class="footer-joyfulhome_logo"></div>
+
+      <ul class="footer-btn">
+        <li>
+          <a class="facebook_foot" rel="nofollow">
+            <div class="footer-right_button">
+              <i class="fa fa-pinterest-p"></i>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="facebook_foot1" rel="nofollow">
+            <div  class="footer-right_button1">
+              <i class="fa fa-google-plus"></i>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="facebook_foot2" rel="nofollow">
+            <div  class="footer-right_button2">
+              <i class="fa fa-linkedin"></i>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="facebook_foot3" rel="nofollow">
+          <div  class="footer-right_button3">
+            <i class="fa fa-twitter"></i>
+          </div>
+          </a>
+        </li>
+        <li>
+          <a class="facebook_foot4" rel="nofollow">
+            <div  class="footer-right_button4">
+              <i class="fa fa-facebook "></i>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="footer-content">
+      <div class="footer-home-sec_body" >
+
+      <!-- <div class="footer-title">National Real Estate</div> -->
+
+      <div class="footer-company">
+        <p>Company Listings |
+          <a href="{{pathFor 'content.finance.directory' company ='#' list=navLink.list pageNum=navLink.pageNum}}"> # </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='A' list=navLink.list pageNum=navLink.pageNum}}"> A </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='B' list=navLink.list pageNum=navLink.pageNum}}"> B </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='C' list=navLink.list pageNum=navLink.pageNum}}"> C </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='D' list=navLink.list pageNum=navLink.pageNum}}"> D </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='E' list=navLink.list pageNum=navLink.pageNum}}"> E </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='F' list=navLink.list pageNum=navLink.pageNum}}"> F </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='G' list=navLink.list pageNum=navLink.pageNum}}"> G </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='H' list=navLink.list pageNum=navLink.pageNum}}"> H </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='I' list=navLink.list pageNum=navLink.pageNum}}"> I </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='J' list=navLink.list pageNum=navLink.pageNum}}"> J </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='K' list=navLink.list pageNum=navLink.pageNum}}"> K </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='L' list=navLink.list pageNum=navLink.pageNum}}"> L </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='M' list=navLink.list pageNum=navLink.pageNum}}"> M </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='N' list=navLink.list pageNum=navLink.pageNum}}"> N </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='O' list=navLink.list pageNum=navLink.pageNum}}"> O </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='P' list=navLink.list pageNum=navLink.pageNum}}"> P </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='Q' list=navLink.list pageNum=navLink.pageNum}}"> Q </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='R' list=navLink.list pageNum=navLink.pageNum}}"> R </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='S' list=navLink.list pageNum=navLink.pageNum}}"> S </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='T' list=navLink.list pageNum=navLink.pageNum}}"> T </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='U' list=navLink.list pageNum=navLink.pageNum}}"> U </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='V' list=navLink.list pageNum=navLink.pageNum}}"> V </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='W' list=navLink.list pageNum=navLink.pageNum}}"> W </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='X' list=navLink.list pageNum=navLink.pageNum}}"> X </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='Y' list=navLink.list pageNum=navLink.pageNum}}"> Y </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='Z' list=navLink.list pageNum=navLink.pageNum}}"> Z </a> |
+          <a href="{{pathFor 'content.finance.directory' company ='New' list=navLink.list pageNum=navLink.pageNum}}"> Newly Added </a>
+        </p>
+      </div>
+      <div class="footer-people">
+        <p>People Listings |
+            <a href="{{pathFor 'content.finance.directory' people ='#' list=navLink.list pageNum=navLink.pageNum}}"> # </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='A' list=navLink.list pageNum=navLink.pageNum}}"> A </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='B' list=navLink.list pageNum=navLink.pageNum}}"> B </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='C' list=navLink.list pageNum=navLink.pageNum}}"> C </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='D' list=navLink.list pageNum=navLink.pageNum}}"> D </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='E' list=navLink.list pageNum=navLink.pageNum}}"> E </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='F' list=navLink.list pageNum=navLink.pageNum}}"> F </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='G' list=navLink.list pageNum=navLink.pageNum}}"> G </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='H' list=navLink.list pageNum=navLink.pageNum}}"> H </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='I' list=navLink.list pageNum=navLink.pageNum}}"> I </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='J' list=navLink.list pageNum=navLink.pageNum}}"> J </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='K' list=navLink.list pageNum=navLink.pageNum}}"> K </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='L' list=navLink.list pageNum=navLink.pageNum}}"> L </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='M' list=navLink.list pageNum=navLink.pageNum}}"> M </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='N' list=navLink.list pageNum=navLink.pageNum}}"> N </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='O' list=navLink.list pageNum=navLink.pageNum}}"> O </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='P' list=navLink.list pageNum=navLink.pageNum}}"> P </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='Q' list=navLink.list pageNum=navLink.pageNum}}"> Q </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='R' list=navLink.list pageNum=navLink.pageNum}}"> R </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='S' list=navLink.list pageNum=navLink.pageNum}}"> S </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='T' list=navLink.list pageNum=navLink.pageNum}}"> T </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='U' list=navLink.list pageNum=navLink.pageNum}}"> U </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='V' list=navLink.list pageNum=navLink.pageNum}}"> V </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='W' list=navLink.list pageNum=navLink.pageNum}}"> W </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='X' list=navLink.list pageNum=navLink.pageNum}}"> X </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='Y' list=navLink.list pageNum=navLink.pageNum}}"> Y </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='Z' list=navLink.list pageNum=navLink.pageNum}}"> Z </a> |
+            <a href="{{pathFor 'content.finance.directory' people ='New' list=navLink.list pageNum=navLink.pageNum}}"> Newly Added </a>
+        </p>
+      </div>
+        <hr class="footer-separator"/>
+        <p>Cities |<a href="{{pathFor 'content.finance.directory' state ='GA' city='Atlanta' list=navLink.list pageNum=navLink.pageNum}}"> Atlanta </a>|<a href="{{pathFor 'content.finance.directory' state ='TX' city='Austin' list=navLink.list pageNum=navLink.pageNum}}"> Austin </a>|<a href="{{pathFor 'content.finance.directory' state ='MA' city='Boston' list=navLink.list pageNum=navLink.pageNum}}"> Boston</a > |<a href="{{pathFor 'content.finance.directory' state ='IL' city='Chicago' list=navLink.list pageNum=navLink.pageNum}}"> Chicago </a >|<a href="{{pathFor 'content.finance.directory' state ='TX' city='Dallas' list=navLink.list pageNum=navLink.pageNum}}"> Dallas</a> |<a href="{{pathFor 'content.finance.directory' state ='MI' city='Detroit' list=navLink.list pageNum=navLink.pageNum}}"> Detroit</a>
+                |<a href="{{pathFor 'content.finance.directory' state ='HI' city='Honolulu' list=navLink.list pageNum=navLink.pageNum}}"> Honolulu </a>|<a href="{{pathFor 'content.finance.directory' state ='TX' city='Houston' list=navLink.list pageNum=navLink.pageNum}}"> Houston </a >|<a href="{{pathFor 'content.finance.directory' state ='CA' city='Los-Angeles' list=navLink.list pageNum=navLink.pageNum}}"> Los Angeles </a >|<a href="{{pathFor 'content.finance.directory' state ='FL' city='Miami' list=navLink.list pageNum=navLink.pageNum}}"> Miami </a>|<a href="{{pathFor 'content.finance.directory' state ='MN' city='Minneapolis' list=navLink.list pageNum=navLink.pageNum}}"> Minneapolis
+                </a>|<a href="{{pathFor 'content.finance.directory' state ='NY' city='New York' list=navLink.list pageNum=navLink.pageNum}}"> New York City</a>
+                |<a href="{{pathFor 'content.finance.directory' state ='PA' city='Philadelphia' list=navLink.list pageNum=navLink.pageNum}}"> Philadelphia </a>| </p>
+        <p> <a href="{{pathFor 'content.finance.directory' state ='OR' city='Portland' list=navLink.list pageNum=navLink.pageNum}}">Portland </a>|<a href="{{pathFor 'content.finance.directory' state ='CA' city='Sacramento' list=navLink.list pageNum=navLink.pageNum}}"> Sacramento</a> |<a href="{{pathFor 'content.finance.directory' state ='CA' city='San Diego' list=navLink.list pageNum=navLink.pageNum}}"> San Diego </a>|<a href="{{pathFor 'content.finance.directory' state ='CA' city='San-Francisco' list=navLink.list pageNum=navLink.pageNum}}"> San Francisco</a>
+                |<a href="{{pathFor 'content.finance.directory' state ='CA' city='San-Jose' list=navLink.list pageNum=navLink.pageNum}}"> San Jose </a>| <a href="{{pathFor 'content.finance.directory' state ='WA' city='Seattle' list=navLink.list pageNum=navLink.pageNum}}">Seattle </a>
+                |<a href="{{pathFor 'content.finance.directory' state ='DC' list=navLink.list pageNum=navLink.pageNum}}"> Washington, DC </a>|<a href="{{pathFor 'content.finance.directory' state ='CA' city='all-cities' list=navLink.list pageNum=navLink.pageNum}}"> More Cities</a>
+        </p>
+                <hr class="footer-separator"/>
+        <p>
+          You Might Like:&nbsp;&nbsp;<span class="footer-b_blue"><a href="{{pathFor 'content.finance.listoflists'}}">Trending Lists</a></span>
+            <i class="fa fa-caret-right"></i><span class="footer-b_blue"><a href="{{pathFor 'content.finance.listview' partner_id=navLink.partnerId list_name=navLink.list1 state_id=navLink.userState city_id=navLink.userCity}}"> Who is Gaining Today? </a></span>
+            <i class="fa fa-caret-right"></i><span class="footer-b_blue"><a href="{{pathFor 'content.finance.listview' partner_id=navLink.partnerId list_name=navLink.list2 state_id=navLink.userState city_id=navLink.userCity}}"> Who is Losing Today? </a></span>
+            <i class="fa fa-caret-right"></i><span class="footer-b_blue"><a href="{{pathFor 'content.finance.listview' partner_id=navLink.partnerId list_name=navLink.list3 state_id=navLink.userState city_id=navLink.userCity}}"> Today's Market Movers </a></span>
+        </p>
+                <hr class="footer-separator"/>
+        <p>     <span class="footer-b_blue"><a href="{{pathFor 'content.finance.home'}}">InvestKit.com </a></span>
+                <i class="fa fa-caret-right"></i><a href="{{pathFor 'content.finance.contactus'}}"> Advertise with Joyfulhome</a> <i class="fa fa-caret-right">
+                </i><a href="{{pathFor 'content.finance.contactus'}}"> Contact us</a>
+                <i class="fa fa-caret-right"></i> <a href="#"> Company News</a>
+        </p>
+        <p>
+          <a href="{{pathFor 'content.finance.disclaimer'}}"> Terms of Use</a>
+          <i class="fa fa-caret-right"></i><a href="#"> Privacy Policy </a>
+          <i class="fa fa-caret-right"></i><a href="#"> Sitemap</a>
+          <i class="fa fa-caret-right"></i><a href="{{pathFor 'content.finance.contactus'}}"> General Feedback</a>
+        </p>
+      </div>
+    </div>
+</div>
+</template>

@@ -1,0 +1,83 @@
+<Template name="finance_homepage">
+  <div class="fi_home_container">
+    <!--Discover Your Home Search Area-->
+    <div class="fi_discover">
+      <div class="fi_discover-title">Discover Your Next Investment</div>
+      <div class="fi_discover-subtitle">Find the stocks you can invest in right in your neighborhood.</div>
+      <form autocomplete="off" onsubmit="event.preventDefault();">
+        <div class="fi_mainsearch">
+          <input type="text" name="keyword" class="fi_mainsearch-text" placeholder="Where do you want to invest next?">
+          <button class="fi_searchbtn fa fa-search"></button>
+          <ul class="fi_search_recommendations">
+            <div class="caret-top"></div>
+            <!-- <i class="fa fa-times fi_search_recommendations_close"></i> -->
+          </ul>
+        </div>
+      </form>
+    </div>
+    <!--Discover Your Home Search Area END-->
+    <!--Explore Your Local Area-->
+    <div class="fi_explore">
+      <div class="fi_explore-title">
+        <!--blue icon goes here-->
+        <span class="fi_explore-title-first">
+          <div class="fi_explore-blue"></div>
+          EXPLORE
+        </span>
+          PUBLIC COMPANIES NEAR YOU
+      </div>
+      <div class="fi_explore-box">
+        {{#each Cities}}
+        <a href="{{URL}}">
+          <div class="{{class}}" id="{{id}}">
+            {{#if isString}}
+            <div class="fi_explore-txt">
+              <div style="font-family:HN-B; font-size:30px;">{{GeoLocation}}</div>
+              <div style="font-size:25px; max-width:205px; margin-left:55px;">{{txt}}</div>
+            </div>
+            {{else}}
+            <div class="fi_explore-txt">{{CityName}}, {{State}}<br>{{txt}}</div>
+            {{/if}}
+            <div class="fi_explore-btn">Learn More <i class="fa fa-angle-right"></i></div>
+            <div class="fi_explore-bg" style="background-image: url('{{image}}')"></div>
+          </div>
+        </a>
+        {{/each}}
+      </div>
+      <a href="{{CityListURL}}"><div class="fi_explore-more">More <i class="fa fa-angle-down"></i></div></a>
+    </div>
+    <!--Explore Your Local Area END-->
+    <!--Top Properties Right Now-->
+    <div class="fi_properties_now">
+      <div class="fi_properties_now-title">TOP COMPANIES RIGHT NOW</div>
+      <div class="fi_properties_now-subtitle">See what {{Location}}'s public companies are performing the best.</div>
+      <a href="{{TopHomesURL}}"><div class="fi_properties_now-more">See the List</div></a>
+      <a href="{{TopHomesURL}}"><div class="fi_properties_now-more-arrow"><i class="fa fa-angle-right"></i></div></a>
+    </div>
+    <!--Top Properties Right Now END-->
+    <!--Features to Note-->
+    <div class="fi_features_note">
+      <div class="fi_features_note-title">
+        <!--blue icon goes here-->
+        <span class="fi_features_note-title-first">
+          <div class="fi_features_note-blue"></div>
+          FEATURES
+        </span>
+        TO NOTE
+      </div>
+      <div class="fi_features_note-box">
+        <a href="{{MapViewURL}}"><div class="fi_features_note-image1" id="feature1">Interactive Local Map</div></a>
+        <a href="{{CityProfileURL}}">
+          <div class="fi_features_note-image2" id="feature2">
+            <div style="font-family:HN-B">Dive deep</div>
+            <div style="font-size:24px; font-family:HN-L">into key information</div>
+          </div>
+        </a>
+        <a href="{{CitiesNearby}}"><div class="fi_features_note-image1" id="feature4">Trending News</div></a>
+        <a href="{{Top100URL}}"><div class="fi_features_note-image2" id="feature3">Top 100 Lists</div></a>
+      </div>
+      <div class="fi_features_note-more">More <i class="fa fa-angle-down"></i></div>
+    </div>
+    <!--Features to Note END-->
+  </div>
+</Template>
