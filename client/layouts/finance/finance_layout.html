@@ -1,4 +1,8 @@
+<!-- Header template -->
 <template name="finance_layout">
+  {{> yield "header"}}
+  {{> header_nav}}
+
   <table class="finance_body">
     <tr>
       <td class="finance_body_left"></td>
@@ -9,10 +13,35 @@
       <td class="finance_body_right"></td>
     </tr>
   </table>
+    {{> footer}}
+</template>
+<!-- END Header template -->
+
+<!-- Header template -->
+<template name="finance_layout_loading">
+  {{> yield "header"}}
+  {{> header_nav}}
+
+  <table class="finance_body">
+    <tr>
+      <td class="finance_body_left"></td>
+      <td class="finance_body_center">
+        {{> yield}}
+      </td>
+      <td class="finance_body_right"></td>
+    </tr>
+  </table>
+  {{> footer}}
 </template>
 
 <template name="finance_layout_home">
   {{> yield "header"}}
+  <div class="directory_page" style="width: 100%; font-size: 2vw; height:auto;">
+
+  </div>
+  {{> header_nav}}
+
   {{> yield}}
-  {{> Footer}}
+
 </template>
+<!-- END Header template -->
