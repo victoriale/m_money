@@ -5,7 +5,7 @@
 */
 
 Template.dyk.helpers({
-  company: 'Walt Disney Company',
+  company: '[Walt Disney Company]',
 
   fact:[
     {
@@ -22,8 +22,9 @@ Template.dyk.helpers({
     {
       isLeft: false,
       segment:[
-        {important: false, text: 'The Walt Disney Company is in '},
-        {important: true, text: '454 Mutual Funds.'}
+        {important: false, text: 'The Walt Disney Company et justo non odio commo venenatis '},
+        {important: true, text: 'non rutrum sem.'},
+        {important: false, text: 'In consequat nisi at diam phareta.'}
       ]
     },
     {
@@ -47,7 +48,7 @@ Template.dyk.helpers({
       segment:[
         {important: false, text: 'The Walt Disney Company '},
         {important: true, text: 'Had 48% Higher Revenue'},
-        {important: false, text: ' in 2014.'}
+        {important: false, text: ' in 2014. In consequat nisi at diam phareta.'}
       ]
     },
     {
@@ -58,18 +59,18 @@ Template.dyk.helpers({
         {important: false, text: ' in 2015.'}
       ]
     },
-    {
-      isLeft: true,
-      segment:[
-        {important: false, text: 'Placeholder text'}
-      ]
-    },
-    {
-      isLeft: false,
-      segment:[
-        {important: false, text: 'Placeholder text'}
-      ]
-    },
+    // {
+    //   isLeft: true,
+    //   segment:[
+    //     {important: false, text: 'Placeholder text'}
+    //   ]
+    // },
+    // {
+    //   isLeft: false,
+    //   segment:[
+    //     {important: false, text: 'Placeholder text'}
+    //   ]
+    // },
   ]
 
 });
