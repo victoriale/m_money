@@ -7,14 +7,14 @@ Associated Files: previously_released_earnings_page.less and previously_released
 var counter=0;
 
 //renders the data when page loads
-Template.previously_released_earnings_page.onRendered(function () {
+Template.earnings_pr_page.onRendered(function () {
 $(".cokey_fin-page-selector1").css("background-color","#3098ff");
   $(".cokey_fin-page-selector1").css("color","#ffffff");
 
 });
 
 var backgroundStyle="tilewhite";
-Template.previously_released_earnings_page.helpers({
+Template.earnings_pr_page.helpers({
 //gave names for dyamic access {{getheadername0}}
     getheadername0: function(){
       var name0= "United States";
@@ -99,7 +99,7 @@ Template.previously_released_earnings_page.helpers({
   }
 });
 //This handles the events on button clicks of 1,2,3 and 200
-Template.previously_released_earnings_page.events({
+Template.earnings_pr_page.events({
     //This function is called when user presses the button "1" and the function makes the button background turn
     //blue and make the other buttons background white
     'click .cokey_fin-page-selector1': function()
