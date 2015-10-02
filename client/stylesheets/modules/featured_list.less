@@ -40,6 +40,9 @@ Associated Files: featured_list.html, featured_list.js
   padding-top: 8px;
   padding-bottom: 3px;
   padding-left: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 //title text
 &_title_text{
@@ -50,12 +53,14 @@ Associated Files: featured_list.html, featured_list.js
 }
 //container for top 100 fl_title_text
 &_ct{
-  width: 374px;
-  height:46px;
+  width: 391px;
+  height:61px;
   float:left;
   position: relative;
-  left:40px;
-  top:7px;
+  left:32px;
+  top:16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 //text for top 100 title
 &_block_text{
@@ -63,8 +68,8 @@ Associated Files: featured_list.html, featured_list.js
   font-size: 22px;
   color:#000;
   text-align: center;
-  padding-top:16px;
-  padding-bottom:16px;
+  // padding-top:16px;
+  // padding-bottom:16px;
 }
 //underline for top 100 title
 &_block_underline{
@@ -72,17 +77,17 @@ Associated Files: featured_list.html, featured_list.js
   width: 413px;
   height: 1px;
   position: relative;
-  top: 99px;
+  top: 91px;
   left: 20px;
   //margin-left: 20px;
 }
 &_co{
-  width:180px;
+  width:455px;
   height:55px;
   float: left;
   position: relative;
-  left: 135px;
-  top: 76px;
+  //left: 135px;
+  top: 54px;
   overflow:hidden;
   }
 //company name
@@ -91,6 +96,9 @@ Associated Files: featured_list.html, featured_list.js
   font-family: HN-B;
   color:#000;
   text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   //padding-top: 20px;
 }
 //for location
@@ -99,6 +107,9 @@ Associated Files: featured_list.html, featured_list.js
   font-family: HN;
   color:#000;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   }
   //continer for icons
 &_ico{
@@ -132,9 +143,10 @@ left: 0;
   height: 180px;
   width: 180px;
   float: left;
-  position: absolute;
-  left: 345px;
-  top: 306px;
+  position: relative;
+  left: 138px;
+  top: 82px;
+  cursor: pointer;
 }
 //font
 &_sh{
@@ -163,33 +175,33 @@ left: 0;
   @shadow:2px;
   border-radius: 100%;
   background-color: #fff;
-  box-shadow: 0 0 0 3px @green;
+  box-shadow: 0 0 0 3px  #3098ff;
   position: absolute;
   width: 180px;
   height: 180px;
-  background-size: 174px 174px;
+  background-size: 180px 180px;
 }
 // passfail icon circle & passfail icon image
-&_block_pass-fail{
-  @shadow:2px;
-  background-color: #fff;
-  margin: 2px;
-  border-radius: 50%;
-  border-width: 2px;
-  border-color:  #ffffff;
-  border-style: solid;
-  background-color:  #44b244;
-  width: 50px;
-  height: 50px;
-  background-image: url(Icon_Pass.png);
-  background-position: center center;
-  background-repeat: no-repeat;
-  position: absolute;
-  top: -@shadow;
-  right: -@shadow;
-  display: block;
-  box-shadow: 0 0 0 2px #fff;
-}
+// &_block_pass-fail{
+//   @shadow:2px;
+//   background-color: #fff;
+//   margin: 2px;
+//   border-radius: 50%;
+//   border-width: 2px;
+//   border-color:  #ffffff;
+//   border-style: solid;
+//   background-color:  #44b244;
+//   width: 50px;
+//   height: 50px;
+//   background-image: url(Icon_Pass.png);
+//   background-position: center center;
+//   background-repeat: no-repeat;
+//   position: absolute;
+//   top: -@shadow;
+//   right: -@shadow;
+//   display: block;
+//   box-shadow: 0 0 0 2px #fff;
+// }
 //circle for position of the company
 &_block_pic_counter{
   @shadow:2px;
@@ -235,11 +247,11 @@ left: 0;
 //container for stock information
 &_bottomcontainer{
   height: 54px;
-  width: 306px;
+  width: 455px;
   float: left;
-  position: absolute;
-  top: 520px;
-  left: 282px;
+  position: relative;
+  top: 121px;
+  //left: 282px;
 }
 // for the text in first line
 &_line-1{
@@ -247,6 +259,9 @@ left: 0;
   font-family: HN-L;
   color:#000;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 //for the text in second line
 &_line-2{
@@ -255,6 +270,9 @@ left: 0;
   color:#000;
   text-align: center;
   padding-top:5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 //footer containing see the whole list button
 &_footer{
