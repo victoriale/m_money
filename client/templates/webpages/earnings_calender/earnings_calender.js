@@ -1,20 +1,20 @@
 /*
 Author: jyothyswaroop
 Created: 9/2/2015
-Description: upcoming_earnings_page
-Associated Files: upcoming_earnings_page.less and upcoming_earnings_page.html
+Description: earnings_calender
+Associated Files: earnings_calender.less and earnings_calender.html
 */
 var counter=0;
 
 //renders the data when page loads
-Template.upcoming_earnings_page.onRendered(function () {
+Template.earnings_calender.onRendered(function () {
 $(".upear_pg-page-selector1").css("background-color","#3098ff");
   $(".upear_pg-page-selector1").css("color","#ffffff");
 
 });
 
 var backgroundStyle="tilewhite";
-Template.upcoming_earnings_page.helpers({
+Template.earnings_calender.helpers({
 //gave names for dyamic access {{getheadername0}}
     getheadername0: function(){
       var name0= "United States";
@@ -95,7 +95,7 @@ Template.upcoming_earnings_page.helpers({
   }
 });
 //This handles the events on button clicks of 1,2,3 and 200
-Template.upcoming_earnings_page.events({
+Template.earnings_calender.events({
     //This function is called when user presses the button "1" and the function makes the button background turn
     //blue and make the other buttons background white
     'click .upear_pg-page-selector1': function()

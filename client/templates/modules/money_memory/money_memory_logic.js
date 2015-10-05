@@ -9,7 +9,7 @@ function moneymemorygraph() {
   var seriesOptions = [],
   seriesCounter = 0,
   //Placeholder data labels
-  names = ['', 'AAPL', 'GOOG'],
+  names = ['', 'AAPL', ''],
 
   //Chart options
   createChart = function () {
@@ -23,34 +23,32 @@ function moneymemorygraph() {
       },
 
       chart:{
-        width:453,
-        height:125,
+        width: 453,
+        height: 125,
 
       },
-
       xAxis:{
         type:'datetime',
-        tickPositioner: function () {
-          var positions = [],
-          tick = Math.floor(this.dataMin),
-          increment = Math.ceil((this.dataMax - this.dataMin) / 6);
-
-          for (tick; tick - increment <= this.dataMax; tick += increment) {
-            positions.push(tick);
-          }
-          return positions * 1000;
+        labels: {
+          format: '{value:%b}'
         },
-        tickPixelInterval: 60,
+        min: new Date('2009/09/10').getTime(),
+        max: new Date('2010/03/10').getTime(),
         title: '',
-        labels:{
-          autoRotation:false,
-          step: 1
-        },
+
       },
 
-      yAxis:{
-        opposite:true,
+      tooltip: {
+        pointFormat: "Value: ${point.y:.2f}"
+      },
+
+      yAxis: {
         title:'',
+        tickInterval: 2,
+        opposite: true,
+        labels: {
+          format: '{value:.2f}'
+        },
       },
       scrollbar:{
         enabled:false
@@ -61,17 +59,26 @@ function moneymemorygraph() {
         buttonTheme: {
           visibility: 'hidden'
         },
-        labelStyle: {
-          visibility: 'hidden'
-        }
       },
       title: {
         text: ''
       },
+      spline: {
+        lineWidth: 3,
+        states: {
+          hover: {
+            lineWidth: 4
+          }
+        },
+      },
       legend:{
         enabled:false
       },
-      series: seriesOptions
+      series:
+      seriesOptions,
+      marker: {
+        enabled: true
+      }
     });
   };
 
@@ -79,11 +86,11 @@ function moneymemorygraph() {
   $.each(names, function (i, name) {
 
     $.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=' + name.toLowerCase() + '-c.json&callback=?',    function (data) {
-
       seriesOptions[i] = {
         name: name,
         data: data,
-        type:'spline'
+        type:'spline',
+        marker: {symbol: 'circle'}
       };
 
       // As we're loading the data asynchronously, we don't know what order it will arrive. So
@@ -100,3 +107,20 @@ function moneymemorygraph() {
 Template.money_memory.rendered=function() {
   moneymemorygraph();
 }
+
+Template.money_memory.helpers({
+  company: "Apple, Inc.",
+  stck_prc: "109.34",
+  stck_chng: "#ca1010",
+  stck_nums: "-3.42 (-3.03%)",
+  arrow: "arrow-down",
+  earn_lose: "earned",
+  pot_amount: "12,950.72",
+  totl_inc: "+46.2",
+  amount: "#22a922",
+  chng: "risen",
+  comp_bgn_date: "01/03/11",
+  intl_invstmnt: "10,000",
+  strt_date: "03/01/15",
+  end_date: "03/19/15"
+});

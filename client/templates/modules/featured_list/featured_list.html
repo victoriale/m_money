@@ -10,7 +10,7 @@ Associated Files: featured_list.html, featured_list.js
     <!--header-->
     <div class="module-header">
       <span class="module-header-line"></span>
-      <span class="module-header-title"> FEATURED TOP 100 LISTS FOR FACEBOOK, INC.</span>
+      <span class="module-header-title"> Featured Top 100 Lists For [Profile]</span>
     </div>
     <!--body of the page-->
     <div class="module-wrapper">
@@ -19,11 +19,11 @@ Associated Files: featured_list.html, featured_list.js
         <div class="fl_block_title">
           <!--block title ,icon and text-->
           <i class="fa fa-circle"></i>
-          <SPAN class="fl_title_text">FINANCE TRENDING LISTS</span>
+          <SPAN class="fl_title_text">{{profile}}'S TRENDING LISTS</span>
           </div>
           <!--Top 100 title-->
           <div class ="fl_ct">
-          <div class="fl_block_text"><c>T</c>op 100 Most actively Traded Local Area Stocks </div>
+          <div class="fl_block_text"><c>T</c>op 100 investing advisors with the most registerd states in 2015. </div>
         </div>
           <div class="fl_block_underline"></div>
           <!--company name-->
@@ -55,20 +55,21 @@ Associated Files: featured_list.html, featured_list.js
 
         <div class="fl_cr">
           <!--image in the circle-->
-            <a class="fl_block_pic " href="">
+            <div class="fl_block_pic">
               <!--passfail icon-->
-              <div class="fl_block_pass-fail "></div>
+              <!-- <div class="fl_block_pass-fail "></div> -->
               <!--circle for position number-->
               <div class = "fl_block_pic_counter">#{{counter}}</div>
-            </a>
+            </div>
         </div>
 
           <br><br><br>
           <!--container for information about stocks-->
           <div class="fl_bottomcontainer">
             <!--CEO & shares information-->
-            <div class="fl_line-1" >CEO: {{company_CEO}} | NASDAQ: {{company_stock}} </div>
-            <div class="fl_line-2">Shares Traded:
+            <!-- <div class="fl_line-1" >CEO: {{company_CEO}} | NASDAQ: {{company_stock}} </div> -->
+            <div class="fl_line-1" >{{company_CEO}}</div>
+            <div class="fl_line-2">[Data Point]:
               <span class="fl_sh">{{company_shares}}</span>
             </div>
           </div>
@@ -108,10 +109,10 @@ Associated Files: featured_list.html, featured_list.js
                     <i class="fa fa-th-large"></i>
                   </div>
                 </div>
-                <!--tile text-->
+                <!--tile text
                 <div class="{{fl_none}}">
                   <div class="fl_new">NEW</div>
-                </div>
+                </div>-->
                 <div class="module-tile-default-text">{{title}}
                 </div>
               </div>

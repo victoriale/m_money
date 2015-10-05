@@ -8,16 +8,19 @@
 @import (reference)"../modules.less";
 
 .dyk{
+  //module
   height: 555px !important;
 
   &-body{
     padding: 0px 15px;
 
     &-left{
+      //left portion of the panel
       float: left;
     }
 
     &-right{
+      //right portion of the panel
       float: right;
     }
 
@@ -30,8 +33,10 @@
       color: @white;
       overflow-y: auto;
       margin-top: 10px;
+      text-align: left;
 
       &-share{
+        //share ellipse
         position: absolute;
         font-size: 18px;
         top: 15px;
@@ -54,6 +59,7 @@
       }
 
       &-title{
+        //title of each block i.e Did you know
         font-size: 22px;
         font-family: HN-L;
         margin-bottom: 15px;
@@ -63,8 +69,10 @@
         font-size: 18px;
         font-family: HN-L;
         line-height: 24px;
+        text-align: left;
 
         &-bold{
+          //bold text
           font-family: HN-B;
           font-style: italic;
         }

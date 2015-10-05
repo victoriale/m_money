@@ -5,12 +5,16 @@
 */
 
 @import (reference)"../global_vars.less";
+b {
+  font-family: HN-B;
+}
 
 .mon-mem{
   background-color: @white;
   width: 680px;
   height: 645px;
   position: relative;
+  text-align: left;
 
   //class for blue text
   &_blue{
@@ -27,13 +31,14 @@
     font-size: 18px;
     line-height: 45px;
     padding-left: 10px;
+
   }//End mon-mem_header
 
   //Main page body
   &_body{
-    position: absolute;
-    top: 60px;
-    left: 210px;
+    position: relative;
+    float: left;
+    margin: 16px 0px 0px 16px;
     width: 455px;
     height: 570px;
     border: 1px solid #e1e1e1;
@@ -77,7 +82,7 @@
       //recent history
       &_history{
         font-size: 20px;
-        color: @green;
+        font-family: HN-B;
       }//End mon-mem_body_stock_history
     }//End mon-mem_body_stock
 
@@ -87,8 +92,8 @@
       font-size: 24px;
       //"You could have earned" amount
       &_amount{
+        font-family: HN-B;
         font-size: 32px;
-        color: @green;
         position: relative;
         top: 2px;
       }//End mon-mem_body_potential_amount
@@ -247,4 +252,9 @@
       }//End mon-mem_body_end-date_edit
     }//End mon-mem_body_end-date
   }//End mon-mem_body
+
+  &_links {
+    margin-left: 15px;
+    overflow: hidden;
+  }
 }//End mon-mem

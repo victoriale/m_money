@@ -10,9 +10,89 @@
     <!--Main page header-->
     <div class="mon-mem_header">
       <span class="mon-mem_blue"><b>I</b></span>
-      <span><b>FACEBOOK, INC.'S MONEY MEMORY</b></span>
+      <span><b>{{company}}'s Money Memory</b></span>
     </div>
 
+    <!--Main page body-->
+    <div class="mon-mem_body">
+      <!--Main page body header-->
+      <div class="mon-mem_body_header">
+        <i class="fa fa-circle mon-mem_blue"></i>
+        <span><b>MONEY MEMORY</b></span>
+      </div>
+      <!--Company image-->
+      <div class="mon-mem_body_image"></div>
+      <!--Company name-->
+      <div class="mon-mem_body_company">
+        <span><b>{{company}}</b></span>
+      </div>
+      <!--Price of stock-->
+      <div class="mon-mem_body_stock">
+        <span class="mon-mem_body_stock_price"><b>${{stck_prc}}</b></span>
+        <span class="mon-mem_body_stock_history" style = "color: {{stck_chng}}">
+          <i class="fa fa-{{arrow}}" style="margin-left:10px"></i>
+          <span class="mon-mem_body_stock_history_text" style = "font-family: HN-B">{{stck_nums}}</span>
+        </span>
+      </div>
+
+      <!--Main chart-->
+      <div id="moneymemorygraph" class="mon-mem_body_chart"></div>
+
+      <!--"You could have earned..."-->
+      <div class="mon-mem_body_potential">
+        <span>You could have {{earn_lose}}:  </span>
+        <span class="mon-mem_body_potential_amount" style = "color: {{amount}}">$13,950.72</span>
+      </div>
+      <!--Stock price history-->
+      <div class="mon-mem_body_history">
+        <span>The stock price has {{chng}} ({{totl_inc}}) since {{comp_bgn_date}}</span>
+      </div>
+      <!--Initial investment box-->
+      <div class="mon-mem_body_investment">
+        <div class="mon-mem_body_investment_icon">
+          <i class="fa fa-money"></i>
+        </div>
+        <div class="mon-mem_body_investment_amount">
+          <span>${{intl_invstmnt}}</span>
+        </div>
+        <div class="mon-mem_body_investment_label">
+          <span>Initial Investment</span>
+        </div>
+        <div class="mon-mem_body_investment_edit">
+          <i class="fa fa-edit"></i>
+        </div>
+      </div>
+      <!--Start date box-->
+      <div class="mon-mem_body_start-date">
+        <div class="mon-mem_body_start-date_icon">
+          <i class="fa fa-calendar"></i>
+        </div>
+        <div class="mon-mem_body_start-date_amount">
+          <span>{{strt_date}}</span>
+        </div>
+        <div class="mon-mem_body_start-date_label">
+          <span>Start Date</span>
+        </div>
+        <div class="mon-mem_body_start-date_edit">
+          <i class="fa fa-edit"></i>
+        </div>
+      </div>
+      <!--End date box-->
+      <div class="mon-mem_body_end-date">
+        <div class="mon-mem_body_end-date_icon">
+          <i class="fa fa-bullseye"></i>
+        </div>
+        <div class="mon-mem_body_end-date_amount">
+          <span>{{end_date}}</span>
+        </div>
+        <div class="mon-mem_body_end-date_label">
+          <span>End Date</span>
+        </div>
+        <div class="mon-mem_body_end-date_edit">
+          <i class="fa fa-edit"></i>
+        </div>
+      </div>
+    </div><!--End Main page body-->
 
     <!--Modules to the left of the module-->
     <div class="mon-mem_links">
@@ -83,88 +163,6 @@
         </a>
       </div>
     </div>
-
-
-    <!--Main page body-->
-    <div class="mon-mem_body">
-      <!--Main page body header-->
-      <div class="mon-mem_body_header">
-        <i class="fa fa-circle mon-mem_blue"></i>
-        <span><b>MONEY MEMORY</b></span>
-      </div>
-      <!--Company image-->
-      <div class="mon-mem_body_image"></div>
-      <!--Company name-->
-      <div class="mon-mem_body_company">
-        <span><b>Facebook Inc</b></span>
-      </div>
-      <!--Price of stock-->
-      <div class="mon-mem_body_stock">
-        <span class="mon-mem_body_stock_price"><b>$82.37</b></span>
-        <span class="mon-mem_body_stock_history">
-          <i class="fa fa-arrow-circle-o-up mon-mem_body_stock_history_icon"></i>
-          <span class="mon-mem_body_stock_history_text">+1.46% (1.80%)</span>
-        </span>
-      </div>
-
-      <!--Main chart-->
-      <div id="moneymemorygraph" class="mon-mem_body_chart"></div>
-
-      <!--"You could have earned..."-->
-      <div class="mon-mem_body_potential">
-        <span>You could have earned:  </span>
-        <span class="mon-mem_body_potential_amount">$4,618.95</span>
-      </div>
-      <!--Stock price history-->
-      <div class="mon-mem_body_history">
-        <span>The stock price has risen(+46.2%) since 03/01/14</span>
-      </div>
-      <!--Initial investment box-->
-      <div class="mon-mem_body_investment">
-        <div class="mon-mem_body_investment_icon">
-          <i class="fa fa-money"></i>
-        </div>
-        <div class="mon-mem_body_investment_amount">
-          <span>$10,000</span>
-        </div>
-        <div class="mon-mem_body_investment_label">
-          <span>Initial Investment</span>
-        </div>
-        <div class="mon-mem_body_investment_edit">
-          <i class="fa fa-edit"></i>
-        </div>
-      </div>
-      <!--Start date box-->
-      <div class="mon-mem_body_start-date">
-        <div class="mon-mem_body_start-date_icon">
-          <i class="fa fa-calendar"></i>
-        </div>
-        <div class="mon-mem_body_start-date_amount">
-          <span>03/01/15</span>
-        </div>
-        <div class="mon-mem_body_start-date_label">
-          <span>Start Date</span>
-        </div>
-        <div class="mon-mem_body_start-date_edit">
-          <i class="fa fa-edit"></i>
-        </div>
-      </div>
-      <!--End date box-->
-      <div class="mon-mem_body_end-date">
-        <div class="mon-mem_body_end-date_icon">
-          <i class="fa fa-bullseye"></i>
-        </div>
-        <div class="mon-mem_body_end-date_amount">
-          <span>03/19/15</span>
-        </div>
-        <div class="mon-mem_body_end-date_label">
-          <span>End Date</span>
-        </div>
-        <div class="mon-mem_body_end-date_edit">
-          <i class="fa fa-edit"></i>
-        </div>
-      </div>
-    </div><!--End Main page body-->
 
 
   </div><!--End Page wrapper-->

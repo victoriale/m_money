@@ -8,15 +8,17 @@ Associated Files: faqs_finance.less & faqs_finance.js
   <div class="faqs_module-layout"> <!--layout sizing and header imported from modules.less -->
     <div class="module-header">
       <span class="module-header-line"></span>
-      <span class="module-header-title">FREQUENTLY ASKED QUESTIONS</span>
+      <span class="module-header-title">{{company}}'s Frequently Asked Questions</span>
     </div>
     {{#each getquestionbox}}          <!-- loops through for all containers -->
-    <div class="faqs_module-faqtile-{{style}}"> <!-- two different containers with different background colors -->
-      <span class="faqs_module-plusicon" >
-        <i class="fa fa-plus-circle"></i></span>  <!-- displays plus icon and text for question -->
-        <span class="faqs_module-faqtext">{{ques}}</span>
-        <div class="faqs_module-subtext">{{ans}} </div>         <!-- displays the answer for question -->
+    <div class="faqs_module-tile">
+      <div class="faqs_module-faqtext">{{ques}}</div>
+      <div class="faqs_module-arrow">  <!-- displays arow and close button -->
+        <i class="fa fa-angle-down"></i>
+        <div class="faqs_module-close"><i class="fa fa-close"></i></div>
       </div>
-      {{/ each}}
+      <div class="faqs_module-subtext"><i class="fa fa-circle"></i>{{ans}}</div><!-- displays the answer for question -->
     </div>
-  </template>
+    {{/ each}}
+  </div>
+</template>

@@ -21,7 +21,7 @@ Associated Files: [Earnings.html, Earnings.less file for the module]
     background: white none repeat scroll 0 0;
     height: 600px;
     width: 210px;
-    float: right;
+    float: left;
   }
   &-home_left_column
   {  /* rightcolumn : specified as requirements  */
@@ -29,9 +29,9 @@ Associated Files: [Earnings.html, Earnings.less file for the module]
     height:570px;
     float: left;
     position:relative;
-    margin:15px 0 0 15px;
+    margin:15px 0 0 0px;
     padding: 0 15px 0 15px;
-    border: 2px solid rgb(209, 208, 208);
+    border: 1px solid rgb(209, 208, 208);
     border-image: none;
   }
   &-reddedtext
@@ -66,7 +66,7 @@ height:41px;
 background-color:#f2f2f2;
 margin: 0 0 0 -15px;
 font-size: 20px;
-border-bottom: 2px solid #cccccc;
+border-bottom: 1px solid #cccccc;
 }
 
 &-headerinside
@@ -77,12 +77,26 @@ color:#0398ff;
 padding: 8px 0 0 6px;
 padding-bottom:13px;
 }
+// for smaller blue circle
+&-bcirc{
+  position: relative;
+  left:-215px;
+  top:1px;
+  font-family: FontAwesome;
+  color:  #3098ff;
+  font-size: 14px;/* Approximation due to font substitution */
+  font-weight: 400;
+}
 &-headerinsidetext
 {/* specification's for text inside the header  */
 color:#000000;
 text-align: left;
 text-transform:uppercase;
 font-family: HN-B;
+font-size: 16px;
+top: 2px;
+left: 0px;
+position: relative;
 transform: translate(17px,-22px);
 -khtml-transform: translate(17px,-22px);
 -webkit-transform: translate(17px,-22px);
@@ -173,6 +187,9 @@ transform: translate(17px,-22px);
   color:#000;
   padding:10px 0 0 0;
   font-family: HN-B;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 &-listing_name
 {  /*specs for the listingname */
@@ -180,6 +197,9 @@ transform: translate(17px,-22px);
   color: #505050;
   float:left;
   font-family: HN;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 &-available_name
 { /* specs for the availble */
@@ -192,7 +212,8 @@ transform: translate(17px,-22px);
   height:36px;
   width:454px;
   position:relative;
-  margin:-50px 0 0 16px;
+  left: 31%;
+  top: -51px;
   border-bottom:2px solid #3098ff;
 }
 &-bottomline /* this class is to hide the border bottom */

@@ -11,19 +11,19 @@ Template.featured_list.onRendered( function() {
   Session.set("fl_data",
   [
     {
-      company_name:"Facebook,Inc",
-      company_location:"San Francisco, CA",
-      company_CEO:"Mark Zuckerberg",
-      company_stock:"FB",
-      company_shares:"19,000,000",
-      title:"Facebook's Trending Lists",
+      company_name:"[Profile Name #1]",
+      company_location:"City, State",
+      company_CEO:"[Profile's Title]",
+      // company_stock:"FB",
+      company_shares:"[Data Entry]",
+      title:"[Profile's]'s Trending Lists",
       fl_none:'none',
       tile2_icon_none:'none',
       tile3_icon_none:'none'
 
     },
     {
-      title:"Company Top 100 Lists",
+      title:"Top 100 [Profile Type]",
       fl_none:'none',
       tile1_icon_none:'none',
       tile3_icon_none:'none'
@@ -68,4 +68,8 @@ Template.featured_list.helpers (
       var data = Session.get("fl_data");
       return data;
     },
+    profile: function(){
+      var data = "[PROFILE]";
+      return data;
+    }
   });
