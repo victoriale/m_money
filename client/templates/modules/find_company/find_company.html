@@ -1,0 +1,113 @@
+<!--
+Author: William Klausmeyer
+Location Module: Find Company
+-->
+
+<template name="find_company">
+  <div class="module-4 noclick" style="cursor: default">
+    <div class="module-header"><!--creating the header for the module-->
+      <span class="module-header-line"></span><!--the blue color line on top of the header-->
+      <span class="module-header-title">Find a Company</span><!--specifying the title to be displayed inside the header-->
+    </div>
+    <div class="find_cmp_ban">
+      <div class="find_cmp_ban_txt">Find Your <b>Next Investment</b></div>
+    </div>
+    <div class="find_cmp_sec1">
+      <div class="find_cmp_sb">
+        <div class="find_cmp_label">Location (city, zip, address)</div>
+        <div class="find_cmp_sb_bar">
+          <input placeholder="Wichita, KS">
+          <i class="fa fa-search"></i>
+        </div>
+      </div>
+      <div class="find_cmp_dd">
+        <div class="find_cmp_label">Range</div>
+        <div class="find_cmp_dd_menu">
+          <div class="find_cmp_dd_menu_txt">50 Miles</div>
+          <i class="fa fa-caret-down"></i>
+        </div>
+      </div>
+    </div>
+    <div class="find_cmp_sec1">
+      <div class="find_cmp_dd">
+        <div class="find_cmp_label">Pick an Exchange</div>
+        <div class="find_cmp_dd_menu">
+          <div class="find_cmp_dd_menu_txt">All Exchanges</div>
+          <i class="fa fa-caret-down"></i>
+        </div>
+      </div>
+      <div class="find_cmp_dd">
+        <div class="find_cmp_label">Pick a Sector</div>
+        <div class="find_cmp_dd_menu">
+          <div class="find_cmp_dd_menu_txt">All Sectors</div>
+          <i class="fa fa-caret-down"></i>
+        </div>
+      </div>
+      <div class="find_cmp_dd">
+        <div class="find_cmp_label">Pick an Industry</div>
+        <div class="find_cmp_dd_menu">
+          <div class="find_cmp_dd_menu_txt">All Industries</div>
+          <i class="fa fa-caret-down"></i>
+        </div>
+      </div>
+    </div>
+    <div class="find_cmp_sec2">
+      <div class="slider">
+        <div class="find_cmp_label">Share Price Range</div>
+        <div class="slider_bar">
+          <div class="slider_ball" style="left: -11.5px;">
+            <div class="slider_ball_label">$0.01</div>
+          </div>
+          <div class="slider_ball" style="right: -11.5px;">
+            <div class="slider_ball_label">$755</div>
+          </div>
+          <div class="slider_avg">
+            <div class="slider_avg_caret"></div>
+            $56.75 Average
+          </div>
+        </div>
+      </div>
+      <div class="find_cmp_sec2_div"></div>
+      <div class="slider">
+        <div class="find_cmp_label">Market Cap Range</div>
+        <div class="slider_bar">
+          <div class="slider_ball" style="left: -11.5px;">
+            <div class="slider_ball_label">$100</div>
+          </div>
+          <div class="slider_ball" style="right: -11.5px;">
+            <div class="slider_ball_label">$670B</div>
+          </div>
+          <div class="slider_avg">
+            <div class="slider_avg_caret"></div>
+            $500M Average
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="find_cmp_sec1">
+      <div class="find_cmp_dd">
+        <div class="find_cmp_label">Key Metrics</div>
+        <div class="find_cmp_dd_menu">
+          <div class="find_cmp_dd_menu_txt">Stock % Gain</div>
+          <i class="fa fa-caret-down"></i>
+        </div>
+      </div>
+      <div class="find_cmp_dd">
+        <div class="find_cmp_label">Start Date</div>
+        <div class="find_cmp_dd_menu">
+          <input type="date">
+          <i class="fa fa-calendar-plus-o"></i>
+        </div>
+      </div>
+      <div class="find_cmp_dd">
+        <div class="find_cmp_label">End Date</div>
+        <div class="find_cmp_dd_menu">
+          <input type="date">
+          <i class="fa fa-calendar-o"></i>
+        </div>
+      </div>
+    </div>
+    <div class="find_cmp_find">Find Companies <i class="fa fa-chevron-right"></i></div>
+    <div class="find_cmp_clear">Clear Selection <i class="fa fa-times"></i></div>
+  </div>
+</template>
