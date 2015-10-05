@@ -1,139 +1,140 @@
-<!--Author: Ryan Fisher
-Created: 08/17/2015
+<!--Author: [Thanush Subramanian Elango]
+Created: [07/15/2015]
 Description: [daily_update]
 Associated Files: [daily_update.less][daily_update_logic.js]!-->
 
 <template name="daily_update">
   <!---Size of the full page!-->
-  <div class="module-2 da">
+  <div class="module-2">
     <!--Header!-->
-    <div class="module-header" style = "height: 43px">
+    <div class="module-header">
       <!--Header line!-->
-      <span class="module-header-line" style = "top: 11% !important">
+      <span class="module-header-line">
       </span>
-      <span class="module-header-title ttl">{{team}}'s DAILY UPDATE
+      <span class="module-header-title">Facebook, Inc.'s doing well today
       </span>
     </div>
     <div class="module-wrapper">
       <!--Image Wrapper!-->
-      <div class="all_team_update_modules">
+      <div class="all_daily_update_modules">
         <!--Image Wrapper!-->
-        <div class="all_team_update_modules-wrapper-image">
-          <div class="all_team_update_modules-wrapper-image-img1">
-            <div class="all_team_update_modules-opacity">
+        <div class="all_daily_update_modules-wrapper-image">
+          <div class="all_daily_update_modules-wrapper-image-img1">
+            <div class="all_daily_update_modules-opacity">
             </div>
             <!--Image Banner!-->
-            <div class="all_team_update_modules-banner">
-              <div class= "all_team_update_modules-text">
-                <div class = "all_team_update_modules-text-1">{{team}}'s</div>
-                <div class = "all_team_update_modules-text-2">Daily Update</div>
+            <div class="all_daily_update_modules-banner">
+              <div class= "all_daily_update_modules-text1">Facebook, Inc.'s Daily Update
               </div>
             </div>
           </div>
         </div>
         <!--Wrapper below the Image!-->
-        <div class="all_team_update_modules-wrapper-main-body">
+        <div class="all_daily_update_modules-wrapper-main-body">
           <!--Wrapper below the Image left side!-->
-          <div class="all_team_update_modules-wrapper-left-body">
-            <div class="all_team_update_modules-wrapper-left-body2">
-              <div class= "all_team_update_modules-regiontext"> {{team}} <br>
+          <div class="all_daily_update_modules-wrapper-left-body">
+            <div class="all_daily_update_modules-wrapper-left-body2">
+              <div class= "all_daily_update_modules-regiontext"> Facebook, Inc. <br>
               </div>
               <!--Values in the Facebook Inc part!-->
-              <div class= "all_team_update_modules-homestext_wrapper">
-                <div class= "all_team_update_modules-homestext"> {{wins}}-{{loss}}
-                  <span class="all_team_update_modules-homestext2">{{fullyear}} Record</span>
+              <div class= "all_daily_update_modules-homestext_wrapper">
+                <div class= "all_daily_update_modules-homestext"> <b>$82.37</b>
+                  <div class= "all_daily_update_modules-homestext_wrapper2">
+                    &nbsp;
+                    <span class="all_daily_update_modules-homestext_icon"><i class="fa fa-arrow-up"></i></span>
+                    <span class="all_daily_update_modules-homestext2">+1.46 (+1.80%)</span>
+                  </div>
                 </div>
-
-              <!--Time stamp!-->
+                <!--Time stamp!-->
               </div>
-              <div class= "all_team_update_modules-region-last-updated"> Last updated at {{updated}}
+              <div class= "all_daily_update_modules-region-last-updated"> Last Updated at 4:00PM EST
               </div><br>
               <!--Separator below the last updated left side!-->
-              <div class="all_team_update_modules-borderlineee">
+              <div class="all_daily_update_modules-borderlineee">
               </div>
             </div>
             <!--Font awesome icons!-->
-            <div class="all_team_update_modules-font-icons">
-              <i class="fa fa-crosshairs"></i><br>
-              <i class="fa fa-home"></i><br>
-              <i class="fa fa-tachometer"></i><br>
-              <i class="fa fa-list-ol"></i>
+            <div class="all_daily_update_modules-font-icons">
+              <i class="fa fa-area-chart"></i><br>
+              <i class="fa fa-pie-chart"></i><br>
+              <i class="fa fa-table"></i><br>
+              <i class="fa fa-bar-chart"></i>
             </div>
             <!--The Avg values to be plugged in!-->
-            <div class="all_team_update_modules-Area-stats">
-              Offensive Yards:<br>
-              Defense Allowed:<br>
-              Total Points:<br>
-              Average Turnover Ratio:<br>
+            <div class="all_daily_update_modules-Area-stats">
+              Market Cap:<br>
+              PE Ratio:<br>
+              Total Shares:<br>
+              Average Volume:<br>
             </div>
-            <div class="all_team_update_modules-Area-stats-values">
-              {{offense}}<br>
-              {{defense}}<br>
-              {{points}}<br>
-              {{turnover}}</div>
+            <div class="all_daily_update_modules-Area-stats-values">
+              689.86B<br>
+              16.19<br>
+              582B<br>
+              56.85M</div>
             </div>
             <!--Wrapper below the Image right side!-->
-            <div class="all_team_update_modules-wrapper-right-body">
-              <div class="all_team_update_modules-wrapper-right-main-body2">
-                <div class="all_team_update_modules-wrapper-right-body2">
-                  <div class="all_team_update_modules-wrapper-right-body2-text">
-                    {{fullyear}} {{team}}  Last Four
+            <div class="all_daily_update_modules-wrapper-right-body">
+              <div class="all_daily_update_modules-wrapper-right-main-body2">
+                <div class="all_daily_update_modules-wrapper-right-body2">
+                  <div class="all_daily_update_modules-wrapper-right-body2-text">
+                    Facebook, Inc.'s Stock Graph
                   </div>
-                </div>
-                <div class="all_team_update_modules-wrapper-right-home">
-                  <div class="all_team_update_modules-coloredsq" style="background-color:#0b162a"></div>
-                  <div class="all_team_update_modules-legend1">Yards By</div>
-                  <div class="all_team_update_modules-legend2">{{city}}</div>
-                </div>
-                <div class="all_team_update_modules-wrapper-right-away">
-                  <div class="all_team_update_modules-coloredsq" style="background-color:#f26f26"></div>
-                  <div class="all_team_update_modules-legend1">Yards By</div>
-                  <div class="all_team_update_modules-legend2">Opponent</div>
                 </div>
               </div>
               <!--Graph Plugin(High Charts)!-->
-              <div class="all_team_update_modules-wrapper-graph">
-                {{> highchartsHelper chartId="teamUpContainer" chartWidth="100%" chartHeight="100%" chartObject=dailyupdategraphh}}
+              <div class="all_daily_update_modules-wrapper-graph">
+                {{> highchartsHelper chartId="container" chartWidth="100%" chartHeight="100%" chartObject=dailyupdategraphh}}
               </div>
               <!--Buttons Below the Graph!-->
-              <div class="all_team_update_modules-graphbutton">
-                {{#each circle}}
-                <div class="all_team_update_modules-graphbutton_circle1" id="btnid{{btnCount}}" onClick="teamChangeYear(this,{{year}})">'{{year}}</div>
-                {{/each}}
+              <div class="all_daily_update_modules-graphbutton">
+                <div class="all_daily_update_modules-graphbutton_circle1">1D</div>
+                <div class="all_daily_update_modules-graphbutton_circle1">5D</div>
+                <div class="all_daily_update_modules-graphbutton_circle1">1M</div>
+                <div class="all_daily_update_modules-graphbutton_circle1">3M</div>
+                <div class="all_daily_update_modules-graphbutton_circle1">6M</div>
+                <div class="all_daily_update_modules-graphbutton_circle1">1Y</div>
+                <div class="all_daily_update_modules-graphbutton_circle1">3Y</div>
+                <div class="all_daily_update_modules-graphbutton_circle1">5Y</div>
               </div>
             </div>
           </div>
+          <!--Region Separator for the profile feeds at the footer!-->
+          <div class="all_daily_update_modules-stats-region-separator">
+          </div>
           <!--Profile Feeds wrapper!-->
-          <div class="all_team_update_modules-wrapper-main-bottom">
-            <div class="all_team_update_modules-wrapper-bottom-left">
+          <div class="all_daily_update_modules-wrapper-main-bottom">
+            <div class="all_daily_update_modules-wrapper-bottom-left">
               <!--Profile Feeds image!-->
-              <a href = "#"><div class=" all_team_update_modules-wrapper-image-circle">
-                <!--Profile Feeds Profile Image Hover!-->
-                <div class = "all_team_update_modules-dailyupdate_viewprofile_txt">
-                  <div class="all_team_update_modules-dailyupdate_viewprofile_txt1">View</div>
-                  <div class="all_team_update_modules-dailyupdate_viewprofile_txt2">Profile</div>
-                </div>
-              </div></a>
+              <div class=" all_daily_update_modules-wrapper-image-circle">
+              </div>
             </div>
             <!--Profile Feeds image text box!-->
-            <div class=" all_team_update_modules-Profile-image-Text-Box">
+            <div class=" all_daily_update_modules-Profile-image-Text-Box">
               <!--Profile Feeds font awesome icon!-->
-              <div class="all_team_update_modules-Font-icons2"><i class="fa fa-calendar-o"></i></div>
+              <div class="all_daily_update_modules-Font-icons2"><i class="fa fa-calendar-o"></i></div>
               <!--Profile Feeds time stamp!-->
-              <div class="all_team_update_modules-Date-text">&nbsp;May 15, 2015</div>
+              <div class="all_daily_update_modules-Date-text">
+                May 15,2015
+              </div>
               <!--Profile Feeds time stamp!-->
-              <div class="all_team_update_modules-Date-text2"><i class = "fa fa-circle"></i> 8:38AM EST</div>
+              <div class="all_daily_update_modules-Date-text2"><ul><li>8:38AM EST</li></ul>
+              </div>
               <!--Profile Feeds !-->
-              <div class="all_team_update_modules-profile-text">
-                THIS WEEK:<br>
-                The Bears bolstered their secondary by signing <a href="#" style="color:#3098ff">Tracy Porter</a>.  The veteran Cornerback appeared
-                in 68 NFL games with 60 starts over seven seasons.  The Bears signed receiver <a href="#" style="color:#3098ff">Ify Umodu</a> and
-                waived linebacker <a href="#" style="color:#3098ff">Jamil Merrel</a>. <a href="#" style="color:#3098ff">Kyle Long</a> is the only offensive lineman in Bears history to be
-                selected to the Pro Bowl in his f...
-              </div>
+              <div class="all_daily_update_modules-profile-text">
+                Before they sold out 90's fanny pack PBR&B. Keyffiyeh irony occupy migas street art
+                art party Esty meditation. Mustache lomo gastropub. thundercats tattooed locavore
+                chanbray fashion axe next level kitsch gentrify typewriter stumptown Truffaut. 90's
+                lumbersexual forage small batch, tote..... </div>
                 <!--Profile Feeds Continue reading Link!-->
-                <a href = "#"><div class="all_team_update_modules-profile-text-blue">Continue Reading Story</div></a>
+                <div class="all_daily_update_modules-profile-text-blue">Continue Reading Story
+                </div>
               </div>
+            </div>
+            <!--Profile Feeds Profile Image Hover!-->
+            <div class="all_daily_update_modules-dailyupdate_viewprofile">
+              <span class="all_daily_update_modules-dailyupdate_viewprofile_txt1">View</span><br>
+              <span class="all_daily_update_modules-dailyupdate_viewprofile_txt2">Profile</span>
             </div>
             <div class="widget-footer">
             </div>
