@@ -48,26 +48,27 @@ Template.faqs_finance.events({
     if(target == (e.currentTarget))              /*- checks with null value set---*/
     {
       $(".faqs_module-tile").css({'background-color':'#ffffff','border-left-color':'#e1e1e1'});
-      $(".faqs_module-subtext").fadeOut(300); /*--fadesout all the opened texts and changes the color to default black--*/
+      $(".faqs_module-subtext").fadeOut(150); /*--fadesout all the opened texts and changes the color to default black--*/
       $(".fa-angle-down").css('display','inline-block');
       $(".faqs_module-faqtext").css('font-family','HN-L');
+      $(".faqs_module-faqtext").css('padding-top','20px');
       $(".faqs_module-close").css('display','none');
-      $('.faqs_module-layout').delay(300).height('325');
-      $('.faqs_module-tile').delay(300).height('55');
+      $('.faqs_module-layout').delay(150).height('325');
+      $('.faqs_module-tile').delay(150).height('55');
       target='';
     }
     else {
 
       target = (e.currentTarget);
-      $(".faqs_module-subtext").fadeOut(300); /*--changes color on second click of different question---*/
+      $(".faqs_module-subtext").fadeOut(150); /*--changes color on second click of different question---*/
       $(".faqs_module-tile").css({'background-color':'#ffffff','border-left-color':'#e1e1e1'});
       $(".fa-angle-down").css('display','inline-block');
       $(".faqs_module-faqtext").css('font-family','HN-L');
       $(".faqs_module-close").css('display','none');
-      $('.faqs_module-layout').delay(300).height('325');
-      $('.faqs_module-tile').delay(300).height('55');
+      $('.faqs_module-layout').delay(150).height('325');
+      $('.faqs_module-tile').delay(150).height('55');
       $(e.currentTarget).css({'background-color':'#f2f2f2','border-left-color':'#3098ff'});
-      $(e.currentTarget).children('.faqs_module-subtext').slideToggle({duration: 500, progress: function(){
+      $(e.currentTarget).children('.faqs_module-subtext').slideToggle({duration: 250, progress: function(){
           $('.faqs_module-layout').height($('.faqs_module-layout').height() + $(e.currentTarget).children('.faqs_module-subtext').height() - oldHeight);
           $(e.currentTarget).height($(e.currentTarget).height() + $(e.currentTarget).children('.faqs_module-subtext').height() - oldHeight);
           oldHeight = $(e.currentTarget).children('.faqs_module-subtext').height();
@@ -75,9 +76,10 @@ Template.faqs_finance.events({
       });    /*--when plus icon is clicked expands to show the text below--*/
       $(e.currentTarget).children('.faqs_module-arrow').children(".fa-angle-down").css('display','none');                      /*--when icon is clicked changes the color of text and icon--*/
       $(e.currentTarget).children('.faqs_module-faqtext').css('font-family','HN-B');
+      $(e.currentTarget).children('.faqs_module-faqtext').css('padding-top','30px');
       $(e.currentTarget).children('.faqs_module-arrow').children('.faqs_module-close').css('display','inline-block');
-      $('.faqs_module-layout').height($('.faqs_module-layout').height() + $(e.currentTarget).children('.faqs_module-subtext').height());
-      $(e.currentTarget).height($(e.currentTarget).height() + $(e.currentTarget).children('.faqs_module-subtext').height());
+      $('.faqs_module-layout').height($('.faqs_module-layout').height() + $(e.currentTarget).children('.faqs_module-subtext').height() + 30);
+      $(e.currentTarget).height($(e.currentTarget).height() + $(e.currentTarget).children('.faqs_module-subtext').height() + 30);
     }
   }
 
