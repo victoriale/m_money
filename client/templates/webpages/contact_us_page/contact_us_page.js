@@ -5,6 +5,11 @@ Description: conatct us webpage
 Associated Files: contact_us_page.less,contact_us_page.html
 */
 
+Template.contact_us_page.helpers({
+  profile: "[Profile]",
+  pageName: "[Page Name]",
+  dataPoint: "[Data Point]"
+});
 
 Template.contact_us_page.events({
 

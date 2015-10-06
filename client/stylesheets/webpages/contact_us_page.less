@@ -5,13 +5,80 @@ Description:conatct us webpage
 Associated Files: contact_us_page.html,contact_us_page.js
 */
 
-@import (reference)"../global_vars.less"; //include important global vars (colors mostly)
-@import (reference)"../modules.less";
+@import "../global_vars.less"; //include important global vars (colors mostly)
+@import "../modules.less";
 // webpage dimensions
 .cup_dimensions{
   background-color:  #ffffff;
   width: 680px;
-  height: 1121px;
+  height: 1354px;
+  position: relative;
+  margin: 5px 0px 0px 5px;
+}
+.hdtl{
+  width: 680px;
+  height: 50px;
+  background-color: #000000;
+  &:hover > .cup-hdtl-indcir{
+    border-color:#f26f26;
+    color:#f26f26;
+  }
+  //orange color on left
+  &-or{
+    background-color:  #3098ff;
+    width: 60px;
+    height: 50px;
+    float: left;
+  }
+  //font style for the fontawesome
+  &-mailrep{
+    font-family: FontAwesome;
+    color:  #ffffff;
+    font-size: 30px;/* Approximation due to font substitution */
+    font-weight: 400;
+    text-align: left;
+    margin-left: 15px;
+    margin-top: 4px;
+  }
+  //for right triangle
+  &-rta{
+    width: 0;
+    height: 0;
+    border-top: 26px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-left: 15px solid #3098ff;
+    position: relative;
+    top: -46px;
+    left: 60px;
+  }
+  //for the text container
+  &-txtctt{
+      width: 345px;
+      height: 25px;
+      position: relative;
+      top: 11px;
+      left: 34px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    &-txt{
+      font-family: HN;
+      color:  #ffffff;
+      font-size: 19px;/* Approximation due to font substitution */
+      text-align: left;
+      float:left;
+    }
+    &-pnm{
+      font-family: HN-B;
+      color:  #ffffff;
+      font-size: 19px;/* Approximation due to font substitution */
+      text-align: left;
+      float:left;
+      position: relative;
+      left: 5px;
+    }
+  }
+
 }
 //circle with an image
 .cup_image{
@@ -23,8 +90,8 @@ Associated Files: contact_us_page.html,contact_us_page.js
   width: 100px;
   height: 100px;
   position: relative;
-  top:20px;
-  margin-left: 20px;
+  top:15px;
+  margin-left: 15px;
 }
 //subcircle on image
 .cup_replyimg{
@@ -49,13 +116,15 @@ Associated Files: contact_us_page.html,contact_us_page.js
   width: 230px;
   height: 97px;
   margin-top: -13%;
-  margin-left: 21%;
+  margin-left: 130px;
+  text-align: left;
 }
 //date
 .cup_head_date{
   color:  #959595;
   font-size: 10px;
   font-family: HN;
+  text-align: left;
 }
 //country
 .cup_country{
@@ -63,6 +132,7 @@ Associated Files: contact_us_page.html,contact_us_page.js
   font-size: 12px;
   font-family: HN;
   margin-top: 16px;
+  text-align: left;
 }
 .cup_countxt{
   margin-left: 3px;
@@ -70,68 +140,100 @@ Associated Files: contact_us_page.html,contact_us_page.js
 //heading
 .cup_heading{
   color:  #000000;
-  font-size: 22px;
+  font-size: 28px;
   font-family: HN-B;
+  text-align: left;
+  line-height: 28px;
 }
 //subheading
 .cup_subheading{
   color:  #000000;
-  font-size: 22px;
+  font-size: 28px;
   font-family: HN-L;
   margin-top: -4px;
+  text-align: left;
+  width: 500px;
+  line-height: 28px;
 }
-//underline for the information
-.cup_underline{
-  background-color:  #dadada;
+//bar with save and share options
+.cup_sharebar{
+  position: relative;
+  left: 0px;
+  top: 26px;
+  height:35px;
   width: 680px;
-  height: 1px;
-  margin-top: 6%;
-}
-//question box
-.cup_qbox{
-  border-width: 1px;
-  border-color:  #ebebeb;
-  border-style: solid;
-  background-color:  #fafafa;
-  width: 650px;
-  height: 81px;
-  margin-top: 10px;
-  margin-left: 15px;
-}
-//title bar in the question box
-.cup_bar{
-  width: 650px;
-  height: 20px;
-  background-color:  #ebebeb;
-  color:  #333333;
-}
-//question in the title bar
-.cup_qtxt{
-  font-size: 12px;
-  font-family: HN-B;
-  padding-top: 5px;
-  padding-left: 10px;
-}
-//close icon in the question box
-.cup_close{
-  font-size: 10px;
-  font-weight: 400px;
-  float: right;
-  padding-right: 10px;
-  padding-bottom: 7px;
-}
-//question in text box
-.cup_q{
-  color:  #000000;
-  font-size: 14px;
-  font-family: HN;
-  margin-top: 14px;
-  margin-left: 20px;
+  background-color: rgba(0,0,0,.85);
+  padding: 0px 10px;
+  color: @white;
+  text-align: left;
+
+  &_fa{
+    margin-right:10px;
+
+    &_lm //left margin
+    {
+      margin-left: 40px;
+    }
+  }
+
+  &_left{
+    border-right: 1px solid #363636;
+    max-width: 480px;
+    height: 35px;
+    overflow:hidden;
+    padding: 10px;
+    font-family: HN-B;
+    font-size: 16px;
+    line-height: 12px;
+    float: left;
+  }
+
+  &_right
+  {
+    font-size: 14px;
+    font-family: HN-L;
+    width: 200px;
+    float: left;
+    padding: 7px 15px;
+  }
 }
 //Asterisk & text
 .cup_fields{
-  margin-top: 9px;
-  margin-left: 24px;
+  text-align: left;
+  position: absolute;
+  left: 24px;
+  top: 29px;
+  font-size: 12px;
+  line-height: 12px;
+  width: 150px;
+}
+//now reading
+.cup_nr{
+  position: absolute;
+  left: 492px;
+  top: 16px;
+  font-size: 12px;
+  font-family: HN-L;
+  text-align: left;
+  width: 188px;
+  overflow: hidden;
+
+  &_bold
+  {
+    font-family: HN-B;
+    font-style: normal;
+  }
+
+  &_blue
+  {
+    color: @blue;
+    margin-left: 5px;
+  }
+}
+.cup_form{
+  position: relative;
+  left: 0px;
+  top: 23px;
 }
 //Asterisk
 .cup_ast{
@@ -157,9 +259,12 @@ Associated Files: contact_us_page.html,contact_us_page.js
   color:  #272727;
   font-size: 14px;
   font-family: HN-B;
-  position: relative;
-  top: 20px;
-  margin-left: 25px;
+  position: absolute;
+  top: 60px;
+  left: 25px;
+  line-height: 14px;
+  text-align: left;
+  width: 110px;
 }
 //field for name
 .cup_namefield{
@@ -170,11 +275,11 @@ Associated Files: contact_us_page.html,contact_us_page.js
   background-color:  #ffffff;
   width: 464px;
   height: 35px;
-  float: right;
-  margin-top: 7px;
+  position: absolute;
+  top: 48px;
+  left: 190px;
   font-size: 14px;
   font-family: HN;
-  margin-right: 26px;
   padding-left: 10px;
 }
 //text for email field
@@ -182,8 +287,12 @@ Associated Files: contact_us_page.html,contact_us_page.js
   color:  #272727;
   font-size: 14px;
   font-family: HN-B;
-  margin-left: 25px;
-  margin-top: 9%;
+  position: absolute;
+  top: 121px;
+  left: 25px;
+  line-height: 14px;
+  text-align: left;
+  width: 110px;
 }
 //field for email
 .cup_emailfield{
@@ -196,20 +305,30 @@ Associated Files: contact_us_page.html,contact_us_page.js
   height: 35px;
   font-size: 14px;
   font-family: HN;
-  margin-right: 26px;
   padding-left: 10px;
-  float: right;
-  margin-top: -4%;
+  position: absolute;
+  left: 190px;
+  top: 108px;
 }
 //question category
 .cup_ques{
   color:  #272727;
   font-size: 14px;
   font-family: HN-B;
-  margin-left: 25px;
-  margin-top: 7%;
-  width: 96px;
+  width: 100px;
   height: 29px;
+  left: 25px;
+  position: absolute;
+  top: 168px;
+  text-align: left;
+}
+//holds the radio btns
+.cup_radiobtns {
+  position: absolute;
+  left: 190px;
+  top: 165px;
+  text-align: left;
+  width: 200px;
 }
 //stylings for checkbox
 .cup_myp{
@@ -222,9 +341,7 @@ Associated Files: contact_us_page.html,contact_us_page.js
   border-width: 1px;
 }
 .cup_pos{
-  margin-left: 28%;
   position: relative;
-  top: -27px;
 }
 //styling for text with checkbox
 .cup_boxspace{
@@ -236,8 +353,11 @@ Associated Files: contact_us_page.html,contact_us_page.js
 }
 //text area for query
 .cup_textarea{
-  width:100%;
-  height:180px;
+  width:462px;
+  height:166px;
+  position: absolute;
+  left: 190px;
+  top: 350px;
 }
 .cup_desc{
   width:465px;
@@ -245,20 +365,22 @@ Associated Files: contact_us_page.html,contact_us_page.js
   height:170px;
   max-height: 170px;
   float:right;
-  margin-right: 25px;
   white-space: normal;
   overflow-y: scroll;
   padding:5px;
+  border: 2px solid #cccccc;
+  border-radius: 2px;
 }
 //styling for reset button
 .cup_reset{
   background: #fff;
-  float: right;
-  position: relative;
-  right: 27%;
-  margin-top: 26px;
+  position: absolute;
+  left: 439px;
+  top: 549px;
   color: #272727;
   border: none;
+  font-size: 14px;
+  line-height: 14px;
 }
 .cup_rstxt{
   font-size: 14px;
@@ -279,10 +401,12 @@ Associated Files: contact_us_page.html,contact_us_page.js
   height: 35px;
   border: none;
   color: #ffffff;
-  float: right;
-  margin-top: 20px;
-  position: relative;
-  left: 5%;
+  position: absolute;
+  left: 533px;
+  top: 538px;
+  text-align: left;
+  padding-left: 32px;
+  line-height: 14px;
 }
 
 //icon on submit button
@@ -290,19 +414,12 @@ Associated Files: contact_us_page.html,contact_us_page.js
   color: #ffffff;
   font-size: 14px;
   font-weight: 400;
-  float: right;
-  padding-top: 28px;
-  position: relative;
-  left: 19%;
+  line-height: 14px;
+  position: absolute;
+  left: 620px;
+  top: 549px;
 }
-//searchbox dimensions & styles
-.cup_srchbox{
-  width: 680px;
-  height: 280px;
-  margin-top: 15%;
-  background-image: url("http://www.freebiesgallery.com/wp-content/uploads/2014/02/blurred-background-21.jpg");
-  background-position: 680px 280px;
-}
+
 //styles for text
 .cup_srchtxt1{
   color: #ffffff;
@@ -356,4 +473,12 @@ Associated Files: contact_us_page.html,contact_us_page.js
 .cup_astr{
   color: #ca1010;
   padding-left: 100px;
+}
+
+//searchbox dimensions & styles
+.cup_srchbox{
+  height: 505px;
+  width: 680px;
+  position: relative;
+  top: 655px;
 }
