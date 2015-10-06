@@ -46,50 +46,18 @@ Associated Files: [The about_us.html for the module]*/
     color:#3098FF;
     font-size:14px;
   }
-  &-circle{ // layout for image
+  &-rect{ // layout for image
     position:relative;
-    width:125px;
-    height:125px;
-    border-radius:50%;
+    width:360px;
+    height:120px;
     color:#fff;
-    border:2px solid #44b224 ;
-    background-image:url("https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/8/005/04e/02a/110cd73.jpg");
+    background-size: contain;
+    background-position: center center !important;
+    background-repeat: no-repeat;
+    background-image:@investkit;
     background-size: 100%;
     top:30px;
-    left:165px;
-  }
-  &-view-profile {  //image on hover
-    position: relative;
-    width: 125px;
-    height: 125px;
-    border-radius: 100%;
-    opacity: 0;
-    box-sizing: border-box;
-    bottom: 2px;
-    right: 2px;
-  }
-  &-view-profile_body { //Creating an inner circle which contains the view-profile text
-    background: rgba(48,152,255,1);
-    color: #fff;
-    font-weight: lighter;
-    text-align: center;
-    text-transform: uppercase;
-    padding-top: 2.5em;
-    border-radius: 100%;
-    width: 125px;
-    height: 125px;
-  }
-  &-view-profile_txt1 { //text inside the circle on hover
-    font-size: 22px;
-    font-weight: bold;
-  }
-  &-view-profile_txt2 { //text inside the circle on hover
-    font-size: 22px;
-    line-height: 5px;
-    font-weight:light;
-  }
-  &-view-profile:hover{ //Giving opacity so that the background image is partially visible
-    opacity:0.85;
+    left:10%;
   }
   &-textbox{  //textbox container for information
     font-family: HelveticaNeue;

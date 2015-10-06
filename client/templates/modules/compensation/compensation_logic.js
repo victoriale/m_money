@@ -164,6 +164,10 @@ Template.compensation.rendered=function() {
 }
 
 Template.compensation.helpers ({
+  compURL: function(){
+    return Router.path('content.compensation');
+  },
+
   exec: "Mark Zuckerberg",
   year: 2014,
   comp: "610.46K"
