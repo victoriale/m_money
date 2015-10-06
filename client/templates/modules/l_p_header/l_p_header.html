@@ -1,0 +1,90 @@
+<!-- Author: David Wibowo
+**** Created: [09/30/2015]
+**** Description: Exec profile header
+**** Associated Files: l-p_header.html, l-p_header.less, l-p_header_logic.js
+-->
+
+<template name="l_p_header">
+  <div class="p">
+   {{> lp_head}}
+   {{> lp_body}}
+   {{> lp_rdr}}
+ </div>
+</template>
+
+<template name="lp_head">
+  <div class="p-head">
+    <div class="p-head-top">
+      <div class="p-head-top-lastUpdate">LAST UPDATED: {{LastUpdate}}</div>
+      <div class="p-head-top-container">
+        <div class="p-head-top-container-location"><i class="fa fa-map-marker"></i>&nbsp; {{Comp_Location}}</div>
+        <div class="p-head-top-container-profile"><span class="p-bold_font">LOCATION</span> PROFILE</div>
+      </div>
+      <div class="p-head-top-name">{{Name}}</div>
+    </div>
+    <div class="p-head-bottom">
+      <div class="p-head-bottom-triangle"></div>
+      <div class="p-head-bottom-img">
+        <div class="p-head-bottom-img-sml"></div>
+      </div>
+      <div class="p-head-bottom-icon"><i class="fa fa-map-marker"></i></div>
+      <div class="p-head-bottom-about">Info about <span class="p-bold_font">{{Name}}</span></div>
+      <div class="p-head-bottom-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+        doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
+        vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
+        consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum
+        quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
+        dolore magnam aliquam quaerat voluptatem.</div>
+    </div>
+  </div>
+
+</template>
+
+<template name="lp_body">
+  <div class="p-body">
+    <div class="p-body-box" style="width:140px;">
+        <div>Total Companies</div>
+        <div class="value">{{Companies}}</div>
+        <div>&nbsp;</div>
+    </div>
+    <div class="p-body-box" style="width:190px;">
+        <div>Total Market Cap</div>
+        <div class="value">{{Market_Cap}}</div>
+        <div>&nbsp;</div>
+    </div>
+    <div class="p-body-box" style="width:160px;">
+        <div>Total Executives</div>
+        <div class="value">{{Executives}}</div>
+        <div>&nbsp;</div>
+    </div>
+    <div class="p-body-box" style="border-right: 0px;width:190px;">
+        <div>Total Exec. Compensation</div>
+        <div class="value">${{Compensation}}</div>
+        <div>&nbsp;</div>
+    </div>
+  </div>
+</template>
+
+<template name="lp_rdr">
+  <div class="p-rdr">
+    <a href="{{ulr}}">
+      <div class="p-rdr-tri"></div>
+      <div class="p-rdr-container">
+        <div class="p-rdr-container-icon"></div>
+        <div class="p-rdr-container-dr">Digital Reader</div>
+        <div class="p-rdr-container-explore">Explore This Location</div>
+        <div class="p-rdr-container-line"></div>
+        <div class="p-rdr-container-circle"><i class="fa fa-angle-right"></i></div>
+        <div class="p-rdr-container-left">{{Name}}</div>
+        <div class="p-rdr-container-text">Get an in–depth, visual look at today’s composite value,
+the local companies, exeucitves, advisors
+and so much more.
+        </div>
+      </div>
+    </a>
+  </div>
+</template>

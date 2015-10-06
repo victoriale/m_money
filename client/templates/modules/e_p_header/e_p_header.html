@@ -1,0 +1,88 @@
+<!-- Author: David Wibowo
+**** Created: [09/30/2015]
+**** Description: Exec profile header
+**** Associated Files: e-p_header.html, e-p_header.less, e-p_header_logic.js
+-->
+
+<template name="e_p_header">
+  <div class="p">
+   {{> ep_head}}
+   {{> ep_body}}
+   {{> ep_rdr}}
+ </div>
+</template>
+
+<template name="ep_head">
+  <div class="p-head">
+    <div class="p-head-top">
+      <div class="p-head-top-lastUpdate">LAST UPDATED: {{LastUpdate}}</div>
+      <div class="p-head-top-container">
+        <div class="p-head-top-container-location"><i class="fa fa-map-marker"></i>&nbsp; {{Comp_Location}} | WORK FOR: <span class="p-head-bottom-name">{{Company}}</span></div>
+        <div class="p-head-top-container-profile"><span class="p-bold_font">EXECUTIVE</span> PROFILE</div>
+      </div>
+      <div class="p-head-top-name">{{Name}}</div>
+    </div>
+    <div class="p-head-bottom">
+      <div class="p-head-bottom-triangle"></div>
+      <div class="p-head-bottom-img"></div>
+      <div class="p-head-bottom-icon"><i class="fa fa-map-marker"></i></div>
+      <div class="p-head-bottom-about">Quick info about <span class="p-bold_font">{{Name}}</span></div>
+      <div class="p-head-bottom-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+        doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
+        vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
+        consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum
+        quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
+        dolore magnam aliquam quaerat voluptatem.</div>
+    </div>
+  </div>
+
+</template>
+
+<template name="ep_body">
+  <div class="p-body">
+    <div class="p-body-box">
+        <div>Annual Compensation</div>
+        <div class="value">${{An_comp}}</div>
+        <div>as of {{An_comp_d}}</div>
+    </div>
+    <div class="p-body-box">
+        <div>Other Compensation</div>
+        <div class="value">${{Ot_comp}}</div>
+        <div>as of {{Ot_comp_d}}</div>
+    </div>
+    <div class="p-body-box">
+        <div>Chief Executive Officer at</div>
+        <div class="value">{{Company}}</div>
+        <div>Since {{Company_since}}</div>
+    </div>
+    <div class="p-body-box" style="border-right: 0px">
+        <div>{{Share}} Share Hold</div>
+        <div class="value">{{Share_number}}</div>
+        <div>Since {{Share_since}}</div>
+    </div>
+  </div>
+</template>
+
+<template name="ep_rdr">
+  <div class="p-rdr">
+    <a href="{{ulr}}">
+      <div class="p-rdr-tri"></div>
+      <div class="p-rdr-container">
+        <div class="p-rdr-container-icon"></div>
+        <div class="p-rdr-container-dr">Digital Reader</div>
+        <div class="p-rdr-container-explore">Explore This Executive</div>
+        <div class="p-rdr-container-line"></div>
+        <div class="p-rdr-container-circle"><i class="fa fa-angle-right"></i></div>
+        <div class="p-rdr-container-left">{{Name}}</div>
+        <div class="p-rdr-container-text">Get an in–depth, visual look at this executive compensation,
+project history, education history
+and much more.
+        </div>
+      </div>
+    </a>
+  </div>
+</template>
