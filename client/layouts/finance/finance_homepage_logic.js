@@ -74,12 +74,6 @@ function GetSuggest(nowTime) {
   }
 }
 
-//first letter of word to uppercase and the rest are lower
-function toTitleCase(str)
-{
-    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-}
-
 Template.finance_homepage.events({
   'keyup .fi_mainsearch input': function(event) {
 
@@ -187,12 +181,12 @@ Template.finance_homepage.onRendered(function(){
 
 Template.finance_homepage.helpers({
   Cities:[
-    {URL: '', class: "fi_explore-image1",id: "explore1", CityName: 'Wichita', State: 'KS', txt: 'Home to 10 Companies', index: 0, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/08_L.png'},
-    {URL: '', class: "fi_explore-image2",id: "explore2", CityName: 'Derby', State: 'KS', txt: '3 Companies', index: 1, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/21_L.png'},
-    {URL: '', class: "fi_explore-image3",id: "explore3", isString: true, GeoLocation: 'Wichita', txt: 'is home to 6 Public Companies', image: ''},
-    {URL: '', class: "fi_explore-image1",id: "explore4", CityName: 'Haysville', State: 'KS', txt: '2 Companies', index: 2, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/24_L.png'},
-    {URL: '', class: "fi_explore-image1",id: "explore5", CityName: 'Andover', State: 'KS', txt: '6 Companies', index: 3, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/27_L.png'},
-    {URL: '', class: "fi_explore-image2",id: "explore6", CityName: 'Salina', State: 'KS', txt: '5 Companies', index: 4, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/15_L.png'}
+    {URL: LocationURL(), class: "fi_explore-image1",id: "explore1", CityName: 'Wichita', State: 'KS', txt: 'Home to 10 Companies', index: 0, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/08_L.png'},
+    {URL: LocationURL(), class: "fi_explore-image2",id: "explore2", CityName: 'Derby', State: 'KS', txt: '3 Companies', index: 1, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/21_L.png'},
+    {URL: LocationURL(), class: "fi_explore-image3",id: "explore3", isString: true, GeoLocation: 'Wichita', txt: 'is home to 6 Public Companies', image: ''},
+    {URL: LocationURL(), class: "fi_explore-image1",id: "explore4", CityName: 'Haysville', State: 'KS', txt: '2 Companies', index: 2, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/24_L.png'},
+    {URL: LocationURL(), class: "fi_explore-image1",id: "explore5", CityName: 'Andover', State: 'KS', txt: '6 Companies', index: 3, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/27_L.png'},
+    {URL: LocationURL(), class: "fi_explore-image2",id: "explore6", CityName: 'Salina', State: 'KS', txt: '5 Companies', index: 4, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/15_L.png'}
   ],
   CityListURL: function() {
     // var currentloc = Session.get("HomePageLocation");

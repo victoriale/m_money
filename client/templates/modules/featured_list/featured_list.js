@@ -71,5 +71,8 @@ Template.featured_list.helpers (
     profile: function(){
       var data = "[PROFILE]";
       return data;
-    }
+    },
+    featURL: function(){
+      return Router.path('content.toplist');
+    },
   });

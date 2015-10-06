@@ -29,7 +29,7 @@ Associated Files: [The Earnings.less, Earnings.html for the module]
               </div>
             </div>
           </div>
-          <a class="module-tile-link" href="#">  <!-- link class in module.less !-->
+          <a class="module-tile-link" href="{{url}}">  <!-- link class in module.less !-->
             <div class="module-tile-hover">
               <div class="module-tile-name">
                 <i class="fa {{awesome}}"></i>
@@ -75,10 +75,12 @@ Associated Files: [The Earnings.less, Earnings.html for the module]
     </div>
     <div class="earning_body-home_footer">  <!-- created a external fotter class to make correct alignment !-->
         <div class="module-footer">
-          <button class="module-footer-button">
-            <span class="module-footer-button-text">See The Full List<i class = "fa fa-angle-right" style="margin-left:5%"></i></span>
-            <span class="module-footer-button-ellipse"><i class="fa fa-line-chart"></i></span>
-          </button>
+          <a href="{{ecalenderURL}}">
+            <button class="module-footer-button">
+              <span class="module-footer-button-text">See The Full List<i class = "fa fa-angle-right" style="margin-left:5%"></i></span>
+              <span class="module-footer-button-ellipse"><i class="fa fa-line-chart"></i></span>
+            </button>
+          </a>
           <!-- END -->
         </div>
     </div>
