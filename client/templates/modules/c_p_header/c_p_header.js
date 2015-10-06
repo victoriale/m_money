@@ -7,13 +7,23 @@
 var Company_Name = "Apple, Inc.";
 
 Template.cp_head.helpers({
-  LastUpdate   : "4:59:00PM PST",
-  Comp_Location: "CUPERTINO, CA",
-  Industry     : "TECHNOLOGY HARDWARE",
-  Name         : Company_Name
+  topInfo: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data;
+  },
 });
 
 Template.cp_body.helpers({
+  bodyInfo: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data;
+  },
   Symbol       : "AAPL",
   Sector       : "ICT",
   Price        : "109.34",
@@ -24,6 +34,13 @@ Template.cp_body.helpers({
 });
 
 Template.cp_rdr.helpers({
+  rdrInfo: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data;
+  },
   url          : "#",
   Name         : Company_Name
 });

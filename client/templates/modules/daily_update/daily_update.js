@@ -5,6 +5,28 @@ Associated Files: [daily_update.less][daily_update.html]*/
 
 
 ///////Chart Creation ///////////
+
+Template.daily_update.helpers({
+  lbInfo: function(){
+    var data = Session.get('daily_update');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    //data is being returned as string so convert to numbers and round to fit design
+    data['csi_closing_price'] = Number(data['csi_closing_price']).toFixed(2);
+    data['csi_market_cap'] = nFormatter(Number(data['csi_market_cap']));
+    data['csi_pe_ratio'] = Number(data['csi_pe_ratio']).toFixed(2);
+    data['csi_percent_change_since_last'] = Number(data['csi_percent_change_since_last']).toFixed(2);
+    data['csi_price'] = Number(data['csi_price']).toFixed(2);
+    data['csi_price_change_since_last'] = Number(data['csi_price_change_since_last']).toFixed(2);
+    data['csi_total_shares'] = nFormatter(Number(data['csi_total_shares']));
+    data['csi_trading_vol'] = nFormatter(Number(data['csi_trading_vol']));
+
+    return data;
+  },
+});
+
+
 Template.daily_update.dailyupdategraphh =  function(){
   var url =  "http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?";
   $.getJSON(url,  function(data) {

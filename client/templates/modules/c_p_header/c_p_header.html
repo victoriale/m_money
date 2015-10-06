@@ -13,14 +13,15 @@
 </template>
 
 <template name="cp_head">
+  {{#with topInfo}}
   <div class="p-head">
     <div class="p-head-top">
-      <div class="p-head-top-lastUpdate">LAST UPDATED: {{LastUpdate}}</div>
+      <div class="p-head-top-lastUpdate">LAST UPDATED: {{c_tr_last_updated}}</div>
       <div class="p-head-top-container">
-        <div class="p-head-top-container-location"><i class="fa fa-map-marker"></i>&nbsp; {{Comp_Location}} | INDUSTRY: <span class="p-head-bottom-name">{{Industry}}</span></div>
+        <div class="p-head-top-container-location"><i class="fa fa-map-marker"></i>&nbsp; {{c_hq_city}}, {{c_hq_state}} | INDUSTRY: <span class="p-head-bottom-name">{{c_sector}}</span></div>
         <div class="p-head-top-container-profile"><span class="p-bold_font">COMPANY</span> PROFILE &nbsp;<i class="fa fa-angle-down"></i></div>
       </div>
-      <div class="p-head-top-name">{{Name}}</div>
+      <div class="p-head-top-name">{{c_name}}</div>
     </div>
     <div class="p-head-bottom">
       <div class="p-head-bottom-triangle"></div>
@@ -28,7 +29,7 @@
         <div class="p-head-bottom-img-sml"></div>
       </div>
       <div class="p-head-bottom-icon"><i class="fa fa-map-marker"></i></div>
-      <div class="p-head-bottom-about">Quick info about <span class="p-bold_font">{{Name}}</span></div>
+      <div class="p-head-bottom-about">Quick info about <span class="p-bold_font">{{c_name}}</span></div>
       <div class="p-head-bottom-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
         nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
@@ -41,14 +42,15 @@
         dolore magnam aliquam quaerat voluptatem.</div>
     </div>
   </div>
-
+  {{/with}}
 </template>
 
 <template name="cp_body">
+  {{#with bodyInfo}}
   <div class="p-body">
     <div class="p-body-box" style="width:24%;">
         <div>NASDAQ Symbol</div>
-        <div class="value">{{Symbol}}</div>
+        <div class="value">{{c_ticker}}</div>
         <div>&nbsp;</div>
     </div>
     <div class="p-body-box" style="width:24%;">
@@ -62,9 +64,11 @@
         <div>as of {{As_Of}}</div>
     </div>
   </div>
+  {{/with}}
 </template>
 
 <template name="cp_rdr">
+  {{#with rdrInfo}}
   <div class="p-rdr">
     <a href="{{ulr}}">
       <div class="p-rdr-tri"></div>
@@ -74,7 +78,7 @@
         <div class="p-rdr-container-explore">Explore This Company</div>
         <div class="p-rdr-container-line"></div>
         <div class="p-rdr-container-circle"><i class="fa fa-angle-right"></i></div>
-        <div class="p-rdr-container-left">{{Name}}</div>
+        <div class="p-rdr-container-left">{{c_name}}</div>
         <div class="p-rdr-container-text">Get an in–depth, visual look at today’s stock price,
 the compeition, executive compensation
 and much more.
@@ -82,4 +86,5 @@ and much more.
       </div>
     </a>
   </div>
+  {{/with}}
 </template>
