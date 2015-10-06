@@ -23,6 +23,7 @@ Associated Files: faqs_finance.html & faqs_finance.js
     background-color:  #ffffff;
     border-bottom: 1px solid @grey-3;
     border-left: 5px solid #e1e1e1;
+    position: relative;
 
     &:hover{
       cursor: pointer;
@@ -30,37 +31,40 @@ Associated Files: faqs_finance.html & faqs_finance.js
   }
 
   &-arrow{               // styling for plus icon
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     font-size: 30px;
     font-weight: 400;
-    float: right;
-    margin-right: 15px;
-    margin-top: 5px;
+    position: absolute;
+    top:15px;
+    right: 15px;
     text-align: center;
 
-    .fa{
+    &-fa{
       display: inline-block;
       color: #666666;
+      position: relative;
+      top: -5px;
     }
   }
   &-faqtext{                // styling for each question text
     font-family: HN-L;
     color:  @blue;
     font-size: 18px;
-    line-height: 55px;
+    height: 55px;
     margin-left: 25px;
     overflow: hidden;
-    float: left;
+    padding-top: 20px;
+    line-height: 18px;
   }
   &-subtext{            // styling for each answer text
-    position: relative;
     width: 549px;
     font-family: HN;
     overflow: hidden;
     padding-bottom: 10px;
     color: @black;
-    left: 40px;
+    margin-left: 40px;
+    padding-top: 5px;
     display:none;
 
     .fa{
@@ -78,7 +82,7 @@ Associated Files: faqs_finance.html & faqs_finance.js
     line-height: 31px;
     display: none;
     font-size: 18px;
-    color: rgba(102,102,102,0.99);
+    color: rgba(102,102,102,.99);
     position: relative;
     top: -5px;
   }

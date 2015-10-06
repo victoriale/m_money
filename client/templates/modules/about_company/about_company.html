@@ -1,0 +1,47 @@
+<!--Author: Zachary Pearson
+**** Created: 10/01/2015
+**** Description: about_company
+**** Associated Files: about_company.html, about_company.less, about_company_logic.js
+-->
+
+<template name="about_company">
+  <div class="about module">
+    <!-- Header starts-->
+    <div class ="about-header module-header">
+      <div class = "about-header-title">
+        <div class="about-header-title-line module-header-line">
+        </div>
+        <div class="about-header-title-text bold">
+          {{company}}'s Biography &amp; Office Location
+        </div>
+      </div>
+    </div>
+    <div class="about-main">
+      <div class="about-main-map" id="mainmap">
+      </div>
+      <!-- Text Box begins-->
+      <div class="about-main-textbox">
+        <div class="about-main-textbox-header bold">
+          <div class="about-main-textbox-header-text">
+            About {{company}}
+          </div>
+        </div>
+        <div class="about-main-textbox-text">
+          {{text}}
+        </div>
+      </div>
+      <div class="about-main-gradient">
+      </div>
+    </div>
+    <!-- Footer Begins-->
+    <div class="footer module-footer">
+      <div class="footer-button module-footer-button">
+        <div class="footer-leftIcon"></div>
+        <div class="footer-text">
+          Continue Reading
+          <i class="fa fa-angle-right" style ="margin-left:5px;"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

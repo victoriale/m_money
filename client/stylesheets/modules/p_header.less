@@ -1,0 +1,336 @@
+/*   Author: David Wibowo
+**** Created: [09/30/2015]
+**** Description: profile header
+**** Associated Files: p_header.less, c_p_header.html, c_p_header_logic.js,
+     e_p_header.html, e_p_header_logic.js, l_p_header.html, l_p_header_logic.js
+*/
+
+@import (reference)"../global_vars.less";
+// Begin p
+.p {
+  padding: 5px;
+  text-align: left;
+  // Begin p-head
+  &-bold_font{
+    font-family: HN-B!important;
+  }
+  &-head {
+    width: 680px;
+    height: 380px;
+    background-color:  rgba(0, 0, 0, 0.65);
+    background-image: url("/TeamImageBG.png");
+    // Begin p-head-top
+    &-top {
+      background-color: rgba(0, 0, 0, 0.6);
+      width: 680px;
+      height: 140px;
+      opacity: 0.95;
+      z-index: auto;
+      // Begin p-head-top-lastupdate
+      &-lastUpdate {
+        font-family: HN-l;
+        font-size: 9px;
+        padding-top: 2px;
+        padding-left: 6px;
+        color: @white;
+        height:35px;
+      } //End p-head-top-lastupdate
+      // Begin p-head-top-container
+      &-container {
+        padding-left: 19px;
+        padding-right: 26px;
+        // Begin p-head-top-container-location
+        &-location {
+          color: @white;
+          font-family: HN-l;
+          font-size: 14px;
+          color: @white;
+          float:left;
+        }// End p-head-top-container-location
+        // Begin p-head-top-container-profile
+        &-profile {
+          font-family: HN-l;
+          color: @white;
+          float:right;
+          //Begin p-head-top-container-profile b
+          b {
+            font-family: HN-B;
+          } //End p-head-top-container-profile b
+          //Begin p-head-top-container-profile .fa
+          .fa {
+            color:  #3098ff;
+          } //End p-head-top-container-profile .fa
+        } //End p-head-top-container-profile
+      }
+      //Begin p-head-top-name
+      &-name {
+        clear: left;
+        position: relative;
+        padding-top: 4px;
+        padding-left: 19px;
+        font-family: HN-l;
+        color:  @white;
+        font-size: 44px;
+      } //End p-head-top-name
+    } // end p-head-top
+    // Start p-head-bottom
+    &-bottom {
+      // Start p-head-bottom-trinagle
+      &-triangle {
+        position: relative;
+        width: 0;
+        height: 0;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 15px solid rgba(0, 0, 0, 0.6);
+        opacity: 0.95;
+        left:118px;
+        top:0px;
+      } // End p-head-bottom-trinagle
+      // Start p-head-bottom-img
+      &-img {
+        position: relative;
+        float:left;
+        top:2px;
+        left:30px;
+        border-radius: 50%;
+        border-style: solid;
+        border-width: 10px;
+        border-color:  #434343;
+        background-color:  #ffffff;
+        width: 200px;
+        height: 200px;
+        opacity: 0.9;
+        background-size: cover !important;
+        background-position: center center !important;
+        &-sml {
+          position: relative;
+          float:left;
+          top: 115px;
+          left: 120px;
+          border-radius: 50%;
+          border-width: 1px;
+          border-color:  #cccccc;
+          border-style: solid;
+          background-color:  #ffffff;
+          width: 73px;
+          height: 73px;
+          background-size: cover !important;
+          background-position: center center !important;
+        } // End p-head-bottom-img-sml
+      } // End p-head-bottom-img
+      // Begin p-head-bottom-icon
+      &-icon {
+        position: relative;
+        float:left;
+        top:20px;
+        left:35px;
+        border-radius: 50%;
+        background-color:  #3098ff;
+        width: 40px;
+        height: 40px;
+
+        // Begin p-head-bottom-icon .fa
+        .fa {
+        position: relative;
+        top:8px;
+        left:13px;
+        color: #ffffff;
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 22px;
+        text-align: left;
+        } // End p-head-bottom-icon .fa
+      } // End p-head-bottom-icon
+      // Begin p-head-botom-about
+      &-about {
+        position: relative;
+        float:left;
+        top:25px;
+        left:45px;
+        color: #ffffff;
+        font-family: HN-l;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 22px;
+        text-align: left;
+        // Begin p-head-botom-about b
+        b {
+          font-family: HN-B;
+        } // End p-head-botom-about b
+      } // End p-head-botom-about
+      &-name{
+        color: #3098ff !important;
+        font-size: 14px !important;
+        font-family: HN-B !important;
+      }
+
+      // Start p-head-bottom-text
+      &-text {
+        position: relative;
+        float:left;
+        top:55px;
+        left:15px;
+        width:360px;
+        height: 112px;
+        padding-left: 20px;
+        border-left: 2px solid #ffffff;
+        color :@white;
+        overflow: hidden;
+        line-height: 23px;
+        font-family: HN-l;
+        font-size: 16px;
+      } // End p-head-bottom-text
+    } // End p-head-bottom
+  } // End p-head
+  // Begin p-body
+  &-body {
+    height: 100px;
+    width: 680px;
+    background-color: #ffffff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid #ebebeb;
+    // Begin p-body-box
+    &-box {
+      width: 170px;
+      padding-left: 5px;
+      padding-right: 5px;
+      border-right: 2px solid #ebebeb;
+      float:left;
+      // Begin p-body-box div
+      div {
+        font-family:HN;
+        color:  #666666;
+        font-size: 11px;
+        text-align: center;
+        line-height: 13px;
+      } // End p-body-box div
+      // Begin p-body-box div.value
+      div.value {
+        padding-top: 4px;
+          font-family:HN-B;
+          font-size: 30px;
+          color: #000000;
+          text-align: center;
+          line-height: 30px;
+          // Begin p-body-box div.value b
+          b {
+            color: #999999;
+          } // End p-body-box div.value b
+          // Begin p-body-box div.value span
+          span {
+            font-family:HN-B;
+          }
+          // End p-body-box div.value span
+      } // End p-body-box div.value
+    } // End p-body-box
+  } // End p-body
+  // Begin p-rdr
+  &-rdr {
+    width: 680px;
+    height: 385px;
+    background-color:  rgba(0, 0, 0, 0.65);
+    background-image: url("/TeamImageBG.png");
+    // Begin p-foot-tri
+    &-tri {
+      position: relative;
+      width: 0;
+      height: 0;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-top: 15px solid #ebebeb;
+      opacity: 0.95;
+      left:46px;
+      top:0px;
+    } // End p-rdr-tri
+    // Begin p-rdr-container
+    &-container {
+      position: relative;
+      margin: 42px 20px 57px 44px;
+      // Begin p-rdr-container-icon
+      &-icon {
+        position: relative;
+        background-image: url("/Icon-Magazine.png");
+        width: 32px;
+        height: 25px;
+      } // end p-rdr-container-icon
+      // Begin p-rdr-container-dr
+      &-dr {
+        position: relative;
+        top:-31px;
+        left:31px;
+        padding-left:15px;
+        font-family:HN-l;
+        font-size: 28px;
+        color:#ffffff;
+      } // End p-rdr-container-dr
+      // Begin p-rdr-container-explore
+      &-explore {
+        position: relative;
+        top:-37px;
+        font-family:HN-B;
+        font-size: 45px;
+        color:#ffffff;
+      } // End p-rdr-container-explore
+      // Begin p-rdr-container-line
+      &-line {
+        position: relative;
+        background-color: #ffffff;
+        width: 250px;
+        height: 2px;
+        top:-22px;
+      } // End p-rdr-container-line
+      // Begin p-rdr-container-circle
+      &-circle {
+        position: relative;
+        border-radius: 50%;
+        border-width: 2px;
+        border-color:  #ffffff;
+        border-style: solid;
+        width: 65px;
+        height: 65px;
+        top: -29px;
+        float: right;
+        cursor: pointer;
+        // Begin p-rdr-container-circle .fa
+        .fa {
+          position: relative;
+          font-size: 36px;
+          top:9px;
+          left:25px;
+          color: #ffffff;
+        } // End p-rdr-container-circle .fa
+
+      } // End p-rdr-container-circle
+
+      // Begin p-rdr-container-exec
+      &-left {
+        border: 2px solid #3098ff;
+        padding: 1px 19px 5px 19px;
+        font-family:HN;
+        font-size: 27px;
+        color:#ffffff;
+        position: relative;
+        top: 7px;
+        float: left;
+        max-width: 550px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      } // End p-rdr-container-exec
+      // Begin p-rdr-container-text
+      &-text {
+        position: relative;
+        height: 100px;
+        width: 462px;
+        position: absolute;
+        font-size: 17px;
+        font-family:HN-l;
+        color:#ffffff;
+        top:200px;
+        overflow: hidden;
+      } // End p-rdr-container-text
+    } // End p-rdr-container
+  } //End p-rdr
+} // End p

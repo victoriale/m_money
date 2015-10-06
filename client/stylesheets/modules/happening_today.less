@@ -1,416 +1,370 @@
-/* Author : Harishkumar Muddasani
-Date Created:07/21/2015
-Description: WHAT’S HAPPENING WITH FACEBOOK, INC. TODAY?. Which gives details
-about the facebook market cap
-Associated files: global_var.less,happening_today.less,module.css
+/* Author: Sri Sindhusha Kuchipudi
+ Created: 09/30/2015
+ Description: .less file for career_stats module
+ Associated Files: career_stats.html, career_stats.less, career_stats.js
 */
-
 @import (reference)"../global_vars.less";
 @import  (reference)"../modules.less";
 
-.hap_tdy{
 
-  /*------------------------------------------------------------------------------*/
-  &-Innerbody{ //inner body arrangement details
-    margin-top: 15px;
-    margin-left: 10px;
+.hp_td{
+  height:528px;
+  width:680px;
+  margin:5px 5px 5px 5px;
+  //class for header part
+  &-hcursor{
+    cursor: pointer!important;
   }
-  /*------------------------------------------------------------------------------*/
-  &-BackGround{ //which covers all the code
-    width: 455px;
-    height: 570px;
-    border:1px solid #dadada;
-  }
-  /*------------------------------------------------------------------------------*/
-  /*rectangular header starts here*/
-  &-RectangleHeader{
-    height:39px;width:453px;
-    background-color:#f2f2f2;
-
-    &-headerContern{
-      float: left;
-      margin-left: 5px;
-      margin-top: 10px;
-      text-transform:uppercase;
-
-      &-Header_content {
-        font-size: 16px;
-        margin-right:325px;
-        margin-top:-5px;
-      }
-      &-circle {
-        color:#3498db;
-      }
-    }
-  }
-  /*------------------------------------------------------------------------------*/
-  /*rectangular header ends here*/
-  /*box1 starts here*/
-  &-box1{
-    //position:relative;
-    width: 100%;
-    height: 31px;
-    //margin: 10px 0 0 10px;
-    margin-top:5px;
-    margin-left:10px;
-    margin-bottom: 20px;
-  } /*box1 starts here*/
-
-  &-line1_box1{ /*line1 in box1 starts here*/
-    //font-family: HN-B;
-    font-family:HN-B;
-    color:  #000000;
-    font-size: 18px;/* Approximation due to font substitution */
-    //font-weight: 700;
-    text-align: right;
-  } /*line1 in box1 starts here*/
-
-  &-fa_box1{ /*fontawesome in box1 starts here*/
-    /* Inline Style */
-    font-family: FontAwesome;
-    color:  #959595;
-    font-size: 10px;/* Approximation due to font substitution */
-    font-weight: 400;
-    line-height: 16px;/* Approximation due to font substitution */
-    text-align: left;
-  } /*fontawesome in box1 starts here*/
-
-  &-line2_box1{ /*line2 in box1 starts here*/
-    /* Inline Style */
-    font-family: HN;
-    color:  #959595;
-    font-size: 10px;/* Approximation due to font substitution */
-    //font-weight: 500;
-    line-height: 16px;/* Approximation due to font substitution */
-    text-align: left;
-  } /*line2 in box1 starts here*/
-
-  &-box2{ /*box2 starts here*/
-    width: 412px;
-    height: 120px;
-    margin: 19px 0 0 10px;
-    overflow-y: hidden;
-  } /*box2 starts here*/
-  &-circle_box2{ /*circle in box2 starts here*/
-    display:inline-block;
-    width:80px;
-    height:80px;
-    float:left;
-  } /*circle in box2 starts here*/
-
-  &-line1_box2{ /*line1 in box2 starts here*/
-    font-family: HN;
-    color: #3a3a3a;
-    font-size: 14px; /* Approximation due to font substitution */
-    //font-weight: 400;
-    text-align: right;
-    height: 120px;
-    width: 415px;
-    line-height: 20px;
-    overflow-y: hidden;
-
-  } /*line1 in box2 starts here*/
-  /*line2 in box2 starts here*/
-  &-line2_box2
-  {
-    position:relative;
-    font-family: HN-B;
-    color: #3098ff;
-    font-size: 14px; /* Approximation due to font substitution */
-    //font-weight: 700;
-    line-height: 25px; /* Approximation due to font substitution */
-    //margin:0px 0px 0px 10px;
-    left:10px;
-  }
-  /*line2 in box2 starts here*/
-  &-facircle_box2{/*font awesome circle in box2 starts here*/
-    border-radius: 50%;
-    border-width: 2px;
-    border-color:  #cccccc;
-    border-style: solid;
-    background-color:  #ffffff;
-    width: 75px;
-    height: 75px;
-  } /*font awesome circle in box2 starts here*/
-  &-box3{ /*box3 starts here*/
-    position: relative;
-    background: url('/drk-linen.png');
-    width: 453px;
-    height: 307px;
-    top:21px
-  }
-  /*box3 starts here*/
-  /*position for caret-up  font-awesome-icon in box3 starts here */
-  &-caretup_box3
-  {
-    position: absolute;
-    top: -19px;
-    left: 224px;
-    color: #3a3a3a;
-  }/*position for caret-up  font-awesome-icon in box3 starts here */
-
-  /*line1 in box3 starts here*/
-  &-line1_box3{
-    position:relative;
-    display:inline-block;
-    //width: 276px;
-    width:62%;
-    height: 36px;
-    font-family: HN-B;
-    color: #ffffff;
-    font-size: 18px; /* Approximation due to font substitution */
-    //font-weight: 700;
-    text-align: center;
-    //margin:14px 0 0 90px;
-    top:14px;
-    left:90px;
-  }
-  /*line1 in box3 starts here*/
-  /*circle1 in box3 starts here*/
-  &-circle1_box3
-  {
-    z-index:0;
-    border-radius: 50%;
-    border-width: 3px;
-    border-color:  #cccccc;
-    border-style: solid;
-    background-color:  #ffffff;
-    width: 119px;
-    height: 119px;
-  }
-  /*circle1 in box3 ends here*/
-  /*circle2 in box3 ends here*/
-  &-circle2_box3
-  {
-    position:absolute;
-    //margin: 25px 0 0 258px;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background-color:  #000000;
-    width: 35px;
-    height: 35px;
-    z-index:10;
-    border:none;
-    cursor: default;
-    top: 73px;
-    left: 258px;
-  }
-  /*circle2 in box3 ends here*/
-  /*circle3 in box3 starts here*/
-  &-circle3_box3
-  {
-    position:absolute;
-    border-radius: 50%;
-    border-width: 1px;
-    border-color: #cccccc;
-    border-style: solid;
-    background-color: #ffffff;
-    width: 48px;
-    height: 48px;
-    z-index:10;
-    margin: 75px 0 0px 0px;
-  }
-  /*circle3 in box3 ends here*/
-  //circlewrapper in box 3 starts here
-  &-circlewrapper{
-    display:inline-block;
-    margin:25px 0 0 165px;
-    width:120px;
-    height:120px;
-  }
-  //circlewrapper in box 3 ends here
-  //buttons in box 3 starts here
-  &-buttons_box3{
-    position:absolute;
-    width: 453px;
-    height: 80px;
-    z-index:10;
-    margin:73px 0 0 0;
-  }
-  //buttons in box 3 ends here
-  /*left button in box3 starts here*/
-  &-leftbutton_box3{
-    background-color:  rgba(0, 0, 0, 0.5);
-    width: 36px;
-    height: 80px;
-    float: left;
-    border-top-right-radius: 38px;
-    border-bottom-right-radius: 38px;
-    display:inline-block;
-    border:none;
-    text-align: center;
-  }
-  &-leftbutton_box3:hover{
-    background: rgba(48, 152, 255, .7);
-    cursor:pointer;
-  }
-  /*left button in box3 endss here*/
-  /////****************Right Button Creation **************//////////
-  /*rightbutton in box3 starts here*/
-  &-rightbutton_box3{
-    background-color:  rgba(0, 0, 0, 0.5);
-    width: 36px;
-    height: 80px;
-    float: right;
-    border-top-left-radius: 38px;
-    border-bottom-left-radius: 38px;
-    display:inline-block;
-    border:none;
-  }
-  &-rightbutton_box3:hover{
-    background: rgba(48, 152, 255, .7);
-    cursor:pointer;
-  }
-  /*rightbutton in box3 ends here*/
-  /////****************Left Button Arrows **************//////////
-  &-icons_box3{
-    color:  #ffffff;
-    font-size: 30px; /* Approximation due to font substitution */
-    font-weight: 400;
-    text-align: left;
-  }
-  /////****************Right Button Arrows **************//////////
-  &-icons2_box3{
-    color:  #ffffff;
-    font-size: 30px; /* Approximation due to font substitution */
-    font-weight: 400;
-    text-align: right;
-  }
-  /*box2 in box3 starts here*/
-  &-box2_box3{
-    position:relative;
-    //width: 143px;
-    width:35%;
-    height: 38px;
-    //margin: 14px 0 0 157px;
-    top:14px;
-    left:157px;
-  }
-  /*box2 in box3 starts here*/
-  /*textline1 of box2 in box3 starts here*/
-  &-textline1_box2_box3{
-    font-family: HN-B;
-    color:  #ffffff;
-    font-size: 14px;/* Approximation due to font substitution */
-    //font-weight: 700;
-    line-height: 24px;/* Approximation due to font substitution */
-    text-align: center;
-  }
-  /*textline1 of box2 in box3 ends here*/
-
-  /*aline2 of box2 in box3 starts here*/
-  &-aline2_box2_box3{
-    /* Inline Style */
-    font-family: HN;
-    color:  #ffffff;
-    font-size: 14px;/* Approximation due to font substitution */
-    //font-weight: 400;
-    line-height: 24px;/* Approximation due to font substitution */
-    text-align: center;
-  }
-  /*aline2 of box2 in box3 ends here*/
-  /*listbutton in box3 starts here*/
-  &-listbutton_box3{
-    position:relative;
-    border-radius: 5px;
-    background-color:  #3098ff;
-    width: 240px;
-    height: 35px;
-    //margin: 15px 0 0 108px;
-    top:30px;
-    left:108px;
-    border:none;
-  }
-  /*listbutton in box3 starts here*/
-  /*fontlistbutton in box3 starts here*/
-  &-fontlistbutton_box3{
-    font-family: HN;
-    color:  #ffffff;
-    font-size: 14px;/* Approximation due to font substitution */
-    //font-weight: 300;
-    text-align: center;
-  }
-  /*fontlistbutton in box3 ends here*/
-  /*font awesome listbutton in box3 starts here*/
-  &-falistbutton_box3{
-    /* Inline Style */
-    font-family: FontAwesome;
-    color:  #ffffff;
-    font-size: 14px;/* Approximation due to font substitution */
-    font-weight: 400;
-    text-align: center;
-    padding: 0 0 0 5px;
-    /*font awesome listbutton in box3 ends here*/
-  }
-  &-font_circle2_box3{
-    width: 12px;
-    height: 9px;
-    font-family: HN-B;
-    color: #ffffff;
-    font-size: 12px; /* Approximation due to font substitution */
-    //font-weight: 700;
-    text-align: right;
-  }
-  /*RightPanel starts here*/
-  &-RightPanel{
-    float:right;
-    margin-top:-585px;
-    margin-right:5px;
-    list-style-type: none;
-
-    &-new_button{ // button on the right tile at the last tile
-      border-radius: 50px;
-      background: url('/drk-linen.png');
-      border:1px solid #3098ff;
-      width: 24px;
-      height: 25px;
-      font-size: 12px;
-      line-height: 23px;
-      padding-top: 1px;
-      padding-left: 1px;
-      margin-top: 30px;
-      color: #fff;
-      //vertical-align: middle;
-      margin-left: 10px;
-      transform: translate(125px, -150px);
-      -webkit-transform: translate(125px, -150px);
-      -khtml-transform: translate(125px, -150px);
-    }
-    &-forward{
+  &-h{
+    width: 680px;
+    height: 45px;
+    border-top:3px solid #3098ff;
+    background-color:#000000;
+    //class for vertical line
+    &-vln{
+      background-color:  #3098ff;
+      width: 3px;
       position: relative;
-      bottom: 0px;
+      top:16px;
+      left: 11px;
+      height: 13px;
+      float: left;
     }
-    /*new button in last tile starts here*/
-    &-FullList_new{ // button which gives the fully details of other property details
-      position:relative;
-      border-radius: 50px;
-      background: #ca1010;
+
+    //class for text
+    &-tbox{
+      float: left;
+      position: relative;
+      left: 17px;
+      top: 10px;
+      width: 392px;
+      height: 17px;
+      font-family: HN-B;
+      color:  #ffffff;
+      font-size: 18px;/* Approximation due to font substitution */
+      text-align: left;
+        //class for 'whats happening with' part
+      &-t1{
+        max-width:220px;
+        float:left;
+        overflow:hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      //class for 'company name' part
+      &-t2{
+        max-width:100px;
+        float: left;
+        position: relative;
+        left: 5px;
+        overflow:hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      //class for 'today' part
+      &-t3{
+        max-width: 70px;
+        float: left;
+        position: relative;
+        left: 5px;
+        overflow:hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }//end of text
+  }//end of header part
+  //class for image place holder container
+  &-imgh{
+    width: 680px;
+    height: 250px;
+    background-color:  rgba(0, 0, 0, 0.65);
+    //background-image:@imgholder;
+    //class for big image place holder
+    &-im{
+      border-radius: 50%;
+      border: solid 10px #424242;
+      background-color:  #ffffff;
+      width: 150px;
+      height: 150px;
+      float:left;
+      position: relative;
+      left: 49px;
+      top: 30px;
+    }
+
+    &-im2{
+      border-radius: 50%;
+      border: solid 1px #cccccc;
+      background-color:  #ffffff;
+      width: 50px;
+      height: 50px;
+      float: left;
+      position: relative;
+      left: 0px;
+      top: 123px;
+    }
+    &-im3{
+      border-radius: 50%;
+      background-color:  #000000;
       width: 45px;
-      height: 25px;
-      margin-top: 30px;
-      color: #fff;
-      text-align: center;
-      vertical-align: middle;
-      margin-left: 10px;
-      bottom: 120px;
-      right: 50px;
-      border:none;
+      height: 45px;
+      position: relative;
+      left: -149px;
+      float: left;
+      top: 129px;
+      &-txt{
+        font-family: HN-B;
+        color:  #ffffff;
+        font-size: 16.01px;/* Approximation due to font substitution */
+        text-align: right;
+        position: relative;
+        top: 11.5px;
+        left: -10px;
+        overflow:hidden;
+        text-transform: uppercase;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width:40px;
+      }
     }
-    &-this_txtbtn { // holds the text inside the button
-      position:relative;
-      font-size: 12px;
-      text-align: center;
-      font-weight: bold;
-      font-family:Arial;
-      position:absolute;
-      color: #fff;
-      top: 5px;
-      left: 7px;
+    //class for heading
+    &-head{
+      width: 105px;
+      height: 11px;
+      position: relative;
+      top: 54px;
+      left: -20px;
+      float: left;
+      //class for fa icon
+      &-fa1{
+        color: #3098ff;
+        font-size: 12px;/* Approximation due to font substitution */
+        font-weight: 400;
+        line-height: 32px;/* Approximation due to font substitution */
+        float: left;
+        position: relative;
+        top: -10px;
+      }
+      //class for text in teading
+      &-txt{
+        font-family: HN-L;
+        color:  #ffffff;
+        font-size: 12px;/* Approximation due to font substitution */
+        line-height: 32px;/* Approximation due to font substitution */
+        position: relative;
+        top: -10px;
+        left: 5px;
+        overflow:hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 105px;
+      }
+    }
+    //class for paragraph box
+    &-pbox{
+      max-width: 346px;
+      height: 108px;
+      float: left;
+      position: relative;
+      top: 65px;
+      left: -20px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      //class for company name
+      &-cnm{
+        font-family: HN-B;
+        color:  #ffffff;
+        font-size: 24px;/* Approximation due to font substitution */
+        line-height: 28px;/* Approximation due to font substitution */
+        text-align: left;
+        float:left;
+        position: relative;
+        margin-right:6px;
+        max-width: 280px;
+        overflow: hidden;
+        white-space: nowrap;
+
+      }
+      //class for paragraph text
+      &-txt{
+        font-family: HN-L;
+        color:  #ffffff;
+        font-size: 24px;/* Approximation due to font substitution */
+        line-height: 28px;/* Approximation due to font substitution */
+        text-align: left;
+        max-height:84px;
+        position:relative;
+        overflow:hidden;
+      }
+      //class for date text
+      &-dt{
+        font-family: HN-L;
+        color:  #ffffff;
+        font-size: 14px;/* Approximation due to font substitution */
+        line-height: 30px;/* Approximation due to font substitution */
+        text-align: left;
+
+      }
+    }
+    //class for arrow ellipse
+    &-cir{
+      border-radius: 50%;
+      border-width: 2px;
+      border-color:  #ffffff;
+      border-style: solid;
+      width: 61px;
+      height: 61px;
+      float: right;
+      position: relative;
+      top: 79px;
+      right: 20px;
+      cursor:pointer;
+      //class for arrow
+      &-aw{
+        font-family: FontAwesome;
+        color:  #ffffff;
+        font-size: 36px;/* Approximation due to font substitution */
+        font-weight: 400;
+        text-align: center;
+        position: relative;
+        left: 1px;
+        top: 1px;
+      }
+    }
+  }//end of image placeholder
+
+  &-b{
+    width: 680px;
+    height: 233px;
+    background-color: #ffffff;
+    //class for image placeholder
+    &-im{
+      width: 101px;
+      height: 101px;
+      border-radius: 50%;
+      border: 2px solid #cccccc;
+      position: relative;
+      top: 20px;
+      left: 0px;
+      float:left;
+      margin-right: 15px;
+      background-color:  #ffffff;
+    }
+    //class for 1st paragragh
+    &-p1bx{
+      width: 640px;
+      height: 233px;
+      float: left;
+      position: relative;
+      left: 15px;
+      top: 0px;
+      max-width: 640px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      //class for title
+      &-t{
+        font-family: HN-B;
+        color:  #000000;
+        font-size: 17.94px;/* Approximation due to font substitution */
+        text-align: left;
+        position: relative;
+        top: 15px;
+        left:3px;
+
+      }
+      //class for written fa icon
+      &-faw{
+        color:  #959595;
+        font-size: 9.97px;/* Approximation due to font substitution */
+        font-weight: 400;
+        line-height: 16px;/* Approximation due to font substitution */
+        text-align: left;
+        float:left;
+        position: relative;
+        top: 15px;
+      }
+      //class for written by
+      &-wtn{
+        font-family: HN;
+        position: relative;
+        left: 5px;
+        color:  #959595;
+        font-size: 9.97px;/* Approximation due to font substitution */
+        line-height: 16px;/* Approximation due to font substitution */
+        text-align: left;
+        position: relative;
+        top: 15px;
+      }
+      //class for paragraph text
+      &-pt{
+        max-height: 171px;
+        font-family: HN;
+        color:  #000000;
+        font-size: 13.95px;/* Approximation due to font substitution */
+        line-height: 19.1px;/* Approximation due to font substitution */
+        text-align: left;
+        position: relative;
+        top: 24px;
+        //left:10px;
+      }
     }
 
   }
-/*RightPanel ends here*/
+    //class for footer part
+    .ftr{
+      width: 680px;
+      height: 48px;
+      position: relative;
+      top: -45px;
+      border-bottom: 2px solid #3098ff;
+      background: -webkit-linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+      background: -moz-linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+      background: -o-linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+      background: -ms-linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+      background: linear-gradient(0deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+      //class for continur reading button
+      &-btn{
 
+        position: relative !important;
+        top: 11px !important;
 
+        &-icn{
+          position: relative !important;
+          left: 12px !important;
+          top: 6px !important;
+          float: left !important;
+        }
+        &-txt{
+          font-family: HN-L;
+          color:  #ffffff;
+          font-size: 14px;/* Approximation due to font substitution */
+          line-height: 28px;/* Approximation due to font substitution */
+          text-align: center;
+          float: left;
+          position: relative;
+          top: 5px;
+          left: 32px;
+          max-width: 150px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        &-fa{
+          color:  #ffffff;
+          font-size: 15px;/* Approximation due to font substitution */
+          font-weight: 400;
+          line-height: 28px;/* Approximation due to font substitution */
+          text-align: center;
+          position: relative;
+          top: 5px;
+          left: 5px;
+          float: right;
+          width: 10px;
+          left: -26px;
+        }
+      }
+    }
+    .p{
+      margin: 0px 0 5px 0px !important;
+    }
 }

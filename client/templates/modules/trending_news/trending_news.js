@@ -15,5 +15,8 @@ Template.trending_news.onRendered( function() {
     trnd_timestamp:function() {
       var data = Session.get("trending_news");
       return ["8:17am, Friday July 17th, 2015"];
-    }
+    },
+    trnd_url:function(){
+      return Router.path('content.allarticles');
+    },
   })

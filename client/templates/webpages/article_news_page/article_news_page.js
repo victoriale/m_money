@@ -7,7 +7,7 @@ Related Files:
 - /client/stylesheets/webpages/article_list_page.less
 */
 
-Template.article_list_page.onRendered( function() {
+Template.article_news_page.onRendered( function() {
   Session.set("article_list_page_header", {
     headline: "'Ok Google' Can Now Send Messages Vis WhatsApp.",
     blurb: "Google Inc (NASDAQ:GOOG) started allowing Android users to use voice actions like the \"OK Google\" command for operating a third-party app a few months ago, and now, the Internet Giant lorem ipsum dolor sit amet consequiter",
@@ -122,7 +122,7 @@ Template.article_list_page.onRendered( function() {
 var lastPosition="right"; //Keeps track of the position of the last small article tile
 var sizeIndex = 0.0; //Keeps track of our position in sizes[]
 var sizes = ["sml", "big", "sml", "big", "big", "sml", "big", "sml"]; //The stylesheet said tiles should follow this pattern
-Template.article_list_page.helpers ( {
+Template.article_news_page.helpers ( {
   //Gets & returns the article from article_list_page_header
   getHeaderArticle: function() {
     var data = Session.get("article_list_page_header");

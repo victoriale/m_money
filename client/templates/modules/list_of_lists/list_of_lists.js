@@ -31,7 +31,15 @@ Template.list_of_lists.helpers({
       backgroundStyle1 = "tilegrey";
       return backgroundStyle1;
     }
-  }
+  },
+
+  listoflistURL: function(){
+    return Router.path('content.trending');
+  },
+
+  viewURL:function(){
+    return Router.path('content.toplist');
+  },
 });
 //This handles the events on button clicks of 1,2,3 and 200
 Template.list_of_lists.events({

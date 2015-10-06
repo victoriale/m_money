@@ -37,7 +37,11 @@ if(Meteor.isClient){
       var id = String(this.cmtid);
       var rpy = REPLY.find({replyid: id}).fetch().length;
       return rpy;
-    }
+    },
+
+    commentsurl: function(){
+      return Router.path('content.disqus');
+    },
   });
   //Event Handlers
   Template.leavecomments.events({

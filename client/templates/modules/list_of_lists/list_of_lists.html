@@ -61,10 +61,12 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists.l
         <span class="list_of_lists-tile-ellip">
           <i class="fa fa-line-chart"></i>
         </span>
-        <button class="list_of_lists-tile-button">
-          See The List
-          <span class= "list_of_lists-tile-ang"><i class="fa fa-angle-right"></i></span>
-        </button>
+        <a href="{{viewURL}}">
+          <button class="list_of_lists-tile-button">
+            See The List
+            <span class= "list_of_lists-tile-ang"><i class="fa fa-angle-right"></i></span>
+          </button>
+        </a>
       </div>
         <!-- This displays the font awesome heart symbol beside the text "save"-->
       <div class="list_of_lists-sn">
@@ -114,7 +116,10 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists.l
           <!-- This is the class which holds the font awesome right arrow-->
         </div>
         <div class="list_of_lists-navigation2">
-          <button class="list_of_lists-view-all list_of_lists-view-all-font">VIEW ALL <img style="padding-bottom:4px" src="infinite-icon.png"></button>
+          <a href="{{listoflistURL}}">
+            <button class="list_of_lists-view-all list_of_lists-view-all-font">VIEW ALL <img style="padding-bottom:4px" src="infinite-icon.png">
+            </button>
+          </a>
         </div>
       </div>
     </div>
