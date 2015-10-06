@@ -1,0 +1,243 @@
+<!--
+Author: jyothyswaroop
+Created: 9/2/2015
+Description: earnings_find
+Associated Files: earnings_find_logic.js and earnings_find.less
+-->
+<!--Gave a template name stock_disclaimer_page !-->
+<template name="earnings_find">
+<!--Defined a class name globally for height and width !-->
+{{#with company}}
+<div class= "eara_find">
+  <!--gave the dimensions for the module with total height and width !-->
+  <div class = "eara_find-n_m">
+<a href="">
+    <div class="eara_find-hdtl">
+      <div class="eara_find-hdtl-or">
+        <div class="eara_find-hdtl-mailrep" >
+          <i class="eara_find-mailrep fa fa-reply"></i>
+        </div>
+        <div class="eara_find-hdtl-rta">
+        </div>
+      </div>
+      <!-- for the text contianer!-->
+      <div class="eara_find-hdtl-txtctt">
+        <div class="eara_find-hdtl-gb">
+          GO Back To
+          <div class="eara_find-hdtl-bar-title">
+          <div class="eara_find-hdtl-bar-helper">
+            {{BackTxt}}
+          </div>
+            <div class="eara_find-hdtl-bar-side">Profile </div>
+          </div>
+        </div>
+      </div>
+      <!-- for the circle on the right to navigate!
+      <div class="eara_find-hdtl-indcir">
+          <i class="fa fa-angle-right"></i>
+      </div>
+      -->
+    </div>
+  </a>
+    <!--dimensions for the circle container as ('cir-d') !-->
+    <div class="eara_find-cir_d">
+    <!-- dimensions for the circle as ('circ')!-->
+    <div class="eara_find-circ">
+    </div>
+    </div>
+    <!--defines the container for text box !-->
+    <div class="eara_find-tc">
+    <!-- class date has all the font-weight and font specific !-->
+    <div class="eara_find-date">
+      LAST UPDATED: 06/24/2015, 8:00 AM EST
+    </div>
+    <!--specified font style for location !-->
+    <div class="eara_find-loc_st">
+       <i class="fa fa-map-marker"></i>
+    <!--specified font style for the state name !-->
+    <span class="eara_find-loc_st">
+      {{getheadername0}}
+    </span>
+    </div>
+    <!-- specified font sytle for the stock disclaimer !-->
+    <div class="eara_find-loc_st eara_find-disc">
+    {{getheadername1}}
+    </div>
+    <!--specified font style for the inveskit finance  !-->
+    <div class="eara_find-loc_st eara_find-fin">
+    For {{compname}}
+    </div>
+    </div>
+<!--simgct search image container contianer !-->
+    <div class="eara_find-simgct">
+      <div class="eara_find-title_ct">
+        <div class="eara_find-title_ct-t1">
+          SEARCH FOR PREVIOUS EARNNG RELEASES
+        </div>
+        <div class="eara_find-title_ct-t2">
+          Discover earning burried in our archive.
+        </div>
+      </div>
+
+      <form autocomplete="off">
+        <div class="eara_find-sr_ct">
+          <input type="text" name="keyword" class="eara_find-sr_ct-sr_cttxt" placeholder="Search company...">
+          <button class="eara_find-sr_btn fa fa-search"></button>
+          <ul class="eara_find-sr_dicov">
+            <div class="eara_find-sr_topp"></div>
+            <i class="fa fa-times eara_find-sr_close"></i>
+          </ul>
+        </div>
+      </form>
+
+    </div>
+
+    <!--container for the ct1 to 'sort by' and 'what is this list?'  !-->
+
+    <!--container for the sortby !-->
+    <div class="eara_find-sy">
+      <!-- container for the sortby font !-->
+      <div class="eara_find-syf"> Now Reading:
+      <!-- container for the members font !-->
+      <span class="eara_find-syf eara_find-sym"> Most Recently Released Earnings <span class="eara_find-sym eara_find-chd"> <i class=" fa fa-angle-down"></i> </span> </span>
+      </div>
+    </div>
+
+    <div class="eara_find-wrapper">
+      <!-- The loop starts here and the each will take each data item from the items on each iteration-->
+      {{#each items}}
+      {{#if imghld}}
+      <div class="eara_find-quotes">
+        <div class="eara_find-quotes-head">Featured Companies With the Highest Earnings in 2014</div>
+        {{#each quote}}
+        <div class="eara_find-quotes-image">
+          <div class="eara_find-gap1"></div>
+          <div class="eara_find-quotes-image-text">
+            <div class="eara_find-quotes-image-text-ln1">{{name}}</div>
+            <div class="eara_find-quotes-image-text-vc">
+          <span class="eara_find-quotes-image-text-ln1 eara_find-quotes-image-text-ln4">
+            {{text1}}
+          <span class="eara_find-quotes-image-text-ln1 eara_find-quotes-image-text-ln3">
+            {{text2}}
+          </span>
+          </span>
+        </div>
+          </div>
+        </div>
+        {{/each}}
+        <div class="eara_find-quotes-arrow fa fa-angle-right"></div>
+      </div>
+      {{else}}
+      <div class="eara_find-{{getBackgroundStyle}}"><br>
+        <!--This is the main (circle) image-->
+        <div class="eara_find-head-circ">
+          <div class="eara_find-head-image">
+            <!-- Here displays the counter number which is a result of each loop-->
+            <span class="eara_find-counter">#{{counter_no}}</span>
+            <!-- <span class="co_comp-counter2"></span> -->
+          </div>
+        </div>
+        <!--Location title -->
+        <div class="eara_find-sp">
+          <div  class="eara_find-space">
+            <!-- This displays the font awesome map sybmol infornt of the united states-->
+            <i class="fa fa-map-marker"></i>
+            <span  class="eara_find-space eara_find-space2">
+              {{location}}
+            </span>
+            <!-- Here displays the description which come from the each loop-->
+            <div class="eara_find-adjust">{{ data }}</div>
+            <div class="eara_find-follw1">{{repo}}
+            </div>
+          </div>
+        </div>
+        <!--This displays the blue button which holds the text "View Full List"-->
+        <div class="eara_find-ctmain">
+          <span class="eara_find-ctmaintxt">
+            Want more info about this company?
+          </span>
+          <button class="eara_find-tile-button">
+            View profile
+            <span style="margin-left:6px"><i class="fa fa-angle-right"></i></span>
+          </button>
+        </div>
+        {{#if chang}}
+        <div class="eara_find-rtct">
+          <div class="eara_find-rttx1">Earnings Released on</div>
+          <div class="eara_find-rttx2"> {{date}}</div>
+          <div class="eara_find-rttx3">{{ndata}}</div>
+            <div class="eara_find-rttx4"><i class="fa fa-share"></i> </div>
+        </div>
+        {{else}}
+        <div class="eara_find-rtct">
+          <div class="eara_find-rttx1"></div>
+          <div class="eara_find-rttx2"> </div>
+          <div class="eara_find-rttx3"></div>
+            <!-- <div class="eara_find-rttx4"><i class="fa fa-share"></i> </div> -->
+        </div>
+        {{/if}}
+        <!-- This displays the font awesome heart symbol beside the text "save"-->
+        <div class="eara_find-sn">
+          <div  class="eara_find-save">
+            <i class="fa fa-heart"></i>
+            <span  class="eara_find-save eara_find-st">
+              Follow
+            </span>
+          </div>
+        </div>
+
+        <!-- This displays the font awesome share symbol beside the text "share"-->
+        <div class="eara_find-sh">
+          <div  class="eara_find-share">
+            <i class="fa fa-share-alt"></i>
+            <span  class="eara_find-share eara_find-sht">
+              Share
+            </span>
+          </div>
+        </div>
+    <!-- This displays the font awesome flag symbol beside the text "Feedback"-->
+        <div class="eara_find-fe ">
+          <div  class="eara_find-share eara_find-feedback">
+            <i class="fa fa-flag"></i>
+            <span  class="eara_find-share eara_find-ft">
+              Feedback
+            </span>
+          </div>
+        </div>
+    </div>
+      {{/if}}
+      <!--This is the End of each loop -->
+      {{/each}}
+  <div class="eara_find-footer">
+    <!-- This is outermost class of the footer which holds the other elements in the footer-->
+    <div class="eara_find-holder1">
+      <!-- This is the class which holds the font awesome left arrow-->
+      <div class="eara_find-navigationl">
+        <i class="fa fa-angle-left eara_find-footer-icon1"></i>
+      </div>
+      <!-- Here we write the code for the buttons 1,2,3 and 200-->
+      <button  class="eara_find-page-selector1 eara_find-page-selector1-font1">1</button>
+      <button class="eara_find-page-selector2 eara_find-page-selector2-font2">2</button>
+      <button  class="eara_find-page-selector3 eara_find-page-selector3-font3">3</button>
+      <span  class="eara_find-dots" >...</span>
+      <button  class="eara_find-page-selector200 eara_find-page-selector200-font">200</button>
+    <span class="eara_find-navigationr">
+      <i class="fa fa-angle-right eara_find-footer-icon2"></i>
+    </span>
+      <!-- This is the class which holds the font awesome right arrow-->
+    </div>
+    <!-- container for the View all button !-->
+    <div class="eara_find-navigation2">
+      <button class="eara_find-view-all eara_find-view-all-font">VIEW ALL <img style="padding-bottom:4px" src="infinite-icon.png"></button>
+    </div>
+  </div>
+</div>
+  <!--created a container for the fotter  !-->
+<div class="eara_find-fotter">
+    {{> recommend}}
+</div>
+
+  </div>
+</div>
+{{/with}}
+</template>

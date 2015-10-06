@@ -1,0 +1,33 @@
+<!-- Author: Ryan Fisher
+**** Created: [08/18/2015]
+**** Description: Recommend module
+**** Associated Files: recommend.html, recommend.less, recommend_logic.js
+-->
+
+<template name="recommend">
+  <div class="rec">
+    <div class="rec-hdr">Because you like
+      <span style="font-family:HN-B">{{like}},</span>
+      we recommend:
+      <span style="font-family:HN-B">{{recommend}}</span>
+    </div>
+    <div class="rec-body">
+      <div class="rec-body-txt">
+        <div class="rec-body-hdr">
+          <img class="rec-body-hdr-img" src="/magazine.png">
+          <div class="rec-body-hdr-txt">Digital Reader</div>
+        </div>
+        <div class="rec-body-title">Explore InvestKit</div>
+        <div class="rec-body-bar"></div>
+        <div class="rec-body-bar1-title">
+        <div class="rec-body-bar1-helper">    [Profile Name Here]
+        </div>
+        </div>
+        <div class="rec-body-descr">
+          Get an in-depth, visual look at current stock value, executive compensation, local companies in your area, and much more.
+        </div>
+      </div>
+      <div class="rec-next"><i class="fa fa-angle-right"></i></div>
+    </div>
+  </div>
+</template>
