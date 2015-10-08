@@ -5,12 +5,13 @@
 -->
 
 <template name="money_memory">
+  {{#with companyInfo}}
   <!--Page wrapper-->
   <div class="mon-mem">
     <!--Main page header-->
     <div class="mon-mem_header">
       <span class="mon-mem_blue"><b>I</b></span>
-      <span><b>{{company}}'s Money Memory</b></span>
+      <span><b>{{c_name}}'s Money Memory</b></span>
     </div>
 
     <!--Main page body-->
@@ -24,14 +25,14 @@
       <div class="mon-mem_body_image"></div>
       <!--Company name-->
       <div class="mon-mem_body_company">
-        <span><b>{{company}}</b></span>
+        <span><b>{{c_name}}</b></span>
       </div>
       <!--Price of stock-->
       <div class="mon-mem_body_stock">
-        <span class="mon-mem_body_stock_price"><b>${{stck_prc}}</b></span>
+        <span class="mon-mem_body_stock_price"><b>${{csi_price}}</b></span>
         <span class="mon-mem_body_stock_history" style = "color: {{stck_chng}}">
           <i class="fa fa-{{arrow}}" style="margin-left:10px"></i>
-          <span class="mon-mem_body_stock_history_text" style = "font-family: HN-B">{{stck_nums}}</span>
+          <span class="mon-mem_body_stock_history_text" style = "font-family: HN-B">{{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%)</span>
         </span>
       </div>
 
@@ -163,7 +164,6 @@
         </a>
       </div>
     </div>
-
-
   </div><!--End Page wrapper-->
+  {{/with}}
 </template>
