@@ -5,8 +5,8 @@ Meteor.methods({
     Start = Start.getTime();
 
     var UrlString = "http://apifin.synapsys.us/call_controller.php?action=company_profile&option="+batchNum+"&param="+company_id;
-
-    //var UrlString = "http://localhost:3000/ProfileData.json";
+    console.log(UrlString);
+    
     var data = HTTP.call("GET",UrlString);
     try {
       data = JSON.parse(data['content']);
