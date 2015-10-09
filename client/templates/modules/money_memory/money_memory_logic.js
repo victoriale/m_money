@@ -5,11 +5,44 @@
 */
 
 Template.money_memory.onRendered(function(){
+
   this.autorun(function(){
-    $(".")
+
     moneymemorygraph();
   })
 });
+
+Template.mm_start_date.onRendered(function(){
+  //Initialize date picker with options
+  var startDatePicker = $('#mm-start-date').datepicker({
+    autoclose: true,
+    container: '#start-date-container',
+    orientation: 'bottom'
+  });
+
+  //Events when a date is selected
+  startDatePicker.on('changeDate', function(e){
+    console.log('date selected', e, new Date(e.date).getTime() / 1000);
+
+    Session.set('mm_start_date', new Date(e.date).getTime() / 1000);
+  })
+})
+
+Template.mm_end_date.onRendered(function(){
+  //Initialize date picker with options
+  var endDatePicker = $('#mm-end-date').datepicker({
+    autoclose: true,
+    container: '#end-date-container',
+    orientation: 'bottom'
+  })
+
+  //Events when a date is selected
+  endDatePicker.on('changeDate', function(e){
+    console.log('end date selected', e, new Date(e.date).getTime() / 1000);
+
+    Session.set('mm_end_date', new Date(e.date).getTime() / 1000);
+  })
+})
 
 Template.money_memory.helpers({
   companyInfo: function(){
@@ -53,6 +86,17 @@ Template.money_memory.helpers({
 
 });
 
+Template.money_memory.events({
+  'click .mon-mem_body_start-date': function(e, t){
+    $('#mm-start-date').datepicker('show');
+    $('.datepicker').css({top: '-252px', left: '-4px'});
+  },
+  'click .mon-mem_body_end-date': function(e, t){
+    $('#mm-end-date').datepicker('show');
+    $('.datepicker').css({top: '-252px', left: '-4px'});
+  }
+})
+
 
 //Function to render the spline chart
 function moneymemorygraph() {
@@ -75,9 +119,9 @@ function moneymemorygraph() {
   // use the data to create highcharts
   newDataArray = [];
   $.each(stockData, function(i, val) {
-    xyMerge = [val.sh_date *1000, parseFloat(val.sh_close)];
-    newDataArray.push(xyMerge);
-  });
+   xyMerge = [val.sh_date *1000, parseFloat(val.sh_close)];
+   newDataArray.push(xyMerge);
+ });
   console.log("Data into HighCharts:",newDataArray);
   //Chart options
   $('#moneymemorygraph').highcharts({

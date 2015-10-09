@@ -104,8 +104,7 @@ b {
       font-size: 16px;
       text-align: center;
       color: #999999;
-      margin-top: 10px;
-      margin-bottom: 18px;
+      margin-bottom: 7px;
     }//End mon-mem_body_history
 
     //Innitial investment box
@@ -118,6 +117,13 @@ b {
       &:hover{
         border-left-color: @blue;
         cursor: pointer;
+
+        >.mon-mem_body_investment_edit{
+
+          >.fa{
+            color: @blue;
+          }
+        }
       }
 
       //Initial investment icon
@@ -166,6 +172,13 @@ b {
       &:hover{
         border-left-color: @blue;
         cursor: pointer;
+
+        >.mon-mem_body_start-date_edit{
+
+          >.fa{
+            color: @blue;
+          }
+        }
       }
 
       //Start date icon
@@ -200,7 +213,9 @@ b {
         top: 17px;
         right: 15px;
         font-size: 25px;
-        color: @grey-3;
+        >.fa{
+          color: @grey-3;
+        }
       }//End mon-mem_body_start-date_edit
     }//End mon-mem_body_start-date
 
@@ -214,6 +229,12 @@ b {
       &:hover{
         border-left-color: @blue;
         cursor: pointer;
+
+        >.mon-mem_body_end-date_edit{
+          >.fa{
+            color: @blue;
+          }
+        }
       }
 
       //End date icon
@@ -248,7 +269,9 @@ b {
         top: 17px;
         right: 15px;
         font-size: 25px;
-        color: @grey-3;
+        >.fa{
+          color: @grey-3;
+        }
       }//End mon-mem_body_end-date_edit
     }//End mon-mem_body_end-date
   }//End mon-mem_body
@@ -258,3 +281,10 @@ b {
     overflow: hidden;
   }
 }//End mon-mem
+
+.datepicker{
+  .active{
+    border-color: @blue !important;
+    background-color: @blue !important;
+  }
+}

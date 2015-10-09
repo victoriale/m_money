@@ -35,18 +35,18 @@
           <span class="mon-mem_body_stock_history_text" style = "font-family: HN-B">{{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%)</span>
         </span>
       </div>
-
+​
       <!--Main chart-->
       <div id="moneymemorygraph" class="mon-mem_body_chart"></div>
       {{#with mmInfo}}
       <!--"You could have earned..."-->
       <div class="mon-mem_body_potential">
         <span>You could have {{earn_lose}}:  </span>
-        <span class="mon-mem_body_potential_amount" style = "color: {{amount}}">${{roi}}</span>
+        <span class="mon-mem_body_potential_amount" style = "color: {{amount}}">{{roi}}</span>
       </div>
       <!--Stock price history-->
       <div class="mon-mem_body_history">
-        <span>The stock price has {{chng}} ({{price_change}}%) since {{furthest_close_date}}</span>
+        <span>The stock price has {{chng}} ({{percent_change}}%) since {{furthest_close_date}}</span>
       </div>
       <!--Initial investment box-->
       <div class="mon-mem_body_investment">
@@ -74,9 +74,10 @@
         <div class="mon-mem_body_start-date_label">
           <span>Start Date</span>
         </div>
-        <div class="mon-mem_body_start-date_edit">
+        <div id="start-date-container" class="mon-mem_body_start-date_edit">
           <i class="fa fa-edit"></i>
         </div>
+        {{> mm_start_date}}
       </div>
       <!--End date box-->
       <div class="mon-mem_body_end-date">
@@ -89,9 +90,10 @@
         <div class="mon-mem_body_end-date_label">
           <span>End Date</span>
         </div>
-        <div class="mon-mem_body_end-date_edit">
+        <div id="end-date-container" class="mon-mem_body_end-date_edit">
           <i class="fa fa-edit"></i>
         </div>
+        {{> mm_end_date}}
       </div>
       {{/with}}
     </div><!--End Main page body-->
@@ -167,4 +169,12 @@
     </div>
   </div><!--End Page wrapper-->
   {{/with}}
+</template>
+
+<template name="mm_start_date">
+  <input id="mm-start-date" style="display: none">
+</template>
+
+<template name="mm_end_date">
+  <input id="mm-end-date" style="display: none">
 </template>
