@@ -38,15 +38,15 @@
 
       <!--Main chart-->
       <div id="moneymemorygraph" class="mon-mem_body_chart"></div>
-
+      {{#with mmInfo}}
       <!--"You could have earned..."-->
       <div class="mon-mem_body_potential">
         <span>You could have {{earn_lose}}:  </span>
-        <span class="mon-mem_body_potential_amount" style = "color: {{amount}}">$13,950.72</span>
+        <span class="mon-mem_body_potential_amount" style = "color: {{amount}}">${{roi}}</span>
       </div>
       <!--Stock price history-->
       <div class="mon-mem_body_history">
-        <span>The stock price has {{chng}} ({{totl_inc}}) since {{comp_bgn_date}}</span>
+        <span>The stock price has {{chng}} ({{price_change}}%) since {{furthest_close_date}}</span>
       </div>
       <!--Initial investment box-->
       <div class="mon-mem_body_investment">
@@ -54,7 +54,7 @@
           <i class="fa fa-money"></i>
         </div>
         <div class="mon-mem_body_investment_amount">
-          <span>${{intl_invstmnt}}</span>
+          <span>${{investment_total}}</span>
         </div>
         <div class="mon-mem_body_investment_label">
           <span>Initial Investment</span>
@@ -69,7 +69,7 @@
           <i class="fa fa-calendar"></i>
         </div>
         <div class="mon-mem_body_start-date_amount">
-          <span>{{strt_date}}</span>
+          <span>{{furthest_close_date}}</span>
         </div>
         <div class="mon-mem_body_start-date_label">
           <span>Start Date</span>
@@ -84,7 +84,7 @@
           <i class="fa fa-bullseye"></i>
         </div>
         <div class="mon-mem_body_end-date_amount">
-          <span>{{end_date}}</span>
+          <span>{{most_recent_close_date}}</span>
         </div>
         <div class="mon-mem_body_end-date_label">
           <span>End Date</span>
@@ -93,6 +93,7 @@
           <i class="fa fa-edit"></i>
         </div>
       </div>
+      {{/with}}
     </div><!--End Main page body-->
 
     <!--Modules to the left of the module-->

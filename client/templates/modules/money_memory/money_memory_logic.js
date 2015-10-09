@@ -5,8 +5,9 @@
 */
 
 Template.money_memory.onRendered(function(){
-  moneymemorygraph();
   this.autorun(function(){
+    $(".")
+    moneymemorygraph();
   })
 });
 
@@ -22,7 +23,19 @@ Template.money_memory.helpers({
     data['csi_price_change_since_last'] = Number(data['csi_price_change_since_last']).toFixed(2);
     return data;
   },
-
+  mmInfo: function(){
+    var data = Session.get('money_memory');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    data['furthest_close_date'] = data['furthest_close_date'].replace(/-/g,'/');
+    data['most_recent_close_date'] = data['most_recent_close_date'].replace(/-/g,'/');
+    data['investment_total'] = data['investment_total'].toFixed(2);
+    data['percent_change'] = data['percent_change'].toFixed(2);
+    data['roi'] = data['roi'].toFixed(2);
+    console.log(data);
+    return data;
+  },
   company: "Apple, Inc.",
   stck_prc: "109.34",
   stck_chng: "#ca1010",
@@ -44,96 +57,98 @@ Template.money_memory.helpers({
 //Function to render the spline chart
 function moneymemorygraph() {
   var graphData = Session.get('money_memory');
-  var companyData = Session.get('profile_header');
+
+  if(typeof graphData == 'undefined'){
+    return '';
+  }
+
   var stockData = graphData.stock_history;
+  var companyData = Session.get('profile_header');
+  /*
 
-  var seriesOptions = [],
-  seriesCounter = 0,
-  //Placeholder data labels
-  names = 'AAPL'
+  $.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?', function (data) {
+    console.log(data);
+  });
+  */
 
+  // the following is the result of service call.
+  // use the data to create highcharts
+  newDataArray = [];
+  $.each(stockData, function(i, val) {
+    xyMerge = [val.sh_date *1000, parseFloat(val.sh_close)];
+    newDataArray.push(xyMerge);
+  });
+  console.log("Data into HighCharts:",newDataArray);
   //Chart options
-  createChart = function () {
-    $('#moneymemorygraph').highcharts({
-      exporting:{
-        enabled:false
-      },
+  $('#moneymemorygraph').highcharts({
+    exporting:{
+      enabled:false
+    },
 
-      credits:{
-        enabled:false
-      },
+    credits:{
+      enabled:false
+    },
 
-      chart:{
-        width: 453,
-        height: 125,
+    chart:{
+      width: 453,
+      height: 125,
 
-      },
-      xAxis:{
-        type:'datetime',
-        labels: {
-          format: '{value:%b}'
-        },
-        min: new Date('2009/09/10').getTime(),
-        max: new Date('2010/03/10').getTime(),
-        title: '',
+    },
+    xAxis:{
+      type:'datetime',
+      /*
+      min: new Date('2009/09/10').getTime(),
+      max: new Date('2010/03/10').getTime(),
+      */
+      title: '',
 
-      },
+    },
 
-      tooltip: {
-        pointFormat: companyData.c_ticker+": ${point.y:.2f}"
-      },
+    tooltip: {
+      pointFormat: companyData.c_ticker+": ${point.y:.2f}"
+    },
 
-      yAxis: {
-        title:'',
-        tickInterval: 2,
-        opposite: true,
-        labels: {
-          format: '{value:.2f}'
-        },
+    yAxis: {
+      title:'',
+      tickInterval: 2,
+      opposite: true,
+      allowDecimals: true,
+      labels: {
+        formatter: function() {
+          return '$' +this.value;
+        }
       },
-      scrollbar:{
-        enabled:false
+    },
+    scrollbar:{
+      enabled:false
+    },
+    rangeSelector: {
+      selected: 4,
+      inputEnabled: false,
+      buttonTheme: {
+        visibility: 'hidden'
       },
-      rangeSelector: {
-        selected: 4,
-        inputEnabled: false,
-        buttonTheme: {
-          visibility: 'hidden'
-        },
+    },
+    title: {
+      text: ''
+    },
+    spline: {
+      lineWidth: 3,
+      states: {
+        hover: {
+          lineWidth: 4
+        }
       },
-      title: {
-        text: ''
-      },
-      spline: {
-        lineWidth: 3,
-        states: {
-          hover: {
-            lineWidth: 4
-          }
-        },
-      },
-      legend:{
-        enabled:false
-      },
-      series:
-      stockData,
-      marker: {
-        enabled: true
-      }
-    });
-  };
-
-  //Populate chart with data
-
-    $.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=' + name.toLowerCase() + '-c.json&callback=?',    function (data) {
-      var seriesOptions = {
-        name: name,
-        data: data,
-        type:'spline',
-        marker: {symbol: 'circle'}
-      };
-
-      createChart();
-    });
-
+    },
+    legend:{
+      enabled:false
+    },
+    series : [{
+        name : companyData.c_ticker,
+        data : newDataArray,
+    }],
+    marker: {
+      enabled: true
+    }
+  });
 }
