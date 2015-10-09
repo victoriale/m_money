@@ -1,167 +1,47 @@
-<!-- Author : Vinay Vittal Karagod
-Date: 07/21/2015
-Description: Gives Details about company Area brakdown statistics like location,population
-details,Average Rent,Description about the public market ,compensation,Total company shares
-It gives location,Nearby cities,Statistics
-Associated files: module.less,area_breakdown.less,area_breakdown.html,navigation_layout.less
+<!--
+Author : David Wibowo
+Date: 09/08/2015
+Description: Area brekdown
+Associated files: area_breakdown.html,area_breakdown.less,area_breakdown.js
 -->
 <template name="area_breakdown">
-  <div class="a_brkdwn">
-    <div class="module-header">
-      <span class="module-header-line"></span>
-      <span class="module-header-title">The San Francisco Bay Area Breakdown</span>
-    </div>
-    <div class="a_brkdwn-Innerbody">
-      <!-- start of background details -->
-      <div class="a_brkdwn-RectBckGrnd">
-        <!-- start of header details -->
-        <div class="a_brkdwn-Rect_hedr"><div class = "a_brkdwn-Rect_hedr-Hedr_cntnt">
-          <i class="fa fa-circle a_brkdwn-Rect_hedr-Hedr_cntnt-blucrcl"></i>  Facebook, Inc. Statistics</div></div>
-          <!-- end of the header -->
-
-          <!-- start of view profile -->
-          <div class="a_brkdwn-logo-image">
-            <!--  <img class="a_brkdwn-logo-image" src="{{Bck_image}}" /> -->
-            <div class="a_brkdwn-logo-image-view-profile">
-              <a class="a_brkdwn-logo-image-profile-link" href="">
-                <div class="a_brkdwn-logo-image-body">
-                  <div class="a_brkdwn-logo-image-lgo_txt_vw">View</div>
-                  <div class="a_brkdwn-logo-image-lgo_txt_prfl">Profile</div>
-                </div></a>
-              </div>
-            </div>
-            <!-- end of view profile -->
-
-            <!-- Statistical Content Content details about the location  -->
-            <div class = "a_brkdwn-DescSpc">
-              <div class = "a_brkdwn-DescSpc-text" align = "left">Facebookdfsdgfhsgdfusodhflksdbufgoi is an online social networking service headquartered in Menlo Park, California.
-              Its website was launched on February 4, 2004, by Mark Zuckerberg with...</div>
-              <a class="" href=""><span class = "a_brkdwn-DescSpc-readmrClr">Read More</span></a></div>
-              <!-- End of the content details -->
-              {{#each items}}
-
-              <div class="a_brkdwn-line"></div>
-              <!-- start of the bottom details which contains population details,Average Rent,Income,Companies-->
-              <div class = "a_brkdwn-Bttom_dtls" >
-                <!--population details -->
-                <a class="" href="">
-                  <div class="a_brkdwn-Bttom_dtls-Stnd_bx_dtls">
-
-                    <div class = "a_brkdwn-Bttom_dtls-shading_awsm"><i class="fa {{fntawwsm}} a_brkdwn-Bttom_dtls-users fa-2x"></i></div>
-                    <div class = "a_brkdwn-Bttom_dtls-Stat_txt_aln">
-                      <div class="a_brkdwn-Bttom_dtls-stat_txt_lrg">{{money}}</div>
-                      <div class="a_brkdwn-Bttom_dtls-Stat_txt_sml">{{desci}}</div>
-                    </div>
-                    <i class="fa fa-angle-right a_brkdwn-Bttom_dtls-angrit fa-2x"></i>
-                    <!--end of population details -->
+  <div class="bkdn">
+    <div clas="bkdn-cnr">
+      <div class="bkdn-cnr-head">
+        <span class="bkdn-cnr-head-line"></span>
+        <span class="bkdn-cnr-head-title">{{City}}, {{State}} Breakdown</span>
+      </div>
+      <div class="bkdn-cnr-map"  id="loc_map"></div>
+      <div class="bkdn-cnr-container">
+        <div class="bkdn-cnr-container-stat">
+          <span class="bkdn-cnr-container-stat-left">{{City}}, {{State}} Statistics</span>
+          <span class="bkdn-cnr-container-stat-right">Last Updated {{LastUpdate}}</span>
+        </div>
+        <div class="bkdn-cnr-container-content" >
+          <div class="bkdn-cnr-container-content-line"></div>
+          {{#each items}}
+            <div class = "bkdn-cnr-container-content-Bttom_dtls" >
+              <a href="{{url}}">
+                <div class="bkdn-cnr-container-content-Bttom_dtls-Stnd_bx_dtls">
+                  <div class = "bkdn-cnr-container-content-Bttom_dtls-shading_awsm"><i class="fa {{fa}} bkdn-cnr-container-content-Bttom_dtls-users fa-2x"></i></div>
+                  <div class = "bkdn-cnr-container-content-Bttom_dtls-Stat_txt_aln">
+                    <div class="bkdn-cnr-container-content-Bttom_dtls-stat_txt_lrg">{{money}}</div>
+                    <div class="bkdn-cnr-container-content-Bttom_dtls-Stat_txt_sml">{{desci}}</div>
                   </div>
-                </a>
-              </div>
-              <!-- Average Rent Details -->
-
-              <!--end of total companies details -->
-
-              {{/each}}
-            </div>
-            <!-- End of the bottom details -->
-            <!-- end of background details -->
-
-
-            <!-- start of Right panel tile details -->
-            <div class="a_brkdwn-RightPanel">
-              <!-- first top box of map details -->
-              {{#each tile}}
-              <div class="module-tile">
-                <div class="module-tile-default">
-                  <div class="module-tile-default-container">
-                    <div class="module-tile-default-icon">
-                      <i class="fa {{fnt}}"></i>
-                    </div>
-                    <div class="module-tile-default-text">
-                      {{name}}
-                    </div>
-                  </div>
+                  <i class="fa fa-angle-right bkdn-cnr-container-content-Bttom_dtls-angrit fa-2x"></i>
                 </div>
-                <a class="module-tile-link" href="#">
-                  <div class="module-tile-hover">
-                    <div class="module-tile-name">
-                      <i class="fa {{fnt}}"></i>{{name}}
-                    </div>
-                    <div class="module-tile-info"></div>
-                    <button class="module-tile-button">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
-                  </div>
-                </a>
-              </div>
-              {{/each}}
-              <!-- end of the link to the map -->
-
-              <!-- second tile details about nearby cities -->
-
-              <!--    <div class="module-tile">
-              <div class="module-tile-default">
-              <div class="module-tile-default-container">
-              <div class="module-tile-default-icon">
-              <i class="fa fa-crosshairs"></i>
-              </div>
-              <div class="module-tile-default-text">
-              Nearby Cities
-              </div>
-              </div>
-              </div>
-              <a class="module-tile-link" href="#">
-              <div class="module-tile-hover">
-              <div class="module-tile-name">
-              <i class="fa fa-crosshairs"></i>Nearby Cities
-              </div>
-              <div class="module-tile-info">
-
-              </div>
-              <button class="module-tile-button">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
-              </div>
               </a>
-              </div>
-
-              <! end of second tile -->
-
-              <!-- third tile details about stastics -->
-              <div class="module-tile">
-                <div class="module-tile-default">
-                  <div class="module-tile-default-container">
-                    <div class="module-tile-default-icon">
-                      <div class="a_brkdwn-stat_grap"></div>
-                    </div>
-                    <div class="module-tile-default-text">
-                      Statistics
-                    </div>
-                  </div>
-                </div>
-                <a class="module-tile-link" href="#">
-                  <div class="module-tile-hover">
-                    <div class="module-tile-name">
-                      <img src="/icons/icon_statistics_custom.png" width="21" height="17">&nbsp; Statistics
-                    </div>
-                    <div class="module-tile-info">
-
-                    </div>
-                    <button class="module-tile-button">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
-                  </div>
-                </a>
-              </div>
-              <!-- end of the details -->
-
             </div>
-            <!-- end of right panel details -->
-          </div>
-          <div class="a_brkdwn-see_mr_tls">
-            <div class="a_brkdwn-see_mr_tls-mr_tl_btn">
-              <div class="a_brkdwn-see_mr_tls-mr_tl_btn-btn_txt">SEE MORE TILES (1)
-                <i class="fa a_brkdwn-see_mr_tls-mr_tl_btn-font_awsm fa-chevron-down"></i>
-              </div>
-            </div>
-            <div class="a_brkdwn-see_mr_tls-tip">Tip: <span class="a_brkdwn-see_mr_tls-tip-tip_dtls">Use the button on the left to see all options in this panel.
-            </span>
-
-          </div>
+          {{/each}}
         </div>
       </div>
-  </template>
+    </div>
+    <!--container for footer-->
+    <div class="ftr">
+        <div class="module-footer-button ftr-btn">
+            <span class="module-footer-button-ellipse ftr-btn-icn"><i class="fa fa-line-chart"></i></span>
+            <span class="module-footer-button-text ftr-btn-txt">See All Statistics &nbsp;<i class="fa fa-angle-right"></i></span>
+        </div>
+    </div><!-- end of container for footer-->
+  </div>
+</template>
