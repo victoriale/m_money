@@ -3,9 +3,17 @@
 **** Description: Exec profile header
 **** Associated Files: c-p_header.html, c-p_header.less, c-p_header_logic.js
 */
-
-var Company_Name = "Apple, Inc.";
-
+Template.cp_head.onRendered(function(){
+  /*
+  **make sure title stays correct size to fit div
+  **max div is the max width before text needs to resizetext
+  **cur div is the container containing the text-align
+  **cursize is the cur font-size of the container that needs to decrease
+  */
+  this.autorun(function(){
+    resizetext(".p-head-top-name", ".p-head-top-name-txt", "44px");
+  })
+})
 Template.cp_head.helpers({
   topInfo: function(){
     var data = Session.get('profile_header');
@@ -37,14 +45,7 @@ Template.cp_body.helpers({
 
     return data;
   },
-  
-  Symbol       : "AAPL",
-  Sector       : "ICT",
-  Price        : "109.34",
-  Color        : "#ca1010",
-  Change       : "-3.41",
-  Percent      : "-3.03%",
-  As_Of        : "2:30PM EST"
+
 });
 
 Template.cp_rdr.helpers({
@@ -55,6 +56,4 @@ Template.cp_rdr.helpers({
     }
     return data;
   },
-  url          : "#",
-  Name         : Company_Name
 });

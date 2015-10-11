@@ -3,8 +3,18 @@ Created: [07/15/2015]
 Description: [daily_update]
 Associated Files: [daily_update.less][daily_update.html]*/
 
+Template.daily_update.onRendered(function(){
+  this.autorun(function(){
+    /*
+    **make sure title stays correct size to fit div
+    **max div is the max width before text needs to resizetext
+    **cur div is the container containing the text-align
+    **cursize is the cur font-size of the container that needs to decrease
+    */
+    resizetext(".all_daily_update_modules-regiontext", ".all_daily_update_modules-regiontext-txt", "18px");
+  })
+})
 
-///////Chart Creation ///////////
 
 Template.daily_update.helpers({
   lbInfo: function(){
@@ -26,7 +36,7 @@ Template.daily_update.helpers({
   },
 });
 
-
+///////Chart Creation ///////////
 Template.daily_update.dailyupdategraphh =  function(){
   var url =  "http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?";
   $.getJSON(url,  function(data) {
