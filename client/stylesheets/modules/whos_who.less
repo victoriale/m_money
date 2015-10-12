@@ -219,6 +219,48 @@ Description: [Finance : Who's Who Page Module] */
     font-size: 14px;
     padding: 0px;
     font-weight: 300;
+    font-family: HN-L;
+  }
+
+  //ellipses for background black
+  &-ellipcir{
+    height: 25px;
+    width: 25px;
+    font-size: 12px;
+    padding: 4px 2px 0px 4px;
+    border-radius: 50%;
+    position: relative;
+    left:10px;
+    float: left;
+    vertical-align: middle;
+    text-align: center;
+    margin: auto;
+    color: #ffffff;
+    background-color: #000000;
+  }
+//for text in the button
+  &-txtv{
+    vertical-align: middle;
+    font-family: HN-L;
+    color:  #ffffff;
+    font-size: 14px;/* Approximation due to font substitution */
+    font-weight: 300;
+    text-align: center;
+    position: relative;
+    left: -11px;
+  }
+//for anlge right
+  &-rt{
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 28px;
+    text-align: center;
+    position: relative;
+    top: -2px;
+    float: right;
+    width: 10px;
+    left: -44px;
   }
 
   &-line2-container{                // container for span elements
@@ -369,6 +411,11 @@ Description: [Finance : Who's Who Page Module] */
     font-size:13.97px;
     font-weight: 700;
     text-align: left;
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 150px;
   }
 
   &-bcontent-text3{                  //text properties for postion of trending people in sub-component
@@ -376,6 +423,29 @@ Description: [Finance : Who's Who Page Module] */
     font-size: 13.97px;
     font-weight: 300;
     text-align: left;
+    float: left;
+    width: 162px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: relative;
+    left: -85px;
+
+  }
+
+  &-bcontent-text4{
+    color: #000000;
+    font-size: 13.97px;
+    font-weight: 300;
+    text-align: left;
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: relative;
+    top: -19px;
+    left: 216px;
+    width: 145px;
   }
 
   &-bcontent-wrap:hover &-bcontent-subwrap3{     //class to inherit multiple hover action in sub-component

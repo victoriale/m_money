@@ -70,7 +70,10 @@
         padding-left: 19px;
         font-family: HN-l;
         color:  @white;
-        font-size: 44px;
+        &-txt{
+          white-space: nowrap;
+          font-size: 44px;
+        }
       } //End p-head-top-name
     } // end p-head-top
     // Start p-head-bottom
@@ -154,6 +157,8 @@
         font-weight: 400;
         line-height: 22px;
         text-align: left;
+        width:50%;
+        white-space: nowrap;
         // Begin p-head-botom-about b
         b {
           font-family: HN-B;
@@ -210,10 +215,11 @@
       div.value {
         padding-top: 4px;
           font-family:HN-B;
-          font-size: 30px;
+          font-size: 25px;
           color: #000000;
           text-align: center;
           line-height: 30px;
+          white-space: nowrap;
           // Begin p-body-box div.value b
           b {
             color: #999999;
@@ -224,6 +230,9 @@
           }
           // End p-body-box div.value span
       } // End p-body-box div.value
+      div.last-updated{
+        margin-top: 3px;
+      }
     } // End p-body-box
   } // End p-body
   // Begin p-rdr

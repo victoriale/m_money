@@ -1,0 +1,95 @@
+<!--Author: Sri Sindhusha Kuchipudi
+ Created: 10/05/2015
+ Description: .less file for directory_page
+ Associated Files: directory_page.html, directory_page.less, directory_page_logic.js
+-->
+
+
+<!-- Template for mainn directory page-->
+<template name="directory_page">
+  <!-- container for whole page-->
+  <div class="dir_pg">
+      <!-- container for header-->
+    <div class="dir_pg-h">
+      <div class="dir_pg-h-h1">
+          <div class="dir_pg-h-h1-fai"><i class="fa fa-map-marker"></i></div>
+          <div class="dir_pg-h-h1-l">{{location}}</div>
+          <div class="dir_pg-h-h1-txt">Finance and Business Profiles in The United States of America</div>
+      </div>
+        <!-- container for top separator-->
+      <div class="dir_pg-ln"></div>
+        <!-- container for company selector-->
+      <div  class="dir_pg-cs">
+          <!-- container for browse profiles-->
+        <div  class="dir_pg-cs-bf">
+            <div  class="dir_pg-cs-bf-brw">Browse All Profiles from A to Z</div>
+            <div  class="dir_pg-cs-bf-all">
+            <span  class="dir_pg-cs-bf-vln">|</span>
+            {{#each atoz}}
+            <span  class="dir_pg-cs-bf-az {{#if color}} dir_pg-cs-bf-az-nw {{/if}}">{{az}}</span>
+            {{#if vln}}
+            <span  class="dir_pg-cs-bf-vln">|</span>
+             {{/if}}
+            {{/each}}
+          </div>
+          </div>
+      </div>
+        <!-- container for bottom separator-->
+      <div class="dir_pg-ln"></div>
+    </div>
+      <!-- container for tiles-->
+    <div class="dir_pg-tp">
+      {{>showdetails}}
+        <!-- container for tiles-->
+      <div class="dir_pg-tp-tiles">
+        {{#each tiles}}
+          <!-- container for selecting tile color-->
+        <div class="dir_pg-tp-{{getcolor}}">
+          <div class="dir_pg-tp-lbr"></div>
+            <div class="dir_pg-tp-con">
+                <div class="dir_pg-tp-con-dt">Last updated: {{LastUpdated}}</div>
+                <div class="dir_pg-tp-con-pnm">{{Pname}}</div>
+                <div class="dir_pg-tp-con-vln1">|</div>
+                <div class="dir_pg-tp-con-exc">{{Cname}}</div>
+                <div class="dir_pg-tp-con-vln2">|</div>
+                <div class="dir_pg-tp-con-aff">{{Market}}</div>
+                <div class="dir_pg-tp-con-loc">{{city}} </div>
+                <div class="dir_pg-tp-con-pos"> <i class="fa fa-angle-right"></i>  {{Sector}}</div>
+                <div class="dir_pg-tp-con-yrs"> <i class="fa fa-angle-right"></i> {{indus}}</div>
+                  <!-- container for Ceo details prints only for every third tile-->
+                {{#if set}}
+                 <div class="dir_pg-tp-con-ceo"> <i class="fa fa-angle-right"></i> {{Ceo}}</div>
+                {{/if}}
+          </div>
+        </div>
+        {{/each}}
+      </div>
+        <!-- container for bottom showing and button details-->
+      <div class="dir_pg-tp-btm">
+          {{>showdetails}}
+      </div>
+    </div>
+  </div>
+</template>
+
+
+  <!-- Template for bottom showing and button details-->
+<template name="showdetails">
+  <div class="dir_pg-tp-sw">
+    <!-- container for showing details -->
+    <div class="dir_pg-tp-sw-shw">Showing:</div>
+    <div class="dir_pg-tp-sw-num">25 &nbsp;</div>
+    <div class="dir_pg-tp-sw-shw">of</div>
+    <div class="dir_pg-tp-sw-num">####</div>
+    <div class="dir_pg-tp-sw-shw">&nbsp; &nbsp;Profiles</div>
+  </div>
+  <!-- container for gray button -->
+  <!-- <div class="dir_pg-tp-btn1">
+    <span  class="dir_pg-tp-fa1"><i class="fa fa-angle-left"></i></span>
+    <span  class="dir_pg-tp-txt">Back</span>
+ </div> -->
+  <span class="dir_pg-tp-btn1"><span  class="dir_pg-tp-fa1"><i class="fa fa-angle-left"></i></span>&nbsp; &nbsp;Back</span>
+  <span>&nbsp; &nbsp;</span>
+ <!-- container blue button -->
+  <span class="dir_pg-tp-btn2">Next &nbsp; &nbsp;<span  class="dir_pg-tp-fa1"><i class="fa fa-angle-right"></i></span></span>
+</template>

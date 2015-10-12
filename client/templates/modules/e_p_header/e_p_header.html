@@ -13,20 +13,21 @@
 </template>
 
 <template name="ep_head">
+  {{#with execInfo}}
   <div class="p-head">
     <div class="p-head-top">
-      <div class="p-head-top-lastUpdate">LAST UPDATED: {{LastUpdate}}</div>
+      <div class="p-head-top-lastUpdate">LAST UPDATED: {{o_last_updated}}</div>
       <div class="p-head-top-container">
-        <div class="p-head-top-container-location"><i class="fa fa-map-marker"></i>&nbsp; {{Comp_Location}} | WORK FOR: <span class="p-head-bottom-name">{{Company}}</span></div>
+        <div class="p-head-top-container-location"><i class="fa fa-map-marker"></i>&nbsp; {{c_hq_location}} | WORK FOR: <span class="p-head-bottom-name">{{c_name}}</span></div>
         <div class="p-head-top-container-profile"><span class="p-bold_font">EXECUTIVE</span> PROFILE</div>
       </div>
-      <div class="p-head-top-name">{{Name}}</div>
+      <div class="p-head-top-name"><span class="p-head-top-name-txt">{{e_name}}</span></div>
     </div>
     <div class="p-head-bottom">
       <div class="p-head-bottom-triangle"></div>
       <div class="p-head-bottom-img"></div>
       <div class="p-head-bottom-icon"><i class="fa fa-map-marker"></i></div>
-      <div class="p-head-bottom-about">Quick info about <span class="p-bold_font">{{Name}}</span></div>
+      <div class="p-head-bottom-about">Quick info about <span class="p-bold_font">{{e_name}}</span></div>
       <div class="p-head-bottom-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
         nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
@@ -39,7 +40,7 @@
         dolore magnam aliquam quaerat voluptatem.</div>
     </div>
   </div>
-
+  {{/with}}
 </template>
 
 <template name="ep_body">

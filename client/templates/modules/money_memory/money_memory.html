@@ -5,12 +5,13 @@
 -->
 
 <template name="money_memory">
+  {{#with companyInfo}}
   <!--Page wrapper-->
   <div class="mon-mem">
     <!--Main page header-->
     <div class="mon-mem_header">
       <span class="mon-mem_blue"><b>I</b></span>
-      <span><b>{{company}}'s Money Memory</b></span>
+      <span><b>{{c_name}}'s Money Memory</b></span>
     </div>
 
     <!--Main page body-->
@@ -24,28 +25,28 @@
       <div class="mon-mem_body_image"></div>
       <!--Company name-->
       <div class="mon-mem_body_company">
-        <span><b>{{company}}</b></span>
+        <span><b>{{c_name}}</b></span>
       </div>
       <!--Price of stock-->
       <div class="mon-mem_body_stock">
-        <span class="mon-mem_body_stock_price"><b>${{stck_prc}}</b></span>
+        <span class="mon-mem_body_stock_price"><b>${{csi_price}}</b></span>
         <span class="mon-mem_body_stock_history" style = "color: {{stck_chng}}">
           <i class="fa fa-{{arrow}}" style="margin-left:10px"></i>
-          <span class="mon-mem_body_stock_history_text" style = "font-family: HN-B">{{stck_nums}}</span>
+          <span class="mon-mem_body_stock_history_text" style = "font-family: HN-B">{{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%)</span>
         </span>
       </div>
-
+​
       <!--Main chart-->
       <div id="moneymemorygraph" class="mon-mem_body_chart"></div>
-
+      {{#with mmInfo}}
       <!--"You could have earned..."-->
       <div class="mon-mem_body_potential">
         <span>You could have {{earn_lose}}:  </span>
-        <span class="mon-mem_body_potential_amount" style = "color: {{amount}}">$13,950.72</span>
+        <span class="mon-mem_body_potential_amount" style = "color: {{amount}}">{{roi}}</span>
       </div>
       <!--Stock price history-->
       <div class="mon-mem_body_history">
-        <span>The stock price has {{chng}} ({{totl_inc}}) since {{comp_bgn_date}}</span>
+        <span>The stock price has {{chng}} ({{percent_change}}%) since {{furthest_close_date}}</span>
       </div>
       <!--Initial investment box-->
       <div class="mon-mem_body_investment">
@@ -53,7 +54,7 @@
           <i class="fa fa-money"></i>
         </div>
         <div class="mon-mem_body_investment_amount">
-          <span>${{intl_invstmnt}}</span>
+          <span>${{investment_total}}</span>
         </div>
         <div class="mon-mem_body_investment_label">
           <span>Initial Investment</span>
@@ -68,14 +69,15 @@
           <i class="fa fa-calendar"></i>
         </div>
         <div class="mon-mem_body_start-date_amount">
-          <span>{{strt_date}}</span>
+          <span>{{furthest_close_date}}</span>
         </div>
         <div class="mon-mem_body_start-date_label">
           <span>Start Date</span>
         </div>
-        <div class="mon-mem_body_start-date_edit">
+        <div id="start-date-container" class="mon-mem_body_start-date_edit">
           <i class="fa fa-edit"></i>
         </div>
+        {{> mm_start_date}}
       </div>
       <!--End date box-->
       <div class="mon-mem_body_end-date">
@@ -83,15 +85,17 @@
           <i class="fa fa-bullseye"></i>
         </div>
         <div class="mon-mem_body_end-date_amount">
-          <span>{{end_date}}</span>
+          <span>{{most_recent_close_date}}</span>
         </div>
         <div class="mon-mem_body_end-date_label">
           <span>End Date</span>
         </div>
-        <div class="mon-mem_body_end-date_edit">
+        <div id="end-date-container" class="mon-mem_body_end-date_edit">
           <i class="fa fa-edit"></i>
         </div>
+        {{> mm_end_date}}
       </div>
+      {{/with}}
     </div><!--End Main page body-->
 
     <!--Modules to the left of the module-->
@@ -123,7 +127,7 @@
         <div class="module-tile-default">
           <div class="module-tile-default-container">
             <div class="module-tile-default-icon">
-              <img src="financials-icon.png" width="56" height="46">
+              <img src="/icons/trending_icon.png" width="56" height="46">
             </div>
             <div class="module-tile-default-text">
               Financials
@@ -133,7 +137,7 @@
         <a class="module-tile-link" href="#">
           <div class="module-tile-hover">
             <div class="module-tile-name">
-              <img src="financials-icon.png" width="21" height="17">&nbsp; Financials
+              <img src="/icons/trending_icon.png" width="21" height="17">&nbsp; Financials
             </div>
             <div class="module-tile-info"></div>
             <button class="module-tile-button">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
@@ -163,7 +167,14 @@
         </a>
       </div>
     </div>
-
-
   </div><!--End Page wrapper-->
+  {{/with}}
+</template>
+
+<template name="mm_start_date">
+  <input id="mm-start-date" style="display: none">
+</template>
+
+<template name="mm_end_date">
+  <input id="mm-end-date" style="display: none">
 </template>

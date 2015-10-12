@@ -1,9 +1,12 @@
-<!--Author: [Thanush Subramanian Elango]
+<!--
+Author: [Thanush Subramanian Elango]
 Created: [07/15/2015]
 Description: [daily_update]
-Associated Files: [daily_update.less][daily_update_logic.js]!-->
+Associated Files: [daily_update.less][daily_update_logic.js]
+-->
 
 <template name="daily_update">
+  {{#with lbInfo}}
   <!---Size of the full page!-->
   <div class="module-2">
     <!--Header!-->
@@ -11,20 +14,21 @@ Associated Files: [daily_update.less][daily_update_logic.js]!-->
       <!--Header line!-->
       <span class="module-header-line">
       </span>
-      <span class="module-header-title">Facebook, Inc.'s doing well today
+      <span class="module-header-title">{{c_name}} Doing Well Today
       </span>
     </div>
     <div class="module-wrapper">
       <!--Image Wrapper!-->
       <div class="all_daily_update_modules">
         <!--Image Wrapper!-->
+
         <div class="all_daily_update_modules-wrapper-image">
           <div class="all_daily_update_modules-wrapper-image-img1">
             <div class="all_daily_update_modules-opacity">
             </div>
             <!--Image Banner!-->
             <div class="all_daily_update_modules-banner">
-              <div class= "all_daily_update_modules-text1">Facebook, Inc.'s Daily Update
+              <div class= "all_daily_update_modules-text1">{{c_name}} Daily Update
               </div>
             </div>
           </div>
@@ -34,20 +38,21 @@ Associated Files: [daily_update.less][daily_update_logic.js]!-->
           <!--Wrapper below the Image left side!-->
           <div class="all_daily_update_modules-wrapper-left-body">
             <div class="all_daily_update_modules-wrapper-left-body2">
-              <div class= "all_daily_update_modules-regiontext"> Facebook, Inc. <br>
+              <div class= "all_daily_update_modules-regiontext">
+                <span class= "all_daily_update_modules-regiontext-txt">{{c_name}}</span>
               </div>
               <!--Values in the Facebook Inc part!-->
               <div class= "all_daily_update_modules-homestext_wrapper">
-                <div class= "all_daily_update_modules-homestext"> <b>$82.37</b>
+                <div class= "all_daily_update_modules-homestext"> <b>${{csi_price}}</b>
                   <div class= "all_daily_update_modules-homestext_wrapper2">
                     &nbsp;
                     <span class="all_daily_update_modules-homestext_icon"><i class="fa fa-arrow-up"></i></span>
-                    <span class="all_daily_update_modules-homestext2">+1.46 (+1.80%)</span>
+                    <span class="all_daily_update_modules-homestext2">{{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%)</span>
                   </div>
                 </div>
                 <!--Time stamp!-->
               </div>
-              <div class= "all_daily_update_modules-region-last-updated"> Last Updated at 4:00PM EST
+              <div class= "all_daily_update_modules-region-last-updated"> Last Updated at {{csi_price_last_updated}} EST
               </div><br>
               <!--Separator below the last updated left side!-->
               <div class="all_daily_update_modules-borderlineee">
@@ -68,17 +73,17 @@ Associated Files: [daily_update.less][daily_update_logic.js]!-->
               Average Volume:<br>
             </div>
             <div class="all_daily_update_modules-Area-stats-values">
-              689.86B<br>
-              16.19<br>
-              582B<br>
-              56.85M</div>
+              {{csi_market_cap}}<br>
+              {{csi_pe_ratio}}<br>
+              {{csi_total_shares}}<br>
+              {{csi_trading_vol}}</div>
             </div>
             <!--Wrapper below the Image right side!-->
             <div class="all_daily_update_modules-wrapper-right-body">
               <div class="all_daily_update_modules-wrapper-right-main-body2">
                 <div class="all_daily_update_modules-wrapper-right-body2">
                   <div class="all_daily_update_modules-wrapper-right-body2-text">
-                    Facebook, Inc.'s Stock Graph
+                    {{c_name}} Stock Graph
                   </div>
                 </div>
               </div>
@@ -141,4 +146,5 @@ Associated Files: [daily_update.less][daily_update_logic.js]!-->
           </div>
         </div>
       </div>
+      {{/with}}
     </template>

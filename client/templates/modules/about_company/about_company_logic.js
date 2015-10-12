@@ -4,14 +4,21 @@
 **** Associated Files: about_company.html, about_company.less, about_company_logic.js
 */
 Template.about_company.helpers({
-  company: function()
-  {
-    return "Apple Inc.";
+  company: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data.c_name;
   },
 
   text: function(){
-    return "Apple Inc. (commonly known as Apple) is an american multinational technology company headquarted in cupertino, California, that designs, develops, and sells consumer electronics, computer software, and online services.Apple Inc. (commonly known as Apple) is an american multinational technology company headquarted in cupertino, California, that designs, develops, and sells consumer electronics, computer software, and online services.Apple Inc. (commonly known as Apple) is an american multinational technology company headquarted in cupertino, California, that designs, develops, and sells consumer electronics, computer software, and online services. \n\n Apple Inc. (commonly known as Apple) is an american multinational technology company headquarted in cupertino, California, that designs, develops, and sells consumer electronics, computer software, and online services.Apple Inc. (commonly known as Apple) is an american multinational technology company headquarted in cupertino, California, that designs, develops, and sells consumer electronics, computer software, and online services.Apple Inc. (commonly known as Apple) is an american multinational technology company headquarted in cupertino, California, that designs, develops, and sells consumer electronics, computer software, and online services.";
-  }
+    var data = Session.get('bio_location');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data.c_desc;
+  },
 })
 
 Template.about_company.onRendered(function(){

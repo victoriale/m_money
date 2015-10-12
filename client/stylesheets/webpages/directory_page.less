@@ -1,0 +1,424 @@
+/*Author: Sri Sindhusha Kuchipudi
+ Created: 10/05/2015
+ Description: .less file for directory_page
+ Associated Files: directory_page.html, directory_page.less, directory_page_logic.js
+ */
+
+ @import (reference) "../global_vars.less";
+ @import (reference)"../modules.less";
+
+ //class for directory_page
+.dir_pg{
+  width: 1012px;
+  height: 1661px;
+  background-color: @white;
+  float:left;
+  //class for header
+  &-h{
+    width: 661px;
+    height: 120px;
+    position: relative;
+    left: 20px;
+    top: 15px;
+    float: left;
+    //class for header content
+    &-h1{
+      width: 655px;
+      height: 37px;
+      //class for fa icon
+      &-fai{
+        color:  #000000;
+        font-size: 12px;/* Approximation due to font substitution */
+        font-weight: 400;
+        text-align: left;
+        float:left;
+      }
+      //class for location
+      &-l{
+        font-family: HN;
+        color:  #000000;
+        font-size: 12px;
+        text-align: left;
+        position: relative;
+        left: 6px;
+        overflow: hidden;
+        max-width: 300px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      //header text
+      &-txt{
+        font-family: HN-B;
+        color:  #000000;
+        font-size: 22px;/* Approximation due to font substitution */
+        text-align: left;
+        overflow: hidden;
+        max-width: 657px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+  //top seperator
+  &-ln{
+    background-color:  #cccccc;
+    width: 970px;
+    height: 1px;
+    position: relative;
+    top: 20px;
+  }
+  //company sort
+  &-cs{
+    width: 970px;
+    height: 65px;
+    position: relative;
+    top: 23px;
+    //browse profiles
+    &-bf{
+      width: 950px;
+      height: 40px;
+      position: relative;
+      top: 10px;
+      float: left;
+      overflow: hidden;
+      max-width: 950px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      //browse profiles
+      &-brw{
+        color:  #000000;
+        font-size: 18px;/* Approximation due to font substitution */
+        font-weight: 300;
+        line-height: 20px;/* Approximation due to font substitution */
+        text-align: left;
+        position: relative;
+        left: 0px;
+        max-width: 255px;
+        overflow:hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      &-all{
+        float: left;
+      }
+      //a-z
+      &-az{
+        font-family: HN-L;
+        color:  #818181;
+        font-size: 14px;/* Approximation due to font substitution */
+        line-height: 20px;/* Approximation due to font substitution */
+        text-align: left;
+        position: relative;
+        left: 0px;
+        max-width: 8px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        cursor: pointer;
+        //newly added
+        &-nw{
+          font-family: HN-B;
+          color:  #3098ff;
+        }
+      }
+      &-vln{
+        font-family: HN-L;
+        color:  #818181;
+        font-size: 14px;/* Approximation due to font substitution */
+        line-height: 20px;/* Approximation due to font substitution */
+        text-align: left;
+        position: relative;
+        left: 0px;
+      }
+    }
+  }
+
+  &-tp{
+    width: 972px;
+    height: 1511px;
+    position: relative;
+    top:38px;
+    left:20px;
+    float:left;
+    //showing details
+    &-sw{
+      float: left;
+      position: relative;
+      width: 400px;
+      height: 20px;
+      top: 9px;
+      max-width: 400px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow:hidden;
+      &-shw{
+        font-family: HN-L;
+        color:  #000000;
+        font-size: 14px;/* Approximation due to font substitution */
+        text-align: left;
+        float:left;
+        position: relative;
+        left: 5px;
+        max-width: 65px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      &-num{
+        font-family: HN;
+        color:  #000000;
+        font-size: 14px;/* Approximation due to font substitution */
+        text-align: left;
+        float:left;
+        position: relative;
+        left: 11px;
+        max-width: 35px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+    }
+
+//back button
+    &-btn1{
+      border-radius: 5px;
+      background-color: #999999;
+      width: 140px;
+      height: 35px;
+      float: right;
+      cursor: pointer;
+      font-family: HN;
+      color: #ffffff;
+      font-size: 14px;
+      text-align: center;
+      padding-top: 7px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      position: relative;
+      right:179px;
+    }
+    //next button
+    &-btn2{
+      border-radius: 5px;
+      background-color: #999999;
+      width: 140px;
+      height: 35px;
+      float: right;
+      cursor: pointer;
+      text-align: center;font-family: HN;
+      color:  #ffffff;
+      font-size: 14px;/* Approximation due to font substitution */
+      text-align: center;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow:hidden;
+      position: relative;
+      padding-top: 7px;
+      right:-122px
+    }
+//container for tile size
+    &-tiles{
+      width: 950px;
+      height: 1350px;
+      float:left;
+    }
+
+  //gray tile
+    &-gray{
+      background-color: #f2f2f2;
+      width: 950px;
+      height: 75px;
+      position: relative;
+      top: 10px;
+      float:left;
+      left: 4px;
+      border-top:1px solid #cccccc;
+    }
+  //white tile
+    &-white{
+      background-color: #ffffff;
+      width: 950px;
+      height: 75px;
+      position: relative;
+      top: 10px;
+      float:left;
+      left: 4px;
+      border-top:1px solid #cccccc;
+    }
+      //left border
+    &-lbr{
+      background-color:  #dadada;
+      width: 5px;
+      height: 74px;
+      float:left;
+    }
+    //content in tile
+    &-con{
+      width: 650px;
+      height: 48px;
+      position: relative;
+      top: 10px;
+      left: 7px;
+      //last updated
+      &-dt{
+        font-family: HN;
+        color:  #000000;
+        font-size: 12px;/* Approximation due to font substitution */
+        line-height: 18px;/* Approximation due to font substitution */
+        text-align: left;
+        max-width: 335px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      //profile name
+      &-pnm{
+        font-family: HN-B;
+        color:  #3098ff;
+        font-size: 14px;/* Approximation due to font substitution */
+        line-height: 18px;/* Approximation due to font substitution */
+        text-align: left;
+        float:left;
+        max-width: 120px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow:hidden;
+      }
+      //vertical line
+      &-vln1{
+        font-family: HN;
+        color:  #3098ff;
+        font-size: 14px;/* Approximation due to font substitution */
+        line-height: 18px;/* Approximation due to font substitution */
+        text-align: left;
+        float:left;
+        position: relative;
+        left: 5px;
+      }
+      //executive
+      &-exc{
+        font-family: HN-B;
+        color:  #3098ff;
+        font-size: 14px;/* Approximation due to font substitution */
+        line-height: 18px;/* Approximation due to font substitution */
+        text-align: left;
+        float:left;
+        position: relative;
+        left: 10px;
+        max-width: 120px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow:hidden;
+      }
+      //vertical line
+      &-vln2{
+        font-family: HN;
+        color:  #3098ff;
+        font-size: 14px;/* Approximation due to font substitution */
+        line-height: 18px;/* Approximation due to font substitution */
+        text-align: left;
+        float:left;
+        position: relative;
+        left: 15px;
+      }
+      //affiliated company
+      &-aff{
+        font-family: HN-B;
+        color:  #3098ff;
+        font-size: 14px;/* Approximation due to font substitution */
+        line-height: 18px;/* Approximation due to font substitution */
+        text-align: left;
+        position: relative;
+        left: 20px;
+        max-width: 130x;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow:hidden;
+      }
+      &-tic{
+        font-family: HN;
+        color:  #3098ff;
+        font-size: 14px;/* Approximation due to font substitution */
+        line-height: 18px;/* Approximation due to font substitution */
+        text-align: left;
+        position: relative;
+        left: 20px;
+        max-width: 130px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow:hidden;
+      }
+      //city & state
+      &-loc{
+        font-family: HN;
+        color:  #272727;
+        font-size: 14px;/* Approximation due to font substitution */
+        line-height: 18px;/* Approximation due to font substitution */
+        text-align: left;
+        float:left;
+        max-width: 100px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow:hidden;
+        position: relative;
+        left: 0px;
+      }
+      //position
+      &-pos{
+        font-family: HN;
+        color:  #272727;
+        font-size: 14px;/* Approximation due to font substitution */
+        line-height: 18px;/* Approximation due to font substitution */
+        text-align: left;
+        float:left;
+        max-width: 130px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow:hidden;
+        position: relative;
+        left: 5px;
+      }
+      //years at position
+      &-yrs{
+        font-family: HN;
+        color:  #272727;
+        font-size: 14px;/* Approximation due to font substitution */
+        line-height: 18px;/* Approximation due to font substitution */
+        text-align: left;
+        float:left;
+        max-width: 130px;
+        position: relative;
+        left: 11px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow:hidden;
+      }
+      &-ceo{
+        font-family: HN;
+        color:  #272727;
+        position: relative;
+        left: 15px;
+        font-size: 14px;/* Approximation due to font substitution */
+        line-height: 18px;/* Approximation due to font substitution */
+        text-align: left;
+        float:left;
+        max-width: 130px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow:hidden;
+      }
+    }
+    &-btm{
+      width: 972px;
+      position: relative;
+      top: 19px;
+      left: 0px;
+    }
+  }
+}
+.space{
+  position:relative;
+  left:10px;
+}
