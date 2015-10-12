@@ -1,0 +1,281 @@
+<!--
+Author: jyothyswaroop
+Created: 9/2/2015
+Description: upcoming_earnings_page
+Associated Files: earnings_calender.js and earnings_calender.less
+-->
+<!--Gave a template name stock_disclaimer_page !-->
+<template name="earnings_calender">
+<!--Defined a class name globally for height and width !-->
+{{#with company}}
+<div class= "upear_pg">
+  <!--gave the dimensions for the module with total height and width !-->
+  <div class = "upear_pg-n_m">
+    <!--dimensions for the circle container as ('cir-d') !-->
+    <div class="upear_pg-cir_d">
+    <!-- dimensions for the circle as ('circ')!-->
+    <div class="upear_pg-circ">
+      <!-- defines container for the smaller blue circle('sc_d') !-->
+      <div class= "upear_pg-sc_d">
+      <!-- defines the dimension for the small circle('sc') !-->
+      <div class="upear_pg-sc_d upear_pg-sc">
+      <i class="upear_pg-bfo fa fa-reply"></i>
+      </div>
+      </div>
+    </div>
+    </div>
+    <!--defines the container for text box !-->
+    <div class="upear_pg-tc">
+    <!-- class date has all the font-weight and font specific !-->
+    <div class="upear_pg-date">
+      LAST UPDATED: 06/24/2015, 8:00 AM EST
+    </div>
+    <!--specified font style for location !-->
+    <div class="upear_pg-loc_st">
+       <i class="fa fa-map-marker"></i>
+    <!--specified font style for the state name !-->
+    <span class="upear_pg-loc_st">
+      {{getheadername0}}
+    </span>
+    </div>
+    <!-- specified font sytle for the stock disclaimer !-->
+    <div class="upear_pg-loc_st upear_pg-disc">
+    {{getheadername1}}
+    </div>
+    <!--specified font style for the inveskit finance  !-->
+    <div class="upear_pg-loc_st upear_pg-fin">
+    For {{getheadername0}} Public Companies
+    </div>
+    </div>
+
+    <div class="upear_pg-bar">
+      <div class="upear_pg-bar-title">
+      <div class="upear_pg-bar-helper">
+        {{getheadername1}}
+      </div>
+      <!-- <div class="upear_pg-bar-side">{{getheadername1}} </div> -->
+      </div>
+      <!-- </div> -->
+      <div class="upear_pg-bar-button">
+        <!-- the save option button-->
+        <a href="#"><i class="fa fa-heart"></i><span class="upear_pg-bar-text">Save</span></a>
+      </div>
+      <div class="upear_pg-bar-button">
+        <!-- share option button -->
+        <a href="#"><i class="fa fa-share-alt"></i><span class="upear_pg-bar-text">Share</span></a>
+      </div>
+    </div>
+    <div class="upear_pg-m_c">
+      <!-- the module.less file navigation buttons-->
+      <button class='upear_pg-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+      <button class='upear_pg-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+      <!-- end of the module.less navigation button -->
+      <!-- wrapper class-->
+      <div class="upear_pg-m_c-image-wr">
+        <div class="upear_pg-m_c-image">
+          <div class="upear_pg-m_c-sma_ct">
+          <div class="upear_pg-m_c-sma_cr">
+
+          </div>
+        </div>
+        </div>
+      </div>
+      <!-- the main container -->
+      <ul class="upear_pg-m_c-cr">
+        <!-- the image in blue circle-->
+        <li class="upear_pg-m_c-title">
+          <div class="upear_pg-m_c-title-image"><i class="fa fa-briefcase"></i>
+          <span class="upear_pg-m_c-title-text"> {{formalName}} </span>
+          </div>
+        </li>
+        <div class="upear_pg-fbt1">
+          <!-- the save option button-->
+          <a href="#"><i class="upear_pg-fbt1-font1 fa fa-heart"></i><span class="upear_pg-fbt1-text1">Save</span></a>
+        </div>
+        <div class="upear_pg-fbt1 upear_pg-fbt2">
+          <!-- share option button -->
+          <a href="#"><i class="upear_pg-fbt1-font1 fa fa-share-alt"></i><span class="upear_pg-fbt1-text1">Share</span></a>
+        </div>
+      <!-- the description about the person-->
+        <li class="upear_pg-m_c-dp">
+          <div class="upear_pg-m_c-dp-dpct">
+          {{formalName}} is scheduled to release their 2015 Q1 Earnings on 08/10/2015.
+        </div>
+            <div class="upear_pg-m_c-dp-itl upear_pg-m_c-dp-it2">
+ Experts belive that {{formalName}} sales will project the Q1 Earnings 10% over their sales goal,
+            </div>
+          <!-- </div> -->
+        </li>
+      </ul>
+      <!-- the bottom bar-->
+      <div class="upear_pg-m_c-view_more">
+        <!-- the details about the comapny-->
+        <div class="upear_pg-m_c-view_more-text">
+          <div class="upear_pg-m_c-view_more-text-ln1">Want to know more about {{formalName}}?</div>
+          <div class="upear_pg-m_c-view_more-text-ln2">Profile Last Updated On: <span class="upear_pg-m_c-dp-itl upear_pg-m_c-dp-itl2">07/29/2015</span></div>
+        </div>
+        <button class="upear_pg-m_c-view_more-button">
+          View Profile <i class="fa fa-angle-right"></i>
+        </button>
+      </div>
+    </div>
+    <!--container for the ct1 to 'sort by' and 'what is this list?'  !-->
+    <div class="upear_pg-ct1">
+    <!--container for the sortby !-->
+    <div class="upear_pg-sy">
+      <!-- container for the sortby font !-->
+      <div class="upear_pg-syf"> Sort by:
+      <!-- container for the members font !-->
+      <span class="upear_pg-syf upear_pg-sym"> Upcoming Earnings <span class="upear_pg-sym upear_pg-chd"> <i class=" fa fa-chevron-down"></i> </span> </span>
+      </div>
+    </div>
+    <!-- contianer for the complete 'what is this list' class name is wl!-->
+    <div class="upear_pg-wl">
+      <!-- container for the 'what is this list' class name is wl2!-->
+      <div class="upear_pg-wlc">
+        <!-- font style for the 'what is this list'!-->
+        <div class="upear_pg-wlf">
+        What is this page?
+        <span class="upear_pg-x">
+         <i class="fa fa-times"></i>
+        </span>
+        </div>
+      </div>
+      <!--container for the text inside the 'what is this list' as wltxt!-->
+      <div class="upear_pg-wltxt">
+      <!--font style for the text !-->
+      <div class="upear_pg-wltxtf">
+        <p> This is a page listing all of the upcoming earnings releases for public companies in the {{getheadername0}} sorted by upcoming date.</p>
+      </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="upear_pg-wrapper">
+      <!-- The loop starts here and the each will take each data item from the items on each iteration-->
+      {{#each items}}
+      {{#if imghld}}
+      <div class="upear_pg-quotes">
+        <div class="upear_pg-quotes-head">Featured Companies With The Highest Earnings in 2014</div>
+        {{#each quote}}
+        <div class="upear_pg-quotes-image">
+          <div class="upear_pg-gap1"></div>
+          <div class="upear_pg-quotes-image-text">
+            <div class="upear_pg-quotes-image-text-ln1">{{name}}</div>
+            <div class="upear_pg-quotes-image-text-vc">
+          <span class="upear_pg-quotes-image-text-ln1 upear_pg-quotes-image-text-ln4">
+            {{text1}}
+          <span class="upear_pg-quotes-image-text-ln1 upear_pg-quotes-image-text-ln3">
+            {{text2}}
+          </span>
+          </span>
+        </div>
+          </div>
+        </div>
+        {{/each}}
+        <div class="upear_pg-quotes-arrow fa fa-angle-right"></div>
+      </div>
+      {{else}}
+      <div class="upear_pg-{{getBackgroundStyle}}"><br>
+        <!--This is the main (circle) image-->
+        <div class="upear_pg-head-circ">
+          <div class="upear_pg-head-image">
+            <!-- Here displays the counter number which is a result of each loop-->
+            <span class="upear_pg-counter">#{{counter_no}}</span>
+
+          </div>
+        </div>
+        <!--Location title -->
+        <div class="upear_pg-sp">
+          <div  class="upear_pg-space">
+            <!-- This displays the font awesome map sybmol infornt of the united states-->
+            <i class="fa fa-map-marker"></i>
+            <span  class="upear_pg-space upear_pg-space2">
+              {{location}}
+            </span>
+            <!-- Here displays the description which come from the each loop-->
+            <div class="upear_pg-adjust">{{ data }}</div>
+            <div class="upear_pg-follw1">{{repo}}
+            </div>
+          </div>
+        </div>
+        <!--This displays the blue button which holds the text "View Full List"-->
+        <div class="upear_pg-ctmain">
+          <span class="upear_pg-ctmaintxt">
+            Want more info about this company?
+          </span>
+          <button class="upear_pg-tile-button">
+            View Profile
+            <span style="margin-left:6px"><i class="fa fa-angle-right"></i></span>
+          </button>
+        </div>
+        <div class="upear_pg-rtct">
+          <div class="upear_pg-rttx1">Scheduled Release</div>
+          <div class="upear_pg-rttx2"> {{reldate}}</div>
+          <div class="upear_pg-rttx3">as of {{date}} </div>
+        </div>
+        <!-- This displays the font awesome heart symbol beside the text "save"-->
+        <div class="upear_pg-sn">
+          <div  class="upear_pg-save">
+            <i class="fa fa-heart"></i>
+            <span  class="upear_pg-save upear_pg-st">
+              Follow
+            </span>
+          </div>
+        </div>
+
+        <!-- This displays the font awesome share symbol beside the text "share"-->
+        <div class="upear_pg-sh">
+          <div  class="upear_pg-share">
+            <i class="fa fa-share-alt"></i>
+            <span  class="upear_pg-share upear_pg-sht">
+              Share
+            </span>
+          </div>
+        </div>
+    <!-- This displays the font awesome flag symbol beside the text "Feedback"-->
+        <div class="upear_pg-fe ">
+          <div  class="upear_pg-share upear_pg-feedback">
+            <i class="fa fa-flag"></i>
+            <span  class="upear_pg-share upear_pg-ft">
+              Feedback
+            </span>
+          </div>
+        </div>
+    </div>
+      {{/if}}
+      <!--This is the End of each loop -->
+      {{/each}}
+  <div class="upear_pg-footer">
+    <!-- This is outermost class of the footer which holds the other elements in the footer-->
+    <div class="upear_pg-holder1">
+      <!-- This is the class which holds the font awesome left arrow-->
+      <div class="upear_pg-navigationl">
+        <i class="fa fa-angle-left upear_pg-footer-icon"></i>
+      </div>
+      <!-- Here we write the code for the buttons 1,2,3 and 200-->
+      <button  class="upear_pg-page-selector1 upear_pg-page-selector1-font1">1</button>
+      <button class="upear_pg-page-selector2 upear_pg-page-selector2-font2">2</button>
+      <button  class="upear_pg-page-selector3 upear_pg-page-selector3-font3">3</button>
+      <span  class="upear_pg-dots" >...</span>
+      <button  class="upear_pg-page-selector200 upear_pg-page-selector200-font">200</button>
+    <span class="upear_pg-navigationr">
+      <i class="fa fa-angle-right upear_pg-footer-icon"></i>
+    </span>
+      <!-- This is the class which holds the font awesome right arrow-->
+    </div>
+    <!-- container for the View all button !-->
+    <div class="upear_pg-navigation2">
+      <button class="upear_pg-view-all upear_pg-view-all-font">VIEW ALL <img style="padding-bottom:4px" src="infinite-icon.png"></button>
+    </div>
+  </div>
+</div>
+  <!--created a container for the fotter  !-->
+<div class="upear_pg-fotter">
+    {{> didnt_find}}
+</div>
+
+  </div>
+</div>
+{{/with}}
+</template>

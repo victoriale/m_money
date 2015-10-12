@@ -1,0 +1,173 @@
+<!--
+Author: William Klausmeyer
+Location Module: Find Company
+-->
+
+<template name="find_company">
+  <div class="module-4 noclick" style="cursor: default; overflow: visible;">
+    <div class="module-header"><!--creating the header for the module-->
+      <span class="module-header-line"></span><!--the blue color line on top of the header-->
+      <span class="module-header-title">Find a Company</span><!--specifying the title to be displayed inside the header-->
+    </div>
+    <div class="find_cmp_ban">
+      <div class="find_cmp_ban_txt">Find Your <b>Next Investment</b></div>
+    </div>
+    <div class="find_cmp_sec1">
+      <div class="find_cmp_sb">
+        <div class="find_cmp_label">Location (city, zip, address)</div>
+        <div class="find_cmp_sb_bar">
+          <input placeholder="Wichita, KS">
+          <i class="fa fa-search"></i>
+        </div>
+      </div>
+      <div class="find_cmp_dd">
+        <div class="find_cmp_label">Range</div>
+        <div class="find_cmp_dd_menu" id="ModDistance">
+          <div class="find_cmp_dd_menu_txt">50 Miles</div>
+          <i class="fa fa-caret-down"></i>
+          <i class="fa fa-caret-up"></i>
+          <div class="dropdown">
+            <div class="dropdown_car"></div>
+            <div class="dropdown_item">5 Miles</div>
+            <div class="dropdown_divider"></div>
+            <div class="dropdown_item">15 Miles</div>
+            <div class="dropdown_divider"></div>
+            <div class="dropdown_item">25 Miles</div>
+            <div class="dropdown_divider"></div>
+            <div class="dropdown_item">50 Miles</div>
+            <div class="dropdown_divider"></div>
+            <div class="dropdown_item">100 Miles</div>
+            <div class="dropdown_divider"></div>
+            <div class="dropdown_item">150+ Miles</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="find_cmp_sec1">
+      <div class="find_cmp_dd">
+        <div class="find_cmp_label">Pick an Exchange</div>
+        <div class="find_cmp_dd_menu" id="ModExchange">
+          <div class="find_cmp_dd_menu_txt">All Exchanges</div>
+          <i class="fa fa-caret-down"></i>
+          <i class="fa fa-caret-up"></i>
+          <div class="dropdown">
+            <div class="dropdown_car"></div>
+            <div class="dropdown_item">NASDAQ</div>
+            <div class="dropdown_divider"></div>
+            <div class="dropdown_item">NYSE</div>
+            <div class="dropdown_divider"></div>
+            <div class="dropdown_item">AMEX</div>
+            <div class="dropdown_divider"></div>
+            <div class="dropdown_item">OTC</div>
+          </div>
+        </div>
+      </div>
+      <div class="find_cmp_dd">
+        <div class="find_cmp_label">Pick a Sector</div>
+        <div class="find_cmp_dd_menu" id="ModSector">
+          <div class="find_cmp_dd_menu_txt">All Sectors</div>
+          <i class="fa fa-caret-down"></i>
+          <i class="fa fa-caret-up"></i>
+          <div class="dropdown">
+            <div class="dropdown_car"></div>
+            <div class="dropdown_item">Basic Materials</div>
+            <div class="dropdown_divider"></div>
+            <div class="dropdown_item">Conglomerates</div>
+            <div class="dropdown_divider"></div>
+            <div class="dropdown_item">Consumer Goods</div>
+            <div class="dropdown_divider"></div>
+            <div class="dropdown_item">Financial</div>
+            <div class="dropdown_divider"></div>
+            <div class="dropdown_item">Healthcare</div>
+            <div class="dropdown_divider"></div>
+            <div class="dropdown_item">Industrial Goods</div>
+            <div class="dropdown_divider"></div>
+            <div class="dropdown_item">Services</div>
+            <div class="dropdown_divider"></div>
+            <div class="dropdown_item">Technology</div>
+            <div class="dropdown_divider"></div>
+            <div class="dropdown_item">Utilities</div>
+          </div>
+        </div>
+      </div>
+      <div class="find_cmp_dd">
+        <div class="find_cmp_label">Pick an Industry</div>
+        <div class="find_cmp_dd_menu disabled" id="ModIndustry">
+          <div class="find_cmp_dd_menu_txt">All Industries</div>
+          <i class="fa fa-caret-down"></i>
+          <i class="fa fa-caret-up"></i>
+          <div class="dropdown"></div>
+        </div>
+      </div>
+    </div>
+    <div class="find_cmp_sec2">
+      <div class="slider">
+        <div class="find_cmp_label">Share Price Range</div>
+        <div class="slider_bar" id="ModShare">
+          <div class="slider_ball" style="left: -11.5px;">
+            <div class="slider_ball_label">$1</div>
+          </div>
+          <div class="slider_ball" style="left: 250.5px;">
+            <div class="slider_ball_label">$755</div>
+          </div>
+          <div class="slider_avg_caret">
+            <div class="slider_avg">
+              $378 Average
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="find_cmp_sec2_div"></div>
+      <div class="slider">
+        <div class="find_cmp_label">Market Cap Range</div>
+        <div class="slider_bar" id="ModCap">
+          <div class="slider_ball" style="left: -11.5px;">
+            <div class="slider_ball_label">$100</div>
+          </div>
+          <div class="slider_ball" style="left: 250.5px;">
+            <div class="slider_ball_label">$670B</div>
+          </div>
+          <div class="slider_avg_caret">
+            <div class="slider_avg">
+              $335B Average
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="find_cmp_sec1">
+      <div class="find_cmp_dd">
+        <div class="find_cmp_label">Key Metrics</div>
+        <div class="find_cmp_dd_menu" id="ModMetrics">
+          <div class="find_cmp_dd_menu_txt">Stock % Gain</div>
+          <i class="fa fa-caret-down"></i>
+          <i class="fa fa-caret-up"></i>
+          <div class="dropdown">
+            <div class="dropdown_car"></div>
+            <div class="dropdown_item">Stock % Gain</div>
+            <div class="dropdown_divider"></div>
+            <div class="dropdown_item">Volume</div>
+            <div class="dropdown_divider"></div>
+            <div class="dropdown_item">Market Cap</div>
+          </div>
+        </div>
+      </div>
+      <div class="find_cmp_dd">
+        <div class="find_cmp_label">Start Date</div>
+        <div class="find_cmp_dd_menu noclick">
+          <input type="date">
+          <i class="fa fa-calendar-plus-o"></i>
+        </div>
+      </div>
+      <div class="find_cmp_dd">
+        <div class="find_cmp_label">End Date</div>
+        <div class="find_cmp_dd_menu noclick">
+          <input type="date">
+          <i class="fa fa-calendar-o"></i>
+        </div>
+      </div>
+    </div>
+    <div class="find_cmp_find">Find Companies <i class="fa fa-chevron-right"></i></div>
+    <div class="find_cmp_clear">Clear Selection <i class="fa fa-times"></i></div>
+  </div>
+</template>

@@ -1,0 +1,366 @@
+/*
+Author: William Klausmeyer
+Location Module: Find Company
+*/
+
+@import (reference) "../global_vars.less"; //include important global vars (colors mostly)
+@import (reference) "../modules.less";
+
+@keyframes spin {
+  0% {
+    transform: rotate(180deg);
+  } 100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    display: block;
+    opacity: 0;
+  } 100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+.dropdown {
+  position: absolute;
+  top: 50px;
+  left: 0px;
+  right: 0px;
+  background-color: @white;
+  border-radius: 5px;
+  cursor: default;
+  border: 1px solid @blue;
+  z-index: 5;
+  opacity: 0;
+  display: none;
+
+  &_car {
+    content: '';
+    position: absolute;
+    top: -6px;
+    right: 13px;
+    border-bottom: 6px solid @blue;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      right: -3px;
+      border-bottom: 4px solid @white;
+      border-left: 3px solid transparent;
+      border-right: 3px solid transparent;
+    }
+  } // END .dropdown_car
+
+  &_divider {
+    background-color: @grey-3;
+    height: 1px;
+    margin: 0 10px;
+  } // END .dropdown_divider
+
+  &_item {
+    text-align: left;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    cursor: pointer;
+    overflow: hidden;
+
+    &:hover {
+      color: @white;
+      background-color: @blue;
+    }
+  } // END .dropdown_item
+} // END .dropdown
+
+.slider {
+  width: 289px;
+  margin: 0 20px;
+  position: relative;
+  float: left;
+
+  &_avg {
+    width: 110px;
+    height: 25px;
+    border: 1px solid @bgcolor;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 23px;
+    padding: 0 11.5px;
+    font-size: 12px;
+    position: absolute;
+    top: 6px;
+    left: ~'calc(50% - 55px)';
+    background-color: @white;
+
+    &_caret {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: ~"calc(50% - 5px)";
+      border-bottom: 6px solid @bgcolor;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+
+      &.invert {
+        top: -12px;
+        transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+
+        .slider_avg {
+          transform: rotate(180deg);
+          -webkit-transform: rotate(180deg);
+        } // END .slider_avg_caret.invert .slider_avg
+      } // END .slider_avg_caret.invert
+    } // END .slider_avg_caret
+  } // END .slider_avg
+
+  &_ball {
+    width: 26px;
+    height: 26px;
+    border: 1px solid @grey-6;
+    border-radius: 50%;
+    background-color: @white;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.35);
+    position: absolute;
+    top: -11.5px;
+    cursor: pointer;
+
+    &_label {
+      width: 50px;
+      height: 20px;
+      line-height: 20px;
+      text-align: center;
+      font-size: 14px;
+      position: absolute;
+      top: 26px;
+      left: ~'calc(50% - 25px)';
+      cursor: default;
+    } // END .slider_ball_label
+
+    &.sideLabelL .slider_ball_label {
+      left: -50px;
+      text-align: right;
+      top: 20px;
+    } // END .slider_ball.sideLabelL .slider_ball_label
+
+    &.sideLabelR .slider_ball_label {
+      right: -50px;
+      left: auto;
+      text-align: left;
+      top: 20px;
+    } // END .slider_ball.sideLabelR .slider_ball_label
+  } // END .slider_ball
+
+  &_bar {
+    width: 265px;
+    height: 5px;
+    position: absolute;
+    top: 70px;
+    left: 12px;
+    background-color: @blue;
+    border-radius: 5px;
+  } // END .slider_bar
+} // END .slider
+
+.find_cmp {
+  &_ban {
+    height: 105px;
+    background-image: url('/filter_bg.png');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+
+    &_txt {
+      color: @white;
+      line-height: 105px;
+      font-size: 30px;
+      font-family: HN-L;
+    } // END .find_cmp_ban_txt
+  } // END .find_cmp_ban
+
+  &_clear {
+    .noclick;
+    width: 145px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 5px;
+    background-color: #acacac;
+    color: @white;
+    font-size: 14px;
+    margin: 15px 10px;
+    float: right;
+    cursor: pointer;
+
+    .fa {
+      margin-left: 5px;
+    }
+  } // END .find_cmp_clear
+
+  &_dd {
+    .noclick;
+    margin: 0px 10px;
+    width: 200px;
+    float: left;
+
+    &_menu {
+      height: 40px;
+      border: 1px solid @grey-3;
+      border-radius: 5px;
+      background-color: @bgcolor;
+      position: relative;
+      cursor: pointer;
+
+      &_txt {
+        width: 160px;
+        position: absolute;
+        left: 20px;
+        text-align: left;
+        line-height: 38px;
+      } // END .find_cmp_dd_menu_txt
+
+      &.disabled {
+        color: @grey-3;
+        cursor: default;
+
+        .fa-caret-down {
+          color: @grey-3;
+        } // END .find_cmp_dd_menu.disabled .fa-caret-down
+      } // END .find_cmp_dd_menu.disabled
+
+      &.active {
+        background-color: @white;
+        border-color: @blue;
+
+        .fa-caret-up {
+          display: block;
+          animation: spin;
+          animation-duration: 0.5s;
+        } // END .find_cmp_dd_menu.active .fa-caret-up
+
+        .fa-caret-down {
+          display: none;
+        } // END .find_cmp_dd_menu.active .fa-caret-up
+
+        .dropdown {
+          display: block;
+          opacity: 1;
+          animation: fade-in;
+          animation-duration: 0.5s;
+        }
+      } // END .find_cmp_dd_menu.active
+
+      .fa {
+        position: absolute;
+        right: 15px;
+        line-height: 38px;
+        color: @black;
+        font-size: 15px;
+        animation: spin;
+        animation-duration: 0.5s;
+      } // END .find_cmp_dd_menu .fa-caret-down
+
+      .fa-caret-up {
+        display: none;
+      } // END .find_cmp_dd_menu .fa-caret-up
+
+      input {
+        outline: none;
+        border: none;
+        position: absolute;
+        background-color: @bgcolor;
+        left: 5px;
+        width: 160px;
+        height: 38px;
+        line-height: 38px;
+        cursor: text;
+      } // END .find_cmp_dd_menu input
+    } // END .find_cmp_dd_menu
+  } // END .find_cmp_dd
+
+  &_find {
+    .noclick;
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+    font-family: HN-B;
+    color: @white;
+    background-color: @blue;
+    border-radius: 5px;
+    margin: 15px 20px 15px 10px;
+    float: right;
+    cursor: pointer;
+
+    .fa {
+      margin-left: 5px;
+    }
+  } // END .find_cmp_find
+
+  &_label {
+    font-size: 18px;
+    color: @black;
+    line-height: 50px;
+    text-align: left;
+  } // END .find_cmp_label
+
+  &_sb {
+    .noclick;
+    margin: 0px 10px;
+    width: 420px;
+    float: left;
+
+    &_bar {
+      border: 1px solid @grey-3;
+      border-radius: 5px;
+      height: 40px;
+      position: relative;
+
+      input {
+        outline: none;
+        border: none;
+        position: absolute;
+        left: 5px;
+        width: 375px;
+        height: 38px;
+        cursor: text;
+      } // END .find_cmp_sb_bar input
+
+      .fa-search {
+        color: @blue;
+        font-size: 20px;
+        line-height: 38px;
+        position: absolute;
+        right: 20px;
+        cursor: pointer;
+      } // END .find_cmp_sb_bar .fa-search
+    } // END .find_cmp_sb_bar
+  } // END .find_cmp_sb
+
+  &_sec1 {
+    height: 110px;
+    margin: 0 10px;
+    border-bottom: solid 1px @grey-3;
+  } // END .find_cmp_sec1
+
+  &_sec2 {
+    height: 130px;
+    margin: 0 10px;
+    border-bottom: solid 1px @grey-3;
+
+    &_div {
+      width: 1px;
+      height: 130px;
+      background-color: @grey-3;
+      float: left;
+    } // END .find_cmp_sec2_div
+  } // END .find_cmp_sec2
+} // END .find_cmp

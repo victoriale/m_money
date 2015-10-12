@@ -1,0 +1,199 @@
+/*
+  Author: Jerek Shoemaker
+  Created: 10/1/2015
+  Description: compensation Module
+  Associated Files: compensation.html, compensation.less, compensation_logic.js
+*/
+
+@import (reference)"../global_vars.less";
+@import (reference)"../modules.less";
+
+// comp
+.comp {
+  width: 680px;
+  height: 380px;
+  background-color: @white;
+  border-bottom: 1px solid @blue;
+  margin: 5px;
+  position: relative;
+  text-align: left;
+
+  // comp-hdr
+  &-hdr {
+    width: 100%;
+    height: 45px;
+    background-color: @black;
+    border-top: 3px solid @blue;
+    overflow: hidden;
+
+    // comp-hdr-icon
+    &-icon {
+      width: 3px;
+      height: 13px;
+      background-color: @blue;
+      margin: 13px 0px 0px 10px;
+      float: left;
+    } // END comp-hdr-icon
+
+    // comp-hdr-nm
+    &-nm {
+      max-width: 411px;
+      height: 18px;
+      font-family: HN-B;
+      font-size: 18px;
+      color: @white;
+      line-height: 14px;
+      margin-top: 13px;
+      margin-left: 6px;
+      float: left;
+      .txtc;
+    } // END comp-hdr-nm
+
+    // comp-hdr-txt
+    &-txt {
+      height: 18px;
+      font-family: HN-B;
+      font-size: 18px;
+      color: @white;
+      line-height: 14px;
+      margin: 13px 0px 0px 0px;
+      float: left;
+      .txtc;
+    } // END comp-hdr-txt
+  } // END comp-hdr
+
+  // comp-ttl
+  &-ttl {
+    width: 650px;
+    height: 49px;
+    background-color: @grey-1;
+    margin: 10px 0px 0px 15px;
+
+    // comp-ttl-txt
+    &-txt {
+      max-width: 400px;
+      height: 18px;
+      font-family: HN-L;
+      font-size: 18px;
+      color: #272727;
+      margin: 16px 0px 0px 15px;
+      line-height: 13px;
+      float: left;
+    } // END comp-ttl-txt
+    &-num {
+      max-width: 200px;
+      height: 18px;
+      font-size: 18px;
+      color: #272727;
+      margin-top: 14px;
+      margin-left: 2px;
+      line-height: 17px;
+      float: left;
+      font-family: HN-B;
+      .txtc;
+    }
+
+    // comp-ttl-select
+    &-select {
+      width: 180px;
+      height: 35px;
+      border: 1px solid @grey-3;
+      background-color: @white;
+      margin: 7px 10px 0px 0px;
+      float: right;
+
+      // comp-ttl-select-txt
+      &-txt {
+        height: 14px;
+        font-family: HN-L;
+        font-size: 14px;
+        margin: 11px 0px 0px 15px;
+        line-height: 10px;
+        float: left;
+      } // END comp-ttl-select-txt
+
+      // comp-ttl-select-num
+      &-num {
+        max-width: 50px;
+        height: 14px;
+        font-size: 14px;
+        margin-top: 11px;
+        line-height: 10px;
+        float: left;
+        font-family: HN-B;
+        .txtc;
+      } // END comp-ttl-select-num
+
+      .fa {
+        float: right;
+        margin: 6px 17px 0px 0px;
+        cursor: pointer;
+      }
+    } // END comp-ttl-select
+  } // END comp-ttl
+
+  // comp-graph
+  &-graph {
+    width: 641px;
+    height: 218px;
+    margin: 15px 0px 0px 20px;
+  } // END comp-graph
+
+  // comp-footer
+  &-footer {
+    width: 240px;
+    height: 35px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    box-sizing: border-box;
+    background-color: @blue;
+    position: absolute;
+    bottom: 0px;
+    left: 220px;
+
+    // comp-footer-icon
+    &-icon {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background-color: @black;
+      margin: 5px 0px 0px 10px;
+      float: left;
+
+      img {
+        margin-left: 7px;
+      }
+    } // END comp-footer-icon
+
+    // comp-footer-txt
+    &-txt {
+      height: 14px;
+      font-family: HN-B;
+      font-size: 14px;
+      color: @white;
+      line-height: 10px;
+      margin: 12px 0px 0px 9px;
+      float: left;
+    } // END comp-footer-txt
+
+    .fa {
+      color: @white;
+      font-size: 14px;
+      float: left;
+      margin: 11px 0px 0px 8px;
+    }
+
+    .fa-line-chart {
+      font-size: 10px;
+      color: @white;
+      margin: 7px 0px 0px 7px;
+    }
+  } // END comp-footer
+} // END comp
+
+// txtc
+.txtc {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+} // END txtc

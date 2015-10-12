@@ -1,288 +1,211 @@
-@import "../global_vars.less";
 /*
-ate: 07/21/2015
-Description: Gives Details about company Area brakdown statistics like location,population
-details,Average Rent,Description about the public market ,compensation,Total company shares
-It gives location,Nearby cities,Statistics
-Associated files: module.less,area_breakdown.less,area_breakdown.html,navigation_layout.less*/
+Author : David Wibowo
+Date: 09/08/2015
+Description: Area brekdown
+Associated files: area_breakdown.html,area_breakdown.less,area_breakdown.js
+*/
 
-.a_brkdwn{
+@import (reference)"../global_vars.less";
+
+// Begin bkdn
+.bkdn {
+  position: relative;
   width: 680px;
-  height: 705px;
-  margin: 5px;
+  text-align: left;
+  margin: 10px;
   background-color: @white;
-
-  /*------------------------------------------------------------------------------*/
-  &-Innerbody{
-    margin-top: 15px;
-    margin-left: 15px;
-  }
-  /*------------------------------------------------------------------------------*/
-  &-RectBckGrnd{
-    height:570px;width:455px;
-    border:1px solid @grey-2;
-  }
-  /*------------------------------------------------------------------------------*/
-  /*which describes the location*/
-  /*ex: present location is chicago*/
-  &-Rect_hedr{  // outer header details
-    height:39px;width:453px;
-    background-color:@grey-1;
-
-    &-Hedr_cntnt{ // content of the header
-      text-transform:uppercase;
-      color:@black;
-      font-family:HN-B;
-      line-height:46px;/* Approximation due to font substitution */
-      text-align:left;
-      transform: translate(9px,-2px);
-      -webkit-transform: translate(9px,-2px);
-      -khtml-transform: translate(9px,-2px);
-
-      &-blucrcl {
-        color:#3498db;
-        font-size: 14px;/* Approximation due to font substitution */
-        font-weight:HN;
-        line-height: 46px;/* Approximation due to font substitution */
-        text-align: left;
-        top:13px;
-        left: 9px;
-      }
-    }
-  }
-  /*------------------------------------------------------------------------------*/
-  /* This space defines the description space and more details about that location */
-  &-DescSpc{
-
-    margin-top: 20px;
-    margin-left: 15px;
-    margin-bottom: 14px;
-    height:77px;width:400px;
-    //padding-top: 20px;
-    //transform: translate(0px,-5px) !important;
-    -webkit-transform: translate(0px,-5px);
-    -khtml-transform: translate(0px,-5px);
-    color: @black;
-    font-size: 16px; /* Approximation due to font substitution */
-    font-family: HN-L !important;
-    text-align:left;
-
-    &-text{
-      height: 54px;
-      line-height: 18px;
-      overflow-y: hidden;
-    }
-
-
-    &-readmrClr{
-
-      color: @blue;;
-      font-size: 14px; /* Approximation due to font substitution */
-      font-family: HN-B !important;
-      line-height: 25px; /* Approximation due to font substitution */
+  height: 660px;             // Change the value to "auto" to enable full view (use .js to do that)
+  overflow: hidden;          // set value to "visible" ( see .js to do that)
+  // Begin bkdn-cnr
+  &-cnr {
+    // Begin bkdn-cnr-head
+    &-head {
+      height: 45px;
+      background-color: #000;
+      padding-left: 10px;
+      padding-right: 5px;
       text-align: left;
-      transform: translate(0px,-5px) !important;
-      -webkit-transform: translate(0px,-16px);
-      -khtml-transform: translate(0px,-16px);
-
-    }
-  }
-
-  /*-------------------------------------------------------------------------------*/
-  /*This provides the details of population,avg rent, median income,total companies details*/
-  &-Bttom_dtls{
-    list-style-type: none;
-    // transform: translate(0px,34px);
-    // -ms-transform: translate(0px,34px);
-    // -webkit-transform: translate(0px,34px);
-    // -khtml-transform: translate(0px,34px);
-
-    &-Stnd_bx_dtls{ //description details box for adding contents od population,rent,income
-      height:70px;width:453px;
-      border-left:5px solid @grey-2;
-      outline-offset: 1px;
-    }
-    &-Stnd_bx_dtls:hover{
-      border-left:5px solid @blue;
-    }
-    &-Stnd_bx_dtls:hover &-angrit{
-      color:@blue;
-    }
-
-    &-shading_awsm{ //shading area for awesome fonts
-      height:70px;width:70px;
-      background-color: @grey-1;
-
-    }
-    &-angrit //right angle marker
-    {
-      float: right;
-      margin-top:-40px;
-      margin-right:5px;
-      color:@grey-3;
-    }
-    &-users //users image in the first box
-    {
-      margin-left:20px;
-      margin-top:25px;
-      color:#4b4b4b;
-      font-weight: HN;
-      line-height: 24px;
-      text-align: left;
-    }
-      &-Stat_txt_aln{ //to align the text next to the images for the first users
-      list-style-type: none;
-      text-align: left !important;
-      margin-left: 200px;
-      margin-top: -30px;
-    }
-    &-stat_txt_lrg{ //test font size like ex: million
-      font-size: 24px;
-      font-family: HN;
-      color: @black;
-      margin: -58px 0 0px -129px ;
-      padding: 0 0 0 5px;
-    }
-    &-Stat_txt_sml{ //small font size like ex: population
-      font-size: 14px;
-      color: @black;
-      margin:-8px 0 0 -129px;
-      padding: 0 0 0 5px;
-    }
-  }
-  /*------------------------------------------------------------------------------*/
-  /* This code for the center image for viewing profile */
-
-  &-logo-image{ // image content inside the profile view
-    background-size:cover;
-    background-position:center;
-    margin-top:15px;
-    margin-left:165px;
-    width:119px;
-    height:119px;
-    border:3px solid @grey-3;
-    border-radius:70px;
-    color:#44b244;
-    background-image:url("https://www.facebook.com");
-    &-profile-link{
-      text-decoration:none;
-    }
-
-    &-view-profile{ // hover contents
-      position:relative;
-      width:119px;
-      height:119px;
-      background: rgba(48,152,255,.75);
-      border-radius:100%;
-      padding:1em;
-      opacity:0;
-      box-sizing:border-box;
-      overflow: hidden;
-    }
-    &-view-profile:hover{ //will hover when mouse pointer moves over
-      opacity:.85;
-      margin-top: -3px;
-      margin-left: -3px;
-
-    }
-    &-body {
-      vertical-align:middle;
-      color: #fff;
-      font-family: HN-L;
-      text-align: center !important;
-      text-transform: uppercase;
-      padding-top: 2em;
-      border-radius: 70px;
-      width: 90px;
-      height: 75px;
-
-    }
-    &-lgo_txt_vw {
-      margin-top:-15px;
-      font-size: 22px;
-      font-family: HN-B;
-
-    }
-    &-lgo_txt_prfl { // unable to get very thin font as shown in the design sheet
-      margin-top:-10px;
-      font-size: 22px;
-      font-family:HN-L;
-    }
-
-  }
-  /*------------------------------------------------------------------------------*/
-  /*Description of the left tile pane which consists of 3 icon boxes*/
-  &-RightPanel{
-    float:right;
-    margin-top:-585px;
-    margin-right:0px;
-    list-style-type: none;
-
-  }
-  &-see_mr_tls{
-    background-color: #ebebeb;
-    width: 650px;
-    height: 45px;
-    margin: auto;
-    margin-top: 15px;
-
-    &-mr_tl_btn{
-      background-color: rgba(37, 37, 37, 0.85);
-      width: 180px;
-      height: 35px;
-      border-radius: 18px;
-      margin-top: 5px;
-      margin-left: 8px;
-      float: left;
-
-      &-btn_txt{
-        font-family: HelveticaNeue;
-        color: #ffffff;
-        font-size: 12px; /* Approximation due to font substitution */
+      vertical-align: middle;
+      border-top: 3px solid @blue;
+      // Begin bkdn-cnr-head-line
+      &-line{
+        font-size:12px;
+        color:@blue;
+        border-left: 3px solid @blue;
+        position: relative;
+        top:5px;
+      }// End bkdn-cnr-head-line
+      // Begin bkdn-cnr-head-title
+      &-title {
+        padding-left: 7px;
         font-family: HN-B;
-        text-align: center;
-        line-height: 35px;
-      }
-
-      &-font_awsm{
-        color: #3098ff;
-        font-size: 12px; /* Approximation due to font substitution */
+        font-size: 18px;
         text-align: left;
-        margin-left: 5px;
-      }
-    }
-
-    &-tip{
-      color: @red;
-      font-size: 12px; /* Approximation due to font substitution */
-      text-align: left;
+        color: @white;
+        position: relative;
+        top:7px;
+      }// End bkdn-cnr-head-title
+    }// End bkdn-cnr-head
+    // Begin bkdn-cnr-map
+    &-map{
+      height: 360px;
+      background-color: @white;
+    } // End bkdn-cnr-map
+    // Begin bkdn-cnr-container
+    &-container {
+      margin: 6px 18px 10px 18px;
+      // Begin bkdn-cnr-container-stat
+      &-stat {
+        position: relative;
+        height: 28px;
+        border-bottom: 1px solid #cccccc;
+        // Begin bkdn-cnr-container-stat-left
+        &-left {
+          position: absolute;
+          left: 0px;
+          font-family: HN-l;
+          font-size: 18px;
+          color:  #000000;
+          text-align: left;
+        } // End bkdn-cnr-container-stat-left
+        // Begin bkdn-cnr-container-stat-right
+        &-right {
+          position: absolute;
+          top:5px;
+          right: 0px;
+          font-family: HN-l;
+          font-size: 11px;
+          color:  #999999;
+          text-align: right;
+        } // End bkdn-cnr-container-stat-right
+      } // End bkdn-cnr-container-stat
+      // Begin bkdn-cnr-container-content
+      &-content {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        // Begin bkdn-cnr-container-content-line
+        &-line{
+          width: 100%;
+          height: 1px;
+          background-color: @grey-2;
+        } // End bkdn-cnr-container-content-line
+        // Begin bkdn-cnr-container-content-Bttom_dtls
+        &-Bttom_dtls{
+          list-style-type: none;
+          border-right: 1px solid @grey-2;
+          border-bottom: 1px solid @grey-2;
+          // Begin bkdn-cnr-container-content-Bttom_dtls-Stnd_bx_dtls
+          &-Stnd_bx_dtls{
+            height:70px;
+            width:620px;
+            border-left:5px solid @grey-2;
+            outline-offset: 1px;
+          }// End bkdn-cnr-container-content-Bttom_dtls-Stnd_bx_dtls
+          // Begin bkdn-cnr-container-content-Bttom_dtls-Stnd_bx_dtls:hover
+          &-Stnd_bx_dtls:hover{
+            border-left:5px solid @blue;
+          } // End bkdn-cnr-container-content-Bttom_dtls-Stnd_bx_dtls:hover
+          // Begin bkdn-cnr-container-content-Bttom_dtls-Stnd_bx_dtls:hover &-angrit
+          &-Stnd_bx_dtls:hover &-angrit{
+            color:@blue;
+          } // End bkdn-cnr-container-content-Bttom_dtls-Stnd_bx_dtls:hover &-angrit
+          // Begin bkdn-cnr-container-content-Bttom_dtls-shading_awsm
+          &-shading_awsm{
+            height:70px;width:70px;
+            background-color: @grey-1;
+          } // End bkdn-cnr-container-content-Bttom_dtls-shading_awsm
+          // Begin bkdn-cnr-container-content-Bttom_dtls-angrit
+          &-angrit {
+            float: right;
+            margin-top:-40px;
+            margin-right:5px;
+            color:@grey-3;
+          } // End bkdn-cnr-container-content-Bttom_dtls-angrit
+          // Begin bkdn-cnr-container-content-Bttom_dtls-users
+          &-users  {
+            margin-left:20px;
+            margin-top:25px;
+            color:#4b4b4b;
+            font-weight: HN;
+            line-height: 24px;
+            text-align: left;
+          } // End bkdn-cnr-container-content-Bttom_dtls-users
+          // Begin bkdn-cnr-container-content-Bttom_dtls-Stat_txt_aln
+          &-Stat_txt_aln{
+            list-style-type: none;
+            text-align: left !important;
+            margin-left: 205px;
+            margin-top: -30px;
+          } // End bkdn-cnr-container-content-Bttom_dtls-Stat_txt_aln
+          // Begin bkdn-cnr-container-content-Bttom_dtls-stat_txt_lrg
+          &-stat_txt_lrg{
+            font-size: 24px;
+            height: 27px;
+            width: 500px;
+            font-family: HN;
+            color: @black;
+            margin: -58px 0 0px -129px ;
+            padding: 0 0 0 5px;
+            line-height: 25px;
+          } // End bkdn-cnr-container-content-Bttom_dtls-stat_txt_lrg
+          // Start bkdn-cnr-container-content-Bttom_dtls-Stat_txt_sml
+          &-Stat_txt_sml{
+            font-size: 14px;
+            color: @black;
+            width: 500px;
+            height: 19px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin:-3px 0 0 -129px;
+            padding: 0 0 0 5px;
+            line-height: 22px;
+          } // End bkdn-cnr-container-content-Bttom_dtls-Stat_txt_sml
+        } // End bkdn-cnr-container-content-Bttom_dtls
+      } // End bkdn-cnr-container-content
+    } // End bkdn-cnr-container
+  } // End bkdn-cnr
+}// End bkdn
+  //class for footer part
+// Begin ftr
+.ftr{
+  width: 680px;
+  position: absolute;
+  height:48px;
+  top: 612px;
+  display: block;      // change value to "none" for full page (use .js to do that)
+  border-bottom: 2px solid #3098ff;
+  background: -webkit-linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  background: -moz-linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(0deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  //Begin ftr-btn
+  &-btn{
+    position: relative !important;
+    top: 11px !important;
+    cursor: pointer;
+    // Begin ftr-btn-icn
+    &-icn{
+      position: relative !important;
+      left: 12px !important;
+      top: 6px !important;
+      float: left !important;
+    } // End ftr-btn-icn
+    // Begin ftr-btn-txt
+    &-txt{
+      font-family: HN-L;
+      color:  #ffffff;
+      font-size: 14px;
+      line-height: 28px;
+      text-align: center;
       float: left;
-      margin-left: 22px;
-      line-height: 45px;
-
-      &-tip_dtls{
-        font-family: HelveticaNeue;
-        color: #333333;
-        font-size: 12px; /* Approximation due to font substitution */
-        font-family: HN;
-        text-align: center;
-      }
-    }
-  }
-  &-line{
-    width: 453px;
-    height: 1px;
-    background-color: @grey-2;
-  }
-
-  &-stat_grap{
-    background-image:url('/icons/icon_statistics_custom.png');
-    background-repeat: no-repeat;
-    background-size:100%;
-    height: 45px;
-    width:50px;
-    margin: 0 auto;
-  }
-
-}
-/*-------------------------------------------------------------------------------*/
+      position: relative;
+      top: 5px;
+      left: 32px;
+      max-width: 150px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    } // End ftr-btn-txt
+  } // End ftr-btn
+} // End ftr

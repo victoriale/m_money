@@ -4,7 +4,7 @@
 ** Associated Files: market_report.html, market_report.less, how_are_markets_logic.js,modules.less,global_vars.less
 */
 @import (reference)"../global_vars.less";
-@import  "../modules.less";
+@import  (reference)"../modules.less";
 //.mreport wrapper starts here
 .mreport{
   .top_bottom_border;
@@ -14,7 +14,8 @@
   position: relative;
   color: #000000;
   font-family: HN;
-
+  margin:10px;
+  
   //class for blue text
   &_blue{
     color: @blue;

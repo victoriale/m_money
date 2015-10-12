@@ -1,0 +1,35 @@
+<!--
+  Author: Jerek Shoemaker
+  Created: 10/1/2015
+  Description: compensation Module
+  Associated Files: compensation.html, compensation.less, compensation_logic.js
+-->
+
+<template name = "compensation">
+  <div class = "comp">
+    <div class = "comp-hdr">
+      <div class = "comp-hdr-icon"></div>
+      <div class = "comp-hdr-nm">{{exec}}</div>
+      <div class = "comp-hdr-txt">'s Executive Compensation</div>
+    </div>
+    <div class = "comp-ttl">
+      <div class = "comp-ttl-txt">Total Compensation for {{year}}: </div>
+      <div class = "comp-ttl-num">${{comp}}</div>
+      <div class = "comp-ttl-select">
+        <div class = "comp-ttl-select-txt">Choose Year:&nbsp;</div>
+        <div class = "comp-ttl-select-num">{{year}}</div>
+        <i class = "fa fa-sort-desc"></i>
+      </div>
+    </div>
+
+    <div class = "comp-graph" id = "comp_graph"></div>
+
+    <a href = "{{compURL}}"><div class = "comp-footer">
+      <div class = "comp-footer-icon">
+        <i class = "fa fa-line-chart"></i>
+      </div>
+      <div class = "comp-footer-txt">All Exec. Compensation</div>
+      <i class = "fa fa-angle-right"></i>
+    </div></a>
+  </div>
+</template>

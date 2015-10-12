@@ -11,7 +11,7 @@ $(".list_of_lists-page-selector1").css("background-color","#3098ff");
 
 });
 
-var backgroundStyle="tilewhite";
+var backgroundStyle1="tilewhite";
 Template.list_of_lists.helpers({
 
   //This is the list of data the program will return to the html page
@@ -23,15 +23,23 @@ Template.list_of_lists.helpers({
   //This function is called everytime "each" loop runs, it returns the respective class which is suppose to use on each iteration
   getBackgroundStyle: function() {
 
-    if (backgroundStyle === "tilegrey")
+    if (backgroundStyle1 === "tilegrey")
     {
-      backgroundStyle="tilewhite";
-      return backgroundStyle;
+      backgroundStyle1="tilewhite";
+      return backgroundStyle1;
     } else {
-      backgroundStyle = "tilegrey";
-      return backgroundStyle;
+      backgroundStyle1 = "tilegrey";
+      return backgroundStyle1;
     }
-  }
+  },
+
+  listoflistURL: function(){
+    return Router.path('content.trending');
+  },
+
+  viewURL:function(){
+    return Router.path('content.toplist');
+  },
 });
 //This handles the events on button clicks of 1,2,3 and 200
 Template.list_of_lists.events({

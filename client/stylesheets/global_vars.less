@@ -38,7 +38,7 @@
 //for unfinished pieces used for the future
 @coming-soon: url('comingsoon-asset.png');
 @coming-soon-frame: url('onframe.png');
-@investkit:url('financial_logo.png');
+@investkit:url('financial_logo_lg.png');
 @investkit-white:url('Logo_InvestKit.png');
 
 html, body { // Default vals across the board
@@ -48,6 +48,7 @@ html, body { // Default vals across the board
   height: auto;
   background-color: @bgcolor;
 }
+
 //temporary
 div, span{
   font-family: HN, sans-serif, Arial;
@@ -117,3 +118,13 @@ a {
   background-size:100%;
 
 }
+
+.noclick {
+  // For elements that shouldn't be highlightable
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+} // END .noclick

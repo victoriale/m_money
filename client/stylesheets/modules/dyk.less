@@ -4,24 +4,30 @@
 ** Associated Files: dyk.html, dyk.less, dyk_logic.js
 */
 
-@import "../global_vars.less";
-@import "../modules.less";
+@import (reference)"../global_vars.less";
+@import (reference)"../modules.less";
 
 .dyk{
-  height: 555px !important;
-
+  //module
+  height: 390px;
+  margin-bottom: 10px;
+  background-color: @white;
+  width:680px;
   &-body{
     padding: 0px 15px;
 
     &-left{
+      //left portion of the panel
       float: left;
     }
 
     &-right{
+      //right portion of the panel
       float: right;
     }
 
     &-fact{
+      float:left;
       width: 320px;
       border-top: 3px solid @blue;
       background-image: url('/drk-linen.png');
@@ -30,8 +36,11 @@
       color: @white;
       overflow-y: auto;
       margin-top: 10px;
+      margin-right:5px;
+      text-align: left;
 
       &-share{
+        //share ellipse
         position: absolute;
         font-size: 18px;
         top: 15px;
@@ -54,6 +63,7 @@
       }
 
       &-title{
+        //title of each block i.e Did you know
         font-size: 22px;
         font-family: HN-L;
         margin-bottom: 15px;
@@ -63,8 +73,10 @@
         font-size: 18px;
         font-family: HN-L;
         line-height: 24px;
+        text-align: left;
 
         &-bold{
+          //bold text
           font-family: HN-B;
           font-style: italic;
         }

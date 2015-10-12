@@ -37,30 +37,38 @@ if(Meteor.isClient){
       var id = String(this.cmtid);
       var rpy = REPLY.find({replyid: id}).fetch().length;
       return rpy;
-    }
+    },
+
+    commentsurl: function(){
+      return Router.path('content.disqus');
+    },
   });
   //Event Handlers
   Template.leavecomments.events({
     'click .u_input_share_button': function(e) {
       e.preventDefault();
       var id = POST.find().fetch().length;
+      if($('.u_input_text').val()!=""){
       POST.insert({
         text: $('.u_input_text').val(),
         cmtid: id
       });
+    }
       $('.u_input_text').val("");
     },
     'click .reply_button': function(e) {
       e.preventDefault();
+      if($('.r-box_' + String(this.cmtid)).val()!=""){
       REPLY.insert({
         replyy: $('.r-box_' + String(this.cmtid)).val(),
         replyid: String(this.cmtid)
       });
+    }
       $('.r-box_' + String(this.cmtid)).val("");
     },
     'click #sortoptions': function(e) {
       if(cmnt!=0){
-      $('.dropdown-menu').slideToggle();
+      $('.aligndropdown').slideToggle();
     }
     },
     'click #topcomments': function(e) {

@@ -4,99 +4,195 @@
 ** Associated Files: money_memory.html, money_memory.less, money_memory_logic.js
 */
 
+Template.money_memory.onRendered(function(){
+
+  this.autorun(function(){
+
+    moneymemorygraph();
+  })
+});
+
+Template.mm_start_date.onRendered(function(){
+  //Initialize date picker with options
+  var startDatePicker = $('#mm-start-date').datepicker({
+    autoclose: true,
+    container: '#start-date-container',
+    orientation: 'bottom'
+  });
+
+  //Events when a date is selected
+  startDatePicker.on('changeDate', function(e){
+    console.log('date selected', e, new Date(e.date).getTime() / 1000);
+
+    Session.set('mm_start_date', new Date(e.date).getTime() / 1000);
+  })
+})
+
+Template.mm_end_date.onRendered(function(){
+  //Initialize date picker with options
+  var endDatePicker = $('#mm-end-date').datepicker({
+    autoclose: true,
+    container: '#end-date-container',
+    orientation: 'bottom'
+  })
+
+  //Events when a date is selected
+  endDatePicker.on('changeDate', function(e){
+    console.log('end date selected', e, new Date(e.date).getTime() / 1000);
+
+    Session.set('mm_end_date', new Date(e.date).getTime() / 1000);
+  })
+})
+
+Template.money_memory.helpers({
+  companyInfo: function(){
+    var data = Session.get('daily_update');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    //data is being returned as string so convert to numbers and round to fit design
+    data['csi_percent_change_since_last'] = Number(data['csi_percent_change_since_last']).toFixed(2);
+    data['csi_price'] = Number(data['csi_price']).toFixed(2);
+    data['csi_price_change_since_last'] = Number(data['csi_price_change_since_last']).toFixed(2);
+    return data;
+  },
+  mmInfo: function(){
+    var data = Session.get('money_memory');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    data['furthest_close_date'] = data['furthest_close_date'].replace(/-/g,'/');
+    data['most_recent_close_date'] = data['most_recent_close_date'].replace(/-/g,'/');
+    data['investment_total'] = data['investment_total'].toFixed(2);
+    data['percent_change'] = data['percent_change'].toFixed(2);
+    data['roi'] = data['roi'].toFixed(2);
+    console.log(data);
+    return data;
+  },
+  company: "Apple, Inc.",
+  stck_prc: "109.34",
+  stck_chng: "#ca1010",
+  stck_nums: "-3.42 (-3.03%)",
+  arrow: "arrow-down",
+  earn_lose: "earned",
+  pot_amount: "12,950.72",
+  totl_inc: "+46.2",
+  amount: "#22a922",
+  chng: "risen",
+  comp_bgn_date: "01/03/11",
+  intl_invstmnt: "10,000",
+  strt_date: "03/01/15",
+  end_date: "03/19/15"
+
+});
+
+Template.money_memory.events({
+  'click .mon-mem_body_start-date': function(e, t){
+    $('#mm-start-date').datepicker('show');
+    $('.datepicker').css({top: '-252px', left: '-4px'});
+  },
+  'click .mon-mem_body_end-date': function(e, t){
+    $('#mm-end-date').datepicker('show');
+    $('.datepicker').css({top: '-252px', left: '-4px'});
+  }
+})
+
+
 //Function to render the spline chart
 function moneymemorygraph() {
-  var seriesOptions = [],
-  seriesCounter = 0,
-  //Placeholder data labels
-  names = ['', 'AAPL', 'GOOG'],
+  var graphData = Session.get('money_memory');
 
+  if(typeof graphData == 'undefined'){
+    return '';
+  }
+
+  var stockData = graphData.stock_history;
+  var companyData = Session.get('profile_header');
+  /*
+
+  $.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?', function (data) {
+    console.log(data);
+  });
+  */
+
+  // the following is the result of service call.
+  // use the data to create highcharts
+  newDataArray = [];
+  $.each(stockData, function(i, val) {
+   xyMerge = [val.sh_date *1000, parseFloat(val.sh_close)];
+   newDataArray.push(xyMerge);
+ });
+  console.log("Data into HighCharts:",newDataArray);
   //Chart options
-  createChart = function () {
-    $('#moneymemorygraph').highcharts({
-      exporting:{
-        enabled:false
-      },
+  $('#moneymemorygraph').highcharts({
+    exporting:{
+      enabled:false
+    },
 
-      credits:{
-        enabled:false
-      },
+    credits:{
+      enabled:false
+    },
 
-      chart:{
-        width:453,
-        height:125,
+    chart:{
+      width: 453,
+      height: 125,
 
-      },
+    },
+    xAxis:{
+      type:'datetime',
+      /*
+      min: new Date('2009/09/10').getTime(),
+      max: new Date('2010/03/10').getTime(),
+      */
+      title: '',
 
-      xAxis:{
-        type:'datetime',
-        tickPositioner: function () {
-          var positions = [],
-          tick = Math.floor(this.dataMin),
-          increment = Math.ceil((this.dataMax - this.dataMin) / 6);
+    },
 
-          for (tick; tick - increment <= this.dataMax; tick += increment) {
-            positions.push(tick);
-          }
-          return positions * 1000;
-        },
-        tickPixelInterval: 60,
-        title: '',
-        labels:{
-          autoRotation:false,
-          step: 1
-        },
-      },
+    tooltip: {
+      pointFormat: companyData.c_ticker+": ${point.y:.2f}"
+    },
 
-      yAxis:{
-        opposite:true,
-        title:'',
-      },
-      scrollbar:{
-        enabled:false
-      },
-      rangeSelector: {
-        selected: 4,
-        inputEnabled: false,
-        buttonTheme: {
-          visibility: 'hidden'
-        },
-        labelStyle: {
-          visibility: 'hidden'
+    yAxis: {
+      title:'',
+      tickInterval: 2,
+      opposite: true,
+      allowDecimals: true,
+      labels: {
+        formatter: function() {
+          return '$' +this.value;
         }
       },
-      title: {
-        text: ''
+    },
+    scrollbar:{
+      enabled:false
+    },
+    rangeSelector: {
+      selected: 4,
+      inputEnabled: false,
+      buttonTheme: {
+        visibility: 'hidden'
       },
-      legend:{
-        enabled:false
+    },
+    title: {
+      text: ''
+    },
+    spline: {
+      lineWidth: 3,
+      states: {
+        hover: {
+          lineWidth: 4
+        }
       },
-      series: seriesOptions
-    });
-  };
-
-  //Populate chart with data
-  $.each(names, function (i, name) {
-
-    $.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=' + name.toLowerCase() + '-c.json&callback=?',    function (data) {
-
-      seriesOptions[i] = {
-        name: name,
-        data: data,
-        type:'spline'
-      };
-
-      // As we're loading the data asynchronously, we don't know what order it will arrive. So
-      // we keep a counter and create the chart when all the data is loaded.
-      seriesCounter += 1;
-
-      if (seriesCounter === names.length) {
-        createChart();
-      }
-    });
+    },
+    legend:{
+      enabled:false
+    },
+    series : [{
+        name : companyData.c_ticker,
+        data : newDataArray,
+    }],
+    marker: {
+      enabled: true
+    }
   });
-}
-
-Template.money_memory.rendered=function() {
-  moneymemorygraph();
 }

@@ -1,0 +1,192 @@
+<!--
+Author: Tanner Storment
+Date: [08/03/2015]
+Description: HTML Template for the list of articles webpage
+Related Files:
+- /client/templates/webpages/article_list_page.js
+- /client/stylesheets/webpages/article_list_page.less
+-->
+<template name="article_news_page">
+  <div class="art-lst">
+    <!--Page header-->
+    <div class="art-lst-hdr">
+      <!-- the header box -->
+      <div class="art-lst-hdr-head-box">
+        <!-- image inside the header box-->
+        <div class="art-lst-hdr-head-image">
+          <!-- he add green symbol above the image-->
+          <button class="art-lst-hdr-head-image-icon"><i class="fa fa-reply"></i></button>
+        </div>
+        <!-- the text inside the header box-->
+        <div class="art-lst-hdr-text">
+          <!-- the latest update-->
+          <div class="art-lst-hdr-text-update">
+            LAST UPDATED: 06/24/2015, 8:00 AM EST
+          </div>
+          <!-- location of the article-->
+          <div class="art-lst-hdr-text-loc">
+            <i class="fa fa-map-marker"></i> United States
+          </div>
+          <!-- the name of the article-->
+          <div class="art-lst-hdr-text-name">
+            Today's Latest News
+          </div>
+          <!-- the author of the article-->
+          <div class="art-lst-hdr-text-auth">
+            Covering All Companies In The United States
+          </div>
+        </div>
+      </div>
+      <div class="art-lst-hdr-bar">
+        <div class="art-lst-hdr-bar-title">
+          Today's Top Articles
+        </div>
+        <div class="art-lst-hdr-bar-button">
+          <!-- the save option button-->
+          <a href="#"><i class="fa fa-heart art-lst-hdr-bar-button-fa"></i><span class="art-lst-hdr-bar-text">Save</span></a>
+        </div>
+        <div class="art-lst-hdr-bar-button">
+          <!-- share option button -->
+          <a href="#"><i class="fa fa-share-alt art-lst-hdr-bar-button-fa"></i><span class="art-lst-hdr-bar-text">Share</span></a>
+        </div>
+      </div>
+      <div class="art-lst-hdr-main-container">
+        <!-- the module.less file navigation buttons-->
+        <button class='art-lst-hdr-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+        <button class='art-lst-hdr-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+        <!-- end of the module.less navigation button -->
+        <!-- wrapper class-->
+        <div class="art-lst-hdr-main-container-image-wrapper">
+          <div class="art-lst-hdr-main-container-image"></div>
+        </div>
+        <!-- the main container -->
+
+        {{#with getHeaderArticle}}
+        <ul class="art-lst-hdr-main-container-container">
+          <!-- the image in blue circle-->
+          <li class="art-lst-hdr-main-container-title">
+            <div class="art-lst-hdr-main-container-title-image"><i class="fa fa-newspaper-o"></i></div>
+            <div class="art-lst-hdr-main-container-title-txt">
+              {{headline}}
+            </div>
+          </li>
+          <!-- the description about the person-->
+          <li class="art-lst-hdr-main-container-description">
+            <div class="art-lst-hdr-main-container-description-ln1">
+              {{blurb}}
+            </div>
+            <span class="art-lst-hdr-main-container-description-ln2">
+              Published By: <i class="art-lst-b"> {{publisher}} </i>
+            </span>
+          </li>
+        </ul>
+        <!-- the bottom bar-->
+        <div class="art-lst-hdr-main-container-view_more">
+          <!-- the details about the comapny-->
+          <div class="art-lst-hdr-main-container-view_more-text">
+            <div class="art-lst-hdr-main-container-view_more-text-ln1">Interested in this article written by {{publisher}}?</div>
+            <div class="art-lst-hdr-main-container-view_more-text-ln2">Written On: <i class="art-lst-b">{{date}}</i></div>
+          </div>
+          <button class="art-lst-hdr-main-container-view_more-button">
+            Read Full Article<i class="fa fa-angle-right"></i>
+          </button>
+        </div>
+        {{/with}}
+      </div>
+    </div>
+    <!--End Page header-->
+    <div class="art-lst-sortby">
+      Sort by:
+      <span class="art-lst-sortby-text">Most Viewed Articles</span>
+      <i class="fa fa-angle-down art-lst-sortby-icon"></i>
+    </div>
+    <div class="art-lst-whatis">
+      <div class="art-lst-whatis-header">
+        What is this list?
+        <i class="fa fa-times art-lst-whatis-header-x"></i>
+      </div>
+      <div class="art-lst-whatis-text">
+        This is a list of all 3,456 trending articles in the United States today. Trending articles are calculated by the most views, shares, etc.
+      </div>
+    </div>
+    <div class="art-lst-sim">
+      {{#each getArticles}}
+      {{#if isMainArticle type}}
+      <div class="art-lst-sim-artcnt art-lst-sim-artcnt-main">
+        {{#each tags}}
+        <span class="art-lst-sim-blbtn">{{this}}</span>
+        {{/each}}
+        {{#if isGreaterThanZero score}} <span class="art-lst-sim-score">+{{score}}</span>{{/if}}
+        <span class="art-lst-sim-artcnt-main-image"></span>
+        <span class="art-lst-sim-artcnt-main-text-cnt">
+          <div class="art-lst-sim-artcnt-main-headline">
+            {{headline}}
+          </div>
+          <div class="art-lst-sim-artcnt-main-blurb">
+            {{cutOff blurb}}
+          </div>
+          <div class="art-lst-sim-artcnt-main-smltxt">
+            {{#if isArticle type}}
+            <i class="fa fa-newspaper-o art-lst-sim-artcnt-artinfo-fanews"></i> Article
+            {{else}}
+            <i class="fa fa-play art-lst-sim-artcnt-artinfo-favid"></i> Video
+            {{/if}}
+            Published By:
+            <span class="art-lst-sim-artcnt-main-itlsmltxt">{{publisher}}</span>
+            <i class="fa fa-angle-right art-lst-sim-artcnt-artinfo-faarr"></i>
+            Written By:
+            <span class="art-lst-sim-artcnt-main-itlsmltxt">{{author}}</span>
+            <i class="fa fa-angle-right art-lst-sim-artcnt-artinfo-faarr"></i>
+            on {{date}} at {{time}}
+          </div>
+        </span>
+      </div>
+      {{else}}
+      <div class="art-lst-sim-artcnt art-lst-sim-artcnt{{#if isSmallBox}}1{{else}}2{{/if}} {{#if onLeft}}art-lst-sim-artcnt-left{{else}}art-lst-sim-artcnt-right{{/if}}">
+        {{#each tags}}
+        <span class="art-lst-sim-blbtn">{{this}}</span>
+        {{/each}}
+        {{#if isGreaterThanZero score}} <span class="art-lst-sim-score">+{{score}}</span>{{/if}}
+        <div class="art-lst-sim-artcnt-artinfo">
+          <span class="art-lst-sim-artcnt-smlimg"></span>
+          <span class="art-lst-sim-artcnt-artinfo-txt">
+
+            <span class="art-lst-sim-artcnt-artinfo-hdr {{#if isSmallBox}}art-lst-sim-artcnt-artinfo-hdrsml{{/if}}" lang="en">{{headline}}</span>
+            <span class="art-lst-sim-artcnt-artinfo-meta">
+              <span class="art-lst-sim-artcnt-artinfo-bld">{{publisher}}</span>
+              <i class="fa fa-angle-right art-lst-sim-artcnt-artinfo-faarr"></i>
+              <span class="art-lst-sim-artcnt-artinfo-bld">{{author}}</span>
+              <div class="art-lst-sim-artcnt-artinfo-smltxt">
+                {{#if isArticle type}}
+                <i class="fa fa-newspaper-o art-lst-sim-artcnt-artinfo-fanews"></i> article
+                {{else}}
+                <i class="fa fa-play art-lst-sim-artcnt-artinfo-favid"></i> video
+                {{/if}}
+                published on {{date}} at {{time}}
+              </div>
+
+            </span>
+          </span>
+        </div>
+      </div>
+      {{/if}}
+      {{/each}}
+    </div>
+    <div class="art-lst-pages art-lst-l art-lst-pa">
+      <i class="fa fa-angle-left art-lst-pages-leftarrow"></i>
+      <div class="art-lst-pages-circle-selected" id="artLstPage1" onClick="artLstSelect(1)">1</div>
+      <div class="art-lst-pages-circle" id="artLstPage2" onClick="artLstSelect(2)">2</div>
+      <div class="art-lst-pages-circle" id="artLstPage3" onClick="artLstSelect(3)">3</div>
+      <i class="art-lst-pages-ellipsis art-lst-l">...</i>
+      <div class="art-lst-pages-oval" id="artLstPage4" onClick="artLstSelect(4)">15</div>
+      <i class="fa fa-angle-right art-lst-pages-rightarrow"></i>
+      <div class="art-lst-pages-view_all art-lst-pr">
+        VIEW ALL
+        <img src="infinite-icon.png" class="art-lst-pages-view_all-i art-lst-pr">
+      </div>
+    </div>
+    <div class="art-lst-search">
+      {{> search_module}}
+    </div>
+  </div>
+</template>

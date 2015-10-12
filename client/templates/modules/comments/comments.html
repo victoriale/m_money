@@ -44,7 +44,7 @@ Description: Leave_comment
       <span class="right_sort">
         <span class="comment-count"><bluetext> {{cmnt}} </bluetext> Comments | </span>
         <span class="sorted_by_downarrow"> Sort Options
-          <i class="fa fa-sort-desc" id="sortoptions" style="cursor:pointer; color:#3098ff"></i></span>
+          <i class="fa fa-sort-desc" id="sortoptions" style="cursor:pointer; color:#3098ff; margin-left:2%"></i></span>
 
           <div class="dropdown-menu aligndropdown">
             <div class="menutextalign removeborder" id="mostrecent">
@@ -130,10 +130,12 @@ Description: Leave_comment
           </script>
           <!-- footer-->
           <div class="module-footer" >
-            <button class="module-footer-button">
-              <span class="module-footer-button-text">SEE MORE COMMENTS</span>
-              <span class="module-footer-button-ellipse"><i class="fa fa-mail-forward" ></i></span>
-            </button>
+            <a href="{{commentsurl}}">
+              <button class="module-footer-button">
+                <span class="module-footer-button-text">SEE MORE COMMENTS</span>
+                <span class="module-footer-button-ellipse"><i class="fa fa-mail-forward" ></i></span>
+              </button>
+            </a>
             <!-- END -->
           </div>
         </div>

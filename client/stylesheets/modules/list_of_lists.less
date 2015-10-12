@@ -5,8 +5,8 @@ Description: Top lists Facebook
 Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists_fb.less
 */
 //Here imports the basic required packages
-@import "../global_vars.less";
-@import "../modules.less";
+@import (reference)"../global_vars.less";
+@import (reference)"../modules.less";
 //Here we defines the dimensions of the module
 .module-listoflists{
   .module;
@@ -88,8 +88,8 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists_f
     height: 17px;
     float: left;
     position: relative;
-    top: 70px;
-    right: 379px;
+    top: 53px;
+    right: 309px;
   }
   //container for the feedback
   &-fe{
@@ -97,8 +97,8 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists_f
     height: 12px;
     float: left;
     position: relative;
-    top: 58px;
-    left: 176px;
+    top: 37px;
+    left: 175px;
   }
   //This style is used to create the font awesome symbol marker
   &-space{
@@ -146,7 +146,7 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists_f
     background:#fff;
     width:680px;
     height:45px;
-    &-icon{
+    &-icon1{
       font-family: FontAwesome;
       color: #000000;
       font-size: 17.98px;
@@ -154,6 +154,21 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists_f
       line-height: 21px;
       text-align: left;
       padding-left: 6px;
+      position: relative;
+    //  left: -10px;
+      transform: scaleY(1.0011);
+    }
+    &-icon2{
+      font-family: FontAwesome;
+      color: #000000;
+      font-size: 17.98px;
+      font-weight: 400;
+      line-height: 21px;
+      text-align: left;
+      padding-left: 6px;
+      position: relative;
+      left: -10px;
+      top: 1px;
       transform: scaleY(1.0011);
     }
   }
@@ -162,12 +177,13 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists_f
     position: relative;
     float: left;
     right: 10px;
+    top: 2px;
   }
   &-navigation2 {
     position: relative;
     float: right;
     left: -132px;
-    top: 16px;
+    top: 15px;
   }
   //This style is for the first page selector button
   &-page-selector1 {
@@ -188,6 +204,8 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists_f
       font-size: 13.98px;
       line-height: 21px;
       transform: scaleY(1.0011);
+      width: 115px;
+      height: 25px;
     }
     &:hover {
       border-color:#3098ff;
@@ -203,6 +221,8 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists_f
     border-style: solid;
     border-color: #dadada;
     background-color:#ffffff;
+    position: relative;
+    left: -10px;
     &-selected {
       &-font {
         color:  #000;
@@ -223,6 +243,8 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists_f
     border-style: solid;
     border-color: #dadada;
     background-color:#ffffff;
+    position: relative;
+    left: -10px;
     &-selected {
       &-font {
         color:  #000;
@@ -243,6 +265,8 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists_f
     border-color: #dadada;
     width: 51px;
     height: 25px;
+    position: relative;
+    left: -10px;
     &:hover {
       border-color:#3098ff;
       color:#000;
@@ -266,6 +290,8 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists_f
       line-height: 18px;
       text-align: center;
       transform: scaleY(1.0011);
+      width: 115px;
+      height: 25px;
     }
   }
   //This style is used for the holder we use at footer
@@ -274,7 +300,7 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists_f
     height: 25px;
     position: relative;
     float: left;
-    top:17px;
+    top:15px;
     left:245px;
   }
   //Here we declare how the box which hold "View Full List" look like and how the text inside could be
@@ -286,11 +312,21 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists_f
     border-width: 0px;
     width: 141px;
     height: 35px;
-    font-family: HL;
+    font-family: HN-B;
     color: #ffffff;
-    font-size: 14px;
-    line-height: 18px;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 28px;
     text-align: center;
+  }
+  &-tile-ang{
+    font-family: FontAwesome;
+    color:  #ffffff;
+    font-size: 15px;/* Approximation due to font substitution */
+    font-weight: 400;
+    line-height: 28px;/* Approximation due to font substitution */
+    text-align: right;
+    margin-left:6px;
   }
   //This style is used to create the font awesome symbol share
   &-share{
@@ -322,6 +358,12 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists_f
     color:  #000000;
     font-size: 18px;
     text-align: left;
+    width: 480px;
+    height: 55px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    margin-top: 3px;
   }
   // this is the container for the circle
   &-head-circ{
@@ -365,18 +407,40 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists_f
     margin-left: 10px;
   }
   &-tile-bt{
-    width:150px;
-    height:35px;
+    // width:150px;
+    // height:35px;
     position:relative;
     float:right;
     top: 17px;
     right: 40px;
+    border-radius: 5px;
+    background-color:  #3098ff;
+    width: 181px;
+    height: 35px;
   }
+  &-tile-ellip{
+    height: 25px;
+    width: 25px;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 50%;
+    position: relative;
+    top: 5px;
+    left: 11px;
+    float: left;
+    vertical-align: middle;
+    text-align: center;
+    margin: auto;
+    color: #ffffff;
+    background-color: #000000;
+  }
+
   &-dots{
     width: 10px;
     height: 2px;
     position: relative;
     top: -5px;
+    left:-10px;
   }
 }
 //contianer for the smaller side by side circles
@@ -385,6 +449,6 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists_f
   height: 50px;
   position: relative;
   float: left;
-  top: 12px;
+  top: 14px;
   left: 48px;
 }
