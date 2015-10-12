@@ -1,5 +1,5 @@
-/* Author: Harishkumar muddasani
-** Created: 07/28/2015
+/* Author: harishkumar muddasani
+** Created: [07/28/2015]
 ** Description: .js file for how_are_markets page
 ** Associated Files: how_are_markets.html, how_are_markets.less
 */
@@ -31,7 +31,7 @@ Template.how_are_markets.helpers({                   //helper class for adding d
 
   title:function() {
    var data = Session.get("how_are_markets");
-   return ["how are the markets doing today"];
+   return ["How Are The Markets Doing Today"];
   },
 
    subtitle:function() {
@@ -87,7 +87,7 @@ function hamarkgraph() {
   var seriesOptions = [],
   seriesCounter = 0,
   //Placeholder data labels
-  names = ['', 'AAPL', 'GOOG'],
+  names = ['GOOG'],
 
   //Chart options
   createChart = function () {
@@ -105,31 +105,42 @@ function hamarkgraph() {
         height:125,
 
       },
-
-      xAxis:{
-        type:'datetime',
-        tickPositioner: function () {
-          var positions = [],
-          tick = Math.floor(this.dataMin),
-          increment = Math.ceil((this.dataMax - this.dataMin) / 6);
-
-          for (tick; tick - increment <= this.dataMax; tick += increment) {
-            positions.push(tick);
-          }
-          return positions * 1000;
-        },
-        tickPixelInterval: 60,
-        title: '',
-        labels:{
-          autoRotation:false,
-          step: 1
-        },
-      },
-
+      xAxis: {
+             type: 'datetime',
+             min: Date.UTC(2011, 10, 31),
+             max: Date.UTC(2012, 10, 6),
+             labels: {
+                 step: 1,
+                 style: {
+                     fontSize: '13px',
+                     fontFamily: 'HN-L',
+                     color:'#999999'
+                 }
+             },
+             dateTimeLabelFormats: { // don't display the dummy year
+                 month: '%b',
+                 year: '%Y'
+             },
+             buttonTheme: {
+               visibility: 'hidden'
+             },
+             labelStyle: {
+               visibility: 'hidden'
+             }
+         },
       yAxis:{
+
         opposite:true,
         title:'',
+        labels:{
+          style: {
+            fontSize: '13px',
+            fontFamily: 'HN-L',
+            color:'#999999'
+          }
+        }
       },
+
       scrollbar:{
         enabled:false
       },
@@ -152,6 +163,7 @@ function hamarkgraph() {
       series: seriesOptions
     });
   };
+
 
   //Populate chart with data
   $.each(names, function (i, name) {
