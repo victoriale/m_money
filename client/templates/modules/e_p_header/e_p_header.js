@@ -7,6 +7,15 @@
 var Exec_Name = "Mark Zuckerberg";
 
 Template.ep_head.helpers({
+  execInfo: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    data['e_name'] = data.o_first_name + " " + data.o_middle_initial + " " + data.o_last_name;
+    Session.set('profile_header', data);
+    return data;
+  },
   LastUpdate   : "4:59:00PM PST",
   Comp_Location: "MENLOPARK, CA",
   Company      : "FACEBOOK, INC.",
