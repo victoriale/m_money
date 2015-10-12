@@ -5,7 +5,7 @@
 -->
 
 <template name="dyk">
-  <div class="module-3 dyk">
+  <div class="dyk">
     <!--Module Header-->
     <div class="module-header">
       <span class="module-header-line"></span>
@@ -15,23 +15,15 @@
 
     <div class="dyk-body">
       <div class="dyk-body-left">
-        {{#each fact}}
-        {{#if isLeft}}
+        {{#each dykInfo}}
         <div class="dyk-body-fact">
           <button class="dyk-body-fact-share"><i class="fa fa-share-alt"></i></button>
           <div class="dyk-body-fact-title">Did You Know:</div>
           <div class="dyk-body-fact-text">
-            {{#each segment}}
-              {{#if important}}
-                <span class="dyk-body-fact-text-bold">{{text}}</span>
-              {{else}}
-                {{text}}
-              {{/if}}
-            {{/each}}
+            {{this}}
             <i class="fa fa-share"></i>
           </div>
         </div>
-        {{/if}}
         {{/each}}
       </div>
     </div>
