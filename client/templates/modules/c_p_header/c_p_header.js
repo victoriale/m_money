@@ -12,6 +12,7 @@ Template.cp_head.onRendered(function(){
   */
   this.autorun(function(){
     resizetext(".p-head-top-name", ".p-head-top-name-txt", "44px");
+    resizetext(".p-body-box", "#sector", "25px");
   })
 })
 Template.cp_head.helpers({

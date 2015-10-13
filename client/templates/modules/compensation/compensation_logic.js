@@ -5,9 +5,28 @@
   Associated Files: compensation.html, compensation.less, compensation_logic.js
 */
 
+Template.compensation.helpers({
+  compenInfo: function(){
+    var compensation = Session.get('compensation');
+    if(typeof compensation == 'undefined'){
+      return '';
+    }
+    var compYear = {};
+    //takes all the historic compensation data and toss them into a yearly object array
+    $.map(compensation, function(data, index){
+      var result = PHcheck(data);
+      var year = result['o_period_end_date'].split('-');
+      compYear[year[0]] = result.o_compensation;
+      compYear['full_name'] = result.o_first_name + " " + result.o_middle_initial + " " + data.o_last_name;
+    });
+    compensation['comp_array'] = compYear;
+    //console.log('COMPENSATION DONE!',compensation);
+    return compensation;
+  },
+});
+
 //Function to render the spline chart
 function compensationgraph() {
-
   //Chart options
   createGraph = function () {
     $('#comp_graph').highcharts({
@@ -111,7 +130,7 @@ function compensationgraph() {
               var ret =this.y;
               var ret = this.y;
               if (ret >= 1000000000) {
-                ret = '$' + (ret / 1000000000).toFixed(1).replace(/\.0$/, '') + 'G';
+                ret = '$' + (ret / 1000000000).toFixed(1).replace(/\.0$/, '') + 'B';
               }
               else if (ret >= 1000000) {
                 ret = '$' + (ret / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
@@ -135,7 +154,7 @@ function compensationgraph() {
         formatter: function() {
           var val = this.y;
           if (val >= 1000000000) {
-            val = (val / 1000000000).toFixed(1).replace(/\.0$/, '') + 'G';
+            val = (val / 1000000000).toFixed(1).replace(/\.0$/, '') + 'B';
           }
           else if (val >= 1000000) {
             val = (val / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
