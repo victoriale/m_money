@@ -4,8 +4,32 @@
   Description: compensation Module
   Associated Files: compensation.html, compensation.less, compensation_logic.js
 */
+Template.compensation.onRendered(function(){
+  this.autorun(function(){
+    var compensation = Session.get('compensation');
+    if(typeof compensation == 'undefined'){
+      return '';
+    }
+    var compYear = {};
+    //takes all the historic compensation data and toss them into a yearly object array
+    $.map(compensation.compensation_periods, function(data, index){
+      var result = PHcheck(data);
+      console.log(result)
+      console.log(result['o_period_end_date']);
+      if(typeof result['o_period_end_date'] != 'undefined'){
+        var year = result['o_period_end_date'].split('-');
+        compYear[year[0]] = result.o_compensation;
+        compYear['full_name'] = result.o_first_name + " " + result.o_middle_initial + " " + data.o_last_name;
+      }
+    });
+    compensation['comp_array'] = compYear;
+    Session.set('compensation', compensation);
+    console.log('COMPENSATION DONE!',compensation);
+  })
+});
 
 Template.compensation.helpers({
+  /*
   compenInfo: function(){
     var compensation = Session.get('compensation');
     if(typeof compensation == 'undefined'){
@@ -20,10 +44,11 @@ Template.compensation.helpers({
       compYear['full_name'] = result.o_first_name + " " + result.o_middle_initial + " " + data.o_last_name;
     });
     compensation['comp_array'] = compYear;
-    Session.set('compensation', compesation);
+    Session.set('compensation', compensation);
     console.log('COMPENSATION DONE!',compensation);
     return compensation;
   },
+  */
 });
 
 //Function to render the spline chart

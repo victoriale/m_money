@@ -5,7 +5,9 @@ Description: exec_college_rivals page
 Associated Files: exec_college_rivals.less and exec_college_rivals.html
 */
 var counter=0;
-
+Template.exec_college_rivals.onCreated(function(){
+  var data = Session.get('college_rivals');
+})
 //renders the data when page loads
 Template.exec_college_rivals.onRendered(function () {
 $(".exr_riva-page-selector1").css("background-color","#3098ff");
