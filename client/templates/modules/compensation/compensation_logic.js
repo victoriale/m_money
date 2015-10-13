@@ -20,7 +20,8 @@ Template.compensation.helpers({
       compYear['full_name'] = result.o_first_name + " " + result.o_middle_initial + " " + data.o_last_name;
     });
     compensation['comp_array'] = compYear;
-    //console.log('COMPENSATION DONE!',compensation);
+    Session.set('compensation', compesation);
+    console.log('COMPENSATION DONE!',compensation);
     return compensation;
   },
 });

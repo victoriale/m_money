@@ -10,7 +10,13 @@ Template.latest_news.helpers({
   newURL: function(){
       return Router.path('content.articlenews');
   },
-
+  companyName: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data.c_name;
+  },
   items:[
     {heading:"Facebook Inc (FB) Is Going After Another Google Inc Pro",description: "CNN > Lauren Dunlap", loc:"article published on 01/25/15 at 10:11pm", num:"+2", fontawesome:"fa-newspaper-o"},
     {heading:"Facebook's (FB) CEO Mark Zuckerberg on Q4 Repot....", description: "CNN > Veronica De La Cruz",loc:"article published on 01/25/15 at 10:11pm", num:"+8", fontawesome:"fa-volume-off"},
