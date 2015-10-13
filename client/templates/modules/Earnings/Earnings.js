@@ -22,7 +22,7 @@ Template.Earnings.helpers({ //helper for the template earnings  is created to pr
     var array=[];
     var i;
 
-    for(i=1; i< data.length-1;i++)
+    for(i=0; i< data.length-1;i++)
     {
       array[i] = {};
       var date = data[i]['e_filing_date'].split('-');//splits date into array containing year, month, day
@@ -35,8 +35,10 @@ Template.Earnings.helpers({ //helper for the template earnings  is created to pr
         array[i]['description'] = data[i]['e_report_title'];
         array[i]['month'] = month;
         array[i]['day'] = day;
+        array[i]['link'] = Router.path('content.earningspage',{company_id: data[i]['c_id'], earning_id: data[i]['e_report_title'].replace(/ /g,'-')});
       }
     }
+    console.log(array);
     return array;
   },
 

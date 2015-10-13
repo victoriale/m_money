@@ -775,12 +775,15 @@ Related Files:
           background-color:@grey-3;
           border-radius: 5px;
           overflow:hidden;
+          position: relative;
           &-red { //co-inc-stmt-metrics-tile-chartcont-chart-red
             background-color:#ff4040;
             border-radius: 5px;
             padding-right:15px;
             height:100%;
             display:inline-block;
+            position: absolute;
+            left: 0;
           }
           &-blue { //co-inc-stmt-metrics-tile-chartcont-blue
             background-color:@blue;
@@ -788,6 +791,8 @@ Related Files:
             padding-right:15px;
             height:100%;
             display:inline-block;
+            position: absolute;
+            left: 0;
           }
           &-innertext { //co-inc-stmt-metrics-tile-chartcont-chart-innertext
             color:@white;

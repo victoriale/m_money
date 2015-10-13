@@ -57,15 +57,15 @@ Associated Files: [The Earnings.less, Earnings.html for the module]
           </div> <!-- the small blue circle and with text inside the "class of header" !-->
         </div>
         {{#each earns}} <!-- handlebar with each loop to call the helper  -->
-        <div class="earning_body-content_rectangle"><!-- created a class of the content with date and text, circle and text !-->
-          <div class="earning_body-month_text">{{month}} <!-- handlebar to display months  -->
-            <div class="earning_body-date_text">{{day}}</div>  <!-- class is with specs of date and month !-->
-            <div class="earning_body-small_circle"> <!-- creates a circle with given specs !-->
-              <div class="home_images1">
+        <a class="module-tile-link" href="{{link}}"> <!-- link class in module.less !-->
+          <div class="earning_body-content_rectangle"><!-- created a class of the content with date and text, circle and text !-->
+            <div class="earning_body-month_text">{{month}} <!-- handlebar to display months  -->
+              <div class="earning_body-date_text">{{day}}</div>  <!-- class is with specs of date and month !-->
+              <div class="earning_body-small_circle"> <!-- creates a circle with given specs !-->
+                <div class="home_images1">
+                </div>
               </div>
             </div>
-          </div>
-          <a class="module-tile-link" href="#"> <!-- link class in module.less !-->
             <div class="earning_body-rect_boxtext" > <!-- this div with class rect_boxtext is to keep the text bounded  !-->
               <div class="earning_body-neib_name">{{company}}
                 <span class="earning_body-listing_name"><!--{{fiscYear}}-->
@@ -73,8 +73,8 @@ Associated Files: [The Earnings.less, Earnings.html for the module]
                 </span>  <!-- text with regular and aligned with given specs !-->
               </div> <!-- the text is listed with given specs !-->
             </div>
-          </a>
-        </div>
+          </div>
+        </a>
         {{/each}}<!--end of the loop -->
       </div>
 
