@@ -68,7 +68,31 @@ Meteor.methods({
     console.log("Request finished in " + Math.round(TimeDif*10)/10 + " seconds");
     return data;
   },
-});
+
+  EarningsIndie: function(comp_id) {
+    console.log("New Finance Page Request",comp_id);
+    var Start = new Date();
+    Start = Start.getTime();
+
+    var UrlString =   "http://apifin.synapsys.us/call_controller.php?action=company_profile&option=indie&call=earnings&param=" + comp_id;
+    console.log(UrlString);
+
+    var data = HTTP.call("GET",UrlString);
+    try {
+      data = JSON.parse(data['content']);
+    } catch(e) {
+      console.log("Exception");
+      data['content'] = data['content'].toString().replace(/^[^\{]*/,'');
+      data = JSON.parse(data['content']);
+    }
+    var End = new Date();
+    End = End.getTime();
+    var TimeDif = (End - Start)/1000;
+    console.log("Request finished in " + Math.round(TimeDif*10)/10 + " seconds");
+    return data;
+  },
+
+});//end of meteormethods
 
 Meteor.startup(function(){
   robots.addLine('User-agent: *');

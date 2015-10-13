@@ -56,11 +56,10 @@ Associated Files: [company_wtd.html,company_wtd.less,company_wtd.js]
         <!--Bottom pannel of 4 columns-->
         <div class="s_b-sect_lst">
 
-          <!--First Column of Bottom pannel-->
+          <!--First Column of Bottom panel-->
             {{#each companies}}
           <a href="">
             <div class="s_b-sect_lst-content">
-              <div class="s_b-itemidentifier s_b-greyidentifier"></div>
               <div class="s_b-sect_lst-sect_img_cntnt">
               <i class="fa {{fntawwsm}} s_b-sect_lst-sect_img s_b-sect_lst-fntawsm"></i>
               </div>
@@ -87,13 +86,12 @@ Associated Files: [company_wtd.html,company_wtd.less,company_wtd.js]
       <!--Panel of the modulee ends-->
 
       <!--First tile in top right of the panel-->
-      {{#each tile}}
       <div class="s_b-tiles">
+      {{#each tile}}
         <div class="module-tile">
           <div class="module-tile-default">
             <div class="module-tile-default-container">
-              <span class="module-footer-button-ellipse s_b-tileelipse"><i class="fa fa-mail-forward"></i></span>
-              <div class="module-tile-default-icon s_b-tileicon">
+              <div class="module-tile-default-icon">
                 <i class="fa {{fnt}}"></i>
               </div>
               <div class="module-tile-default-text">
@@ -112,8 +110,8 @@ Associated Files: [company_wtd.html,company_wtd.less,company_wtd.js]
             </div>
           </a>
         </div>
-      </div>
       {{/each}}
+      </div>
 
 </div>
 </div>
