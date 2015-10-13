@@ -133,6 +133,27 @@ Meteor.methods({
     });
 
     return future.wait();
+  },
+  GetMoneyMemoryData: function(company_id, initial_investment, start_date, end_date){
+    console.log("Money Memory Request",company_id, initial_investment, start_date, end_date);
+    var Start = new Date();
+    Start = Start.getTime();
+    var UrlString = "http://apifin.synapsys.us/call_controller.php?action=company_profile&option=indie&call=money_memory&param=" + company_id + "&mmem=" + initial_investment + "," + end_date + "," + start_date;
+    console.log(UrlString);
+
+    var data = HTTP.call("GET",UrlString);
+    try {
+      data = JSON.parse(data['content']);
+    } catch(e) {
+      console.log("Exception");
+      data['content'] = data['content'].toString().replace(/^[^\{]*/,'');
+      data = JSON.parse(data['content']);
+    }
+    var End = new Date();
+    End = End.getTime();
+    var TimeDif = (End - Start)/1000;
+    console.log("Request finished in " + Math.round(TimeDif*10)/10 + " seconds");
+    return data;
   }
 });
 
