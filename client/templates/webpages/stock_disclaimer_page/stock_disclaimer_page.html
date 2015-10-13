@@ -11,6 +11,34 @@ Associated Files: stock_disclaimer_page_logic.js and stock_disclaimer_page.less
   <div class= "dis_st">
     <!--gave the dimensions for the module with total height and width !-->
     <div class = "dis_st-n_m">
+      <a href="">
+          <div class="dis_st-hdtl">
+            <div class="dis_st-hdtl-or">
+              <div class="dis_st-hdtl-mailrep" >
+                <i class="dis_st-mailrep fa fa-reply"></i>
+              </div>
+              <div class="dis_st-hdtl-rta">
+              </div>
+            </div>
+            <!-- for the text contianer!-->
+            <div class="dis_st-hdtl-txtctt">
+              <div class="dis_st-hdtl-gb">
+                GO Back To
+                <div class="dis_st-hdtl-bar-title">
+                <div class="dis_st-hdtl-bar-helper">
+                  [Profile]'s
+                </div>
+                  <div class="dis_st-hdtl-bar-side">Profile </div>
+                </div>
+              </div>
+            </div>
+            <!-- for the circle on the right to navigate!
+            <div class="dis_st-hdtl-indcir">
+                <i class="fa fa-angle-right"></i>
+            </div>
+            -->
+          </div>
+        </a>
       <!--dimensions for the circle container as ('cir-d') !-->
       <div class="dis_st-cir_d">
       <!-- dimensions for the circle as ('circ')!-->
@@ -18,9 +46,9 @@ Associated Files: stock_disclaimer_page_logic.js and stock_disclaimer_page.less
         <!-- defines container for the smaller blue circle('sc_d') !-->
         <div class= "dis_st-sc_d">
         <!-- defines the dimension for the small circle('sc') !-->
-        <div class="dis_st-sc_d dis_st-sc">
+        <!-- <div class="dis_st-sc_d dis_st-sc">
         <i class="dis_st-bfo fa fa-reply"></i>
-        </div>
+        </div> -->
         </div>
       </div>
       </div>
@@ -35,7 +63,7 @@ Associated Files: stock_disclaimer_page_logic.js and stock_disclaimer_page.less
          <i class="fa fa-map-marker"></i>
       <!--specified font style for the state name !-->
       <span class="dis_st-loc_st">
-        United States
+        United States of America
       </span>
       </div>
       <!-- specified font sytle for the stock disclaimer !-->
@@ -44,9 +72,28 @@ Associated Files: stock_disclaimer_page_logic.js and stock_disclaimer_page.less
       </div>
       <!--specified font style for the inveskit finance  !-->
       <div class="dis_st-loc_st dis_st-fin">
-      for Inveskit Finance
+      For Inveskit
       </div>
       </div>
+
+      <div class="dis_st-oth-bar">
+        <div class="dis_st-oth-bar-title">
+        <div class="dis_st-oth-bar-helper">
+          InvestKit's Stock Disclaimer
+        </div>
+          <!-- <div class="dis_st-oth-bar-side">[getheadername1] </div> -->
+        </div>
+        <!-- </div> -->
+        <div class="dis_st-oth-bar-button">
+          <!-- the save option button-->
+          <a href="#"><i class="fa fa-heart"></i><span class="dis_st-oth-bar-text">Save</span></a>
+        </div>
+        <div class="dis_st-oth-bar-button">
+          <!-- share option button -->
+          <a href="#"><i class="fa fa-share-alt"></i><span class="dis_st-oth-bar-text">Share</span></a>
+        </div>
+      </div>
+
       <!--created a line after the container !-->
       <div class="dis_st-line1">
       <!--created a class name dic2 for the stock disclaimer text !-->
@@ -57,6 +104,23 @@ Associated Files: stock_disclaimer_page_logic.js and stock_disclaimer_page.less
         <div class="dis_st-line2">
         </div>
       </div>
+
+      <div class="dis_st-nr">
+        Now Reading:
+      </div>
+        <!-- <i class="cup_nr_bold">{{dataPoint}}</i> <i class="fa fa-angle-down cup_nr_blue"></i> -->
+        <div class="dis_st-nr2">
+        <select id="sdsort_by">
+          <option value="About">About Us</option>
+          <option value="Contact">Contact Us</option>
+          <option value="Copyright">Copyright Infringement</option>
+          <option value="Disclaimer">Disclaimer</option>
+          <option value="Privacy">Privacy Policy</option>
+          <option value="Stock">Stock Disclaimer</option>
+          <option value="Terms">Terms of Service</option>
+        </select>
+      </div>
+
       <!--createad paragraph container for the paragraph gave class name as (para) !-->
       <div class="dis_st-para">
         <div class="dis_st-parat">
@@ -72,7 +136,7 @@ Associated Files: stock_disclaimer_page_logic.js and stock_disclaimer_page.less
       </div>
       <!--created a container for the fotter('ft')  !-->
       <div class="dis_st-ft">
-      {{> search_module}}
+      {{> recommend}}
     </div>
   </div>
 </div>
