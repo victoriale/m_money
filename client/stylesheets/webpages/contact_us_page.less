@@ -5,13 +5,13 @@ Description:conatct us webpage
 Associated Files: contact_us_page.html,contact_us_page.js
 */
 
-@import (reference)"../global_vars.less"; //include important global vars (colors mostly)
-@import (reference)"../modules.less";
+@import "../global_vars.less"; //include important global vars (colors mostly)
+@import "../modules.less";
 // webpage dimensions
 .cup_dimensions{
   background-color:  #ffffff;
   width: 680px;
-  height: 1354px;
+  height: 1366px;
   position: relative;
   margin: 5px 0px 0px 5px;
 }
@@ -207,10 +207,19 @@ Associated Files: contact_us_page.html,contact_us_page.js
   line-height: 12px;
   width: 150px;
 }
+//for contact
+.con_tact{
+    color:  #000000;
+    font-size: 18px;
+    font-family: HN;
+    margin-left: 15px;
+    margin-top: 15px;
+    float: left;
+}
 //now reading
 .cup_nr{
-  position: absolute;
-  left: 492px;
+  position: relative;
+  left: 403px;
   top: 16px;
   font-size: 12px;
   font-family: HN-L;
@@ -230,6 +239,19 @@ Associated Files: contact_us_page.html,contact_us_page.js
     margin-left: 5px;
   }
 }
+//for drop down
+.cup_nr2{
+  position: relative;
+  top: -1px;
+  left: -27px;
+  width: 169px;
+  float: right;
+  select{
+    font-family: HN-B;
+    border-style: none;
+  }
+}
+
 .cup_form{
   position: relative;
   left: 0px;
