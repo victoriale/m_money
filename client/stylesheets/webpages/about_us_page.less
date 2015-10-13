@@ -12,8 +12,77 @@ Associated Files: contact_us_page.html
 &-dimensions{
   background-color:  #ffffff;
   width: 680px;
-  height: 1362px;
   margin: 5px 0px 0px 5px;
+  text-align: left;
+  overflow: hidden;
+}
+
+&-hdr {
+  width: 100%;
+  height: 50px;
+  background-image: url('/header_texture.png');
+
+  &-box {
+    width: 60px;
+    height: 50px;
+    background-color: @blue;
+    float: left;
+
+    .fa {
+      color: white;
+      font-size: 30px;
+      margin: 11px 0px 0px 15px;
+    }
+  }
+
+  &-arrw {
+    width: 0;
+	  height: 0;
+	  border-top: 25px solid transparent;
+	  border-bottom: 25px solid transparent;
+	  border-left: 15px solid @blue;
+    float: left;
+  }
+
+  &-txt {
+    height: 19px;
+    line-height: 15px;
+    float: left;
+    font-family: HN-L;
+    font-size: 19px;
+    margin-left: 20px;
+    margin-top: 17px;
+    color: white;
+
+    strong {
+      height: 19px;
+      vertical-align: top;
+      display: inline-block;
+      max-width: 300px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: normal;
+      font-family: HN-B;
+    }
+  }
+}
+
+&-dropdown {
+  height: 26px;
+  float: right;
+  background-color: #FFFFFF;
+  font-family: HN-L;
+  font-size: 12px;
+  text-align: right;
+  font-weight: 700;
+  padding-top: 10px;
+  padding-right: 14px;
+
+  select {
+    font-family: HN-B;
+    border-style: none;
+  }
 }
 //circle with an image
 &-image{
@@ -24,9 +93,9 @@ Associated Files: contact_us_page.html
   background-color:  #ffffff;
   width: 100px;
   height: 100px;
-  position: relative;
-  top:20px;
+  margin-top: 15px;
   margin-left: 20px;
+  float: left;
 }
 //subcircle on image
 &-replyimg{
@@ -50,8 +119,9 @@ Associated Files: contact_us_page.html
 &-head_cont{
   width: 370px;
   height: 99px;
-  margin-top: -13%;
-  margin-left: 21%;
+  margin-top: 14px;
+  margin-left: 14px;
+  float: left;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -68,6 +138,10 @@ Associated Files: contact_us_page.html
   font-size: 12px;
   font-family: HN;
   margin-top: 12px;
+  max-width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 &-countxt{
   margin-left: 3px;
@@ -90,18 +164,16 @@ Associated Files: contact_us_page.html
   background-color: rgba(0, 0, 0, 0.85);
   width: 680px;
   height: 35px;
-  position: relative;
-  top: 29px;
+  margin-top: 19px;
+  overflow: hidden;
 }
 //line
 &-linee{
   width: 1px;
   height: 35px;
-  float: left;
-  position: relative;
-  left:38px;
   background-color: #363636;
-  margin-right: 15px;
+  float: left;
+  margin-left: 19px;
 }
 
 &-bar {
@@ -133,24 +205,17 @@ Associated Files: contact_us_page.html
     }
     //the title next to save and share
     &-title{
-      border-right: 1px solid #363636;
-      float: left;
+      font-family: HN-B;
+      font-size: 16px;
+      color: white;
       height: 23px;
-      max-width: 121px;
-      left: 20px;
-      top: 6px;
+      width: 156px;
+      margin-left: 15px;
+      margin-top: 11px;
+      line-height: 12px;
       position: relative;
-      padding-right: 118px;
-      background-repeat: no-repeat;
-      background-image: url("Logo_InvestKit.png");
-      background-size: 117px 23px;
       cursor: pointer;
-
-      &:after {
-        display:"block";
-        content: "";
-        clear: both;
-      }
+      float: left;
 }
     // giving the specifications data for the helper
     &-helper{
@@ -178,13 +243,11 @@ Associated Files: contact_us_page.html
       text-align: center;
       float: left;
       line-height: 35px;
-      height:35px;
-      width:85px;
-      margin-right: 8px;
+      height: 35px;
+      width: 56px;
+      margin-right: 23px;
       font-family: HN-L;
-      left: 28px;
-      position: relative;
-
+      margin-left: 15px;
       .fa{
         margin-right: 10px;
         color: #ffffff;
@@ -195,11 +258,11 @@ Associated Files: contact_us_page.html
   &-wt{
     width: 150px;
     height: 15px;
-    position: relative;
-    left:15px;
-    top:41px;
-    float: left;
+    line-height: 14px;
+    margin-left: 15px;
+    margin-top: 15px;
     text-align: left;
+    float: left;
   }
   //what is font sytle
   &-wtft{
@@ -208,6 +271,10 @@ Associated Files: contact_us_page.html
     font-size: 18px;
     line-height: 28px;
     text-align: left;
+    font-weight: bold;
+    height: 15px;
+    line-height: 14px;
+    display: inline-block;
   }
   // font family for the invest kit
   &-wtin{
@@ -216,6 +283,9 @@ Associated Files: contact_us_page.html
     font-size: 18px;
     line-height: 28px;
     text-align: left;
+    line-height: 14px;
+    height: 15px;
+    display: inline-block;
   }
 
   // long line after what is invest kit
@@ -223,18 +293,14 @@ Associated Files: contact_us_page.html
     background-color:  #cccccc;
     width: 650px;
     height: 1px;
-    position: relative;
-    top: 76px;
-    left: 15px;
+    margin-left: 15px;
   }
   //contianer for the text paragraph
   &-txtct{
     width: 630px;
     height: 218px;
-    position: relative;
-    top:73px;
-    left:24px;
-    float: left;
+    margin-top: 15px;
+    margin-left: 24px;
 
   }
   //font style for the text
@@ -250,9 +316,7 @@ Associated Files: contact_us_page.html
   &-wct{
     width: 640px;
     height: 70px;
-    position: relative;
-    top:326px;
-    margin-bottom: 20px;
+    margin-top: 20px;
   }
   //container for the box
   &-smb1{
@@ -332,51 +396,48 @@ Associated Files: contact_us_page.html
 //member fontstyle
 &-member{
   width: 150px;
-  height: 55px;
-  position: relative;
-  //top: 278px;
-  left: 167px;
-  float: left;
+  height: 47px;
+  margin-left: 158px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
 }
 //font style for member
 &-memft{
+  height: 14px;
   font-family: HN-B;
   color:  #959595;
   font-size: 14px;
-  line-height: 24px;/* Approximation due to font substitution */
+  line-height: 10px;/* Approximation due to font substitution */
   text-align: center;
+  overflow: hidden;
 }
 //font syle for the number
 &-number{
+  height: 26px;
   font-family: HN-B;
   color:  #000000;
   font-size: 28px;
-  line-height: 32px;/* Approximation due to font substitution */
+  line-height: 20px;
   text-align: center;
+  margin-top: 7px;
 }
 //conatiner for map image
 &-mapct{
   width: 462px;
   height: 352px;
-  position: relative;
-  top:-10px;
-  left: 15px;
-  float: left;
   background-image: url("Icon_US_Map.png");
   background-repeat: no-repeat;
   cursor: pointer;
+  margin-top: -9px;
 }
 //complete contianer
 &-compct{
   width: 462px;
   height: 400px;
-  float: left;
-  position: relative;
-  top: 282px;
-  left: 109px;
+  margin-left: 109px;
+  margin-top: 29px;
+  overflow: hidden;
 }
 /* container for the fotter('ft') */
 &-fotter{

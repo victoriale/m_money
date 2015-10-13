@@ -7,40 +7,61 @@ Associated Files: about_us_page.less
 <template name="about_us_page">
   <!--Webpage dimensions-->
   <div class="abt_us-dimensions">
-    <!--creating  image-->
-    <div class="abt_us-image">
-      <!--small circle & icon on image circle-->
-      <div class="abt_us-replyimg"><span class="abt_us-replyicon"><i class="fa fa-reply"></i></span></div>
-    </div>
-    <!--container for information-->
-    <div class="abt_us-head_cont">
-      <!--date-->
-      <div class="abt_us-head_date">LAST UPDATED:06/24/2015,8:00 AM EST</div>
-      <!--country-->
-      <div class="abt_us-country"><i class="fa fa-map-marker"></i><span class="abt_us-countxt">{{country}}</span></div>
-      <!--text in the container-->
-      <div class="abt_us-heading">About Us</div>
-      <div class="abt_us-subheading">{{statement}}</div>
+    <a href = "#">
+      <div class = "abt_us-hdr">
+        <div class = "abt_us-hdr-box"><i class = "fa fa-reply"></i></div>
+        <div class = "abt_us-hdr-arrw"></div>
+        <div class = "abt_us-hdr-txt">Go Back To <strong>{{company}}'s</strong> Profile</div>
+      </div>
+    </a>
+    <div style = "overflow:hidden">
+      <!--creating  image-->
+      <a href = "#">
+        <div class="abt_us-image">
+        <!--small circle & icon on image circle-->
+      <!--  <div class="abt_us-replyimg"><span class="abt_us-replyicon"><i class="fa fa-reply"></i></span></div>-->
+        </div>
+      </a>
+      <!--container for information-->
+      <div class="abt_us-head_cont">
+        <!--date-->
+        <div class="abt_us-head_date">LAST UPDATED: {{upd}}</div>
+        <!--country-->
+        <div class="abt_us-country"><i class="fa fa-map-marker"></i><span class="abt_us-countxt">{{country}}</span></div>
+        <!--text in the container-->
+        <div class="abt_us-heading">About Us</div>
+        <div class="abt_us-subheading">{{statement}}</div>
+      </div>
     </div>
     <!--line under the container-->
     <div class="abt_us-blackhd">
-      <div class="abt_us-bar-title">
-        </div>
-        <div class="abt_us-linee">
-        </div>
-        <div class="abt_us-bar-button">
-        <!-- the save option button-->
-        <a href="#"><i class="fa fa-heart"></i><span class="abt_us-bar-text">Saved</span></a>
-      </div>
+      <div class="abt_us-bar-title">InvestKit's About Us</div>
+      <div class="abt_us-linee"></div>
       <div class="abt_us-bar-button">
+        <!-- the save option button-->
+        <a href="#"><i class="fa fa-heart"></i><span class="abt_us-bar-text">Save</span></a>
+      </div>
+      <div class="abt_us-bar-button" style = "width: 59px;">
         <!-- share option button -->
         <a href="#"><i class="fa fa-share-alt"></i><span class="abt_us-bar-text">Share</span></a>
       </div>
     </div>
     <!-- what is invest_kit!-->
-    <div class="abt_us-wt">
-      <!-- font family!-->
-      <div class="abt_us-wtft"> What is <span class="abt_us-wtin">Invest Kit?</span>
+    <div style = "height: 43px;">
+      <div class="abt_us-wt">
+        <div class="abt_us-wtft"> What is <span class="abt_us-wtin">Invest Kit?</span></div>
+      </div>
+      <div class = "abt_us-dropdown">
+        Now Reading:
+        <select id="sort_by" style = "margin-top: 1px;">
+          <option value="About">About Us</option>
+          <option value="Contact">Contact Us</option>
+          <option value="Copyright">Copyright Infringement</option>
+          <option value="Disclaimer">Disclaimer</option>
+          <option value="Privacy">Privacy Policy</option>
+          <option value="Stock">Stock Disclaimer</option>
+          <option value="Terms">Terms of Service</option>
+        </select>
       </div>
     </div>
 
@@ -61,44 +82,40 @@ Associated Files: about_us_page.less
             civibus definitionem cu vis. Vim molestie volutpat electram ad, cum mundi officiis principes eu.
       </div>
     </div>
-{{# each items}}
     <!-- small boxes!-->
-    <div class="abt_us-wct">
-    <div class="abt_us-smb1">
-      <div class="abt_us-lftp">
-      </div>
-      <!-- for image !-->
-      <div class="abt_us-img" style="background-image:url({{image}})">
-      </div>
-      <!-- for txt container !-->
-      <div class="abt_us-smbct">
-        <div class="abt_us-smbct-total">
-          {{totals}}
+    <div style = "margin-top: 10px; overflow: hidden;">
+      {{# each items}}
+      <div class="abt_us-wct">
+        <div class="abt_us-smb1">
+          <div class="abt_us-lftp"></div>
+          <!-- for image !-->
+          <div class="abt_us-img" style="background-image:url('/{{image}}')"></div>
+          <div class="abt_us-smbct">
+            <div class="abt_us-smbct-total">
+              {{totals}}
+            </div>
+            <div class="abt_us-smbct-num">
+              {{numbers}}
+            </div>
+          </div>
         </div>
-        <div class="abt_us-smbct-num">
-          {{numbers}}
+        <div class="abt_us-smb2">
+          <div class="abt_us-lftp2"></div>
+          <!-- for image !-->
+          <div class="abt_us-img" style="background-image:url('/{{image2}}')"></div>
+          <!-- for txt container !-->
+          <div class="abt_us-smbct">
+            <div class="abt_us-smbct-total">
+              {{totals2}}
+            </div>
+            <div class="abt_us-smbct-num">
+              {{numbers2}}
+            </div>
+          </div>
         </div>
       </div>
+      {{/each}}
     </div>
-    <div class="abt_us-smb2">
-      <div class="abt_us-lftp2">
-      </div>
-      <!-- for image !-->
-      <div class="abt_us-img" style="background-image:url({{image2}})">
-
-      </div>
-      <!-- for txt container !-->
-      <div class="abt_us-smbct">
-        <div class="abt_us-smbct-total">
-          {{totals2}}
-        </div>
-        <div class="abt_us-smbct-num">
-          {{numbers2}}
-        </div>
-      </div>
-    </div>
-  </div>
-    {{/each}}
     <div class="abt_us-compct">
     <!--memeber nationwide container !-->
     <div class="abt_us-member">
@@ -108,7 +125,7 @@ Associated Files: about_us_page.less
       </div>
       <!--number + !-->
       <div class="abt_us-number">
-        1,200,000+
+        {{members}}
       </div>
     </div>
     <!-- conatiner for map image !-->
@@ -116,18 +133,16 @@ Associated Files: about_us_page.less
     </div>
   </div>
     <!--created a container for the fotter  !-->
-  <div class="abt_us-fotter">
+  <!-- <div class="abt_us-fotter">
       <div class="abt_us-srchbox">
-        <!--text in searchbox-->
         <div class="abt_us-srcctt">
         <div class="abt_us-srchtxt1">LOOKING FOR SOMETHING MORE?</div>
         <div class="abt_us-srchtxt2">Search our database for all U.S.public companies and their affiliates.</div>
       </div>
-        <!--text box for searching-->
         <input type="textbox" class="abt_us-inptbox" placeholder="Search...">
-        <!--search button-->
         <button class="abt_us-srcbtn"><span class="abt_us-srchicon" ><i class="fa fa-search"></i></span></button>
       </div>
-  </div>
+  </div> -->
+  {{> recommend}}
   </div>
 </template>
