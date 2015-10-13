@@ -157,7 +157,7 @@ GetMoneyMemoryData: function(company_id, initial_investment, start_date, end_dat
     return data;
 },
 
-CollegeRivalsData: function(exec_id, option) {
+WebpageData: function(exec_id, option) {
   console.log("New CollegeRivals Request",exec_id,option);
   var Start = new Date();
   Start = Start.getTime();
@@ -186,4 +186,3 @@ Meteor.startup(function(){
   robots.addLine('User-agent: *');
   robots.addLine('Disallow: /');
 });
- 
