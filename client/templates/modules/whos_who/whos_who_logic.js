@@ -9,8 +9,8 @@ Template.whos_who.onCreated(function(){
   this.autorun(function(){
     Meteor.call('WhosWhoIndie', Session.get('comp_id'), function(error, data){
       if(!error){
-        console.log(data.whos_who);
-        Session.set('whos_who', data.whos_who);
+        //console.log('Whos_who',data.whos_who);
+        //Session.set('whos_who', data.whos_who);
       }else{
         console.log("ERROR whos_who Call");
         return (error);
@@ -55,6 +55,13 @@ Template.whos_who.helpers({
   first_domain:['Retail and Online Stores'],
 
   //functions
+  companyName: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data.c_name;
+  },
   author_name:function(){
     var who = Session.get('whos_who');
     var index = Session.get("whos_count");

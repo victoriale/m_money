@@ -18,7 +18,7 @@
     width: 680px;
     height: 380px;
     background-color:  rgba(0, 0, 0, 0.65);
-    background-image: url("/TeamImageBG.png");
+    background-image: @full-linen;
     // Begin p-head-top
     &-top {
       background-color: rgba(0, 0, 0, 0.6);
@@ -233,7 +233,6 @@
           color: #000000;
           text-align: center;
           line-height: 30px;
-          white-space: nowrap;
           // Begin p-body-box div.value b
           b {
             color: #999999;
@@ -357,3 +356,17 @@
     } // End p-rdr-container
   } //End p-rdr
 } // End p
+
+#sector{
+  padding-top: 4px;
+  font-family:HN-B;
+  font-size: 25px;
+  color: #000000;
+  text-align: center;
+  line-height: 30px;
+  white-space: nowrap;
+  width:150px;
+  &-text{
+    font-size:25px;
+  }
+}

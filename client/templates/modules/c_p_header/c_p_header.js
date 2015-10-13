@@ -12,7 +12,6 @@ Template.cp_head.onRendered(function(){
   */
   this.autorun(function(){
     resizetext(".p-head-top-name", ".p-head-top-name-txt", "44px");
-    resizetext(".p-body-box", "#sector", "25px");
   })
 })
 Template.cp_head.helpers({
@@ -22,6 +21,13 @@ Template.cp_head.helpers({
       return '';
     }
     return data;
+  },
+  text: function(){
+    var data = Session.get('bio_location');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data.c_desc;
   },
 });
 

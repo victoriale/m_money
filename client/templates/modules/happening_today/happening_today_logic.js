@@ -14,6 +14,13 @@
 
 //helpers to send the dynamic data
 Template.happening_today.helpers({
+  companyName: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data.c_name;
+  },
     cName: 'Apple, Inc.',
     date: 'October 1, 2015',
     wrtby: 'Aman Jain',

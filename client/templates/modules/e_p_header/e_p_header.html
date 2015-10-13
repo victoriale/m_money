@@ -38,8 +38,8 @@
   {{#with compensationInfo}}
   <div class="p-body">
     <div class="p-body-box">
-        <div>Annual Compensation</div>
-        <div class="value">${{o_compensation.Salary}}</div>
+        <div>Total Compensation</div>
+        <div class="value">${{o_compensation.TotalComp}}</div>
         <div>as of {{o_last_updated}}</div>
     </div>
     <div class="p-body-box">
@@ -53,8 +53,8 @@
         <div>Since {{o_current_title_since}}</div>
     </div>
     <div class="p-body-box" style="border-right: 0px">
-        <div>{{c_ticker}} Share Hold</div>
-        <div class="value">{{o_compensation.RestrictedStock}}</div>
+        <div>{{c_ticker}} Salary</div>
+        <div class="value">${{o_compensation.Salary}}</div>
         <div>Since {{o_last_updated}}</div>
     </div>
   </div>
