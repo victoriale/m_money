@@ -6,37 +6,79 @@ Associated Files:
 - /client/stylesheets/webpages/privacy_policy_page.less
 -->
 <template name="privacy_policy_page">
-  <div class="privacy_policy_page-container">
-    <div class="privacy_policy_page-doc">
-      <div class="privacy_policy_page-info">
-        <div class="privacy_policy_page-info-image-container">
-          <div class="privacy_policy_page-info-image"></div>
-          <div class="privacy_policy_page-info-small-circle privacy_policy_page-clickable"><i class="fa fa-reply privacy_policy_page-info-small-circle-arrow"></i></div>
+  <div class="pppg-container">
+    <div class="pppg-doc">
+      <div class="pppg-hdtl">
+       <div class="pppg-hdtl-or">
+         <div class="pppg-hdtl-mailrep" >
+           <i class="pppg-mailrep fa fa-reply"></i>
+         </div>
+         <div class="pppg-hdtl-rta">
+         </div>
+       </div>
+       <!-- for the text contianer!-->
+       <div class="pppg-hdtl-txtctt">
+         <div class="pppg-hdtl-gb">
+           Go Back To
+           <div class="pppg-hdtl-bar-title">
+           <div class="pppg-hdtl-bar-helper">
+             {{BackTxt}}'s
+           </div>
+             <div class="pppg-hdtl-bar-side">Profile </div>
+           </div>
+         </div>
+       </div>
+       <!-- for the circle on the right to navigate!
+       <div class="pppg-hdtl-indcir">
+           <i class="fa fa-angle-right"></i>
+       </div>
+       -->
+     </div>
+      <div class="pppg-info">
+        <div class="pppg-info-image-container">
+          <div class="pppg-info-image"></div>
+          <!-- <div class="pppg-info-small-circle pppg-clickable"><i class="fa fa-reply pppg-info-small-circle-arrow"></i></div> -->
         </div>
-        <div class="privacy_policy_page-info-text-cnt">
-          <div class="privacy_policy_page-info-last-updated">LAST UPDATED: 06/24/2015, 8:00AM EST</div>
-          <div class="privacy_policy_page-info-loc-text">
-            <span class="fa fa-map-marker privacy_policy_page-info-loc"></span>
-            United States
+        <div class="pppg-info-text-cnt">
+          <div class="pppg-info-last-updated">LAST UPDATED: 06/24/2015, 8:00AM EST</div>
+          <div class="pppg-info-loc-text">
+            <i class="fa fa-map-marker"></i>The United States of America
           </div>
-          <div class="privacy_policy_page-info-title">Privacy Policy</div>
-          <div class="privacy_policy_page-info-text">for InvestKit Finance</div>
+          <div class="pppg-info-title">Privacy Policy</div>
+          <div class="pppg-info-text">For InvestKit</div>
 
         </div>
       </div>
-        <div class="privacy_policy_page-doc-textblock">
-          <div class="privacy_policy_page-sec">
-            <div class="privacy_policy_page-header">Privacy Policy</div>
-            <div class="privacy_policy_page-small-text">
-              <i class="privacy_policy_page-small-icon fa fa-calendar"></i> Dated June 24, 2015
+      <div class="pppg-headbar">
+        <div class="pppg-headbar-txt">InvestKit's Privacy Policy</div>
+        <div class="pppg-headbar-save"><i class="fa fa-heart"></i>Save</div>
+        <div class="pppg-headbar-share"><i class="fa fa-share-alt"></i>Share</div>
+      </div>
+        <div class="pppg-doc-textblock">
+          <div class="pppg-sec">
+            <div class="pppg-nowread">
+              Now Reading:
+              <select id="sort_by">
+                <option value="About">About Us</option>
+                <option value="Contact">Contact Us</option>
+                <option value="Copyright">Copyright Infringement</option>
+                <option value="Disclaimer">Disclaimer</option>
+                <option value="Privacy">Privacy Policy</option>
+                <option value="Stock">Stock Disclaimer</option>
+                <option value="Terms">Terms of Service</option>
+              </select>
             </div>
-            <div class="privacy_policy_page-text">
-              Thank you for visiting InvestKit.com (the Site). Your privacy is important to us. This policy ("Privacy Policy") is provided to better protect your online information. The Privacy Policy explains our online information practices and the choices you can make regarding how your information is collected and used on the Site. This policy, by reference, is part of our <a class="privacy_policy_page-text-link">Terms of Service</a>.
+            <div class="pppg-header">Privacy Policy</div>
+            <div class="pppg-small-text">
+              <i class="pppg-small-icon fa fa-calendar"></i> Dated June 24, 2015
+            </div>
+            <div class="pppg-text">
+              Thank you for visiting InvestKit.com (the Site). Your privacy is important to us. This policy ("Privacy Policy") is provided to better protect your online information. The Privacy Policy explains our online information practices and the choices you can make regarding how your information is collected and used on the Site. This policy, by reference, is part of our <a class="pppg-text-link">Terms of Service</a>.
             </div>
           </div>
-          <div class="privacy_policy_page-sec">
-            <div class="privacy_policy_page-header">Introduction</div>
-            <div class="privacy_policy_page-text">
+          <div class="pppg-sec">
+            <div class="pppg-header">Introduction</div>
+            <div class="pppg-text">
               <p>We respect your online privacy. We acknowledge your right to manage any
                 personal information that may identify you ("Personal Information"). By
                 Personal Information we are referring to any information that may be used
@@ -99,10 +141,10 @@ Associated Files:
                 safety of InvestKit, its users, yourself or the public.</p>
             </div>
           </div>
-          <div class="privacy_policy_page-sec">
-            <div class="privacy_policy_page-header">Cookies And Other Tracking Technologies</div>
-            <div class="privacy_policy_page-text">
-              <ol class="privacy_policy_page-list privacy_policy_page-list-cookies">
+          <div class="pppg-sec">
+            <div class="pppg-header">Cookies And Other Tracking Technologies</div>
+            <div class="pppg-text">
+              <ol class="pppg-list pppg-list-cookies">
                 <li>Web Cookies<br>
                   A "Web Cookie" is a string of information that a website stores on a user's computer, and that the user's browser provides to the website each time the user submits a query to the site. We use Web Cookies to track the pages that users visit during each Site session, both to help us improve users' experiences and to help us understand how the Site is being used. As with other non-Personal Information gathered from users of the Site, we analyze and disclose in aggregated form information gathered using Web Cookies, so as to help us, our partners and others better understand how the Site is being used. We do not attempt to link information gathered using Web Cookies to Personal Information. USERS WHO DO NOT WISH TO HAVE WEB COOKIES PLACED ON THEIR COMPUTERS SHOULD SET THEIR BROWSERS TO REFUSE WEB COOKIES BEFORE ACCESSING THE SITE, WITH THE UNDERSTANDING THAT CERTAIN FEATURES OF THE SITE MAY NOT FUNCTION PROPERLY WITHOUT THE AID OF WEB COOKIES. USERS WHO REFUSE WEB COOKIES ASSUME ALL RESPONSIBILITY FOR ANY RESULTING LOSS OF FUNCTIONALITY.
                 </li><br>
@@ -116,11 +158,11 @@ Associated Files:
               </ol>
             </div>
           </div>
-          <div class="privacy_policy_page-sec">
-            <div class="privacy_policy_page-header">Privacy Principles</div>
-            <div class="privacy_policy_page-text">
+          <div class="pppg-sec">
+            <div class="pppg-header">Privacy Principles</div>
+            <div class="pppg-text">
               To protect your privacy, we have adopted the following principles:<br><br>
-              <ol class="privacy_policy_page-list privacy_policy_page-list-principles">
+              <ol class="pppg-list pppg-list-principles">
                 <li>Notice<br>
                   We use third-party advertising companies to serve ads when you visit the Website. These companies may use information (not including any Personal Information) about your visits to this and other websites that are contained in Web Cookies and Web Beacons in order to provide advertisements about goods and services of interest to you. The use of these technologies by these third-party ad servers is subject to their own privacy policies and is not covered by our Privacy Policy. Using a tool created by the Network Advertising Initiative, you can opt out of several third party ad servers' and networks' Web Cookies simultaneously. If you would like more information about this practice and to know your choices about not having this information used by these companies, please follow the following link: http://networkadvertising.org/managing/opt_out.asp. Please contact us if you would like to know the identity of the third-party advertising companies we are currently using to serve ads. We allow advertisers to choose the characteristics of users who will see their advertisements and we may use any of the non-Personal Information attributes we have collected (including information you may have decided not to show to other users, such as your birth year or other sensitive personal information or preferences) to select the appropriate audience for those advertisements. We do not identify you to the advertiser.
                 </li><br>
@@ -136,33 +178,33 @@ Associated Files:
               </ol>
             </div>
           </div>
-          <div class="privacy_policy_page-sec">
-            <div class="privacy_policy_page-header">Links To Other Sites</div>
-            <div class="privacy_policy_page-text">
+          <div class="pppg-sec">
+            <div class="pppg-header">Links To Other Sites</div>
+            <div class="pppg-text">
               Our Site may contain links to other sites. Other sites may also reference or link to our site. We are not responsible for the privacy practices or the content of such other sites.
             </div>
           </div>
-          <div class="privacy_policy_page-sec">
-            <div class="privacy_policy_page-header">Privacy For Children</div>
-            <div class="privacy_policy_page-text">
+          <div class="pppg-sec">
+            <div class="pppg-header">Privacy For Children</div>
+            <div class="pppg-text">
               The Site is not structured to attract children. Accordingly, we do not intend to collect Personal Information from anyone we know to be under 18 years of age.
             </div>
           </div>
-          <div class="privacy_policy_page-sec">
-            <div class="privacy_policy_page-header">Commitment</div>
-            <div class="privacy_policy_page-text">
+          <div class="pppg-sec">
+            <div class="pppg-header">Commitment</div>
+            <div class="pppg-text">
               We are committed to protecting your privacy. Protecting your privacy online is an evolving area, and InvestKit's Sites are constantly evolving to meet these demands. If you have any comments or questions regarding our Privacy Policy, please contact us at privacy@InvestKit.com. While we cannot guarantee privacy perfection, we will address any issue to the best of our abilities as soon as possible.
             </div>
           </div>
-          <div class="privacy_policy_page-sec">
-            <div class="privacy_policy_page-header">Your Consent</div>
-            <div class="privacy_policy_page-text">
+          <div class="pppg-sec">
+            <div class="pppg-header">Your Consent</div>
+            <div class="pppg-text">
               By using this Site, you consent to the terms of our Privacy Policy and to InvestKit's processing of Personal Information for the purposes given above. If you do not agree to this Privacy Policy, please do not use our Site. We reserve the right, at our discretion, to change, modify, add, or remove portions from this Privacy Policy at any time. Your continued use of our Site following the posting of changes to these terms means you accept these changes.
             </div>
           </div>
-          <div class="privacy_policy_page-sec">
-            <div class="privacy_policy_page-header">Your Privacy Rights</div>
-            <div class="privacy_policy_page-text">
+          <div class="pppg-sec">
+            <div class="pppg-header">Your Privacy Rights</div>
+            <div class="pppg-text">
               InvestKit's Privacy Policy is to share personal information only with the owner's informed consent. With your consent, from time to time, InvestKit may provide its business partners with contact details for direct marketing purposes of relevant services, products, and programs. If you no longer wish your information to be shared, please let us know. If you have further inquiries regarding InvestKit's Information Sharing Practices, please let us know. The designated contact for these queries is privacy@InvestKit.com.
             </div>
           </div>
@@ -170,6 +212,6 @@ Associated Files:
 
         </div>
     </div>
-    {{> search_module}}
+    {{> recommend}}
   </div>
 </template>
