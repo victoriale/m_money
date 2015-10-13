@@ -49,13 +49,13 @@
   {{#with bodyInfo}}
   <div class="p-body">
     <div class="p-body-box" style="width:24%;">
-        <div>NASDAQ Symbol</div>
+        <div>{{c_exchange}} Symbol</div>
         <div class="value">{{c_ticker}}</div>
         <div>&nbsp;</div>
     </div>
     <div class="p-body-box" style="width:24%;">
         <div>Sector</div>
-        <div class="value">{{c_sector}}</div>
+        <div class="value" id="sector">{{c_sector}}</div>
         <div>&nbsp;</div>
     </div>
     <div class="p-body-box" style="border-right: 0px; width:52%">

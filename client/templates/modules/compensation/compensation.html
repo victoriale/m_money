@@ -6,6 +6,7 @@
 -->
 
 <template name = "compensation">
+  {{compenInfo}}
   <div class = "comp">
     <div class = "comp-hdr">
       <div class = "comp-hdr-icon"></div>
@@ -15,11 +16,12 @@
     <div class = "comp-ttl">
       <div class = "comp-ttl-txt">Total Compensation for {{year}}: </div>
       <div class = "comp-ttl-num">${{comp}}</div>
-      <div class = "comp-ttl-select">
-        <div class = "comp-ttl-select-txt">Choose Year:&nbsp;</div>
-        <div class = "comp-ttl-select-num">{{year}}</div>
-        <i class = "fa fa-sort-desc"></i>
-      </div>
+
+      <select class = "comp-ttl-select">
+          <option class="comp-ttl-select-txt" disabled="disabled" selected="selected" value="2014">Choose Year:&nbsp;</option>
+  				<option class = "comp-ttl-select-num" value="2014">2014</option>
+          <i class = "fa fa-sort-desc"></i>
+  		</select>
     </div>
 
     <div class = "comp-graph" id = "comp_graph"></div>
