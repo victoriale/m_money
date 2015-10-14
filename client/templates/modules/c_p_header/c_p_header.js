@@ -22,6 +22,13 @@ Template.cp_head.helpers({
     }
     return data;
   },
+  text: function(){
+    var data = Session.get('bio_location');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data.c_desc;
+  },
 });
 
 Template.cp_body.helpers({

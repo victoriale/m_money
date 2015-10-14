@@ -45,9 +45,9 @@ b {
 
     //Body header
     &_header{
-      height: 39px;
+      height: 42px;
       background-color: @grey-1;
-      line-height: 39px;
+      line-height: 42px;
       font-size: 16px;
       padding-left: 10px;
     }//End mon-mem_body_header
@@ -101,7 +101,7 @@ b {
 
     //Stock price lifetime history
     &_history{
-      font-size: 16px;
+      font-size: 14px;
       text-align: center;
       color: #999999;
       margin-bottom: 7px;
@@ -160,6 +160,51 @@ b {
         font-size: 25px;
         color: @grey-3;
       }//End mon-mem_body_investment_edit
+
+      &_input{
+        position: absolute;
+        top: -100%;
+        right: -44%;
+        width: 184px;
+        height: 35px;
+        background-color: @white;
+        border: 2px solid @grey-3;
+        padding-left: 5px;
+
+        &-triangle{
+          position: absolute;
+          top: 100%;
+          right: 9%;
+          width: 0;
+        	height: 0;
+        	border-left: 8px solid transparent;
+        	border-right: 8px solid transparent;
+        	border-top: 8px solid @grey-3;
+        }
+
+        >input{
+          width: 125px;
+          height: 100%;
+          border: none;
+          font-size: 18px;
+          color: #000;
+          vertical-align: top;
+          float: left;
+          &:focus{
+            outline: none;
+          }
+        }
+
+        &-submit{
+          float: right;
+          font-size: 14px;
+          border: none;
+          height: 100%;
+          width: 50px;
+          color: @white;
+          background-color: @blue;
+        }
+      }
     }//End mon-mem_body_investment
 
     //Start date box

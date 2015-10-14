@@ -4,7 +4,44 @@
 **** Associated Files: e-p_header.html, e-p_header.less, e-p_header_logic.js
 */
 
-var Exec_Name = "Mark Zuckerberg";
+Template.ep_head.onCreated(function(){
+  this.autorun(function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    Session.set('profile_header',PHcheck(data));
+  })
+
+  this.autorun(function(){
+    var data = Session.get('profile_header');
+    //date comparison
+    if(typeof data != 'undefined'){
+      var apiDate = data['o_last_updated'].split(' ')[0];
+      var today = [new Date().getFullYear(),new Date().getMonth()+1,new Date().getDate()];
+      //year month day
+      apiDate = apiDate.split('-');
+      var year = today[0] - Number(apiDate[0]);
+      var month = today[1] - Number(apiDate[1]);
+      var day = today[2] - Number(apiDate[2]);
+      if(typeof lastUpdated == 'undefined'){
+        //global scope
+        lastUpdated = "test";
+        if(day > 0){
+          lastUpdated = day+" Days ago";
+        }else{
+          lastUpdated = "Today";
+        }
+        if(month > 0){
+          lastUpdated = month+" Months ago";
+        }
+        if(year > 0){
+          lastUpdated = Year+" Months ago";
+        }
+      }//end nested if
+    }
+  })
+});
 
 Template.ep_head.helpers({
   execInfo: function(){
@@ -12,29 +49,38 @@ Template.ep_head.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
+
+    /*
+    */
+    data['o_last_updated'] = data['o_last_updated'].split(' ')[0];
+    data['lastUpdated'] = lastUpdated;
+    data['c_hq_location'] = data.c_hq_city + ", " + data.c_hq_state;
     data['e_name'] = data.o_first_name + " " + data.o_middle_initial + " " + data.o_last_name;
     Session.set('profile_header', data);
     return data;
   },
-  LastUpdate   : "4:59:00PM PST",
-  Comp_Location: "MENLOPARK, CA",
-  Company      : "FACEBOOK, INC.",
-  Name         : Exec_Name
+
 });
 
 Template.ep_body.helpers({
-  An_comp      : "1",
-  An_comp_d    : "10/17/2014",
-  Ot_comp      : "610,000",
-  Ot_comp_d    : "10/17/2014",
-  Company      : "FB",
-  Company_since: "August 2002",
-  Share        : "AAPL",
-  Share_number : "64,000",
-  Share_since  : "Yesterday"
+
+  compensationInfo: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data;
+  },
+
 });
 
 Template.ep_rdr.helpers({
-  url          : "#",
-  Name         : Exec_Name
+  execInfo: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data;
+  },
+
 });

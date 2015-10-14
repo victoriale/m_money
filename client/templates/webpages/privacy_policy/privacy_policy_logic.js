@@ -1,16 +1,15 @@
-/*
-Author: jyothyswaroop
-Created: 07/30/2015
-Description: stock disclaimer page
-Associated Files: stock_disclaimer_page.less and stock_disclaimer_page.html
+/* Author: Ryan Fisher
+** Created: 10/09/2015
+** Description: .js file for Privacy Policy Page
+** Associated Files: privacy_policy_page.html, privacy_policy_page.less, privacy_policy_logic.js
 */
 
-Template.stock_disclaimer_page.onRendered(function(){
-  $('#sdsort_by').val("Stock");
+Template.privacy_policy_page.onRendered(function(){
+  $('#sort_by').val("Privacy");
 })
 
-Template.stock_disclaimer_page.events({
-  'change #sdsort_by': function(e){
+Template.privacy_policy_page.events({
+  'change #sort_by': function(e){
     var page = e.target.value;
     switch(page){
       case 'About':
@@ -37,3 +36,7 @@ Template.stock_disclaimer_page.events({
     }
   }
 });
+
+Template.privacy_policy_page.helpers({
+  BackTxt: "[Profile]"
+})

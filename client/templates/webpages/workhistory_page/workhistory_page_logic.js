@@ -3,6 +3,40 @@
 ** Description: .js file for workhistory_page
 ** Associated Files: workhistory_page.html, workhistory_page.less, workhistory_page_logic.js
 */
+
+Template.workhistory_page.onCreated( function() {
+  this.autorun(function(){
+    //take all the data and put all the usable ones into a new array of useable content
+    var data = Session.get('work_history');
+    //console.log("Initial Data", data);
+    if(typeof data != 'undefined'){
+      var companies = data.companies;
+      if(typeof companies != 'undefined'){
+        var projArray = [];
+        for (id in companies){
+          var compList = companies[id];
+          var comp = {};
+          comp['location'] = compList['company_data'].c_hq_city + ", " + compList['company_data'].c_hq_state;
+          comp['c_name'] = compList['company_data'].c_name;
+          comp['c_ticker'] = compList['company_data'].c_ticker;
+          comp['c_id'] = compList['company_data'].c_id;
+          comp['exec_nearest_pos'] = compList['officer_positions'][0];
+          comp['connections'] = compList['connections'];
+          comp['o_id'] = data['officer_data'].o_id;
+          console.log("Converted Data", comp);
+          projArray.push(comp);
+        }
+        Session.set('new_project_history', projArray);
+      }else{
+        Session.set('new_project_history', '');
+        return '';
+      }
+    }
+  })
+
+});
+
+
 Template.workhistory_page.onRendered(function () {
 $(".wrkh-p_lstpaging_pagcir1").css({"background-color":"#3098ff","color":"#ffffff"});
 });

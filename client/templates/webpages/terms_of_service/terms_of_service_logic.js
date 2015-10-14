@@ -1,16 +1,15 @@
-/*
-Author: jyothyswaroop
-Created: 07/30/2015
-Description: stock disclaimer page
-Associated Files: stock_disclaimer_page.less and stock_disclaimer_page.html
+/* Author: Ryan Fisher
+** Created: 10/09/2015
+** Description: .js file for Privacy Terms of Service Page
+** Associated Files: terms_of_service.html, terms_of_service.less, terms_of_service_logic.js
 */
 
-Template.stock_disclaimer_page.onRendered(function(){
-  $('#sdsort_by').val("Stock");
+Template.terms_of_service.onRendered(function(){
+  $('#sort_by').val("Terms");
 })
 
-Template.stock_disclaimer_page.events({
-  'change #sdsort_by': function(e){
+Template.terms_of_service.events({
+  'change #sort_by': function(e){
     var page = e.target.value;
     switch(page){
       case 'About':
@@ -37,3 +36,7 @@ Template.stock_disclaimer_page.events({
     }
   }
 });
+
+Template.terms_of_service.helpers({
+  BackTxt: "[Profile]"
+})

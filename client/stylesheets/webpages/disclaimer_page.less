@@ -11,8 +11,145 @@ Associated Files: disclaimer_page.html
 .dp_dimensions{
   background-color:  #ffffff;
   width: 680px;
-  height: 2890px;
   margin: 5px 0px 0px 5px;
+  text-align: left;
+}
+
+.dp_head{
+  &-hdtl{
+   width: 680px;
+   height: 50px;
+   background-image: url('/header_texture.png');
+   &:hover > .cup-hdtl-indcir{
+     border-color:#f26f26 ;
+     color:#f26f26 ;
+   }
+   //orange color on left
+   &-or{
+     background-color:  #3098ff ;
+     width: 60px;
+     height: 50px;
+     float: left;
+   }
+   //font style for the fontawesome
+   &-mailrep{
+     font-family: FontAwesome;
+     color:  #ffffff ;
+     font-size: 30px;/* Approximation due to font substitution */
+     font-weight: 400;
+     text-align: left;
+     margin-left: 15px;
+     margin-top: 4px;
+   }
+   //for right triangle
+   &-rta{
+     width: 0;
+     height: 0;
+     border-top: 26px solid transparent;
+     border-bottom: 25px solid transparent;
+     border-left: 15px solid #3098ff ;
+     position: relative;
+     top: -46px;
+     left: 60px;
+   }
+   //for the text container
+   &-txtctt{
+     width: 530px;
+     height: 25px;
+     position: relative;
+     top:11px;
+     left:34px;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     white-space: nowrap;
+   }
+   &-gb{
+     font-family: HN-L;
+     color:  #ffffff ;
+     font-size: 19px;
+     text-align: left;
+     width: 105px;
+     height: 25px;
+   }
+   &-gbc{
+     font-family: HN-B;
+     color:  #ffffff ;
+     font-size: 19px;
+     text-align: left;
+   }
+   //the bottom bar
+   &-bar {
+     width: 680px;
+     height: 35px;
+     background-color: @black;
+     color: @white;
+     font-size: 16px;
+     text-align: left;
+     top: 42px;
+     position: relative;
+     float: left;
+     // the font awesome icon color
+     .fa {
+       color: @white;
+     }
+     //the link color
+     a {
+       color:@white;
+     }
+     &-text{
+       font-family: HN-L;
+       color:  #ffffff ;
+       font-size: 14px;
+       text-align: right;
+     }
+     //the title next to save and share
+     &-title{
+     //  border-right: 1px solid #363636 ;
+       background-color: inherit;
+       text-align: center;
+       float: left;
+       height: 35px;
+       line-height: 35px;
+       max-width: 490px;
+       font-size: 16px;
+       font-family: HN-B;
+       text-align: left;
+       left: 109px;
+       padding-right: 10px;
+       position: relative;
+       top:-31px;
+       width: 476px;
+       &:after {
+         display:"block";
+         content: "";
+         clear: both;
+       }
+ }
+     // giving the specifications data for the helper
+     &-helper{
+       max-width:365px;
+       height: 30px;
+       float: left;
+       font-size: 19px;
+       font-family: HN-B;
+       padding-right: 6px;
+       overflow: hidden;
+       text-overflow: ellipsis;
+       white-space: nowrap;
+     }
+     //side data specifications
+     &-side{
+       width: 79px;
+       height: 30px;
+       float:left;
+       font-size: 19px;
+       font-family: HN-L;
+       position: relative;
+       // top: -30px;
+       // left: 80px;
+ }
+   }
+ }
 }
 //image container
 .dp_image{
@@ -71,22 +208,63 @@ Associated Files: disclaimer_page.html
 //heading
 .dp_heading{
   color:  #000000;
-  font-size: 22px;
+  font-size: 28px;
   font-family: HN-B;
+  line-height: 30px;
 }
 //subheading
 .dp_subheading{
   color:  #000000;
-  font-size: 22px;
+  font-size: 28px;
   font-family: HN-L;
-  margin-top: -4px;
+  line-height: 30px;
 }
 //underline
-.dp_underline{
-  background-color:  #dadada;
+.dp_headbar{
+  background-color:  rgba(0, 0, 0, 0.85);
   width: 680px;
-  height: 1px;
+  height: 35px;
   margin-top: 6%;
+  color: @white;
+
+  &-txt{
+    border-right: 1px solid #363636;
+    padding: 0px 15px;
+    line-height: 34px;
+    font-family: HN-B;
+    font-size: 16px;
+    float: left;
+  }
+
+  &-save{
+    margin-top: 7px;
+    padding: 0px 15px;
+    font-family: HN-L;
+    float: left;
+
+    &:hover{
+      cursor: pointer;
+    }
+
+    .fa{
+      margin-right: 10px;
+    }
+  }
+
+  &-share{
+    margin-top: 7px;
+    padding: 0px 15px;
+    font-family: HN-L;
+    float: left;
+
+    &:hover{
+      cursor: pointer;
+    }
+
+    .fa{
+      margin-right: 10px;
+    }
+  }
 }
 //for disclaimer
 .dp_disctxt{
@@ -95,6 +273,23 @@ Associated Files: disclaimer_page.html
   font-family: HN;
   margin-left: 15px;
   margin-top: 15px;
+  float: left;
+}
+//for dropdown menu
+.dp_nowread{
+  float: right;
+  height: 30px;
+  background-color: #FFFFFF;
+  font-family: HN-L;
+  font-size: 12px;
+  text-align: right;
+  font-weight: 700;
+  padding-top: 15px;
+  padding-right: 15px;
+  select{
+    font-family: HN-B;
+    border-style: none;
+  }
 }
 //underline
 .dp_discline{

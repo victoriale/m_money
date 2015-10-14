@@ -9,47 +9,15 @@
   <div class="hamark">
     <!--Main page header-->
     <div class="hamark_header">
-      <span class="hamark_blue">I</span>
-      <span style="font-family: HN-B;">{{title}}?</span>
+      <span class="hamark_blue1"></span>
+      <span class="hamark_nam">{{title}}?</span>
     </div>
-
-
-    <!--Modules to the left of the module-->
-    <div class="hamark_links">
-      {{#each hamark_tiles}}
-        <!--                 tile s                 -->
-      <!--Top box-->
-      <div class="module-tile">
-        <div class="module-tile-default">
-          <div class="module-tile-default-container">
-            <div class="module-tile-default-icon hamark-tile_adjust">
-              <button class="{{class_name}}"></button>
-            </div>
-            <div class="module-tile-default-text">
-              {{tile_name}}
-            </div>
-          </div>
-        </div>
-        <a class="module-tile-link" href="#">
-          <div class="module-tile-hover">
-            <div class="module-tile-name">
-              <button class="{{class_name}}" style="width:17px; height:17px; margin:0 10px 0 0;"></button>{{tile_name}}
-            </div>
-            <div class="module-tile-info"></div>
-            <button class="module-tile-button module-tile-button-align">{{open_page}} <i class="fa fa-mail-forward"></i></button>
-          </div>
-        </a>
-      </div>
-      {{/each}}
-    </div>
-
-
     <!--Main page body-->
     <div class="hamark_body">
       <!--Main page body header-->
       <div class="hamark_body_header">
-        <i class="fa fa-circle hamark_blue"></i>
-        <span style="font-family: HN-B;">{{subtitle}}</span>
+        <i class="fa fa-circle hamark_blue2"></i>
+        <div class="hamark_body_txt">{{subtitle}}</div>
       </div>
 
       <div class="hamark-bts_mtabs">
@@ -111,7 +79,7 @@
        <!--***************circlewrapper  in hamark.less ends here ****************************-->
        <!--***************textbox 3 starts here ****************************-->
        <div class="hamark-tb3">
-         <span class="hamark-w1tb3">{{company_name}}&nbsp;<i class="fa fa-angle-right hamark-fatb3"></i>&nbsp;<span class="hamark-w2tb3">{{lost_percent}}</span>&nbsp;
+         <span class="hamark-w1tb3">{{company_name}}&nbsp;<i class="fa fa-angle-right hamark-fatb3"></i><span class="hamark-w2tb3">{{lost_percent}}</span>&nbsp;
        <span class="hamark-w3tb3">Today</span>
        </span>
        </div>
@@ -124,5 +92,35 @@
      </div>
     </div><!--End Main page body-->
     <div class="module-footer"></div>
+
+    <!--Modules to the left of the module-->
+    <div class="hamark_links">
+      {{#each hamark_tiles}}
+        <!--tiles-->
+      <!--Top box-->
+      <div class="module-tile">
+        <div class="module-tile-default">
+          <div class="module-tile-default-container">
+            <div class="module-tile-default-icon hamark-tile_adjust">
+              <button class="{{class_name}}"></button>
+            </div>
+            <div class="module-tile-default-text">
+              {{tile_name}}
+            </div>
+          </div>
+        </div>
+        <a class="module-tile-link" href="#">
+          <div class="module-tile-hover">
+            <div class="module-tile-name">
+              <button class="{{class_name}}" style="width:17px; height:17px; margin:0 10px 0 0;"></button>{{tile_name}}
+            </div>
+            <div class="module-tile-info"></div>
+            <button class="module-tile-button module-tile-button-align">{{open_page}} <i class="fa fa-mail-forward"></i></button>
+          </div>
+        </a>
+      </div>
+      {{/each}}
+    </div>
+
   </div><!--End Page wrapper-->
 </template>

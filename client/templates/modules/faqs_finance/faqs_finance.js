@@ -35,7 +35,13 @@ Template.faqs_finance.helpers ({
     var data = Session.get("faqs_finance_questions");
     return data;
   },
-
+  companyName: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data.c_name;
+  },
   company: 'Apple, Inc.'
 })
 

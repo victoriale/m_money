@@ -4,6 +4,21 @@ Description: [Finance : Whos_Who_logic.js Page Module] */
 Template.whos_who.onCreated(function(){
   var counter = 0;
   Session.set("whos_count",counter);
+
+  //NEED TO GO INTO METHODS.JS and change comp_id once that has been implemented into profile header for exec profile
+  this.autorun(function(){
+    Meteor.call('WhosWhoIndie', Session.get('comp_id'), function(error, data){
+      if(!error){
+        //console.log('Whos_who',data.whos_who);
+        //Session.set('whos_who', data.whos_who);
+      }else{
+        console.log("ERROR whos_who Call");
+        return (error);
+      }
+    })
+  });
+  /*
+  */
 })
 var who = Session.get('whos_who');
 var ldt = 0;
@@ -40,6 +55,13 @@ Template.whos_who.helpers({
   first_domain:['Retail and Online Stores'],
 
   //functions
+  companyName: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data.c_name;
+  },
   author_name:function(){
     var who = Session.get('whos_who');
     var index = Session.get("whos_count");
