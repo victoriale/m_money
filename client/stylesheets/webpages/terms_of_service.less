@@ -13,12 +13,147 @@ Associated Files: terms_of_service.less, terms_of_service.html
     width:680px;
     margin: 5px;
     background-color:@white;
+    text-align: left;
   }
   &-clickable { //tos-clickable
     &:hover {
       cursor:pointer;
     }
   }
+  &-hdtl{
+   width: 680px;
+   height: 50px;
+   background-image: url('/header_texture.png');
+   &:hover > .cup-hdtl-indcir{
+     border-color:#f26f26 ;
+     color:#f26f26 ;
+   }
+   //orange color on left
+   &-or{
+     background-color:  #3098ff ;
+     width: 60px;
+     height: 50px;
+     float: left;
+   }
+   //font style for the fontawesome
+   &-mailrep{
+     font-family: FontAwesome;
+     color:  #ffffff ;
+     font-size: 30px;/* Approximation due to font substitution */
+     font-weight: 400;
+     text-align: left;
+     margin-left: 15px;
+     margin-top: 4px;
+   }
+   //for right triangle
+   &-rta{
+     width: 0;
+     height: 0;
+     border-top: 26px solid transparent;
+     border-bottom: 25px solid transparent;
+     border-left: 15px solid #3098ff ;
+     position: relative;
+     top: -46px;
+     left: 60px;
+   }
+   //for the text container
+   &-txtctt{
+     width: 530px;
+     height: 25px;
+     position: relative;
+     top:11px;
+     left:34px;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     white-space: nowrap;
+   }
+   &-gb{
+     font-family: HN-L;
+     color:  #ffffff ;
+     font-size: 19px;
+     text-align: left;
+     width: 105px;
+     height: 25px;
+   }
+   &-gbc{
+     font-family: HN-B;
+     color:  #ffffff ;
+     font-size: 19px;
+     text-align: left;
+   }
+   //the bottom bar
+   &-bar {
+     width: 680px;
+     height: 35px;
+     background-color: @black;
+     color: @white;
+     font-size: 16px;
+     text-align: left;
+     top: 42px;
+     position: relative;
+     float: left;
+     // the font awesome icon color
+     .fa {
+       color: @white;
+     }
+     //the link color
+     a {
+       color:@white;
+     }
+     &-text{
+       font-family: HN-L;
+       color:  #ffffff ;
+       font-size: 14px;
+       text-align: right;
+     }
+     //the title next to save and share
+     &-title{
+     //  border-right: 1px solid #363636 ;
+       background-color: inherit;
+       text-align: center;
+       float: left;
+       height: 35px;
+       line-height: 35px;
+       max-width: 490px;
+       font-size: 16px;
+       font-family: HN-B;
+       text-align: left;
+       left: 109px;
+       padding-right: 10px;
+       position: relative;
+       top:-31px;
+       width: 476px;
+       &:after {
+         display:"block";
+         content: "";
+         clear: both;
+       }
+ }
+     // giving the specifications data for the helper
+     &-helper{
+       max-width:365px;
+       height: 30px;
+       float: left;
+       font-size: 19px;
+       font-family: HN-B;
+       padding-right: 6px;
+       overflow: hidden;
+       text-overflow: ellipsis;
+       white-space: nowrap;
+     }
+     //side data specifications
+     &-side{
+       width: 79px;
+       height: 30px;
+       float:left;
+       font-size: 19px;
+       font-family: HN-L;
+       position: relative;
+       // top: -30px;
+       // left: 80px;
+ }
+   }
+ }
   //Info about the page, shown at the top. Contains the title of the page and whatnot.
   &-info { //tos-info
     width:680px;
@@ -37,25 +172,29 @@ Associated Files: terms_of_service.less, terms_of_service.html
       color:#959595;
       font-size:10px;
       text-align:left;
+      margin-bottom: 10px;
     }
     &-loc-text { //tos-info-loc-text
       font-family: HN;
       color: #000;
       font-size:12px;
-      line-height:28px;
       text-align:left;
+
+      .fa{
+        margin-right: 5px;
+      }
     }
     &-title { //tos-info-title
       font-family: HN-B;
       color: #000;
-      font-size:22px;
-      line-height:28px;
+      font-size:28px;
+      line-height:30px;
       text-align:left;
     }
     &-text { //tos-info-text
       font-family: HN-L;
-      line-height:28px;
-      font-size:22px;
+      line-height:30px;
+      font-size:28px;
       color:#000;
     }
     &-image-container { //tos-info-image-container
@@ -91,6 +230,65 @@ Associated Files: terms_of_service.less, terms_of_service.html
         line-height:35px;
         padding-left: 8px;
       }
+    }
+  }
+  &-headbar{
+    background-color:  rgba(0, 0, 0, 0.85);
+    width: 680px;
+    height: 35px;
+    color: @white;
+
+    &-txt{
+      border-right: 1px solid #363636;
+      padding: 0px 15px;
+      line-height: 34px;
+      font-family: HN-B;
+      font-size: 16px;
+      float: left;
+    }
+
+    &-save{
+      margin-top: 7px;
+      padding: 0px 15px;
+      font-family: HN-L;
+      float: left;
+
+      &:hover{
+        cursor: pointer;
+      }
+
+      .fa{
+        margin-right: 10px;
+      }
+    }
+
+    &-share{
+      margin-top: 7px;
+      padding: 0px 15px;
+      font-family: HN-L;
+      float: left;
+
+      &:hover{
+        cursor: pointer;
+      }
+
+      .fa{
+        margin-right: 10px;
+      }
+    }
+  }
+
+  &-nowread{
+    float: right;
+    height: 30px;
+    background-color: #FFFFFF;
+    font-family: HN-L;
+    font-size: 12px;
+    text-align: right;
+    font-weight: 700;
+    select{
+      font-family: HN-B;
+      border-style: none;
     }
   }
   &-doc { //tos-doc
@@ -133,7 +331,7 @@ Associated Files: terms_of_service.less, terms_of_service.html
     font-family: HN-B;
     color: #000;
     font-size:18px;
-    line-height: 28px;
+    line-height: 30px;
     text-align:left;
     border-bottom: 1px solid @grey-2;
   }

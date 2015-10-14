@@ -18,7 +18,7 @@
     <div class="p-head-top">
       <div class="p-head-top-lastUpdate">LAST UPDATED: {{o_last_updated}}</div>
       <div class="p-head-top-container">
-        <div class="p-head-top-container-location"><i class="fa fa-map-marker"></i>&nbsp; {{c_hq_location}} | WORK FOR: <span class="p-head-bottom-name">{{c_name}}</span></div>
+        <div class="p-head-top-container-location"><i class="fa fa-map-marker"></i>&nbsp; {{c_hq_location}} | WORKS FOR: <span class="p-head-bottom-name">{{c_name}}</span></div>
         <div class="p-head-top-container-profile"><span class="p-bold_font">EXECUTIVE</span> PROFILE</div>
       </div>
       <div class="p-head-top-name"><span class="p-head-top-name-txt">{{e_name}}</span></div>
@@ -40,22 +40,22 @@
     <div class="p-body-box">
         <div>Total Compensation</div>
         <div class="value">${{o_compensation.TotalComp}}</div>
-        <div>as of {{o_last_updated}}</div>
+        <div>{{lastUpdated}}</div>
     </div>
     <div class="p-body-box">
         <div>Other Compensation</div>
         <div class="value">${{o_compensation.AllOtherLT}}</div>
-        <div>as of {{o_last_updated}}</div>
+        <div>{{lastUpdated}}</div>
     </div>
     <div class="p-body-box">
-        <div>Chief Executive Officer at</div>
+        <div>Executive Officer at</div>
         <div class="value">{{c_ticker}}</div>
-        <div>Since {{o_current_title_since}}</div>
+        <div>Since {{o_current_title.start_year}}</div>
     </div>
     <div class="p-body-box" style="border-right: 0px">
         <div>{{c_ticker}} Salary</div>
         <div class="value">${{o_compensation.Salary}}</div>
-        <div>Since {{o_last_updated}}</div>
+        <div>{{lastUpdated}}</div>
     </div>
   </div>
   {{/with}}

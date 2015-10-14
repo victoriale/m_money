@@ -4,26 +4,45 @@
   Description: compensation Module
   Associated Files: compensation.html, compensation.less, compensation_logic.js
 */
-
-Template.compensation.helpers({
-  compenInfo: function(){
+Template.compensation.onCreated(function(){
+  this.autorun(function(){
+    /***************COMPENSATION SORTING***************/
     var compensation = Session.get('compensation');
     if(typeof compensation == 'undefined'){
       return '';
     }
     var compYear = {};
+    var yearArray = [];
     //takes all the historic compensation data and toss them into a yearly object array
-    $.map(compensation, function(data, index){
+    $.map(compensation.compensation_periods, function(data, index){
       var result = PHcheck(data);
-      var year = result['o_period_end_date'].split('-');
-      compYear[year[0]] = result.o_compensation;
-      compYear['full_name'] = result.o_first_name + " " + result.o_middle_initial + " " + data.o_last_name;
+      if(typeof result['o_period_end_date'] != 'undefined'){
+        var year = result['o_period_end_date'].split('-');
+        if(typeof compYear[year[0]] == 'undefined'){
+          compYear[year[0]] = result.o_compensation;
+        }else{
+          for(key in compYear[year[0]]){
+            compYear[year[0]][key] += result.o_compensation[key];
+          }//end for
+        }//end else
+      }//endif
     });
+    //push into new array for the select option in compensation module
+    for (key in compYear){
+      yearArray.push(key);
+    }
+
+    compYear['full_name'] = compensation['officer'].o_first_name + " " + compensation['officer'].o_middle_initial + " " + compensation['officer'].o_last_name;
     compensation['comp_array'] = compYear;
-    Session.set('compensation', compesation);
+    compensation['select_year'] = yearArray.sort(function(a, b){return b-a});
     console.log('COMPENSATION DONE!',compensation);
-    return compensation;
-  },
+    Session.set('new_compensation', compensation);
+    /***************COMPENSATION SORTING END***************/
+  })
+
+});
+
+Template.compensation.helpers({
 });
 
 //Function to render the spline chart

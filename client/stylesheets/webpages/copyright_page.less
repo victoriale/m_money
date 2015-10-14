@@ -2,10 +2,73 @@
 ** Created: 08/03/2015
 ** Description: .less file for About Exec Page
 ** Associated Files: copyright_page.html, copyright_page.less
+
+Modified By: Zachary Pearson
+Date: 10/13/2015
+Modifications: .cpyrt-heading
+Additions: .cr_nowread, .cr_discline
 */
 
 @import (reference)"../global_vars.less";
 @import (reference)"../modules.less";
+
+
+
+.header{
+  &-back{
+    color:@white;
+    background-color: #3098ff;
+    width: 54px;
+    height: 45px;
+    float:left;
+  }
+
+  &-wedge{
+    float:left;
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-bottom: 19px solid transparent;
+    border-left: 16px solid #3098ff;
+  }
+}
+
+.share {
+  background-color: rgba(0, 0, 0, 0.85);
+  width: 680px;
+  height: 35px;
+  color: @white;
+  &-title{
+    height:inherit;
+    float:left;
+    border-right-style: solid;
+    border-right-color: #363636;
+    border-right-width: 1px;
+    padding-right:20px;
+
+    &-text{
+      font-size: 16px;/* Approximation due to font substitution */
+      font-weight: 700;
+      line-height: 18px;/* Approximation due to font substitution */
+      text-align: right;
+      transform: scaleX(1.0018);/* width and height properties ommitted due to transform */
+      margin-left:15px;
+      margin-top:7px;
+    }
+  }
+  &-save{
+    margin-left: 15px;
+    margin-top:7px;
+    float:left;
+    font-size: 14px;
+  }
+  &-share{
+    margin-top:7px;
+    font-size: 14px;
+    margin-left: 38px;
+    float:left;
+  }
+}
 
 .cpyrt{
   width: 680px;
@@ -16,7 +79,6 @@
     width: 100%;
     height: 140px;
     background-color: @white;
-    margin-bottom: 15px;
 
     //the head box consisting of the white background
     &-head {
@@ -60,6 +122,9 @@
         }
       }
     }
+    //share border
+
+
     //the text consisting the latest update
     &-text {
       //width: 545px;
@@ -93,12 +158,52 @@
     }
   }
 
-  &-heading{
-    font-family: HN-B;
+  .cr_underline{
+    background-color:  #dadada;
+    width: 680px;
+    height: 1px;
+    margin-top: 6%;
+  }
+
+  &-heading1{
+    color:  #000000;
     font-size: 18px;
-    margin: 0px 15px;
-    border-bottom: 1px solid @grey-2;
-    padding-bottom: 5px;
+    font-family: HN;
+    margin-left: 15px;
+    margin-top: 15px;
+    float: left;
+  }
+  &-heading2{
+    color:  #000000;
+    font-size: 18px;
+    font-family: HN;
+    margin-left: 15px;
+    margin-top: -20px;
+    float: left;
+  }
+
+  .cr_nowread{
+    float: right;
+    height: 30px;
+    background-color: #FFFFFF;
+    font-family: HN-L;
+    font-size: 12px;
+    text-align: right;
+    font-weight: 700;
+    padding-top: 15px;
+    padding-right: 15px;
+    select{
+      font-family: HN-B;
+      border-style: none;
+    }
+  }
+
+  .cr_discline{
+    background-color:  #cccccc;
+    width: 650px;
+    height: 1px;
+    margin-left: 15px;
+    margin-top: 10px;
   }
 
   &-text{

@@ -63,9 +63,26 @@ Associated Files: contact_us_page.less,contact_us_page.js
         <span class="cup_astxt">All fields are required</span>
       </div>
       <!--the "now reading area"-->
+      <!-- <div style="width:100%;height:40px;"> -->
+        <!-- <div class="con_tact">Contact Us</div> -->
       <div class="cup_nr">
-        Now Reading: <i class="cup_nr_bold">{{dataPoint}}</i> <i class="fa fa-angle-down cup_nr_blue"></i>
+        Now Reading:
       </div>
+        <!-- <i class="cup_nr_bold">{{dataPoint}}</i> <i class="fa fa-angle-down cup_nr_blue"></i> -->
+        <div class="cup_nr2">
+        <select id="csort_by">
+          <option value="About">About Us</option>
+          <option value="Contact">Contact Us</option>
+          <option value="Copyright">Copyright Infringement</option>
+          <option value="Disclaimer">Disclaimer</option>
+          <option value="Privacy">Privacy Policy</option>
+          <option value="Stock">Stock Disclaimer</option>
+          <option value="Terms">Terms of Service</option>
+        </select>
+      </div>
+
+
+
       <!--name field-->
       <span class="cup_fname">Full Name</span><input type="textbox" class="cup_namefield" placeholder="Vance L Banks" name="FullName">
       <!--email field-->

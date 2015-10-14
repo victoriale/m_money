@@ -7,24 +7,68 @@ Associated Files: disclaimer_page.less
 <template name="disclaimer_page">
   <!--webpage dimensions-->
   <div class="dp_dimensions">
+    <div class="dp_head-hdtl">
+     <div class="dp_head-hdtl-or">
+       <div class="dp_head-hdtl-mailrep" >
+         <i class="dp_head-mailrep fa fa-reply"></i>
+       </div>
+       <div class="dp_head-hdtl-rta">
+       </div>
+     </div>
+     <!-- for the text contianer!-->
+     <div class="dp_head-hdtl-txtctt">
+       <div class="dp_head-hdtl-gb">
+         Go Back To
+         <div class="dp_head-hdtl-bar-title">
+         <div class="dp_head-hdtl-bar-helper">
+           {{BackTxt}}'s
+         </div>
+           <div class="dp_head-hdtl-bar-side">Profile </div>
+         </div>
+       </div>
+     </div>
+     <!-- for the circle on the right to navigate!
+     <div class="dp_head-hdtl-indcir">
+         <i class="fa fa-angle-right"></i>
+     </div>
+     -->
+   </div>
     <!--Image container-->
     <div class="dp_image">
       <!--small circle & icon on image circle-->
-      <div class="dp_replyimg"><span class="dp_replyicon"><i class="fa fa-reply"></i></span></div>
+      <!-- <div class="dp_replyimg"><span class="dp_replyicon"><i class="fa fa-reply"></i></span></div> -->
     </div>
     <div class="dp_cont">
       <!--date-->
       <div class="dp_head_date">LAST UPDATED:06/24/2015,8:00 AM EST</div>
       <!--country-->
-      <div class="dp_country"><i class="fa fa-map-marker"></i><span class="dp_countxt">United States</span></div>
+      <div class="dp_country"><i class="fa fa-map-marker"></i><span class="dp_countxt">The United States of America</span></div>
       <!--text in the container-->
       <div class="dp_heading">Disclaimer</div>
-      <div class="dp_subheading">for Investkit Finance</div>
+      <div class="dp_subheading">For Investkit</div>
     </div>
     <!--line under the headings-->
-    <div class="dp_underline"></div>
+    <div class="dp_headbar">
+      <div class="dp_headbar-txt">InvestKit's Disclaimer</div>
+      <div class="dp_headbar-save"><i class="fa fa-heart"></i>Save</div>
+      <div class="dp_headbar-share"><i class="fa fa-share-alt"></i>Share</div>
+    </div>
     <!--Disclaimer starts-->
-    <div class="dp_disctxt">Disclaimer</div>
+    <div style="width:100%;height:40px;">
+      <div class="dp_disctxt">Disclaimer</div>
+      <div class="dp_nowread">
+        Now Reading:
+        <select id="sort_by">
+          <option value="About">About Us</option>
+          <option value="Contact">Contact Us</option>
+          <option value="Copyright">Copyright Infringement</option>
+          <option value="Disclaimer">Disclaimer</option>
+          <option value="Privacy">Privacy Policy</option>
+          <option value="Stock">Stock Disclaimer</option>
+          <option value="Terms">Terms of Service</option>
+        </select>
+      </div>
+    </div>
     <div class="dp_discline"></div>
     <!--disclaimer dated-->
     <div class="dp_cal"><i class="fa fa-calendar"></i><span class="dp_caldate">Dated June 24,2015</span></div>
@@ -148,14 +192,14 @@ Associated Files: disclaimer_page.less
       </p>
     </div>
     <!--searchbox starts-->
-    <div class="dp_srchbox">
-      <!--text in searchbox-->
+    <!-- <div class="dp_srchbox">
       <div class="dp_srchtxt1">SEARCHING FOR A COMPANY NOT LISTED ABOVE</div>
       <div class="dp_srchtxt2">Search our database for all public companies in the United States</div>
-      <!--text box for searching-->
+      text box for searching
       <input type="textbox" class="dp_inptbox" placeholder="Search...">
-      <!--search button-->
+      search button
       <button class="dp_srcbtn"><span class="dp_srchicon" ><i class="fa fa-search"></i></span></button>
-    </div>
+    </div> -->
+    {{> recommend}}
   </div>
 </template>

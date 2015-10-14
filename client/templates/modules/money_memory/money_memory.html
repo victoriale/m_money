@@ -25,7 +25,7 @@
       <div class="mon-mem_body_image"></div>
       <!--Company name-->
       <div class="mon-mem_body_company">
-        <span><b>{{c_name}}</b></span>
+        <span><b>{{c_name}} Today</b></span>
       </div>
       <!--Price of stock-->
       <div class="mon-mem_body_stock">
@@ -42,11 +42,11 @@
       <!--"You could have earned..."-->
       <div class="mon-mem_body_potential">
         <span>You could have {{earn_lose}}:  </span>
-        <span class="mon-mem_body_potential_amount" style = "color: {{amount}}">{{roi}}</span>
+        <span class="mon-mem_body_potential_amount" style = "color: {{colorIndicator}}">{{roi}}</span>
       </div>
       <!--Stock price history-->
       <div class="mon-mem_body_history">
-        <span>The stock price has {{chng}} ({{percent_change}}%) since {{furthest_close_date}}</span>
+        <span>The stock price has {{chng}} ({{percent_change}}%) from {{furthest_close_date}} to {{most_recent_close_date}}</span>
       </div>
       <!--Initial investment box-->
       <div class="mon-mem_body_investment">
@@ -54,13 +54,21 @@
           <i class="fa fa-money"></i>
         </div>
         <div class="mon-mem_body_investment_amount">
-          <span>${{investment_total}}</span>
+          <span>${{initial_investment}}</span>
         </div>
         <div class="mon-mem_body_investment_label">
           <span>Initial Investment</span>
         </div>
         <div class="mon-mem_body_investment_edit">
           <i class="fa fa-edit"></i>
+
+          <form id="investment-form">
+          <div class="mon-mem_body_investment_input" style="display: none">
+            <div class="mon-mem_body_investment_input-triangle"></div>
+            <input id="investment-input" type="text">
+            <button class="mon-mem_body_investment_input-submit" type="submit">Invest</button>
+          </div>
+          </form>
         </div>
       </div>
       <!--Start date box-->
