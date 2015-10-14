@@ -3,6 +3,7 @@ var report_name_env = new Meteor.EnvironmentVariable;
 
 Meteor.methods({
   GetCompanyData: function(company_id, batchNum) {
+    var future = new Future();
     console.log("New Company Request",company_id,batchNum);
     var Start = new Date();
     Start = Start.getTime();
@@ -10,22 +11,25 @@ Meteor.methods({
     var UrlString = "http://apifin.synapsys.us/call_controller.php?action=company_profile&option="+batchNum+"&param="+company_id;
     console.log(UrlString);
 
-    var data = HTTP.call("GET",UrlString);
-    try {
-      data = JSON.parse(data['content']);
-    } catch(e) {
-      console.log("Exception");
-      data['content'] = data['content'].toString().replace(/^[^\{]*/,'');
-      data = JSON.parse(data['content']);
-    }
+    Meteor.http.get(UrlString, function(error, data){
+      try{
+        data = JSON.parse(data['content']);
+      } catch (e) {
+        future.throw(e);
+        return false;
+      }
+        future.return(data);
+    });
     var End = new Date();
     End = End.getTime();
     var TimeDif = (End - Start)/1000;
     console.log("Request finished in " + Math.round(TimeDif*10)/10 + " seconds");
-    return data;
+    this.unblock();
+    return future.wait();
   },
 
   GetExecData: function(exec_id, batchNum) {
+    var future = new Future();
     console.log("New Executive Request",exec_id,batchNum);
     var Start = new Date();
     Start = Start.getTime();
@@ -33,22 +37,25 @@ Meteor.methods({
     var UrlString = "http://apifin.synapsys.us/call_controller.php?action=executive_profile&option="+batchNum+"&param="+exec_id;
     console.log(UrlString);
 
-    var data = HTTP.call("GET",UrlString);
-    try {
-      data = JSON.parse(data['content']);
-    } catch(e) {
-      console.log("Exception");
-      data['content'] = data['content'].toString().replace(/^[^\{]*/,'');
-      data = JSON.parse(data['content']);
-    }
+    Meteor.http.get(UrlString, function(error, data){
+      try{
+        data = JSON.parse(data['content']);
+      } catch (e) {
+        future.throw(e);
+        return false;
+      }
+        future.return(data);
+    });
     var End = new Date();
     End = End.getTime();
     var TimeDif = (End - Start)/1000;
     console.log("Request finished in " + Math.round(TimeDif*10)/10 + " seconds");
-    return data;
+    this.unblock();
+    return future.wait();
   },
 
   WhosWhoIndie: function(comp_id) {
+    var future = new Future();
     console.log("New Executive Request",comp_id);
     var Start = new Date();
     Start = Start.getTime();
@@ -57,19 +64,21 @@ Meteor.methods({
     //var UrlString =   "http://apifin.synapsys.us/call_controller.php?action=company_profile&option=indie&call=whos_who&param=" + comp_id;
     console.log(UrlString);
 
-    var data = HTTP.call("GET",UrlString);
-    try {
-      data = JSON.parse(data['content']);
-    } catch(e) {
-      console.log("Exception");
-      data['content'] = data['content'].toString().replace(/^[^\{]*/,'');
-      data = JSON.parse(data['content']);
-    }
+    Meteor.http.get(UrlString, function(error, data){
+      try{
+        data = JSON.parse(data['content']);
+      } catch (e) {
+        future.throw(e);
+        return false;
+      }
+        future.return(data);
+    });
     var End = new Date();
     End = End.getTime();
     var TimeDif = (End - Start)/1000;
     console.log("Request finished in " + Math.round(TimeDif*10)/10 + " seconds");
-    return data;
+    this.unblock();
+    return future.wait();
   },
 
   EarningsReport: function(comp_id, report_name) {
@@ -136,6 +145,8 @@ Meteor.methods({
   },
 
 GetMoneyMemoryData: function(company_id, initial_investment, start_date, end_date){
+  var future = new Future();
+
   console.log("Money Memory Request",company_id, initial_investment, start_date, end_date);
   var Start = new Date();
   Start = Start.getTime();
@@ -146,18 +157,21 @@ GetMoneyMemoryData: function(company_id, initial_investment, start_date, end_dat
   try {
     data = JSON.parse(data['content']);
   } catch(e) {
-    console.log("Exception");
-    data['content'] = data['content'].toString().replace(/^[^\{]*/,'');
-    data = JSON.parse(data['content']);
+    console.log('Exception',e);
+    future.throw(499,e);
+    return false;
   }
   var End = new Date();
   End = End.getTime();
   var TimeDif = (End - Start)/1000;
   console.log("Request finished in " + Math.round(TimeDif*10)/10 + " seconds");
-    return data;
+  this.unblock();
+  return future.wait();
 },
 
 WebpageData: function(exec_id, option) {
+  var future = new Future();
+
   console.log("New CollegeRivals Request",exec_id,option);
   var Start = new Date();
   Start = Start.getTime();
@@ -165,19 +179,22 @@ WebpageData: function(exec_id, option) {
   var UrlString = "http://apifin.synapsys.us/call_controller.php?action=executive_page&option="+ option +"&param=" + exec_id;
   console.log(UrlString);
 
-  var data = HTTP.call("GET",UrlString);
-  try {
-    data = JSON.parse(data['content']);
-  } catch(e) {
-    console.log("Exception");
-    data['content'] = data['content'].toString().replace(/^[^\{]*/,'');
-    data = JSON.parse(data['content']);
-  }
+  Meteor.http.get(UrlString, function(error, data){
+    try{
+      data = JSON.parse(data['content']);
+    } catch (e) {
+      future.throw(e);
+      return false;
+    }
+      future.return(data);
+  });
+
   var End = new Date();
   End = End.getTime();
   var TimeDif = (End - Start)/1000;
   console.log("Request finished in " + Math.round(TimeDif*10)/10 + " seconds");
-  return data;
+  this.unblock();
+  return future.wait();
 },
 
 });

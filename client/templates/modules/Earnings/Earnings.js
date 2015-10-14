@@ -44,6 +44,9 @@ Template.Earnings.helpers({ //helper for the template earnings  is created to pr
 
   company_name: function(){
     var company = Session.get("profile_header");
+    if(typeof company == 'undefined'){
+      return '';
+    }
     return company['c_name'];
   },
 
