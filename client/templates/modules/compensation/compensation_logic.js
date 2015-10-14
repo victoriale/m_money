@@ -12,11 +12,10 @@ Template.compensation.onCreated(function(){
       return '';
     }
     var compYear = {};
+    var yearArray = [];
     //takes all the historic compensation data and toss them into a yearly object array
     $.map(compensation.compensation_periods, function(data, index){
       var result = PHcheck(data);
-      //console.log(result); careful this could cause long load times if data provideres sends back lots of data even if useless
-      //console.log(result['o_period_end_date']);
       if(typeof result['o_period_end_date'] != 'undefined'){
         var year = result['o_period_end_date'].split('-');
         if(typeof compYear[year[0]] == 'undefined'){
@@ -28,8 +27,14 @@ Template.compensation.onCreated(function(){
         }//end else
       }//endif
     });
+    //push into new array for the select option in compensation module
+    for (key in compYear){
+      yearArray.push(key);
+    }
+
     compYear['full_name'] = compensation['officer'].o_first_name + " " + compensation['officer'].o_middle_initial + " " + compensation['officer'].o_last_name;
     compensation['comp_array'] = compYear;
+    compensation['select_year'] = yearArray.sort(function(a, b){return b-a});
     console.log('COMPENSATION DONE!',compensation);
     Session.set('new_compensation', compensation);
     /***************COMPENSATION SORTING END***************/
