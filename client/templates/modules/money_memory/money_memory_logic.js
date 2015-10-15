@@ -11,7 +11,6 @@ Template.money_memory.onCreated(function(){
     var data = Session.get('money_memory');
     //If data exists set start and end dates
     if(typeof(data) !== 'undefined' && typeof(Session.get('mm_start_date')) === 'undefined' && typeof(Session.get('mm_end_date') === 'undefined')){
-
       Session.set('mm_start_date', convert_date_readableToUnix(data.furthest_close_date));
       Session.set('mm_end_date', convert_date_readableToUnix(data.most_recent_close_date));
       Session.set('initial_investment', data.investment_total);
@@ -143,7 +142,7 @@ Template.money_memory.helpers({
     data['percent_change'] = data['percent_change'].toFixed(2);
     data['roi'] = data['roi'].toFixed(2);
     data['initial_investment'] = commaSeparateNumber_decimal(Number((data.investment_total - data.roi).toFixed(2)));
-    
+
     return data;
   }
 });
