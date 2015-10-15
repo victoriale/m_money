@@ -46,7 +46,38 @@ Template.about_exec.helpers({
   //   var id = data['o_ic'];
   //   return ExecutiveURL(id);
   // }
-    //first name below the image circle
+
+  //link to Education History page
+  EHTileURL: function(){
+    var params = Router.current().getParams();
+    if(typeof params != 'undefined'){
+        return Router.path('content.education',{
+          exec_id: 1,
+        });
+    }
+  },
+
+  //link to BIO or About Exec page
+  BioTileURL: function(){
+    var params = Router.current().getParams();
+    if(typeof params != 'undefined'){
+        return Router.path('content.aboutexec',{
+          exec_id: params.exec_id,
+        });
+    }
+  },
+
+  //link to Educatio History page
+  FAQTileURL: function(){
+    var params = Router.current().getParams();
+    if(typeof params != 'undefined'){
+        return Router.path('content.aboutexec',{
+          exec_id: params.exec_id,
+        });
+    }
+  },
+
+  //first name below the image circle
   fname: function() {
     var data = Session.get('about_exec');
     var index = Session.get("count");
@@ -155,7 +186,6 @@ Template.about_exec.helpers({
     },
 
   title:"COLEGE RIVALS",
-  LOCATION:" - Cambridge, MA",
   //status:"N/A",
 //each function to call n the tiles below
   tt: function(){

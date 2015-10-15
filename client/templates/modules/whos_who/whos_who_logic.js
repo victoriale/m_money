@@ -25,7 +25,6 @@ var ldt = 0;
 
 Template.whos_who.events({
   'click .module-who-button-left': function(){
-    var who = Session.get("whos_who");
     var counter = Session.get("whos_count");
     if(counter > 0){
       counter--;
@@ -38,7 +37,6 @@ Template.whos_who.events({
     }
   },
   'click .module-who-button-right': function(){
-    var who = Session.get("whos_who");
     var counter = Session.get("whos_count");
     if(counter < who.length - 1)
     {
@@ -54,17 +52,12 @@ Template.whos_who.events({
 })
 
 Template.whos_who.helpers({
+  //USED FOR TILES
   wtile:[
     {name:"Founders",fnt:"fa-rocket"},
     {name:"Executives",fnt:"fa-briefcase"},
     {name:"Board & Committee",fnt:"fa-gavel"},
- ],
-  loc_bwn:['Cupertino, CA'],
-
-  compy_name:['Apple,Inc.'],
-
-  first_domain:['Retail and Online Stores'],
-
+  ],
   //functions
   companyName: function(){
     var data = Session.get('profile_header');
@@ -94,7 +87,7 @@ Template.whos_who.helpers({
   {
     return '';
   }
-  var title = who[index]['o_titles'][0];
+  var title = who[index]['o_current_title']['titles'][0]['title'];
   return title;
   },
 
@@ -104,25 +97,48 @@ Template.whos_who.helpers({
     var who = Session.get("whos_who");
     var returnArray = [];
     var j = counter + 1;
-    for(var i=0;i<who.length-1;i++)
-    {
-      if(j == who.length)
+    if(Session.get('IsCompany')){
+      for(var i=0;i<who.length-1;i++)
       {
-        j = 0;
+        if(j == who.length)
+        {
+          j = 0;
+        }
+        returnArray[i] = {}
+        var fname = who[j]['o_first_name'];
+        var lname = who[j]['o_last_name'];
+        var mname = who[j]['o_middle_initial'];
+        var title = who[j]['o_titles'][0];
+        if(j < who.length)
+        {
+          returnArray[i]['pnames'] = fname +" "+ mname +" "+ lname;
+          returnArray[i]['ptitle'] = title;
+          returnArray[i]['company'] = "|";
+        }
+        j++;
       }
-      returnArray[i] = {}
-      var fname = who[j]['o_first_name'];
-      var lname = who[j]['o_last_name'];
-      var mname = who[j]['o_middle_initial'];
-      var title = who[j]['o_titles'][0];
-      if(j < who.length)
+    }else if(Session.get('IsExec')){
+      for(var i=0;i<who.length-1;i++)
       {
-        returnArray[i]['pnames'] = fname +" "+ mname +" "+ lname;
-        returnArray[i]['ptitle'] = title;
-        returnArray[i]['company'] = "Apple.Inc.";
+        if(j == who.length)
+        {
+          j = 0;
+        }
+        returnArray[i] = {}
+        var fname = who[j]['o_first_name'];
+        var lname = who[j]['o_last_name'];
+        var mname = who[j]['o_middle_initial'];
+        var title = who[j]['o_current_title']['titles'][0]['title'];
+        if(j < who.length)
+        {
+          returnArray[i]['pnames'] = fname +" "+ mname +" "+ lname;
+          returnArray[i]['ptitle'] = title;
+          returnArray[i]['company'] = "|";
+        }
+        j++;
       }
-      j++;
     }
+
     return returnArray;
   }
 

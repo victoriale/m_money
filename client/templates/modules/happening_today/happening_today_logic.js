@@ -21,6 +21,10 @@ Template.happening_today.helpers({
     }
     return data.c_name;
   },
+
+  MarketRecap: function(){
+    var data = Session.get('trending_news');
+  },
     cName: 'Apple, Inc.',
     date: 'October 1, 2015',
     wrtby: 'Aman Jain',
