@@ -10,7 +10,8 @@ Template.ep_head.onCreated(function(){
     if(typeof data == 'undefined'){
       return '';
     }
-    Session.set('profile_header',PHcheck(data));
+    data.compensation = PHcheck(data.compensation);
+    Session.set('profile_header', data);
   })
 
   this.autorun(function(){
@@ -49,9 +50,6 @@ Template.ep_head.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
-
-    /*
-    */
     data['o_last_updated'] = data['o_last_updated'].split(' ')[0];
     data['lastUpdated'] = lastUpdated;
     data['c_hq_location'] = data.c_hq_city + ", " + data.c_hq_state;
@@ -69,6 +67,10 @@ Template.ep_body.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
+    var convString = data.compensation.o_compensation;
+    convString.Salary = dNumberToCommaNumber(convString.Salary);
+    convString.TotalComp = dNumberToCommaNumber(convString.TotalComp);
+    convString.AllOtherLT = dNumberToCommaNumber(convString.AllOtherLT);
     return data;
   },
 
