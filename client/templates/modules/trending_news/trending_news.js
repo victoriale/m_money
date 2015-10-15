@@ -11,7 +11,6 @@ Template.trending_news.onRendered( function() {
         if(err){
           console.log('CALL ERROR', err);
         }else{
-          console.log(data);
           Session.set("trending_news",data);
         }
       })
@@ -26,7 +25,6 @@ Template.trending_news.events({
   'click .news_trndnews-news_left_button': function(){
     var counter = Session.get("trending_news_count");
     var tnews = Session.get('trending_news');
-    console.log("FUCKER BITCH", tnews);
     if(counter > 0){
       counter--;
       Session.set("trending_news_count",counter);
@@ -40,7 +38,6 @@ Template.trending_news.events({
   'click .news_trndnews-news_right_button': function(){
     var counter = Session.get("trending_news_count");
     var tnews = Session.get('trending_news');
-    console.log("FUCKER BITCH", tnews);
     if(counter < tnews['stories'].length - 1)
     {
       counter++;

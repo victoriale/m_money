@@ -77,6 +77,15 @@ Template.about_exec.helpers({
     }
   },
 
+  CollegeRivals: function(){
+    var params = Router.current().getParams();
+    if(typeof params != 'undefined'){
+        return Router.path('content.collegerivals',{
+          exec_id: params.exec_id,
+        });
+    }
+  },
+
   //first name below the image circle
   fname: function() {
     var data = Session.get('about_exec');
