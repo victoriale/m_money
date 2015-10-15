@@ -31,13 +31,24 @@ Template.whos_who.events({
       counter--;
       Session.set("whos_count",counter);
     }
+    else
+    {
+      counter = who.length-1;
+      Session.set("whos_count", counter);
+    }
   },
   'click .module-who-button-right': function(){
     var who = Session.get("whos_who");
     var counter = Session.get("whos_count");
-    if(counter < who.length-1){
+    if(counter < who.length - 1)
+    {
       counter++;
       Session.set("whos_count",counter);
+    }
+    else
+    {
+      counter = 0;
+      Session.set("whos_count", counter);
     }
   },
 })
@@ -76,7 +87,7 @@ Template.whos_who.helpers({
     return fname +" "+ mname +" "+ lname;
   },
 
-  titles:function(){
+  titles: function(){
   var who = Session.get('whos_who');
   var index = Session.get("whos_count");
   if(typeof who == "undefined")
@@ -88,24 +99,31 @@ Template.whos_who.helpers({
   },
 
   everyech: function(){
-    ldt++;
+    // ldt++;
+    var counter = Session.get("whos_count");
     var who = Session.get("whos_who");
     var returnArray = [];
-    var i,j = 0;
-    for(i=1;i<who.length-1;i++)
+    var j = counter + 1;
+    for(var i=0;i<who.length-1;i++)
     {
+      if(j == who.length)
+      {
+        j = 0;
+      }
       returnArray[i] = {}
-      var fname = who[i]['o_first_name'];
-      var lname = who[i]['o_last_name'];
-      var mname = who[i]['o_middle_initial'];
-      var title = who[i]['o_titles'][0];
-      if(i<who.length-1){
-      returnArray[i]['pnames'] = fname +" "+ mname +" "+ lname;
-      returnArray[i]['ptitle'] = title;
-      returnArray[i]['company'] = "Apple.Inc.";
+      var fname = who[j]['o_first_name'];
+      var lname = who[j]['o_last_name'];
+      var mname = who[j]['o_middle_initial'];
+      var title = who[j]['o_titles'][0];
+      if(j < who.length)
+      {
+        returnArray[i]['pnames'] = fname +" "+ mname +" "+ lname;
+        returnArray[i]['ptitle'] = title;
+        returnArray[i]['company'] = "Apple.Inc.";
+      }
+      j++;
     }
-    }
-      return returnArray;
+    return returnArray;
   }
 
 });

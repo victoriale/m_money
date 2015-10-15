@@ -35,6 +35,8 @@ Template.compensation.onCreated(function(){
     compYear['full_name'] = compensation['officer'].o_first_name + " " + compensation['officer'].o_middle_initial + " " + compensation['officer'].o_last_name;
     compensation['comp_array'] = compYear;
     compensation['select_year'] = yearArray.sort(function(a, b){return b-a});
+    //Set first value of year chosen
+    Session.set('compensation_year_chosen', compensation.select_year[0]);
     console.log('COMPENSATION DONE!',compensation);
     Session.set('new_compensation', compensation);
     /***************COMPENSATION SORTING END***************/
@@ -43,7 +45,189 @@ Template.compensation.onCreated(function(){
 });
 
 Template.compensation.helpers({
+  //Helper to display executive name
+  execName: function(){
+    var data = Session.get('new_compensation');
+
+    return typeof(data) !== 'undefined' ? data.officer.o_first_name + ' ' + data.officer.o_last_name : '';
+  },
+  //Helper to display all years for dropdown
+  years: function(){
+    var data = Session.get('new_compensation');
+
+    return typeof(data) !== 'undefined' && typeof(data.select_year) !== 'undefined' ? data.select_year : false;
+  },
+  //Helper to display year chosen
+  yearChosen: function(){
+    var chosen = Session.get('compensation_year_chosen');
+
+    return typeof(chosen) !== 'undefined' ? chosen : false;
+  },
+  //Helper to display total compensation
+  totalCompensation: function(){
+    var chosen = Session.get('compensation_year_chosen');
+    var data = Session.get('new_compensation');
+
+    //If dependencies are undefined exit helper
+    if(typeof(chosen) === 'undefined' || typeof(data) === 'undefined'){
+      return false;
+    }
+
+    return nFormatter(data.comp_array[chosen].TotalComp);
+
+  },
+  //Helper to draw graph
+  getCompGraphObject: function(){
+    var data = Session.get('new_compensation');
+    var option = Session.get('compensation_year_chosen');
+
+    console.log('afdafadfdaasdf', data, option);
+
+    //Exit helper if data or option is not defined (option should be defined in onCreated if exists)
+    if(typeof(data) === 'undefined'){
+      console.log('return because no data');
+      return '';
+    }
+
+    //Get specified year data
+    var compData = data.comp_array[option];
+
+    //Initialize arrays
+    var valArr = [];
+    var nameArr = [];
+    //Seperate values and names into separate arrays
+    for(name in compData){
+      valArr.push(compData[name]);
+      nameArr.push(name);
+    }
+
+    console.log('THE ORGANIZED DATA', valArr, nameArr);
+
+    //Graph Starts
+    var execGraphObject = {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: '',
+        style: {
+          display: 'none'
+        }
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            style: {
+              fontSize: '12px',
+              fontFamily: 'HN-B'
+            },
+            formatter: function () {
+              var ret =this.y;
+              if(ret>1000)
+              {
+                var ret = '',
+                multi,
+                axis = this.series.yAxis,
+                numericSymbols = ['k', 'M', 'G', 'T', 'P', 'E'],
+                i = numericSymbols.length;
+                while (i-- && ret === '') {
+                  multi = Math.pow(1000, i + 1);
+                  if (axis.tickInterval >= multi && numericSymbols[i] !== null) {
+                    ret = Highcharts.numberFormat(this.y / multi, -1) + numericSymbols[i];
+                  }
+                }
+              }
+              return '$'+ret;
+            }
+          }
+        }
+      },
+
+      xAxis: {
+        categories: nameArr,
+        labels: {
+          style: {
+            color: '#999999',
+            fontSize: '10px',
+            fontFamily: 'HN'
+          }
+        }
+      },
+      yAxis: [{
+        min: 0,
+        tickInterval: 100000,
+        lineWidth: 0,
+        opposite: true,
+        labels: {
+          align: 'left',
+          x: 6,
+          style: {
+            color: '#999999',
+            fontSize: '10px',
+            fontFamily: 'HN'
+          }
+        },
+        title: {
+          text: null
+        }
+      }],
+      tooltip: {
+        formatter: function() {
+          var val = this.y;
+          if (val >= 1000000000) {
+            val = (val / 1000000000).toFixed(1).replace(/\.0$/, '') + 'G';
+          }
+          else if (val >= 1000000) {
+            val = (val / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+          }
+          else if (val >= 1000) {
+            val = (val / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+          }
+          return this.x +': $'+ val;
+        },
+        style: {
+          fontSize: '12px',
+          fontFamily: 'HN'
+        }
+      },
+
+      series: [{
+        showInLegend: false,
+        name: 'Compensation',
+        data: valArr
+
+      }],
+      stackLabels: {
+        enabled: true,
+        style: {
+          fontWeight: 'bold',
+          color:'gray'
+        }
+      },
+      credits: {
+        enabled: false
+      },
+      exporting: { enabled: false }
+    };
+
+    return execGraphObject;
+  },
+  //Helper to determine url link to compensation page
+  compURL: function(){
+    var params = Router.current().getParams();
+
+    return Router.path('content.compensation', {exec_id: params.exec_id});
+  },
 });
+
+Template.compensation.events({
+  //Event that sets year chosen variable
+  'change #year-chosen': function(e, t){
+    Session.set('compensation_year_chosen', t.$('#year-chosen').val());
+  }
+})
 
 //Function to render the spline chart
 function compensationgraph() {
@@ -199,15 +383,5 @@ function compensationgraph() {
 }
 
 Template.compensation.rendered=function() {
-  compensationgraph();
+  //compensationgraph();
 }
-
-Template.compensation.helpers ({
-  compURL: function(){
-    return Router.path('content.compensation');
-  },
-
-  exec: "Mark Zuckerberg",
-  year: 2014,
-  comp: "610.46K"
-});

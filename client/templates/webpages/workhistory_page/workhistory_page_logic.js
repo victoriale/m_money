@@ -23,6 +23,7 @@ Template.workhistory_page.onCreated( function() {
           comp['exec_nearest_pos'] = compList['officer_positions'][0];
           comp['connections'] = compList['connections'];
           comp['o_id'] = data['officer_data'].o_id;
+          comp['c_desc'] = compList['company_data'].c_desc;
           console.log("Converted Data", comp);
           projArray.push(comp);
         }
