@@ -11,6 +11,185 @@
   width: 680px;
   height: 1884px;
   margin:5px 5px 0 5px;
+  text-align: left;
+
+  //Taken from profile header for navigation buttons
+  &-lefthov{
+    border: 3px solid #000;
+    float:left;
+    height:80px;
+    width:38px;
+    background:#000;
+    border-top-right-radius:38px;
+    border-bottom-right-radius:38px;
+    padding-right:12px;
+    color:#fff;
+    position: relative;
+    top:88px;
+  }
+  /*properties for left navigation button hover*/
+  &-lefthov:hover{
+    border: 3px solid #3098ff;
+    height:80px;
+    width:38px;
+    background:#3098ff;
+    border-top-right-radius:38px;
+    border-bottom-right-radius:38px;
+  }
+  /*properties for right navigation button*/
+  &-righthov{
+    border: 3px solid #000;
+    float:right;
+    height:80px;
+    width:38px;
+    background:#000;
+    border-top-left-radius:38px;
+    border-bottom-left-radius:38px;
+    color:#fff;
+    padding-left:12px;
+    position: relative;
+    top:88px;
+  }
+  &-righthov:hover{
+    background: #3098ff;
+    border: 3px solid #3098ff;
+  }
+
+  //Header bar at top of page
+  &-hdtl{
+   width: 680px;
+   height: 50px;
+   background-image: url('/header_texture.png');
+   &:hover > .cup-hdtl-indcir{
+     border-color:#f26f26 ;
+     color:#f26f26 ;
+   }
+   //orange color on left
+   &-or{
+     background-color:  #3098ff ;
+     width: 60px;
+     height: 50px;
+     float: left;
+   }
+   //font style for the fontawesome
+   &-mailrep{
+     font-family: FontAwesome;
+     color:  #ffffff ;
+     font-size: 30px;/* Approximation due to font substitution */
+     font-weight: 400;
+     text-align: left;
+     margin-left: 15px;
+     margin-top: 4px;
+   }
+   //for right triangle
+   &-rta{
+     width: 0;
+     height: 0;
+     border-top: 26px solid transparent;
+     border-bottom: 25px solid transparent;
+     border-left: 15px solid #3098ff ;
+     position: relative;
+     top: -46px;
+     left: 60px;
+   }
+   //for the text container
+   &-txtctt{
+     width: 530px;
+     height: 25px;
+     position: relative;
+     top:11px;
+     left:34px;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     white-space: nowrap;
+   }
+   &-gb{
+     font-family: HN-L;
+     color:  #ffffff ;
+     font-size: 19px;
+     text-align: left;
+     width: 105px;
+     height: 25px;
+   }
+   &-gbc{
+     font-family: HN-B;
+     color:  #ffffff ;
+     font-size: 19px;
+     text-align: left;
+   }
+   //the bottom bar
+   &-bar {
+     width: 680px;
+     height: 35px;
+     background-color: @black;
+     color: @white;
+     font-size: 16px;
+     text-align: left;
+     top: 42px;
+     position: relative;
+     float: left;
+     // the font awesome icon color
+     .fa {
+       color: @white;
+     }
+     //the link color
+     a {
+       color:@white;
+     }
+     &-text{
+       font-family: HN-L;
+       color:  #ffffff ;
+       font-size: 14px;
+       text-align: right;
+     }
+     //the title next to save and share
+     &-title{
+     //  border-right: 1px solid #363636 ;
+       background-color: inherit;
+       text-align: center;
+       float: left;
+       height: 35px;
+       line-height: 35px;
+       max-width: 490px;
+       font-size: 16px;
+       font-family: HN-B;
+       text-align: left;
+       left: 109px;
+       padding-right: 10px;
+       position: relative;
+       top:-31px;
+       width: 476px;
+       &:after {
+         display:"block";
+         content: "";
+         clear: both;
+       }
+ }
+     // giving the specifications data for the helper
+     &-helper{
+       max-width:365px;
+       height: 30px;
+       float: left;
+       font-size: 19px;
+       font-family: HN-B;
+       padding-right: 6px;
+       overflow: hidden;
+       text-overflow: ellipsis;
+       white-space: nowrap;
+     }
+     //side data specifications
+     &-side{
+       width: 79px;
+       height: 30px;
+       float:left;
+       font-size: 19px;
+       font-family: HN-L;
+       position: relative;
+       // top: -30px;
+       // left: 80px;
+ }
+   }
+ }
   /*page header*/
   &_pghead{
     position:relative;
@@ -22,7 +201,7 @@
     /*content on the header*/
     &_pgloc{
       position:relative;
-      width: 245px;
+      width: 530px;
       height: 97px;
       left:134px;
       top:15px;
@@ -34,20 +213,21 @@
         font-size: 10px;/* Approximation due to font substitution */
         font-family: HN;
         overflow: hidden;
-        max-width: 245px;
+        max-width: 530px;
         text-transform:uppercase;
         text-overflow: ellipsis;
         white-space: nowrap;
+        margin-bottom: 10px;
       }
       /*location*/
       &_headloc{
         position:relative;
         color:  #000000;
         font-size: 12px;/* Approximation due to font substitution */
-        line-height: 28px;
+        line-height: 14px;
         font-family: HN;
         overflow: hidden;
-        max-width: 245px;
+        max-width: 530px;
         text-overflow: ellipsis;
         white-space: nowrap;
       }
@@ -55,11 +235,11 @@
       &_wrkNm{
         position:relative;
         color:  #000000;
-        font-size: 22px;/* Approximation due to font substitution */
-        line-height: 28px;/* Approximation due to font substitution */
+        font-size: 28px;/* Approximation due to font substitution */
+        line-height: 30px;/* Approximation due to font substitution */
         font-family: HN-B;
         overflow: hidden;
-        max-width: 245px;
+        max-width: 530px;
         text-overflow: ellipsis;
         white-space: nowrap;
       }
@@ -67,8 +247,8 @@
       &_ComNm{
         position:relative;
         color:  #000000;
-        font-size: 22px;/* Approximation due to font substitution */
-        line-height: 28px;/* Approximation due to font substitution */
+        font-size: 28px;/* Approximation due to font substitution */
+        line-height: 30px;/* Approximation due to font substitution */
         font-family: HN-L;
         overflow: hidden;
         max-width: 245px;
@@ -879,7 +1059,7 @@
       height: 25px;
       padding-top: 4px;
       position:relative;
-      padding-left: 21px;
+      padding-left: 14px;
       border-radius: 5px;
       overflow: hidden;
       max-width: 110px;
