@@ -1,116 +1,283 @@
-<!-- Author:Ramakrishna Vaibhav kasibhatla [Ram]
-Created: [07/21/2015]
-Description: [latest news- finance]
-Associated Files: [latest_news.less latest_news.js ]-->
-<!--starting of the html file-->
-<template name="latest_news">
-  <!-- the module considered: "4"-->
-  <div class="module-4"><div class="module-header"><span class="module-header-line"></span><span class="module-header-title">FINANCIAL NEWS: LATEST & TRENDING</span></div>
-  <!--wrapping up of the module -->
-  <div class="module-wrapper">
-    <!--the class for header -->
-    <div class="lstnws-header">
-      <!--the class for the image beside header -->
-      <div class=" lstnws-view-image1">
+<!--
+Author: Ryan Fisher
+Created: 8/24/2015
+Description: latest_news module
+Associated Files: latest_news.less, latest_news_logic.js
+-->
+<!-- Template -->
+<template name='latest_news'>
+  {{#if isData}}
+  <!-- Module -->
+  <div class = "module-4 nws">
+    <!-- Company News Header -->
+    <div class = "nws-hdr">
+      <!-- Company News Header Text -->
+      <div class = "nws-hdr-top">
+        {{#if isComp}}
+        <p>News & Media Surrounding {{company}}</p>
+        {{/if}}
+        {{#if isExec}}
+        <p>News & Media Surrounding {{exec}}</p>
+        {{/if}}
+        {{#if isLoc}}
+        <p>News & Media Surrounding {{loc}}</p>
+        {{/if}}
+        <i class="fa fa-newspaper-o"></i>
       </div>
-      <!-- the head class-->
-      <div class="lstnws-headcls">
-        <!--the class for updates -->
-        <div class="lstnws-date">
-          LAST UPDATED: 05/15/2015 . 12:36 PM EST
-        </div><br>
-        <!--the class for profile location -->
-        <div class="lstnws-profileloc">
-          <i class="fa fa-map-marker"></i> &nbsp;United States</div>
-          <!--the class for text heading -->
-          <div class="lstnws-profileheading">
-            THE LATEST LOCAL NEWS ABOUT {{companyName}}
-          </div><br>
-          <!--the class for text heading 2 -->
-          <div class="lstnws-profileheading2">
-            Covering All News and Media around {{companyName}}
-          </div>
-        </div>
-      </div>
-      <!-- the main class -->
-      <div class="lstnws-main">
-        <!--the class for buttons -->
-        <div class="lstnws-buttons">
-          <!--the various button classes that contains the properties-->
-          <span class="lstnws-bts">BUSINESS FINANCE</span>
-          <span class="lstnws-bts">LEISURE</span>
-          <span class="lstnws-bts">NASDAQ</span>
-          <span class="lstnws-miniimage">+5</span>
-        </div>
-        <!--the class for text heading -->
-        <div class="lstnws-textheading">Technology Stock Roundup: AAPL, FB Win...</div>
-        <!--the class for text content -->
-        <div class="lstnws-textheading lstnws-textcontent">Facebook has been awarded a patent for "ifentifying experts and influencers in a social network." Simply put, the company has patented a way t...</div>
-        <!--the class for viewing the image -->
-        <div class=" lstnws-view-imagepic"></div>
-        <!--the class for detail content -->
-        <div class="lstnws-textheading lstnws-detailcontent"><i class="fa fa-newspaper-o"></i> Article Published By: <b><i>CNN</i></b> > Written By: <b><i>Alyssa Curran</i></b> > on 01/24/2015 at 8:30am </div>
-      </div>
-      <!--article1-->
-      <!--the main class for the article -->
-      <div class="lstnws-room">
-        <!--to run the loop of classes -->
-        {{#each items}}
-        <div class="lstnws-article1">
-          <!--the image class for the article -->
-          <div class=" lstnws-sub-images"></div>
-          <!--the button class for the article -->
-          <!--the various button classes that contains the properties-->
-          <div class="lstnws-buttons1">
-            <span class="lstnws-bts lstnws-bts1">BUSSINESS FINANCE</span>
-            <span class="lstnws-bts lstnws-bts1">PHARMACEUTICAL</span>
-            <span class="lstnws-miniimage lstnws-miniimage2">{{num}}</span>
-          </div>
-          <div class="lstnws-cmpl1">
-            <!--the class for text heading -->
-            <div class="lstnws-textheading1">{{heading}}</div>
-            <!--the class for text content -->
-            <div class="lstnws-textheading1 lstnws-textcontent1">{{description}}</div>
-            <!--the class for the text details-->
-            <div class="lstnws-textheading1 lstnws-detailcontent1"><i class="fa {{fontawesome}}"></i> {{loc}}</div>
-          </div>
-        </div>
-        {{/each}} <!-- end of loop-->
-      </div>
-      <!-- the main class for the article-->
-      <div class="lstnws-room2">
-        {{#each item2}}
-        <div class="lstnws-article2">
-          <!--the image class for the article -->
-          <div class=" lstnws-sub-images"></div>
-          <!--the various button classes that contains the properties-->
-          <div class="lstnws-buttons1">
-            <span class="lstnws-bts lstnws-bts1">BUSSINESS FINANCE</span>
-            <span class="lstnws-bts lstnws-bts1">SOFTWARE</span>
-            <span class="lstnws-miniimage lstnws-miniimage3">{{num}}</span>
-          </div>
-          <div class="lstnws-cmpl1">
-            <!--the class for text heading -->
-            <div class="lstnws-textheading1 lstnws-textheading2">{{heading}}</div>
-            <!--the class for text content -->
-            <div class="lstnws-textheading1 lstnws-textcontent2">{{description}}</div>
-            <!--the class for the text details-->
-            <div class="lstnws-textheading1 lstnws-detailcontent2"><i class="fa {{fontawesome}}"></i> {{loc}}</div>
-          </div>
-        </div>
-        {{/each}}
-      </div>
-      <!-- module footer-->
-      <div class="module-footer">
-        <!-- can be removed if not in template -->
-        <a href="{{newURL}}">
-          <button class="module-footer-button">
-            <span class="module-footer-button-text">LOAD MORE NEWS</span>
-            <span class="module-footer-button-ellipse"><i class="fa fa-mail-forward"></i></span>
-          </button>
-        </a>
-        <!-- END -->
-      </div>
+      <!-- END Company News Header Text -->
+      <!-- Company News Header Bottom Border -->
+      <div class = "nws-hdr-bttm"></div>
+      <!-- END Company News Header Bottom Border -->
     </div>
+    <!-- END Company News Header -->
+
+    <!-- Company News Body -->
+    <div class = "nws-bdy">
+      <!-- Company News Body Description -->
+      <div class = "nws-bdy-desc">
+        <!-- Company News Body Description Image Placeholder -->
+        <div class = "nws-bdy-desc-plchldr"></div>
+        <!-- END Company News Body Description Image Placeholder -->
+        <!-- Company News Body Descricption Main Text Box -->
+        <div class = "nws-bdy-desc-txtbx">
+          <!-- Company News Body Description Update -->
+          <div class = "nws-bdy-desc-txtbx-updt">
+            Last updated: {{updt_dt}}
+          </div>
+          <!-- END Company News Body Description Update -->
+          <!-- Company News Body Description Location -->
+          <div class = "nws-bdy-desc-txtbx-loc">
+            <i class="fa fa-map-marker"></i>&nbsp;{{location}}
+          </div>
+          <!-- END Company News Body Description Location -->
+          <!-- Company News Body Description Title -->
+          <div class = "nws-bdy-desc-txtbx-ttl">
+            {{#if isComp}}
+            {{company}}'s Latest News
+            {{/if}}
+            {{#if isExec}}
+            {{exec}}'s Latest News
+            {{/if}}
+            {{#if isLoc}}
+            {{loc}}'s Latest News
+            {{/if}}
+          </div>
+          <!-- END Company News Body Description Title -->
+          <!-- Company News Body Description Subtitle -->
+          <div class = "nws-bdy-desc-txtbx-subttl">
+            {{#if isComp}}
+            Covering All News for {{company}}
+            {{/if}}
+            {{#if isExec}}
+            Covering All News for {{company}}
+            {{/if}}
+            {{#if isLoc}}
+            Covering All News for {{company}}
+            {{/if}}
+          </div>
+          <!-- END Company News Body Description Subtitle -->
+        </div>
+        <!-- END Company News Body Description Main Text Box -->
+      </div>
+      <!-- END Company News Body Description -->
+      <!-- Company News Body Content -->
+      <div class = "nws-bdy-ctnt">
+        <!-- Company News Body Content Main Tile -->
+        <a href="{{main_url}}">
+        <div class = "nws-bdy-ctnt-main" id="nws-art0">
+          <!-- Company News Body Content Main Tile Buttons -->
+          <div style="height:35px">
+            <div class = "nws-bdy-ctnt-main-bttns">
+              {{#each mntags}}
+                {{> main_tag_item artindex=0 value=this}}
+              {{/each}}
+            </div>
+            {{#if isNotZero mnnum}}
+              {{#if isM mnnum}}
+              <div class = "nws-numsM" id="nws-num0">+{{mnnum}}</div>
+            {{/if}}
+            {{#if isL num}}
+              <div class = "nws-numsL" id="nws-num0">+{{mnnum}}</div>
+              {{/if}}
+            {{/if}}
+          </div>
+          <!-- END Company News Body Content Main Tile Buttons -->
+          <!-- Company News Body Content Main Tile Text -->
+          <div class = "nws-bdy-ctnt-main-txt">
+            <!-- Company News Body Content Main Title Headline -->
+            <div class = "nws-bdy-ctnt-main-txt-hdln">{{main_title}}</div>
+            <!-- END Company News Body Content Main Tile Headline -->
+            <!-- Company News Body Content Main Tile Description -->
+            <div class = "nws-bdy-ctnt-main-txt-desc">{{main_description}}</div>
+            <!-- END Company News Body Content Main Tile Description -->
+            <!-- Company News Body Content Main Title Subsection -->
+            <div class = "nws-bdy-ctnt-main-txt-sub">
+              <i class="fa fa-newspaper-o"></i>
+              <!-- Main Tile Publisher -->
+              <span class = "nws-bdy-ctnt-main-txt-sub-pub">Article Published By:
+              <!-- <a href="{{main_pub}}">  -->
+                 <span style = "font-family: HN-B"><em>{{main_pub}}</em></span>&nbsp;&nbsp;
+              <!-- </a> -->
+
+                <i class="fa fa-angle-right"></i>
+              </span>
+              <!-- END Main Tile Publisher -->
+              <!-- Main Tile Author -->
+              <!-- <span class = "nws-bdy-ctnt-main-txt-sub-aut">Written By:
+                <span style = "font-family: HN-B"><em>{{mnaut}}</em></span>&nbsp;&nbsp;
+                <i class="fa fa-angle-right"></i>
+              </span> -->
+              <!-- END Main Tile Author -->
+              <!-- Main Tile Time Section -->
+              <span class = "nws-bdy-ctnt-main-txt-sub-time">{{main_time}}</span>
+              <!-- END Main Tile Time Section -->
+            </div>
+            <!-- END Company News Body Content Main Tile Subsection -->
+          </div>
+          <!-- END Company News Body Content Main Tile Text -->
+          <!-- Company News Body Content Main Tile Image Placeholder -->
+          <div class = "nws-bdy-ctnt-main-plchldr" style="background-image:url({{main_image}})"></div>
+          <!-- Company News Body Content Main Tile Image Placeholder -->
+        </div>
+      </a>
+        <!-- END Company News Body Content Main Tile -->
+
+        <!-- Company News Body Content Sub Tiles -->
+        <div class = "nws-bdy-ctnt-sub">
+
+          <!-- Body Content Left Sub-Tile -->
+          <div class = "nws-bdy-ctnt-sub-left">
+            <!-- Body Content Left Sub-Tile Articles -->
+            {{#each artlft}}
+            <a href="{{url}}">
+            <div class = "nws-art" id="nws-art{{index}}">
+              <!-- Body Content Left Sub-Tile Article Buttons -->
+              <div style="height:35px">
+              <div class = "nws-art-btns">
+                <!-- Body Content Left Sub-Tile Article Individual Button -->
+                {{#each buttons}}
+                  {{> main_tag_item artindex=index value=string}}
+                {{/each}}
+                <!-- END Body Content Left Sub-Tile Article Individual Button -->
+                <!-- Body Content Left Sub-Tile Article Number -->
+                <!-- END Body Content Left Sub-Tile Article Number -->
+
+              </div>
+              {{#if isNotZero num}}
+                {{#if isM num}}
+                  <div class = "nws-numsM" id="nws-num{{index}}">+{{num}}</div>
+                {{/if}}
+                {{#if isL num}}
+                  <div class = "nws-numsL" id="nws-num{{index}}">+{{num}}</div>
+                {{/if}}
+              {{/if}}
+              </div>
+              <!-- END Body Content Left Sub-Tile Article Buttons -->
+              <!-- Body Content Left Sub-Tile Article Image Placeholder -->
+              <div class = "nws-art-plchldr" style="background-image:url({{image}})"></div>
+              <!-- END Body Content Left Sub-Tile Article Image Placeholder -->
+
+
+              <!-- Body Content Left Sub-Tile Article Text -->
+              <div class = "nws-art-txt">
+                <!-- Article Headline -->
+                <div class = "nws-art-txt-hdln">{{title}}</div>
+                <!-- END Article Headline -->
+                <!-- Article Author and Publisher -->
+                 <div class = "nws-art-txt-pub">{{pub}}&nbsp;
+                  <!-- <i class = "fa fa-angle-right"></i>&nbsp;{{author}} -->
+                </div>
+                <!-- END Article Author and Publisher -->
+                <!-- Article Date Published -->
+                <span class = "nws-art-txt-dt">
+                  <i class = {{fontawesome}}></i>&nbsp;{{type}}
+                   published {{time}}
+                </span>
+                <!-- END Article Date Published -->
+              </div>
+              <!-- END Body Content Left Sub-Tile Article Text -->
+            </div>
+          </a>
+            {{/each}}
+            <!-- END Body Content Left Sub-Tile Articles -->
+          </div>
+          <!-- END Body Content Left Sub-Tile -->
+
+          <!-- Body Content Right Sub-Tile -->
+          <div class = "nws-bdy-ctnt-sub-right">
+            {{#each artrt}}
+            <!-- Right Pane Article -->
+            <a href="{{url}}">
+            <div class = "nws-art" id="nws-art{{index}}">
+              <!-- Right Pane Article Tags -->
+              <div style="height:35px">
+              <div class = "nws-art-btns">
+                <!-- Body Content Left Sub-Tile Article Individual Button -->
+                {{#each buttons}}
+                  {{> main_tag_item artindex=index value=string}}
+                {{/each}}
+                <!-- END Body Content Left Sub-Tile Article Individual Button -->
+                <!-- Body Content Left Sub-Tile Article Number -->
+                <!-- END Body Content Left Sub-Tile Article Number -->
+              </div>
+              {{#if isNotZero num}}
+                {{#if isM num}}
+                  <div class = "nws-numsM" id="nws-num{{index}}">+{{num}}</div>
+                {{/if}}
+                {{#if isL num}}
+                  <div class = "nws-numsL" id="nws-num{{index}}">+{{num}}</div>
+                {{/if}}
+              {{/if}}
+              </div>
+              <!-- END Right Pane Article Tags -->
+              <!-- Right Pane Article Image Placeholder -->
+              <div class = "nws-art-plchldr" style="background-image:url({{image}})"></div>
+              <!-- END Right Pane Article Image Placeholder -->
+              <!-- Right Pane Article Text -->
+              <div class = "nws-art-txt">
+                <div class = "nws-art-txt-hdln">{{title}}</div>
+              <div class = "nws-art-txt-pub">{{pub}}&nbsp;
+                  <!-- <i class = "fa fa-angle-right"></i>&nbsp;{{author}} -->
+                </div>
+                <span class = "nws-art-txt-dt">
+                  <i class = {{fontawesome}}></i>&nbsp;{{type}}
+                  published {{time}}
+                </span>
+              </div>
+              <!-- END Right Pane Article Text -->
+            </div>
+          </a>
+            {{/each}}
+            <!-- END Right Pane Article -->
+          </div>
+          <!-- END Right Pane -->
+        </div>
+        <!-- END Company News Body Content Sub Tiles -->
+      </div>
+      <!-- END Company News Body Content -->
+
+      <div class = "nws-fog"></div>
+
+      <div class="module-footer">
+        <a href= "{{WholeListURL}}">
+          <button class="module-footer-button">
+            <div class="nws-footer"><i class="fa fa-share"></i></div>
+            <div class="module-footer-button-text nws-footer_txt">
+              <span style="left:0%;padding-right:10px; font-family: HN-B; font-size: 14px">Load More News</span>
+              <i class="fa fa-angle-right"></i>
+            </div>
+        </button></a>
+      </div>
+
+    </div>
+    <!-- END Company News Body -->
   </div>
+  <!-- END Module -->
+  {{/if}}
+</template>
+<!-- END Template -->
+
+<!--Tag template-->
+<template name="main_tag_item">
+  <div class = "nws-btn">{{this.value}}</div>
 </template>
