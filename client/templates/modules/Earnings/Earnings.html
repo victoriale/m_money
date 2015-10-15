@@ -15,23 +15,57 @@ Associated Files: [The Earnings.less, Earnings.html for the module]
   <div class="module-3 earning_body-bottomline">   <!-- module 3 of height of 654px and width of 680px !-->
     <div class="module-header">
       <span class="module-header-line"></span> <!-- for blue line in the header!-->
-      <span class="module-header-title">What's Happening With {{company_name}}'s Earnings?</span> <!-- Header Title !-->
+      <span class="module-header-title">What's Happening With {{company_name}}'s Earnings Today?</span> <!-- Header Title !-->
     </div>
     <div class="earning_body">   <!-- created a class name called earning_body and kept all the syling of this widget in those paranthesis !-->
 
-      <!--{{> earnings_tile}}-->
-
-      <div class="earning_body-home_left_column">  <!-- created a class name right_column which has all the other classes inside this and applies all the right styling of "content bg" !-->
-        {{#each earns}} <!-- handlebar with each loop to call the helper  -->
-        <a class="module-tile-link" href="{{link}}"> <!-- link class in module.less !-->
-          <div class="earning_body-content_rectangle"><!-- created a class of the content with date and text, circle and text !-->
-            <div class="earning_body-month_text">{{month}} <!-- handlebar to display months  -->
-              <div class="earning_body-date_text">{{day}}</div>  <!-- class is with specs of date and month !-->
-              <div class="earning_body-small_circle"> <!-- creates a circle with given specs !-->
-                <div class="home_images1">
-                </div>
+      <div class="earning_body-home_right_column"> <!-- created a left column for tiles !-->
+        {{#each tiles}} <!-- handlebar for each loop to display tiles-->
+        <div class="module-tile"> <!-- global class from module.less !-->
+          <div class="module-tile-default">
+            <div class="module-tile-default-container">
+              <div class="module-tile-default-icon">
+                <i class="fa {{awesome}}"></i> <!-- large icon !-->
+              </div>
+              <div class="{{style}}">
+                <span class="earning_body-reddedtext">{{red}}</span><!--properties for text inside the button-->
+              </div>
+              <div class="module-tile-default-text">
+                {{descrip}}  <!-- text for the tile !-->
               </div>
             </div>
+          </div>
+          <a class="module-tile-link" href="{{url}}">  <!-- link class in module.less !-->
+            <div class="module-tile-hover">
+              <div class="module-tile-name">
+                <i class="fa {{awesome}}"></i>
+                {{tile_name}}
+              </div>
+              <div class="module-tile-info"></div>
+              <button class="module-tile-button module-tile-button-align">{{open_page}} <i class="fa fa-mail-forward"></i></button> <!-- button to open the page !-->
+            </div>
+          </a>
+        </div>
+        {{/each}}
+      </div>
+
+      <div class="earning_body-home_left_column">  <!-- created a class name right_column which has all the other classes inside this and applies all the right styling of "content bg" !-->
+        <div class="earning_body-header"> <!--top grey portion with given spec's -->
+          <div class="earning_body-headerinside">
+            <div class= "earning_body-bcirc"> <i class="fa fa-circle"></i> </div>
+            <div class="earning_body-headerinsidetext">&nbsp;EARNINGS RELEASE CALANDAR</div>
+          </div> <!-- the small blue circle and with text inside the "class of header" !-->
+        </div>
+        {{#each earns}} <!-- handlebar with each loop to call the helper  -->
+        <div class="earning_body-content_rectangle"><!-- created a class of the content with date and text, circle and text !-->
+          <div class="earning_body-month_text"><div class="earning_body-month_name">{{month}}</div> <!-- handlebar to display months  -->
+            <div class="earning_body-date_text">{{day}}</div>  <!-- class is with specs of date and month !-->
+            <div class="earning_body-small_circle"> <!-- creates a circle with given specs !-->
+              <div class="home_images1">
+              </div>
+            </div>
+          </div>
+          <a class="module-tile-link" href="#"> <!-- link class in module.less !-->
             <div class="earning_body-rect_boxtext" > <!-- this div with class rect_boxtext is to keep the text bounded  !-->
               <div class="earning_body-neib_name">{{company}}
                 <span class="earning_body-listing_name"><!--{{fiscYear}}-->
@@ -39,57 +73,22 @@ Associated Files: [The Earnings.less, Earnings.html for the module]
                 </span>  <!-- text with regular and aligned with given specs !-->
               </div> <!-- the text is listed with given specs !-->
             </div>
-            <i class="fa fa-angle-right" id="icon"></i>
-          </div>
-        </a>
+          </a>
+        </div>
         {{/each}}<!--end of the loop -->
       </div>
 
-      <div class="module-footer">
-        <a href="{{preleasedURL}}">
-          <button class="module-footer-button">
-            <span class="module-footer-button-text">See The Full List<i class = "fa fa-angle-right" style="margin-left:5%"></i></span>
-            <span class="module-footer-button-ellipse"><i class="fa fa-line-chart"></i></span>
-          </button>
-        </a>
-        <!-- END -->
-      </div>
+    </div>
+    <div class="earning_body-home_footer">  <!-- created a external fotter class to make correct alignment !-->
+        <div class="module-footer">
+          <a href="{{ecalenderURL}}">
+            <button class="module-footer-button">
+              <span class="module-footer-button-text">See The Full List<i class = "fa fa-angle-right" style="margin-left:5%"></i></span>
+              <span class="module-footer-button-ellipse"><i class="fa fa-line-chart"></i></span>
+            </button>
+          </a>
+          <!-- END -->
+        </div>
     </div>
   </div>
-</template>
-
-
-<!--NOT BEING USED ATM-->
-<template name="earnings_tiles">
-
-        <div class="earning_body-home_right_column"> <!-- created a left column for tiles !-->
-          {{#each tiles}} <!-- handlebar for each loop to display tiles-->
-          <div class="module-tile"> <!-- global class from module.less !-->
-            <div class="module-tile-default">
-              <div class="module-tile-default-container">
-                <div class="module-tile-default-icon">
-                  <i class="fa {{awesome}}"></i> <!-- large icon !-->
-                </div>
-                <div class="{{style}}">
-                  <span class="earning_body-reddedtext">{{red}}</span><!--properties for text inside the button-->
-                </div>
-                <div class="module-tile-default-text">
-                  {{descrip}}  <!-- text for the tile !-->
-                </div>
-              </div>
-            </div>
-            <a class="module-tile-link" href="{{url}}">  <!-- link class in module.less !-->
-              <div class="module-tile-hover">
-                <div class="module-tile-name">
-                  <i class="fa {{awesome}}"></i>
-                  {{tile_name}}
-                </div>
-                <div class="module-tile-info"></div>
-                <button class="module-tile-button module-tile-button-align">{{open_page}} <i class="fa fa-mail-forward"></i></button> <!-- button to open the page !-->
-              </div>
-            </a>
-          </div>
-          {{/each}}
-        </div>
-
 </template>
