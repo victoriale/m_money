@@ -7,8 +7,36 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
 <!--Gave a template name stock_disclaimer_page !-->
 <template name="exec_college_rivals">
 <!--Defined a class name globally for height and width !-->
-{{#with company}}
 <div class= "exr_riva">
+
+  <div class="dp_head-hdtl">
+   <div class="dp_head-hdtl-or">
+     <div class="dp_head-hdtl-mailrep" >
+       <i class="dp_head-mailrep fa fa-reply"></i>
+     </div>
+     <div class="dp_head-hdtl-rta">
+     </div>
+   </div>
+   <!-- for the text contianer!-->
+   <div class="dp_head-hdtl-txtctt">
+     <div class="dp_head-hdtl-gb">
+       Go Back To
+       <div class="dp_head-hdtl-bar-title">
+       <div class="dp_head-hdtl-bar-helper">
+         {{PageExec}}'s
+       </div>
+         <div class="dp_head-hdtl-bar-side">Profile </div>
+       </div>
+     </div>
+   </div>
+   <!-- for the circle on the right to navigate!
+   <div class="dp_head-hdtl-indcir">
+       <i class="fa fa-angle-right"></i>
+   </div>
+   -->
+ </div>
+
+
   <!--gave the dimensions for the module with total height and width !-->
   <div class = "exr_riva-n_m">
     <!--dimensions for the circle container as ('cir-d') !-->
@@ -16,12 +44,11 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
     <!-- dimensions for the circle as ('circ')!-->
     <div class="exr_riva-circ">
       <!-- defines container for the smaller blue circle('sc_d') !-->
-      <div class= "exr_riva-sc_d">
-      <!-- defines the dimension for the small circle('sc') !-->
+      <!-- <div class= "exr_riva-sc_d">
       <div class="exr_riva-sc_d exr_riva-sc">
       <i class="exr_riva-bfo fa fa-reply"></i>
       </div>
-      </div>
+      </div> -->
     </div>
     </div>
     <!--defines the container for text box !-->
@@ -35,16 +62,16 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
        <i class="fa fa-map-marker"></i>
     <!--specified font style for the state name !-->
     <span class="exr_riva-loc_st">
-      United States
+      The United States of America
     </span>
     </div>
     <!-- specified font sytle for the stock disclaimer !-->
     <div class="exr_riva-loc_st exr_riva-disc">
-    {{getheadername0}}
+    {{getheadername}}
     </div>
     <!--specified font style for the inveskit finance  !-->
     <div class="exr_riva-loc_st exr_riva-fin">
-    at {{getheadername1}}
+    For {{PageExec}}
     </div>
     </div>
 
@@ -53,9 +80,9 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
       <div class="exr_riva-bar-title">
         <!-- call data dynamically from js!-->
       <div class="exr_riva-bar-helper">
-        {{formalName}}'s
+        {{PageExec}}'s
       </div>
-      <div class="exr_riva-bar-side">{{getheadername0}} </div>
+      <div class="exr_riva-bar-side">{{getheadername}} </div>
       </div>
       <div class="exr_riva-bar-button">
         <!-- the save option button-->
@@ -68,12 +95,12 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
     </div>
     <div class="exr_riva-m_c">
       <!-- the module.less file navigation buttons-->
-      <button class='exr_riva-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
-      <button class='exr_riva-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+      <!-- <button class='exr_riva-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+      <button class='exr_riva-righthov'><i class="fa fa-angle-right fa-2x"></i></button> -->
       <!-- end of the module.less navigation button -->
       <!-- wrapper class-->
       <div class="exr_riva-m_c-image-wr">
-        <div class="exr_riva-m_c-image">
+        <div class="exr_riva-m_c-image" style="background-image:url({{HeadImg}})">
           <div class="exr_riva-m_c-sma_ct">
           <div class="exr_riva-m_c-sma_cr">
 
@@ -86,7 +113,7 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
         <!-- the image in blue circle-->
         <li class="exr_riva-m_c-title">
           <div class="exr_riva-m_c-title-image"><i class="fa fa-briefcase"></i>
-          <span class="exr_riva-m_c-title-text"> {{getheadername2}} </span>
+          <span class="exr_riva-m_c-title-text"> {{MainRival}} </span>
           </div>
         </li>
           <!--the follow('fbt') and share  !-->
@@ -103,25 +130,25 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
         <!-- the description about the person-->
         <li class="exr_riva-m_c-dp">
           <div class="exr_riva-m_c-dp-dpct">
-          {{getheadername6}}
+          {{RivalDesc}}
           </div>
-          <div class="co_comp-m_c-dp-itl co_comp-m_c-dp-it2">
+          <!-- <div class="co_comp-m_c-dp-itl co_comp-m_c-dp-it2">
             {{getheadername3}}. <span class="co_comp-m_c-dp-dpct">is currently priced at: <br></span>
             <span class="co_comp-m_c-dp-itl">{{getheadername4}} </span>
             <span class="co_comp-m_c-dp-itl co_comp-m_c-dp-it4"> <i class=" fa fa-arrow-up"></i></span>  <span class="co_comp-m_c-dp-itl co_comp-m_c-dp-it5">{{getheadername5}}</span>
-          </div>
+          </div> -->
         </li>
       </ul>
       <!-- the bottom bar-->
       <div class="exr_riva-m_c-view_more">
         <!-- the details about the comapny-->
         <div class="exr_riva-m_c-view_more-text">
-          <div class="exr_riva-m_c-view_more-text-ln1">Want to know more about {{getheadername2}}?</div>
+          <div class="exr_riva-m_c-view_more-text-ln1">Want to know more about {{MainRival}}?</div>
           <div class="exr_riva-m_c-view_more-text-ln2">Profile Last Updated On: <span class="exr_riva-m_c-dp-itl">07/29/2015</span></div>
         </div>
-        <button class="exr_riva-m_c-view_more-button">
+        <a href="{{MainExecUrl}}"><button class="exr_riva-m_c-view_more-button">
           View Profile <i class="fa fa-angle-right"></i>
-        </button>
+        </button></a>
       </div>
     </div>
     <!--container for the ct1 to 'sort by' and 'what is this list?'  !-->
@@ -129,16 +156,16 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
     <!--container for the sortby !-->
     <div class="exr_riva-sy">
       <!-- container for the sortby font !-->
-      <div class="exr_riva-syf"> Sort by:
+      <div class="exr_riva-syf"> Sorted by:
       <!-- container for the members font !-->
-      <span class="exr_riva-syf exr_riva-sym"> Graduation Date <span class="exr_riva-sym exr_riva-chd"> <i class=" fa fa-chevron-down"></i> </span> </span>
+      <span class="exr_riva-syf exr_riva-sym"> Most Recent Graduation Date <span class="exr_riva-sym exr_riva-angd"> <i class=" fa fa-angle-down"></i> </span> </span>
       </div>
     </div>
     <!-- contianer for the complete 'what is this list' class name is wl!-->
-    <div class="exr_riva-wl">
-      <!-- container for the 'what is this list' class name is wl2!-->
+    <!-- <div class="exr_riva-wl">
+      container for the 'what is this list' class name is wl2!
       <div class="exr_riva-wlc">
-        <!-- font style for the 'what is this list'!-->
+        font style for the 'what is this list'!
         <div class="exr_riva-wlf">
         What is this list?
         <span class="exr_riva-x">
@@ -146,14 +173,13 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
         </span>
         </div>
       </div>
-      <!--container for the text inside the 'what is this list' as wltxt!-->
+      container for the text inside the 'what is this list' as wltxt!
       <div class="exr_riva-wltxt">
-      <!--font style for the text !-->
       <div class="exr_riva-wltxtf">
         <p> This is a list featuring all the people who attended {{getheadername7}} in {{getheadername8}} around the same time {{getheadername1}} did.</p>
       </div>
       </div>
-    </div>
+    </div> -->
     </div>
 
     <div class="exr_riva-wrapper">
@@ -184,7 +210,7 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
       <div class="exr_riva-{{getBackgroundStyle}}"><br>
         <!--This is the main (circle) image-->
         <div class="exr_riva-head-circ">
-          <div class="exr_riva-head-image">
+          <div class="exr_riva-head-image" style="background-image:url({{pic}})">
             <!-- Here displays the counter number which is a result of each loop-->
             <span class="exr_riva-counter">#{{counter_no}}</span>
             <span class="exr_riva-counter2"></span>
@@ -199,10 +225,16 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
               {{location}}
             </span>
             <!-- Here displays the description which come from the each loop-->
-            <div class="exr_riva-adjust">{{ data }}</div>
-            <div class="exr_riva-follwb">{{grp}} -
-            <span class="exr_riva-follwb exr_riva-follw3">{{desg}} </span>
-          </div>
+            <div class="exr_riva-adjust">{{name}}</div>
+            <div class="exr_riva-follwb">
+              <a href="{{compurl}}">
+                <span class="exr_riva-follwb exr_riva-follwcomp">
+                  {{grp}}
+                </span>
+              </a>
+              <span class="exr_riva-follwb exr_riva-follwcomp"> - </span>
+              <span class="exr_riva-follwb exr_riva-follw3">{{desg}}</span>
+            </div>
           </div>
         </div>
         <!--This displays the blue button which holds the text "View Full List"-->
@@ -210,17 +242,17 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
           <span class="exr_riva-ctmaintxt">
               Want more info about this executive?
           </span>
-          <button class="exr_riva-tile-button">
+          <a href="{{execurl}}"><button class="exr_riva-tile-button">
             View profile
             <span style="margin-left:6px"><i class="fa fa-angle-right"></i></span>
-          </button>
+          </button></a>
         </div>
         <div class="exr_riva-rtct">
           <div class="exr_riva-rttx1"> Class of</div>
           <div class="exr_riva-follwt">
-          <span class="exr_riva-follw1"> {{year}}</span>
+          <span class="exr_riva-follw1"> {{college}}</span>
           </div>
-          <div class="exr_riva-rttxg"> <span class="exr_riva-follws">{{educ}} </span></div>
+          <div class="exr_riva-rttxg"> <span class="exr_riva-follws">{{degree}} </span></div>
         </div>
         <!-- This displays the font awesome heart symbol beside the text "save"-->
         <div class="exr_riva-sn">
@@ -275,16 +307,15 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
     </div>
     <!-- container for the View all button !-->
     <div class="exm_tk-navigation2">
-      <button class="exm_tk-view-all exm_tk-view-all-font">VIEW ALL <img style="padding-bottom:4px" src="infinite-icon.png"></button>
+      <button class="exm_tk-view-all exm_tk-view-all-font">VIEW ALL <img style="padding-bottom:4px" src="/infinite-icon.png"></button>
     </div>
   </div>
 </div>
   <!--created a container for the fotter  !-->
 <div class="exr_riva-fotter">
-    {{> didnt_find}}
+    {{> recommend}}
 </div>
 
   </div>
 </div>
-{{/with}}
 </template>
