@@ -648,6 +648,10 @@ Template.exec_compensation.events({
   //Event that sets year chosen variable
   'change #year-chosen': function(e, t){
     Session.set('compensation_year_chosen', t.$('#year-chosen').val());
+  },
+  //Event to hide tooltip
+  'click .excmp-btm-what-top-x': function(e, t){
+    t.$('.excmp-btm-what').hide();
   }
 })
 
