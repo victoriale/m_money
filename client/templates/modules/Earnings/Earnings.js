@@ -50,8 +50,8 @@ Template.Earnings.helpers({ //helper for the template earnings  is created to pr
     return company['c_name'];
   },
 
-  ecalenderURL:function(){
-    return ecalender();
+  preleasedURL:function(){
+    return preleased();
   },
 
 });

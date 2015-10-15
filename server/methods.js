@@ -144,59 +144,85 @@ Meteor.methods({
     return future.wait();
   },
 
-GetMoneyMemoryData: function(company_id, initial_investment, start_date, end_date){
-  var future = new Future();
+  GetMoneyMemoryData: function(company_id, initial_investment, start_date, end_date){
+    var future = new Future();
 
-  console.log("Money Memory Request",company_id, initial_investment, start_date, end_date);
-  var Start = new Date();
-  Start = Start.getTime();
-  var UrlString = "http://apifin.synapsys.us/call_controller.php?action=company_profile&option=indie&call=money_memory&param=" + company_id + "&mmem=" + initial_investment + "," + end_date + "," + start_date;
-  console.log(UrlString);
+    console.log("Money Memory Request",company_id, initial_investment, start_date, end_date);
+    var Start = new Date();
+    Start = Start.getTime();
+    var UrlString = "http://apifin.synapsys.us/call_controller.php?action=company_profile&option=indie&call=money_memory&param=" + company_id + "&mmem=" + initial_investment + "," + end_date + "," + start_date;
+    console.log(UrlString);
 
-  var data = HTTP.call("GET",UrlString);
-  try {
-    data = JSON.parse(data['content']);
-  } catch(e) {
-    console.log('Exception',e);
-    future.throw(499,e);
-    return false;
-  }
-  var End = new Date();
-  End = End.getTime();
-  var TimeDif = (End - Start)/1000;
-  console.log("Request finished in " + Math.round(TimeDif*10)/10 + " seconds");
-  this.unblock();
-  return future.wait();
-},
-
-WebpageData: function(exec_id, option) {
-  var future = new Future();
-
-  console.log("New CollegeRivals Request",exec_id,option);
-  var Start = new Date();
-  Start = Start.getTime();
-
-  var UrlString = "http://apifin.synapsys.us/call_controller.php?action=executive_page&option="+ option +"&param=" + exec_id;
-  console.log(UrlString);
-
-  Meteor.http.get(UrlString, function(error, data){
-    try{
+    var data = HTTP.call("GET",UrlString);
+    try {
       data = JSON.parse(data['content']);
-    } catch (e) {
-      future.throw(e);
+    } catch(e) {
+      console.log('Exception',e);
+      future.throw(499,e);
       return false;
     }
-      future.return(data);
-  });
+    var End = new Date();
+    End = End.getTime();
+    var TimeDif = (End - Start)/1000;
+    console.log("Request finished in " + Math.round(TimeDif*10)/10 + " seconds");
+    this.unblock();
+    return future.wait();
+  },
 
-  var End = new Date();
-  End = End.getTime();
-  var TimeDif = (End - Start)/1000;
-  console.log("Request finished in " + Math.round(TimeDif*10)/10 + " seconds");
-  this.unblock();
-  return future.wait();
-},
+  WebpageData: function(exec_id, option) {
+    var future = new Future();
 
+    console.log("New CollegeRivals Request",exec_id,option);
+    var Start = new Date();
+    Start = Start.getTime();
+
+    var UrlString = "http://apifin.synapsys.us/call_controller.php?action=executive_page&option="+ option +"&param=" + exec_id;
+    console.log(UrlString);
+
+    Meteor.http.get(UrlString, function(error, data){
+      try{
+        data = JSON.parse(data['content']);
+      } catch (e) {
+        future.throw(e);
+        return false;
+      }
+        future.return(data);
+    });
+
+    var End = new Date();
+    End = End.getTime();
+    var TimeDif = (End - Start)/1000;
+    console.log("Request finished in " + Math.round(TimeDif*10)/10 + " seconds");
+    this.unblock();
+    return future.wait();
+  },
+
+  CompEarningsIndie: function(comp_id){
+    var future = new Future();
+    console.log("New Executive Request",comp_id);
+    var Start = new Date();
+    Start = Start.getTime();
+
+    //var UrlString =   "http://apifin.synapsys.us/call_controller.php?action=company_profile&option=indie&call=earnings&param=FB";
+    var UrlString =   "http://apifin.synapsys.us/call_controller.php?action=company_profile&option=indie&call=earnings&param=" + comp_id;
+    console.log(UrlString);
+
+    Meteor.http.get(UrlString, function(error, data){
+      try{
+        data = JSON.parse(data['content']);
+      } catch (e) {
+        future.throw(e);
+        return false;
+      }
+        future.return(data);
+    });
+    var End = new Date();
+    End = End.getTime();
+    var TimeDif = (End - Start)/1000;
+    console.log("Request finished in " + Math.round(TimeDif*10)/10 + " seconds");
+    this.unblock();
+    return future.wait();
+  }
 });
 
 Meteor.startup(function(){
