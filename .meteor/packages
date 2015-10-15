@@ -32,3 +32,4 @@ ejson
 spacebars
 check
 rajit:bootstrap3-datepicker
+momentjs:moment

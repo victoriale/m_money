@@ -37,7 +37,9 @@
       </div>
 ​
       <!--Main chart-->
-      <div id="moneymemorygraph" class="mon-mem_body_chart"></div>
+      <div id="moneymemorygraph" class="mon-mem_body_chart">
+        {{> highchartsHelper chartId="moneymemorygraph" chartWidth="450px" chartHeight="125px"  chartObject=getMMGraphObject}}
+      </div>
       {{#with mmInfo}}
       <!--"You could have earned..."-->
       <div class="mon-mem_body_potential">
@@ -54,7 +56,7 @@
           <i class="fa fa-money"></i>
         </div>
         <div class="mon-mem_body_investment_amount">
-          <span>${{initial_investment}}</span>
+          <span>${{user_initial_investment}}</span>
         </div>
         <div class="mon-mem_body_investment_label">
           <span>Initial Investment</span>
@@ -77,7 +79,7 @@
           <i class="fa fa-calendar"></i>
         </div>
         <div class="mon-mem_body_start-date_amount">
-          <span>{{furthest_close_date}}</span>
+          <span>{{user_start_date}}</span>
         </div>
         <div class="mon-mem_body_start-date_label">
           <span>Start Date</span>
@@ -93,7 +95,7 @@
           <i class="fa fa-bullseye"></i>
         </div>
         <div class="mon-mem_body_end-date_amount">
-          <span>{{most_recent_close_date}}</span>
+          <span>{{user_end_date}}</span>
         </div>
         <div class="mon-mem_body_end-date_label">
           <span>End Date</span>

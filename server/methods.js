@@ -153,14 +153,16 @@ Meteor.methods({
     var UrlString = "http://apifin.synapsys.us/call_controller.php?action=company_profile&option=indie&call=money_memory&param=" + company_id + "&mmem=" + initial_investment + "," + end_date + "," + start_date;
     console.log(UrlString);
 
-    var data = HTTP.call("GET",UrlString);
-    try {
-      data = JSON.parse(data['content']);
-    } catch(e) {
-      console.log('Exception',e);
-      future.throw(499,e);
-      return false;
-    }
+    Meteor.http.get(UrlString, function(error, data){
+      try{
+        data = JSON.parse(data['content']);
+      } catch (e) {
+        future.throw(e);
+        return false;
+      }
+        future.return(data);
+    })
+
     var End = new Date();
     End = End.getTime();
     var TimeDif = (End - Start)/1000;
