@@ -26,6 +26,7 @@ var ldt = 0;
 Template.whos_who.events({
   'click .module-who-button-left': function(){
     var counter = Session.get("whos_count");
+    var who = Session.get('whos_who');
     if(counter > 0){
       counter--;
       Session.set("whos_count",counter);
@@ -38,6 +39,7 @@ Template.whos_who.events({
   },
   'click .module-who-button-right': function(){
     var counter = Session.get("whos_count");
+    var who = Session.get('whos_who');
     if(counter < who.length - 1)
     {
       counter++;
