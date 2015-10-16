@@ -280,13 +280,11 @@ Meteor.methods({
     return future.wait();
   },
 
-
-
-
   //AI CONTENT METEOR CALL
   GetAIContent: function(comp_id){
     this.unblock();
     var URL = "http://apifin.synapsys.us/yseop/yseop-company-class.php?id=" + comp_id;
+    console.log(URL);
     var future = new Future();
     curTime.withValue((new Date()).getTime(),function(){
       curcomp_id.withValue(comp_id,function(){
@@ -304,7 +302,7 @@ Meteor.methods({
             curTime.withValue((new Date()).getTime(),function(){
               var callback2 = Meteor.bindEnvironment(function(error,data){
                 if ( error ) {
-                  future.throw(error);
+                  future.return(data);
                   console.log("SNTAI|\"" + curcomp_id.get() + "\",\"" + (new Date()).getTime() + "\",\"" + firstTime.get() + "\",\"" + (Math.round(((new Date()).getTime() - curTime.get())/100)/10) + "\",\"ERROR\"|");
                   return false;
                 }

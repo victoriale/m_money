@@ -4,24 +4,21 @@ Description: [daily_update]
 Associated Files: [daily_update.less][daily_update.html]*/
 
 Template.daily_update.onCreated(function(){
-  /*
   this.autorun(function(){
     var companyid =  Session.get('profile_header');
     if(typeof companyid != 'undefined'){
-    Meteor.call('GetAIContent',function(err, data){
+    Meteor.call('GetAIContent', companyid.c_id, function(err, data){
       if(err){
         console.log("error Call", err);
-        createGenericString(true, data);
         return false;
       }else{
-        console.log(data);
-        createGenericString(false, data);
+        var aiContent = createGenericString(false, data);
+        Session.set('AI_daily_update',aiContent);
       }
     })
     }
 
   })
-  */
 })
 
 Template.daily_update.onRendered(function(){
@@ -38,6 +35,25 @@ Template.daily_update.onRendered(function(){
 
 
 Template.daily_update.helpers({
+  aiInfo: function(){
+      var data = Session.get('AI_daily_update');
+      var content = {};
+      if(typeof data == 'undefined'){
+        content['content'] = '';
+        return '';
+      }
+      content['content'] = data;
+      return content;
+  },
+
+  lastUpdated: function(){
+    var data = Session.get('daily_update');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data.csi_price_last_updated;
+  },
+
   lbInfo: function(){
     var data = Session.get('daily_update');
     if(typeof data == 'undefined'){

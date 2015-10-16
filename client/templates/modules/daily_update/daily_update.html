@@ -8,7 +8,7 @@ Associated Files: [daily_update.less][daily_update_logic.js]
 <template name="daily_update">
   {{#with lbInfo}}
   <!---Size of the full page!-->
-  <div class="module-2">
+  <div class="module-2" style="height:auto;">
     <!--Header!-->
     <div class="module-header">
       <!--Header line!-->
@@ -17,7 +17,7 @@ Associated Files: [daily_update.less][daily_update_logic.js]
       <span class="module-header-title">{{c_name}} Doing Well Today
       </span>
     </div>
-    <div class="module-wrapper">
+    <div class="module-wrapper" style="height:auto">
       <!--Image Wrapper!-->
       <div class="all_daily_update_modules">
         <!--Image Wrapper!-->
@@ -104,10 +104,8 @@ Associated Files: [daily_update.less][daily_update_logic.js]
               </div>
             </div>
           </div>
-          <!--Region Separator for the profile feeds at the footer!-->
-          <div class="all_daily_update_modules-stats-region-separator">
-          </div>
           <!--Profile Feeds wrapper!-->
+          {{#with aiInfo}}
           <div class="all_daily_update_modules-wrapper-main-bottom">
             <div class="all_daily_update_modules-wrapper-bottom-left">
               <!--Profile Feeds image!-->
@@ -116,33 +114,24 @@ Associated Files: [daily_update.less][daily_update_logic.js]
             </div>
             <!--Profile Feeds image text box!-->
             <div class=" all_daily_update_modules-Profile-image-Text-Box">
-              <!--Profile Feeds font awesome icon!-->
-              <div class="all_daily_update_modules-Font-icons2"><i class="fa fa-calendar-o"></i></div>
-              <!--Profile Feeds time stamp!-->
-              <div class="all_daily_update_modules-Date-text">
-                May 15,2015
-              </div>
-              <!--Profile Feeds time stamp!-->
-              <div class="all_daily_update_modules-Date-text2"><ul><li>8:38AM EST</li></ul>
+              <div style="width:525px; height:20px; margin-bottom:3px;">
+                <!--Profile Feeds font awesome icon!-->
+                <div class="all_daily_update_modules-Font-icons2"><i class="fa fa-calendar-o"></i></div>
+                <!--Profile Feeds time stamp!-->
+                <div class="all_daily_update_modules-Date-text">
+                  {{lastUpdated}}
+                </div>
               </div>
               <!--Profile Feeds !-->
               <div class="all_daily_update_modules-profile-text">
-                Before they sold out 90's fanny pack PBR&B. Keyffiyeh irony occupy migas street art
-                art party Esty meditation. Mustache lomo gastropub. thundercats tattooed locavore
-                chanbray fashion axe next level kitsch gentrify typewriter stumptown Truffaut. 90's
-                lumbersexual forage small batch, tote..... </div>
-                <!--Profile Feeds Continue reading Link!-->
+                {{content}}</div>
+                <!--Profile Feeds Continue reading Link!
                 <div class="all_daily_update_modules-profile-text-blue">Continue Reading Story
                 </div>
+                -->
               </div>
             </div>
-            <!--Profile Feeds Profile Image Hover!-->
-            <div class="all_daily_update_modules-dailyupdate_viewprofile">
-              <span class="all_daily_update_modules-dailyupdate_viewprofile_txt1">View</span><br>
-              <span class="all_daily_update_modules-dailyupdate_viewprofile_txt2">Profile</span>
-            </div>
-            <div class="widget-footer">
-            </div>
+            {{/with}}
           </div>
         </div>
       </div>
