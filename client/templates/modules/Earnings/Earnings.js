@@ -33,7 +33,7 @@ Template.Earnings.helpers({ //helper for the template earnings  is created to pr
       {
         array[i]['company'] = company['c_name'];
         array[i]['description'] = data[i]['e_report_title'];
-        array[i]['month'] = month;
+        array[i]['month'] = calendarMonths[parseInt(month-1)];
         array[i]['day'] = day;
         array[i]['link'] = Router.path('content.earningspage',{company_id: data[i]['c_id'], earning_id: data[i]['e_report_title'].replace(/ /g,'-')});
       }
@@ -50,11 +50,30 @@ Template.Earnings.helpers({ //helper for the template earnings  is created to pr
     return company['c_name'];
   },
 
-  ecalenderURL:function(){
-    return ecalender();
+  preleasedURL:function(){
+    return preleased();
   },
 
 });
+
+var toType = function(obj) {
+  return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
+}
+
+var calendarMonths = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'June',
+  'July',
+  'Aug',
+  'Sept',
+  'Oct',
+  'Nov',
+  'Dec'
+]
 
 function ecalender(){
   return Router.path('content.earningscalender');

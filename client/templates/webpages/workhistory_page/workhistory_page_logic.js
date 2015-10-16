@@ -23,13 +23,14 @@ Template.workhistory_page.onCreated( function() {
           comp['exec_nearest_pos'] = compList['officer_positions'][0];
           comp['connections'] = compList['connections'];
           comp['o_id'] = data['officer_data'].o_id;
+          comp['c_last_updated'] = compList['company_data'].c_tr_last_updated;
           comp['c_desc'] = compList['company_data'].c_desc;
           console.log("Converted Data", comp);
           projArray.push(comp);
         }
-        Session.set('new_project_history', projArray);
+        Session.set('new_work_history', projArray);
       }else{
-        Session.set('new_project_history', '');
+        Session.set('new_work_history', '');
         return '';
       }
     }
@@ -81,33 +82,128 @@ Template.workhistory_page.events({
 var backgroundStyle="whitecolor";
 Template.workhistory_page.helpers({
   getdtime:function(){
-    var datentime="06/24/2015,8:00AM EST";
-    return datentime;
+    var data = Session.get('work_history');
+    var date = data['officer_data']['o_last_updated'];
+    return date;
   },getlocNm:function(){
-    var loc="San Mateo, CA";
-    return loc;
+    var data = Session.get('new_work_history');
+    var currentComp = data[data.length - 1];
+    return currentComp['location'];
   },getWrkdetails:function(){
       var wrk="Work & Project History";
       return wrk;
     },getName:function(){
-      var Nm="Mark Zuckerberg";
-      return Nm;
+      var data = Session.get('work_history');
+      var name = data['officer_data']['o_first_name'] + " " + data['officer_data']['o_last_name'];
+      return name;
     },getorgNm:function(){
-      var OrgNm="Internet.Org";
-      return OrgNm;
+      var data = Session.get('new_work_history');
+      var currentComp = data[data.length - 1];
+      return currentComp['c_name'];
     },
     getdate:function()
     {
-      var dat="07/29/2015";
-      return dat;
+      var data = Session.get('new_work_history');
+      var currentComp = data[data.length - 1];
+      return currentComp['c_last_updated'];
     },
-    listings: [
-    {  listno:"1", location: "Palo Alto, CA", wrkNam: "Internet.Org", position: "Founder", strdate: "August 2013",enddate:"present",  numofmonths: "1 year & 9 months"},
-    {  listno:"2", location: "Melno Park, CA", wrkNam: "Facebook, Inc.", position: "Cheif Executive Officer", strdate: "Febraury 2001",enddate:" present",  numofmonths: "12 year & 1 month"},
-    {  listno:"3", location: "Palo Alto, CA", wrkNam: "Wirehog", position: "Co-founder", strdate: "October 2004",enddate:"2006",  numofmonths: "1 year & 2 months"},
-    {  listno:"4", location: "Melno Park, CA", wrkNam: "Best Buy", position: "Sales Rep", strdate: "November 2002",enddate:"December 2003",  numofmonths: "1 year & 1 month"},
-    {  listno:"3", location: "Palo Alto, CA", wrkNam: "McDonalds", position: "Cashier", strdate: "June 2000",enddate:"2002",  numofmonths: "1 year"},
-],
+    getDesc:function(){
+      var data = Session.get('new_work_history');
+      var currentComp = data[data.length - 1];
+      return currentComp['c_desc'];
+    },
+    getPic:function(){
+      var data = Session.get('work_history');
+      var url = data['officer_data']['o_pic'];
+      return url;
+    },
+//     listings: [
+//     {  listno:"1", location: "Palo Alto, CA", wrkNam: "Internet.Org", position: "Founder", strdate: "August 2013",enddate:"present",  numofmonths: "1 year & 9 months"},
+//     {  listno:"2", location: "Melno Park, CA", wrkNam: "Facebook, Inc.", position: "Cheif Executive Officer", strdate: "Febraury 2001",enddate:" present",  numofmonths: "12 year & 1 month"},
+//     {  listno:"3", location: "Palo Alto, CA", wrkNam: "Wirehog", position: "Co-founder", strdate: "October 2004",enddate:"2006",  numofmonths: "1 year & 2 months"},
+//     {  listno:"4", location: "Melno Park, CA", wrkNam: "Best Buy", position: "Sales Rep", strdate: "November 2002",enddate:"December 2003",  numofmonths: "1 year & 1 month"},
+//     {  listno:"3", location: "Palo Alto, CA", wrkNam: "McDonalds", position: "Cashier", strdate: "June 2000",enddate:"2002",  numofmonths: "1 year"},
+// ],
+    listings:function(){
+      var returnArray = [];
+      var i, j, numMonths, numYears;
+      var data = Session.get('new_work_history');
+      var data2 = Session.get('work_history');
+      var exec = data2['officer_data'];
+
+      var month = ['January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'];
+
+      for(i = 0; i < data.length; i++){
+        returnArray[i] = {};
+        var company = data[data.length - (i+1)];
+        returnArray[i]['listno'] = i;
+        returnArray[i]['location'] = company['location'];
+        returnArray[i]['wrkNam'] = company['c_name'];
+        returnArray[i]['position'] = company['exec_nearest_pos']['Title'];
+        returnArray[i]['execPic'] = exec['o_pic'];
+
+        //Array of connection pictures
+        returnArray[i]['connection'] = [];
+        for(j = 0; j < company['connections'].length; j++){
+          returnArray[i]['connection'][j] = company['connections'][j]['o_pic'];
+        }
+
+        //Start and end dates
+        returnArray[i]['strdate'] = month[company['exec_nearest_pos']['start_month'] - 1] + " " + company['exec_nearest_pos']['start_year'];
+        if(company['exec_nearest_pos']['end_month'] == undefined){
+          if(company['exec_nearest_pos']['end_year'] == undefined){
+            returnArray[i]['enddate'] = "present";
+          }
+          else{
+            returnArray[i]['enddate'] = company['exec_nearest_pos']['end_year'];
+          }
+        }
+        else{
+          returnArray[i]['enddate'] = month[company['exec_nearest_pos']['end_month'] - 1] + " " + company['exec_nearest_pos']['end_year']
+        }
+
+        //Calculate number of years
+        if(company['exec_nearest_pos']['end_year'] == undefined){
+          var currentYear = new Date().getFullYear();
+          numYears = currentYear - company['exec_nearest_pos']['start_year'];
+        }
+        else{
+          numYears = company['exec_nearest_pos']['end_year'] - company['exec_nearest_pos']['start_year']
+        }
+
+        //Calculate months
+        if(returnArray[i]['enddate'] == "present"){
+          var currentMonth = new Date().getMonth() + 1;
+          numMonths = currentMonth - company['exec_nearest_pos']['start_month'];
+        }
+        else if(company['exec_nearest_pos']['end_month'] == undefined){
+          numMonths = 0;
+        }
+        else{
+          numMonths = company['exec_nearest_pos']['end_month'] - company['exec_nearest_pos']['start_month'];
+        }
+
+        if(numMonths < 0){
+          numMonths = numMonths + 12;
+          numYears = numYears - 1;
+        }
+
+        var timeString = "";
+        if(numYears > 0){
+          timeString += numYears.toString() + " years";
+          if(numMonths > 0){
+            timeString += " & " + numMonths.toString() + " months";
+          }
+        }
+        else{
+          timeString += numMonths.toString() + " months";
+        }
+        returnArray[i]['numofmonths'] = timeString;
+      }
+
+      return returnArray;
+    },
 //this is used to change the color of the background
 getBackgroundStyle: function() {
   if (backgroundStyle === "greycolor")

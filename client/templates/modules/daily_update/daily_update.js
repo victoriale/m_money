@@ -3,6 +3,27 @@ Created: [07/15/2015]
 Description: [daily_update]
 Associated Files: [daily_update.less][daily_update.html]*/
 
+Template.daily_update.onCreated(function(){
+  /*
+  this.autorun(function(){
+    var companyid =  Session.get('profile_header');
+    if(typeof companyid != 'undefined'){
+    Meteor.call('GetAIContent',function(err, data){
+      if(err){
+        console.log("error Call", err);
+        createGenericString(true, data);
+        return false;
+      }else{
+        console.log(data);
+        createGenericString(false, data);
+      }
+    })
+    }
+
+  })
+  */
+})
+
 Template.daily_update.onRendered(function(){
   this.autorun(function(){
     /*

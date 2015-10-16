@@ -5,6 +5,29 @@
 -->
 <template name="workhistory_page">
   <div class="wrkh-p">
+    <div class="wrkh-p-hdtl">
+     <div class="wrkh-p-hdtl-or">
+       <div class="wrkh-p-hdtl-mailrep" >
+         <i class="wrkh-p-mailrep fa fa-reply"></i>
+       </div>
+       <div class="wrkh-p-hdtl-rta">
+       </div>
+     </div>
+     <!-- for the text contianer!-->
+     <div class="wrkh-p-hdtl-txtctt">
+       <div class="wrkh-p-hdtl-gb">Go Back To
+         <div class="wrkh-p-hdtl-bar-title">
+         <div class="wrkh-p-hdtl-bar-helper">{{getName}}'s</div>
+           <div class="wrkh-p-hdtl-bar-side">Profile </div>
+         </div>
+       </div>
+     </div>
+     <!-- for the circle on the right to navigate!
+     <div class="wrkh-p-hdtl-indcir">
+         <i class="fa fa-angle-right"></i>
+     </div>
+     -->
+   </div>
     <!--page header-->
     <div class="wrkh-p_pghead">
     <!--  contaner for content in page header-->
@@ -20,9 +43,9 @@
       </div>
       <!--images in header section-->
       <div class="wrkh-p_pghead_headimg"></div>
-      <div class="wrkh-p_pghead_headimg_headcir">
+      <!-- <div class="wrkh-p_pghead_headimg_headcir">
         <i class="fa fa-reply"></i>
-      </div>
+      </div> -->
     </div>
     <!--end of page header-->
     <!-- start of linen framework-->
@@ -44,11 +67,9 @@
         <div class="wrkh-p_lnfrmwrk_lncon_carousel">
           <div class="wrkh-p_lnfrmwrk_lncon_carousel_lntitle"> {{getorgNm}}</div>
           <div class="wrkh-p_lnfrmwrk_lncon_carousel_lntxt">
-            <p class="wrkh-p_lnfrmwrk_lncon_carousel_lntxt_p">Internet.org is a partnership between social networking services company
-              Facebook and six companies (Samsung, Ericsson, MediaTek, Opera Software, Nokia and Qualcomm) that
-              plans to bring affordable access to selected Internet services to less developed...</p>
+            <p class="wrkh-p_lnfrmwrk_lncon_carousel_lntxt_p">{{getDesc}}</p>
           </div></div>
-          <div class="wrkh-p_lnfrmwrk_lncon_lnimg"></div>
+          <div class="wrkh-p_lnfrmwrk_lncon_lnimg" style="background-image:url({{getPic}})"></div>
           <div class="wrkh-p_lnfrmwrk_lncon_lnimg_lnsimg"></div>
           <div class="wrkh-p_lnfrmwrk_lncon_conid">
             <div class="wrkh-p_lnfrmwrk_lncon_conid_lncir">
@@ -56,10 +77,10 @@
             </div>
             <div class="wrkh-p_lnfrmwrk_lncon_conid_lnvln"></div></div>
 
-          <button class="prf-hdr-lefthov arw">
+          <button class="wrkh-p-lefthov arw">
             <i class="fa fa-angle-left fa-2x"></i>
           </button>
-          <button class="prf-hdr-righthov arw">
+          <button class="wrkh-p-righthov arw">
             <i class="fa fa-angle-right fa-2x"></i>
           </button>
 
@@ -89,7 +110,7 @@
         <div class="wrkh-p_srtbr_srtcon_srthead"></div>
         <div class="wrkh-p_srtbr_srtcon_srthead_srtheadcon">What is this page?</div>
         <div class="wrkh-p_srtbr_srtcon_srthead_srtheadcross"><i class="fa fa-times"></i></div>
-        <div class="wrkh-p_srtbr_srtcon_srttxt">This page features all the SEC documents associated with Facebook, Inc and all of its executives.</div>
+        <div class="wrkh-p_srtbr_srtcon_srttxt">This page features all the SEC documents associated with {{getorgNm}} and all of its executives.</div>
       </div>
 
     </div>
@@ -106,13 +127,11 @@
           <div class="wrkh-p_lstcon_txtlft_posdur_numofmnts">{{numofmonths}}</div>
         </div>
       </div>
-      <div class="wrkh-p_lstcon_imgs"></div>
+      <div class="wrkh-p_lstcon_imgs" style="background-image:url({{execPic}})"></div>
       <div class="wrkh-p_lstcon_Listvw">
-        <div class="wrkh-p_lstcon_Listvw_lstcir"></div>
-        <div class="wrkh-p_lstcon_Listvw_lstcir"></div>
-        <div class="wrkh-p_lstcon_Listvw_lstcir"></div>
-        <div class="wrkh-p_lstcon_Listvw_lstcir"></div>
-        <div class="wrkh-p_lstcon_Listvw_lstcir"></div>
+        {{#each connection}}
+        <div class="wrkh-p_lstcon_Listvw_lstcir" style="background-image:url({{this}})"></div>
+        {{/each}}
         <div class="wrkh-p_lstcon_morebtn">View All Connections<span style="margin-left:6px"><i class="fa fa-angle-right"></i></span></div>
       </div>
       <div class="wrkh-p_lstcon_sav-shr">
@@ -131,10 +150,10 @@
         <div class="wrkh-p_lstpaging_lstcir">...</div>
         <div class="wrkh-p_lstpaging_pagoval">200</div>
         <i class="fa fa-angle-right faarwrgt"></i>
-        <div class="wrkh-p_lstpaging_Vwall">VIEW ALL <img style="padding-bottom:4px" src="infinite-icon.png"></div>
+        <div class="wrkh-p_lstpaging_Vwall">VIEW ALL <img style="padding-bottom:4px" src="/infinite-icon.png"></div>
     </div>
     <div class="wrkh-p_srchpanel">
-      {{> didnt_find}}
+      {{> recommend}}
     </div>
   </div>
 

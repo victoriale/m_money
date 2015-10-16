@@ -8,16 +8,17 @@ Associated Files: exec_compensation.html, exec_compensation.less, exec_compensat
 <template name="exec_compensation">
   {{#with execHeader}}
   <div class="excmp-page"> <!--container for whole page-->
-    <div class="excmp-return">
-      <a href="{{backToExec}}">
+    <a href="{{backToExec}}">
+      <div class="excmp-return">
         <div class="excmp-return-button">
           <i class="fa fa-mail-reply"></i>
         </div>
         <div class="excmp-return-triangle"></div>
-      </a>
 
-      Go Back To <span class="excmp-b">{{o_first_name}} {{o_last_name}}'s</span> Profile
-    </div>
+
+        Go Back To <span class="excmp-b">{{o_first_name}} {{o_last_name}}'s</span> Profile
+      </div>
+    </a>
 
     <div class="excmp-pr excmp-top"> <!--container for white background area at top-->
       <div class="excmp-pr excmp-top-circle"> <!--back arrow in top-->
@@ -73,9 +74,9 @@ Associated Files: exec_compensation.html, exec_compensation.less, exec_compensat
     </div>
 
     <div class="excmp-pr excmp-btm"> <!--holds anything but the search module below the middle area-->
-      <div class="excmp-b excmp-btm-txt1">
+      <!-- Currently disabled <div class="excmp-b excmp-btm-txt1">
         Sort by: <i class="excmp-l">Executive Compensation </i><i class="fa fa-angle-down excmp-btm-txt1-blue"></i>
-      </div>
+      </div>-->
       <div class="excmp-btm-what"> <!--a box that looks like it can be closed-->
         <div class="excmp-b excmp-btm-what-top">
           What is this page?
@@ -87,7 +88,7 @@ Associated Files: exec_compensation.html, exec_compensation.less, exec_compensat
       </div>
       <div class="excmp-pr excmp-btm-data"> <!--a divide to seperate data from the box above-->
         <div class="excmp-pr excmp-btm-data-title">
-          Compensation Overview <i class="excmp-l">for {{execName}}:</i>
+          <span class="excmp-b">Compensation Overview</span> <i class="excmp-l">for {{o_first_name}} {{o_last_name}}:</i>
         </div>
       </div>
       <div class="excmp-choseyr">

@@ -14,6 +14,7 @@ http
 iron:router
 maazalik:highcharts
 jquery
+meteorhacks:ssr
 
 ian:accounts-ui-bootstrap-3
 gadicohen:robots-txt
@@ -31,3 +32,4 @@ ejson
 spacebars
 check
 rajit:bootstrap3-datepicker
+momentjs:moment
