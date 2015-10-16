@@ -234,7 +234,7 @@ Meteor.methods({
     var Start = new Date();
     Start = Start.getTime();
 
-    var UrlString =   "http://apifin.synapsys.us/call_controller.php?action=company_profile&option=indie&call=" + option + "&param=" + comp_id;
+    var UrlString =   "http://apifin.synapsys.us/call_controller.php?action=company_page&option=" + option + "&param=" + comp_id;
     console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){

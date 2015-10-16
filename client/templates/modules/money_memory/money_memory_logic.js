@@ -5,11 +5,17 @@
 */
 
 Template.money_memory.onCreated(function(){
+  //Delete user input session variables on create. This is to ensure the user inputs match the data of the graph on load
+  delete Session.keys.user_start_date;
+  delete Session.keys.user_end_date;
+  delete Session.keys.initial_investment;
+
   this.autorun(function(){
 
     var data = Session.get('money_memory');
     //If data exists and user input session variables do not match data, then set user input session variables
-    if(typeof(data) !== 'undefined' && !Session.equals('user_start_date', convert_date_readableToUnix(data.furthest_close_date)) && !Session.equals('user_end_date', convert_date_readableToUnix(data.most_recent_close_date))){
+    if(typeof data !== 'undefined' && typeof Session.get('user_start_date') === 'undefined' && typeof Session.get('user_end_date') === 'undefined'){
+    //if(typeof(data) !== 'undefined' && !Session.equals('user_start_date', convert_date_readableToUnix(data.furthest_close_date)) && !Session.equals('user_end_date', convert_date_readableToUnix(data.most_recent_close_date))){}
       Session.set('user_start_date', convert_date_readableToUnix(data.furthest_close_date));
       Session.set('user_end_date', convert_date_readableToUnix(data.most_recent_close_date));
       Session.set('user_initial_investment', data.investment_total - data.roi);
@@ -44,21 +50,25 @@ Template.mm_start_date.onRendered(function(){
     container: '#start-date-container',
     orientation: 'bottom',
     endDate: '0d',
-    todayHighlight: true
+    todayHighlight: true,
+    daysOfWeekDisabled: [0,6]
   });
 
   //Events when a date is selected
   startDatePicker.on('changeDate', function(e){
-
     var user_start_date = new Date(e.date).getTime() / 1000;
 
     var user_end_date = Session.get('user_end_date');
 
-    //If start date is less than end date set start date to selected value, else set start date to end date - 1 day
-    if(user_start_date < user_end_date){
+    //If start date is less than or equal to end date set start date to selected value, else set start date to end date
+    //Note: must be less than or equal to or this will cause an infinite loop
+    if(user_start_date <= user_end_date){
       Session.set('user_start_date', user_start_date);
     }else{
-      Session.set('user_start_date', user_end_date);
+      Session.set('user_start_date', user_start_date);
+      Session.set('user_end_date', user_start_date);
+      //Change date on end datepicker to reflect new end date
+      $('#mm-end-date').datepicker('setDate', e.date);
     }
 
     recallMoneyMemory();
@@ -73,22 +83,25 @@ Template.mm_end_date.onRendered(function(){
     container: '#end-date-container',
     orientation: 'bottom',
     endDate: '0d',
-    todayHighlight: true
+    todayHighlight: true,
+    daysOfWeekDisabled: [0,6]
   })
 
   //Events when a date is selected
   endDatePicker.on('changeDate', function(e){
-
     var user_end_date = new Date(e.date).getTime() / 1000;
 
     var user_start_date = Session.get('user_start_date');
 
-    //If start date is less than end date set end date to seleted value, else set end date to start date + 1 day
-    if(user_start_date < user_end_date){
+    //If start date is less than or equal to end date set end date to seleted value, else set end date to start date
+    //Note: must be less than or equal to or this will cause an infinite loop
+    if(user_start_date <= user_end_date){
       Session.set('user_end_date', user_end_date);
     }else{
-      Session.set('user_end_date', user_start_date);
-      //$('#mm-end-date').datepicker('setUTCDate', new Date(mm_start_date));
+      Session.set('user_start_date', user_end_date);
+      Session.set('user_end_date', user_end_date);
+      //Change date on start datepicker ot reflect new start date
+      $('#mm-start-date').datepicker('setDate', e.date);
     }
 
     recallMoneyMemory();
@@ -97,6 +110,18 @@ Template.mm_end_date.onRendered(function(){
 })
 
 Template.money_memory.helpers({
+  //Helper to determine URL to money memory page
+  linkToMM: function(){
+    var params = Router.current().getParams();
+
+    return Router.path('content.moneymemory', {company_id: params.company_id});
+  },
+  //Helper to determine URL to competitors page
+  linkToCompetitors: function(){
+    var params = Router.current().getParams();
+
+    return Router.path('content.competitor', {company_id: params.company_id});
+  },
   //Helper to display initial investment
   user_initial_investment: function(){
     var data = Session.get('user_initial_investment');
@@ -290,8 +315,8 @@ Template.money_memory.events({
     var input = t.$('#investment-input').val();
     //Remove commas
     input = input.replace(/\,/g, '');
-    //Make input a number
-    input = Number(input);
+    //Make input a positive number
+    input = Math.abs(Number(input));
     //Check to determine if input is a number, if not default to 1000
     input = isNaN(input) ? 1000 : input;
     //Set session variable to input value
