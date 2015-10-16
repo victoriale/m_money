@@ -242,7 +242,9 @@ Related Files:
         border-radius: 50%;
         background-color:#fff;
         border-style:solid;
-
+        background-position: center center;
+        background-size: contain;
+        background-repeat: no-repeat;
         //the wrapper to wrap up the container height and width
         &-wrapper { //art-lst-main-container-image-wrapper
           width: 180px;
@@ -301,6 +303,7 @@ Related Files:
           position: relative;
           left: -17px;
           top:5px;
+
         }
       }
       // the description part
@@ -391,6 +394,7 @@ Related Files:
     color:#000;
     margin-left:15px;
     margin-top:3px;
+    text-align: left;
     //small font for the sort by text
     &-text { //art-lst-sortby-text
       font-family: HN-L;

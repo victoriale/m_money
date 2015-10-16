@@ -50,6 +50,7 @@ Related Files:
           <a href="#"><i class="fa fa-share-alt art-lst-hdr-bar-button-fa"></i><span class="art-lst-hdr-bar-text">Share</span></a>
         </div>
       </div>
+      {{#with newsCarousel}}
       <div class="art-lst-hdr-main-container">
         <!-- the module.less file navigation buttons-->
         <button class='art-lst-hdr-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
@@ -57,42 +58,45 @@ Related Files:
         <!-- end of the module.less navigation button -->
         <!-- wrapper class-->
         <div class="art-lst-hdr-main-container-image-wrapper">
-          <div class="art-lst-hdr-main-container-image"></div>
+          <div class="art-lst-hdr-main-container-image" style="background-image:url('{{lead_image}}')"></div>
         </div>
         <!-- the main container -->
 
-        {{#with getHeaderArticle}}
         <ul class="art-lst-hdr-main-container-container">
           <!-- the image in blue circle-->
           <li class="art-lst-hdr-main-container-title">
             <div class="art-lst-hdr-main-container-title-image"><i class="fa fa-newspaper-o"></i></div>
             <div class="art-lst-hdr-main-container-title-txt">
-              {{headline}}
+              {{title}}
             </div>
           </li>
           <!-- the description about the person-->
           <li class="art-lst-hdr-main-container-description">
             <div class="art-lst-hdr-main-container-description-ln1">
-              {{blurb}}
+              {{description}}
             </div>
+            <!--
             <span class="art-lst-hdr-main-container-description-ln2">
-              Published By: <i class="art-lst-b"> {{publisher}} </i>
+              Published By: <i class="art-lst-b"> THIS GUY </i>
             </span>
+          -->
           </li>
         </ul>
         <!-- the bottom bar-->
         <div class="art-lst-hdr-main-container-view_more">
           <!-- the details about the comapny-->
           <div class="art-lst-hdr-main-container-view_more-text">
-            <div class="art-lst-hdr-main-container-view_more-text-ln1">Interested in this article written by {{publisher}}?</div>
-            <div class="art-lst-hdr-main-container-view_more-text-ln2">Written On: <i class="art-lst-b">{{date}}</i></div>
+            <div class="art-lst-hdr-main-container-view_more-text-ln1">Interested in this article?</div>
+            <div class="art-lst-hdr-main-container-view_more-text-ln2">Written On: <i class="art-lst-b">ASAP</i></div>
           </div>
-          <button class="art-lst-hdr-main-container-view_more-button">
-            Read Full Article<i class="fa fa-angle-right"></i>
-          </button>
+          <a href="{{link}}">
+            <button class="art-lst-hdr-main-container-view_more-button">
+              Read Full Article<i class="fa fa-angle-right"></i>
+            </button>
+          </a>
         </div>
-        {{/with}}
       </div>
+      {{/with}}
     </div>
     <!--End Page header-->
     <div class="art-lst-sortby">
