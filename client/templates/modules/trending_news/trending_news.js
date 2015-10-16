@@ -10,11 +10,11 @@ Template.trending_news.onRendered( function() {
       Meteor.http.get('http://api.synapsys.us/news/?action=get_finance_whats_happening&city='+ city.c_hq_location ,function(err, data){
         if(err){
           console.log('CALL ERROR', err);
+          return false;
         }else{
           Session.set("trending_news",data);
         }
       })
-
     }else{
       return '';
     }

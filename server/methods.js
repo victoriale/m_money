@@ -1,5 +1,8 @@
 var Future = Npm.require("fibers/future");
 var report_name_env = new Meteor.EnvironmentVariable;
+var curTime = new Meteor.EnvironmentVariable;
+var curcomp_id = new Meteor.EnvironmentVariable;
+var firstTime = new Meteor.EnvironmentVariable;
 
 Meteor.methods({
   GetCompanyData: function(company_id, batchNum) {
@@ -277,6 +280,49 @@ Meteor.methods({
     return future.wait();
   },
 
+
+
+
+  //AI CONTENT METEOR CALL
+  GetAIContent: function(comp_id){
+    this.unblock();
+    var URL = "http://apifin.synapsys.us/yseop/yseop-company-class.php?id=" + comp_id;
+    var future = new Future();
+    curTime.withValue((new Date()).getTime(),function(){
+      curcomp_id.withValue(comp_id,function(){
+        var callback1 = Meteor.bindEnvironment(function(error, data){
+          if ( error ) {
+            future.return(error.content);
+            console.log("error");
+            return false;
+          }
+          var URL = "http://72.52.250.160:8080/yseop-manager/direct/passfail-training/dialog.do";
+          var UN = "client";
+          var PW = "123";
+          var info = data.content;
+          firstTime.withValue(Math.round(((new Date()).getTime() - curTime.get())/100)/10,function(){
+            curTime.withValue((new Date()).getTime(),function(){
+              var callback2 = Meteor.bindEnvironment(function(error,data){
+                if ( error ) {
+                  future.throw(error);
+                  console.log("SNTAI|\"" + curcomp_id.get() + "\",\"" + (new Date()).getTime() + "\",\"" + firstTime.get() + "\",\"" + (Math.round(((new Date()).getTime() - curTime.get())/100)/10) + "\",\"ERROR\"|");
+                  return false;
+                }
+                console.log("SNTMAG|\"" + curcomp_id.get() + "\",\"" + (new Date()).getTime() + "\",\"" + firstTime.get() + "\",\"" + (Math.round(((new Date()).getTime() - curTime.get())/100)/10) + "\",\"SUCCESS\"|");
+                future.return(data.content);
+              });
+              Meteor.http.post(URL,{
+                auth: UN+":"+PW,
+                params: {xml: info}
+              },callback2);
+            });
+          });
+        });
+        Meteor.http.get(URL,callback1);
+      });
+    });
+    return future.wait();
+  },
 });
 
 Meteor.startup(function(){
