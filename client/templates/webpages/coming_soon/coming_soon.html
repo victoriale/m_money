@@ -1,0 +1,105 @@
+<!--
+Author: jyothyswaroop
+Created: 07/30/2015
+Description: stock disclaimer page
+Associated Files: coming_soon_logic.js and coming_soon.less
+
+-->
+<!--Gave a template name coming_soon !-->
+<template name="coming_soon">
+  <!--Defined a class name globally for height and width !-->
+  <div class= "cm_son">
+    <!--gave the dimensions for the module with total height and width !-->
+    <div class = "cm_son-n_m">
+      <a href="">
+          <div class="cm_son-hdtl">
+            <div class="cm_son-hdtl-or">
+              <div class="cm_son-hdtl-mailrep" >
+                <i class="cm_son-mailrep fa fa-reply"></i>
+              </div>
+              <div class="cm_son-hdtl-rta">
+              </div>
+            </div>
+            <!-- for the text contianer!-->
+            <div class="cm_son-hdtl-txtctt">
+              <div class="cm_son-hdtl-gb">
+                GO Back To
+                <div class="cm_son-hdtl-bar-title">
+                <div class="cm_son-hdtl-bar-helper">
+                  [Profile]'s
+                </div>
+                  <div class="cm_son-hdtl-bar-side">Profile </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      <!--dimensions for the circle container as ('cir-d') !-->
+      <div class="cm_son-cir_d">
+      <!-- dimensions for the circle as ('circ')!-->
+      <div class="cm_son-circ">
+        <!-- defines container for the smaller blue circle('sc_d') !-->
+        <div class= "cm_son-sc_d">
+        <!-- defines the dimension for the small circle('sc') !-->
+        <!-- <div class="cm_son-sc_d cm_son-sc">
+        <i class="cm_son-bfo fa fa-reply"></i>
+        </div> -->
+        </div>
+      </div>
+      </div>
+      <!--defines the container for text box !-->
+      <div class="cm_son-tc">
+      <!-- class date has all the font-weight and font specific !-->
+      <div class="cm_son-date">
+        LAST UPDATED: 06/24/2015, 8:00 AM EST
+      </div>
+      <!--specified font style for location !-->
+      <div class="cm_son-loc_st">
+         <i class="fa fa-map-marker"></i>
+      <!--specified font style for the state name !-->
+      <span class="cm_son-loc_st">
+        United States of America
+      </span>
+      </div>
+      <!-- specified font sytle for the stock disclaimer !-->
+      <div class="cm_son-loc_st cm_son-disc">
+      Key Financials
+      </div>
+      <!--specified font style for the inveskit finance  !-->
+      <div class="cm_son-loc_st cm_son-fin">
+      For {{comp_name}}
+      </div>
+      </div>
+<!--created a line after the container !-->
+      <div class="cm_son-line1">
+      </div>
+      <!--createad paragraph container for the paragraph gave class name as (para) !-->
+      <div class="cm_son-para">
+        <!--for hello !-->
+        <div class="cm_son-helloct">
+          <div class="cm_son-hellot">
+            Hello.
+          </div>
+        </div>
+        <!-- for sorry text !-->
+        <div class="cm_son-sryct">
+          <div class="cm_son-srytxt">
+            We're sorry this page isn't quite ready yet. Please check back in a few days.
+          <!-- <p>  We're sorry this page isn't quite ready yet.</p>
+          <p>  Please check back in a few days. </p> -->
+          </div>
+        </div>
+        <!-- calander font !-->
+        <div class="cm_son-calct">
+          <div class="cm_son-calft">
+            <i class="fa fa-calendar"></i>
+          </div>
+        </div>
+      </div>
+      <!--created a container for the fotter('ft')  !-->
+      <div class="cm_son-ft">
+      {{> ur_next}}
+    </div>
+  </div>
+</div>
+</template>
