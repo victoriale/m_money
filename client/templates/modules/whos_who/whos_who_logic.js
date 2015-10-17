@@ -89,7 +89,13 @@ Template.whos_who.helpers({
   {
     return '';
   }
-  var title = who[index]['o_current_title']['titles'][0]['title'];
+  if(Session.get('IsCompany')){
+    var title = who[index]['o_current_title']['titles'][0]['title'];
+  }
+  if(Session.get('IsExec')){
+    var title = who[j]['o_titles'][0];
+  }
+
   return title;
   },
 

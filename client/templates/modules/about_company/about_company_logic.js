@@ -4,6 +4,16 @@
 **** Associated Files: about_company.html, about_company.less, about_company_logic.js
 */
 Template.about_company.helpers({
+  aboutURL: function(){
+    var params = Router.current().getParams();
+    //console.log(params);
+    if(typeof params == 'undefined'){
+      return '#';
+    }
+    return Router.path('content.abouthq',{
+      comp_id: params.company_id,
+    });
+  },
   company: function(){
     var data = Session.get('profile_header');
     if(typeof data == 'undefined'){

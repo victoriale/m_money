@@ -75,11 +75,18 @@ Template.daily_update.helpers({
 
 ///////Chart Creation ///////////
 Template.daily_update.dailyupdategraphh =  function(){
-  var url =  "http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?";
-  $.getJSON(url,  function(data) {
-    options.series[0].data = data;
-    var chart = new Highcharts.Chart(options);
+  var graphdata = Session.get('daily_update');
+  var ticker = Session.get('profile_header');
+  var newDataArray = [];
+  //JSON array is converted into usable code for Highcharts also does not push NULL values
+  $.each(graphdata.stock_hist, function(i, val) {
+    var yVal = parseFloat(val.sh_close);
+    //makes sure any value passed is null
+    if (!isNaN(yVal)) {
+      newDataArray.push([val.sh_date * 1000, yVal]);
+    }
   });
+
   var options = {
     exporting:{
       enabled:false
@@ -135,6 +142,7 @@ Template.daily_update.dailyupdategraphh =  function(){
       text: ''
     },
     yAxis:{
+      min:0,
       opposite: true,
       title:'',
       labels:{
@@ -148,17 +156,11 @@ Template.daily_update.dailyupdategraphh =  function(){
       },
     },
     series: [{
-      name: 'National',
-      data:'data',
+      name: ticker.c_ticker,
+      data: newDataArray,
       type: 'spline',
       showInLegend: false,
-    },
-    {
-      name:'Chicago',
-      type:'spline',
-      showInLegend:false,
-
-    }]
+    }],
   };
   return options;
 };

@@ -15,6 +15,15 @@ $(".edu_his-page-selector1").css("background-color","#3098ff");
 
 var backgroundStyle="tilewhite";
 Template.edu_history.helpers({
+  ExecURL: function(){
+    var params = Router.current().getParams();
+    if(typeof params == 'undefined'){
+      return '#';
+    }
+    return Router.path('content.executiveprofile',{
+      exec_id: params.exec_id,
+    });
+  },
 //gave names for dyamic access {{getheadername0}}
     getheadername0: function(){
       var name0= "The United States of America";

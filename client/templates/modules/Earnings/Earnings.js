@@ -38,7 +38,7 @@ Template.Earnings.helpers({ //helper for the template earnings  is created to pr
         array[i]['link'] = Router.path('content.earningspage',{company_id: data[i]['c_id'], earning_id: data[i]['e_report_title'].replace(/ /g,'-')});
       }
     }
-    console.log(array);
+    //console.log(array);
     return array;
   },
 
