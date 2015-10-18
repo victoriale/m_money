@@ -20,7 +20,6 @@
            console.log('CALL ERROR', err);
            return false;
          }else{
-           console.log("whats_happening:",data['data']);
            Session.set("whats_happening",data['data']);
          }
        })

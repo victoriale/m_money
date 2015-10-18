@@ -98,19 +98,23 @@ Template.whos_who.helpers({
     return '';
   }
   if(Session.get('IsCompany')){
-    var title = who[index]['o_current_title']['titles'][0]['title'];
+    var title = who[index]['o_titles'][0];
   }
   if(Session.get('IsExec')){
-    var title = who[j]['o_titles'][0];
+    var title = who[index]['o_current_title']['titles'][0]['title'];
   }
-
   return title;
   },
 
   everyech: function(){
     // ldt++;
     var counter = Session.get("whos_count");
+    var data = Session.get('profile_header');
     var who = Session.get("whos_who");
+
+    if(typeof who == 'undefined' || typeof data == 'undefined'){
+      return '';
+    }
     var returnArray = [];
     var j = counter + 1;
     if(Session.get('IsCompany')){
@@ -125,11 +129,13 @@ Template.whos_who.helpers({
         var lname = who[j]['o_last_name'];
         var mname = who[j]['o_middle_initial'];
         var title = who[j]['o_titles'][0];
+        var url = Router.path('content.executiveprofile',{exec_id:who[j].o_id});
         if(j < who.length)
         {
           returnArray[i]['pnames'] = fname +" "+ mname +" "+ lname;
           returnArray[i]['ptitle'] = title;
-          returnArray[i]['company'] = "|";
+          returnArray[i]['company'] = data.c_name;
+          returnArray[i]['url'] = url;
         }
         j++;
       }
@@ -145,11 +151,13 @@ Template.whos_who.helpers({
         var lname = who[j]['o_last_name'];
         var mname = who[j]['o_middle_initial'];
         var title = who[j]['o_current_title']['titles'][0]['title'];
+        var url = Router.path('content.executiveprofile',{exec_id:who[j].o_id});
         if(j < who.length)
         {
           returnArray[i]['pnames'] = fname +" "+ mname +" "+ lname;
           returnArray[i]['ptitle'] = title;
-          returnArray[i]['company'] = "|";
+          returnArray[i]['company'] = data.c_name;
+          returnArray[i]['url'] = url;
         }
         j++;
       }

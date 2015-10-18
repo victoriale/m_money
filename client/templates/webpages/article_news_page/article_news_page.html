@@ -7,25 +7,32 @@ Related Files:
 - /client/stylesheets/webpages/article_list_page.less
 -->
 <template name="article_news_page">
+  {{#with compInfo}}
   <div class="art-lst">
+    <a href="#" onclick="history.go(-1)">
+      <div class="excmp-return">
+        <div class="excmp-return-button">
+          <i class="fa fa-mail-reply"></i>
+        </div>
+        <div class="excmp-return-triangle"></div>
+        Go Back
+      </div>
+    </a>
     <!--Page header-->
     <div class="art-lst-hdr">
       <!-- the header box -->
       <div class="art-lst-hdr-head-box">
         <!-- image inside the header box-->
-        <div class="art-lst-hdr-head-image">
-          <!-- he add green symbol above the image-->
-          <button class="art-lst-hdr-head-image-icon"><i class="fa fa-reply"></i></button>
-        </div>
+        <div class="art-lst-hdr-head-image"></div>
         <!-- the text inside the header box-->
         <div class="art-lst-hdr-text">
           <!-- the latest update-->
           <div class="art-lst-hdr-text-update">
-            LAST UPDATED: 06/24/2015, 8:00 AM EST
+          Last Updated {{c_tr_last_updated}} EST
           </div>
           <!-- location of the article-->
           <div class="art-lst-hdr-text-loc">
-            <i class="fa fa-map-marker"></i> United States
+            <i class="fa fa-map-marker"></i> {{c_hq_city}} {{c_hq_state}}
           </div>
           <!-- the name of the article-->
           <div class="art-lst-hdr-text-name">
@@ -33,7 +40,7 @@ Related Files:
           </div>
           <!-- the author of the article-->
           <div class="art-lst-hdr-text-auth">
-            Covering All Companies In The United States
+            Covering All News In The {{c_hq_city}} {{c_hq_state}}
           </div>
         </div>
       </div>
@@ -87,7 +94,7 @@ Related Files:
           <!-- the details about the comapny-->
           <div class="art-lst-hdr-main-container-view_more-text">
             <div class="art-lst-hdr-main-container-view_more-text-ln1">Interested in this article?</div>
-            <div class="art-lst-hdr-main-container-view_more-text-ln2">Written On: <i class="art-lst-b">ASAP</i></div>
+            <div class="art-lst-hdr-main-container-view_more-text-ln2">Written On: <i class="art-lst-b">{{dateWritten}}</i></div>
           </div>
           <a href="{{link}}">
             <button class="art-lst-hdr-main-container-view_more-button">
@@ -110,7 +117,7 @@ Related Files:
         <i class="fa fa-times art-lst-whatis-header-x"></i>
       </div>
       <div class="art-lst-whatis-text">
-        This is a list of all 3,456 trending articles in the United States today. Trending articles are calculated by the most views, shares, etc.
+        This is a list of all trending articles in the United States today. Trending articles are calculated by the most views, shares, etc.
       </div>
     </div>
     <div class="art-lst-sim">
@@ -309,4 +316,5 @@ Related Files:
       {{> search_module}}
     </div>
   </div>
+  {{/with}}
 </template>

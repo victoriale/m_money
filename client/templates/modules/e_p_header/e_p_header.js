@@ -66,6 +66,13 @@ Template.ep_head.helpers({
     return data;
   },
 
+  compURL: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return Router.path('content.companyprofile', {company_id: data.c_id});
+  },
 });
 
 Template.ep_body.helpers({

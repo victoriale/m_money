@@ -81,6 +81,15 @@ Template.workhistory_page.events({
 // these helpers are used to take the data
 var backgroundStyle="whitecolor";
 Template.workhistory_page.helpers({
+  geturl:function(){
+    var params = Router.current().getParams();
+    if(typeof params =='undefined'){
+      return '';
+    }
+    return Router.path('content.executiveprofile',{
+      exec_id: params.exec_id,
+    });
+  },
   getdtime:function(){
     var data = Session.get('work_history');
     var date = data['officer_data']['o_last_updated'];

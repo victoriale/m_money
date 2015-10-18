@@ -5,29 +5,31 @@
 -->
 <template name="workhistory_page">
   <div class="wrkh-p">
-    <div class="wrkh-p-hdtl">
-     <div class="wrkh-p-hdtl-or">
-       <div class="wrkh-p-hdtl-mailrep" >
-         <i class="wrkh-p-mailrep fa fa-reply"></i>
-       </div>
-       <div class="wrkh-p-hdtl-rta">
-       </div>
-     </div>
-     <!-- for the text contianer!-->
-     <div class="wrkh-p-hdtl-txtctt">
-       <div class="wrkh-p-hdtl-gb">Go Back To
-         <div class="wrkh-p-hdtl-bar-title">
-         <div class="wrkh-p-hdtl-bar-helper">{{getName}}'s</div>
-           <div class="wrkh-p-hdtl-bar-side">Profile </div>
+    <a href="{{geturl}}">
+      <div class="wrkh-p-hdtl">
+       <div class="wrkh-p-hdtl-or">
+         <div class="wrkh-p-hdtl-mailrep" >
+           <i class="wrkh-p-mailrep fa fa-reply"></i>
+         </div>
+         <div class="wrkh-p-hdtl-rta">
          </div>
        </div>
+       <!-- for the text contianer!-->
+       <div class="wrkh-p-hdtl-txtctt">
+         <div class="wrkh-p-hdtl-gb">Go Back To
+           <div class="wrkh-p-hdtl-bar-title">
+           <div class="wrkh-p-hdtl-bar-helper">{{getName}}'s</div>
+             <div class="wrkh-p-hdtl-bar-side">Profile </div>
+           </div>
+         </div>
+       </div>
+       <!-- for the circle on the right to navigate!
+       <div class="wrkh-p-hdtl-indcir">
+           <i class="fa fa-angle-right"></i>
+       </div>
+       -->
      </div>
-     <!-- for the circle on the right to navigate!
-     <div class="wrkh-p-hdtl-indcir">
-         <i class="fa fa-angle-right"></i>
-     </div>
-     -->
-   </div>
+   </a>
     <!--page header-->
     <div class="wrkh-p_pghead">
     <!--  contaner for content in page header-->
@@ -110,7 +112,7 @@
         <div class="wrkh-p_srtbr_srtcon_srthead"></div>
         <div class="wrkh-p_srtbr_srtcon_srthead_srtheadcon">What is this page?</div>
         <div class="wrkh-p_srtbr_srtcon_srthead_srtheadcross"><i class="fa fa-times"></i></div>
-        <div class="wrkh-p_srtbr_srtcon_srttxt">This page features all the SEC documents associated with {{getorgNm}} and all of its executives.</div>
+        <div class="wrkh-p_srtbr_srtcon_srttxt">This page features the work history associated with the executive.</div>
       </div>
 
     </div>
