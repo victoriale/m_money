@@ -51,7 +51,7 @@ Template.daily_update.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
-    return data.csi_price_last_updated;
+    return data.lastUpdated;
   },
 
   lbInfo: function(){

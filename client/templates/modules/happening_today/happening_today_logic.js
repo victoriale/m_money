@@ -11,15 +11,17 @@
 
  Template.happening_today.onRendered( function() {
    this.autorun(function(){
-     var city = Session.get('profile_header');
+     var city = Session.get('bio_location');
+     //var url = "http://api.synapsys.us/news/?action=get_finance_whats_happening&city=San Francisco";
      if(typeof city != 'undefined'){
-       Meteor.http.get('http://api.synapsys.us/news/?action=get_finance_whats_happening&city='+ city.c_hq_city ,function(err, data){
+       var url = "http://api.synapsys.us/news/?action=get_finance_whats_happening&city="+ city.c_hq_city;
+       Meteor.http.get(url ,function(err, data){
          if(err){
            console.log('CALL ERROR', err);
            return false;
          }else{
-           console.log("whats_happening:",data);
-           Session.set("whats_happening",data);
+           console.log("whats_happening:",data['data']);
+           Session.set("whats_happening",data['data']);
          }
        })
      }else{
@@ -28,11 +30,22 @@
    })
  });
 
- //this will call the getcounter function to increment the number
-   Template.happening_today.onRendered(function(){
-     $(".hp_td-imgh-im3-txt").html("#1")
-     counter();
-   });
+ Template.happening_today.events({
+   'click .hp_td-imgh-cir': function(){
+     var counter = Session.get("ht_count");
+     var tnews = Session.get('whats_happening');
+     if(counter < tnews['stories'].length - 1)
+     {
+       counter++;
+       Session.set("ht_count",counter);
+     }
+     else
+     {
+       counter = 0;
+       Session.set("ht_count", counter);
+     }
+   },
+ })
 
 //helpers to send the dynamic data
 Template.happening_today.helpers({
@@ -42,7 +55,6 @@ Template.happening_today.helpers({
       return '';
     }
     data['readData'] = get_full_date(data.current_time_ut);
-    console.log(data);
     return data;
   },
   companyName: function(){
@@ -55,18 +67,19 @@ Template.happening_today.helpers({
 
   news: function(){
     var data = Session.get('whats_happening');
+    var count = Session.get('ht_count');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data['stories'][count];
   },
 
-    cName: 'Apple, Inc.',
-    date: 'October 1, 2015',
-    wrtby: 'Aman Jain',
-  });
+  counter: function(){
+    var count = Session.get('ht_count');
+    if(typeof count == 'undefined'){
+      return '';
+    }
+    return count+1;
+  },
 
-  //counter variable
-  var cntr=1;
-  function counter(){ //
-  $(".hp_td-imgh-cir").click(function(){
-    cntr++;
-    $(".hp_td-imgh-im3-txt").html("#"+cntr)
-    });
-}
+});

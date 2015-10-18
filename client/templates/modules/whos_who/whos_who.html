@@ -4,6 +4,7 @@ Description: [Finance : Who's Who Page Module]-->
 
 <!--template begins-->
 <template name="whos_who">
+  {{#with checkdata}}
   <!-- Html and CSS implementation-->
   <div class="module-who-layout">
     <div class="module-header">
@@ -26,7 +27,7 @@ Description: [Finance : Who's Who Page Module]-->
               </div>
             </div>
           </div>
-          <a class="module-tile-link" href="#">
+          <a class="module-tile-link" href="{{url}}">
             <div class="module-tile-hover">
               <div class="module-tile-name">
                 <i class="fa {{fnt}}"></i>{{name}}
@@ -94,13 +95,15 @@ Description: [Finance : Who's Who Page Module]-->
                 </span>
               </div>
               <div class="module-who-VA-wrap">
-                <button type="button" class="module-who-btn-VA">
-                  <span class="module-who-ellipcir">
-                  <i class="fa fa-line-chart"></i>
-                </span>
-                  <span class="module-who-txtv"> View All Connections </span>
-                  <span class="module-who-rt"> <i class="fa fa-angle-right"> </i> </span>
-                </button>
+                <a href="{{connectionsURL}}">
+                  <button type="button" class="module-who-btn-VA">
+                    <span class="module-who-ellipcir">
+                    <i class="fa fa-line-chart"></i>
+                  </span>
+                    <span class="module-who-txtv"> View All Connections </span>
+                    <span class="module-who-rt"> <i class="fa fa-angle-right"> </i> </span>
+                  </button>
+                </a>
               </div>
               <div class="module-who-panel-fix">
               </div>
@@ -142,5 +145,6 @@ Description: [Finance : Who's Who Page Module]-->
     </div>
     <!--end of outer wrapper-->
   </div>
+  {{/with}}
 </template>
 <!--end of template-->

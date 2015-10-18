@@ -11,9 +11,9 @@ Associated Files: [The Earnings.less, Earnings.html for the module]
 */
 Template.Earnings.helpers({ //helper for the template earnings  is created to provide the handlebar with the below corresponding  data
   tiles:[
-    {open_page:'OPEN PAGE',awesome:'fa-file-text-o',descrip:'Prev.Released Earnings',tile_name:'Prev.Released Earnings',red:'',style:'earnings-displaynone', url:preleased()},
-    {open_page:'OPEN PAGE',awesome:'fa-search',descrip:'Find Earning Releases',tile_name:'Find Earning Releases ',red:'',style:'earnings-displaynone', url:''},
-    {open_page:'OPEN PAGE',awesome:'fa-calendar',descrip:'Earnings Calendar',tile_name:'Earnings Calendar ',red:'NEW',style:'earning_body-redbutton', url:ecalender()}
+    {open_page:'OPEN PAGE',awesome:'fa-file-text-o',descrip:'Prev.Released Earnings',tile_name:'Prev.Released Earnings',red:'',style:'earnings-displaynone'},
+    {open_page:'OPEN PAGE',awesome:'fa-search',descrip:'Find Earning Releases',tile_name:'Find Earning Releases ',red:'',style:'earnings-displaynone'},
+    {open_page:'OPEN PAGE',awesome:'fa-calendar',descrip:'Earnings Calendar',tile_name:'Earnings Calendar ',red:'NEW',style:'earning_body-redbutton'}
   ],
 
   earns: function(){//function to retrieve data for earnings
@@ -35,7 +35,6 @@ Template.Earnings.helpers({ //helper for the template earnings  is created to pr
         array[i]['description'] = data[i]['e_report_title'];
         array[i]['month'] = calendarMonths[parseInt(month-1)];
         array[i]['day'] = day;
-        array[i]['link'] = Router.path('content.earningspage',{company_id: data[i]['c_id'], earning_id: data[i]['e_report_title'].replace(/ /g,'-')});
       }
     }
     //console.log(array);
@@ -51,7 +50,28 @@ Template.Earnings.helpers({ //helper for the template earnings  is created to pr
   },
 
   preleasedURL:function(){
-    return preleased();
+    var data = Session.get('profile_header');
+    if(typeof data =='undefined'){
+      return '#';
+    }
+    return Router.path('content.earningsPR',{
+      comp_id: data.c_id
+    });
+    /*
+    var data = Session.get('profile_header');
+    if(typeof data =='undefined'){
+      return '';
+    }
+    if(Session.get('IsCompany')){
+      return Router.path('content.earningsPR',{
+        comp_id: data.c_id
+      });
+    }else{
+      return Router.path('content.earningsPR',{
+        comp_id: data.c_id
+      });
+    }
+    */
   },
 
 });
@@ -75,10 +95,6 @@ var calendarMonths = [
   'Dec'
 ]
 
-function ecalender(){
-  return Router.path('content.earningscalender');
-}
-
-function preleased(){
-  return Router.path('content.earningsPR');
+function ComingSoon(){
+  return Router.path('content.comingsoon');
 }

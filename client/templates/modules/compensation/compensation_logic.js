@@ -37,7 +37,7 @@ Template.compensation.onCreated(function(){
     compensation['select_year'] = yearArray.sort(function(a, b){return b-a});
     //Set first value of year chosen
     Session.set('compensation_year_chosen', compensation.select_year[0]);
-    console.log('COMPENSATION DONE!',compensation);
+    //console.log('COMPENSATION DONE!',compensation);
     Session.set('new_compensation', compensation);
     /***************COMPENSATION SORTING END***************/
   })
@@ -81,7 +81,7 @@ Template.compensation.helpers({
     var data = Session.get('new_compensation');
     var option = Session.get('compensation_year_chosen');
 
-    console.log('afdafadfdaasdf', data, option);
+    //console.log('graph object', data, option);
 
     //Exit helper if data or option is not defined (option should be defined in onCreated if exists)
     if(typeof(data) === 'undefined'){
@@ -101,7 +101,7 @@ Template.compensation.helpers({
       nameArr.push(name);
     }
 
-    console.log('THE ORGANIZED DATA', valArr, nameArr);
+    //console.log('THE ORGANIZED DATA', valArr, nameArr);
 
     //Graph Starts
     var execGraphObject = {

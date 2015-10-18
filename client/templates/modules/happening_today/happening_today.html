@@ -5,6 +5,7 @@
 -->
 <!--template name-->
 <template name="happening_today">
+  {{#with news}}
   <!--container for whole module-->
   <div class="hp_td">
     <!--container for header-->
@@ -12,18 +13,19 @@
       <div class="hp_td-h-vln"></div>
       <!--container for text in header-->
       <div class="hp_td-h-tbox">
-        <div class="hp_td-h-tbox-t1">What's Happening With</div>
+        <div class="hp_td-h-tbox-t1">What's Happening Near</div>
         <div class="hp_td-h-tbox-t2">{{companyName}}</div>
       </div><!--end of container for text-->
     </div><!--end container for header-->
     <!--container for imageholder-->
+    {{#with mention}}
     <div class="hp_td-imgh">
       <!--container for big and small circles-->
       <div class="hp_td-imgh-im"></div>
       <div class="hp_td-imgh-im2"></div>
       <!--container for counter-->
       <div class="hp_td-imgh-im3">
-        <div class="hp_td-imgh-im3-txt"></div>
+        <div class="hp_td-imgh-im3-txt">#{{counter}}</div>
       </div>
       <!--container for heading in image holder part-->
       <div class="hp_td-imgh-head">
@@ -34,30 +36,40 @@
       <div class="hp_td-imgh-pbox">
         <div class="hp_td-imgh-pbox-txt">
           <div class="hp_td-imgh-pbox-cnm">{{companyName}}</div>
-          is the top most mentioned company today with a total of 25 mentions.</div>
-          <div class="hp_td-imgh-pbox-dt">{{date}}</div>
+          is mentioned today with a total of {{mentioned_tickers_count}}. Read about the some stories below.</div>
+          <div class="hp_td-imgh-pbox-dt">{{readData}}</div>
       </div>
       <!-- end of container for paragraph-->
       <div class="hp_td-imgh-cir">
           <div class="hp_td-imgh-cir-aw"><i class="fa fa-angle-right"></i></div>
       </div>
     </div> <!--end of container for image placeholder-->
+    {{/with}}
     <!--container for bottom part-->
     <div class="hp_td-b">
       <!--container for circle in bottom part-->
       <!-- <div class="hp_td-b-im"></div> -->
       <!--container for 1st paragraph part-->
       <div class="hp_td-b-p1bx">
-          <div class="hp_td-b-im"></div>
-        <div class="hp_td-b-p1bx-t">{{cName}} gets watch challenge from Samsung.</div>
+          <div class="hp_td-b-im" style="background-image:url('{{lead_image}}')"></div>
+        <div class="hp_td-b-p1bx-t">{{title}}</div>
         <div class="hp_td-b-p1bx-faw"><i class="fa fa-pencil"></i></div>
         <div class="hp_td-b-p1bx-wtn">Written By: {{wrtby}}  at 8:17am, Tuesday September 1st, 2015</div>
-        <div class="hp_td-b-p1bx-pt"><p>Ahead of Apple's (NASDAQ:AAPL) iPhone launch on Friday, it's clear there is robust demand for the device. Online preorders for the iPhone
-           6s Plus are showing ship date of three to four weeks. And while some iPhone 6s models ordered at the </p> <p>time of this writing are scheduled to ship as early as Sept. 29, none are actually estimated to arrive this Friday
-             as some were still scheduled to as of last Friday.</p>But beyond slipping ship dates, there's more evidence pointing to a robust iPhone launch.
-               This new sign comes from the outspoken T-Mobile CEO, John Legere: Preorders for the new iPhone 6s are up 30% compared to the year-ago period, he said on Twitter Tuesday evening.</div>
+        <div class="hp_td-b-p1bx-pt"><p>{{description}}</p></div>
            </div>
       </div>
+      <!--container for footer-->
+      <div class="ftr">
+        <!--container for button called from module.less-->
+        <a href="{{link}}">
+          <div class="module-footer-button ftr-btn hp_td-hcursor">
+              <span class="module-footer-button-ellipse ftr-btn-icn"> <i class="fa fa-line-chart"></i></span>
+              <!--container for text in button, called from module.less-->
+              <span class="module-footer-button-text ftr-btn-txt">Continue Reading</span>
+              <span class="ftr-btn-fa"><i class="fa fa-angle-right"></i></span>
+          </div>
+        </a>
+      </div><!--end of container for footer-->
       <!--container for 2nd pparagraph part-->
       <!-- <div class="hp_td-b-p2bx">
         <div class="hp_td-b-p2bx-t1">time of this writing are scheduled to ship as early as Sept. 29, none are actually estimated to arrive this Friday
@@ -65,17 +77,6 @@
         <div class="hp_td-b-p2bx-t2">But beyond slipping ship dates, there's more evidence pointing to a robust iPhone launch.
           This new sign comes from the outspoken T-Mobile CEO, John Legere: Preorders for the new iPhone 6s are up 30% compared to the year-ago period, he said on Twitter Tuesday evening.</div>
       </div> </div>-->
-
-
-    <!--container for footer
-    <div class="ftr">
-      container for button called from module.less
-        <div class="module-footer-button ftr-btn hp_td-hcursor">
-            <span class="module-footer-button-ellipse ftr-btn-icn"> <i class="fa fa-line-chart"></i></span>
-            container for text in button, called from module.less
-            <span class="module-footer-button-text ftr-btn-txt">Continue Reading</span>
-            <span class="ftr-btn-fa"><i class="fa fa-angle-right"></i></span>
-        </div>
-    </div>end of container for footer-->
   </div><!--end of container for whole module-->
+  {{/with}}
 </template>
