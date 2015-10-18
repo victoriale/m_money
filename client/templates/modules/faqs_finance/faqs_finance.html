@@ -5,20 +5,23 @@ Description: Frequently asked questions for finance module
 Associated Files: faqs_finance.less & faqs_finance.js
 -->
 <template name="faqs_finance">
+  {{#with faqCheck}}
   <div class="faqs_module-layout"> <!--layout sizing and header imported from modules.less -->
     <div class="module-header">
       <span class="module-header-line"></span>
       <span class="module-header-title">{{companyName}}'s Frequently Asked Questions</span>
     </div>
-    {{#each getquestionbox}}          <!-- loops through for all containers -->
+    {{#each faq}}
+    <!-- loops through for all containers -->
     <div class="faqs_module-tile">
-      <div class="faqs_module-faqtext">{{ques}}</div>
+      <div class="faqs_module-faqtext">{{question}}</div>
       <div class="faqs_module-arrow">  <!-- displays arow and close button -->
         <i class="fa fa-angle-down faqs_module-arrow-fa"></i>
         <div class="faqs_module-close"><i class="fa fa-close"></i></div>
       </div>
-      <div class="faqs_module-subtext"><i class="fa fa-circle"></i>{{ans}}</div><!-- displays the answer for question -->
+      <div class="faqs_module-subtext"><i class="fa fa-circle"></i>{{answer}}</div><!-- displays the answer for question -->
     </div>
     {{/ each}}
   </div>
+  {{/with}}
 </template>

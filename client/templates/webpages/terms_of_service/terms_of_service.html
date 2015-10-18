@@ -7,32 +7,35 @@ Associated Files: terms_of_service.less, terms_of_service.html
 <template name="terms_of_service">
   <div class="tos-container">
     <div class="tos-doc">
-      <div class="tos-hdtl">
-       <div class="tos-hdtl-or">
-         <div class="tos-hdtl-mailrep" >
-           <i class="tos-mailrep fa fa-reply"></i>
-         </div>
-         <div class="tos-hdtl-rta">
-         </div>
-       </div>
-       <!-- for the text contianer!-->
-       <div class="tos-hdtl-txtctt">
-         <div class="tos-hdtl-gb">
-           Go Back To
-           <div class="tos-hdtl-bar-title">
-           <div class="tos-hdtl-bar-helper">
-             {{BackTxt}}'s
+      <a href="#" onclick="history.go(-1)">
+        <div class="tos-hdtl">
+         <div class="tos-hdtl-or">
+           <div class="tos-hdtl-mailrep" >
+             <i class="tos-mailrep fa fa-reply"></i>
            </div>
-             <div class="tos-hdtl-bar-side">Profile </div>
+           <div class="tos-hdtl-rta">
            </div>
          </div>
+         <!-- for the text contianer!-->
+         <div class="tos-hdtl-txtctt">
+           <div class="tos-hdtl-gb">
+             Go Back
+             <!-- To
+             <div class="tos-hdtl-bar-title">
+             <div class="tos-hdtl-bar-helper">
+               {{BackTxt}}'s
+             </div>
+               <div class="tos-hdtl-bar-side">Profile </div>
+             </div>-->
+           </div>
+         </div>
+         <!-- for the circle on the right to navigate!
+         <div class="tos-hdtl-indcir">
+             <i class="fa fa-angle-right"></i>
+         </div>
+         -->
        </div>
-       <!-- for the circle on the right to navigate!
-       <div class="tos-hdtl-indcir">
-           <i class="fa fa-angle-right"></i>
-       </div>
-       -->
-     </div>
+     </a>
       <div class="tos-info">
         <div class="tos-info-image-container">
           <div class="tos-info-image"></div>

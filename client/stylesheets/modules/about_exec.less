@@ -6,11 +6,13 @@
 
 @import (reference)"../global_vars.less";
 
+
 .exec{
   width: 680px;
   height: 645px;
   position: relative;
   background-color: @white;
+  margin: 5px 0px 5px 11px;
 
   //class for blue text
   &_blue{
@@ -21,7 +23,21 @@
   &_white{
     color: @white;
   }//end exec_white
-
+  &_txt{
+    color: #ffffff;
+    position: relative;
+    left: 8px;
+    float:left;
+  }
+  &_vln{
+    background-color:  #3098ff;
+    width: 3px;
+    position: relative;
+    top: 15px;
+    left: 0px;
+    height: 14px;
+    float: left;
+  }
   //Main page header
   &_header{
     width: 680px;
@@ -32,7 +48,12 @@
     line-height: 43px;
     padding-left: 10px;
   }//end exec_header
-
+ .fai{
+   color:@blue;
+   float:left;
+   position: relative;
+   top: 8px;
+ }
   //Main page body
   &_body{
     margin: 15px;
@@ -51,6 +72,17 @@
         font-size: 16px;
         line-height: 36px;
         padding-left: 10px;
+        &_txt{
+          position: relative;
+          left: 5px;
+          top: -2px;
+          float:left;
+          font-family: HN-B;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 250px;
+          white-space: nowrap;
+        }
       }//end exec_body_featured_header
 
       //Featured executive info
@@ -64,11 +96,38 @@
           font-size: 18px;
           margin-top: 5px;
           margin-bottom: 5px;
-        }//end exec_body_featured_info_description
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 456px;
+          white-space: nowrap;
 
+          &_txt{
+            color: #ffffff;
+            position: relative;
+          }
+        }//end exec_body_featured_info_description
+        .faicon{
+          float:left;
+          position: relative;
+          left: 116px;
+        }
         //Featured executive education location
         &_education-location{
           margin-bottom: 145px;
+          position: relative;
+
+          &_txt{
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 250px;
+            position: relative;
+            white-space: nowrap;
+            left: 118px;
+            line-height: 15px;
+
+          }
         }//end exec_body_featured_info_education-location
 
         //Featured executive main image
@@ -93,21 +152,52 @@
           position: absolute;
           top: 137px;
           left: 246px;
+          color:#000000;
+          font-family:HN-B;
+          padding-top: 14px;
         }//end exec_body_featured_info_sub-image
 
         //Featured executive name
         &_name{
           margin-bottom: 5px;
+          position: relative;
+          top: 5px;
+          &_txt{
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 467px;
+            white-space: nowrap;
+            font-family:HN-B;
+          }
         }//end exec_body_featured_info_name
 
         //Feautured executive education info first line
         &_education-line1{
-
+          &_txt{
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 480px;
+            white-space: nowrap;
+              font-family:HN;
+          }
         }//end exec_body_featured_info_education-line1
 
         //Feautured executive education info second line
         &_education-line2{
           margin-bottom: 10px;
+          &_txt{
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 480px;
+            white-space: nowrap;
+            font-family:HN;
+          }
         }//end exec_body_featured_info_education-line2
 
         //Featured executive view all button
@@ -119,10 +209,15 @@
           line-height: 35px;
           margin-left: 108px;
           position: relative;
+          top:6px;
 
           &_text{
             position: absolute;
             left: 35px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 157px;
+            white-space: nowrap;
           }//end exec_body_featured_info_view-all_text
 
           &_icon{
@@ -181,7 +276,8 @@
 
     //List of executives
     &_list{
-
+      width: 455px;
+      height: 215px;
       //Single list item
       &_single{
         border-left: 5px solid #e1e1e1;
@@ -216,12 +312,46 @@
         //List item name
         &_name{
           font-size: 18px;
+          overflow: hidden;
+          max-width: 250px;
+          color:#000000;
+          text-align:left;
+          white-space: nowrap;
+          text-overflow: ellipsis;
         }//end exec_body_list_single_name
 
         //List item position
         &_position{
           position: relative;
           top: -4px;
+          left: -7px;
+          overflow: hidden;
+          max-width: 350px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          &_txt{
+            position: relative;
+            /* top: 19px; */
+            float: left;
+            left: 8px;
+            overflow: hidden;
+            text-align: left;
+            max-width: 130px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+          &_txt1{
+            position: relative;
+            /* top: 19px; */
+            color:#000000;
+            float: left;
+            text-align: left;
+            left: 8px;
+            overflow: hidden;
+            max-width: 205px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
         }//end exec_body_list_single_position
 
         //List item education
@@ -229,6 +359,13 @@
           font-size: 12px;
           position: relative;
           top: -4px;
+          float:left;
+          color:#000000;
+          text-align: left;
+          overflow: hidden;
+          max-width: 350px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
         }//end exec_body_list_single_education
 
         //List item view more button
@@ -248,5 +385,8 @@
     position: absolute;
     top: 46px;
     right: 0px;
+    &_backcolor{
+      background-color: #3098ff;
+    }
   }//end exec_links
 }//end exec

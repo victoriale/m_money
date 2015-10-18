@@ -6,26 +6,34 @@ Associated Files: exec_compensation.html, exec_compensation.less, exec_compensat
 -->
 
 <template name="exec_compensation">
-  {{#with company}}
+  {{#with execHeader}}
   <div class="excmp-page"> <!--container for whole page-->
+    <a href="{{backToExec}}">
+      <div class="excmp-return">
+        <div class="excmp-return-button">
+          <i class="fa fa-mail-reply"></i>
+        </div>
+        <div class="excmp-return-triangle"></div>
+
+
+        Go Back To <span class="excmp-b">{{o_first_name}} {{o_last_name}}'s</span> Profile
+      </div>
+    </a>
 
     <div class="excmp-pr excmp-top"> <!--container for white background area at top-->
       <div class="excmp-pr excmp-top-circle"> <!--back arrow in top-->
-        <div class="excmp-pr excmp-top-circle-btn">
-          <i class="fa fa-reply"></i>
-        </div>
       </div>
-      <i class="excmp-pa excmp-n excmp-top-txt1">LAST UPDATED: {{lastUpdated}}</i>
-      <i class="excmp-pa excmp-n excmp-top-txt2"><i class="fa fa-map-marker"></i> United States </i>
+      <i class="excmp-pa excmp-n excmp-top-txt1">LAST UPDATED: {{o_last_updated}}</i>
+      <i class="excmp-pa excmp-n excmp-top-txt2"><i class="fa fa-map-marker"></i> United States</i>
       <i class="excmp-pa excmp-b excmp-top-txt3">Executive Compensation</i>
-      <i class="excmp-pa excmp-l excmp-top-txt4">for {{execName}}</i>
+      <i class="excmp-pa excmp-l excmp-top-txt4">for {{o_first_name}} {{o_last_name}}</i>
     </div>
 
     <div class="excmp-pr excmp-mid"> <!--the black-grey-black section in the middle-ish-->
 
       <div class="excmp-pa excmp-mid-top"> <!--the black header of the middle-->
         <div class="excmp-b excmp-mid-top-txt1"> <!--the left part of the header-->
-          {{execName}}'s Compensation
+          {{o_first_name}} {{o_last_name}}'s Compensation
         </div>
         <div class="excmp-l excmp-mid-top-txt2"> <!--the first right part of the header-->
           <i class="fa fa-heart"></i>  Save
@@ -36,45 +44,41 @@ Associated Files: exec_compensation.html, exec_compensation.less, exec_compensat
       </div>
 
       <div class="excmp-pa excmp-mid-mid"> <!--the grey section in the middle-->
-        <div class="navigation-button-left"><!-- Navigation left button-->
-          <i class="fa fa-angle-left excmp-mid-mid-l"></i>
-        </div>
         <div class="excmp-pa excmp-mid-mid-circle"><!--Profile Image -->
         </div>
         <div class="excmp-pa excmp-mid-mid-building">
           <i class="fa fa-building-o fa-lg"></i>
         </div>
-        <i class="excmp-pa excmp-b excmp-mid-mid-txt1">{{execName}}</i>
+        <i class="excmp-pa excmp-b excmp-mid-mid-txt1">{{o_first_name}} {{o_last_name}}</i>
         <i class="excmp-pa excmp-l excmp-mid-mid-txt2"><i class="fa fa-heart"></i>  Save</i>
         <i class="excmp-pa excmp-l excmp-mid-mid-txt3"><i class="fa fa-share-alt"></i>  Share</i>
         <div class="excmp-pa excmp-l excmp-mid-mid-txtbox"> <!--the part of the middle-middle that has the important and long text-->
           <i class="excmp-mid-mid-txtbox-txt">
-            {{execName}}, the Cheif Executive Officer of {{formalName}}, has a <i class="excmp-b">annual salary of ${{annualSalary}}</i> and <i class="excmp-b">${{otherIncome}}</i> through other sources of income.
+            {{o_first_name}} {{o_last_name}}, the {{o_current_title.long_title}} of {{company}}, has an <i class="excmp-b">annual salary of ${{salary}}</i> and a total compensation of <i class="excmp-b">${{totalComp}}</i>.
             <br>
           </i>
-        </div>
-        <div class="navigation-button-right">
-          <i class="fa fa-angle-right excmp-mid-mid-r"></i>
         </div>
       </div>
 
       <div class="excmp-pa excmp-mid-btm"> <!--the footer of the middle area-->
         <div class="excmp-pa excmp-l excmp-mid-btm-txt1">
-          Want more information about {{execName}}?
+          Want more information about {{o_first_name}} {{o_last_name}}?
         </div>
         <div class="excmp-pa excmp-l excmp-mid-btm-txt2">
-          Profile Last Updated On: <i class="excmp-b">{{profLstUpdate}}</i>
+          Profile Last Updated On: <i class="excmp-b">{{lastUpdated}}</i>
         </div>
-        <div class="excmp-pa excmp-mid-btm-btn">
-          View Profile <i class="fa fa-angle-right excmp-right"></i>
-        </div>
+        <a href="{{backToExec}}">
+          <div class="excmp-pa excmp-mid-btm-btn">
+            View Profile <i class="fa fa-angle-right excmp-right"></i>
+          </div>
+        </a>
       </div>
     </div>
 
     <div class="excmp-pr excmp-btm"> <!--holds anything but the search module below the middle area-->
-      <div class="excmp-b excmp-btm-txt1">
+      <!-- Currently disabled <div class="excmp-b excmp-btm-txt1">
         Sort by: <i class="excmp-l">Executive Compensation </i><i class="fa fa-angle-down excmp-btm-txt1-blue"></i>
-      </div>
+      </div>-->
       <div class="excmp-btm-what"> <!--a box that looks like it can be closed-->
         <div class="excmp-b excmp-btm-what-top">
           What is this page?
@@ -86,14 +90,18 @@ Associated Files: exec_compensation.html, exec_compensation.less, exec_compensat
       </div>
       <div class="excmp-pr excmp-btm-data"> <!--a divide to seperate data from the box above-->
         <div class="excmp-pr excmp-btm-data-title">
-          Compensation Overview <i class="excmp-l">for {{execName}}:</i>
+          <span class="excmp-b">Compensation Overview</span> <i class="excmp-l">for {{o_first_name}} {{o_last_name}}:</i>
         </div>
       </div>
       <div class="excmp-choseyr">
-        Total Compensation for 2014: <span class="excmp-b">${{totalCompensation}}</span>
-        <div class="excmp-dropdown">
-          Chose Year: <span class="excmp-dropdown-yr">2014</span>  <i class="fa fa-caret-down excmp-dropdown-faicon"></i>
-        </div>
+        Total Compensation for {{yearChosen}}: <span class="excmp-b">${{totalCompensation}}</span>
+        <select id="year-chosen" class = "comp-ttl-select">
+            <option class="comp-ttl-select-txt" disabled="disabled" selected="selected" value="2014">Choose Year:&nbsp;</option>
+            {{#each years}}
+              <option class="comp-ttl-select-num" value="{{this}}">{{this}}</option>
+            {{/each}}
+            <i class = "fa fa-sort-desc"></i>
+    		</select>
       </div>
       <!-- Graph Starts-->
       <div class="excmp-pr excmp-btm-data-graph" id="excmpChart">

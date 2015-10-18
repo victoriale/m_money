@@ -7,32 +7,35 @@ Associated Files: disclaimer_page.less
 <template name="disclaimer_page">
   <!--webpage dimensions-->
   <div class="dp_dimensions">
-    <div class="dp_head-hdtl">
-     <div class="dp_head-hdtl-or">
-       <div class="dp_head-hdtl-mailrep" >
-         <i class="dp_head-mailrep fa fa-reply"></i>
-       </div>
-       <div class="dp_head-hdtl-rta">
-       </div>
-     </div>
-     <!-- for the text contianer!-->
-     <div class="dp_head-hdtl-txtctt">
-       <div class="dp_head-hdtl-gb">
-         Go Back To
-         <div class="dp_head-hdtl-bar-title">
-         <div class="dp_head-hdtl-bar-helper">
-           {{BackTxt}}'s
+    <a href="#" onclick="history.go(-1)">
+      <div class="dp_head-hdtl">
+       <div class="dp_head-hdtl-or">
+         <div class="dp_head-hdtl-mailrep" >
+           <i class="dp_head-mailrep fa fa-reply"></i>
          </div>
-           <div class="dp_head-hdtl-bar-side">Profile </div>
+         <div class="dp_head-hdtl-rta">
          </div>
        </div>
+       <!-- for the text contianer!-->
+       <div class="dp_head-hdtl-txtctt">
+         <div class="dp_head-hdtl-gb">
+           Go Back
+           <!-- To
+           <div class="dp_head-hdtl-bar-title">
+           <div class="dp_head-hdtl-bar-helper">
+             {{BackTxt}}'s
+           </div>
+             <div class="dp_head-hdtl-bar-side">Profile </div>
+           </div>-->
+         </div>
+       </div>
+       <!-- for the circle on the right to navigate!
+       <div class="dp_head-hdtl-indcir">
+           <i class="fa fa-angle-right"></i>
+       </div>
+       -->
      </div>
-     <!-- for the circle on the right to navigate!
-     <div class="dp_head-hdtl-indcir">
-         <i class="fa fa-angle-right"></i>
-     </div>
-     -->
-   </div>
+   </a>
     <!--Image container-->
     <div class="dp_image">
       <!--small circle & icon on image circle-->

@@ -9,21 +9,25 @@
   <div class = "comp">
     <div class = "comp-hdr">
       <div class = "comp-hdr-icon"></div>
-      <div class = "comp-hdr-nm">{{exec}}</div>
+      <div class = "comp-hdr-nm">{{execName}}</div>
       <div class = "comp-hdr-txt">'s Executive Compensation</div>
     </div>
     <div class = "comp-ttl">
-      <div class = "comp-ttl-txt">Total Compensation for {{year}}: </div>
-      <div class = "comp-ttl-num">${{comp}}</div>
+      <div class = "comp-ttl-txt">Total Compensation for {{yearChosen}}:</div>
+      <div class = "comp-ttl-num">${{totalCompensation}}</div>
 
-      <select class = "comp-ttl-select">
+      <select id="year-chosen" class="comp-ttl-select">
           <option class="comp-ttl-select-txt" disabled="disabled" selected="selected" value="2014">Choose Year:&nbsp;</option>
-  				<option class = "comp-ttl-select-num" value="2014">2014</option>
+          {{#each years}}
+  				    <option class = "comp-ttl-select-num" value="{{this}}">{{this}}</option>
+          {{/each}}
           <i class = "fa fa-sort-desc"></i>
   		</select>
     </div>
 
-    <div class = "comp-graph" id = "comp_graph"></div>
+    <div class = "comp-graph" id = "comp_graph">
+      {{> highchartsHelper chartId="comp_graph" chartWidth="641px" chartHeight="218px"  chartObject=getCompGraphObject}}
+    </div>
 
     <a href = "{{compURL}}"><div class = "comp-footer">
       <div class = "comp-footer-icon">

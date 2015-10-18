@@ -4,6 +4,7 @@ Description: [Finance : Who's Who Page Module]-->
 
 <!--template begins-->
 <template name="whos_who">
+  {{#with checkdata}}
   <!-- Html and CSS implementation-->
   <div class="module-who-layout">
     <div class="module-header">
@@ -26,7 +27,7 @@ Description: [Finance : Who's Who Page Module]-->
               </div>
             </div>
           </div>
-          <a class="module-tile-link" href="#">
+          <a class="module-tile-link" href="{{url}}">
             <div class="module-tile-hover">
               <div class="module-tile-name">
                 <i class="fa {{fnt}}"></i>{{name}}
@@ -46,34 +47,32 @@ Description: [Finance : Who's Who Page Module]-->
       <div class="module-who-inner-right-wrapper">
         <div class="module-who-rightpanel-layout">
           <div class="module-who-rightpanel-titlebar">
-            <span class="module-who-title-line"><i class="fa fa-circle module-who-title-align"></i>PEOPLE WHO WORK FOR {{companyName}}</span>
+            <span class="module-who-title-line"><i class="fa fa-circle module-who-title-align"></i>People Who Work For {{companyName}}</span>
           </div>
           <!--Top Component-->
           <div class="module-who-rightpanel-layout-component1">
             <div class="module-who-panel-topbackground">
               <div class="module-who-rpanel-line1">
-                Who's trending at {{compy_name}}?
+                Who's trending at {{companyName}}?
               </div>
               <div class="module-who-line2-container">
+                <!--
                 <i class="fa fa-map-marker" style="color:#3098ff">
                 </i>&nbsp;
                 <span class="module-who-rpanel-line2">
                   {{loc_bwn}}
                 </span>
+              -->
               </div>
               <div class="module-who-image-wrapper">
-                <a href="#">
-                  <div class="module-who-button-left">
-                    <div class="module-who-button-align"><i class="fa fa-angle-left fa-2x"></i>
-                    </div>
+                <div class="module-who-button-left">
+                  <div class="module-who-button-align"><i class="fa fa-angle-left fa-2x"></i>
                   </div>
-                </a>
-                <a href="#">
-                  <div class="module-who-button-right">
-                    <div class="module-who-button-align"><i class="fa fa-angle-right fa-2x"></i>
-                    </div>
+                </div>
+                <div class="module-who-button-right">
+                  <div class="module-who-button-align"><i class="fa fa-angle-right fa-2x"></i>
                   </div>
-                </a>
+                </div>
                 <div class="module-who-image-fix">
                   <div class="module-who-profile-image1">
                     <a href="#">
@@ -90,17 +89,19 @@ Description: [Finance : Who's Who Page Module]-->
               </div>
               <div class="module-who-line4-container">
                 <span class="module-who-rpanel-line4">
-                  {{compy_name}}&nbsp;|&nbsp; {{titles}} - {{first_domain}}
+                  {{companyName}}&nbsp;|&nbsp; {{titles}} - {{first_domain}}
                 </span>
               </div>
               <div class="module-who-VA-wrap">
-                <button type="button" class="module-who-btn-VA">
-                  <span class="module-who-ellipcir">
-                  <i class="fa fa-line-chart"></i>
-                </span>
-                  <span class="module-who-txtv"> View All Connections </span>
-                  <span class="module-who-rt"> <i class="fa fa-angle-right"> </i> </span>
-                </button>
+                <a href="{{connectionsURL}}">
+                  <button type="button" class="module-who-btn-VA">
+                    <span class="module-who-ellipcir">
+                    <i class="fa fa-line-chart"></i>
+                  </span>
+                    <span class="module-who-txtv"> View All Connections </span>
+                    <span class="module-who-rt"> <i class="fa fa-angle-right"> </i> </span>
+                  </button>
+                </a>
               </div>
               <div class="module-who-panel-fix">
               </div>
@@ -111,7 +112,7 @@ Description: [Finance : Who's Who Page Module]-->
           <div class="module-who-rightpanel-layout-component2">
             <!--sub-component 1-->
             {{#each everyech}}
-            <a href="">
+            <a href="{{url}}">
               <div class="module-who-bcontent-wrap">
                 <div class="module-who-bcontent-subwrap1">
                   <div class="module-who-scircle">
@@ -122,11 +123,6 @@ Description: [Finance : Who's Who Page Module]-->
                   <div class="module-who-bcontent-text1">{{pnames}}</div>
                   <div class="module-who-bcontent-text2">{{company}}</div>&nbsp;
                   <div class="module-who-bcontent-text3">&nbsp;-&nbsp; {{ptitle}}</div>
-                  {{#if boo}}
-                    <div class="module-who-bcontent-text4">&nbsp;-&nbsp; {{service}}</div>
-                    {{else}}
-                      <div class="module-who-bcontent-text4"></div>
-                      {{/if}}
                 </div>
                 <div class="module-who-bcontent-subwrap3">
                   <i class="fa fa-angle-right fa-2x"></i>
@@ -142,5 +138,6 @@ Description: [Finance : Who's Who Page Module]-->
     </div>
     <!--end of outer wrapper-->
   </div>
+  {{/with}}
 </template>
 <!--end of template-->

@@ -1,0 +1,489 @@
+/*
+  Author: Sri Sindhusha Kuchipudi
+  Created: 10/15/2015
+  Description: about_exec_page webpage
+  Associated Files: about_exec_page.html, about_exec_page.less, about_exec_page_logic.js
+*/
+
+@import (reference)"../global_vars.less";
+@import (reference)"../modules.less";
+
+// abtex
+.abtex {
+  width: 680px;
+  //height: 1493px;
+  height:auto;
+  background-color: @white;
+  margin: 10px;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+
+  // abtex-hdr
+  &-hdr {
+    width: 100%;
+    height: 50px;
+    background-image: url('/header_texture.png');
+
+    // abtex-hdr-box
+    &-box {
+      width: 60px;
+      height: 50px;
+      background-color: @blue;
+      float: left;
+
+      // abtex-hdr-box .fa
+      .fa {
+        color: white;
+        font-size: 30px;
+        margin: 11px 0px 0px 15px;
+      } // END abtex-hdr-box .fa
+    } // END abtex-hdr-box
+
+    // abtex-hdr-arrw
+    &-arrw {
+      width: 0;
+  	  height: 0;
+  	  border-top: 25px solid transparent;
+  	  border-bottom: 25px solid transparent;
+  	  border-left: 15px solid @blue;
+      float: left;
+    } // END abtex-hdr-arrw
+
+    // abtex-hdr-txt
+    &-txt {
+      height: 19px;
+      line-height: 15px;
+      float: left;
+      font-family: HN-L;
+      font-size: 19px;
+      margin-left: 20px;
+      margin-top: 17px;
+      color: @white;
+
+      // abtex-hdr-txt strong
+      strong {
+        height: 19px;
+        vertical-align: top;
+        display: inline-block;
+        max-width: 400px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight: normal;
+        font-family: HN-B;
+      } // END abtex-hdr-txt strong
+    } // END abtex-hdr-txt
+  } // END abtex-hdr
+
+  // abtex-ttl
+  &-ttl {
+    width: 100%;
+    height: 131px;
+
+    // abtex-ttl-img
+    &-img {
+      width: 100px;
+      height: 100px;
+      border: 2px solid @grey-3;
+      border-radius: 50%;
+      background-color: @white;
+      margin: 15px 0px 0px 15px;
+      float: left;
+      background-size: 100px 100px;
+      background-repeat: no-repeat;
+    } // END abtex-ttl-img
+
+    // abtex-ttl-txt
+    &-txt {
+      width: 500px;
+      height: 98px;
+      margin: 14px 0px 0px 14px;
+      float: left;
+
+      // abtex-ttl-txt-upd
+      &-upd {
+        max-width: 500px;
+        height: 10px;
+        font-family: HN;
+        font-size: 10px;
+        color: #838383;
+        line-height: 8px;
+        text-transform: uppercase;
+        .txtc;
+      } // END abtex-ttl-txt-upd
+
+      // abtex-ttl-txt-loc
+      &-loc {
+        max-height: 12px;
+        font-family: HN;
+        font-size: 12px;
+        color: @black;
+        margin-top: 16px;
+        line-height: 8px;
+        .txtc;
+      } // END abtex-ttl-txt-loc
+
+      // abtex-ttl-txt-abt
+      &-abt {
+        height: 26px;
+        font-family: HN-B;
+        font-size: 28px;
+        color: @black;
+        margin-top: 5px;
+        line-height: 20px;
+      } // END abtex-ttl-txt-abt
+
+      // abtex-ttl-txt-nm
+      &-nm {
+        max-width: 500px;
+        height: 26px;
+        font-family: HN-L;
+        font-size: 28px;
+        color: @black;
+        margin-top: 3px;
+        line-height: 20px;
+        .txtc;
+      } // END abtex-ttl-txt-nm
+    } // END abtex-ttl-txt
+  } // END abtex-ttl
+
+  // abtex-sldr
+  &-sldr {
+    width: 100%;
+    height: 361px;
+    background-image: url('/linen_framework.png');
+
+    // abtex-sldr-top
+    &-top {
+      width: 100%;
+      height: 35px;
+      background-color: rgba(0, 0, 0, 0.85);
+
+      // abtex-sldr-top-lft
+      &-lft {
+        max-width: 500px;
+        height: 100%;
+        border-right: 1px solid #363636;
+        overflow: hidden;
+        float: left;
+
+        // abtex-sldr-top-lft-nm
+        &-nm {
+          max-width: 472px;
+          height: 16px;
+          font-family: HN-B;
+          font-size: 16px;
+          color: @white;
+          line-height: 12px;
+          margin: 11px 14px 0px 14px;
+          .txtc;
+        } // END abtex-sldr-top-lft-nm
+      } // END abtex-sldr-top-lft
+
+      // abtex-sldr-top-rgt
+      &-rgt {
+        height: 100%;
+
+        // abtex-sldr-top-rgt-sv
+        &-sv {
+          font-family: HN;
+          font-size: 14px;
+          color: @white;
+          margin: 11px 0px 0px 15px;
+          line-height: 10px;
+          float: left;
+
+          // abtex-sldr-top-rgt-sv .fa
+          .fa {
+            margin-right: 11px;
+          } // END abtex-sldr-top-rgt-sv .fa
+        } // END abtex-sldr-top-rgt-sv
+
+        // abtex-sldr-top-rgt-shr
+        &-shr {
+          font-family: HN;
+          font-size: 14px;
+          color: @white;
+          margin: 11px 0px 0px 38px;
+          line-height: 10px;
+          float: left;
+
+          // abtex-sldr-top-rgt-shr .fa
+          .fa {
+            margin-right: 11px;
+          } // END abtex-sldr-top-rgt-shr .fa
+        } // END abtex-sldr-top-rgt-shr
+      } // END abtex-sldr-top-rgt
+    } // END abtex-sldr-top
+
+    // abtex-sldr-mid
+    &-mid {
+      width: 100%;
+      height: 250px;
+      overflow: hidden;
+
+      // abtex-sldr-mid-img
+      &-img {
+        width: 180px;
+        height: 180px;
+        border: 3px solid @grey-3;
+        border-radius: 50%;
+        background-color: @white;
+        margin: 34px 0px 0px 15px;
+        float: left;
+
+        // abtex-sldr-mid-img-sml
+        &-sml {
+          width: 75px;
+          height: 75px;
+          border: 2px solid @grey-3;
+          border-radius: 50%;
+          background-color: @white;
+          margin: 116px 0px 0px 110px;
+        } // END abtex-sldr-mid-img-sml
+      } // END abtex-sldr-mid-img
+
+      // abtex-sldr-mid-top
+      &-top {
+        width: 400px;
+        margin-top: 32px;
+        float: left;
+
+        // abtex-sldr-mid-top-lft
+        &-lft {
+          float: left;
+
+          // abtex-sldr-mid-top-lft-icon
+          &-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: @blue;
+
+            // abtex-sldr-mid-top-lft-icon .fa
+            .fa {
+              font-size: 20px;
+              color: @white;
+              margin: 10px 0px 0px 10px;
+            } // END abtex-sldr-mid-top-lft-icon .fa
+          } // END abtex-sldr-mid-top-lft-icon
+        } // END abtex-sldr-mid-top-lft
+
+        // abtex-sldr-mid-top-rgt
+        &-rgt {
+          margin-left: 16px;
+          float: left;
+
+          // abtext-sldr-mid-top-rgt-top
+          &-top {
+            max-width: 340px;
+            height: 22px;
+            font-family: HN;
+            font-weight: bold;
+            font-size: 22px;
+            color: @white;
+            line-height: 18px;
+            .txtc;
+          } // END abtex-sldr-mid-top-rgt-top
+
+          // abtext-sldr-mid-top-rgt-top-bttm
+          &-bttm {
+            color: #F2F2F2;
+
+            // abtex-sldr-mid-top-rgt-bttm-sv
+            &-sv {
+              font-family: HN-L;
+              color: @white;
+              float: left;
+
+              // abtex-sldr-mid-top-rgt-bttm-sv .fa
+              .fa {
+                margin-right: 11px;
+              } // END abtex-sldr-mid-top-rgt-bttm-sv .fa
+            } // END abtex-sldr-mid-top-rgt-bttm-sv
+
+            // abtex-sldr-mid-top-rgt-bttm-shr
+            &-shr {
+              font-family: HN-L;
+              color: @white;
+              float: left;
+              margin-left: 38px;
+
+              // abtex-sldr-mid-top-rgt-bttm-shr .fa
+              .fa {
+                margin-right: 11px;
+              } // END abtex-sldr-mid-top-rgt-bttm-shr .fa
+            } // END abtex-sldr-mid-top-rgt-bttm-shr
+          } // END abtex-sldr-mid-top-rgt-bttm
+        } // END abtex-sldr-mid-top-rgt
+      } // END abtex-sldr-mid-top
+
+      // abtex-sldr-mid-bttm
+      &-bttm {
+        width: 424px;
+        border-left: 1px solid @grey-3;
+        margin: 27px 0px 0px 20px;
+        float: left;
+        position: relative;
+
+        // abtex-sldr-mid-bttm-txt
+        &-txt {
+          max-height: 125px;
+          font-family: HN-L;
+          font-size: 16px;
+          color: @white;
+          margin-left: 20px;
+          position: relative;
+          bottom: 1px;
+          line-height: 25px;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 7;
+          -webkit-box-orient: vertical;
+          text-align: justify;
+        } // END abtex-sldr-mid-bttm-txt
+      } // END abtex-sldr-mid-bttm
+    } // END abtex-sldr-mid
+
+    // abtex-sldr-bttm
+    &-bttm {
+      width: 100%;
+      height: 76px;
+      background-color: rgba(0, 0, 0, 0.75);
+      color: @white;
+
+      // abtex-sldr-bttm-txt
+      &-txt {
+        height: 41px;
+        float: left;
+        margin: 18px 0px 0px 20px;
+
+        // abtex-sldr-bttm-txt-top
+        &-top {
+          height: 18px;
+          font-family: HN-L;
+          font-size: 18px;
+          line-height: 14px;
+
+          // abtex-sldr-bttm-txt-top div
+          div {
+            max-width: 250px;
+            display: inline-block;
+            vertical-align: top;
+            .txtc;
+          } // END abtex-sldr-bttm-txt-top div
+        } // END abtex-sldr-bttm-txt-top
+
+        // abtex-sldr-bttm-txt-bttm
+        &-bttm {
+          height: 14px;
+          font-family: HN-L;
+          font-size: 14px;
+          margin-top: 10px;
+          line-height: 10px;
+
+          // abtex-sldr-bttm-txt-bttm strong
+          strong {
+            max-width: 300px;
+            height: inherit;
+            font-family: HN-B;
+            font-weight: normal;
+            display: inline-block;
+            vertical-align: top;
+            .txtc;
+          } // END abtex-sldr-bttm-txt-bttm strong
+        } // END abtex-sldr-bttm-txt-bttm
+      } // END abtex-sldr-bttm-txt
+
+      // abtex-sldr-bttm-bttn
+      &-bttn {
+        width: 180px;
+        height: 35px;
+        border-radius: 5px;
+        background-color: @blue;
+        margin: 20px 10px 0px 0px;
+        float: right;
+
+        // abex-sldr-bttm-bttn-txt
+        &-txt {
+          height: 14px;
+          font-family: HN;
+          font-size: 14px;
+          color: @white;
+          margin: 10px 0px 0px 45px;
+          line-height: 10px;
+          float: left;
+
+          // abtex-sldr-bttm-bttn-txt .fa
+          .fa {
+            margin-left: 11px;
+          } // END abtex-sldr-bttm-bttn-txt .fa
+        } // END abtex-sldr-bttm-bttn-txt
+      } // END abtex-sldr-bttm-bttn
+    } // END abtex-sldr-bttm
+  } // END abtex-sldr
+
+  // abtex-desc
+  &-desc {
+    width: 100%;
+    //height: 446px;
+    height: auto;
+
+    // abtex-desc-hdr
+    &-hdr {
+      width: 650px;
+      height: 49px;
+      border-bottom: 1px solid @grey-3;
+      margin-left: 15px;
+      overflow: hidden;
+
+      // abtex-desc-hdr-txt
+      &-txt {
+        height: 18px;
+        font-family: HN-L;
+        font-size: 18px;
+        margin: 20px 0px 0px 15px;
+        line-height: 14px;
+
+        // abtex-desc-hdr-txt strong
+        strong {
+          font-family: HN;
+        } // END abtex-desc-hdr-txt strong
+
+        // abtex-desc-hdr-txt div
+        div {
+          max-width: 550px;
+          height: inherit;
+          display: inline-block;
+          vertical-align: top;
+          .txtc;
+        } // END abtex-desc-hdr-txt div
+      } // END abtex-desc-hdr-txt
+    } // END abtex-desc-hdr
+
+    // abex-des-bdy
+    &-bdy {
+      max-width: 630px;
+      //max-height: 370px;
+      height: auto;
+      font-family: HN;
+      font-size: 14px;
+      color: @black;
+      margin: 9px 0px 17px 24px;
+      line-height: 22px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 22;
+      -webkit-box-orient: vertical;
+       text-align: justify;
+    } // END abex-desc-bdy
+  } // END abtex-desc
+} // END abtex
+
+// txtc
+.txtc {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+} // END txtc

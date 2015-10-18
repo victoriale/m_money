@@ -186,8 +186,7 @@
       height:35px;
       position:relative;
       top:-1px;
-      color:@grey-3;
-      font-style:italic;
+      color:@black;
       text-align: left;
       border-left: none;
       border-right: none;
@@ -195,6 +194,22 @@
       border-bottom: 1px solid @grey-3;
       float: left;
       outline: 0;
+
+      ::-webkit-input-placeholder {
+         color: @grey-3;
+      }
+
+      :-moz-placeholder { /* Firefox 18- */
+         color: @grey-3;
+      }
+
+      ::-moz-placeholder {  /* Firefox 19+ */
+         color: @grey-3;
+      }
+
+      :-ms-input-placeholder {
+         color: @grey-3;
+      }
     }
 
     &-input{
@@ -203,6 +218,9 @@
       margin-bottom: 20px;
       border: 1px solid @grey-3;
       padding-left: 10px;
+      cursor: pointer;
+      position: relative;
+      text-align: left;
 
       .fa{
         float: right;
@@ -249,13 +267,6 @@
         line-height: 35px;
       }
 
-      &-reset{
-        color: @grey-4;
-        font-family: HN-L;
-        float: left;
-        margin-left: 30px;
-      }
-
       &-submit{
         width: 120px;
         height: 35px;
@@ -264,7 +275,7 @@
         border: none;
         color: @white;
         float: right;
-        margin-right: 30px;
+        margin-right: 80px;
 
         .fa{
           margin-left: 5px;
@@ -352,7 +363,6 @@
         font-family: HN-B;
 
         span{
-          color: @green;
           font-family: HN-B;
           margin: 0px 5px;
 

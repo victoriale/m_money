@@ -23,7 +23,7 @@ Associated Files: [The Earnings.less, Earnings.html for the module]
 
       <div class="earning_body-home_left_column">  <!-- created a class name right_column which has all the other classes inside this and applies all the right styling of "content bg" !-->
         {{#each earns}} <!-- handlebar with each loop to call the helper  -->
-        <a class="module-tile-link" href="{{link}}"> <!-- link class in module.less !-->
+        <a class="module-tile-link" href="{{preleasedURL}}"> <!-- link class in module.less !-->
           <div class="earning_body-content_rectangle"><!-- created a class of the content with date and text, circle and text !-->
             <div class="earning_body-month_text">{{month}} <!-- handlebar to display months  -->
               <div class="earning_body-date_text">{{day}}</div>  <!-- class is with specs of date and month !-->
@@ -46,7 +46,7 @@ Associated Files: [The Earnings.less, Earnings.html for the module]
       </div>
 
       <div class="module-footer">
-        <a href="{{ecalenderURL}}">
+        <a href="{{preleasedURL}}">
           <button class="module-footer-button">
             <span class="module-footer-button-text">See The Full List<i class = "fa fa-angle-right" style="margin-left:5%"></i></span>
             <span class="module-footer-button-ellipse"><i class="fa fa-line-chart"></i></span>
