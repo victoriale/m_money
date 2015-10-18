@@ -12,12 +12,15 @@ Template.ep_head.onCreated(function(){
     }
     data.compensation = PHcheck(data.compensation);
     Session.set('profile_header', data);
+    resizetext('.p-head-top-name','.p-head-top-name-txt', '44px');
   })
 
   this.autorun(function(){
+    //actual time of data coming in which is 5 hours and 15 mins
     var data = Session.get('profile_header');
     //date comparison
     if(typeof data != 'undefined'){
+      //grab date
       var apiDate = data['o_last_updated'].split(' ')[0];
       var today = [new Date().getFullYear(),new Date().getMonth()+1,new Date().getDate()];
       //year month day
@@ -25,11 +28,16 @@ Template.ep_head.onCreated(function(){
       var year = today[0] - Number(apiDate[0]);
       var month = today[1] - Number(apiDate[1]);
       var day = today[2] - Number(apiDate[2]);
+
       if(typeof lastUpdated == 'undefined'){
         //global scope
         lastUpdated = "test";
         if(day > 0){
-          lastUpdated = day+" Days ago";
+          if(day == 1){
+            lastUpdated = "Yesterday";
+          }else{
+            lastUpdated = day+" Days ago";
+          }
         }else{
           lastUpdated = "Today";
         }
@@ -37,7 +45,7 @@ Template.ep_head.onCreated(function(){
           lastUpdated = month+" Months ago";
         }
         if(year > 0){
-          lastUpdated = Year+" Months ago";
+          lastUpdated = year+" Months ago";
         }
       }//end nested if
     }

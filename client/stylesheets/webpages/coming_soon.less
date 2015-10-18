@@ -2,14 +2,14 @@
 Author: jyothyswaroop
 Created: 07/30/2015
 Description: stock disclaimer page
-Associated Files: stock_disclaimer_page_logic.js and stock_disclaimer_page.html
+Associated Files: coming_soon_logic.js and coming_soon.html
 */
 
 /* Imports global variable*/
-@import (reference)"../global_vars.less";
+@import "../global_vars.less";
 /* defeined a unique name for disclaimer as dis*/
-.dis_st{
-  .dis_st-n_m{
+.cm_son{
+  .cm_son-n_m{
     margin: 5px 0 0 5px;
   }
   /*defined the height and width for new module(n_m)*/
@@ -17,7 +17,7 @@ Associated Files: stock_disclaimer_page_logic.js and stock_disclaimer_page.html
   {
   background-color:  #ffffff;
   width: 680px;
-  height: 984px;
+  height: 823px;
   }
   // top header with black background
   &-hdtl{
@@ -149,8 +149,6 @@ Associated Files: stock_disclaimer_page_logic.js and stock_disclaimer_page.html
         font-size: 19px;
         font-family: HN-L;
         position: relative;
-        // top: -30px;
-        // left: 80px;
   }
     }
   }
@@ -160,8 +158,8 @@ Associated Files: stock_disclaimer_page_logic.js and stock_disclaimer_page.html
     width: 100px;
     height: 100px;
     float: left;
-    left: 20px;
-    top: 20px;
+    left: 15px;
+    top: 15px;
     position: relative;
   }
   /* defined the dimensions for the class circle*/
@@ -200,7 +198,7 @@ Associated Files: stock_disclaimer_page_logic.js and stock_disclaimer_page.html
   height: 100px;
   position: relative;
   top: 15px;
-  left: 40px;
+  left: 30px;
   float: left;
 }
 /* class date has all the font-weight and font specific*/
@@ -234,184 +232,84 @@ Associated Files: stock_disclaimer_page_logic.js and stock_disclaimer_page.html
   position: relative;
   top: -4px;
   }
-
-  //the bottom bar
-  &-oth{
-  &-bar {
-    width: 680px;
-    height: 35px;
-    background-color: rgba(0, 0, 0, 0.85);;
-    color: @white;
-    font-size: 16px;
-    text-align: left;
-    top: 30px;
-    position: relative;
-    float: left;
-    // the font awesome icon color
-    .fa {
-      color: @white;
-    }
-    //the link color
-    a {
-      color:@white;
-    }
-    &-text{
-      font-family: HN-L;
-      color:  #ffffff;
-      font-size: 14px;
-      text-align: right;
-    }
-    //the title next to save and share
-    &-title{
-      border-right: 1px solid #363636;
-      //background-color: rgba(0, 0, 0, 0.85);;
-      text-align: center;
-      float: left;
-      height: 35px;
-      line-height: 35px;
-      max-width: 490px;
-      font-size: 16px;
-      font-family: HN-B;
-      text-align: left;
-      left: 15px;
-      padding-right: 10px;
-      position: relative;
-
-
-      &:after {
-        display:"block";
-        content: "";
-        clear: both;
-      }
-}
-    // giving the specifications data for the helper
-    &-helper{
-      max-width:350px;
-      height: 30px;
-      float: left;
-      font-size: 16px;
-      font-family: HN-B;
-      padding-right: 6px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    //side data specifications
-    &-side{
-      width: 129px;
-      height: 30px;
-      float:left;
-      font-size: 16px;
-      font-family: HN-B;
-}
-    // the button for save and share
-    &-button {
-      border: none;
-      text-align: center;
-      float: left;
-      line-height: 35px;
-      height:35px;
-      width:85px;
-      margin-right: 8px;
-      font-family: HN-L;
-      left: 20px;
-      position: relative;
-
-      .fa{
-        margin-right: 10px;
-      }
-    }
-  }
-}
 /* created a class for the line  */
-&-line1{
-  width: 680px;
-  //height: 1px;
-  position: relative;
-  top:160px;
-  background-color: #dadada;
-}
-/* specified a font style for the stock disclaimer(disc2) */
-&-disc2{
-  font-family: HN-B;
-  color:  #000000;
-  font-size: 18px;
-  line-height: 28px;
-  text-align: left;
-  position: absolute;
-  top: 13px;
-  left: 14px;
-}
-//now reading
-&-nr{
-  position: relative;
-  left: 77px;
-  top: 177px;
-  font-size: 12px;
-  font-family: HN-L;
-  text-align: left;
-  width: 188px;
-  overflow: hidden;
-
-  &_bold
-  {
-    font-family: HN-B;
-    font-style: normal;
-  }
-
-  &_blue
-  {
-    color: @blue;
-    margin-left: 5px;
-  }
-}
-//for drop down
-&-nr2{
-  position: relative;
-  top: 41px;
-  left: -21px;
-  width: 169px;
-  float: right;
-  select{
-    font-family: HN-B;
-    border-style: none;
-  }
-}
-/* created a class for the line2  */
-&-line2{
-  width: 650px;
-  height: 1px;
-  float: left;
-  position: absolute;
-  top:45px;
-  left:15px;
-  background-color: #cccccc;
+ &-line1{
+   width: 680px;
+   height: 1px;
+   position: relative;
+   top:125px;
+   background-color: #cccccc;
 }
 /* created a container name 'para' for the text  */
 &-para{
-  width: 650px;
-  height: 164px;
+  width: 680px;
+  height: 371px;
   position: relative;
-  top: 82px;
-  left: 15px;
+  top: 26px;
   float: left;
-  //overflow: hidden;
-  //text-overflow: ellipsis;
+  background: -webkit-linear-gradient(-90deg,#ffffff, #d7d7d7);
+  background: -webkit-linear-gradient(-90deg,#ffffff , #d7d7d7 ); /* For Safari 5.1 to 6.0 */
+ background: -o-linear-gradient(-90deg,#ffffff , #d7d7d7 ); /* For Opera 11.1 to 12.0 */
+ background: -moz-linear-gradient(-90deg,#ffffff , #d7d7d7 ); /* For Firefox 3.6 to 15 */
+ background: linear-gradient(180deg,#ffffff , #d7d7d7 ); /* Standard syntax */
 }
-/* class name 'parat' has the fontstyle*/
-&-parat{
-  font-family: HN;
+/*class name 'helloct' is the container  */
+&-helloct{
+  width: 192px;
+  height: 53px;
+  float: left;
+  position: absolute;
+  top:79px;
+  left: 61px;
+}
+/* class name 'hellot' has the fontstyle*/
+&-hellot{
+  font-family: HN-B;
   color:  #000000;
-  font-size: 14px;
+  font-size: 72px;
   text-align: left;
-//  overflow: hidden;
-  //text-overflow: ellipsis;
+  line-height: 50px;
+}
+/* sorry not container */
+&-sryct{
+  width: 437px;
+  height: 55px;
+  float: left;
+  position: absolute;
+  top: 159px;
+  left:60px;
+}
+/* sorry text */
+&-srytxt{
+  font-family: HN-L;
+  color: #000000;
+  font-size: 24px;
+  line-height: 28px;
+  text-align: left;
+}
+//calander font container
+&-calct{
+  height: 112px;
+  width: 121px;
+  float: left;
+  position: absolute;
+  left:501px;
+  top:205px;
+}
+//calander fot
+&-calft{
+  font-family: FontAwesome;
+  color:  #cbcbcb;
+  font-size: 120px;/* Approximation due to font substitution */
+  font-weight: 400;
+  line-height: 28px;/* Approximation due to font substitution */
+  text-align: right;
 }
 /* container for the fotter('ft') */
 &-ft{
   width: 680px;
-  height: 505px;
-  margin-top: 412px;
+  height: 280px;
+  margin-top: 496px;
   // position: absolute;
   // top: 595px;
   // position: relative;

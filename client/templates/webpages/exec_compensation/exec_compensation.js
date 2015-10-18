@@ -88,12 +88,18 @@ Template.exec_compensation.helpers({
   //Helper to get info for executive header
   execHeader: function(){
     var data = Session.get('new_compensation');
-    console.log('heres the data', data);
+
     if(typeof(data) === 'undefined'){
       return false;
     }
-
+    //Get most recent year
+    var year = data.select_year[0];
     var officerData = data.officer;
+
+    officerData.salary = dNumberToCommaNumber(data.comp_array[year].Salary);
+    officerData.company = data.compensation_periods[0].c_name;
+    officerData.totalComp = dNumberToCommaNumber(data.comp_array[year].TotalComp);
+
     var date = new Date(officerData.o_last_updated);
 
     officerData.lastUpdated = (date.getMonth() + 1) + '/' + (date.getDay() + 1) + '/' + (date.getFullYear());

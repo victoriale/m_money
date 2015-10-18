@@ -6,24 +6,34 @@
 
 <template name="money_memory_page">
   <div class="mmpg">
+    {{#with companyData}}
+    <a href="{{backToComp}}">
+      <div class="excmp-return">
+        <div class="excmp-return-button">
+          <i class="fa fa-mail-reply"></i>
+        </div>
+        <div class="excmp-return-triangle"></div>
+
+
+        Go Back To <span class="excmp-b">{{c_name}}'s</span> Company Profile
+      </div>
+    </a>
     <!--Page header-->
     <div class="mmpg-hdr">
       <!-- the header box -->
       <div class="mmpg-hdr-head-box">
         <!-- image inside the header box-->
         <div class="mmpg-hdr-head-image">
-          <!-- he back button symbol above the image-->
-          <button class="mmpg-hdr-head-image-icon"><i class="fa fa-reply"></i></button>
         </div>
         <!-- the text inside the header box-->
         <div class="mmpg-hdr-text">
           <!-- the latest update-->
           <div class="mmpg-hdr-text-update">
-            LAST UPDATED: 06/24/2015, 8:00 AM EST
+            LAST UPDATED: {{c_tr_last_updated}}
           </div>
           <!-- location of the executive-->
           <div class="mmpg-hdr-text-loc">
-            <i class="fa fa-map-marker"></i> United States
+            <i class="fa fa-map-marker"></i> {{location}}
           </div>
           <!-- the name of the page-->
           <div class="mmpg-hdr-text-name">
@@ -31,7 +41,7 @@
           </div>
           <!-- the name of the company-->
           <div class="mmpg-hdr-text-auth">
-            at {{company}}
+            at {{c_name}}
           </div>
         </div>
       </div>
@@ -45,8 +55,8 @@
       </div>
       <div class="mmpg-about-txt">
         Money memory allows you to see how much you could have made if you invested in {{company}}
-        at a certain point in time.  To get started 1.) input your desired date of investment, 2.) Select
-        your start & end dates and lastly 3.) Click "Submit" and watch discover the outcome
+        at a certain point in time.  To get started 1.) Input your desired investment, 2.) Select
+        your start & end dates and lastly 3.) Click "Submit" and discover the outcome.
       </div>
     </div>
     <!--End What is this page? box-->
@@ -59,41 +69,48 @@
     </div>
 
     <div class="mmpg-monmem">
-      <div class="mmpg-monmem-lbls">
-        <div class="mmpg-monmem-lbl">Initial Investment</div>
-        <div class="mmpg-monmem-lbl">Start Date</div>
-        <div class="mmpg-monmem-lbl">End Date</div>
-      </div>
-      <div class="mmpg-monmem-inputs">
-        <div class="mmpg-monmem-input">
-          <input type="text" name="amount" class="mmpg-monmem-amt" placeholder="Amount here...">
-          <i class="fa fa-money"></i>
+      <form id="investment-form">
+        <div class="mmpg-monmem-lbls">
+          <div class="mmpg-monmem-lbl">Initial Investment</div>
+          <div class="mmpg-monmem-lbl">Start Date</div>
+          <div class="mmpg-monmem-lbl">End Date</div>
         </div>
-        <div class="mmpg-monmem-input">
-          Select a date <i class="fa fa-caret-down"></i><i class="fa fa-calendar"></i>
+        <div class="mmpg-monmem-inputs">
+          <div class="mmpg-monmem-input">
+            <input type="text" name="amount" class="mmpg-monmem-amt" placeholder="Amount here..." value={{initialInvestmentDisplay}}>
+            <i class="fa fa-money"></i>
+          </div>
+          <div id="mm_page_start_div" class="mmpg-monmem-input">
+            {{> mm_page_start_date}}
+            {{startDateDisplay}}
+            <i id="mm_page_start_container" class="fa fa-caret-down"></i><i class="fa fa-calendar"></i>
+          </div>
+          <div id="mm_page_end_div" class="mmpg-monmem-input">
+            {{> mm_page_end_date}}
+            {{endDateDisplay}}
+            <i id="mm_page_end_container" class="fa fa-caret-down"></i><i class="fa fa-calendar"></i>
+          </div>
         </div>
-        <div class="mmpg-monmem-input">
-          Select a date <i class="fa fa-caret-down"></i><i class="fa fa-calendar"></i>
+        <div class="mmpg-monmem-result">
+          {{#with moneyMemoryResult}}
+            <div class="mmpg-monmem-result-lbl">you would have {{earn_lose}}</div>
+            <div class="mmpg-monmem-result-amt" style="color: {{colorIndicator}}">${{roi}}</div>
+          {{/with}}
+          <div class="mmpg-monmem-result-bot">
+            <button class="mmpg-monmem-result-submit" type="submit">Submit <i class="fa fa-angle-right"></i></button>
+          </div>
         </div>
-      </div>
-      <div class="mmpg-monmem-result">
-        <div class="mmpg-monmem-result-lbl">you would have earned</div>
-        <div class="mmpg-monmem-result-amt">$0.00</div>
-        <div class="mmpg-monmem-result-bot">
-          <div class="mmpg-monmem-result-reset">RESET</div>
-          <button class="mmpg-monmem-result-submit">Submit <i class="fa fa-angle-right"></i></button>
-        </div>
-      </div>
+      </form>
     </div>
     <!-- End Money Memory Section-->
 
     <!--Stock Graph section -->
     <div class="mmpg-secthdr">
       <div class="mmpg-secthdr-above">
-        <span style="font-family:HN-B">Stock Graph</span> for {{company}}:
+        <span style="font-family:HN-B">Stock Graph</span> for {{c_name}}:
       </div>
       <div class="mmpg-secthdr-below">
-        <i class="fa fa-calendar"></i> Updated {{updated}}
+        <i class="fa fa-calendar"></i> Updated {{csi_price_last_updated}}
       </div>
     </div>
 
@@ -121,44 +138,52 @@
       <div class="mmpg-stock-stats-left">
         <div class="mmpg-stock-stats-data">
           <div class="mmpg-stock-stats-data-lbl">Current Price</div>
-          <div class="mmpg-stock-stats-data-amt">${{current}}</div>
+          <div class="mmpg-stock-stats-data-amt">${{csi_price}}</div>
         </div>
         <div class="mmpg-stock-stats-data">
           <div class="mmpg-stock-stats-data-lbl">Open Price</div>
-          <div class="mmpg-stock-stats-data-amt">${{open}}</div>
+          <div class="mmpg-stock-stats-data-amt">${{csi_opening_price}}</div>
         </div>
         <div class="mmpg-stock-stats-data">
           <div class="mmpg-stock-stats-data-lbl">Close Price</div>
-          <div class="mmpg-stock-stats-data-amt">${{close}}</div>
+          <div class="mmpg-stock-stats-data-amt">${{csi_closing_price}}</div>
         </div>
         <div class="mmpg-stock-stats-data" style="border:none">
           <div class="mmpg-stock-stats-data-lbl">Day Change $-%</div>
-          <div class="mmpg-stock-stats-data-amt">
-            <span><i class="fa {{icon}}"></i>{{changeamt}}</span>
+          <div class="mmpg-stock-stats-data-amt" style="color: {{change_color}}">
+            <span><i class="fa {{icon}}"></i>{{csi_price_change_since_last}}</span>
              |
-            <span style="margin-right:0px">{{changepct}}</span>
+            <span style="margin-right:0px">{{csi_percent_change_since_last}}</span>
           </div>
         </div>
       </div>
       <div class="mmpg-stock-stats-right">
         <div class="mmpg-stock-stats-data">
           <div class="mmpg-stock-stats-data-lbl">Day Range</div>
-          <div class="mmpg-stock-stats-data-amt">${{rangebot}} - ${{rangetop}}</div>
+          <div class="mmpg-stock-stats-data-amt">${{csi_closing_price}} - ${{csi_price}}</div>
         </div>
         <div class="mmpg-stock-stats-data">
           <div class="mmpg-stock-stats-data-lbl">52 Week Range</div>
-          <div class="mmpg-stock-stats-data-amt">${{range52bot}} - ${{range52top}}</div>
+          <div class="mmpg-stock-stats-data-amt">${{start_range}} - ${{csi_price}}</div>
         </div>
         <div class="mmpg-stock-stats-data" style="border:none">
           <div class="mmpg-stock-stats-data-lbl">Vol/Avg.</div>
-          <div class="mmpg-stock-stats-data-amt">{{vol}}/{{avg}}</div>
+          <div class="mmpg-stock-stats-data-amt">{{csi_trading_vol}}/{{avg_volume}}</div>
         </div>
       </div>
     </div>
     <!-- End Stock Graph Section-->
-
+    {{/with}}
 
 
     {{> didnt_find}}
   </div>
+</template>
+
+<template name="mm_page_start_date">
+  <input id="mm-page-start-date" style="display: none">
+</template>
+
+<template name="mm_page_end_date">
+  <input id="mm-page-end-date" style="display: none">
 </template>

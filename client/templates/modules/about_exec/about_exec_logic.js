@@ -41,11 +41,13 @@ var counter = Session.get('count');
 
 //
 Template.about_exec.helpers({
-  // ExecURL: function(){
-  //   var data = Session.get('about_exec');
-  //   var id = data['o_ic'];
-  //   return ExecutiveURL(id);
-  // }
+  rivalInfo: function(){
+    var data = Session.get('about_exec');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data;
+  },
 
   //link to Education History page
   EHTileURL: function(){

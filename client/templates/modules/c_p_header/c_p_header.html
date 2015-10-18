@@ -8,7 +8,7 @@
   <div class="p">
    {{> cp_head}}
    {{> cp_body}}
-   {{> cp_rdr}}
+   <!--{{> cp_rdr}}-->
  </div>
 </template>
 
@@ -52,8 +52,8 @@
     <div class="p-body-box" style="border-right: 0px; width:52%">
         <div>Stock Price & Change Percentage</div>
         {{#with stockInfo}}
-        <div class="value"><span class="p-bold_font" style="color:#999999">${{csi_price}}</span>  <span style="color:{{Color}}">{{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%)</span></div>
-        <div class="last-updated">as of {{csi_price_last_updated}}</div>
+        <div class="value"><span class="p-bold_font" style="color:#999999">${{csi_price}}</span>  <span style="color: {{changeColor csi_price_change_since_last}}">{{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%)</span></div>
+        <div class="last-updated">as of {{lastUpdated}}</div>
         {{/with}}
     </div>
   </div>

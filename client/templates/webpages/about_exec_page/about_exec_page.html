@@ -1,6 +1,6 @@
 <!--
-  Author: Jerek Shoemaker
-  Created: 10/14/2015
+  Author: Sri Sindhusha Kuchipudi
+  Created: 10/15/2015
   Description: about_exec_page webpage
   Associated Files: about_exec_page.html, about_exec_page.less, about_exec_page_logic.js
 -->
@@ -9,13 +9,15 @@
   <div class = "abtex">
 
     <!-- Header Section -->
-    <a href = "#">
-      <div class = "abtex-hdr">
+
+    <div class = "abtex-hdr">
+      <a href = "{{Execurl}}">
         <div class = "abtex-hdr-box"><i class = "fa fa-reply"></i></div>
         <div class = "abtex-hdr-arrw"></div>
-        <div class = "abtex-hdr-txt">Go Back To <strong>{{exec}}'s</strong> Profile</div>
-      </div>
-    </a>
+      </a>
+        <div class = "abtex-hdr-txt">Go Back To <strong>{{fname}}&nbsp;{{lname}}'s</strong> Profile</div>
+    </div>
+
     <!-- END Header Section -->
 
     <!-- Title Section -->
@@ -25,7 +27,7 @@
         <div class = "abtex-ttl-txt-upd">LAST UPDATED: {{upd}}</div>
         <div class = "abtex-ttl-txt-loc"><i class = "fa fa-map-marker"></i>&nbsp;{{location}}</div>
         <div class = "abtex-ttl-txt-abt">About</div>
-        <div class = "abtex-ttl-txt-nm">For {{exec}}</div>
+        <div class = "abtex-ttl-txt-nm">For {{fname}}&nbsp;{{lname}}</div>
       </div>
     </div>
     <!-- END Title Section -->
@@ -36,7 +38,7 @@
       <!-- Top Portion of Slider -->
       <div class = "abtex-sldr-top">
         <div class = "abtex-sldr-top-lft">
-          <div class = "abtex-sldr-top-lft-nm">About {{exec}}</div>
+          <div class = "abtex-sldr-top-lft-nm">About {{fname}}&nbsp;{{lname}}</div>
         </div>
         <div class = "abtex-sldr-top-rgt">
           <a href = "#">
@@ -51,12 +53,12 @@
 
       <!-- Middle Portion of Slider -->
       <div class = "abtex-sldr-mid">
-        <div class = "navigation-button-left"><i class = "fa fa-angle-left"></i></div>
-        <div class = "navigation-button-right"><i class = "fa fa-angle-right"></i></div>
+        <!-- <div class = "navigation-button-left"><i class = "fa fa-angle-left"></i></div>
+        <div class = "navigation-button-right"><i class = "fa fa-angle-right"></i></div> -->
 
         <!-- Images on Left -->
         <a href = "#">
-          <div class = "abtex-sldr-mid-img">
+          <div class = "abtex-sldr-mid-img" style="background-image:url({{pic}})">
             <div class = "abtex-sldr-mid-img-sml"></div>
           </div>
         </a>
@@ -68,7 +70,7 @@
             <div class = "abtex-sldr-mid-top-lft-icon"><i class = "fa fa-briefcase"></i></div>
           </div>
           <div class = "abtex-sldr-mid-top-rgt">
-            <div class = "abtex-sldr-mid-top-rgt-top">{{exec}}</div>
+            <div class = "abtex-sldr-mid-top-rgt-top">{{fname}}&nbsp;{{lname}}</div>
             <div class = "abtex-sldr-mid-top-rgt-bttm">
               <a href = "#">
                 <div class = "abtex-sldr-mid-top-rgt-bttm-sv"><i class = "fa fa-heart"></i>Save</div>
@@ -84,7 +86,7 @@
         <!-- Exec's Description -->
         <div class = "abtex-sldr-mid-bttm">
           <div class = "abtex-sldr-mid-bttm-txt">
-            {{exec}}{{desc1}}{{exec}}{{desc2}}{{rival1}}, {{rival2}}, and {{rival3}}.
+            {{bio}}
           </div>
         </div>
         <!-- END Exec's Description -->
@@ -94,10 +96,10 @@
       <!-- Bottom Portion of Slider -->
       <div class = "abtex-sldr-bttm">
         <div class = "abtex-sldr-bttm-txt">
-          <div class = "abtex-sldr-bttm-txt-top">Want to know more about <div>{{exec}}</div>?</div>
+          <div class = "abtex-sldr-bttm-txt-top">Want to know more about <div>{{fname}}&nbsp;{{lname}}</div>?</div>
           <div class = "abtex-sldr-bttm-txt-bttm">Profile Last Updated On: <strong>{{dt}}</strong></div>
         </div>
-        <a href = "#">
+        <a href = "{{Execurl}}">
           <div class = "abtex-sldr-bttm-bttn">
             <div class = "abtex-sldr-bttm-bttn-txt">View Profile<i class = "fa fa-angle-right"></i></div>
           </div>
@@ -111,10 +113,10 @@
     <!-- Description Section -->
     <div class = "abtex-desc">
       <div class = "abtex-desc-hdr">
-        <div class = "abtex-desc-hdr-txt"><strong>About</strong> <div>{{exec}}</div>:</div>
+        <div class = "abtex-desc-hdr-txt"><strong>About</strong> <div>{{fname}}&nbsp;{{lname}}</div>:</div>
       </div>
       <div class = "abtex-desc-bdy">
-        {{bigdesc1}}<br><br>{{bigdesc2}}<br><br>{{bigdesc3}}<br><br>{{bigdesc4}}<br><br>{{bigdesc5}}
+        {{bio}}
       </div>
     </div>
     <!-- END Description Section -->

@@ -55,11 +55,19 @@ Template.whos_who.events({
 
 Template.whos_who.helpers({
   //USED FOR TILES
-  wtile:[
-    {name:"Founders",fnt:"fa-rocket"},
-    {name:"Executives",fnt:"fa-briefcase"},
-    {name:"Board & Committee",fnt:"fa-gavel"},
-  ],
+  wtile: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    var tilearray = [
+      {name:"Founders",fnt:"fa-rocket", url:foundersURL(data.c_id)},
+      {name:"Executives",fnt:"fa-briefcase", url:foundersURL(data.c_id)},
+      {name:"Board & Committee",fnt:"fa-gavel", url:foundersURL(data.c_id)},
+    ];
+    return tilearray;
+  },
+
   //functions
   companyName: function(){
     var data = Session.get('profile_header');
@@ -89,7 +97,13 @@ Template.whos_who.helpers({
   {
     return '';
   }
-  var title = who[index]['o_current_title']['titles'][0]['title'];
+  if(Session.get('IsCompany')){
+    var title = who[index]['o_current_title']['titles'][0]['title'];
+  }
+  if(Session.get('IsExec')){
+    var title = who[j]['o_titles'][0];
+  }
+
   return title;
   },
 
@@ -140,8 +154,27 @@ Template.whos_who.helpers({
         j++;
       }
     }
-
     return returnArray;
-  }
+  },
+  connectionsURL: function(){
+    var data = Session.get('profile_header');
+    if(typeof data =='undefined'){
+      return '#'
+    }
+    return foundersURL(data.c_id);
+  },
 
+  checkdata: function(){
+    var data = Session.get('whos_who');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data;
+  },
 });
+
+function foundersURL(c_id){
+  return Router.path('content.boardcommittee',{
+    comp_id: c_id
+  })
+}

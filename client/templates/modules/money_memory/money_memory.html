@@ -32,7 +32,7 @@
         <span class="mon-mem_body_stock_price"><b>${{csi_price}}</b></span>
         <span class="mon-mem_body_stock_history" style = "color: {{stck_chng}}">
           <i class="fa fa-{{arrow}}" style="margin-left:10px"></i>
-          <span class="mon-mem_body_stock_history_text" style = "font-family: HN-B">{{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%)</span>
+          <span class="mon-mem_body_stock_history_text" style = "font-family: HN-B; color:{{changeColor csi_price_change_since_last}}">{{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%)</span>
         </span>
       </div>
 ​
@@ -122,7 +122,7 @@
             </div>
           </div>
         </div>
-        <a class="module-tile-link" href="#">
+        <a class="module-tile-link" href="{{linkToMM}}">
           <div class="module-tile-hover">
             <div class="module-tile-name">
               <i class="fa fa-calculator"></i>Money Memory
@@ -166,7 +166,7 @@
             </div>
           </div>
         </div>
-        <a class="module-tile-link" href="#">
+        <a class="module-tile-link" href="{{linkToCompetitors}}">
           <div class="module-tile-hover">
             <div class="module-tile-name">
               <i class="fa fa-fighter-jet"></i>Competitors

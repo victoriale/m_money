@@ -45,8 +45,18 @@ Template.latest_news.onRendered(function(){
 })
 
 Template.latest_news.helpers({
+  newsURL: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '#';
+    }
+    return Router.path('content.articlenews',{
+      comp_id: data.c_id
+    });
+  },
+
   isData: function(){
-    data = Session.get('latest_news');
+    var data = Session.get('latest_news');
     if(typeof data == undefined){
       return false;
     }
