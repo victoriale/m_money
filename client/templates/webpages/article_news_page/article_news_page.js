@@ -37,7 +37,6 @@ Template.article_news_page.onRendered(function(){
     }
     Meteor.http.get(urlString,
       function(error, data){
-        console.log(data);
       Session.set("article_news_page",data);
     });
   });
@@ -66,8 +65,6 @@ Template.article_news_page.events({
   'click .art-lst-hdr-righthov': function(){
     var counter = Session.get("anpCount");
     var tnews = Session.get('article_news_page');
-    console.log(tnews);
-    console.log(counter);
     if(counter < tnews['data'].length - 1)
     {
       counter++;
@@ -82,13 +79,29 @@ Template.article_news_page.events({
 })
 
 Template.article_news_page.helpers({
-
+  compInfo: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data;
+  },
   newsCarousel: function(){
     var news = Session.get('article_news_page');
     var count = Session.get('anpCount');
     if(typeof news != 'undefined'){
-      news['data'][count]['pubDate_ut'] = get_full_date(Number(news['data'][count]['pubDate_ut']));
       return news['data'][count];
+    }else{
+      return '';
+    }
+  },
+
+  dateWritten: function(){
+    var news = Session.get('article_news_page');
+    var count = Session.get('anpCount');
+    if(typeof news != 'undefined'){
+      var date = Number(news['data'][count]['pubDate_ut']) * 1000;
+      return get_full_date(date);
     }else{
       return '';
     }

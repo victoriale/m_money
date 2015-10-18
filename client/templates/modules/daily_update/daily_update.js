@@ -38,8 +38,7 @@ Template.daily_update.helpers({
   aiInfo: function(){
       var data = Session.get('AI_daily_update');
       var content = {};
-      if(typeof data == 'undefined'){
-        content['content'] = '';
+      if(typeof data == 'undefined' || data == false){
         return '';
       }
       content['content'] = data;
