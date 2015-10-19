@@ -7,11 +7,30 @@ Associated Files: terms_of_service.html, terms_of_service_logic.js, about_us_pag
 Template.terms_of_service.helpers({
   Title:"Terms of Service",
   About:"InvestKit’s Terms of Service",
-  Profile: "[Profile]",
+  Profile: function(){
+    if(Session.get('IsCompany')) {
+       return Session.get("profile_header").c_name;
+    } else if(Session.get('IsExec')){
+      data = Session.get('profile_header');
+      return data['o_first_name'] + " " + data['o_last_name'];
+    } else if(Session.get('IsLocation')){
+      return "San Francisco";
+    }
+  },
   Country: "The United States",
   Statement: "For InvestKit",
   Update: "06/24/2015,8:00 AM EST",
-  back_url:"#",
+  back_url: function(){
+    if(Session.get('IsCompany')) {
+       return "/company/"+ Session.get("profile_header").c_ticker;
+    } else if(Session.get('IsExec')){
+       return "/executive/"+ Session.get("profile_header").o_id;
+    } else if(Session.get('IsLocation')){
+      return "/location";
+    } else {
+      return "/";
+    }
+  },
   profile_ulr:"#",
   image_url:"/tribune_logo.png"
 })
@@ -48,7 +67,3 @@ Template.terms_of_service.events({
     }
   }
 });
-
-Template.terms_of_service.helpers({
-  BackTxt: "[Profile]"
-})

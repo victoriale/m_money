@@ -4,10 +4,20 @@ Created: [10-15-2015]
 Description:conatct us webpage
 Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
 */
+
 Template.about_us_page.helpers({
   Title:"About Us",
   About:"InvestKit’s About Us",
-  Profile: "[Profile]",
+  Profile: function(){
+    if(Session.get('IsCompany')) {
+       return Session.get("profile_header").c_name;
+    } else if(Session.get('IsExec')){
+      data = Session.get('profile_header');
+      return data['o_first_name'] + " " + data['o_last_name'];
+    } else if(Session.get('IsLocation')){
+      return "San Francisco";
+    }
+  },
   Country: "The United States",
   Statement: "Take a Seat and get to know us better.",
   Update: "06/24/2015,8:00 AM EST",
@@ -30,7 +40,17 @@ Template.about_us_page.helpers({
       image:"Icon_Financial_Advisors.png"
    }
   ],
-  back_url:"#",
+  back_url: function(){
+    if(Session.get('IsCompany')) {
+       return "/company/"+ Session.get("profile_header").c_ticker;
+    } else if(Session.get('IsExec')){
+       return "/executive/"+ Session.get("profile_header").o_id;
+    } else if(Session.get('IsLocation')){
+      return "/location";
+    } else {
+      return "/";
+    }
+  },
   profile_ulr:"#",
   image_url:"/tribune_logo.png"
 });

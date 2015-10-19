@@ -41,11 +41,30 @@ Template.disclaimer_page.events({
 Template.disclaimer_page.helpers({
   Title:"Disclaimer",
   About:"InvestKit's Disclaimer",
-  Profile: "[Profile]",
+  Profile: function(){
+    if(Session.get('IsCompany')) {
+       return Session.get("profile_header").c_name;
+    } else if(Session.get('IsExec')){
+      data = Session.get('profile_header');
+      return data['o_first_name'] + " " + data['o_last_name'];
+    } else if(Session.get('IsLocation')){
+      return "San Francisco";
+    }
+  },
   Country: "The United States",
   Statement: "For Investkit",
   Update: "06/24/2015,8:00 AM EST",
-  back_url:"#",
+  back_url: function(){
+    if(Session.get('IsCompany')) {
+       return "/company/"+ Session.get("profile_header").c_ticker;
+    } else if(Session.get('IsExec')){
+       return "/executive/"+ Session.get("profile_header").o_id;
+    } else if(Session.get('IsLocation')){
+      return "/location";
+    } else {
+      return "/";
+    }
+  },
   profile_ulr:"#",
   image_url:"/tribune_logo.png"
 })
