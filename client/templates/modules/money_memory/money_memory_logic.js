@@ -122,6 +122,12 @@ Template.money_memory.helpers({
 
     return Router.path('content.competitor', {company_id: params.company_id});
   },
+  //Helper to determine URL to competitors page
+  linkToFinOverview: function(){
+    var params = Router.current().getParams();
+
+    return Router.path('content.finoverview', {company_id: params.company_id});
+  },
   //Helper to display initial investment
   user_initial_investment: function(){
     var data = Session.get('user_initial_investment');
