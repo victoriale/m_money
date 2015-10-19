@@ -111,83 +111,85 @@ cfoGraphObject = {
     }]
 };
 
-Template.co_fin_overview.helpers(
-    {
-        getGraphObject: function()
-        {
-            var url =  "http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?";
-            $.getJSON(url,  function(data) {
-              cfoGraphObject.series[0].data = data;
-              //set chart to initial position
-              var ctime = cfoGraphObject.series[0].data[cfoGraphObject.series[0].data.length-1][0];
-              cfoGraphObject.xAxis.min = ctime - 24*3600000;
-              cfoGraphObject.xAxis.labels.format = "{value:%l%p}";
-              new Highcharts.Chart(cfoGraphObject);
-            });
-            return cfoGraphObject;
-        },
-        btns: function()
-        {
-            var btns = [
-                {text: "1D"},
-                {text: "5D"},
-                {text: "10D"},
-                {text: "1M"},
-                {text: "3M"},
-                {text: "6M"},
-                {text: "9M"},
-                {text: "1Y"},
-                {text: "3Y"},
-                {text: "5Y"},
-                {text: "10Y"}
-            ];
-            for(var i = 1; i <= 11; i++)
-            {
-                btns[i-1].num = i;
-            }
-            return btns;
-        },
-
-        isInitial: function(num)
-        {
-            if(num==1)
-                return " cfo-btm-data-period-btn-a";
-            else
-                return "";
-        },
-
-        tiles: function()
-        {
-            for(var i = 0; i < cfoTiles.length; i++)
-            {
-                cfoTiles[i].left.num = i+1;
-                cfoTiles[i].right.num = i+1;
-            }
-            return cfoTiles;
-        },
-
-        getTileColor: function()
-        {
-            if(cfoIsGrey)
-            {
-                cfoIsGrey = false;
-                return "cfo-btm-data-tile-grey";
-            } else {
-                cfoIsGrey = true;
-                return "cfo-btm-data-tile";
-            }
-        },
-
-        company: function()
-        {
-            var c = {
-                formalName: "Facebook, Inc.",
-                informalName: "Facebook",
-                ticker: "FB"
-            };
-            return c;
-        }
+Template.co_fin_overview.helpers({
+  finData: function(){
+    var data = Session.get('fin_overview');
+    if(typeof data == 'undefined'){
+      return '';
     }
+    var newData = data.company_data;
+    return newData;
+  },
+    getGraphObject: function(){
+      var url =  "http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?";
+      $.getJSON(url,  function(data) {
+        cfoGraphObject.series[0].data = data;
+        //set chart to initial position
+        var ctime = cfoGraphObject.series[0].data[cfoGraphObject.series[0].data.length-1][0];
+        cfoGraphObject.xAxis.min = ctime - 24*3600000;
+        cfoGraphObject.xAxis.labels.format = "{value:%l%p}";
+        new Highcharts.Chart(cfoGraphObject);
+      });
+      return cfoGraphObject;
+    },
+
+    btns: function(){
+      var btns = [
+          {text: "1D"},
+          {text: "5D"},
+          {text: "10D"},
+          {text: "1M"},
+          {text: "3M"},
+          {text: "6M"},
+          {text: "9M"},
+          {text: "1Y"},
+          {text: "3Y"},
+          {text: "5Y"},
+          {text: "10Y"}
+      ];
+      for(var i = 1; i <= 11; i++)
+      {
+          btns[i-1].num = i;
+      }
+      return btns;
+    },
+
+    isInitial: function(num){
+      if(num==1)
+          return " cfo-btm-data-period-btn-a";
+      else
+          return "";
+    },
+
+    tiles: function(){
+      for(var i = 0; i < cfoTiles.length; i++)
+      {
+          cfoTiles[i].left.num = i+1;
+          cfoTiles[i].right.num = i+1;
+      }
+      return cfoTiles;
+    },
+
+    getTileColor: function(){
+      if(cfoIsGrey)
+      {
+          cfoIsGrey = false;
+          return "cfo-btm-data-tile-grey";
+      } else {
+          cfoIsGrey = true;
+          return "cfo-btm-data-tile";
+      }
+    },
+
+    company: function(){
+      var c = {
+          formalName: "Facebook, Inc.",
+          informalName: "Facebook",
+          ticker: "FB"
+      };
+      return c;
+    }
+  }
 );
 
 Template.co_fin_overview.onRendered(function(){

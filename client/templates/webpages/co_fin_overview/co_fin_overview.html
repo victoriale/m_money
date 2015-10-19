@@ -8,11 +8,31 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
 <template name="co_fin_overview">
     {{#with company}} <!--object used throughout the page for things like the company name-->
         <div class="cfo-page"> <!--container for whole page-->
+          <a href="#" onclick="history.go(-1)">
+            <div class="dp_head-hdtl">
+             <div class="dp_head-hdtl-or">
+               <div class="dp_head-hdtl-mailrep" >
+                 <i class="dp_head-mailrep fa fa-reply"></i>
+               </div>
+               <div class="dp_head-hdtl-rta">
+               </div>
+             </div>
+             <!-- for the text contianer!-->
+             <div class="dp_head-hdtl-txtctt">
+               <div class="dp_head-hdtl-gb">
+                 Go Back To
+                 <div class="dp_head-hdtl-bar-title">
+                 <div class="dp_head-hdtl-bar-helper">
+                   {{c_name}}'s
+                 </div>
+                   <div class="dp_head-hdtl-bar-side">Profile </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+          </a>
             <div class="cfo-pr cfo-top"> <!--container for white background area at top-->
                 <div class="cfo-pr cfo-top-circle"> <!--back arrow in top-->
-                    <div class="cfo-pr cfo-top-circle-btn">
-                        <i class="fa fa-reply"></i>
-                    </div>
                 </div>
                 <i class="cfo-pa cfo-n cfo-top-txt1">
                     LAST UPDATED: 06/25/2015, 8:00 AM EST
@@ -29,68 +49,62 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 </i>
             </div>
             <div class="cfo-pr cfo-mid"> <!--the black-grey-black section in the middle-ish-->
-                <div class="cfo-pa cfo-mid-top"> <!--the black header of the middle-->
-                    <div class="cfo-b cfo-mid-top-txt1"> <!--the left part of the header-->
-                        {{formalName}}'s Financial Overview
-                    </div>
-                    <div class="cfo-l cfo-mid-top-txt2"> <!--the first right part of the header-->
-                        <i class="fa fa-heart"></i>
-                        Save
-                    </div>
-                    <div class="cfo-l cfo-mid-top-txt2"> <!--the second right part of the header-->
-                        <i class="fa fa-share-alt"></i>
-                        Share
-                    </div>
+              <div class="cfo-pa cfo-mid-top"> <!--the black header of the middle-->
+                  <div class="cfo-b cfo-mid-top-txt1"> <!--the left part of the header-->
+                      {{formalName}}'s Financial Overview
+                  </div>
+                  <div class="cfo-l cfo-mid-top-txt2"> <!--the first right part of the header-->
+                      <i class="fa fa-heart"></i>
+                      Save
+                  </div>
+                  <div class="cfo-l cfo-mid-top-txt2"> <!--the second right part of the header-->
+                      <i class="fa fa-share-alt"></i>
+                      Share
+                  </div>
+              </div>
+              <div class="cfo-pa cfo-mid-mid"> <!--the grey section in the middle-->
+                <div class="cfo-pa cfo-mid-mid-circle">
                 </div>
-                <div class="cfo-pa cfo-mid-mid"> <!--the grey section in the middle-->
-                    <div class="navigation-button-left">
-                        <i class="fa fa-angle-left cfo-mid-mid-l"></i>
-                    </div>
-                    <div class="cfo-pa cfo-mid-mid-circle">
-                    </div>
-                    <div class="cfo-pa cfo-mid-mid-building">
-                        <i class="fa fa-building-o fa-lg"></i>
-                    </div>
-                    <i class="cfo-pa cfo-b cfo-mid-mid-txt1">
-                        {{formalName}}
-                    </i>
-                    <i class="cfo-pa cfo-l cfo-mid-mid-txt2">
-                        <i class="fa fa-heart"></i>
-                        Save
-                    </i>
-                    <i class="cfo-pa cfo-l cfo-mid-mid-txt3">
-                        <i class="fa fa-share-alt"></i>
-                        Share
-                    </i>
-                    <div class="cfo-pa cfo-l cfo-mid-mid-txtbox"> <!--the part of the middle-middle that has the important and long text-->
-                        <i class="cfo-mid-mid-txtbox-txt">
-                            <i class="cfo-b">{{formalName}}</i>'s overall annual financials are <i class="cfo-b cfo-i">up
-                            10%</i> from 2014. With an <i class="cfo-b cfo-i">$20 increase</i> in stock
-                            price bringing individual <i class="cfo-b cfo-i">share price to $94.01.</i>
-                            <br>
-                        </i>
-                        <i class="cfo-mid-mid-txtbox-btm1">
-                            <i class="cfo-b">{{formalName}}</i> is currently priced at:<br>
-                        </i>
-                        <i class="cfo-pr cfo-mid-mid-txtbox-btm2">
-                            <i class="cfo-b">$94.31 </i> <i class="cfo-grn"><i class="fa fa-arrow-up"></i> +0.22 (+0.23%)</i>
-                        </i>
-                    </div>
-                    <div class="navigation-button-right">
-                        <i class="fa fa-angle-right cfo-mid-mid-r"></i>
-                    </div>
+                <div class="cfo-pa cfo-mid-mid-building">
+                    <i class="fa fa-building-o fa-lg"></i>
                 </div>
-                <div class="cfo-pa cfo-mid-btm"> <!--the footer of the middle area-->
-                    <div class="cfo-pa cfo-l cfo-mid-btm-txt1">
-                        Want more information about {{informalName}}'s stock?
-                    </div>
-                    <div class="cfo-pa cfo-l cfo-mid-btm-txt2">
-                        Profile Last Updated On: <i class="cfo-b">07/29/2015</i>
-                    </div>
-                    <div class="cfo-pa cfo-mid-btm-btn">
-                        Open Stock Graph <i class="fa fa-angle-right"></i>
-                    </div>
+                <i class="cfo-pa cfo-b cfo-mid-mid-txt1">
+                    {{formalName}}
+                </i>
+                <i class="cfo-pa cfo-l cfo-mid-mid-txt2">
+                    <i class="fa fa-heart"></i>
+                    Save
+                </i>
+                <i class="cfo-pa cfo-l cfo-mid-mid-txt3">
+                    <i class="fa fa-share-alt"></i>
+                    Share
+                </i>
+                <div class="cfo-pa cfo-l cfo-mid-mid-txtbox"> <!--the part of the middle-middle that has the important and long text-->
+                  <i class="cfo-mid-mid-txtbox-txt">
+                      <i class="cfo-b">{{formalName}}</i>'s overall annual financials are <i class="cfo-b cfo-i">up
+                      10%</i> from 2014. With an <i class="cfo-b cfo-i">$20 increase</i> in stock
+                      price bringing individual <i class="cfo-b cfo-i">share price to $94.01.</i>
+                      <br>
+                  </i>
+                  <i class="cfo-mid-mid-txtbox-btm1">
+                      <i class="cfo-b">{{formalName}}</i> is currently priced at:<br>
+                  </i>
+                  <i class="cfo-pr cfo-mid-mid-txtbox-btm2">
+                      <i class="cfo-b">$94.31 </i> <i class="cfo-grn"><i class="fa fa-arrow-up"></i> +0.22 (+0.23%)</i>
+                  </i>
                 </div>
+              </div>
+              <div class="cfo-pa cfo-mid-btm"> <!--the footer of the middle area-->
+                  <div class="cfo-pa cfo-l cfo-mid-btm-txt1">
+                      Want more information about {{informalName}}'s stock?
+                  </div>
+                  <div class="cfo-pa cfo-l cfo-mid-btm-txt2">
+                      Profile Last Updated On: <i class="cfo-b">07/29/2015</i>
+                  </div>
+                  <div class="cfo-pa cfo-mid-btm-btn">
+                      Open Stock Graph <i class="fa fa-angle-right"></i>
+                  </div>
+              </div>
             </div>
             <div class="cfo-pr cfo-btm"> <!--holds anything but the search module below the middle area-->
                 <div class="cfo-b cfo-btm-txt1">
