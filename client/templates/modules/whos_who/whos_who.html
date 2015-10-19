@@ -4,7 +4,6 @@ Description: [Finance : Who's Who Page Module]-->
 
 <!--template begins-->
 <template name="whos_who">
-  {{#with checkdata}}
   <!-- Html and CSS implementation-->
   <div class="module-who-layout">
     <div class="module-header">
@@ -75,7 +74,7 @@ Description: [Finance : Who's Who Page Module]-->
                 </div>
                 <div class="module-who-image-fix">
                   <div class="module-who-profile-image1">
-                    <a href="#">
+                    <a href="{{execURL}}">
                       <div class="module-who-profile-image2">
                         <div class="module-who-view-profile_txt1">VIEW</div>
                         <div class="module-who-view-profile_txt2">PROFILE</div>
@@ -89,7 +88,7 @@ Description: [Finance : Who's Who Page Module]-->
               </div>
               <div class="module-who-line4-container">
                 <span class="module-who-rpanel-line4">
-                  {{companyName}}&nbsp;|&nbsp; {{titles}} - {{first_domain}}
+                  {{companyName}}&nbsp;|&nbsp; {{titles}}
                 </span>
               </div>
               <div class="module-who-VA-wrap">
@@ -138,6 +137,5 @@ Description: [Finance : Who's Who Page Module]-->
     </div>
     <!--end of outer wrapper-->
   </div>
-  {{/with}}
 </template>
 <!--end of template-->

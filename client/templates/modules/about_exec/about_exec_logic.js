@@ -53,7 +53,7 @@ Template.about_exec.helpers({
   EHTileURL: function(){
     var params = Router.current().getParams();
     if(typeof params != 'undefined'){
-        return Router.path('content.workhistory',{
+        return Router.path('content.collegerivals',{
           exec_id: params.exec_id,
         });
     }

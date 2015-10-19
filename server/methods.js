@@ -57,13 +57,13 @@ Meteor.methods({
     return future.wait();
   },
 
-  WhosWhoIndie: function(comp_id) {
+  WhosWhoIndie: function(comp_id, page) {
     var future = new Future();
     console.log("New Executive Request",comp_id);
     var Start = new Date();
     Start = Start.getTime();
 
-    var UrlString =   "http://apifin.synapsys.us/call_controller.php?action=executive_page&option=about&param=" + comp_id;
+    var UrlString =   "http://apifin.synapsys.us/call_controller.php?action="+page+"&option=about&param=" + comp_id;
     console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){

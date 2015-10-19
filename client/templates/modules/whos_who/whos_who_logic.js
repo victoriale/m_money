@@ -5,18 +5,6 @@ Template.whos_who.onCreated(function(){
   var counter = 0;
   Session.set("whos_count",counter);
 
-  //NEED TO GO INTO METHODS.JS and change comp_id once that has been implemented into profile header for exec profile
-  this.autorun(function(){
-    Meteor.call('WhosWhoIndie', Session.get('comp_id'), function(error, data){
-      if(!error){
-        //console.log('Whos_who',data.whos_who);
-        //Session.set('whos_who', data.whos_who);
-      }else{
-        console.log("ERROR whos_who Call");
-        return (error);
-      }
-    })
-  });
   /*
   */
 })
@@ -76,6 +64,7 @@ Template.whos_who.helpers({
     }
     return data.c_name;
   },
+
   author_name:function(){
     var who = Session.get('whos_who');
     var index = Session.get("whos_count");
@@ -88,6 +77,18 @@ Template.whos_who.helpers({
     var mname = who[index]['o_middle_initial'];
 
     return fname +" "+ mname +" "+ lname;
+  },
+
+  execURL:function(){
+    var who = Session.get('whos_who');
+    var index = Session.get("whos_count");
+    if(typeof who == 'undefined')
+    {
+      return '';
+    }
+    var url = Router.path('content.executiveprofile',{exec_id:who[index].o_id});
+
+    return url;
   },
 
   titles: function(){
