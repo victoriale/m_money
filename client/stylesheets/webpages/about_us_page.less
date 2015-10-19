@@ -1,12 +1,513 @@
 /*
-Author: Meghana yerramilli
-Created: [07-30-2015]
+Author: David Wibowo
+Created: [10-15-2015]
 Description:conatct us webpage
-Associated Files: contact_us_page.html
+Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
+   contact_us_page.html, contact_us_page.js, contact_us.less,
+   copyright_page.html, copyright_page_logic.js,
+   disclaimer_page.html, disclaimer_page_logic.js,
+   privacy_policy_page.html, privacy_policy_logic.js,
+   stock_disclaimer_page.html, stock_disclaimer_page_logic.js,
+   terms_of_service.html, terms_of_service_logic.js
 */
 
-@import (reference)"../global_vars.less"; //include important global vars (colors mostly)
-@import (reference)"../modules.less";
+@import (reference)"../global_vars.less";
+
+.abus{
+  width: 680px;
+  margin: 10px;
+  text-align: left;
+  position: relative;
+  background-color: @white;
+  // Begin abus-bkbx
+  &-bkbx {
+    background-color:  #000000;
+    height: 50px;
+    color:@white;
+    background-image: url("/header_texture.png");
+    // Begin abus-bkbx-bx
+    &-bx {
+      width: 60px;
+      height: 50px;
+      padding-top: 11px;
+      padding-left: 15px;
+      background-color: @blue;
+      float:left;
+      // Begin abus-bkbx-bx .fa
+      .fa {
+        font-size: 30px;
+        color:@white;
+      } // End abus-bkbx-bx .fa
+    } // End abus-bkbx-bx
+    // Begin abus-bkbx-tgl
+    &-tgl {
+      width: 0;
+      height: 0;
+      border-top: 25px solid transparent;
+      border-left: 15px solid @blue;
+      border-bottom: 25px solid transparent;
+      float:left;
+    } // End abus-bkbx-tgl
+    // Begin abus-bkbx-txt
+    &-txt {
+      position: absolute;
+      left: 90px;
+      padding-top: 12px;
+      font-family: HN-l;
+      font-size: 19px;
+      width: 600px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      // Begin abus-bkbx-txt b
+      b {
+        font-family: HN-B;
+      } // End abus-bkbx-txt b
+    } // End abus-bkbx-txt
+  } // End abus-bkbx
+  // Begin abus-about
+  &-about {
+    background-color:  @white;
+    padding: 14px;
+    position: relative;
+    // Begin abus-about-image
+    &-image{
+      padding-left: 7px;
+      border-radius: 50%;
+      border-width: 2px;
+      border-color:  #cccccc;
+      border-style: solid;
+      background-color:  #ffffff;
+      width: 100px;
+      height: 100px;
+      background-size: cover !important;
+      background-position: center center !important;
+    } // End abus-about-image
+    // Begin abus-about-head
+    &-head {
+      position: absolute;
+      left: 125px;
+      top:  10px;
+      width: 520px;
+      height: 99px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      // Begin abus-about-head-update
+      &-update {
+        color:  #959595;
+        font-size: 10px;
+        font-family: HN;
+      } // End abus-about-head-update
+      // Begin abus-about-head-country
+      &-country {
+        color:  #000000;
+        font-size: 12px;
+        font-family: HN;
+        margin-top: 12px;
+      }// End abus-about-head-country
+      // Begin abus-about-head H1
+      H1 {
+        color:  #000000;
+        font-size: 27px;
+        font-family: HN-B;
+        line-height: 27px;
+        margin-top: 0px;
+      } // End abus-about-head H1
+      // Begin abus-about-head H2
+      H2 {
+        color:  #000000;
+        font-size: 27px;
+        font-family: HN;
+        position: absolute;
+        top: 50px;
+      } // End abus-about-head H2
+    } // End abus-about-head
+  } // End abus-about
+  // Begin abus-kit
+  &-kit {
+    background-color:  rgba(0, 0, 0, 0.85);
+    width: 680px;
+    height: 35px;
+    position:relative;
+    // Begin abus-kit-left
+    &-left {
+      color: @white;
+      font-size: 16px;
+      text-align: left;
+      position: relative;
+      float: left;
+      padding: 6px;
+      padding-left: 15px;
+      padding-right: 20px;
+      border-right: 1px solid #363636;
+    } // Begin abus-kit-left
+    // Begin abus-kit-right
+    &-right {
+      position: relative;
+      float: left;
+      // Begin abus-kit-right a
+      a {
+        color: @white;
+        border: none;
+        text-align: center;
+        float: left;
+        line-height: 35px;
+        height:35px;
+        width:85px;
+        margin-right: 8px;
+        font-family: HN-L;
+        left: 28px;
+        // Begin abus-kit-right a .fa
+        .fa{
+          margin-right: 10px;
+          color: @white;
+        } // End abus-kit-right a .fa
+      } // End abus-kit-right a
+    } // End abus-kit-right
+  } // End abus-kit
+  // Begin abus-cnt
+  &-cnt {
+    position: relative;
+    padding: 15px;
+    padding-top: 10px;
+    padding-bottom: 0px;
+
+    &-dropdown {
+      float:right;
+      height:26px;
+      background-color: #FFFFFF;
+      font-family: HN-L;
+      font-size: 12px;
+      text-align: right;
+      font-weight: 700;
+      padding-top: 3px;
+      // Begin abus-cnt-top-dropdown select
+
+      select {
+        font-family: HN-B;
+        border-style: none;
+      } // End abus-cnt-top-dropdown select
+    }// End abus-cnt-top-dropdown
+
+    // Begin abus-cnt-top
+    &-top {
+      height: 30px;
+      border-bottom: 1px solid #cccccc;
+      position: relative;
+      padding-bottom: 35px;
+      // Begin abus-cnt-top-left
+      &-left {
+        float: left;
+        font-family:HN;
+        color:  #000000;
+        font-size: 18px;
+        text-align: left;
+        width: 400px;
+        // Begin abus-cnt-top-left b
+        b {
+          font-family:HN-l;
+          color:  #272727;
+          font-size: 18px;
+          text-align: left;
+        }// End abus-cnt-top-left b
+      } // End abus-cnt-top-left
+      // Begin abus-cnt-top-dropdown
+      &-dropdown {
+       vertical-align: middle;
+        float: right;
+        background-color: #FFFFFF;
+        font-family: HN-L;
+        font-size: 12px;
+        text-align: right;
+        font-weight: 700;
+        padding-top: 3px;
+        // Begin abus-cnt-top-dropdown select
+        select {
+          font-family: HN-B;
+          border-style: none;
+        } // End abus-cnt-top-dropdown select
+      }// End abus-cnt-top-dropdown
+
+    } // End abus-cnt-top
+    // Begin abus-cnt-article
+    &-article {
+      padding-top: 5px;
+      padding-left: 5px;
+      padding-right: 5px;
+      text-align: left;
+      font-size: 13.5px;
+      hyphens: auto;
+
+      a {
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+        color: #3098ff;
+      }
+
+      p {
+        -webkit-hyphens: auto;
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        hyphens: auto;
+      }
+      h7 {
+        color:#959595;
+      }
+      ul li {
+        color: @blue;
+      }
+      ol {
+        padding-left:20px;
+      }
+
+      span{
+        color: @black;
+      }
+      blockquote{
+        padding-top: 0px;
+        padding-bottom:0px;
+        border-left: 5px solid #ffffff;
+        font-family: HN;
+        font-size: 13.5px
+      }
+      blockquote:before{
+      //  color: #ffffff;
+      }
+      &-underline{
+        font-family: HN-L;
+        color: @grey-3;
+      }
+    } // End abus-cnt-article
+  } // End abus-cnt
+  // Begin abus-boxes
+  &-boxes {
+    width:100%;
+    height:180px;
+    background-color: @white;
+    padding-left: 10px;
+    padding-bottom:0px;
+    position: relative;
+    // Begin abus-boxes-box
+    &-box {
+      position: relative;
+      border-style: solid;
+      border-width: 1px;
+      border-color:  #cccccc;
+      box-sizing: border-box;
+      background-color:  #f2f2f2;
+      width: 310px;
+      height: 70px;
+      margin: 10px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      float: left;
+      // Begin abus-boxes-box-sml
+      &-sml {
+        background-color:  #e1e1e1;
+        width: 5px;
+        height: 68px;
+        position: absolute;
+        top: 0px;
+        left:0px;
+      } // End abus-boxes-box-sml
+      // Begin abus-boxes-box-img
+      &-img {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 10px;
+        left:30px;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        background-position: center;
+      } // End abus-boxes-box-img
+      // Begin abus-boxes-box-totals
+      &-totals {
+        font-family: HN-B;
+        color:  #959595;
+        font-size: 12px;
+        position: absolute;
+        top: 12px;
+        left:110px;
+        width: 180px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        line-height: 24px;
+        text-align: left;
+
+      } // End abus-boxes-box-totals
+      // Begin abus-boxes-box-numbers
+      &-numbers {
+        position: absolute;
+        top: 25px;
+        left:110px;
+        font-family: HN-B;
+        color:  #000000;
+        font-size: 24px;
+   //     line-height: 14px;
+        text-align: left;
+        width: 180px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      } // End abus-boxes-box-numbers
+    } // End abus-boxes-box
+  } // End abus-boxes
+  // Begin abus-member
+  &-member {
+    width: 100%;
+    height: 402px;
+    position: relative;
+    // Begin abus-member-map
+    &-map {
+      width: 462px;
+      height: 352px;
+      position: absolute;
+      top: 30px;
+      left: 100px;
+      background-image: url("Icon_US_Map.png");
+      background-repeat: no-repeat;
+      cursor: pointer;
+    } // End abus-member-map
+    // Begin abus-member-txt
+    &-txt {
+      text-align: Center;
+
+      // Begin abus-member-txt h1
+      h1 {
+        font-family: HN-B;
+        color:  #959595;
+        font-size: 14px;
+      } // End abus-member-txt h1
+      // Begin abus-member-txt h2
+      h2 {
+        position: relative;
+        top :-20px;
+        font-family: HN-B;
+        color:  #000000;
+        font-size: 28px;
+      } // End abus-member-txt h2
+    } // End abus-member-txt
+  } // End abus-member
+  // Begin abus-invhead
+  &-invhead {
+    height:40px;
+    background-color: @blue;
+    font-family:HN-l;
+    font-size: 14px;
+    padding: 11px 19px 12px 19px;
+    color: @white;
+    // Begin abus-invhead b
+    b {
+      font-family:HN;
+      color: @white;
+    } // End abus-invhead b
+  } // End abus-invhead
+  // End abus-rdr
+  &-rdr {
+    width: 680px;
+    height: 465px;
+    background-color:  rgba(0, 0, 0, 0.65);
+    background-image: url("/TeamImageBG.png");
+
+    // Begin abus-rdr-container
+    &-container {
+      position: relative;
+      // Begin abus-rdr-container-icon
+      &-icon {
+        position: absolute;
+        top:98px;
+        left:50px;
+        background-image: url("/Icon-Magazine.png");
+        width: 32px;
+        height: 25px;
+      } // end abus-rdr-container-icon
+      // Begin abus-rdr-container-dr
+      &-dr {
+        position: absolute;
+        top:93px;
+        left:80px;
+        padding-left:15px;
+        font-family:HN-l;
+        font-size: 28px;
+        color:#ffffff;
+      } // End abus-rdr-container-dr
+      // Begin abus-rdr-container-explore
+      &-explore {
+        position: absolute;
+        top:125px;
+        left:47px;
+        font-family:HN-B;
+        font-size: 45px;
+        color:#ffffff;
+      } // End abus-rdr-container-explore
+      // Begin abus-rdr-container-line
+      &-line {
+        position: absolute;
+        top:200px;
+        left:50px;
+        background-color: #ffffff;
+        width: 250px;
+        height: 2px;
+      } // End abus-rdr-container-line
+      // Begin abus-rdr-container-circle
+      &-circle {
+        position: absolute;
+        border-radius: 50%;
+        border-width: 2px;
+        border-color:  #ffffff;
+        border-style: solid;
+        width: 65px;
+        height: 65px;
+        top: 190px;
+        right:20px;
+        cursor: pointer;
+        // Begin abus-rdr-container-circle .fa
+        .fa {
+          position: relative;
+          font-size: 36px;
+          top:9px;
+          left:25px;
+          color: #ffffff;
+        } // End abus-rdr-container-circle .fa
+      } // End abus-rdr-container-circle
+      // Begin abus-rdr-container-exec
+      &-left {
+        border: 2px solid #3098ff;
+        padding: 1px 19px 5px 19px;
+        font-family:HN;
+        font-size: 27px;
+        color:#ffffff;
+        position: absolute;
+        top: 235px;
+        left:50px;
+        float: left;
+        max-width: 550px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      } // End abus-rdr-container-exec
+      // Begin abus-rdr-container-text
+      &-text {
+        height: 100px;
+        width: 462px;
+        position: absolute;
+        font-size: 17px;
+        font-family:HN-l;
+        color:#ffffff;
+        top:295px;
+        left:50px;
+        overflow: hidden;
+      } // End abus-rdr-container-text
+    } // End abus-rdr-container
+  } //End abus-rdr
+} // End abus
+
 .abt_us{
 // webpage dimensions
 &-dimensions{
@@ -15,57 +516,6 @@ Associated Files: contact_us_page.html
   margin: 5px 0px 0px 5px;
   text-align: left;
   overflow: hidden;
-}
-
-&-hdr {
-  width: 100%;
-  height: 50px;
-  background-image: url('/header_texture.png');
-
-  &-box {
-    width: 60px;
-    height: 50px;
-    background-color: @blue;
-    float: left;
-
-    .fa {
-      color: white;
-      font-size: 30px;
-      margin: 11px 0px 0px 15px;
-    }
-  }
-
-  &-arrw {
-    width: 0;
-	  height: 0;
-	  border-top: 25px solid transparent;
-	  border-bottom: 25px solid transparent;
-	  border-left: 15px solid @blue;
-    float: left;
-  }
-
-  &-txt {
-    height: 19px;
-    line-height: 15px;
-    float: left;
-    font-family: HN-L;
-    font-size: 19px;
-    margin-left: 20px;
-    margin-top: 17px;
-    color: white;
-
-    strong {
-      height: 19px;
-      vertical-align: top;
-      display: inline-block;
-      max-width: 300px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      font-weight: normal;
-      font-family: HN-B;
-    }
-  }
 }
 
 &-dropdown {
@@ -83,81 +533,6 @@ Associated Files: contact_us_page.html
     font-family: HN-B;
     border-style: none;
   }
-}
-//circle with an image
-&-image{
-  border-radius: 50%;
-  border-width: 2px;
-  border-color:  #cccccc;
-  border-style: solid;
-  background-color:  #ffffff;
-  width: 100px;
-  height: 100px;
-  margin-top: 15px;
-  margin-left: 20px;
-  float: left;
-}
-//subcircle on image
-&-replyimg{
-  border-radius: 50%;
-  background-color:  #3098ff;
-  width: 35px;
-  height: 35px;
-  text-align: center;
-  padding-top: 7px;
-  padding-right: 2px;
-}
-//icon in subimage
-&-replyicon{
-  width: 15px;
-  height: 14px;
-  color:  #ffffff;
-  font-size: -15px;
-  font-weight: 400;
-}
-//container for the information
-&-head_cont{
-  width: 370px;
-  height: 99px;
-  margin-top: 14px;
-  margin-left: 14px;
-  float: left;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-//date
-&-head_date{
-  color:  #959595;
-  font-size: 10px;
-  font-family: HN;
-}
-//country
-&-country{
-  color:  #000000;
-  font-size: 12px;
-  font-family: HN;
-  margin-top: 12px;
-  max-width: 400px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-&-countxt{
-  margin-left: 3px;
-}
-//heading
-&-heading{
-  color:  #000000;
-  font-size: 22px;
-  font-family: HN-B;
-}
-//subheading
-&-subheading{
-  color:  #000000;
-  font-size: 22px;
-  font-family: HN-L;
-  margin-top: -4px;
 }
 //underline for the information
 &-blackhd{

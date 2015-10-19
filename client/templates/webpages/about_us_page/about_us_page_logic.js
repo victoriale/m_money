@@ -1,36 +1,42 @@
+/*
+Author: David Wibowo
+Created: [10-15-2015]
+Description:conatct us webpage
+Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
+*/
 Template.about_us_page.helpers({
-  company: "[Profile]",
-  upd: "10/24/2015, 12:36 AM EDT",
-  members: "1,200,000+",
+  Title:"About Us",
+  About:"InvestKit’s About Us",
+  Profile: "[Profile]",
+  Country: "The United States",
+  Statement: "Take a Seat and get to know us better.",
+  Update: "06/24/2015,8:00 AM EST",
 
-  country: function(){
-    var name0= "The United States of America";
-    return name0;
-  },
-
-  statement: function(){
-    var name0= "Take a seat and get to know us better";
-    return name0;
-  },
-
-  // total: function(){
-  //   var name0= "Total U.S. Public Companies";
-  //   return name0;
-  // },
-  //
-  // number: function(){
-  //   var name0= "9,278";
-  //   return name0;
-  // },
-
-items: [
-  {totals:"Total U.S. Public Companies", numbers:"9,278",image:"Icon_Companies.png", totals2:"Total U.S. Executives", numbers2:"101,200", image2:"Icon_Executives.png"},
-  {totals:"Total U.S. Brokerage Firms", numbers:"5,006",image:"Icon_Brokerage_Firms.png", totals2:"Total U.S. Financial Advisors", numbers2:"460,120", image2:"Icon_Financial_Advisors.png"},
-],
+  items: [
+   { totals:"Total U.S. Public Companies",
+     numbers:"9,278",
+     image:"Icon_Companies.png"
+   }, {
+     totals:"Total U.S. Executives",
+    numbers:"101,200",
+      image:"Icon_Executives.png"
+   }, {
+     totals:"Total U.S. Brokerage Firms",
+    numbers:"5,006",
+      image:"Icon_Brokerage_Firms.png"
+   }, {
+     totals:"Total U.S. Financial Advisors",
+    numbers:"460,120",
+      image:"Icon_Financial_Advisors.png"
+   }
+  ],
+  back_url:"#",
+  profile_ulr:"#",
+  image_url:"/tribune_logo.png"
 });
 
-Template.disclaimer_page.onRendered(function(){
-  $('#sort_by').val("About Us");
+Template.about_us_page.onRendered(function(){
+  $('#sort_by').val("About");
 })
 
 Template.about_us_page.events({

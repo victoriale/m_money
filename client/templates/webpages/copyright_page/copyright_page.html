@@ -1,127 +1,133 @@
-<!-- Author: Ryan Fisher
-**** Created: [08/03/2015]
-**** Description: Copyright Webpage
-**** Associated Files: copyright_page.html, copyright_page.less
-
-Modified By: Zachary Pearson
-Date: 10/13/2015
-Modifications: .cpyrt-heading
-Additions: .cr_nowread, .cr_discline
+<!--
+Author: David Wibowo
+Created: [10-15-2015]
+Description:conatct us webpage
+Associated Files: copyright_page.html, copyright_page_logic.js, about_us_page.less
 -->
-
 <template name="copyright_page">
-  <div class="cpyrt">
-    <a href="#" onclick="history.go(-1)">
-      <div class="module-header header" style="padding-left:0px;">
-        <div class="header-back"><i class="fa fa-reply fa-2x" style="margin-top:9px; margin-left:12px;"></i></div>
-        <div class="header-wedge"></div>
-        <div class="module-header-title" style="float:left; margin-left:20px;">
-          <div style="font-weight:300px; float:left;">Go Back</div>
-          <div style="font-weight:300px; float:left;"> Profile</div>
-        </div>
+  <div class="abus">
+    <a href="{{back_url}}">
+      <div class="abus-bkbx">
+        <div class="abus-bkbx-bx"><i class="fa fa-reply"></i></div>
+        <div class="abus-bkbx-tgl"></div>
+        <div class="abus-bkbx-txt">Go Back To <b>{{Profile}}’s</b> Profile</div>
       </div>
     </a>
-    <div class="cpyrt-hdr">
-      <div class="cpyrt-hdr-head">
-        <!-- image inside the header box-->
-        <div class="cpyrt-hdr-head-image"></div>
-        <!-- the text inside the header box-->
-        <div class="cpyrt-hdr-text">
-          <!-- the latest update-->
-          <div class="cpyrt-hdr-text-update">
-            LAST UPDATED: 05/15/2015, 12:36 PM EST
-          </div>
-          <!-- location of the cpyrticle-->
-          <div class="cpyrt-hdr-text-loc">
-            <i class="fa fa-map-marker"></i> United States
-          </div>
-          <!-- the name of the cpyrticle-->
-          <div class="cpyrt-hdr-text-name">
-            Copyright Infringement
-          </div>
-          <!-- the author of the cpyrticle-->
-          <div class="cpyrt-hdr-text-auth">
-            for InvestKit Finance
-          </div>
+    <div class="abus-about">
+        <div class="abus-about-image" style="background-image: url('{{image_url}}');"></div>
+      <div class="abus-about-head">
+        <div class="abus-about-head-update">LAST UPDATED:{{Update}}</div>
+        <div class="abus-about-head-country"><i class="fa fa-map-marker"></i> &nbsp;{{Country}}</div>
+        <H1>{{Title}}</H1>
+        <H2>{{Statement}}</H2>
+      </div>
+    </div>
+    <div class="abus-kit">
+      <div class="abus-kit-left">{{About}}</div>
+      <div class="abus-kit-right">
+        <a href="#"><i class="fa fa-heart"></i><span>Save</span></a>
+        <a href="#"><i class="fa fa-share-alt"></i><span class="abt_us-bar-text">Share</span></a>
+      </div>
+    </div>
+
+    <div class="abus-cnt">
+
+      <div class="abus-cnt-top">
+        <div class="abus-cnt-top-left">Reporting Alleged Copyright Infringement</div>
+        <div class = "abus-cnt-dropdown">
+          Now Reading:
+          <select id="sort_by" style = "margin-top: 1px;">
+            <option value="About">About Us</option>
+            <option value="Contact">Contact Us</option>
+            <option value="Copyright">Copyright Infringement</option>
+            <option value="Disclaimer">Disclaimer</option>
+            <option value="Privacy">Privacy Policy</option>
+            <option value="Stock">Stock Disclaimer</option>
+            <option value="Terms">Terms of Service</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="abus-cnt-article">
+        <p>InvestKit abides by the following policy toward copyright infringement according to the Digital Millennium Copyright Act
+          (a copy of which is located at <a href="http://www.loc.gov/copyright/legislation/dmca.pdf">http://www.loc.gov/copyright/legislation/dmca.pdf</a>, the "DMCA"). The address of InvestKit’s
+          Designated Agent for copyright takedown notices ("Designated Agent") is listed below.</p>
+        <p>If you believe that your work has been copied in a way that constitutes infringement, you must provide the following
+          information to identify the allegedly infringing content. Please provide the following information in written form to
+          our Designated Agent (listed below). At this time we cannot accept digital filings or e-mails.</p>
+        <p>1. The name of the person authorized to act on behalf of the owner of the copyright interest:<br><span class="abus-cnt-article-underline">_________________________________________________</span><br>
+          Mailing Address:<span class="abus-cnt-article-underline">_________________________________________________</span><br>
+          E-Mail Address:<span class="abus-cnt-article-underline">_________________________________________________</span><br>
+          Phone Number:<span class="abus-cnt-article-underline">_________________________________________________</span></p>
+
+        <p>2. A description of the copyrighted work that you claim has been infringed:<br>
+          <span class="abus-cnt-article-underline">_________________________________________________</span><br>
+          3. A description of where the material that you claim is infringing is located on InvestKit.com:<br>
+          <span class="abus-cnt-article-underline">_________________________________________________</span><br>
+          4. A statement by you that you have a good faith belief that the disputed use is not authorized by the copyright owner, its agent, or the law:<br>
+          <span class="abus-cnt-article-underline">_________________________________________________</span><br>
+          5. A statement by you, made under penalty of perjury, that the above information in your Notice is accurate and that you are the copyright owner
+          or authorized to act on the copyright owner's behalf.</p>
+
+        <p>Once you have submitted this written filing, InvestKit will review and confirm there has been a copyright violation. If the content
+          is in violation of our policies, upon confirming identification and verifying copyright, we will remove or edit the infringing content.
+          InvestKit reserves the right, in its sole discretion, to immediately terminate the account of any Subscriber who is the subject of repeated DMCA notifications.</p>
+      </div>
+
+      <div class="abus-cnt-top">
+        <div class="abus-cnt-top-left">Reporting Copyright Infringement</div>
+      </div>
+
+      <div class="abus-cnt-article">
+        <p>If you believe you are the wrongful subject of an alleged DMCA notification, you may file a counter-notification
+          with InvestKit by providing the following information to the Designated Agent at the address below:</p>
+        <ul>
+          <li><span>The specific URLs of material that InvestKit has removed or to which InvestKit has disabled access.</span><br><br></li>
+          <li><span>Your name, address, telephone number, and email address.</span><br><br></li>
+          <li><span>A statement that you consent to the jurisdiction of Federal District Court for the judicial district
+            in which your address is located (or the federal district courts located in San Francisco, CA if your address
+            is outside of the United States), and that you will accept service of process from the person who provided
+            the original DMCA notification or an agent of such person.</span><br><br></li>
+          <li><span>The following statement: "I swear, under penalty of perjury, that I have a good faith belief that the
+            material was removed or disabled as a result of a mistake or misidentification of the material to be removed or disabled."</span><br><br></li>
+          <li><span>Sign the written document.</span></li>
+        </ul>
+        <p>Upon receipt of a valid counter-notification, InvestKit will forward it to Notifying Party who submitted the
+          original DMCA notification. The original Notifying Party will then have ten days to notify us that he or she has
+          filed legal action relating to the allegedly infringing material. If InvestKit does not receive any such notification
+          within ten days, we may restore the material.</p>
+      </div>
+
+      <div class="abus-cnt-top">
+        <div class="abus-cnt-top-left">Reporting Copyright Infringement</div>
+      </div>
+
+      <div class="abus-cnt-article">
+        <p>Attn: Copyright Agent; Legal<br>
+        InvestKit<br>
+        2400 Bridgeway, Suite 280, Sausalito, CA 94965</p>
+      </div>
+
+    </div>
+
+    <div class="abus-invhead">Because you like <b>InvestKit</b>, we recommend: <b>The InvestKit Magazine</b></div>
+
+    <div class="abus-rdr">
+      <div class="abus-rdr-container">
+        <div class="abus-rdr-container-icon"></div>
+        <div class="abus-rdr-container-dr">Digital Reader</div>
+        <div class="abus-rdr-container-explore">Explore InvestKit</div>
+        <div class="abus-rdr-container-line"></div>
+        <a href="{{profile_ulr}}">
+          <div class="abus-rdr-container-circle"><i class="fa fa-angle-right"></i></div>
+        </a>
+        <div class="abus-rdr-container-left">{{Profile}}</div>
+        <div class="abus-rdr-container-text">Get an in–depth, visual look at today’s stock price,
+the compeition, executive compensation
+and much more.
         </div>
       </div>
     </div>
-    <div class="share">
-      <div class="share-title"><div class="share-title-text">InvestKit's Copyright Infringement</div></div>
-      <div class="share-save"><i class="fa fa-heart" style="margin-right:10px;"></i>Save</div>
-      <div class="share-share"><i class="fa fa-share-alt" style="margin-right:10px;"></i>Share</div>
-    </div>
 
-    <!--Copyright starts-->
-    <div style="width:100%;height:40px;">
-      <div class="cpyrt-heading1">Reporting Alleged Copyright Infringement</div>
-      <div class="cr_nowread">
-        Now Reading:
-        <select id="sort_by">
-          <option value="About">About Us</option>
-          <option value="Contact">Contact Us</option>
-          <option value="Copyright">Copyright Infringement</option>
-          <option value="Disclaimer">Disclaimer</option>
-          <option value="Privacy">Privacy Policy</option>
-          <option value="Stock">Stock Disclaimer</option>
-          <option value="Terms">Terms of Service</option>
-        </select>
-      </div>
-    </div>
-    <div class="cr_discline"></div>
-    <div class="cpyrt-text">
-      <p>InvestKit abides by the following policy toward copyright infringement according to the Digital Millennium Copyright Act
-        (a copy of which is located at <a href="http://www.loc.gov/copyright/legislation/dmca.pdf">http://www.loc.gov/copyright/legislation/dmca.pdf</a>, the "DMCA"). The address of InvestKit’s
-        Designated Agent for copyright takedown notices ("Designated Agent") is listed below.</p>
-      <p>If you believe that your work has been copied in a way that constitutes infringement, you must provide the following
-        information to identify the allegedly infringing content. Please provide the following information in written form to
-        our Designated Agent (listed below). At this time we cannot accept digital filings or e-mails.</p>
-      <p>1. The name of the person authorized to act on behalf of the owner of the copyright interest:<br><span class="cpyrt-underline">_________________________________________________</span><br>
-        Mailing Address:<span class="cpyrt-underline">_________________________________________________</span><br>
-        E-Mail Address:<span class="cpyrt-underline">_________________________________________________</span><br>
-        Phone Number:<span class="cpyrt-underline">_________________________________________________</span></p>
-
-      <p>2. A description of the copyrighted work that you claim has been infringed:<br>
-        <span class="cpyrt-underline">_________________________________________________</span><br>
-        3. A description of where the material that you claim is infringing is located on InvestKit.com:<br>
-        <span class="cpyrt-underline">_________________________________________________</span><br>
-        4. A statement by you that you have a good faith belief that the disputed use is not authorized by the copyright owner, its agent, or the law:<br>
-        <span class="cpyrt-underline">_________________________________________________</span><br>
-        5. A statement by you, made under penalty of perjury, that the above information in your Notice is accurate and that you are the copyright owner
-        or authorized to act on the copyright owner's behalf.</p>
-
-      <p>Once you have submitted this written filing, InvestKit will review and confirm there has been a copyright violation. If the content
-        is in violation of our policies, upon confirming identification and verifying copyright, we will remove or edit the infringing content.
-        InvestKit reserves the right, in its sole discretion, to immediately terminate the account of any Subscriber who is the subject of repeated DMCA notifications.</p>
-</div>
-    <div class="cpyrt-heading2" style="text-align:left;">Reporting Copyright Infringement<div class="cr_discline" style="margin-left:0px;"></div></div>
-
-    <div class="cpyrt-text">
-      <p>If you believe you are the wrongful subject of an alleged DMCA notification, you may file a counter-notification
-        with InvestKit by providing the following information to the Designated Agent at the address below:</p>
-      <ul>
-        <li><span>The specific URLs of material that InvestKit has removed or to which InvestKit has disabled access.</span><br><br></li>
-        <li><span>Your name, address, telephone number, and email address.</span><br><br></li>
-        <li><span>A statement that you consent to the jurisdiction of Federal District Court for the judicial district
-          in which your address is located (or the federal district courts located in San Francisco, CA if your address
-          is outside of the United States), and that you will accept service of process from the person who provided
-          the original DMCA notification or an agent of such person.</span><br><br></li>
-        <li><span>The following statement: "I swear, under penalty of perjury, that I have a good faith belief that the
-          material was removed or disabled as a result of a mistake or misidentification of the material to be removed or disabled."</span><br><br></li>
-        <li><span>Sign the written document.</span></li>
-      </ul>
-      <p>Upon receipt of a valid counter-notification, InvestKit will forward it to Notifying Party who submitted the
-        original DMCA notification. The original Notifying Party will then have ten days to notify us that he or she has
-        filed legal action relating to the allegedly infringing material. If InvestKit does not receive any such notification
-        within ten days, we may restore the material.</p>
-    </div>
-    <div class="cpyrt-heading2" style="text-align:left;">Designated Agent<div class="cr_discline" style="margin-left:0px;"></div></div>
-    <div class="cpyrt-text">
-      <p>Attn: Copyright Agent; Legal<br>
-      InvestKit<br>
-      2400 Bridgeway, Suite 280, Sausalito, CA 94965</p>
-    </div>
-
-    {{> search_module}}
   </div>
 </template>
