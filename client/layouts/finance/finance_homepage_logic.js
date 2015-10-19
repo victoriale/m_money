@@ -86,7 +86,7 @@ Template.finance_homepage.events({
     if ( event.which === 13 ) {
       event.preventDefault();
         //ExecSearch();
-      Search($('.fi_mainsearch input')[0].value);
+      Finance_Search($('.fi_mainsearch input')[0].value);
       return "";
     }
     if ( typeof StartTime == "undefined" ) {
@@ -114,7 +114,7 @@ Template.finance_homepage.events({
     return false;
   },
   'click .fi_searchbtn.fa-search': function() {
-     Search($('.fi_mainsearch input')[0].value);
+     Finance_Search($('.fi_mainsearch input')[0].value);
   },
 
   'mousedown .fi_searchbtn': function(){

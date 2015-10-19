@@ -90,6 +90,14 @@ Template.header_nav.events({
       $('.dropdown-meEX').slideUp();
       $('#IT').slideUp();
       $('#KM').slideUp();
+    },
+    /* this function envokes client/layouts/finance/finance_search.js */
+    'keyup .pgheader-nav_divbtm_srchbr_srcbrtxt input': function(event){
+      if( event.which === 13){
+        event.preventDefault();
+        Finance_Search($('.pgheader-nav_divbtm_srchbr_srcbrtxt input').value);
+        return "";
+      }
     }
   });
 Template.header_nav.helpers({
