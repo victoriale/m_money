@@ -10,6 +10,143 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
 @import (reference)"../global_vars.less";
 /* defeined a unique name for disclaimer as dis*/
 .exr_riva{
+
+  text-align: left;
+
+  &-hdtl{
+   width: 680px;
+   height: 50px;
+   background-image: url('/header_texture.png');
+   &:hover > .cup-hdtl-indcir{
+     border-color:#f26f26 ;
+     color:#f26f26 ;
+   }
+   //orange color on left
+   &-or{
+     background-color:  #3098ff ;
+     width: 60px;
+     height: 50px;
+     float: left;
+   }
+   //font style for the fontawesome
+   &-mailrep{
+     font-family: FontAwesome;
+     color:  #ffffff ;
+     font-size: 30px;/* Approximation due to font substitution */
+     font-weight: 400;
+     text-align: left;
+     margin-left: 15px;
+     margin-top: 4px;
+   }
+   //for right triangle
+   &-rta{
+     width: 0;
+     height: 0;
+     border-top: 26px solid transparent;
+     border-bottom: 25px solid transparent;
+     border-left: 15px solid #3098ff ;
+     position: relative;
+     top: -46px;
+     left: 60px;
+   }
+   //for the text container
+   &-txtctt{
+     width: 530px;
+     height: 25px;
+     position: relative;
+     top:11px;
+     left:34px;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     white-space: nowrap;
+   }
+   &-gb{
+     font-family: HN-L;
+     color:  #ffffff ;
+     font-size: 19px;
+     text-align: left;
+     width: 105px;
+     height: 25px;
+   }
+   &-gbc{
+     font-family: HN-B;
+     color:  #ffffff ;
+     font-size: 19px;
+     text-align: left;
+   }
+   //the bottom bar
+   &-bar {
+     width: 680px;
+     height: 35px;
+     background-color: @black;
+     color: @white;
+     font-size: 16px;
+     text-align: left;
+     top: 42px;
+     position: relative;
+     float: left;
+     // the font awesome icon color
+     .fa {
+       color: @white;
+     }
+     //the link color
+     a {
+       color:@white;
+     }
+     &-text{
+       font-family: HN-L;
+       color:  #ffffff ;
+       font-size: 14px;
+       text-align: right;
+     }
+     //the title next to save and share
+     &-title{
+     //  border-right: 1px solid #363636 ;
+       background-color: inherit;
+       text-align: center;
+       float: left;
+       height: 35px;
+       line-height: 35px;
+       max-width: 490px;
+       font-size: 16px;
+       font-family: HN-B;
+       text-align: left;
+       left: 109px;
+       padding-right: 10px;
+       position: relative;
+       top:-31px;
+       width: 476px;
+       &:after {
+         display:"block";
+         content: "";
+         clear: both;
+       }
+ }
+     // giving the specifications data for the helper
+     &-helper{
+       max-width:365px;
+       height: 30px;
+       float: left;
+       font-size: 19px;
+       font-family: HN-B;
+       padding-right: 6px;
+       overflow: hidden;
+       text-overflow: ellipsis;
+       white-space: nowrap;
+     }
+     //side data specifications
+     &-side{
+       width: 79px;
+       height: 30px;
+       float:left;
+       font-size: 19px;
+       font-family: HN-L;
+       position: relative;
+       // top: -30px;
+       // left: 80px;
+ }
+   }
+ }
   .exr_riva-n_m{
     margin: 5px 0 0 5px;
   }
@@ -78,24 +215,27 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
     color:  #959595;
     font-size: 10px;
     text-align: left;
+    margin-bottom: 10px;
   }
   /* specified font style for location and state*/
   &-loc_st{
     font-family: HN;
     color:  #000000;
     font-size: 12px;
-    line-height: 28px;
+    line-height: 14px;
     text-align: left;
   }
   /*specified font sytle for the stock disclaimer */
   &-disc{
     font-family: HN-B;
-    font-size: 22px;
+    font-size: 28px;
+    line-height: 30px;
   }
   /* specified font style for the inveskit finance */
   &-fin{
     font-family: HN-L;
-    font-size: 22px;
+    font-size: 28px;
+    line-height: 30px;
   }
 
   //the bottom bar
@@ -324,7 +464,7 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
       left: 5px;
 
       &-dpct{
-        height: 66px;
+        height: 120px;
         width: 328px;
         font-size: 16px;
         font-family: HN-L;
@@ -463,31 +603,30 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
   /*container for the ct1 to 'sort by' and 'what is this list?' */
   &-ct1{
     width:680px;
-    height:133px;
+    height:32px;
     position: relative;
     top: 175px;
   }
   /*container for the sortby */
   &-sy{
-    width: 220px;
     height: 16px;
     position: absolute;
     top: 10px;
-    left: 15px;
+    right: 15px;
   }
   /*  container for the sortby font */
   &-syf{
-    font-family: HN-B;
+    font-family: HN-L;
     color:  #000000;
     font-size: 12px;
     text-align: left;
   }
   /* container for the members font  */
   &-sym{
-    font-family: HN-L;
+    font-family: HN-B;
     }
   /* font sytle for the chevron-down*/
-  &-chd{
+  &-angd{
     font-family: HN;
     color:  #3098ff;
     cursor:pointer;
@@ -663,7 +802,7 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
   }
   //giving contaier for the text in the stock price
   &-follwt{
-    width: 240px;
+    width: 200px;
     height:25px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -677,10 +816,10 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
     font-size: 18px;
     line-height: 20px;
     text-align: right;
-    width: 110px;
+    width: 200px;
     top: 17px;
     position: absolute;
-    left: 130px;
+    right: 0px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -709,12 +848,24 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
     font-size: 14px;
     line-height: 25px;
     text-align: left;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    overflow: hidden;
+    max-width: 290px;
+  }
+  &-follwcomp{
+    display:inline-block;
+    max-width:200px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    overflow: hidden;
   }
   &-follw3
   {
     font-family: HN;
     color: #000000;
-
+    position: relative;
+    top: -6px;
   }
   &-follw4
   {
@@ -742,11 +893,11 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
   &-rtct
   {
     height: 60px;
-    width: 240px;
+    width: 200px;
     float: right;
-    position: relative;
-    top: -48px;
-    right: 3%;
+    position: absolute;
+    top: 25px;
+    right: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -787,23 +938,25 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
     color: #000;
     border-top: 1px solid #cccccc;
     border-bottom: 1px solid #cccccc;
+    position: relative;
   }
   //This style is used to create the tile background as white
   &-tilewhite{
     background:#ffffff;
     width:680px;
     height: 185px;
-    color: #000
+    color: #000;
+    position: relative;
   }
   // container for the text data
   &-sp{
   //  width:480px;
-    width:445px;
+    width:290px;
     height:60px;
     float: left;
-    position: relative;
-    top:0px;
-    left:48px;
+    position: absolute;
+    top:25px;
+    left:175px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -813,36 +966,27 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
     width: 73px;
     height: 17px;
     float: left;
-    position: relative;
-    top: 72px;
-    right: 17%;
-    //right: 42%;
+    position: absolute;
+    bottom: 15px;
+    left: 15px;;
     }
   //continer for the share
   &-sh{
     width: 68px;
     height: 17px;
     float: left;
-    position: relative;
-    top: 72px;
-    right: 16%;
+    position: absolute;
+    bottom: 15px;
+    left: 95px;
   }
   //container for the feedback
   &-fe{
     width: 86px;
     height: 18px;
     float: left;
-    position: relative;
-    top: 72px;
-    left: 45%;
-    }
-    &-fe2{
-      width: 86px;
-      height: 18px;
-      float: left;
-      position: relative;
-      top: 50px;
-      left: 66%;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
     }
   //This style is used to create the font awesome symbol marker
   &-space{

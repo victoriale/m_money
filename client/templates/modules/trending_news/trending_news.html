@@ -4,6 +4,7 @@ Description: [trnding_news]
 Associated Files:[trnding_news.less]!-->
 
 <template name="trending_news">
+  {{#with TrendingStories}}
   <div class="news_trndnews">
     <div class="module-header">
       <span class="module-header-linenew"></span><span class="module-header-title">TRENDING STORIES TODAY</span>
@@ -33,17 +34,17 @@ Associated Files:[trnding_news.less]!-->
           <div class="news_trndnews-news_font_icon">
             <i class="fa fa-pencil"></i>
             <span class="news_trndnews-news_font_text">
-              &nbsp;Written By: {{trnd_writtenby}} at {{trnd_timestamp}}
+              &nbsp;Written at {{pubDate_ut}}
             </span>
           </div>
           <!--***********Text at the bottom of the page ***********!-->
           <!--***********Text at the bottom of the page for the trndnews name ***********!-->
-          <div class="news_trndnews-news_text1">{{trnd_name}}
+          <div class="news_trndnews-news_text1">{{title}}
           </div>
         </div>
         <!--********Button at the bottom of the page ***********!-->
         <!--***********View airtcle button***********!-->
-        <a href="{{trnd_url}}">
+        <a href="{{link}}">
           <button class="news_trndnews-news_button-wrpr">
             <span class="news_trndnews-news_button-text">
               View Article
@@ -56,15 +57,18 @@ Associated Files:[trnding_news.less]!-->
         </a>
       </div>
       <!--Profile Image at the bottom of the page!-->
-      <div class="news_trndnews-news_circle1">
+      <div class="news_trndnews-news_circle1" style="background-image:url('{{lead_image}}')" >
         <div class="news_trndnews-news_circle2">
         </div>
       </div>
       <!--Profile Image Hover at the bottom of the page!-->
-      <div class="news_trndnews-news_viewprof">
-        <span class="news_trndnews-news_viewprof_txt1">View</span>
-        <span class="news_trndnews-news_viewprof_txt2">Profile</span>
-      </div>
+      <a href="{{link}}">
+        <div class="news_trndnews-news_viewprof">
+          <span class="news_trndnews-news_viewprof_txt1">View</span>
+          <span class="news_trndnews-news_viewprof_txt2">Profile</span>
+        </div>
+      </a>
     </div>
   </div>
+  {{/with}}
 </template>

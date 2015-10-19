@@ -41,12 +41,54 @@ var counter = Session.get('count');
 
 //
 Template.about_exec.helpers({
-  // ExecURL: function(){
-  //   var data = Session.get('about_exec');
-  //   var id = data['o_ic'];
-  //   return ExecutiveURL(id);
-  // }
-    //first name below the image circle
+  rivalInfo: function(){
+    var data = Session.get('about_exec');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data;
+  },
+
+  //link to Education History page
+  EHTileURL: function(){
+    var params = Router.current().getParams();
+    if(typeof params != 'undefined'){
+        return Router.path('content.collegerivals',{
+          exec_id: params.exec_id,
+        });
+    }
+  },
+
+  //link to BIO or About Exec page
+  BioTileURL: function(){
+    var params = Router.current().getParams();
+    if(typeof params != 'undefined'){
+        return Router.path('content.aboutexec',{
+          exec_id: params.exec_id,
+        });
+    }
+  },
+
+  //link to Educatio History page
+  FAQTileURL: function(){
+    var params = Router.current().getParams();
+    if(typeof params != 'undefined'){
+        return Router.path('content.aboutexec',{
+          exec_id: params.exec_id,
+        });
+    }
+  },
+
+  CollegeRivals: function(){
+    var params = Router.current().getParams();
+    if(typeof params != 'undefined'){
+        return Router.path('content.collegerivals',{
+          exec_id: params.exec_id,
+        });
+    }
+  },
+
+  //first name below the image circle
   fname: function() {
     var data = Session.get('about_exec');
     var index = Session.get("count");
@@ -155,7 +197,6 @@ Template.about_exec.helpers({
     },
 
   title:"COLEGE RIVALS",
-  LOCATION:" - Cambridge, MA",
   //status:"N/A",
 //each function to call n the tiles below
   tt: function(){

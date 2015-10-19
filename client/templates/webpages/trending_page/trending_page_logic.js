@@ -8,7 +8,7 @@ Template.trending_page.helpers({
 
   company: 'Apple, Inc.',
   price: '$856 Billion USDs',
-
+  nm: "[Profile]",
   featt_p:[
     {name: 'Exxon Mobil Corp.', stockprice: '46.69', stockdiff: '+0.39 (+0.85%)'},
     {name: 'Johnson & Johnson', stockprice: '99.55', stockdiff: '+0.18 (+0.18%)'},

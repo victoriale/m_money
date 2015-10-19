@@ -1,0 +1,257 @@
+<!--
+Author: jyothyswaroop
+Created: 10/14/2015
+Description: edu_history
+Associated Files: edu_history_logic.js and edu_history.less
+-->
+<!--Gave a template name stock_disclaimer_page !-->
+<template name="edu_history">
+<!--Defined a class name globally for height and width !-->
+{{#with company}}
+<div class= "edu_his">
+  <!--gave the dimensions for the module with total height and width !-->
+  <div class = "edu_his-n_m">
+    <a href="{{ExecURL}}">
+        <div class="edu_his-hdtl">
+          <div class="edu_his-hdtl-or">
+            <div class="edu_his-hdtl-mailrep" >
+              <i class="edu_his-mailrep fa fa-reply"></i>
+            </div>
+            <div class="edu_his-hdtl-rta">
+            </div>
+          </div>
+          <!-- for the text contianer!-->
+          <div class="edu_his-hdtl-txtctt">
+            <div class="edu_his-hdtl-gb">
+              GO Back To
+              <div class="edu_his-hdtl-bar-title">
+              <div class="edu_his-hdtl-bar-helper">
+                [Profile]'s
+              </div>
+                <div class="edu_his-hdtl-bar-side">Profile </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    <!--dimensions for the circle container as ('cir-d') !-->
+    <div class="edu_his-cir_d">
+    <!-- dimensions for the circle as ('circ')!-->
+    <div class="edu_his-circ">
+      <!-- defines container for the smaller blue circle('sc_d') !-->
+      <div class= "edu_his-sc_d">
+      <!-- defines the dimension for the small circle('sc') !-->
+      <div class="edu_his-sc_d edu_his-sc">
+      <i class="edu_his-bfo fa fa-reply"></i>
+      </div>
+      </div>
+    </div>
+    </div>
+    <!--defines the container for text box !-->
+    <div class="edu_his-tc">
+    <!-- class date has all the font-weight and font specific !-->
+    <div class="edu_his-date">
+      LAST UPDATED: 06/24/2015, 8:00 AM EST
+    </div>
+    <!--specified font style for location !-->
+    <div class="edu_his-loc_st">
+       <i class="fa fa-map-marker"></i>
+    <!--specified font style for the state name !-->
+    <span class="edu_his-loc_st">
+      {{getheadername0}}
+    </span>
+    </div>
+    <!-- specified font sytle for the stock disclaimer !-->
+    <div class="edu_his-loc_st edu_his-disc">
+    {{getheadername1}}
+    </div>
+    <!--specified font style for the inveskit finance  !-->
+    <div class="edu_his-loc_st edu_his-fin">
+    For {{compname}}
+    </div>
+    </div>
+
+    <div class="edu_his-bar">
+      <div class="edu_his-bar-title">
+      <div class="edu_his-bar-helper">
+        {{compname}}'s
+      </div>
+        <div class="edu_his-bar-side">{{getheadername1}} </div>
+      </div>
+      <!-- </div> -->
+      <div class="edu_his-bar-button">
+        <!-- the save option button-->
+        <a href="#"><i class="fa fa-heart"></i><span class="edu_his-bar-text">Save</span></a>
+      </div>
+      <div class="edu_his-bar-button">
+        <!-- share option button -->
+        <a href="#"><i class="fa fa-share-alt"></i><span class="edu_his-bar-text">Share</span></a>
+      </div>
+    </div>
+    <div class="edu_his-m_c">
+      <!-- the module.less file navigation buttons-->
+      <button class='edu_his-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+      <button class='edu_his-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+      <!-- end of the module.less navigation button -->
+      <!-- wrapper class-->
+      <div class="edu_his-m_c-image-wr">
+        <div class="edu_his-m_c-image">
+          <div class="edu_his-m_c-sma_ct">
+          <div class="edu_his-m_c-sma_cr">
+
+          </div>
+        </div>
+        </div>
+      </div>
+      <!-- the main container -->
+      <ul class="edu_his-m_c-cr">
+        <!-- the image in blue circle-->
+        <li class="edu_his-m_c-title">
+          <div class="edu_his-m_c-title-image"><i class="fa fa-briefcase"></i>
+          <span class="edu_his-m_c-title-text"> {{getheadername2}} </span>
+          </div>
+        </li>
+        <!--the follow('fbt') and share  !-->
+        <div class="edu_his-fbt1">
+          <!-- the save option button-->
+          <a href="#"><i class="edu_his-fbt1-font1 fa fa-heart"></i><span class="edu_his-fbt1-text1">Save</span></a>
+        </div>
+        <div class="edu_his-fbt1 edu_his-fbt2">
+          <!-- share option button -->
+          <a href="#"><i class="edu_his-fbt1-font1 fa fa-share-alt"></i><span class="edu_his-fbt1-text1">Share</span></a>
+        </div>
+      <!-- the description about the person-->
+        <li class="edu_his-m_c-dp">
+          <div class="edu_his-m_c-dp-dpct">
+            By the time he began classes at Harvard, Zuckerberg has already achived a "reputation as a programming prodigy",
+            notes vargas. He studied psychology and computer science as well as belonging to Alpha Epsilon Pi, a Jewish fraternity,
+            and Kirkland House.
+        </div>
+        </li>
+      </ul>
+      <!-- the bottom bar-->
+      <div class="edu_his-m_c-view_more">
+        <!-- the details about the comapny-->
+        <div class="edu_his-m_c-view_more-text">
+          <div class="edu_his-m_c-view_more-text-ln1">Want to know more about this document?</div>
+          <div class="edu_his-m_c-view_more-text-ln2">Profile Last Updated On: <span class="edu_his-m_c-dp-itl edu_his-m_c-dp-itl2">07/29/2015</span></div>
+        </div>
+        <button class="edu_his-m_c-view_more-button">
+          View Website  <i class="fa fa-angle-right"></i>
+        </button>
+      </div>
+    </div>
+    <!--container for the ct1 to 'sort by' and 'what is this list?'  !-->
+    <div class="edu_his-ct1">
+    <!--container for the sortby !-->
+    <div class="edu_his-sy">
+      <!-- container for the sortby font !-->
+      <div class="edu_his-syf"> Sort by:
+      <!-- container for the members font !-->
+      <span class="edu_his-syf edu_his-sym"> Most Recent <span class="edu_his-sym edu_his-chd"> <i class=" fa fa-angle-down"></i> </span> </span>
+      </div>
+    </div>
+
+    </div>
+
+    <div class="edu_his-wrapper">
+      <!-- The loop starts here and the each will take each data item from the items on each iteration-->
+      {{#each items}}
+      <div class="edu_his-{{getBackgroundStyle}}"><br>
+        <!--This is the main (circle) image-->
+        <div class="edu_his-head-circ">
+          <div class="edu_his-head-image">
+            <!-- Here displays the counter number which is a result of each loop-->
+            <!-- <span class="edu_his-counter">#{{counter_no}}</span>
+            <span class="co_comp-counter2"></span> -->
+          </div>
+        </div>
+        <!--Location title -->
+        <div class="edu_his-sp">
+          <div  class="edu_his-space">
+            <!-- This displays the font awesome map sybmol infornt of the united states-->
+            <i class="fa fa-map-marker"></i>
+            <span  class="edu_his-space edu_his-space2">
+              {{location}}
+            </span>
+            <!-- Here displays the description which come from the each loop-->
+            <div class="edu_his-adjust">{{ data }}</div>
+            <div class="edu_his-follw1">Studied <span class="edu_his-follwb"> {{repo}} </span>
+            </div>
+            <div class="edu_his-doot">
+            <i class="fa fa-circle"></i>
+            </div>
+            <div class="edu_his-follw2">{{year}}
+            </div>
+          </div>
+        </div>
+        <!--This displays the blue button which holds the text "View Full List"-->
+        {{#if cir}}
+        <div class="edu_his-ctmain">
+          <div class="edu_his-cir1"> </div>
+          <div class="edu_his-cir1"> </div>
+          <div class="edu_his-cir1"> </div>
+          <div class="edu_his-cir1"> </div>
+          <div class="edu_his-cir1"> </div>
+        <!-- </div> -->
+          <button class="edu_his-tile-button">
+            View All College Rivals
+            <span style="margin-left:6px"><i class="fa fa-angle-right"></i></span>
+          </button>
+        </div>
+        {{else}}
+        <div class="edu_his-ctmain">
+
+          <div class="edu_his-cir1"> </div>
+          <div class="edu_his-cir1"> </div>
+          <button class="edu_his-tile-button">
+            View All College Rivals
+            <span style="margin-left:6px"><i class="fa fa-angle-right"></i></span>
+          </button>
+        </div>
+        {{/if}}
+        <!-- This displays the font awesome heart symbol beside the text "save"-->
+        <div class="edu_his-onediv">
+        <div class="edu_his-sn">
+          <div  class="edu_his-save">
+            <i class="fa fa-heart"></i>
+            <span  class="edu_his-save edu_his-st">
+              Save
+            </span>
+          </div>
+        </div>
+
+        <!-- This displays the font awesome share symbol beside the text "share"-->
+        <div class="edu_his-sh">
+          <div  class="edu_his-share">
+            <i class="fa fa-share-alt"></i>
+            <span  class="edu_his-share edu_his-sht">
+              Share
+            </span>
+          </div>
+        </div>
+    <!-- This displays the font awesome flag symbol beside the text "Feedback"-->
+        <div class="edu_his-fe ">
+          <div  class="edu_his-share edu_his-feedback">
+            <i class="fa fa-flag"></i>
+            <span  class="edu_his-share edu_his-ft">
+              Feedback
+            </span>
+          </div>
+        </div>
+    </div>
+  </div>
+      <!-- {{/if}} -->
+      <!--This is the End of each loop -->
+      {{/each}}
+
+</div>
+  <!--created a container for the fotter  !-->
+<div class="edu_his-fotter">
+    {{> recommend}}
+</div>
+
+  </div>
+</div>
+{{/with}}
+</template>

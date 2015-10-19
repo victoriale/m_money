@@ -5,6 +5,7 @@
 -->
 
 <template name="about_exec">
+  {{#with rivalInfo}}
   <!--Page wrapper-->
   <div class="exec">
     <!--Main page header -->
@@ -49,10 +50,13 @@
             <div>{{degree}} - {{abbr}} | Graduated: {{status}}</div>
           </div>
           <!--Featured executive view all button-->
-          <div class="exec_body_featured_info_view-all exec_white">
-            <div class="exec_body_featured_info_view-all_text">View All College Rivals</div>
-            <i class="fa fa-mail-forward exec_body_featured_info_view-all_icon"></i>
-          </div>
+          <a href="{{CollegeRivals}}">
+            <div class="exec_body_featured_info_view-all exec_white">
+              <div class="exec_body_featured_info_view-all_text">View All College Rivals</div>
+              <i class="fa fa-mail-forward exec_body_featured_info_view-all_icon"></i>
+            </div>
+          </a>
+
         </div>
         <!--Featured executive left button-->
         <div class="exec_body_featured_left-button">
@@ -114,7 +118,7 @@
             </div>
           </div>
         </div>
-        <a class="module-tile-link" href="#">
+        <a class="module-tile-link" href="{{EHTileURL}}">
           <div class="module-tile-hover">
             <div class="module-tile-name">
               <i class="fa fa-calculator"></i>Edu. History
@@ -136,7 +140,7 @@
             </div>
           </div>
         </div>
-        <a class="module-tile-link" href="#">
+        <a class="module-tile-link" href="{{BioTileURL}}">
           <div class="module-tile-hover">
             <div class="module-tile-name">
               <i class="fa fa-info-circle"></i>Bio
@@ -158,7 +162,7 @@
             </div>
           </div>
         </div>
-        <a class="module-tile-link" href="#">
+        <a class="module-tile-link" href="{{FAQTileURL}}">
           <div class="module-tile-hover">
             <div class="module-tile-name">
               <i class="fa fa-comments"></i>FAQs
@@ -170,4 +174,5 @@
       </div>
     </div>
   </div><!--End Page wrapper-->
+  {{/with}}
 </template>

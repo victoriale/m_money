@@ -54,7 +54,7 @@ Associated Files: exec_compensation.html, exec_compensation.less, exec_compensat
         <i class="excmp-pa excmp-l excmp-mid-mid-txt3"><i class="fa fa-share-alt"></i>  Share</i>
         <div class="excmp-pa excmp-l excmp-mid-mid-txtbox"> <!--the part of the middle-middle that has the important and long text-->
           <i class="excmp-mid-mid-txtbox-txt">
-            {{o_first_name}} {{o_last_name}}, the {{o_current_title.long_title}} of {{formalName}}, has a <i class="excmp-b">annual salary of ${{annualSalary}}</i> and <i class="excmp-b">${{otherIncome}}</i> through other sources of income.
+            {{o_first_name}} {{o_last_name}}, the {{o_current_title.long_title}} of {{company}}, has an <i class="excmp-b">annual salary of ${{salary}}</i> and a total compensation of <i class="excmp-b">${{totalComp}}</i>.
             <br>
           </i>
         </div>
@@ -67,9 +67,11 @@ Associated Files: exec_compensation.html, exec_compensation.less, exec_compensat
         <div class="excmp-pa excmp-l excmp-mid-btm-txt2">
           Profile Last Updated On: <i class="excmp-b">{{lastUpdated}}</i>
         </div>
-        <div class="excmp-pa excmp-mid-btm-btn">
-          View Profile <i class="fa fa-angle-right excmp-right"></i>
-        </div>
+        <a href="{{backToExec}}">
+          <div class="excmp-pa excmp-mid-btm-btn">
+            View Profile <i class="fa fa-angle-right excmp-right"></i>
+          </div>
+        </a>
       </div>
     </div>
 

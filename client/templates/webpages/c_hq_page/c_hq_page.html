@@ -5,36 +5,38 @@
 -->
 
 <template name="c_hq_page">
+  {{#with compInfo}}
   <div class="chq">
-
     <!--Page header-->
     <div class="chq-hdr">
-      <div class="chq-hdr-hdtl">
-        <div class="chq-hdr-hdtl-or">
-          <div class="chq-hdr-hdtl-mailrep" >
-            <i class="chq-hdr-mailrep fa fa-reply"></i>
-          </div>
-          <div class="chq-hdr-hdtl-rta">
-          </div>
-        </div>
-        <!-- for the text contianer!-->
-        <div class="chq-hdr-hdtl-txtctt">
-          <div class="chq-hdr-hdtl-gb">
-            Go Back To
-            <div class="chq-hdr-hdtl-bar-title">
-              <div class="chq-hdr-hdtl-bar-helper">
-                {{BackTxt}}
-              </div>
-              <div class="chq-hdr-hdtl-bar-side">Profile </div>
+      <a href="{{url}}">
+        <div class="chq-hdr-hdtl">
+          <div class="chq-hdr-hdtl-or">
+            <div class="chq-hdr-hdtl-mailrep" >
+              <i class="chq-hdr-mailrep fa fa-reply"></i>
+            </div>
+            <div class="chq-hdr-hdtl-rta">
             </div>
           </div>
-        </div>
-        <!-- for the circle on the right to navigate!
-        <div class="chq-hdr-hdtl-indcir">
-            <i class="fa fa-angle-right"></i>
+          <!-- for the text contianer!-->
+          <div class="chq-hdr-hdtl-txtctt">
+            <div class="chq-hdr-hdtl-gb">
+              Go Back To
+              <div class="chq-hdr-hdtl-bar-title">
+                <div class="chq-hdr-hdtl-bar-helper">
+                  {{c_name}}
+                </div>
+                <div class="chq-hdr-hdtl-bar-side">Profile </div>
+              </div>
+            </div>
           </div>
-        -->
-      </div>
+          <!-- for the circle on the right to navigate!
+          <div class="chq-hdr-hdtl-indcir">
+              <i class="fa fa-angle-right"></i>
+            </div>
+          -->
+        </div>
+      </a>
       <!-- the header box -->
       <div class="chq-hdr-head-box">
         <!-- image inside the header box-->
@@ -46,11 +48,11 @@
         <div class="chq-hdr-text">
             <!-- the latest update-->
             <div class="chq-hdr-text-update">
-              LAST UPDATED: 05/15/2015, 12:36 PM EST
+              Last Updated {{c_tr_last_updated}} EST
             </div>
             <!-- location of the article-->
             <div class="chq-hdr-text-loc">
-              <i class="fa fa-map-marker"></i> The United States of America
+              <i class="fa fa-map-marker"></i> {{c_hq_city}}, {{c_hq_state}}
             </div>
             <!-- the name of the article-->
             <div class="chq-hdr-text-name">
@@ -58,7 +60,7 @@
             </div>
             <!-- the person the page is about-->
             <div class="chq-hdr-text-auth">
-              For {{company}}
+              For {{c_name}}
             </div>
         </div>
       </div>
@@ -82,26 +84,26 @@
     <div class="chq-map">
       <div class="chq-map-container" id="mainmap"></div>
       <div class="chq-map-bar">
-        <div class="chq-map-bar-title"><i class="fa fa-building-o"></i>{{company}}'s Office Location</div>
+        <div class="chq-map-bar-title"><i class="fa fa-building-o"></i>{{c_name}}'s Office Location</div>
         <div class="chq-map-bar-button"><i class="fa fa-heart"></i>Save</div>
         <div class="chq-map-bar-button"><i class="fa fa-share-alt"></i>Share</div>
       </div>
     </div>
     <!--End Map container-->
 
-    <!--Sort by bar-->
+    <!--Sort by bar
     <div class="chq-sort">
       <span style="font-family:HN-B">Sort by: </span>
       <span>Company's Office Location </span>
       <i class="fa fa-angle-down"></i>
-    </div>
+    </div>-->
     <!--End sort by bar-->
 
     <!--Main page info-->
     <div class="chq-main">
-      <div class="chq-main-hdr"><span class="chq-main-bold">Office</span> for {{company}}:</div>
-      <div class="chq-main-upd"><i class="fa fa-calendar"></i>Last Updated 07/30/2015</div>
-      {{#each category}}
+      <div class="chq-main-hdr"><span class="chq-main-bold">Office</span> for {{c_name}}:</div>
+      <div class="chq-main-upd"><i class="fa fa-calendar"></i>Last Updated {{c_tr_last_updated}}</div>
+      {{#each dataHQ}}
       <div class="chq-main-detail">
         <div class="chq-main-detail-title">{{title}}</div>
         <div class="chq-main-detail-info">
@@ -122,4 +124,5 @@
 
     {{> recommend}}
   </div>
+  {{/with}}
 </template>

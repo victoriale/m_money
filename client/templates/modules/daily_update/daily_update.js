@@ -3,6 +3,24 @@ Created: [07/15/2015]
 Description: [daily_update]
 Associated Files: [daily_update.less][daily_update.html]*/
 
+Template.daily_update.onCreated(function(){
+  this.autorun(function(){
+    var companyid =  Session.get('profile_header');
+    if(typeof companyid != 'undefined'){
+    Meteor.call('GetAIContent', companyid.c_id, function(err, data){
+      if(err){
+        console.log("error Call", err);
+        return false;
+      }else{
+        var aiContent = createGenericString(false, data);
+        Session.set('AI_daily_update',aiContent);
+      }
+    })
+    }
+
+  })
+})
+
 Template.daily_update.onRendered(function(){
   this.autorun(function(){
     /*
@@ -17,6 +35,24 @@ Template.daily_update.onRendered(function(){
 
 
 Template.daily_update.helpers({
+  aiInfo: function(){
+      var data = Session.get('AI_daily_update');
+      var content = {};
+      if(typeof data == 'undefined' || data == false){
+        return '';
+      }
+      content['content'] = data;
+      return content;
+  },
+
+  lastUpdated: function(){
+    var data = Session.get('daily_update');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data.lastUpdated;
+  },
+
   lbInfo: function(){
     var data = Session.get('daily_update');
     if(typeof data == 'undefined'){
@@ -38,11 +74,18 @@ Template.daily_update.helpers({
 
 ///////Chart Creation ///////////
 Template.daily_update.dailyupdategraphh =  function(){
-  var url =  "http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?";
-  $.getJSON(url,  function(data) {
-    options.series[0].data = data;
-    var chart = new Highcharts.Chart(options);
+  var graphdata = Session.get('daily_update');
+  var ticker = Session.get('profile_header');
+  var newDataArray = [];
+  //JSON array is converted into usable code for Highcharts also does not push NULL values
+  $.each(graphdata.stock_hist, function(i, val) {
+    var yVal = parseFloat(val.sh_close);
+    //makes sure any value passed is null
+    if (!isNaN(yVal)) {
+      newDataArray.push([val.sh_date * 1000, yVal]);
+    }
   });
+
   var options = {
     exporting:{
       enabled:false
@@ -98,6 +141,7 @@ Template.daily_update.dailyupdategraphh =  function(){
       text: ''
     },
     yAxis:{
+      min:0,
       opposite: true,
       title:'',
       labels:{
@@ -111,17 +155,11 @@ Template.daily_update.dailyupdategraphh =  function(){
       },
     },
     series: [{
-      name: 'National',
-      data:'data',
+      name: ticker.c_ticker,
+      data: newDataArray,
       type: 'spline',
       showInLegend: false,
-    },
-    {
-      name:'Chicago',
-      type:'spline',
-      showInLegend:false,
-
-    }]
+    }],
   };
   return options;
 };

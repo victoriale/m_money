@@ -8,6 +8,30 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
 <template name="co_board_committee">
 <!--Defined a class name globally for height and width !-->
 <div class= "co_commi">
+  <a href="#" onclick="history.go(-1)">
+    <div class="dp_head-hdtl">
+     <div class="dp_head-hdtl-or">
+       <div class="dp_head-hdtl-mailrep" >
+         <i class="dp_head-mailrep fa fa-reply"></i>
+       </div>
+       <div class="dp_head-hdtl-rta">
+       </div>
+     </div>
+     <!-- for the text contianer!-->
+     <div class="dp_head-hdtl-txtctt">
+       <div class="dp_head-hdtl-gb">
+         Go Back
+         <!-- To
+         <div class="dp_head-hdtl-bar-title">
+         <div class="dp_head-hdtl-bar-helper">
+           {{PageExec}}'s
+         </div>
+           <div class="dp_head-hdtl-bar-side">Profile </div>
+         </div>-->
+       </div>
+     </div>
+   </div>
+  </a>
   <!--gave the dimensions for the module with total height and width !-->
   <div class = "co_commi-n_m">
     <!--dimensions for the circle container as ('cir-d') !-->
@@ -16,10 +40,6 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
     <div class="co_commi-circ">
       <!-- defines container for the smaller blue circle('sc_d') !-->
       <div class= "co_commi-sc_d">
-      <!-- defines the dimension for the small circle('sc') !-->
-      <div class="co_commi-sc_d co_commi-sc">
-      <i class="co_commi-bfo fa fa-reply"></i>
-      </div>
       </div>
     </div>
     </div>
@@ -27,19 +47,19 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
     <div class="co_commi-tc">
     <!-- class date has all the font-weight and font specific !-->
     <div class="co_commi-date">
-      LAST UPDATED: 06/24/2015, 8:00 AM EST
+
     </div>
     <!--specified font style for location !-->
     <div class="co_commi-loc_st">
        <i class="fa fa-map-marker"></i>
     <!--specified font style for the state name !-->
     <span class="co_commi-loc_st">
-      United States
+      {{location}}
     </span>
     </div>
     <!-- specified font sytle for the stock disclaimer !-->
     <div class="co_commi-loc_st co_commi-disc">
-    {{getheadername0}}
+    Board and Committee
     </div>
     <!--specified font style for the inveskit finance  !-->
     <div class="co_commi-loc_st co_commi-fin">
@@ -49,7 +69,7 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
 
     <div class="co_commi-bar">
       <div class="co_commi-bar-title">
-        {{getheadername1}}'s {{getheadername0}}
+        {{getheadername1}}'s Board and Committee
       </div>
       <div class="co_commi-bar-button">
         <!-- the save option button-->
@@ -60,6 +80,7 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
         <a href="#"><i class="fa fa-share-alt"></i><span class="co_commi-bar-text">Share</span></a>
       </div>
     </div>
+    {{#with officer}}
     <div class="co_commi-m_c">
       <!-- the module.less file navigation buttons-->
       <button class='co_commi-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
@@ -80,7 +101,7 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
         <!-- the image in blue circle-->
         <li class="co_commi-m_c-title">
           <div class="co_commi-m_c-title-image"><i class="fa fa-briefcase"></i>
-          <span class="co_commi-m_c-title-text"> {{getheadername2}} </span>
+          <span class="co_commi-m_c-title-text"> {{o_first_name}} {{o_last_name}} </span>
           </div>
         </li>
           <!--the follow('fbt') and share  !-->
@@ -97,7 +118,7 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
         <!-- the description about the person-->
         <li class="co_commi-m_c-dp">
           <div class="co_commi-m_c-dp-dpct">
-          {{getheadername2}} is the Cheif Executive Officer and Chairman of {{getheadername1}} {{getheadername2}}'s net worth is valued at <span class="co_comp-m_c-dp-itl co_comp-m_c-dp-itB2">{{getheadername3}}</span> as of {{getheadername4}}.
+          {{o_bio}}
         </div>
         </li>
       </ul>
@@ -105,14 +126,17 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
       <div class="co_commi-m_c-view_more">
         <!-- the details about the comapny-->
         <div class="co_commi-m_c-view_more-text">
-          <div class="co_commi-m_c-view_more-text-ln1">Want to know more about {{getheadername2}}?</div>
-          <div class="co_commi-m_c-view_more-text-ln2">Profile Last Updated On: <span class="co_commi-m_c-dp-itl">07/29/2015</span></div>
+          <div class="co_commi-m_c-view_more-text-ln1">Want to know more about {{o_first_name}} {{o_last_name}}?</div>
+          <div class="co_commi-m_c-view_more-text-ln2">Profile Last Updated On: <span class="co_commi-m_c-dp-itl">{{o_last_updated}}</span></div>
         </div>
-        <button class="co_commi-m_c-view_more-button">
-          View Profile <i class="fa fa-angle-right"></i>
-        </button>
+        <a href="{{url}}">
+          <button class="co_commi-m_c-view_more-button">
+            View Profile <i class="fa fa-angle-right"></i>
+          </button>
+        </a>
       </div>
     </div>
+    {{/with}}
     <!--container for the ct1 to 'sort by' and 'what is this list?'  !-->
     <div class="co_commi-ct1">
     <!--container for the sortby !-->
@@ -147,35 +171,13 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
 
     <div class="co_commi-wrapper">
       <!-- The loop starts here and the each will take each data item from the items on each iteration-->
-      {{#each items}}
-      {{#if imghld}}
-      <div class="co_commi-quotes">
-        <div class="co_commi-quotes-head">Featured Companies in the United States</div>
-        {{#each quote}}
-        <div class="co_commi-quotes-image">
-          <div class="co_commi-gap1"></div>
-          <div class="co_commi-quotes-image-text">
-            <div class="co_commi-quotes-image-text-ln1">{{name}}</div>
-              <div class="co_commi-quotes-image-text-vc">
-            <span class="co_commi-quotes-image-text-ln1 co_commi-quotes-image-text-ln4">
-              {{text}}
-            <span class="co_commi-quotes-image-text-ln1 co_commi-quotes-image-text-ln3">
-              {{text2}}
-            </span>
-            </span>
-          </div>
-          </div>
-        </div>
-        {{/each}}
-        <div class="co_commi-quotes-arrow fa fa-angle-right"></div>
-      </div>
-      {{else}}
+      {{#each officerList}}
       <div class="co_commi-{{getBackgroundStyle}}"><br>
         <!--This is the main (circle) image-->
         <div class="co_commi-head-circ">
           <div class="co_commi-head-image">
             <!-- Here displays the counter number which is a result of each loop-->
-            <span class="co_commi-counter">#{{counter_no}}</span>
+            <span class="co_commi-counter">#{{o_rank}}</span>
             <span class="co_commi-counter2"></span>
           </div>
         </div>
@@ -188,26 +190,28 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
               {{location}}
             </span>
             <!-- Here displays the description which come from the each loop-->
-            <div class="co_commi-adjust">{{ data }}</div>
-            <div class="co_commi-follw3">{{comp}} </div>
+            <div class="co_commi-adjust">{{o_first_name}} {{o_last_name}}</div>
+            <div class="co_commi-follw3">{{o_current_title.long_title}} </div>
           </div>
         </div>
         <!--This displays the blue button which holds the text "View Full List"-->
         <div class="co_commi-ctmain">
           <span class="co_commi-ctmaintxt">
-            Want more info about this director?
+            Want more info about this executive?
           </span>
-          <button class="co_commi-tile-button">
-            View profile
-            <span style="margin-left:6px"><i class="fa fa-angle-right"></i></span>
-          </button>
+          <a href="{{url}}">
+            <button class="co_commi-tile-button">
+              View profile
+              <span style="margin-left:6px"><i class="fa fa-angle-right"></i></span>
+            </button>
+          </a>
         </div>
         <div class="co_commi-rtct">
-          <div class="co_commi-rttx1"> FB Shares Held</div>
+          <div class="co_commi-rttx1"> Last Updated</div>
           <div class="co_commi-follwt">
-          <span class="co_commi-follw1"> {{number}}</span>
+          <span class="co_commi-follw1"> {{o_last_updated}}</span>
           </div>
-          <div class="co_commi-rttxg"> <span class="co_commi-follws">as of {{getheadername4}} </span></div>
+          <div class="co_commi-rttxg"> <span class="co_commi-follws"></span></div>
         </div>
         <!-- This displays the font awesome heart symbol beside the text "save"-->
         <div class="co_commi-sn">
@@ -238,39 +242,40 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
           </div>
         </div>
       </div>
-      {{/if}}
       <!--This is the End of each loop -->
       {{/each}}
-  <div class="co_commi-footer">
-    <!-- This is outermost class of the footer which holds the other elements in the footer-->
-    <div class="co_commi-holder1">
-      <!-- This is the class which holds the font awesome left arrow-->
-      <div class="co_commi-navigationl">
-        <i class="fa fa-angle-left co_commi-footer-icon"></i>
-      </div>
-      <!-- Here we write the code for the buttons 1,2,3 and 200-->
-      <button  class="co_commi-page-selector1 co_commi-page-selector1-font1">1</button>
-      <button class="co_commi-page-selector2 co_commi-page-selector2-font2">2</button>
-      <button  class="co_commi-page-selector3 co_commi-page-selector3-font3">3</button>
-      <span  class="co_commi-dots" >...</span>
-      <button  class="co_commi-page-selector200 co_commi-page-selector200-font">200</button>
-      <!-- for navigation !-->
-    <span class="co_commi-navigationr">
-      <i class="fa fa-angle-right co_commi-footer-icon"></i>
-    </span>
-      <!-- This is the class which holds the font awesome right arrow-->
     </div>
-    <!-- container for the View all button !-->
-    <div class="exm_tk-navigation2">
-      <button class="exm_tk-view-all exm_tk-view-all-font">VIEW ALL <img style="padding-bottom:4px" src="infinite-icon.png"></button>
+    <div class="co_commi-fotter">
+      <!--created a container for the fotter
+        {{> didnt_find}}
+    !-->
     </div>
   </div>
 </div>
-  <!--created a container for the fotter  !-->
-<div class="co_commi-fotter">
-    {{> didnt_find}}
-</div>
+</template>
 
+<template name="featuredStuff">
+  <!--
+  {{#if imghld}}
+  <div class="co_commi-quotes">
+    <div class="co_commi-quotes-head">Featured Companies in the United States</div>
+    {{#each quote}}
+    <div class="co_commi-quotes-image">
+      <div class="co_commi-gap1"></div>
+      <div class="co_commi-quotes-image-text">
+        <div class="co_commi-quotes-image-text-ln1">{{name}}</div>
+          <div class="co_commi-quotes-image-text-vc">
+        <span class="co_commi-quotes-image-text-ln1 co_commi-quotes-image-text-ln4">
+          {{text}}
+        <span class="co_commi-quotes-image-text-ln1 co_commi-quotes-image-text-ln3">
+          {{text2}}
+        </span>
+        </span>
+      </div>
+      </div>
+    </div>
+    {{/each}}
+    <div class="co_commi-quotes-arrow fa fa-angle-right"></div>
   </div>
-</div>
+  -->
 </template>
