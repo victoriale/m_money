@@ -41,6 +41,7 @@ Meteor.methods({
     console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){
+      data.content = data.content.toString().replace(/^[^{]*/,function(a){ return ''; });
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
@@ -110,7 +111,7 @@ Meteor.methods({
     this.unblock();
     return future.wait();
   },
-  
+
   WhosWhoIndie: function(comp_id, page) {
     var future = new Future();
     console.log("New Executive Request",comp_id);

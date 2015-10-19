@@ -3,15 +3,15 @@
 <body>
   {{>generic_section content}}
   {{#with h1}}
-    <h1>{{title}}</h1>
+    <h1>{{{title}}}</h1>
     {{>generic_section content}}
 
     {{#each h2}}
-      <h2>{{title}}</h2>
+      <h2>{{{title}}}</h2>
       {{>generic_section content}}
 
       {{#each h3}}
-        <h3>{{title}}</h3>
+        <h3>{{{title}}}</h3>
         {{>generic_section content}}
       {{/each}}
     {{/each}}
