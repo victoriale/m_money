@@ -39,30 +39,18 @@ async_mult.prototype.done = function done(result) {
     }
 };
 
+// HTML minifier
 var minify = Npm.require('html-minifier').minify;
-
+// Environment Variables
 var info_envar = new Meteor.EnvironmentVariable;
 
-function RenderError(res){
-  res.writeHead(410);
-  res.write('<head>\n');
-  res.write('<meta name="description" content="This page does not exist"/>\n');
-  res.write('<meta name="og:site_name" content="Joyful Home"/>\n');
-  res.write('<meta name="og:title" content="Page Does Not Exist | JoyfulHome.com"/>\n');
-  res.write('<meta name="robots" content="noindex"/>\n');
-  res.write('<title>Page Does Not Exist | JoyfulHome.com</title>\n');
-  res.end('</head>\n');
-  return false;
-}
-
+// Filter out bot requests
 var seoPicker = Picker.filter(function(req, res) {
-  return true;
   if ( /bot/.test(req.headers['user-agent']) || /Webmaster/.test(req.headers['user-agent']) || /Bing/.test(req.headers['user-agent']) || /externalhit/.test(req.headers['user-agent']) ) {
     return true;
   }
   return false;
 });
-
 
 // Home Page
 // NOT DONE
@@ -108,6 +96,43 @@ seoPicker.route('/:partner_id?',function(params, req, res){
 seoPicker.route('/:partner_id?/company/:company_id',function(params, req, res){
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
+  // Get the data
+  info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){
+    var callback = Meteor.bindEnvironment(function(results){
+      var res_arr = {};
+      for ( var index = 0; index < results.length; index++ ) {
+        res_arr = $.extend(res_arr, results[index]);
+      }
+      var info = info_envar.get();
+      var res = info.res;
+      res.end(JSON.stringify(res_arr, null, 2));
+      return true;
+    });
+
+    var functions = [];
+    var method_cb = function(error, data) {
+      console.log("Batch 1");
+      if ( error ) {
+        console.log(error);
+        batch.done({});
+        return false;
+      }
+      batch.done(data);
+    }
+
+    functions.push(function(batch){
+      Meteor.call("GetCompanyData",params.company_id,"batch_1", method_cb);
+    });
+    functions.push(function(batch){
+      Meteor.call("GetCompanyData",params.company_id,"batch_2", method_cb);
+    });
+    functions.push(function(batch){
+      Meteor.call("GetCompanyData",params.company_id,"batch_3", method_cb);
+    });
+
+    var company_batch = new async_mult(functions, callback);
+  });
+
   var head_data = { // Data to put into the head of the document (meta tags/title)
     description: 'Discover your next investment with InvesKit\'s unique blend of lists, information, and profiles. Get big data in an easy to digest format with AI generated content, executive profiles, and much more!',
     title: 'InvestKit.com - Discover Your Next Investment',
@@ -130,12 +155,12 @@ seoPicker.route('/:partner_id?/company/:company_id',function(params, req, res){
     }
   };
 
-  res.end(minify(SSR.render('generic_page',page_data), {
-    minifyCSS: true,
-    minifyJS: true,
-    removeComments: true,
-    collapseWhitespace: true
-  })); // Write the pages template
+  // res.end(minify(SSR.render('generic_page',page_data), {
+  //   minifyCSS: true,
+  //   minifyJS: true,
+  //   removeComments: true,
+  //   collapseWhitespace: true
+  // })); // Write the pages template
   // Also minifies the HTML string
 
   // Log how long it took to render the page
