@@ -1,13 +1,20 @@
-/* Author: Zachary Pearson
-** Created: 10/13/2015
-** Description: .js file for Copyright Page
-** Associated Files: copyright_page.html, copyright_page.less, copyright_page_logic.js
+/*
+Author: David Wibowo
+Created: [10-15-2015]
+Description:conatct us webpage
+Associated Files: copyright_page.html, copyright_page_logic.js, about_us_page.less
 */
 
 Template.copyright_page.helpers({
-  company: function(){
-    return "[Profile]";
-  }
+  Title:"Copyright Infringement",
+  About:"InvestKit’s Copyright Infringement",
+  Profile: "[Profile]",
+  Country: "The United States",
+  Statement: "For InvestKit",
+  Update: "06/24/2015,8:00 AM EST",
+  back_url:"#",
+  profile_ulr:"#",
+  image_url:"/tribune_logo.png"
 })
 
 Template.copyright_page.onRendered(function(){
@@ -42,13 +49,3 @@ Template.copyright_page.events({
     }
   }
 });
-
-/*
-Router.path('content.disclaimer');
-Router.path('content.contactus');
-Router.path('content.aboutus');
-Router.path('content.copyright');
-Router.path('content.privacypolicy');
-Router.path('content.stockdisclaimer');
-Router.path('content.termsofservice');
-*/
