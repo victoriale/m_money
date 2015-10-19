@@ -57,6 +57,60 @@ Meteor.methods({
     return future.wait();
   },
 
+  CompWebPageData: function(comp_id, option){
+    var future = new Future();
+    console.log("New company Request",comp_id);
+    var Start = new Date();
+    Start = Start.getTime();
+
+    var UrlString =   "http://apifin.synapsys.us/call_controller.php?action=company_page&option=" + option + "&param=" + comp_id;
+    console.log(UrlString);
+
+    Meteor.http.get(UrlString, function(error, data){
+      try{
+        data = JSON.parse(data['content']);
+      } catch (e) {
+        future.throw(e);
+        return false;
+      }
+        future.return(data);
+    });
+    var End = new Date();
+    End = End.getTime();
+    var TimeDif = (End - Start)/1000;
+    console.log("Request finished in " + Math.round(TimeDif*10)/10 + " seconds");
+    this.unblock();
+    return future.wait();
+  },
+
+  ExecWebpageData: function(exec_id, option) {
+    var future = new Future();
+
+    console.log("New CollegeRivals Request",exec_id,option);
+    var Start = new Date();
+    Start = Start.getTime();
+
+    var UrlString = "http://apifin.synapsys.us/call_controller.php?action=executive_page&option="+ option +"&param=" + exec_id;
+    console.log(UrlString);
+
+    Meteor.http.get(UrlString, function(error, data){
+      try{
+        data = JSON.parse(data['content']);
+      } catch (e) {
+        future.throw(e);
+        return false;
+      }
+        future.return(data);
+    });
+
+    var End = new Date();
+    End = End.getTime();
+    var TimeDif = (End - Start)/1000;
+    console.log("Request finished in " + Math.round(TimeDif*10)/10 + " seconds");
+    this.unblock();
+    return future.wait();
+  },
+  
   WhosWhoIndie: function(comp_id, page) {
     var future = new Future();
     console.log("New Executive Request",comp_id);
@@ -244,60 +298,6 @@ Meteor.methods({
       }
         future.return(data);
     });
-    var End = new Date();
-    End = End.getTime();
-    var TimeDif = (End - Start)/1000;
-    console.log("Request finished in " + Math.round(TimeDif*10)/10 + " seconds");
-    this.unblock();
-    return future.wait();
-  },
-
-  CompWebPageData: function(comp_id, option){
-    var future = new Future();
-    console.log("New company Request",comp_id);
-    var Start = new Date();
-    Start = Start.getTime();
-
-    var UrlString =   "http://apifin.synapsys.us/call_controller.php?action=company_page&option=" + option + "&param=" + comp_id;
-    console.log(UrlString);
-
-    Meteor.http.get(UrlString, function(error, data){
-      try{
-        data = JSON.parse(data['content']);
-      } catch (e) {
-        future.throw(e);
-        return false;
-      }
-        future.return(data);
-    });
-    var End = new Date();
-    End = End.getTime();
-    var TimeDif = (End - Start)/1000;
-    console.log("Request finished in " + Math.round(TimeDif*10)/10 + " seconds");
-    this.unblock();
-    return future.wait();
-  },
-
-  ExecWebpageData: function(exec_id, option) {
-    var future = new Future();
-
-    console.log("New CollegeRivals Request",exec_id,option);
-    var Start = new Date();
-    Start = Start.getTime();
-
-    var UrlString = "http://apifin.synapsys.us/call_controller.php?action=executive_page&option="+ option +"&param=" + exec_id;
-    console.log(UrlString);
-
-    Meteor.http.get(UrlString, function(error, data){
-      try{
-        data = JSON.parse(data['content']);
-      } catch (e) {
-        future.throw(e);
-        return false;
-      }
-        future.return(data);
-    });
-
     var End = new Date();
     End = End.getTime();
     var TimeDif = (End - Start)/1000;
