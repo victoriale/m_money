@@ -1,0 +1,27 @@
+<head>
+  {{#if title}}
+    <title>{{title}}</title>
+    <meta name="og:title" content="{{title}}"/>
+  {{else}}
+    <title>InvestKit.com - Discover Your Next Investment</title>
+    <meta name="og:title" content="InvestKit.com - Discover Your Next Investment"/>
+  {{/if}}
+
+  {{#if description}}
+    <meta name="description" content="{{description}}"/>
+    <meta name="og:description" content="{{description}}"/>
+    <meta name="twitter:description" content="{{description}}"/>
+  {{/if}}
+
+  {{#if url}}
+    <meta rel="canonical" content="{{url}}"/>
+    <meta name="og:url" content="{{url}}"/>
+    <meta name="twitter:url" content="{{url}}"/>
+  {{/if}}
+
+  <meta name="og:site_name" content="InvestKit.com"/>
+
+  {{#each other_tags}}
+    <meta name="{{name}}" content="{{content}}"/>
+  {{/each}}
+</head>
