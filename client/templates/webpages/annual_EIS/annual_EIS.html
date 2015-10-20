@@ -1,0 +1,129 @@
+<!-- Author: jyothyswaroop
+**** Created: [10/19/2015]
+**** Description: annual EIS
+**** Associated Files: annual_EIS.html, annual_EIS.less, annual_EIS_logic.js
+-->
+
+<template name="annual_EIS">
+
+  <div class="aneis">
+    <!--Go Back Bar-->
+    <a href="#" onclick="history.go(-1)">
+      <div class="aneis-hdtl">
+       <div class="aneis-hdtl-or">
+         <div class="aneis-hdtl-mailrep" >
+           <i class="aneis-mailrep fa fa-reply"></i>
+         </div>
+         <div class="aneis-hdtl-rta">
+         </div>
+       </div>
+       <!-- for the text contianer!-->
+       <div class="aneis-hdtl-txtctt">
+         <div class="aneis-hdtl-gb">
+           Go Back To
+           <div class="aneis-hdtl-bar-title">
+           <div class="aneis-hdtl-bar-helper">
+             {{company}}'s
+           </div>
+             <div class="aneis-hdtl-bar-side">Profile</div>
+           </div>
+         </div>
+       </div>
+     </div>
+    </a>
+    <!--End Go Back Bar-->
+
+    <!--Page header-->
+    <div class="aneis-hdr">
+      <div class="aneis-hdr-img" style="background-image:url()"></div>
+      <div class="aneis-hdr-txt">
+        <div class="aneis-hdr-txt-upd">LAST UPDATED: {{updated}}</div>
+        <div class="aneis-hdr-txt-loc"><i class="fa fa-map-marker"></i>{{location}}</div>
+        <div class="aneis-hdr-txt-title">2015 Annual Income Statement</div>
+        <div class="aneis-hdr-txt-for">For {{company}}</div>
+      </div>
+    </div>
+    <!--End Page header-->
+
+    <!--Dropdown menus-->
+    <div class="aneis-ddn">
+      <div class="aneis-ddn-mnu" style="width:160px" id="aneis-ddn-0">
+        Income Statement
+        <div class="aneis-ddn-cir"><i class="fa fa-caret-down"></i></div>
+      </div>
+      <div class="aneis-ddn-mnu" style="width:130px" id="aneis-ddn-1">
+        annual Data
+        <div class="aneis-ddn-cir"><i class="fa fa-caret-down"></i></div>
+      </div>
+      <div class="aneis-ddn-mnu" style="width:100px" id="aneis-ddn-2">
+        2015
+        <div class="aneis-ddn-cir"><i class="fa fa-caret-down"></i></div>
+      </div>
+    </div>
+    <!--End Dropdown menus-->
+
+    <!--Chart legend-->
+    <div class="aneis-lgnd">
+      <div class="aneis-lgnd-txt">
+        <div class="aneis-lgnd-clr" style="background-color:#434348" id="aneis-clr-0"></div>
+        <div style="float:left;margin-right:5px;">
+          <div class="aneis-lgnd-amnt">$4.99 Million</div>
+          <div class="aneis-lgnd-lbl">Net Income</div>
+        </div>
+      </div>
+      <div class="aneis-lgnd-txt">
+        <div class="aneis-lgnd-clr" style="background-color:#3098ff" id="aneis-clr-1"></div>
+        <div style="float:left;margin-right:5px;">
+          <div class="aneis-lgnd-amnt">$12.46 Million</div>
+          <div class="aneis-lgnd-lbl">Revenue</div>
+        </div>
+      </div>
+      <div class="aneis-lgnd-txt">
+        <div class="aneis-lgnd-clr" style="background-color:#f8a354" id="aneis-clr-2"></div>
+        <div style="float:left;margin-right:5px;">
+          <div class="aneis-lgnd-amnt">23%</div>
+          <div class="aneis-lgnd-lbl">Profit Margin (%)</div>
+        </div>
+      </div>
+      <div class="aneis-ddn-mnu" style="width:160px;float:right;" id="aneis-ddn-3">
+        Net Income Chart
+        <div class="aneis-ddn-cir"><i class="fa fa-caret-down"></i></div>
+      </div>
+    </div>
+    <!--End Chart legend-->
+
+    <!--Chart-->
+    <div class="aneis-chart" id="annualEISgraph"></div>
+    <!--End Chart-->
+
+    <!--Data Table-->
+    <div class="aneis-tbl">
+      <div class="aneis-tbl-hdr">In Millions of USD (except for per share items)</div>
+
+      <!--Data labels-->
+      <div class="aneis-tbl-lbls">
+        <div class="aneis-tbl-lbl" style="width:205px;margin-left:0px;">Key Metric</div>
+        <div class="aneis-tbl-lbl" style="font-family:HN-B">12-31-2014</div>
+        <div class="aneis-tbl-lbl">12-31-2013</div>
+        <div class="aneis-tbl-lbl">12-31-2012</div>
+        <div class="aneis-tbl-lbl">12-31-2011</div>
+        <!-- <div class="aneis-tbl-lbl" style="margin-right:0px">Q2 - 2014</div> -->
+      </div>
+
+      <!--Data Row-->
+      {{#each data}}
+      <div class="aneis-tbl-row-{{color}} aneis-tbl-{{border}}">
+        <div class="aneis-tbl-data-title">{{metric}}</div>
+        <div class="aneis-tbl-data" style={{style1}}>{{amnt1}}</div>
+        <div class="aneis-tbl-data" style={{style2}}>{{amnt2}}</div>
+        <div class="aneis-tbl-data" style={{style3}}>{{amnt3}}</div>
+        <div class="aneis-tbl-data" style={{style4}}>{{amnt4}}</div>
+        <!-- <div class="aneis-tbl-data" style={{style5}}>{{amnt5}}</div> -->
+      </div>
+      {{/each}}
+    </div>
+    <!--End Data Table-->
+
+    <!-- {{> recommend}} -->
+  </div>
+</template>
