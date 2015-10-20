@@ -13,10 +13,12 @@
    <!-- This is the Div for top part of the header-->
     <div class="pgheader-nav_divtp">
       <div class="pgcentp">
+        {{#if notPartner}}
         <!-- This is the Div for Logo header-->
         <a href="/">
           <div class="pgheader-nav_divtp_Finlogo"></div>
         </a>
+        {{/if}}
         <!-- This is the Div for research button-->
         <div class="pgheader-nav_divtp_Resrch">
             <div class="pgheader-nav_divtp_Resrch_restxt">Research</div>
@@ -108,10 +110,12 @@
   <div class="layout_nav">
     <table>
       <tr>
-        <td>
+        <td class="layout_nav-logo-cell">
+          {{#if notPartner}}
           <a href="/">
             <div class="layout_nav-logo"></div>
           </a>
+          {{/if}}
         </td>
         <td>
           <div class="layout_nav-search">
