@@ -198,10 +198,9 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 background-color: @blue;
                 width: 40px;
                 height: 40px;
+                line-height: 40px;
                 left: 235px;
                 top: 32px;
-                padding-top: 10px;
-                padding-left: 13px;
             }
 
             &-txt1 //cfo-mid-mid-txt1
@@ -212,6 +211,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 width: 380px;
                 height: 31px;
                 overflow: hidden;
+                text-align: left;
             }
 
             &-txt2 //cfo-mid-mid-txt2
@@ -233,14 +233,14 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
             &-txtbox //cfo-mid-mid-txtbox
             {
                 border-left: 2px solid @grey-2;
-                height: 101px;
-                width: 361px;
+                width: 391px;
                 left: 255px;
-                top: 98px;
+                top: 90px;
                 padding-left: 19px;
                 font-size: 16px;
                 line-height: 19px;
                 overflow: hidden;
+                text-align: left;
 
                 &-txt //cfo-mid-mid-txtbox-txt
                 {
@@ -288,12 +288,17 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 left: 490px;
                 top: 21px;
                 background-color: @blue;
+                color: @white;
                 border-radius: 5px;
                 width: 180px;
                 height: 35px;
                 font-size: 14px;
                 text-align: center;
                 padding-top: 7px;
+
+                >.fa-angle-right{
+                  padding-left: 10px;
+                }
             }
         }
     }
@@ -301,7 +306,6 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
     &-btm //cfo-btm
     {
         width: 680px;
-        min-height: 978px;
         padding: 10px 15px 0px 15px;
 
         &-txt1 //cfo-btm-txt1
@@ -338,6 +342,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 {
                     float: right;
                     top: 3px;
+                    cursor: pointer;
                 }
             }
 
@@ -396,12 +401,12 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                     border-radius: 50%;
                     width: 35px;
                     height: 35px;
+                    line-height: 35px;
                     font-size: 14px;
                     color: #272727;
                     margin: 8px 10px;
                     float: left;
                     text-align: center;
-                    padding-top: 7px;
                     cursor: pointer;
 
                     &-a //cfo-btm-data-period-btn-a
@@ -504,6 +509,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                     font-size: 12px;
                     top: 5px;
                     overflow: hidden;
+                    text-align: left;
                 }
             }
 
@@ -571,10 +577,9 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                     color: @white;
                     width: 35px;
                     height: 35px;
+                    line-height: 35px;
                     float: left;
                     font-size: 16px;
-                    padding-top: 5px;
-                    padding-left: 13px;
                     top: 0px;
                     left: 0px;
                 }
@@ -592,6 +597,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                         width: 50%;
                         height: 20px;
                         overflow: hidden;
+                        text-align: left;
                     }
 
                     &-r //cfo-btm-data-tile-stat-r

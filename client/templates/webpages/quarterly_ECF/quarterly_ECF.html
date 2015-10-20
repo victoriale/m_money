@@ -1,0 +1,123 @@
+<!-- Author: Sri Sindhusha Kuchipudi
+  Created: 10/18/2015
+  Description: .less file for quarterly_ECF webpage
+  Associated Files: quarterly_ECF.html, quarterly_ECF.less, quarterly_ECF.js
+ -->
+
+<template name="quarterly_ECF">
+  <div class="q_ECF">
+
+    <!-- header section -->
+    <div class = "q_ECF-h">
+      <a href = "#">
+        <div class = "q_ECF-h-hdarw"><i class = "fa fa-reply q_ECF-h-hdarw-facon"></i></div>
+        <div class = "q_ECF-h-arw"></div>
+      </a>
+        <div class = "q_ECF-h-txt-t1">Go Back To <strong>{{cname}}'s</strong> Profile</div>
+    </div>
+    <!-- end of header section -->
+
+    <!-- page header section -->
+    <div class="q_ECF-pgh">
+      <div class="q_ECF-pgh-img"></div>
+      <div class="q_ECF-pgh-txt">
+        <div class="q_ECF-pgh-txt-dt">LAST UPDATED: {{getdate}}</div>
+        <div class="q_ECF-pgh-txt-loc"><i class = "fa fa-map-marker q_ECF-pgh-txt-icon "></i> &nbsp; The United States of America</div>
+        <div class="q_ECF-pgh-txt-h1">2015 Q2 cash flow</div>
+        <div class="q_ECF-pgh-txt-h2">For {{cname}}</div>
+      </div>
+      <!-- for horizontal line -->
+      <div class="q_ECF-pgh-hln"></div>
+      <!-- for dropdowns -->
+      <div class="q_ECF-pgh-drp" style="width:160px">
+          <div class="q_ECF-pgh-drp-txt"> Balance Sheet</div>
+        <div class="q_ECF-pgh-drp-cir">
+          <div> <i class="fa fa-caret-down icon"></i></div>
+        </div>
+      </div>
+      <div class="q_ECF-pgh-drp">
+        <div class="q_ECF-pgh-drp-txt"> Quarterly Data</div>
+        <div class="q_ECF-pgh-drp-cir">
+            <div> <i class="fa fa-caret-down icon"></i></div>
+        </div>
+      </div>
+      <div class="q_ECF-pgh-drp">
+        <div class="q_ECF-pgh-drp-txt"> 2015 </div>
+        <div class="q_ECF-pgh-drp-cir">
+          <div> <i class="fa fa-caret-down icon"></i></div>
+        </div>
+      </div>
+  <!-- for legends -->
+      <div class="q_ECF-pgh-l">
+        <div class="q_ECF-pgh-l-title">
+          Cash Flow Chart
+        </div>
+        <div class="q_ECF-pgh-l-txt">
+          <div class="q_ECF-pgh-l-cir" style="background-color:#ca1010" id="cir"></div>
+          <div style="float:left;margin-right:5px;">
+            <div class="q_ECF-pgh-l-num">$2.94 Million</div>
+            <div class="q_ECF-pgh-l-lbl">Financing</div>
+          </div>
+        </div>
+        <div class="q_ECF-pgh-l-txt">
+          <div class="q_ECF-pgh-l-cir" style="background-color:#f7701d" id="cir"></div>
+          <div style="float:left;margin-right:5px;">
+            <div class="q_ECF-pgh-l-num">$12.46 Million</div>
+            <div class="q_ECF-pgh-l-lbl">Investing</div>
+          </div>
+        </div>
+        <div class="q_ECF-pgh-l-txt">
+          <div class="q_ECF-pgh-l-cir" style="background-color:#3098ff" id="cir"></div>
+          <div style="float:left;margin-right:5px;">
+            <div class="q_ECF-pgh-l-num">$4.99 Million</div>
+            <div class="q_ECF-pgh-l-lbl">Operating Income</div>
+          </div>
+        </div>
+      </div>
+      <!--to display high chart -->
+      <div id="quarterly" class="q_ECF-pgh-gp">
+
+      </div>
+    </div>
+    <!-- end of page header section -->
+
+    <!-- bottom section -->
+    <div class="q_ECF-btm">
+      <!-- head Section in bottom part of page  -->
+      <div class="q_ECF-btm-h">
+        <div class="q_ECF-btm-h-vln"></div>
+        <div class="q_ECF-btm-h-txt">In Millions of USD (except for per share items)</div>
+      </div>
+      <!-- buttons in bottom section -->
+      <div class="q_ECF-btm-subs">
+        <div class="q_ECF-btm-subs-ky rec" id="key"><div class="q_ECF-btm-subs-txt" id="ky">Key Metric</div></div>
+        <div class="q_ECF-btm-subs-Q rec" id="Q2" ><div class="q_ECF-btm-subs-txt" id="Qt2">Q2 - 2015</div></div>
+        <div class="q_ECF-btm-subs-Q rec" id="Q1"><div class="q_ECF-btm-subs-txt" id="Qt1">Q1 - 2015</div></div>
+        <div class="q_ECF-btm-subs-Q rec" id="Q4"><div class="q_ECF-btm-subs-txt" id="Qt4">Q4 - 2015</div></div>
+        <div class="q_ECF-btm-subs-Q rec" id="Q3"><div class="q_ECF-btm-subs-txt" id="Qt3">Q3 - 2015</div></div>
+      </div>
+      <!-- the data section  -->
+      <div class="q_ECF-btm-sec">
+          {{#each data}}
+              <div class="q_ECF-btm-sec-tl-{{getcolor}} q_ECF-btm-sec-{{border}}">
+                <div class="q_ECF-btm-sec-tl-ky"><div class="q_ECF-btm-sec-tl-ky-txt">{{metric}}</div></div>
+                <div class="q_ECF-btm-sec-tl-Q">
+                  <div class="q_ECF-btm-sec-tl-Q-n1 num" id="s1" style={{style1}}>{{amnt1}}</div>
+                </div>
+                <div class="q_ECF-btm-sec-tl-Q">
+                  <div class="q_ECF-btm-sec-tl-Q-n1 num" id="s2"  style={{style2}}>{{amnt2}}</div>
+                </div>
+                <div class="q_ECF-btm-sec-tl-Q">
+                  <div class="q_ECF-btm-sec-tl-Q-n1 num" id="s3" style={{style3}}>{{amnt3}}</div>
+                </div>
+                <div class="q_ECF-btm-sec-tl-Q">
+                  <div class="q_ECF-btm-sec-tl-Q-n1 num" id="s4" style={{style4}}>{{amnt4}}</div>
+                </div>
+              </div>
+            {{/each}}
+      </div>
+    </div>
+    <!-- end of bottom section -->
+
+  </div>
+</template>

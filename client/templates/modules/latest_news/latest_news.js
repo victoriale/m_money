@@ -75,23 +75,30 @@ Template.latest_news.helpers({
     return Session.get('IsLocation');
   },
   company: function(){
-    data = Session.get('profile_header');
-    if(typeof data == undefined){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
       return '';
     }
     return data['c_name'];
   },
   exec: function(){
-    data = Session.get('profile_header');
-    if(typeof data == undefined){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
       return '';
     }
     return data['o_first_name'] + " " + data['o_last_name'];
   },
   loc: function(){
-    data = Session.get('fl_data');
-    if(typeof data == undefined){
+    var state = Session.get('state_id');
+    var city = Session.get('city_id');
+    if(typeof state == 'undefined'){
       return '';
+    }else{
+      if(typeof city == 'undefined' || city == null){
+        return state + ', ' + city;
+      }else{
+        return state;
+      }
     }
     return data['company_location'];
   },
