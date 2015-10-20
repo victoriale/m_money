@@ -385,13 +385,14 @@
 }
 
 .layout_nav{
+  min-width: 1042px;
   width:100%;
   height:40px;
   background-color: #252525;
   &-logo{
     width:135px;
     height:30px;
-    margin: 5px 0 5px 10vw;
+    margin: 5px 0 5px 8vw;
     background-image: @investkit-white;
     background-position: center center;
     background-size: contain;
@@ -400,9 +401,10 @@
     float: left;
   }
   &-search{
-    width:350px;
+    min-width: 350px;
+    max-width: 400px;
     height:30px;
-    margin: 5px 17vw;
+    margin: 5px 10vw 5px 15vw;
     border-radius: 5px;
     background-color: @white;
     float:left;
@@ -421,5 +423,37 @@
     height:100%;
     text-align: center;
     padding:5px 0;
+    line-height: 1.3em;
+    font-size: 15px;
+  }
+  &-fb{
+    width:30px;
+    height:30px;
+    background-color: @fb;
+    line-height: 30px;
+    color:@white;
+    border-radius: 50%;
+    float: left;
+    margin: 5px 2px;
+    text-align: center;
+  }
+  &-share{
+    width:30px;
+    height:30px;
+    background-color: @green;
+    line-height: 30px;
+    color:@white;
+    border-radius: 50%;
+    float: left;
+    margin: 5px 2px;
+    text-align: center;
+  }
+  &-share_text{
+    height:30px;
+    color:@white;
+    line-height: 30px;
+    border-radius: 50%;
+    float: left;
+    margin: 5px 2px;
   }
 }
