@@ -1,5 +1,8 @@
 <html>
 {{>head head_data}}
+{{#if partner_header}}
+  {{{partner_header}}}
+{{/if}}
 <body>
   {{>generic_section content}}
   {{#with h1}}
