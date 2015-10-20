@@ -392,6 +392,20 @@ Meteor.methods({
     });
     return future.wait();
   },
+
+  GetPartnerHeader: function(partner_id) {
+    var URLString = "http://apireal.synapsys.us/listhuv/?action=get_partner_data&domain=" + partner_id;
+    var future = new Future();
+    Meteor.http.get(URLString,function(error,data){
+      if ( error ) {
+        console.log(error);
+        future.return(error);
+      }
+      future.return(data);
+    });
+    this.unblock();
+    return future.wait();
+  },
 });
 
 Meteor.startup(function(){
