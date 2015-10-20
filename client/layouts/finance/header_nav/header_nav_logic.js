@@ -92,10 +92,10 @@ Template.header_nav.events({
       $('#KM').slideUp();
     },
     /* this function envokes client/layouts/finance/finance_search.js */
-    'keyup .pgheader-nav_divbtm_srchbr_srcbrtxt input': function(event){
+    'keyup .layout_nav-search_input': function(event){
       if( event.which === 13){
         event.preventDefault();
-        Finance_Search($('.pgheader-nav_divbtm_srchbr_srcbrtxt input').value);
+        Finance_Search($('.layout_nav-search_input')[0].value);
         return "";
       }
     }
