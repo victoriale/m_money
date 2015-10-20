@@ -19,7 +19,11 @@
     <meta name="twitter:url" content="{{url}}"/>
   {{/if}}
 
-  <meta name="og:site_name" content="InvestKit.com"/>
+  {{#if siteName}}
+    <meta name="og:site_name" content="{{siteName}}"/>
+  {{else}}
+    <meta name="og:site_name" content="InvestKit.com"/>
+  {{/if}}
 
   {{#each other_tags}}
     <meta name="{{name}}" content="{{content}}"/>
