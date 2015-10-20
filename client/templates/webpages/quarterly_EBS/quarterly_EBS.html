@@ -1,0 +1,128 @@
+<!-- Author: Ryan Fisher
+**** Created: [10/19/2015]
+**** Description: Quarterly EIS
+**** Associated Files: quarterly_EBS.html, quarterly_EBS.less, quarterly_EBS_logic.js
+-->
+
+<template name="quarterly_EBS">
+
+  <div class="qebs">
+    <!--Go Back Bar-->
+    <a href="#" onclick="history.go(-1)">
+      <div class="qebs-hdtl">
+       <div class="qebs-hdtl-or">
+         <div class="qebs-hdtl-mailrep" >
+           <i class="qebs-mailrep fa fa-reply"></i>
+         </div>
+         <div class="qebs-hdtl-rta">
+         </div>
+       </div>
+       <!-- for the text contianer!-->
+       <div class="qebs-hdtl-txtctt">
+         <div class="qebs-hdtl-gb">
+           Go Back To
+           <div class="qebs-hdtl-bar-title">
+           <div class="qebs-hdtl-bar-helper">
+             {{company}}'s
+           </div>
+             <div class="qebs-hdtl-bar-side">Profile</div>
+           </div>
+         </div>
+       </div>
+     </div>
+    </a>
+    <!--End Go Back Bar-->
+
+    <!--Page header-->
+    <div class="qebs-hdr">
+      <div class="qebs-hdr-img" style="background-image:url()"></div>
+      <div class="qebs-hdr-txt">
+        <div class="qebs-hdr-txt-upd">LAST UPDATED: {{updated}}</div>
+        <div class="qebs-hdr-txt-loc"><i class="fa fa-map-marker"></i>{{location}}</div>
+        <div class="qebs-hdr-txt-title">2015 Q2 Balance Sheet</div>
+        <div class="qebs-hdr-txt-for">For {{company}}</div>
+      </div>
+    </div>
+    <!--End Page header-->
+
+    <!--Dropdown menus-->
+    <div class="qebs-ddn">
+      <div class="qebs-ddn-mnu" style="width:160px" id="qebs-ddn-0">
+        Balance Sheet
+        <div class="qebs-ddn-cir"><i class="fa fa-caret-down"></i></div>
+      </div>
+      <div class="qebs-ddn-mnu" style="width:130px" id="qebs-ddn-1">
+        Quarterly Data
+        <div class="qebs-ddn-cir"><i class="fa fa-caret-down"></i></div>
+      </div>
+      <div class="qebs-ddn-mnu" style="width:100px" id="qebs-ddn-2">
+        2015
+        <div class="qebs-ddn-cir"><i class="fa fa-caret-down"></i></div>
+      </div>
+    </div>
+    <!--End Dropdown menus-->
+
+    <!--Chart legend-->
+    <div class="qebs-lgnd">
+      <div class="qebs-lgnd-txt">
+        <div class="qebs-lgnd-clr" style="background-color:#434348" id="qebs-clr-0"></div>
+        <div style="float:left;margin-right:5px;">
+          <div class="qebs-lgnd-amnt">$0</div>
+          <div class="qebs-lgnd-lbl">Total Debt</div>
+        </div>
+      </div>
+      <div class="qebs-lgnd-txt">
+        <div class="qebs-lgnd-clr" style="background-color:#3098ff" id="qebs-clr-1"></div>
+        <div style="float:left;margin-right:5px;">
+          <div class="qebs-lgnd-amnt">$12.46 Million</div>
+          <div class="qebs-lgnd-lbl">Total Assets</div>
+        </div>
+      </div>
+      <div class="qebs-lgnd-txt">
+        <div class="qebs-lgnd-clr" style="background-color:#f8a354" id="qebs-clr-2"></div>
+        <div style="float:left;margin-right:5px;">
+          <div class="qebs-lgnd-amnt">0%</div>
+          <div class="qebs-lgnd-lbl">Debt to assets (%)</div>
+        </div>
+      </div>
+      <div class="qebs-ddn-mnu" style="width:160px;float:right;" id="qebs-ddn-3">
+        Total Assets Chart
+        <div class="qebs-ddn-cir"><i class="fa fa-caret-down"></i></div>
+      </div>
+    </div>
+    <!--End Chart legend-->
+
+    <!--Chart-->
+    <div class="qebs-chart" id="quarterlyEBSgraph"></div>
+    <!--End Chart-->
+
+    <!--Data Table-->
+    <div class="qebs-tbl">
+      <div class="qebs-tbl-hdr">In Millions of USD (except for per share items)</div>
+
+      <!--Data labels-->
+      <div class="qebs-tbl-lbls">
+        <div class="qebs-tbl-lbl" style="width:205px;margin-left:0px;">Key Metric</div>
+        <div class="qebs-tbl-lbl" style="font-family:HN-B">Q2 - 2015</div>
+        <div class="qebs-tbl-lbl">Q1 - 2015</div>
+        <div class="qebs-tbl-lbl">Q4 - 2014</div>
+        <div class="qebs-tbl-lbl">Q3 - 2014</div>
+        <div class="qebs-tbl-lbl" style="margin-right:0px">Q2 - 2014</div>
+      </div>
+
+      <!--Data Row-->
+      {{#each data}}
+      <div class="qebs-tbl-row-{{color}} qebs-tbl-{{border}}">
+        <div class="qebs-tbl-data-title">{{metric}}</div>
+        <div class="qebs-tbl-data" style={{style1}}>{{amnt1}}</div>
+        <div class="qebs-tbl-data" style={{style2}}>{{amnt2}}</div>
+        <div class="qebs-tbl-data" style={{style3}}>{{amnt3}}</div>
+        <div class="qebs-tbl-data" style={{style4}}>{{amnt4}}</div>
+        <div class="qebs-tbl-data" style={{style5}}>{{amnt5}}</div>
+      </div>
+      {{/each}}
+    </div>
+    <!--End Data Table-->
+
+  </div>
+</template>
