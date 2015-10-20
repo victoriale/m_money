@@ -349,13 +349,11 @@ Meteor.methods({
   GetAIContent2: function(state, city){
     this.unblock();
     var URL = "http://apifin.synapsys.us/yseop/yseop-location-class.php?state=" + state;
-    var loc_id = stateid;
+    var loc_id = state;
     if(typeof city != 'undefined' && city != null){
-      URL += "&"+ city;
+      URL += "&city="+ city;
       loc_id += ","+city;
     }
-
-    console.log(URL);
     var future = new Future();
     curTime.withValue((new Date()).getTime(),function(){
       curloc_id.withValue(loc_id,function(){
