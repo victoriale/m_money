@@ -8,34 +8,32 @@ Associated Files: co_competitor_logic.js and co_competitor.less
 <template name="co_competitor">
 <!--Defined a class name globally for height and width !-->
 <div class= "co_comp">
-  {{#with companyInfo}}
-  <a href="{{url}}">
-    <div class="dp_head-hdtl">
-     <div class="dp_head-hdtl-or">
-       <div class="dp_head-hdtl-mailrep" >
-         <i class="dp_head-mailrep fa fa-reply"></i>
-       </div>
-       <div class="dp_head-hdtl-rta">
-       </div>
-     </div>
-     <!-- for the text contianer!-->
-     <div class="dp_head-hdtl-txtctt">
-       <div class="dp_head-hdtl-gb">
-         Go Back To
-         <div class="dp_head-hdtl-bar-title">
-         <div class="dp_head-hdtl-bar-helper">
-           {{c_name}}'s
-         </div>
-           <div class="dp_head-hdtl-bar-side">Profile </div>
-         </div>
-       </div>
-     </div>
-   </div>
-  </a>
-  {{/with}}
   <!--gave the dimensions for the module with total height and width !-->
   <div class = "co_comp-n_m">
     {{#with companyInfo}}
+    <a href="{{url}}">
+      <div class="dp_head-hdtl">
+       <div class="dp_head-hdtl-or">
+         <div class="dp_head-hdtl-mailrep" >
+           <i class="dp_head-mailrep fa fa-reply"></i>
+         </div>
+         <div class="dp_head-hdtl-rta">
+         </div>
+       </div>
+       <!-- for the text contianer!-->
+       <div class="dp_head-hdtl-txtctt">
+         <div class="dp_head-hdtl-gb">
+           Go Back To
+           <div class="dp_head-hdtl-bar-title">
+           <div class="dp_head-hdtl-bar-helper">
+             {{c_name}}'s
+           </div>
+             <div class="dp_head-hdtl-bar-side">Profile </div>
+           </div>
+         </div>
+       </div>
+     </div>
+    </a>
     <!--dimensions for the circle container as ('cir-d') !-->
     <div class="co_comp-cir_d">
       <!-- dimensions for the circle as ('circ')!-->

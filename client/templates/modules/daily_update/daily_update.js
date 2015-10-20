@@ -5,19 +5,34 @@ Associated Files: [daily_update.less][daily_update.html]*/
 
 Template.daily_update.onCreated(function(){
   this.autorun(function(){
-    var companyid =  Session.get('profile_header');
-    if(typeof companyid != 'undefined'){
-    Meteor.call('GetAIContent', companyid.c_id, function(err, data){
-      if(err){
-        console.log("error Call", err);
-        return false;
-      }else{
-        var aiContent = createGenericString(false, data);
-        Session.set('AI_daily_update',aiContent);
-      }
-    })
+    if(Session.get('IsLocation')){
+      Meteor.call('GetAIContent2', Session.get('state_id'), Session.get('city_id'), function(err, data){
+        if(err){
+          console.log("error Call", err);
+          return false;
+        }else{
+          var aiContent = createGenericString(false, data);
+          console.log(data);
+          Session.set('AI_daily_update',aiContent);
+        }
+      })
     }
-
+  })
+  this.autorun(function(){
+    if(Session.get('IsCompany')){
+      var companyid =  Session.get('profile_header');
+      if(typeof companyid != 'undefined'){
+        Meteor.call('GetAIContent', companyid.c_id, function(err, data){
+          if(err){
+            console.log("error Call", err);
+            return false;
+          }else{
+            var aiContent = createGenericString(false, data);
+            Session.set('AI_daily_update',aiContent);
+          }
+        })
+      }
+    }
   })
 })
 
@@ -56,7 +71,7 @@ Template.daily_update.helpers({
   lbInfo: function(){
     var data = Session.get('daily_update');
     if(typeof data == 'undefined'){
-      return '';
+      return {new:"stuff"};
     }
     //data is being returned as string so convert to numbers and round to fit design
     data['csi_closing_price'] = Number(data['csi_closing_price']).toFixed(2);

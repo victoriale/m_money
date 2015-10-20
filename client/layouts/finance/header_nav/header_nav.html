@@ -7,7 +7,7 @@
   <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <!-- This is the template for header-->
-<template name="header_nav">
+<template name="header_navtest">
   <!-- This is the Div for total header-->
   <div class="pgheader-nav">
    <!-- This is the Div for top part of the header-->
@@ -99,5 +99,31 @@
     </div>
   </div>
     </div>
+  </div>
+</template>
+
+<template name="header_nav">
+  <div class="layout_nav">
+    <table>
+      <tr>
+        <td>
+          <a href="/">
+            <div class="layout_nav-logo"></div>
+          </a>
+        </td>
+        <td>
+          <div class="layout_nav-search">
+            <div class="search_icon fa fa-search"></div>
+            <input type="text" name="keyword" class="layout_nav-search_input" placeholder="Search for any company, location, or executive">
+            <ul class="fi_search_recommendations">
+              <div class="caret-top"></div>
+              <!-- <i class="fa fa-times fi_search_recommendations_close"></i> -->
+            </ul>
+          </div>
+        </td>
+        <td>
+        </td>
+      </tr>
+    </table>
   </div>
 </template>
