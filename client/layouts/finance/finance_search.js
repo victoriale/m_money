@@ -31,9 +31,7 @@ Finance_Search = function(quer){
            words[i] = pos.tokens[i].text;      //sets each word of query into spot in new array
           }
 
-          var TickCheckPurgeWords = ['in','where','what','of','at','near','the'];
-          var LocCheckPurgeWords = ['in','where','what','of','at','near','the'];
-          var NameCheckPurgeWords = ['in','where','what','of','at','near','the'];
+      
     /*******************************************/
 
     console.log(words);
@@ -83,7 +81,7 @@ Finance_Search = function(quer){
     /*****************************************************/
 
 
-  
+
 
     /*==== TICKER -- EXACT ( based on AllCapped[] ) ====*/
     if(AllCapped.length !== 0){
