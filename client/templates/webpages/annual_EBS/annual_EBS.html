@@ -1,0 +1,108 @@
+
+<!-- Note: page_header less comes from trending_page -->
+
+<template name = "annual_EBS">
+  <div class = "anebs">
+
+    <!-- Header Section -->
+    <a href = "#">
+      <div class = "anebs-hdr">
+        <div class = "anebs-hdr-box"><i class = "fa fa-reply"></i></div>
+        <div class = "anebs-hdr-tri"></div>
+        <div class = "anebs-hdr-txt">
+          Go Back To <strong>{{company}}'s</strong> Profile
+        </div>
+      </div>
+    </a>
+    <!-- END Header Section -->
+
+    <!-- Title Section -->
+    <div class = "anebs-ttl">
+      <a href = "#"><div class = "anebs-ttl-img"></div></a>
+      <div class = "anebs-ttl-txt">
+        <div class = "anebs-ttl-txt-upd">LAST UPDATED: {{upd}}</div>
+        <div class = "anebs-ttl-txt-loc"><i class = "fa fa-map-marker"></i>&nbsp;{{loc}}</div>
+        <div class = "anebs-ttl-txt-ttl">{{year}} Annual Balance Sheet</div>
+        <div class = "anebs-ttl-txt-comp">For {{company}}</div>
+      </div>
+    </div>
+    <!-- END Title Section -->
+
+    <!-- Graph Section -->
+    <div class = "anebs-grph">
+      <div class = "anebs-grph-tabs">
+        <div class = "anebs-grph-tabs-tab" style = "width: 160px;">
+          <div class = "anebs-grph-tabs-tab-txt">Balance Sheet</div>
+          <div class = "anebs-grph-tabs-tab-circ"><i class = "fa fa-caret-down"></i></div>
+        </div>
+        <div class = "anebs-grph-tabs-tab">
+          <div class = "anebs-grph-tabs-tab-txt">Annual Data</div>
+          <div class = "anebs-grph-tabs-tab-circ"><i class = "fa fa-caret-down"></i></div>
+        </div>
+        <div class = "anebs-grph-tabs-tab" style = "width: 100px">
+          <div class = "anebs-grph-tabs-tab-txt">2014</div>
+          <div class = "anebs-grph-tabs-tab-circ"><i class = "fa fa-caret-down"></i></div>
+        </div>
+      </div>
+      <div class = "anebs-grph-totals">
+        <div class = "anebs-grph-totals-total">
+          <div class = "anebs-grph-totals-total-ind">
+            <div class = "anebs-grph-totals-total-ind-box" style = "background-color: #434348"></div>
+            <div class = "anebs-grph-totals-total-ind-txt">
+              <div class = "anebs-grph-totals-total-ind-txt-top">${{money1}}</div>
+              <div class = "anebs-grph-totals-total-ind-txt-bttm">Total Debt</div>
+            </div>
+          </div>
+          <div class = "anebs-grph-totals-total-ind">
+            <div class = "anebs-grph-totals-total-ind-box" style = "background-color: #3098FF"></div>
+            <div class = "anebs-grph-totals-total-ind-txt">
+              <div class = "anebs-grph-totals-total-ind-txt-top">${{money2}}</div>
+              <div class = "anebs-grph-totals-total-ind-txt-bttm">Total Assets</div>
+            </div>
+          </div>
+          <div class = "anebs-grph-totals-total-ind">
+            <div class = "anebs-grph-totals-total-ind-box" style = "background-color: #F8A354"></div>
+            <div class = "anebs-grph-totals-total-ind-txt">
+              <div class = "anebs-grph-totals-total-ind-txt-top">{{money3}}%</div>
+              <div class = "anebs-grph-totals-total-ind-txt-bttm">Debt to Assets (%)</div>
+            </div>
+          </div>
+        </div>
+        <div class = "anebs-grph-totals-option">
+          <div class = "anebs-grph-tabs-tab-txt">Total Assets Chart</div>
+          <div class = "anebs-grph-tabs-tab-circ"><i class = "fa fa-caret-down"></i></div>
+        </div>
+      </div>
+      <div class = "anebs-grph-chart" id = "annualEBSgraph"></div>
+    </div>
+    <!-- END Graph Section -->
+
+    <!-- Statistics Section -->
+    <div class = "anebs-stats">
+      <div class = "anebs-stats-hdr">
+        <div class = "anebs-stats-hdr-txt">In Millions of USD (except for per share items)</div>
+      </div>
+      <div class = "anebs-stats-labels">
+        <div class = "anebs-stats-labels-label" style = "width: 215px">Key Metric</div>
+        <div class = "anebs-stats-labels-label" style = "font-family: HN-B">12-31-2014</div>
+        <div class = "anebs-stats-labels-label">12-31-2013</div>
+        <div class = "anebs-stats-labels-label">12-31-2012</div>
+        <div class = "anebs-stats-labels-label">12-31-2011</div>
+      </div>
+
+      <!--Data Row-->
+      {{#each data}}
+      <div class="anebs-stats-row-{{color}} anebs-stats-{{border}}">
+        <div class="anebs-stats-data-title">{{metric}}</div>
+        <div class="anebs-stats-data" style={{style1}}>{{amnt1}}</div>
+        <div class="anebs-stats-data" style={{style2}}>{{amnt2}}</div>
+        <div class="anebs-stats-data" style={{style3}}>{{amnt3}}</div>
+        <div class="anebs-stats-data" style={{style4}}>{{amnt4}}</div>
+      </div>
+      {{/each}}
+
+    </div>
+    <!-- END Statistics Section -->
+
+  </div>
+</template>

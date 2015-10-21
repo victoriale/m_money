@@ -1,0 +1,386 @@
+
+
+@import (reference)"../global_vars.less";
+@import (reference)"../modules.less";
+
+// anebs
+.anebs {
+  width: 680px;
+  height: 3055px;
+  background-color: @white;
+  margin: 10px;
+  position: relative;
+  text-align: left;
+
+  // anebs-hdr
+  &-hdr {
+    width: 100%;
+    height: 50px;
+    background-image: url('/header_texture.png');
+
+    // anebs-hdr-box
+    &-box {
+      width: 60px;
+      height: 50px;
+      background-color: @blue;
+      float: left;
+
+      // anebs-hdr-box .fa
+      .fa {
+        color: white;
+        font-size: 30px;
+        margin: 11px 0px 0px 15px;
+        float: left;
+      } // END anebs-hdr-box .fa
+    } // END anebs-hdr-box
+
+    // anebs-hdr-tri
+    &-tri {
+      width: 0;
+      height: 0;
+      border-top: 25px solid transparent;
+      border-bottom: 25px solid transparent;
+      border-left: 15px solid @blue;
+      float: left;
+    } // END anebs-hdr-tri
+
+    // anebs-hdr-txt
+    &-txt {
+      height: 19px;
+      line-height: 15px;
+      float: left;
+      font-family: HN-L;
+      font-size: 19px;
+      margin-left: 20px;
+      margin-top: 17px;
+      color: @white;
+
+      // anebs-hdr-txt strong
+      strong {
+        height: 19px;
+        vertical-align: top;
+        display: inline-block;
+        max-width: 400px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight: normal;
+        font-family: HN-B;
+      } // END anebs-hdr-txt strong
+    } // END anebs-hdr-txt
+  } // END anebs-hdr
+
+  // anebs-ttl
+  &-ttl {
+    width: 100%;
+    height: 131px;
+    border-bottom: 1px solid @grey-3;
+
+    // anebs-ttl-img
+    &-img {
+      width: 100px;
+      height: 100px;
+      border: 2px solid @grey-3;
+      border-radius: 50%;
+      background-color: @white;
+      margin: 15px;
+      float: left;
+
+
+    } // END anebs-ttl-img
+    // anebs-ttl-txt
+    &-txt {
+      width: 500px;
+      height: 98px;
+      margin: 14px 0px 0px 14px;
+      float: left;
+
+      // anebs-ttl-txt-upd
+      &-upd {
+        max-width: 500px;
+        height: 10px;
+        font-family: HN;
+        font-size: 10px;
+        color: #838383;
+        line-height: 8px;
+        text-transform: uppercase;
+        .txtc;
+      } // END anebs-ttl-txt-upd
+
+      // anebs-ttl-txt-loc
+      &-loc {
+        max-height: 12px;
+        font-family: HN;
+        font-size: 12px;
+        color: @black;
+        margin-top: 16px;
+        line-height: 8px;
+        .txtc;
+      } // END anebs-ttl-txt-loc
+
+      // anebs-ttl-txt-ttl
+      &-ttl {
+        height: 26px;
+        font-family: HN-B;
+        font-size: 28px;
+        color: @black;
+        margin-top: 5px;
+        line-height: 20px;
+      } // END anebs-ttl-txt-ttl
+
+      // anebs-ttl-txt-nm
+      &-comp {
+        max-width: 500px;
+        height: 26px;
+        font-family: HN-L;
+        font-size: 28px;
+        color: @black;
+        margin-top: 3px;
+        line-height: 20px;
+        .txtc;
+      } // END anebs-ttl-txt-nm
+    } // END anebs-ttl-txt
+  } // END anebs-ttl
+
+  // anebs-grph
+  &-grph {
+    width: 100%;
+    height: 449px;
+
+    // anebs-grph-tabs
+    &-tabs {
+      width: 670px;
+      height: 30px;
+      margin: 9px 0px 0px 10px;
+
+      // anebs-grph-tabs-tab
+      &-tab {
+        width: 160px;
+        height: 30px;
+        border: 1px solid @bgcolor;
+        border-radius: 3px;
+        background-color: @grey-8;
+        margin-right: 10px;
+        float: left;
+        cursor: pointer;
+
+        // anebs-grph-tabs-tab-txt
+        &-txt {
+          height: 12px;
+          font-family: HN;
+          font-size: 12px;
+          margin: 9px 0px 0px 12px;
+          line-height: 12px;
+          float: left;
+        } // END anebs-grph-tabs-tab-txt
+
+        // anebs-grph-tabs-tab-circ
+        &-circ {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background-color: @white;
+          margin: 4px 10px 5px 0px;
+          float: right;
+
+          // anebs-grph-tabs-tab-circ .fa
+          .fa {
+            font-size: 12px;
+            color: @blue;
+            margin: 4px 0px 0px 6px;
+          } // END anebs-grph-tabs-tab-circ .fa
+        } // END anebs-grph-tabs-tab-circ
+      } // END anebs-grph-tabs-tab
+
+    } // END anebs-grph-tabs
+
+    // anebs-grph-totals
+    &-totals {
+      width: 660px;
+      height: 50px;
+      background-color: @grey-8;
+      margin: 15px 0px 0px 10px;
+      overflow: hidden;
+
+      // anebs-grph-totals-total
+      &-total {
+        height: 29px;
+        margin: 10px 0px 0px 20px;
+        float: left;
+
+        &-ind {
+          height: 29px;
+          float: left;
+
+          &-box {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            margin-top: 2px;
+            float: left;
+          }
+
+          &-txt {
+            width: 120px;
+            margin-left: 5px;
+            float: left;
+
+            &-top {
+              height: 14px;
+              max-width: 100px;
+              font-family: HN-B;
+              font-size: 14px;
+              color: @black;
+              line-height: 13px;
+              .txtc;
+            }
+
+            &-bttm {
+              height: 12px;
+              font-size: 12px;
+              font-weight: bold;
+              color: @black;
+              margin-top: 3px;
+              line-height: 10px;
+            }
+          }
+        } // END anebs-grph-totals-total-ind
+      } // END anebs-grph-totals-total
+
+      // anebs-grph-totals-option
+      &-option {
+        width: 160px;
+        height: 30px;
+        border: 1px solid #E1E1E1;
+        border-radius: 3px;
+        background-color: #EBEBEB;
+        margin: 10px 20px 0px 0px;
+        float: right;
+        cursor: pointer;
+      } // END anebs-grph-totals-option
+    } // END anebs-grph-totals
+
+    // anebs-grph-chart
+    &-chart {
+      width: 676px;
+      height: 345px;
+      margin-top: 9px;
+    } // END anebs-grph-chart
+  } // END anebs-grph
+
+  // anebs-stats
+  &-stats {
+    width: 100%;
+    overflow: hidden;
+
+    // anebs-stats-hdr
+    &-hdr {
+      width: 665px;
+      height: 40px;
+      background-image: url('/header_texture2.png');
+      border-left: 5px solid @blue;
+      overflow: hidden;
+
+      // anebs-stats-hdr-txt
+      &-txt {
+        height: 18px;
+        font-family: HN-B;
+        font-size: 18px;
+        color: @white;
+        margin: 13px 0px 0px 9px;
+        line-height: 14px;
+      } // END anebs-stats-hdr-txt
+    } // END anebs-stats-hdr
+
+    &-labels {
+      width: 665px;
+      height: 30px;
+      margin-top: 10px;
+
+      &-label {
+        width: 100px;
+        height: 30px;
+        font-size: 12px;
+        border: 1px solid #CACACA;
+        text-align: center;
+        margin-left: 10px;
+        line-height: 30px;
+        float: left;
+      }
+    }
+
+    //Table row
+    &-row{
+      &-white{
+        background-color: @white;
+        width: 655px;
+        height: 50px;
+        margin-left: 10px;
+      }
+
+      &-grey{
+        background-color: @bgcolor;
+        width: 655px;
+        height: 50px;
+        margin-left: 10px;
+      }
+    }
+
+    //Table cell
+    &-data{
+        width: 100px;
+        font-size: 12px;
+        margin-left: 10px;
+        text-align: center;
+        float: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        line-height: 50px;
+
+        &-title{
+          width: 215px;
+          font-size: 12px;
+          text-align: left;
+          padding-left: 20px;
+          float: left;
+          height: 50px;
+
+          //Vertical alignment
+          /* Internet Explorer 10 */
+          display:-ms-flexbox;
+          -ms-flex-align:center;
+
+          /* Firefox */
+          display:-moz-box;
+          -moz-box-align:center;
+
+          /* Safari, Opera, and Chrome */
+          display:-webkit-box;
+          -webkit-box-align:center;
+
+          /* W3C */
+          display:box;
+          box-align:center;
+          }
+      }
+
+    //border styles
+    &-dashed{
+      border-bottom: 1px dashed #d7d7d7;
+    }
+    &-solid{
+      border-bottom: 5px solid #707070;
+    }
+    &-end{
+      border-bottom: 5px solid #d7d7d7;
+    }
+  } // END anebs-stats
+} // END anebs
+
+// txtc
+.txtc {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+} // END txtc
