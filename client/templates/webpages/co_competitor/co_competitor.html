@@ -22,63 +22,50 @@ Associated Files: co_competitor_logic.js and co_competitor.less
         Go Back To <span class="excmp-b">{{c_name}}'s</span> Company Profile
       </div>
     </a>
-    <!--dimensions for the circle container as ('cir-d') !-->
-    <div class="co_comp-cir_d">
-      <!-- dimensions for the circle as ('circ')!-->
-      <div class="co_comp-circ" style="background-image:url('{{c_logo}}')">
-        <!-- defines container for the smaller blue circle('sc_d') !-->
-        <div class= "co_comp-sc_d">
+
+    <div class="co_comp-header-container">
+      <div class="co_comp-header-container-image" style="background-image:url('/{{c_logo}}')">
+
+      </div>
+      <div class="co_comp-header-container-text">
+        <div class="co_comp-header-container-text-date">
+          LAST UPDATED: {{c_tr_last_updated}}
+        </div>
+        <div class="co_comp-header-container-text-location">
+          <i class="fa fa-map-marker"></i>
+          {{c_hq_city}}, {{c_hq_state}}
+        </div>
+        <div class="co_comp-header-container-text-name">
+          The Biggest Competitors<br>
+          For {{c_name}}
         </div>
       </div>
     </div>
-    <!--defines the container for text box !-->
-    <div class="co_comp-tc">
-    <!-- class date has all the font-weight and font specific !-->
-    <div class="co_comp-date">
-      LAST UPDATED: {{c_tr_last_updated}}
-    </div>
-    <!--specified font style for location !-->
-    <div class="co_comp-loc_st">
-       <i class="fa fa-map-marker"></i>
-    <!--specified font style for the state name !-->
-    <span class="co_comp-loc_st">
-      {{c_hq_city}}, {{c_hq_state}}
-    </span>
-    </div>
-    <!-- specified font sytle for the stock disclaimer !-->
-    <div class="co_comp-loc_st co_comp-disc">
-    The Biggest Competitors
-    </div>
-    <!--specified font style for the inveskit finance  !-->
-    <div class="co_comp-loc_st co_comp-fin">
-    for {{c_name}}
-    </div>
-    </div>
 
-    <div class="co_comp-bar">
-      <div class="co_comp-bar-title">
-      <div class="co_comp-bar-helper">
-        {{c_name}}'s
-      </div>
-      <div class="co_comp-bar-side">Competitors </div>
-      </div>
-      <div class="co_comp-bar-button">
-        <!-- the save option button-->
-        <a href="#"><i class="fa fa-heart"></i><span class="co_comp-bar-text">Save</span></a>
-      </div>
-      <div class="co_comp-bar-button">
-        <!-- share option button -->
-        <a href="#"><i class="fa fa-share-alt"></i><span class="co_comp-bar-text">Share</span></a>
-      </div>
-    </div>
     <div class="co_comp-m_c">
+      <div class="co_comp-bar">
+        <div class="co_comp-bar-title">
+        <div class="co_comp-bar-helper">
+          {{c_name}}'s
+        </div>
+        <div class="co_comp-bar-side">Competitors </div>
+        </div>
+        <div class="co_comp-bar-button">
+          <!-- the save option button-->
+          <a href="#"><i class="fa fa-heart"></i><span class="co_comp-bar-text">Save</span></a>
+        </div>
+        <div class="co_comp-bar-button">
+          <!-- share option button -->
+          <a href="#"><i class="fa fa-share-alt"></i><span class="co_comp-bar-text">Share</span></a>
+        </div>
+      </div>
       <!-- the module.less file navigation buttons
       <button class='co_comp-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
       <button class='co_comp-righthov'><i class="fa fa-angle-right fa-2x"></i></button>-->
       <!-- end of the module.less navigation button -->
       <!-- wrapper class-->
       <div class="co_comp-m_c-image-wr">
-        <div class="co_comp-m_c-image">
+        <div class="co_comp-m_c-image" style="background-image: url('/{{c_logo}}')">
           <div class="co_comp-m_c-sma_ct">
           <div class="co_comp-m_c-sma_cr">
 
@@ -111,9 +98,9 @@ Associated Files: co_competitor_logic.js and co_competitor.less
           {{c_desc}}
         </div>
             <div class="co_comp-m_c-dp-itl co_comp-m_c-dp-it2">
-{{c_name}} <span class="co_comp-m_c-dp-dpct">is currently priced at: <br></span>
-<span class="co_comp-m_c-dp-itl">${{csi_price}} </span>
-<span class="co_comp-m_c-dp-itl co_comp-m_c-dp-it4"> <i class=" fa {{changeIcon csi_price_change_since_last}}"></i></span>  <span class="co_comp-m_c-dp-itl co_comp-m_c-dp-it5" style="color:{{changeColor csi_price_change_since_last}}">{{csi_price_change_since_last}}({{csi_percent_change_since_last}}%) </span>
+      {{c_name}} <span class="co_comp-m_c-dp-dpct">is currently priced at: <br></span>
+      <span class="co_comp-m_c-dp-itl">${{csi_price}} </span>
+      <span class="co_comp-m_c-dp-itl co_comp-m_c-dp-it4"> <i class=" fa {{changeIcon csi_price_change_since_last}}"></i></span>  <span class="co_comp-m_c-dp-itl co_comp-m_c-dp-it5" style="color:{{changeColor csi_price_change_since_last}}">{{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%) </span>
             </div>
           <!-- </div> -->
         </li>
@@ -169,7 +156,7 @@ Associated Files: co_competitor_logic.js and co_competitor.less
       <div class="co_comp-{{getBackgroundStyle}}"><br>
         <!--This is the main (circle) image-->
         <div class="co_comp-head-circ">
-          <div class="co_comp-head-image" style="background-image:url('{{c_logo}}')">
+          <div class="co_comp-head-image" style="background-image:url('/{{c_logo}}')">
             <!-- Here displays the counter number which is a result of each loop-->
             <span class="co_comp-counter">#{{rank}}</span>
             <span class="co_comp-counter2"></span>
@@ -186,7 +173,7 @@ Associated Files: co_competitor_logic.js and co_competitor.less
             </span>
             <!-- Here displays the description which come from the each loop-->
             <div class="co_comp-adjust">{{ c_name }}</div>
-            <div class="co_comp-follw3">Market Cap: <span class="co_comp-follw4"> {{csi_market_cap}} </span> </div>
+            <div class="co_comp-follw3">Market Cap: <span class="co_comp-follw4"> {{market_cap}} </span> </div>
           </div>
         </div>
         <!--This displays the blue button which holds the text "View Full List"-->

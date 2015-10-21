@@ -18,80 +18,49 @@ Associated Files: co_competitor_logic.js and co_competitor_page.html
   {
     background-color:  #ffffff;
     width: 680px;
-    height: 1889px;
   }
-  /*defined the height and width for the container for circle (circ_d) */
-  &-cir_d{
-    background-color:#ffffff;
-    width: 100px;
-    height: 100px;
-    float: left;
-    left: 20px;
-    top: 20px;
-    position: relative;
-  }
-  /* defined the dimensions for the class circle*/
-  &-circ{
-    width:100px;
-    height: 100px;
-    background-color: #ffffff;
-    border-radius: 50%;
-    border: 2px solid #cccccc;
-  }
-  /* defines container for the smaller blue circle('sc_d') */
-  &-sc_d{
-    width: 35px;
-    height: 35px;
-  }
-  /* defines the dimension for the small circle('sc')*/
-  &-sc{
-    border-radius: 50%;
-    background-color:  #3098ff;
-  }
-  /* defines the font details for the reply icon in smaller blue circle*/
-  &-bfo{
-    font-family: FontAwesome;
-    color:  #ffffff;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 20px;
-    float: left;
-    position: relative;
-    top: 9px;
-    left: 9px;
-  }
-  /*defines the container for text box*/
-  &-tc{
-    width: 460px;
-    height: 100px;
-    position: relative;
-    top: 15px;
-    left: 40px;
-    float: left;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-  /* class date has all the font-weight and font specific*/
-  &-date{
+  &-header-container{
     font-family: HN;
-    color:  #959595;
-    font-size: 10px;
+    padding: 15px;
     text-align: left;
+
+    &-image{
+      background-color: #ffffff;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 2px solid #cccccc;
+      margin-right: 15px;
+      float: left;
+      background-size: contain !important;
+      background-position: center center !important;
+      background-repeat: no-repeat;
+    }
+
+    &-text{
+      &-date{
+        color: @grey-6;
+        font-size: 10px;
+      }
+
+      &-location{
+        font-size: 12px;
+        margin-top: 15px;
+      }
+
+      &-name{
+        margin-top: 3px;
+        font-family: HN-L;
+        font-size: 28px;
+        line-height: 26px;
+
+        &:first-line{
+          font-family: HN-B;
+        }
+      }
+    }
   }
-  /* specified font style for location and state*/
-  &-loc_st{
-    font-family: HN;
-    color:  #000000;
-    font-size: 12px;
-    line-height: 28px;
-    text-align: left;
-  }
-  /*specified font sytle for the stock disclaimer */
-  &-disc{
-    font-family: HN-B;
-    font-size: 22px;
-  }
+
   /* specified font style for the inveskit finance */
   &-fin{
     font-family: HN-L;
@@ -106,7 +75,6 @@ Associated Files: co_competitor_logic.js and co_competitor_page.html
     color: @white;
     font-size: 16px;
     text-align: left;
-    top: 42px;
     position: relative;
     float: left;
     // the font awesome icon color
@@ -210,22 +178,21 @@ Associated Files: co_competitor_logic.js and co_competitor_page.html
   //the main container (m_c)with the grey background
   &-m_c{
     width: 680px;
-  height: 325px;
-  background-image: url('/drk-linen.png');
-  text-align: left;
-  /* overflow: hidden; */
-  margin: 0;
-  position: relative;
-  top: 12.6em;
-   // image inside the container
+    height: 360px;
+    background-image: url('/drk-linen.png');
+    text-align: left;
+    /* overflow: hidden; */
+    margin: 0;
+    position: relative;
+     // image inside the container
     &-image {
       width: 172px;
       height: 172px;
       border: none;
       border-radius: 50%;
-      background-size: cover !important;
+      background-size: contain !important;
       background-position: center center !important;
-      background-image: url("");
+      background-repeat: no-repeat;
       //the wrapper to wrap up the container height and width
       &-wr {
         width: 180px;
@@ -237,7 +204,7 @@ Associated Files: co_competitor_logic.js and co_competitor_page.html
         margin: 0 10px 35px 35px;
         position: relative;
         left: 20px;
-        top: 40px;
+        top: 75px;
         border: 3px solid #cccccc;
         background-color: #ffffff;
       }
@@ -269,11 +236,11 @@ Associated Files: co_competitor_logic.js and co_competitor_page.html
       list-style-type: none;
       color: #ffffff;
       text-align: left;
-      position: relative;
+      position: absolute;
       float: right;
       padding: 0 0 0 5px;
-      top: -180px;
-      left: -53px;
+      top: 75px;
+      left: 260px;
       }
     // the title inside the cr
     &-title {
@@ -375,8 +342,6 @@ Associated Files: co_competitor_logic.js and co_competitor_page.html
       height: 75px;
       color: @white;
       background-color: @black;
-      opacity: 0.75;
-      filter: alpha(opacity=75); /* For IE8 and earlier */
 
       // the text part
       &-text {
@@ -465,8 +430,7 @@ Associated Files: co_competitor_logic.js and co_competitor_page.html
   /*container for the ct1 to 'sort by' and 'what is this list?' */
   &-ct1{
     width:680px;
-    position: relative;
-    top: 175px;
+    padding: 15px;
   }
   /*container for the sortby */
   &-sy{
@@ -500,7 +464,6 @@ Associated Files: co_competitor_logic.js and co_competitor_page.html
     width:650px;
     height:81px;
     position:relative;
-    margin: 15px auto;
     border: 1px solid #ebebeb;
     background-color: #fafafa;
   }
@@ -548,9 +511,7 @@ Associated Files: co_competitor_logic.js and co_competitor_page.html
   }
 
   &-wrapper{
-  //  height:970px;
-    position: relative;
-    top: 175px;
+
   }
   &-quotes{
     width: 100%;
@@ -1083,7 +1044,6 @@ Associated Files: co_competitor_logic.js and co_competitor_page.html
   }
   //This style is used to hold the main image of the template of diameter 125px
   &-head-image{
-    background-repeat: no-repeat;
     border-radius: 50%;
     border: 2px solid gray;
     border-radius: 50%;
@@ -1093,6 +1053,9 @@ Associated Files: co_competitor_logic.js and co_competitor_page.html
     background-color: #ffffff;
     width: 125px;
     height: 125px;
+    background-size: contain !important;
+    background-position: center center !important;
+    background-repeat: no-repeat;
   }
   //This style is used to hold the first small images of diameter 45px;
   &-tile-image1
@@ -1131,7 +1094,5 @@ Associated Files: co_competitor_logic.js and co_competitor_page.html
   &-fotter{
     width: 680px;
     height: 276px;
-    position: relative;
-    top:183px;
   }
 }

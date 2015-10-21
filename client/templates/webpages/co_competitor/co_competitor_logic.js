@@ -22,14 +22,15 @@ Template.co_competitor.helpers({
     var newData = data.company;
     newData['c_tr_last_updated'] = newData['c_tr_last_updated'].replace(/-/g, '/');
 
-    newData['csi_market_cap'] = numConverter(Number(newData['csi_market_cap']));
+    newData['market_cap'] = numConverter(Number(newData['market_cap']));
     newData['csi_price_change_since_last'] = Number(newData['csi_price_change_since_last']).toFixed(2);
     newData['csi_price'] = Number(newData['csi_price']).toFixed(2);
     newData['csi_percent_change_since_last'] = Number(newData['csi_percent_change_since_last']).toFixed(2);
     newData['url'] = Router.path('content.companyprofile',{
       company_id: newData['c_id']
     });
-    return data.company;
+
+    return newData;
   },
 
   companyList: function(){
@@ -40,7 +41,7 @@ Template.co_competitor.helpers({
     var compare = data.company;
     var competitors = data.competitors;
     $.map(competitors, function(data, index){
-      data['csi_market_cap'] = numConverter(Number(data['csi_market_cap']));
+      data['market_cap'] = numConverter(Number(data['market_cap']));
       data['csi_price_change_since_last'] = Number(data['csi_price_change_since_last']).toFixed(2);
       data['csi_price'] = Number(data['csi_price']).toFixed(2);
       data['csi_percent_change_since_last'] = Number(data['csi_percent_change_since_last']).toFixed(2);
@@ -70,6 +71,9 @@ Template.co_competitor.helpers({
 });
 //This handles the events on button clicks of 1,2,3 and 200
 Template.co_competitor.events({
+    'click .co_comp-x': function(e, t){
+      t.$('.co_comp-ct1').hide();
+    },
     //This function is called when user presses the button "1" and the function makes the button background turn
     //blue and make the other buttons background white
     'click .co_comp-page-selector1': function()
