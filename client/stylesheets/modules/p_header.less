@@ -10,6 +10,7 @@
 .p {
   margin: 10px;
   text-align: left;
+  overflow: hidden;
   // Begin p-head
   &-bold_font{
     font-family: HN-B!important;
@@ -210,7 +211,6 @@
     background-color: #ffffff;
     padding-top: 20px;
     padding-bottom: 20px;
-    border-bottom: 3px solid #ebebeb;
     // Begin p-body-box
     &-box {
       width: 170px;
@@ -369,5 +369,48 @@
   width:150px;
   &-text{
     font-size:25px;
+  }
+}
+
+.c_p_graph{
+  width:100%;
+  height:300px;
+  background-color: @white;
+  &-updated{
+    width:95%;
+    height:30px;
+    margin: 0 15px;
+    border-top: 2px solid #ebebeb;
+    padding: 5px 20px;
+    overflow: hidden;
+    font-size: 12px;
+    color: #959595;
+
+  }
+  &-stockgraph{
+    width:100%;
+    height:220px;
+    padding: 0 10px;
+    overflow: hidden;
+    //background-color:@grey-5;
+  }
+  .c_p_graph-buttons{
+    width:100%;
+    height:50px;
+    background-color: @grey-1;
+    padding: 0 38px;
+    &-circle{
+      width:35px;
+      height:35px;
+      border-radius: 50%;
+      margin:5px 10px;
+      background-color: @grey-2;
+      border:none;
+      color:@black;
+      &:hover{
+        background-color: @blue;
+        color:@white;
+      }
+    }
   }
 }
