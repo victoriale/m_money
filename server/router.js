@@ -508,7 +508,7 @@ seoPicker.route('/:partner_id?/executive/:exec_id',function(params, req, res){
 
 // Home Page
 // NOT DONE
-seoPicker.route('/:partner_id?/',function(params, req, res){
+seoPicker.route('/',function(params, req, res){
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
   info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){

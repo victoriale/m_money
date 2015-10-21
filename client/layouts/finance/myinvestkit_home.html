@@ -1,0 +1,19 @@
+<template name="myinvestkit_home">
+  <div class="mik">
+    <div class="mik_banner">
+      <div class="mik_banner_top">TAKE A LOOK AT OUR PARTNER WEBSITES</div>
+      <div class="mik_banner_bottom">We provide accurate and up to date information on the financial market</div>
+    </div>
+    <div class="mik_container">
+      <div class="mik_title">ACTIVE PARTNER WEBSITES</div>
+      <div class="mik_partners">
+        {{#each partners}}
+        <a href="{{url}}"><div class="mik_partner {{class}}">
+          <div class="mik_partner_text">{{name}}</div>
+          <i class="fa fa-chevron-right"></i>
+        </div></a>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</template>
