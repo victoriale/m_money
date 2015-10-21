@@ -20,7 +20,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
             </div>
           </a>
             <div class="cfo-pr cfo-top"> <!--container for white background area at top-->
-                <div class="cfo-pr cfo-top-circle"> <!--back arrow in top-->
+                <div class="cfo-pr cfo-top-circle" style="background-image: url('/{{c_logo}}')"> <!--back arrow in top-->
                 </div>
                 <i class="cfo-pa cfo-n cfo-top-txt1">
                     LAST UPDATED: {{c_tr_last_updated}}
@@ -50,7 +50,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                   </div>
               </div>
               <div class="cfo-pa cfo-mid-mid"> <!--the grey section in the middle-->
-                <div class="cfo-pa cfo-mid-mid-circle">
+                <div class="cfo-pa cfo-mid-mid-circle" style="background-image: url('/{{c_logo}}')">
                 </div>
                 <div class="cfo-pa cfo-mid-mid-building">
                     <i class="fa fa-building-o fa-lg"></i>
@@ -88,7 +88,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                   <div class="cfo-pa cfo-l cfo-mid-btm-txt2">
                       Profile Last Updated On: <i class="cfo-b"></i> {{c_tr_last_updated}}
                   </div>
-                  <a href="backToComp">
+                  <a href="{{backToComp}}">
                     <div class="cfo-pa cfo-mid-btm-btn">
                         View Profile <i class="fa fa-angle-right"></i>
                     </div>
@@ -199,7 +199,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                                 <div class="cfo-btm-data-list-e-title cfo-l">
                                     <i class="cfo-b">Learn why </i>{{c_name}} is <span style="color: {{change_color}}"><i class="fa {{icon}}"></i> {{csi_percent_change_since_last}}%</span> today:
                                 </div>
-                                <div class="cfo-pr cfo-btm-data-list-e-circle">
+                                <div class="cfo-pr cfo-btm-data-list-e-circle" style="background-image: url('/{{c_logo}}')">
                                 </div>
                                 <div class="cfo-pr cfo-btm-data-list-e-txt">
                                     {{c_name}} ({{c_ticker}}) stock is currently priced
