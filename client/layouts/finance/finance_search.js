@@ -31,7 +31,7 @@ Finance_Search = function(quer){
            words[i] = pos.tokens[i].text;      //sets each word of query into spot in new array
           }
 
-      
+
     /*******************************************/
 
     console.log(words);
@@ -274,8 +274,24 @@ Finance_Search = function(quer){
 
 
 
-    //ticker open?
-
+    //ticker EXACT for lower case
+    /*==== TICKER -- EXACT ( based on words[i] if words.length is equal to 1 ) ====*/
+    if(Session.get('NameCheck') == false && Session.get('TickCheck') == false && Session.get('LocCheck') == false && words.length == 1){
+      for(i=0;i<words.length;i++){
+        $.ajax({
+          url: 'http://apifin.synapsys.us/call_controller.php?action=search&wild=0&option=ticker&param=' + words[i],
+          dataType: 'json',
+          async: false,
+          success: function(r){
+            if(r['success'] == true){
+              Session.set('TickCheck', r['ticker']['search_data'][0]);
+              //console.log(r['name']['search_data'][0]);
+            }
+          }
+        });
+      }
+    }
+    /****************************************************/
 
 
 
