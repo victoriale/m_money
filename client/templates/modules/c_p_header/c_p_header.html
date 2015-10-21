@@ -8,7 +8,14 @@
   <div class="p">
    {{> cp_head}}
    {{> cp_body}}
-   {{> c_p_graph}}
+
+   <div class="c_p_graph-updated">
+     <div class="c_p_graph-line"></div>
+     <i class="fa fa-calendar"></i>Updated 08/03/2015 a 5PM EST
+   </div>
+   <div class="c_p_graph">
+     {{> c_p_graph}}
+   </div>
    <!--{{> cp_rdr}}-->
  </div>
 </template>
@@ -86,15 +93,12 @@ and much more.
 </template>
 
 <template name="c_p_graph">
-  <div class="c_p_graph">
-    <div class="c_p_graph-updated"><i class="fa fa-calendar"></i>Updated 08/03/2015 a 5PM EST</div>
     <div class="c_p_graph-stockgraph">
-      {{> highchartsHelper chartId="c_p_graph" chartWidth="100%" chartHeight="100%" chartObject=getGraph}}
+      {{> highchartsHelper chartId="c_p_graph-stockgraph" chartWidth="100%" chartHeight="100%" chartObject=getGraph}}
     </div>
     <div class="c_p_graph-buttons">
       {{#each buttons}}
         <button class="c_p_graph-buttons-circle" id="{{data}}">{{data}}</button>
       {{/each}}
     </div>
-  </div>
 </template>

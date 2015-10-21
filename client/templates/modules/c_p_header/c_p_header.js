@@ -127,7 +127,6 @@ Template.c_p_graph.helpers({
       {data:"1Y"},
       {data:"3Y"},
       {data:"5Y"},
-      {data:"10Y"},
     ];
     return buttons;
   },
@@ -146,6 +145,9 @@ Template.c_p_graph.helpers({
     var dataLength = data.highchartsData.length;
     var latestDate = moment(data.highchartsData[dataLength - 1][0]);
     //Get range value based on option selected
+
+    //GRAPH MUST BE ASC order from [0] - [max] where max is the latest date in unix
+    //if above is correct the below will work
     switch(c_p_range){
       case '1D':
         var range = 1;
@@ -195,7 +197,6 @@ Template.c_p_graph.helpers({
         var range = 3650;
       break;
     }
-
     //Get oldest date available to check if data range is possible
     var oldestDate = moment(data.highchartsData[0][0]).format('X') * 1000;
     //If min is less than oldest data available, set min to oldest date
@@ -222,6 +223,7 @@ Template.c_p_graph.helpers({
       yAxis: {
           title: '',
           floor: 0,
+          opposite:true,
           gridLineDashStyle: 'longdash',
           minTickInterval: 5,
           plotLines: [{
@@ -233,7 +235,7 @@ Template.c_p_graph.helpers({
               formatter: function() {
                   return '$' + this.value
               }
-          }
+          },
       },
       tooltip: {
         pointFormat: "Value: ${point.y:.2f}"
@@ -268,6 +270,7 @@ Template.c_p_graph.helpers({
     return cfoGraphObject;
   },
 });
+
 Template.c_p_graph.events({
   'click .c_p_graph-buttons-circle': function(e, t){
     Session.set('c_p_range', e.currentTarget.id);
@@ -275,18 +278,22 @@ Template.c_p_graph.events({
 })
 
 Template.c_p_graph.onCreated(function(){
+  Session.set('c_p_range', '5Y');
   this.autorun(function(){
     var data = Session.get('daily_update');
     var highchartsData = [];
 
     data.stock_hist.forEach(function(item, index){
       //Transform date
-      var date = moment(item.sh_date).format('X') * 1000;
+      var date = item.sh_date * 1000;
       //Build point array
       var point = [date, Number(item.sh_close)]
       //Push point array to data set
       highchartsData.push(point);
     })
+
+    //GRAPH MUST BE ASC order from [0] - [max] where max is the latest date in unix
+    highchartsData.reverse();
     data.highchartsData = highchartsData;
 
     Session.set('graph_data', data);

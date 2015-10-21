@@ -44,7 +44,7 @@ Associated Files: [daily_update_logic.js][daily_update.html]*/
   /////****************Wrapper for the right side below the image **************//////////
   &-wrapper-right-main-body2{
     width: 100%;
-    height:35px;
+    height:30px;
     border-bottom: 1px solid @grey-1;
   }
   /////****************Wrapper for the right side below the image **************//////////
@@ -94,8 +94,8 @@ Associated Files: [daily_update_logic.js][daily_update.html]*/
   }
   ////////////////********* Graph Area Wrapper *************/////////////
   &-wrapper-graph{
-    width: 400px;
-    height:102px;
+    width: 100%;
+    height:160px;
     cursor: pointer;
     overflow:hidden;
   }
@@ -397,5 +397,30 @@ Associated Files: [daily_update_logic.js][daily_update.html]*/
     font-size: 14px;
     color:#fff;
     line-height:0.4em;
+  }
+}
+
+.daily_update-stockgraph{
+  width: 100%;
+  height: 110px;
+  padding: 0 5px;
+overflow: hidden;
+}
+.daily_update-buttons{
+  width:100%;
+  height:50px;
+  background: @grey-1;
+  &-circle{
+    width:35px;
+    height:35px;
+    border-radius: 50%;
+    border:none;
+    margin:7px 0;
+    background-color: @grey-2;
+    color: @black;
+    &:hover{
+      background-color: @blue;
+      color:@white;
+    }
   }
 }
