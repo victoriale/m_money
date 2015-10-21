@@ -465,7 +465,6 @@ Associated Files: co_competitor_logic.js and co_competitor_page.html
   /*container for the ct1 to 'sort by' and 'what is this list?' */
   &-ct1{
     width:680px;
-    height:133px;
     position: relative;
     top: 175px;
   }
@@ -500,9 +499,8 @@ Associated Files: co_competitor_logic.js and co_competitor_page.html
   &-wl{
     width:650px;
     height:81px;
-    position:absolute;
-    left:15px;
-    top:40px;
+    position:relative;
+    margin: 15px auto;
     border: 1px solid #ebebeb;
     background-color: #fafafa;
   }
@@ -510,7 +508,9 @@ Associated Files: co_competitor_logic.js and co_competitor_page.html
   &-wlc{
     width: 650px;
     height: 20px;
+    line-height: 20px;
     background-color: #ebebeb;
+    padding: 0px 10px;
   }
   /* font style for the 'what is this list */
   &-wlf{
@@ -519,36 +519,32 @@ Associated Files: co_competitor_logic.js and co_competitor_page.html
     font-size:12px;
     text-align:left;
     position: relative;
-    left: 10px;
   }
   /*icon font fot the 'x' */
   &-x{
+    cursor: pointer;
     font-family: FontAwesome;
     color:  #000000;
     font-size: 10px;
     font-weight: 400;
-    text-align: left;
-    float:right;
-    position: relative;
-    right: 21px;
-    top: 3px;
+    position: absolute;
+    right: 0px;
+    top: -1px;
   }
   /* container for the text inside the 'what is this list' as wltxt */
   &-wltxt{
-    width:600px;
+    width:650px;
     height:38px;
     position:absolute;
     text-align:center;
     vertical-align:sub;
-    left:20px;
-    top:34px;
+    padding: 10px;
   }
   /*font style for the text  */
   &-wltxtf{
     font-family: HN;
     color:  #000000;
     font-size: 14px;
-    text-align: justify;
   }
 
   &-wrapper{

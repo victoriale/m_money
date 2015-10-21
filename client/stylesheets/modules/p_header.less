@@ -134,18 +134,10 @@
         background-color:  #3098ff;
         width: 40px;
         height: 40px;
-
-        // Begin p-head-bottom-icon .fa
-        .fa {
-        position: relative;
-        top:8px;
-        left:13px;
-        color: #ffffff;
+        line-height: 40px;
+        text-align: center;
+        color: @white;
         font-size: 22px;
-        font-weight: 400;
-        line-height: 22px;
-        text-align: left;
-        } // End p-head-bottom-icon .fa
       } // End p-head-bottom-icon
       // Begin p-head-botom-about
       &-about {
@@ -385,6 +377,10 @@
     overflow: hidden;
     font-size: 12px;
     color: #959595;
+
+    >.fa-calendar{
+      margin-right: 6px;
+    }
 
   }
   &-stockgraph{

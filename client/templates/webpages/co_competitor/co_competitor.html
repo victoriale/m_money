@@ -12,27 +12,15 @@ Associated Files: co_competitor_logic.js and co_competitor.less
   <div class = "co_comp-n_m">
     {{#with companyInfo}}
     <a href="{{url}}">
-      <div class="dp_head-hdtl">
-       <div class="dp_head-hdtl-or">
-         <div class="dp_head-hdtl-mailrep" >
-           <i class="dp_head-mailrep fa fa-reply"></i>
-         </div>
-         <div class="dp_head-hdtl-rta">
-         </div>
-       </div>
-       <!-- for the text contianer!-->
-       <div class="dp_head-hdtl-txtctt">
-         <div class="dp_head-hdtl-gb">
-           Go Back To
-           <div class="dp_head-hdtl-bar-title">
-           <div class="dp_head-hdtl-bar-helper">
-             {{c_name}}'s
-           </div>
-             <div class="dp_head-hdtl-bar-side">Profile </div>
-           </div>
-         </div>
-       </div>
-     </div>
+      <div class="excmp-return">
+        <div class="excmp-return-button">
+          <i class="fa fa-mail-reply"></i>
+        </div>
+        <div class="excmp-return-triangle"></div>
+
+
+        Go Back To <span class="excmp-b">{{c_name}}'s</span> Company Profile
+      </div>
     </a>
     <!--dimensions for the circle container as ('cir-d') !-->
     <div class="co_comp-cir_d">
@@ -147,12 +135,12 @@ Associated Files: co_competitor_logic.js and co_competitor.less
     <!--container for the ct1 to 'sort by' and 'what is this list?'  !-->
     <div class="co_comp-ct1">
     <!--container for the sortby !-->
-    <div class="co_comp-sy">
-      <!-- container for the sortby font
+    <!-- <div class="co_comp-sy">
+      container for the sortby font
       <div class="co_comp-syf"> Sort by:
       <span class="co_comp-syf co_comp-sym"> Competitors: Highest Lowest <span class="co_comp-sym co_comp-chd"> <i class=" fa fa-chevron-down"></i> </span> </span>
-      </div>!-->
-    </div>
+      </div>
+    </div>!-->
     <!-- contianer for the complete 'what is this list' class name is wl!-->
     <div class="co_comp-wl">
       <!-- container for the 'what is this list' class name is wl2!-->
@@ -169,7 +157,7 @@ Associated Files: co_competitor_logic.js and co_competitor.less
       <div class="co_comp-wltxt">
       <!--font style for the text !-->
       <div class="co_comp-wltxtf">
-        <p> This is a page features a detailed list of all the competeing companies with {{c_name}} Competitor items include latest market cap and share value.</p>
+        This is a page features a detailed list of all the competeing companies with {{c_name}} Competitor items include latest market cap and share value.
       </div>
       </div>
     </div>
