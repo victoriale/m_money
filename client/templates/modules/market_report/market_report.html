@@ -8,11 +8,10 @@
   <!--Page wrapper-->
   <div class="mreport">
     <!--Main page header-->
-    <div class="mreport_header">
-      <span class="mreport_blue">I</span>
-      <span style="font-family: HN-B;">{{title}}?</span>
+    <div class="module-header">
+      <span class="module-header-line"></span> <!-- for blue line in the header!-->
+      <span class="module-header-title">{{title}}</span> <!-- Header Title !-->
     </div>
-
 
     <!--Modules to the left of the module-->
     <div class="mreport_links">
@@ -53,13 +52,14 @@
       </div>
 
       <div class="mreport-bts_mtabs">
-        <span class="mreport-mtabs mreport-active_tab" data-dir="DOW" id="mreport_tab1" onclick="mreportTabChange(1)"><span class="mreport-underline" id="mreport_tab1_i">DOW</span></span>
-        <span class="mreport-mtabs mreport-inactive_tab" data-dir="NASDAQ" id="mreport_tab2" onclick="mreportTabChange(2)"><span class="" id="mreport_tab2_i">NASDAQ</span></span>
-        <span class="mreport-mtabs mreport-inactive_tab" data-dir="S&P" id="mreport_tab3" onclick="mreportTabChange(3)"><span class="" id="mreport_tab3_i">S&P</span></span>
-        <span class="mreport-mtabs mreport-inactive_tab" data-dir="SEARCH" id="mreport_tab4" onclick="mreportTabChange(4)"><span class="" id="mreport_tab4_i"><i class="fa fa-search"></i> SEARCH</span></span>
+        <span class="mreport-mtabs mreport-active_tab"><span class="mreport-underline">NASDAQ</span></span>
+        <span class="mreport-mtabs mreport-inactive_tab"><span>NYSE</span></span>
+        <span class="mreport-mtabs mreport-inactive_tab"><span>AMEX</span></span>
+        <!-- <span class="mreport-mtabs mreport-inactive_tab" data-dir="SEARCH" id="mreport_tab4" onclick="mreportTabChange(4)"><span class="" id="mreport_tab4_i"><i class="fa fa-search"></i> SEARCH</span></span> -->
       </div>
 
       <!--Company image-->
+      {{#with stock_info}}
       <div class="mreport-b3wrap">
         <div class="mreport_body_image"></div>
         <div class="mreport-b3info">
@@ -68,24 +68,29 @@
           </div>
           <!--Price of stock-->
           <div class="mreport_body_stock">
-            <span class="mreport_body_stock_price">{{stock_price}} </span>
-            <span class="mreport_body_stock_history">
-              <i class="fa fa-arrow-circle-o-up mreport_body_stock_history_icon"></i>
-              <span class="mreport_body_stock_history_text">+{{stock_price_number}} ({{stock_price_percent}})</span>
+            <span class="mreport_body_stock_price">{{stock_price}}</span>
+            <span class="mreport_body_stock_history {{color_class}}">
+              <i class="fa {{arrow_class}} mreport_body_stock_history_icon"></i>
+              <span class="mreport_body_stock_history">{{stock_price_number}} ({{stock_price_percent}})</span>
             </span>
           </div>
         </div>
       </div>
+      {{/with}}
       <!--Main chart-->
-      <div id="markreportid" class="mreport_body_chart"></div>
+      <div id="markreportid" class="mreport_body_chart">
+        {{> highchartsHelper chartId="mreport-stockgraph" chartWidth="100%" chartHeight="100%" chartObject=getGraph}}
+      </div>
       <!--"You could have earned..."-->
       <div class="mreport-line"></div>
       <div class="mreport-fc">
+        {{#with market_info}}
         <div class="mreport-tb1">
-          <span><i class="fa fa-map-marker mreport-fam"></i>&nbsp;<span class="mreport-l1">{{national_market}}</span></span><br>
-          <span class="mreport-l2">TODAY'S {{stock_name}} LOSERS</span><br>
-          <span class="mreport-l3">{{number_down}} {{stock_name}} companies that are down today.</span>
+          <span><i class="fa fa-map-marker mreport-fam"></i>&nbsp;<span class="mreport-l1">National Market</span></span><br>
+          <span class="mreport-l2">Today's {{exchange_name}} Losers</span><br>
+          <span class="mreport-l3">{{top_list_title}}</span>
         </div>
+        {{/with}}
         <!--******************buttons starts here*********************-->
         <div class="mreport-bb3">
           <button class="mreport-lbb3">
@@ -102,19 +107,23 @@
         </div>
         <!--******************buttons ends here*********************-->
         <!--***************circlewrapper  in mreport.less starts here ****************************-->
-        <div class="mreport-cw">
-          <div class="mreport-c5b3 mreport_body_image">
-          </div><button class="mreport-c6b3 mreport_body_image">
-            <span class="mreport-fc6b3">#{{counter_number}}</span>
-          </button>
-        </div>
+        {{#with c_info}}
+        <a href="{{url}}">
+          <div class="mreport-cw">
+            <div class="mreport-c5b3 mreport_body_image" style="background-image: url({{logo}});"></div>
+            <button class="mreport-c6b3 mreport_body_image">
+              <span class="mreport-fc6b3">#{{counter}}</span>
+            </button>
+          </div>
+        </a>
         <!--***************circlewrapper  in mreport.less ends here ****************************-->
         <!--***************textbox 3 starts here ****************************-->
         <div class="mreport-tb3">
-          <span class="mreport-w1tb3">{{company_name}}&nbsp;<i class="fa fa-angle-right mreport-fatb3"></i>&nbsp;<span class="mreport-w2tb3">{{lost_percent}}</span>&nbsp;
-          <span class="mreport-w3tb3">Today</span>
-        </span>
-      </div>
+          <span class="mreport-w1tb3">{{company_name}}
+            <i class="fa fa-angle-right mreport-fatb3"></i><span class="mreport-w2tb3">{{lost_percent}}</span>
+          </span>
+        </div>
+        {{/with}}
       <!--***************textbox 3 ends here****************************-->
       <!--*************list view button starts here******************-->
       <button class="mreport-blbb3">

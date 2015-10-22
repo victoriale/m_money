@@ -5,6 +5,7 @@
 */
 @import (reference)"../global_vars.less";
 @import  (reference)"../modules.less";
+
 //.mreport wrapper starts here
 .mreport{
   .top_bottom_border;
@@ -15,426 +16,448 @@
   color: #000000;
   font-family: HN;
   margin:10px;
-  
+
+  &_up {
+    color: @green;
+  }
+
+  &_down {
+    color: @red;
+  }
+
   //class for blue text
   &_blue{
     color: @blue;
-    }//End hamarkets_blue
+  }//End hamarkets_blue
 
-    //Main page header
+  //Main page header
+  &_header{
+    width: 680px;
+    height: 45px;
+    background-color: @black;
+    color: @white;
+    font-size: 18px;
+    line-height: 45px;
+    padding-left: 10px;
+    text-transform: uppercase;
+  }//End hamarkets_header
+
+  //Main page body
+  &_body{
+    position: absolute;
+    top: 60px;
+    left: 210px;
+    width: 455px;
+    height: 570px;
+    border: 1px solid #e1e1e1;
+
+    //Body header
     &_header{
-      width: 680px;
-      height: 45px;
-      background-color: @black;
-      color: @white;
-      font-size: 18px;
-      line-height: 45px;
+      height: 39px;
+      background-color: @grey-1;
+      line-height: 39px;
+      font-size: 16px;
       padding-left: 10px;
       text-transform: uppercase;
-      }//End hamarkets_header
+      font-family: HN-B;
+    }//End hamarkets_body_header
 
-      //Main page body
-      &_body{
-        position: absolute;
-        top: 60px;
-        left: 210px;
-        width: 455px;
-        height: 570px;
-        border: 1px solid #e1e1e1;
+    &_chart {
+      height: 100px;
+      width: 100%;
+      padding: 0 10px;
+      position: relative;
+    }
 
-        &_chart
-        {
-        }
+    //Company image
+    &_image{
+      display:inline-block;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 2px solid @grey-3;
+      margin-top: 6px;
+      margin-left: 15px;
 
-        //Body header
-        &_header{
-          height: 39px;
-          background-color: @grey-1;
-          line-height: 39px;
-          font-size: 16px;
-          padding-left: 10px;
-          text-transform: uppercase;
-          font-family: HN-B;
-          }//End hamarkets_body_header
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }//End hamarkets_
 
-          //Company image
-          &_image{
-            display:inline-block;
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            border: 2px solid @grey-3;
-            margin-top: 6px;
-            margin-left: 15px;
-            }//End hamarkets_
+    //Company name
+    &_company{
+      position: absolute;
+      top: 20px;
+      left: 0px;
+      font-size: 18px;
+      font-family: HN-B;
+      color: #000000;
+      height: 20px;
+      overflow: hidden;
+    }//End hamarkets_body_company
 
-            //Company name
-            &_company{
-              position: absolute;
-              top: 20px;
-              left: 0px;
-              font-size: 18px;
-              font-family: HN-B;
-              color: #000000;
-              height: 20px;
-              overflow: hidden;
-              }//End hamarkets_body_company
+    //Current stock price
+    &_stock{
+      position: absolute;
+      top: 40px;
+      left: 0px;
+      color: #000000;
+      width: 330px;
+      overflow: hidden;
+      height: 35px;
 
-              //Current stock price
-              &_stock{
-                position: absolute;
-                top: 40px;
-                left: 0px;
-                color: #000000;
-                width: 294px;
-                overflow: hidden;
-                height: 35px;
-                //price amount
-                &_price{
-                  font-size: 28px;
-                  font-family: HN-B;
-                  }//End hamarkets_body_stock_price
-                  //recent history
-                  &_history{
-                    font-size: 20px;
-                    color: @green;
-                    font-family: HN-B;
-                    }//End hamarkets_body_stock_history
-                    }//End hamarkets_body_stock
-                    }//End hamarkets_body
+      //price amount
+      &_price{
+        font-size: 28px;
+        font-family: HN-B;
+        float: left;
+      }//End hamarkets_body_stock_price
+      //recent history
+      &_history{
+        font-size: 20px;
+        height: 40px;
+        line-height: 40px;
+        font-family: HN-B;
+        text-align: left;
+      }//End hamarkets_body_stock_history
+    }//End hamarkets_body_stock
+  }//End hamarkets_body
 
-                    &-mc_tile
-                    {
-                      width:21px;
-                      height:17px;
-                    }
-                    &-c1_tile
-                    {
-                      display:inline-block;
-                      border-radius: 50%;
-                      background-color: #ffffff;
-                      width: 48px;
-                      height: 48px;
-                      border:none;
-                    }
-                    &-c2_tile
-                    {
-                      display:inline-block;
-                      border-radius: 50%;
-                      background-color: #ffffff;
-                      width: 48px;
-                      height: 48px;
-                      border:none;
-                    }
-                    &-c3_tile
-                    {
-                      display:inline-block;
-                      border-radius: 50%;
-                      background-color: #ffffff;
-                      width: 48px;
-                      height: 48px;
-                      border:none;
-                    }
-                    &-b3wrap{//b3 class defining stock information starts here
-                      width:453pxpx;
-                      height:96px;
-                      }//b3 class defining stock information ends her
-                      &-b3info{//b3info class which has info for stocks starts here
-                        position:relative;
-                        display:inline-block;
-                        width: 72%;
-                        height: 90px;
-                        top:0px;
-                        left:0px;
-                        margin:0 0 0 13px;
-                        padding: 0 0 0 0;
-                        }//b3info class which has stocks ends here
-                        &-fc{//fc class defines bottom most box
-                          width:453px;
-                          height:274px;
-                          z-index:1;
-                          }//fc class defines bottom most box
-                          &-fam{//font awesome for map marker
-                            font-family: FontAwesome;
-                            color: #0982f8;
-                            font-size: 12px; /* Approximation due to font substitution */
-                            font-weight: 400;
-                            text-align: left;
-                            }//font awesome for map marker
+  &-mc_tile {
+    width:21px;
+    height:17px;
+  }
 
-                            &-l1{//text line1
-                              font-family: HN;
-                              color: #000000;
-                              font-size: 12px; /* Approximation due to font substitution */
-                              text-align: left;
-                              text-transform:uppercase;
-                              width: 126px;
-                              height: 15px;
-                              overflow: hidden;
-                              }//text line1
-                              &-l2{//text line2
-                                font-family: HN-B;
-                                color: #000000;
-                                font-size: 18px; /* Approximation due to font substitution */
-                                text-align: left;
-                                text-transform:uppercase;
-                                width: 210px;
-                                height: 21px;
-                                overflow: hidden;
-                                }//text line2
-                                &-l3{//text line3
-                                  font-family: HN-L;
-                                  color: #000000;
-                                  font-size: 16px; /* Approximation due to font substitution */
-                                  text-align: left;
-                                  position: relative;
-                                  top: -6px;
-                                  text-transform:lowercase;
-                                  width: 280px;
-                                  height: 20px;
-                                  }//text line3
-                                  &-tb1{//text box1
-                                    display:inline-block;
-                                    margin:0px 0 0 23px;
-                                    width:75%;
-                                    height: 55px;
-                                    overflow: hidden;
-                                    width: 350px;
-                                    height: 60px;
-                                    }//text box1
-                                    //buttons in box 3 starts here
-                                    &-bb3{
-                                      position:relative;
-                                      width: 455px;
-                                      height: 80px;
-                                      z-index:10;
-                                      top: 73px;
-                                    }
-                                    //buttons in box 3 ends here
-                                    /*left button in box3 starts here*/
-                                    &-lbb3{
-                                      background-color:#000000;
-                                      width: 30px;
-                                      height: 60px;
-                                      float: left;
-                                      border-top-right-radius: 38px;
-                                      border-bottom-right-radius: 38px;
-                                      display:inline-block;
-                                      border:none;
-                                      text-align: center;
-                                    }
-                                    &-lbb3:hover{
-                                      background: @blue;
-                                      cursor:pointer;
-                                    }
-                                    /*left button in box3 endss here*/
-                                    /////****************Right Button Creation **************//////////
-                                    /*rightbutton in box3 starts here*/
-                                    &-rbb3{
-                                      background-color: #000000;
-                                      width: 30px;
-                                      height: 60px;
-                                      float: right;
-                                      border-top-left-radius: 38px;
-                                      border-bottom-left-radius: 38px;
-                                      display:inline-block;
-                                      border:none;
-                                      position: relative;
-                                      left: -1px;
-                                    }
-                                    &-rbb3:hover{
-                                      background: @blue;
-                                      cursor:pointer;
-                                    }
-                                    /*rightbutton in box3 ends here*/
-                                    /////****************Left Button Arrows **************//////////
-                                    &-ib3{
-                                      color:  #ffffff;
-                                      font-size: 30px; /* Approximation due to font substitution */
-                                      font-weight: 400;
-                                      text-align: left;
-                                    }
-                                    /////****************Right Button Arrows **************//////////
-                                    &-i2b3{
-                                      color:  #ffffff;
-                                      font-size: 30px; /* Approximation due to font substitution */
-                                      font-weight: 400;
-                                      text-align: right;
-                                    }
-                                    &-cw{//circle wrap
-                                      position: relative;
-                                      bottom: 85px;
-                                      left: 165px;
-                                      width: 125px;
-                                      height: 125px;
-                                      }//circle wrap
-                                      /*circle1 in box3 starts here*/
-                                      &-c5b3
-                                      {
-                                        z-index:0;
-                                        margin:0px 0 0 0;
-                                        border-width: 2px;
-                                        border-color:  #cccccc;
-                                        border-style: solid;
-                                        width: 125px;
-                                        height: 125px;
-                                        top: 5px;
-                                        left: 0px;
-                                        position: relative;
-                                      }
-                                      /*circle1 in box3 ends here*/
-                                      /*circle2 in box3 ends here*/
-                                      &-c6b3
-                                      {
-                                        position:absolute;
-                                        border-radius: 50%;
-                                        background-color:  #000000;
-                                        width: 30px;
-                                        height: 30px;
-                                        z-index:10;
-                                        border:none;
-                                        cursor: default;
-                                        top: 94px;
-                                        left: 77px;
-                                      }
-                                      /*circle2 in box3 ends here*/
+  &-c1_tile {
+    display:inline-block;
+    border-radius: 50%;
+    background-color: #ffffff;
+    width: 48px;
+    height: 48px;
+    border:none;
+  }
 
-                                      &-fc6b3{
-                                        font-family: HN;
-                                        color:  #ffffff;
-                                        font-size: 14px;
-                                        line-height: 24px;
-                                        text-align: center;
-                                      }
-                                      /*listbutton in box3 starts here*/
-                                      &-blbb3{
-                                        position:relative;
-                                        border-radius: 5px;
-                                        background-color:  #3098ff;
-                                        width: 240px;
-                                        height: 35px;
-                                        bottom: 65px;
-                                        left: 100px;
-                                        border:none;
-                                      }
-                                      /*listbutton in box3 starts here*/
-                                      /*fontlistbutton in box3 starts here*/
-                                      &-flbb3{
-                                        font-family: HN-L;
-                                        color:  #ffffff;
-                                        font-size: 14px;/* Approximation due to font substitution */
-                                        text-align: center;
-                                      }
-                                      /*fontlistbutton in box3 ends here*/
-                                      /*font awesome listbutton in box3 starts here*/
-                                      &-falbb3{
-                                        /* Inline Style */
-                                        font-family: FontAwesome;
-                                        color:  #ffffff;
-                                        font-size: 14px;/* Approximation due to font substitution */
-                                        font-weight: 400;
-                                        text-align: center;
-                                        padding: 0 0 0 5px;
-                                        /*font awesome listbutton in box3 ends here*/
-                                      }
-                                      &-tb3{//text box3
-                                        position:relative;
-                                        float:left;
-                                        width:453px;
-                                        height:18px;
-                                        bottom: 74px;
-                                        overflow: hidden;
-                                        text-align: center;
-                                        }//text box3
-                                        &-w1tb3{//word1 in text box3
-                                          font-family: HN-B;
-                                          color:  #000000;
-                                          font-size: 16px;/* Approximation due to font substitution */
-                                          line-height: 18px;/* Approximation due to font substitution */
-                                          text-align: center;
-                                          }//word1 in text box3
-                                          &-fatb3{//font awesome in text box3
-                                            /* Inline Style */
-                                            font-family: FontAwesome;
-                                            color:  #000000;
-                                            font-size: 16px;/* Approximation due to font substitution */
-                                            font-weight: 400;
-                                            line-height: 18px;/* Approximation due to font substitution */
-                                            text-align: center;
-                                            margin: 0px 10px 0px 10px;
-                                            }//font awesome in text box3
-                                            &-w2tb3{//word2 in text box3
-                                              /* Inline Style */
-                                              font-family: HN-B;
-                                              color:  #ca1010;
-                                              font-size: 16px;/* Approximation due to font substitution */
-                                              line-height: 18px;/* Approximation due to font substitution */
-                                              text-align: center;
-                                              }//word2 in text box3
-                                              &-w3tb3{//word3 in text box 3
-                                                /* Inline Style */
-                                                font-family: HN;
-                                                color:  #000000;
-                                                font-size: 16px;/* Approximation due to font substitution */
-                                                line-height: 18px;/* Approximation due to font substitution */
-                                                text-align: center;
-                                                }//word3 in text box3
-                                                &-bts_mtabs{//button section for stock excehange
-                                                  width: 100%;
-                                                  height: 35px;
-                                                  display:table;
-                                                  color: #fff;
-                                                  font-size:12px;
-                                                  //font-weight:bold;
-                                                  }//button section for stock excehange
-                                                  &-mtabs{//button tabs in button section
-                                                    width: 25%;
-                                                    height:34px;
-                                                    font-family: HN;
-                                                    color: #4a4a4a;
-                                                    font-size: 14px; /* Approximation due to font substitution */
-                                                    line-height: 34px; /* Approximation due to font substitution */
-                                                    text-align: left;
-                                                    background-color: #c2c2c2;
-                                                    border:1px solid #cccccc;
-                                                    display:table-cell;
-                                                    text-align:center;
-                                                    text-decoration:none;
-                                                    cursor:pointer;
-                                                    }//button tabs in button section
+  &-c2_tile {
+    display:inline-block;
+    border-radius: 50%;
+    background-color: #ffffff;
+    width: 48px;
+    height: 48px;
+    border:none;
+  }
 
-                                                    &-active_tab
-                                                    {
-                                                      background-color: @white;
-                                                      border-bottom: 0px;
-                                                      width: 34px;
-                                                      color:#000000;
-                                                    }
+  &-c3_tile {
+    display:inline-block;
+    border-radius: 50%;
+    background-color: #ffffff;
+    width: 48px;
+    height: 48px;
+    border:none;
+  }
 
-                                                    &-inactive_tab
-                                                    {
-                                                      background-color: #ebebeb;
-                                                      border-bottom: 1px solid @grey-2;
-                                                      color: #4a4a4a;
-                                                    }
+  &-b3wrap {//b3 class defining stock information starts here
+    width:453pxpx;
+    height:96px;
+  }//b3 class defining stock information ends her
 
-                                                    &-underline
-                                                    {
-                                                      border-bottom: 3px solid #3097ff;
-                                                      font-family: HN-B;
-                                                    }
+  &-b3info {//b3info class which has info for stocks starts here
+    position:relative;
+    display:inline-block;
+    width: 72%;
+    height: 90px;
+    top:0px;
+    left:0px;
+    margin:0 0 0 13px;
+    padding: 0 0 0 0;
+  }//b3info class which has stocks ends here
 
-                                                    &-line
-                                                    {
-                                                      position: relative;
-                                                      height: 1px;
-                                                      background-color: @grey-2;
-                                                      top: -15px;
-                                                    }
+  &-fc {//fc class defines bottom most box
+    width:453px;
+    height:274px;
+    z-index:1;
+  }//fc class defines bottom most box
 
-                                                    &-tile_adjust
-                                                    {
-                                                      margin-bottom: 12px !important;
-                                                    }
-                                                  }
-                                                  //.mreport wrapper ends here
+  &-fam {//font awesome for map marker
+    font-family: FontAwesome;
+    color: #0982f8;
+    font-size: 12px; /* Approximation due to font substitution */
+    font-weight: 400;
+    text-align: left;
+  }//font awesome for map marker
+
+  &-l1 {//text line1
+    font-family: HN;
+    color: #000000;
+    font-size: 12px; /* Approximation due to font substitution */
+    text-align: left;
+    width: 126px;
+    height: 15px;
+    overflow: hidden;
+  }//text line1
+
+  &-l2 {//text line2
+    font-family: HN-B;
+    color: #000000;
+    font-size: 18px; /* Approximation due to font substitution */
+    text-align: left;
+    width: 100%;
+    height: 21px;
+    overflow: hidden;
+  }//text line2
+
+  &-l3 {//text line3
+    font-family: HN-L;
+    color: #000000;
+    font-size: 16px; /* Approximation due to font substitution */
+    text-align: left;
+    position: relative;
+    top: -6px;
+    width: 100%;
+    height: 20px;
+  }//text line3
+
+  &-tb1 {//text box1
+    display:inline-block;
+    height: 55px;
+    padding: 0 10px;
+    overflow: hidden;
+    width: 100%;
+    height: 60px;
+  }//text box1
+
+  //buttons in box 3 starts here
+  &-bb3 {
+    position:relative;
+    width: 455px;
+    height: 80px;
+    z-index:10;
+    top: 73px;
+  }
+  //buttons in box 3 ends here
+  /*left button in box3 starts here*/
+  &-lbb3{
+    background-color:#000000;
+    width: 30px;
+    height: 60px;
+    float: left;
+    border-top-right-radius: 38px;
+    border-bottom-right-radius: 38px;
+    display:inline-block;
+    border:none;
+    text-align: center;
+  }
+
+  &-lbb3:hover{
+    background: @blue;
+    cursor:pointer;
+  }
+  /*left button in box3 endss here*/
+  /////****************Right Button Creation **************//////////
+  /*rightbutton in box3 starts here*/
+  &-rbb3{
+    background-color: #000000;
+    width: 30px;
+    height: 60px;
+    float: right;
+    border-top-left-radius: 38px;
+    border-bottom-left-radius: 38px;
+    display:inline-block;
+    border:none;
+    position: relative;
+    left: -1px;
+  }
+
+  &-rbb3:hover{
+    background: @blue;
+    cursor:pointer;
+  }
+  /*rightbutton in box3 ends here*/
+  /////****************Left Button Arrows **************//////////
+  &-ib3{
+    color:  #ffffff;
+    font-size: 30px; /* Approximation due to font substitution */
+    font-weight: 400;
+    text-align: left;
+  }
+  /////****************Right Button Arrows **************//////////
+  &-i2b3{
+    color:  #ffffff;
+    font-size: 30px; /* Approximation due to font substitution */
+    font-weight: 400;
+    text-align: right;
+  }
+  &-cw{//circle wrap
+    position: relative;
+    bottom: 85px;
+    left: 165px;
+    width: 125px;
+    height: 125px;
+  }//circle wrap
+  /*circle1 in box3 starts here*/
+  &-c5b3 {
+    z-index:0;
+    margin:0px 0 0 0;
+    border-width: 2px;
+    border-color:  #cccccc;
+    border-style: solid;
+    width: 125px;
+    height: 125px;
+    top: 5px;
+    left: 0px;
+    position: relative;
+  }
+  /*circle1 in box3 ends here*/
+  /*circle2 in box3 ends here*/
+  &-c6b3 {
+    position:absolute;
+    border-radius: 50%;
+    background-color:  #000000;
+    width: 30px;
+    height: 30px;
+    z-index:10;
+    border:none;
+    cursor: default;
+    top: 94px;
+    left: 77px;
+  }
+  /*circle2 in box3 ends here*/
+
+  &-fc6b3{
+    font-family: HN;
+    color:  #ffffff;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+  }
+  /*listbutton in box3 starts here*/
+  &-blbb3{
+    position:relative;
+    border-radius: 5px;
+    background-color:  #3098ff;
+    width: 240px;
+    height: 35px;
+    bottom: 65px;
+    border:none;
+  }
+  /*listbutton in box3 starts here*/
+  /*fontlistbutton in box3 starts here*/
+  &-flbb3{
+    font-family: HN-L;
+    color:  #ffffff;
+    font-size: 14px;/* Approximation due to font substitution */
+    text-align: center;
+  }
+  /*fontlistbutton in box3 ends here*/
+  /*font awesome listbutton in box3 starts here*/
+  &-falbb3{
+    /* Inline Style */
+    font-family: FontAwesome;
+    color:  #ffffff;
+    font-size: 14px;/* Approximation due to font substitution */
+    font-weight: 400;
+    text-align: center;
+    padding: 0 0 0 5px;
+    /*font awesome listbutton in box3 ends here*/
+  }
+
+  &-tb3{//text box3
+    position:relative;
+    float:left;
+    width:453px;
+    height:18px;
+    bottom: 74px;
+    overflow: hidden;
+    text-align: center;
+  }//text box3
+
+  &-w1tb3{//word1 in text box3
+    font-family: HN-B;
+    color:  #000000;
+    font-size: 16px;/* Approximation due to font substitution */
+    line-height: 18px;/* Approximation due to font substitution */
+    text-align: center;
+  }//word1 in text box3
+
+  &-fatb3{//font awesome in text box3
+    /* Inline Style */
+    font-family: FontAwesome;
+    color:  #000000;
+    font-size: 16px;/* Approximation due to font substitution */
+    font-weight: 400;
+    line-height: 18px;/* Approximation due to font substitution */
+    text-align: center;
+    margin: 0px 10px 0px 10px;
+  }//font awesome in text box3
+
+  &-w2tb3{//word2 in text box3
+    /* Inline Style */
+    font-family: HN-B;
+    color:  #ca1010;
+    font-size: 16px;/* Approximation due to font substitution */
+    line-height: 18px;/* Approximation due to font substitution */
+    text-align: center;
+  }//word2 in text box3
+
+  &-w3tb3{//word3 in text box 3
+    /* Inline Style */
+    font-family: HN;
+    color:  #000000;
+    font-size: 16px;/* Approximation due to font substitution */
+    line-height: 18px;/* Approximation due to font substitution */
+    text-align: center;
+  }//word3 in text box3
+
+  &-bts_mtabs{//button section for stock excehange
+    width: 100%;
+    height: 35px;
+    display:table;
+    color: #fff;
+    font-size:12px;
+    //font-weight:bold;
+  }//button section for stock excehange
+  &-mtabs{//button tabs in button section
+    width: 25%;
+    height:34px;
+    font-family: HN;
+    color: #4a4a4a;
+    font-size: 14px; /* Approximation due to font substitution */
+    line-height: 34px; /* Approximation due to font substitution */
+    text-align: left;
+    background-color: #c2c2c2;
+    border:1px solid #cccccc;
+    display:table-cell;
+    text-align:center;
+    text-decoration:none;
+    cursor:pointer;
+  }//button tabs in button section
+
+  &-active_tab {
+    background-color: @white;
+    border-bottom: 0px;
+    width: 34px;
+    color:#000000;
+  }
+
+  &-inactive_tab {
+    background-color: #ebebeb;
+    border-bottom: 1px solid @grey-2;
+    color: #4a4a4a;
+  }
+
+  &-underline {
+    border-bottom: 3px solid #3097ff;
+    font-family: HN-B;
+  }
+
+  &-line {
+    position: relative;
+    height: 1px;
+    background-color: @grey-2;
+    top: -7px;
+  }
+
+  &-tile_adjust {
+    margin-bottom: 12px !important;
+  }
+}
+//.mreport wrapper ends here
