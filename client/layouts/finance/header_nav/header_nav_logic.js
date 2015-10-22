@@ -90,15 +90,29 @@ Template.header_nav.events({
       $('.dropdown-meEX').slideUp();
       $('#IT').slideUp();
       $('#KM').slideUp();
+    },
+    /* this function envokes client/layouts/finance/finance_search.js */
+    'keyup .layout_nav-search_input': function(event){
+      if( event.which === 13){
+        event.preventDefault();
+        Finance_Search($('.layout_nav-search_input')[0].value);
+        return "";
+      }
     }
   });
 Template.header_nav.helpers({
   drpdwns: [
-  { listname:"Sector", listtype:"Sector Type", listno:"ST", option1: "Sector Type1", option2: "Sector Type2", option3: "Sector Type3", option4: "Sector Type4"},
-  { listname:"Industry", listtype:"Industry Type", listno:"IT", option1: "Industry Type1", option2: "Industry Type2", option3: "Industry Type3", option4: "Industry Type4"},
-  { listname:"Key", listtype:"Key Metric", listno:"KM", option1: "Key Metric1", option2: "Key Metric2", option3: "Key Metric3", option4: "Key Metric4"},
-  { listname:"Date", listtype:"Date Range", listno:"DR", option1: "Date Range1", option2: "Date Range2", option3: "Date Range3", option4: "Date Range4"},
-]
+    { listname:"Sector", listtype:"Sector Type", listno:"ST", option1: "Sector Type1", option2: "Sector Type2", option3: "Sector Type3", option4: "Sector Type4"},
+    { listname:"Industry", listtype:"Industry Type", listno:"IT", option1: "Industry Type1", option2: "Industry Type2", option3: "Industry Type3", option4: "Industry Type4"},
+    { listname:"Key", listtype:"Key Metric", listno:"KM", option1: "Key Metric1", option2: "Key Metric2", option3: "Key Metric3", option4: "Key Metric4"},
+    { listname:"Date", listtype:"Date Range", listno:"DR", option1: "Date Range1", option2: "Date Range2", option3: "Date Range3", option4: "Date Range4"},
+  ],
+  notPartner: function() {
+    if ( typeof Router.current().params.partner_id != "undefined" ) {
+      return false;
+    }
+    return true;
+  }
 });
 //To hide the dropdown menu when clicked on body of the page
 $(document).click( function(){

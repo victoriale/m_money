@@ -5,18 +5,6 @@ Template.whos_who.onCreated(function(){
   var counter = 0;
   Session.set("whos_count",counter);
 
-  //NEED TO GO INTO METHODS.JS and change comp_id once that has been implemented into profile header for exec profile
-  this.autorun(function(){
-    Meteor.call('WhosWhoIndie', Session.get('comp_id'), function(error, data){
-      if(!error){
-        //console.log('Whos_who',data.whos_who);
-        //Session.set('whos_who', data.whos_who);
-      }else{
-        console.log("ERROR whos_who Call");
-        return (error);
-      }
-    })
-  });
   /*
   */
 })
@@ -27,6 +15,9 @@ Template.whos_who.events({
   'click .module-who-button-left': function(){
     var counter = Session.get("whos_count");
     var who = Session.get('whos_who');
+    if(Session.get('IsCompany')){
+      who = who['officers'];
+    }
     if(counter > 0){
       counter--;
       Session.set("whos_count",counter);
@@ -40,6 +31,9 @@ Template.whos_who.events({
   'click .module-who-button-right': function(){
     var counter = Session.get("whos_count");
     var who = Session.get('whos_who');
+    if(Session.get('IsCompany')){
+      who = who['officers'];
+    }
     if(counter < who.length - 1)
     {
       counter++;
@@ -76,8 +70,11 @@ Template.whos_who.helpers({
     }
     return data.c_name;
   },
+
   author_name:function(){
-    var who = Session.get('whos_who');
+    var data = Session.get('whos_who');
+    //Check if data and data.officers is defined. If so set who to data.officers, else set to undefined (Force to exit helper)
+    var who = typeof(data) !== 'undefined' && typeof(data.officers) !== 'undefined' ? data['officers'] : undefined;
     var index = Session.get("whos_count");
     if(typeof who == 'undefined')
     {
@@ -90,19 +87,37 @@ Template.whos_who.helpers({
     return fname +" "+ mname +" "+ lname;
   },
 
+  execURL:function(){
+    var who = Session.get('whos_who');
+    var index = Session.get("whos_count");
+    if(typeof who == 'undefined')
+    {
+      return '';
+    }
+    if(Session.get('IsCompany')){
+      who = who['officers'];
+      var url = Router.path('content.executiveprofile',{exec_id:who[index].o_id});
+    }
+
+    if(Session.get('IsExec')){
+      var url = Router.path('content.executiveprofile',{exec_id:who[index].o_id});
+    }
+    return url;
+  },
+
   titles: function(){
-  var who = Session.get('whos_who');
-  var index = Session.get("whos_count");
-  if(typeof who == "undefined")
-  {
-    return '';
-  }
-  if(Session.get('IsCompany')){
-    var title = who[index]['o_titles'][0];
-  }
-  if(Session.get('IsExec')){
-    var title = who[index]['o_current_title']['titles'][0]['title'];
-  }
+    var who = Session.get('whos_who');
+    var index = Session.get("whos_count");
+    if(typeof who == "undefined")
+    {
+      return '';
+    }
+    if(Session.get('IsCompany')){
+      var title = who['officers'][index]['o_titles'][0];
+    }
+    if(Session.get('IsExec')){
+      var title = who[index]['o_current_title']['titles'][0]['title'];
+    }
   return title;
   },
 
@@ -118,6 +133,7 @@ Template.whos_who.helpers({
     var returnArray = [];
     var j = counter + 1;
     if(Session.get('IsCompany')){
+      var who = who['officers'];
       for(var i=0;i<who.length-1;i++)
       {
         if(j == who.length)
@@ -139,7 +155,8 @@ Template.whos_who.helpers({
         }
         j++;
       }
-    }else if(Session.get('IsExec')){
+    }
+    if(Session.get('IsExec')){
       for(var i=0;i<who.length-1;i++)
       {
         if(j == who.length)

@@ -8,6 +8,14 @@
   <div class="p">
    {{> cp_head}}
    {{> cp_body}}
+
+   <div class="c_p_graph-updated">
+     <div class="c_p_graph-line"></div>
+     <i class="fa fa-calendar"></i>Updated 08/03/2015 a 5PM EST
+   </div>
+   <div class="c_p_graph">
+     {{> c_p_graph}}
+   </div>
    <!--{{> cp_rdr}}-->
  </div>
 </template>
@@ -27,7 +35,7 @@
     </div>
     <div class="p-head-bottom">
       <div class="p-head-bottom-triangle"></div>
-      <div class="p-head-bottom-img" style="background-image: url('{{c_logo}}')">
+      <div class="p-head-bottom-img" style="background-image: url('/{{c_logo}}')">
         <div class="p-head-bottom-img-sml"></div>
       </div>
       <div class="p-head-bottom-icon"><i class="fa fa-map-marker"></i></div>
@@ -65,7 +73,7 @@
 <template name="cp_rdr">
   {{#with rdrInfo}}
   <div class="p-rdr">
-    <a href="{{ulr}}">
+    <a href="{{url}}">
       <div class="p-rdr-tri"></div>
       <div class="p-rdr-container">
         <div class="p-rdr-container-icon"></div>
@@ -82,4 +90,15 @@ and much more.
     </a>
   </div>
   {{/with}}
+</template>
+
+<template name="c_p_graph">
+    <div class="c_p_graph-stockgraph">
+      {{> highchartsHelper chartId="c_p_graph-stockgraph" chartWidth="100%" chartHeight="100%" chartObject=getGraph}}
+    </div>
+    <div class="c_p_graph-buttons">
+      {{#each buttons}}
+        <button class="c_p_graph-buttons-circle" id="{{data}}">{{data}}</button>
+      {{/each}}
+    </div>
 </template>

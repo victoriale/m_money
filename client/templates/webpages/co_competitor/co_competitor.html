@@ -7,71 +7,65 @@ Associated Files: co_competitor_logic.js and co_competitor.less
 <!--Gave a template name stock_disclaimer_page !-->
 <template name="co_competitor">
 <!--Defined a class name globally for height and width !-->
-{{#with company}}
 <div class= "co_comp">
   <!--gave the dimensions for the module with total height and width !-->
   <div class = "co_comp-n_m">
-    <!--dimensions for the circle container as ('cir-d') !-->
-    <div class="co_comp-cir_d">
-    <!-- dimensions for the circle as ('circ')!-->
-    <div class="co_comp-circ">
-      <!-- defines container for the smaller blue circle('sc_d') !-->
-      <div class= "co_comp-sc_d">
-      <!-- defines the dimension for the small circle('sc') !-->
-      <div class="co_comp-sc_d co_comp-sc">
-      <i class="co_comp-bfo fa fa-reply"></i>
+    {{#with companyInfo}}
+    <a href="{{url}}">
+      <div class="excmp-return">
+        <div class="excmp-return-button">
+          <i class="fa fa-mail-reply"></i>
+        </div>
+        <div class="excmp-return-triangle"></div>
+
+
+        Go Back To <span class="excmp-b">{{c_name}}'s</span> Company Profile
       </div>
+    </a>
+
+    <div class="co_comp-header-container">
+      <div class="co_comp-header-container-image" style="background-image:url('/{{c_logo}}')">
+
       </div>
-    </div>
-    </div>
-    <!--defines the container for text box !-->
-    <div class="co_comp-tc">
-    <!-- class date has all the font-weight and font specific !-->
-    <div class="co_comp-date">
-      LAST UPDATED: 06/24/2015, 8:00 AM EST
-    </div>
-    <!--specified font style for location !-->
-    <div class="co_comp-loc_st">
-       <i class="fa fa-map-marker"></i>
-    <!--specified font style for the state name !-->
-    <span class="co_comp-loc_st">
-      United States
-    </span>
-    </div>
-    <!-- specified font sytle for the stock disclaimer !-->
-    <div class="co_comp-loc_st co_comp-disc">
-    The Biggest Competitors
-    </div>
-    <!--specified font style for the inveskit finance  !-->
-    <div class="co_comp-loc_st co_comp-fin">
-    for {{getheadername}}
-    </div>
+      <div class="co_comp-header-container-text">
+        <div class="co_comp-header-container-text-date">
+          LAST UPDATED: {{c_tr_last_updated}}
+        </div>
+        <div class="co_comp-header-container-text-location">
+          <i class="fa fa-map-marker"></i>
+          {{c_hq_city}}, {{c_hq_state}}
+        </div>
+        <div class="co_comp-header-container-text-name">
+          The Biggest Competitors<br>
+          For {{c_name}}
+        </div>
+      </div>
     </div>
 
-    <div class="co_comp-bar">
-      <div class="co_comp-bar-title">
-      <div class="co_comp-bar-helper">
-        {{formalName}}'s
-      </div>
-      <div class="co_comp-bar-side">Competitors </div>
-      </div>
-      <div class="co_comp-bar-button">
-        <!-- the save option button-->
-        <a href="#"><i class="fa fa-heart"></i><span class="co_comp-bar-text">Save</span></a>
-      </div>
-      <div class="co_comp-bar-button">
-        <!-- share option button -->
-        <a href="#"><i class="fa fa-share-alt"></i><span class="co_comp-bar-text">Share</span></a>
-      </div>
-    </div>
     <div class="co_comp-m_c">
-      <!-- the module.less file navigation buttons-->
+      <div class="co_comp-bar">
+        <div class="co_comp-bar-title">
+        <div class="co_comp-bar-helper">
+          {{c_name}}'s
+        </div>
+        <div class="co_comp-bar-side">Competitors </div>
+        </div>
+        <div class="co_comp-bar-button">
+          <!-- the save option button-->
+          <a href="#"><i class="fa fa-heart"></i><span class="co_comp-bar-text">Save</span></a>
+        </div>
+        <div class="co_comp-bar-button">
+          <!-- share option button -->
+          <a href="#"><i class="fa fa-share-alt"></i><span class="co_comp-bar-text">Share</span></a>
+        </div>
+      </div>
+      <!-- the module.less file navigation buttons
       <button class='co_comp-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
-      <button class='co_comp-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+      <button class='co_comp-righthov'><i class="fa fa-angle-right fa-2x"></i></button>-->
       <!-- end of the module.less navigation button -->
       <!-- wrapper class-->
       <div class="co_comp-m_c-image-wr">
-        <div class="co_comp-m_c-image">
+        <div class="co_comp-m_c-image" style="background-image: url('/{{c_logo}}')">
           <div class="co_comp-m_c-sma_ct">
           <div class="co_comp-m_c-sma_cr">
 
@@ -84,7 +78,7 @@ Associated Files: co_competitor_logic.js and co_competitor.less
         <!-- the image in blue circle-->
         <li class="co_comp-m_c-title">
           <div class="co_comp-m_c-title-image"><i class="fa fa-building-o"></i>
-              <span class="co_comp-m_c-title-text"> {{getheadername}} </span>
+              <span class="co_comp-m_c-title-text"> {{c_name}} </span>
           </div>
         </li>
           <!--the follow('fbt') and share  !-->
@@ -101,12 +95,12 @@ Associated Files: co_competitor_logic.js and co_competitor.less
         <!-- the description about the person-->
         <li class="co_comp-m_c-dp">
           <div class="co_comp-m_c-dp-dpct">
-          {{getheadername}}. ranks #3 out of its 4 competitors in the United States Masrket.
+          {{c_desc}}
         </div>
             <div class="co_comp-m_c-dp-itl co_comp-m_c-dp-it2">
-{{getheadername}} <span class="co_comp-m_c-dp-dpct">is currently priced at: <br></span>
-<span class="co_comp-m_c-dp-itl">{{getheadername2}} </span>
-<span class="co_comp-m_c-dp-itl co_comp-m_c-dp-it4"> <i class=" fa fa-arrow-up"></i></span>  <span class="co_comp-m_c-dp-itl co_comp-m_c-dp-it5">{{getheadername3}} </span>
+      {{c_name}} <span class="co_comp-m_c-dp-dpct">is currently priced at: <br></span>
+      <span class="co_comp-m_c-dp-itl">${{csi_price}} </span>
+      <span class="co_comp-m_c-dp-itl co_comp-m_c-dp-it4"> <i class=" fa {{changeIcon csi_price_change_since_last}}"></i></span>  <span class="co_comp-m_c-dp-itl co_comp-m_c-dp-it5" style="color:{{changeColor csi_price_change_since_last}}">{{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%) </span>
             </div>
           <!-- </div> -->
         </li>
@@ -115,24 +109,25 @@ Associated Files: co_competitor_logic.js and co_competitor.less
       <div class="co_comp-m_c-view_more">
         <!-- the details about the comapny-->
         <div class="co_comp-m_c-view_more-text">
-          <div class="co_comp-m_c-view_more-text-ln1">Interesed in discovering more about {{formalName}}?</div>
-          <div class="co_comp-m_c-view_more-text-ln2">Profile Last Updated On: <span class="co_comp-m_c-dp-itl">07/29/2015</span></div>
+          <div class="co_comp-m_c-view_more-text-ln1">Interesed in discovering more about {{c_name}}?</div>
+          <div class="co_comp-m_c-view_more-text-ln2">Profile Last Updated On: <span class="co_comp-m_c-dp-itl">{{c_tr_last_updated}}</span></div>
         </div>
-        <button class="co_comp-m_c-view_more-button">
-          View Profile <i class="fa fa-angle-right"></i>
-        </button>
+        <a href="{{url}}">
+          <button class="co_comp-m_c-view_more-button">
+            View Profile <i class="fa fa-angle-right"></i>
+          </button>
+        </a>
       </div>
     </div>
     <!--container for the ct1 to 'sort by' and 'what is this list?'  !-->
     <div class="co_comp-ct1">
     <!--container for the sortby !-->
-    <div class="co_comp-sy">
-      <!-- container for the sortby font !-->
+    <!-- <div class="co_comp-sy">
+      container for the sortby font
       <div class="co_comp-syf"> Sort by:
-      <!-- container for the members font !-->
       <span class="co_comp-syf co_comp-sym"> Competitors: Highest Lowest <span class="co_comp-sym co_comp-chd"> <i class=" fa fa-chevron-down"></i> </span> </span>
       </div>
-    </div>
+    </div>!-->
     <!-- contianer for the complete 'what is this list' class name is wl!-->
     <div class="co_comp-wl">
       <!-- container for the 'what is this list' class name is wl2!-->
@@ -149,43 +144,21 @@ Associated Files: co_competitor_logic.js and co_competitor.less
       <div class="co_comp-wltxt">
       <!--font style for the text !-->
       <div class="co_comp-wltxtf">
-        <p> This is a page features a detailed list of all the competeing companies with Facebook, Inc. Competitor items include latest market cap and share value.</p>
+        This is a page features a detailed list of all the competeing companies with {{c_name}} Competitor items include latest market cap and share value.
       </div>
       </div>
     </div>
     </div>
-
+    {{/with}}
     <div class="co_comp-wrapper">
       <!-- The loop starts here and the each will take each data item from the items on each iteration-->
-      {{#each items}}
-      {{#if imghld}}
-      <div class="co_comp-quotes">
-        <div class="co_comp-quotes-head">Featured Tech Companies in the United States</div>
-        {{#each quote}}
-        <div class="co_comp-quotes-image">
-          <div class="co_comp-gap1"></div>
-          <div class="co_comp-quotes-image-text">
-            <div class="co_comp-quotes-image-text-ln1">{{name}}</div>
-              <div class="co_comp-quotes-image-text-vc">
-            <span class="co_comp-quotes-image-text-ln1 co_comp-quotes-image-text-ln4">
-              {{text}}
-            <span class="co_comp-quotes-image-text-ln1 co_comp-quotes-image-text-ln3">
-              {{text2}}
-            </span>
-            </span>
-          </div>
-          </div>
-        </div>
-        {{/each}}
-        <div class="co_comp-quotes-arrow fa fa-angle-right"></div>
-      </div>
-      {{else}}
+      {{#each companyList}}
       <div class="co_comp-{{getBackgroundStyle}}"><br>
         <!--This is the main (circle) image-->
         <div class="co_comp-head-circ">
-          <div class="co_comp-head-image">
+          <div class="co_comp-head-image" style="background-image:url('/{{c_logo}}')">
             <!-- Here displays the counter number which is a result of each loop-->
-            <span class="co_comp-counter">#{{counter_no}}</span>
+            <span class="co_comp-counter">#{{rank}}</span>
             <span class="co_comp-counter2"></span>
           </div>
         </div>
@@ -195,12 +168,12 @@ Associated Files: co_competitor_logic.js and co_competitor.less
             <!-- This displays the font awesome map sybmol infornt of the united states-->
             <i class="fa fa-map-marker"></i>
             <span  class="co_comp-space co_comp-space2">
-              {{location}} <span class="co_comp-space co_comp-space2"><i class="fa fa-angle-double-right"></i> </span>
-              <span class="co_comp-space co_comp-space2"> {{stocks}}:{{sname}} </span>
+              {{c_hq_city}} {{c_hq_state}}<span class="co_comp-space co_comp-space2"><i class="fa fa-angle-double-right"></i> </span>
+              <span class="co_comp-space co_comp-space2"> {{c_sector}}:{{c_ticker}} </span>
             </span>
             <!-- Here displays the description which come from the each loop-->
-            <div class="co_comp-adjust">{{ data }}</div>
-            <div class="co_comp-follw3">Market Cap: <span class="co_comp-follw4"> {{number}} </span> </div>
+            <div class="co_comp-adjust">{{ c_name }}</div>
+            <div class="co_comp-follw3">Market Cap: <span class="co_comp-follw4"> {{market_cap}} </span> </div>
           </div>
         </div>
         <!--This displays the blue button which holds the text "View Full List"-->
@@ -208,29 +181,20 @@ Associated Files: co_competitor_logic.js and co_competitor.less
           <span class="co_comp-ctmaintxt">
             Want an in-depth comparison?
           </span>
-          <button class="co_comp-tile-button">
-            View Stock Comparison
-            <span style="margin-left:6px"><i class="fa fa-angle-right"></i></span>
-          </button>
+          <a href="{{url}}">
+            <button class="co_comp-tile-button">
+              View Profile
+              <span style="margin-left:6px"><i class="fa fa-angle-right"></i></span>
+            </button>
+          </a>
         </div>
         <div class="co_comp-rtct">
           <div class="co_comp-rttx1"> Stock Price</div>
-          {{#if fall}}
           <div class="co_comp-follwt">
-          <span class="co_comp-follw1"> {{stck1}}</span>
-            <span class="co_comp-follw1 co_comp-follwg co_comp-follwr">{{stck2}} </span>
+          <span class="co_comp-follw1"> ${{csi_price}}</span>
+            <span class="co_comp-follw1 co_comp-follwg" style="color:{{changeColor csi_price_change_since_last}}"><i class="fa {{changeIcon csi_price_change_since_last}}" style="color:{{changeColor csi_price_change_since_last}}"> </i> {{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%)</span>
           </div>
-          {{else}}
-          <div class="co_comp-follwt">
-          <span class="co_comp-follw1"> {{stck1}}</span>
-          <span class="co_comp-follw1 co_comp-follwg">{{stck2}} </span>
-          </div>
-          {{/if}}
-        {{#if diffg}}
-         <div class="co_comp-rttxg"> <i class="fa fa-arrow-up"> </i> <span class="co_comp-rttx2">{{diff}} </span> <span class="co_comp-follws">{{comp}} </span></div>
-        {{else}}
-         <div class="co_comp-rttxg co_comp-rttxr"> <i class="fa fa-arrow-down"> </i> <span class="co_comp-rttx2 co_comp-rttxr">{{diff}} </span><span class="co_comp-follws">{{comp}} </span></div>
-         {{/if}}
+          <div class="co_comp-rttxg"> <i class="{{changeIcon compared_percent}}" style="color:{{changeColor compared_percent}}"> </i> <span class="co_comp-rttx2" style="color:{{changeColor compared_percent}}">{{compared_percent}}% </span> <span class="co_comp-follws">compared to {{compare_to}}</span></div>
         </div>
         <!-- This displays the font awesome heart symbol beside the text "save"-->
         <div class="co_comp-sn">
@@ -261,24 +225,8 @@ Associated Files: co_competitor_logic.js and co_competitor.less
           </div>
         </div>
       </div>
-      {{/if}}
       <!--This is the End of each loop -->
-      {{/each}}
-  <div class="co_comp-footer">
-    <!-- This is outermost class of the footer which holds the other elements in the footer-->
-    <div class="co_comp-holder1">
-      <!-- This is the class which holds the font awesome left arrow-->
-      <div class="co_comp-navigationl">
-        <i class="fa fa-angle-left co_comp-footer-icon"></i>
-      </div>
-      <!-- Here we write the code for the buttons 1,2,3 and 200-->
-      <button  class="co_comp-page-selector1 co_comp-page-selector1-font1">1</button>
-    <span class="co_comp-navigationr">
-      <i class="fa fa-angle-right co_comp-footer-icon"></i>
-    </span>
-      <!-- This is the class which holds the font awesome right arrow-->
-    </div>
-  </div>
+    {{/each}}
 </div>
   <!--created a container for the fotter  !-->
 <div class="co_comp-fotter">
@@ -287,5 +235,27 @@ Associated Files: co_competitor_logic.js and co_competitor.less
 
   </div>
 </div>
-{{/with}}
+</template>
+
+<template name="randomstuff">
+  <div class="co_comp-quotes">
+    <div class="co_comp-quotes-head">Featured Tech Companies in the United States</div>
+    {{#each quote}}
+    <div class="co_comp-quotes-image">
+      <div class="co_comp-gap1"></div>
+      <div class="co_comp-quotes-image-text">
+        <div class="co_comp-quotes-image-text-ln1">{{name}}</div>
+          <div class="co_comp-quotes-image-text-vc">
+        <span class="co_comp-quotes-image-text-ln1 co_comp-quotes-image-text-ln4">
+          {{text}}
+        <span class="co_comp-quotes-image-text-ln1 co_comp-quotes-image-text-ln3">
+          {{text2}}
+        </span>
+        </span>
+      </div>
+      </div>
+    </div>
+    {{/each}}
+    <div class="co_comp-quotes-arrow fa fa-angle-right"></div>
+  </div>
 </template>

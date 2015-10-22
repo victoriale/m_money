@@ -5,12 +5,13 @@ Description: featured top 100 lists
 Associated Files: featured_list.html, featured_list.js
 -->
 <template name="featured_list">
+  {{#with featuredData}}
   <!--whole panel for the page-->
   <div class="fl_panel">
     <!--header-->
     <div class="module-header">
       <span class="module-header-line"></span>
-      <span class="module-header-title"> Featured Top 100 Lists For [Profile]</span>
+      <span class="module-header-title"> Featured Top Lists For {{compName}}</span>
     </div>
     <!--body of the page-->
     <div class="module-wrapper">
@@ -19,22 +20,23 @@ Associated Files: featured_list.html, featured_list.js
         <div class="fl_block_title">
           <!--block title ,icon and text-->
           <i class="fa fa-circle"></i>
-          <SPAN class="fl_title_text">{{profile}}'S TRENDING LISTS</span>
+          <SPAN class="fl_title_text">{{compName}}'s Trending List</span>
           </div>
           <!--Top 100 title-->
           <div class ="fl_ct">
-          <div class="fl_block_text"><c>T</c>op 100 investing advisors with the most registerd states in 2015. </div>
+          <div class="fl_block_text">{{featured_list_title}}</div>
         </div>
           <div class="fl_block_underline"></div>
           <!--company name-->
+          {{#with featuredList}}
           <div class="fl_co">
-          <div class = "fl_company-name">{{company_name}}</div>
+          <div class = "fl_company-name">{{c_name}}</div>
           <!--location-->
           <div class = "fl_location-text">
             <span class="fl_fa_loc">
               <i class="fa fa-map-marker"></i>
             </span>
-            {{company_location}}
+            {{c_hq_state}}, {{c_hq_city}}
           </div>
         </div>
           <!--container containing circle for image, icon and position-->
@@ -55,7 +57,7 @@ Associated Files: featured_list.html, featured_list.js
 
         <div class="fl_cr">
           <!--image in the circle-->
-            <div class="fl_block_pic">
+            <div class="fl_block_pic" style="background-image:url('/{{c_logo}}')">
               <!--passfail icon-->
               <!-- <div class="fl_block_pass-fail "></div> -->
               <!--circle for position number-->
@@ -68,9 +70,9 @@ Associated Files: featured_list.html, featured_list.js
           <div class="fl_bottomcontainer">
             <!--CEO & shares information-->
             <!-- <div class="fl_line-1" >CEO: {{company_CEO}} | NASDAQ: {{company_stock}} </div> -->
-            <div class="fl_line-1" >{{company_CEO}}</div>
-            <div class="fl_line-2">[Data Point]:
-              <span class="fl_sh">{{company_shares}}</span>
+            <div class="fl_line-1" >company ceo</div>
+            <div class="fl_line-2">Trading Volume:
+              <span class="fl_sh">{{trading_volume}}</span>
             </div>
           </div>
           <!--footer for see the whole list button-->
@@ -78,7 +80,7 @@ Associated Files: featured_list.html, featured_list.js
             <!-- See whole list Button -->
             <a href="{{featURL}}">
               <button class="module-footer-button" >
-                <span class="module-footer-button-text">SEE THE FULL LIST</span>
+                <span class="module-footer-button-text">See Full List</span>
                 <span class="module-footer-button-ellipse">
                   <i class="fa fa-mail-forward"></i>
                 </span>
@@ -86,6 +88,7 @@ Associated Files: featured_list.html, featured_list.js
             </a>
             <!-- END -->
           </div>
+          {{/with}}
         </div>
         <!--tiles beside the main block-->
         <div class="fl_tiles">
@@ -144,4 +147,5 @@ Associated Files: featured_list.html, featured_list.js
         </div>
       </div>
     </div>
+    {{/with}}
   </template>

@@ -1,0 +1,103 @@
+
+
+<template name = "annual_ECF">
+  <div class = "anecf">
+    <!-- Header Section -->
+    <a href = "#">
+      <div class = "anecf-hdr">
+        <div class = "anecf-hdr-box"><i class = "fa fa-reply"></i></div>
+        <div class = "anecf-hdr-tri"></div>
+        <div class = "anecf-hdr-txt">
+          Go Back To <strong>{{company}}'s</strong> Profile
+        </div>
+      </div>
+    </a>
+    <!-- END Header Section -->
+
+    <!-- Title Section -->
+    <div class = "anecf-ttl">
+      <a href = "#"><div class = "anecf-ttl-img"></div></a>
+      <div class = "anecf-ttl-txt">
+        <div class = "anecf-ttl-txt-upd">LAST UPDATED: {{upd}}</div>
+        <div class = "anecf-ttl-txt-loc"><i class = "fa fa-map-marker"></i>&nbsp;{{loc}}</div>
+        <div class = "anecf-ttl-txt-ttl">{{year}} Annual Cash Flow</div>
+        <div class = "anecf-ttl-txt-comp">For {{company}}</div>
+      </div>
+    </div>
+    <!-- END Title Section -->
+
+    <!-- Graph Section -->
+    <div class = "anecf-grph">
+      <div class = "anecf-grph-tabs">
+        <div class = "anecf-grph-tabs-tab" style = "width: 160px;">
+          <div class = "anecf-grph-tabs-tab-txt">Cash Flow</div>
+          <div class = "anecf-grph-tabs-tab-circ"><i class = "fa fa-caret-down"></i></div>
+        </div>
+        <div class = "anecf-grph-tabs-tab">
+          <div class = "anecf-grph-tabs-tab-txt">Annual Data</div>
+          <div class = "anecf-grph-tabs-tab-circ"><i class = "fa fa-caret-down"></i></div>
+        </div>
+        <div class = "anecf-grph-tabs-tab" style = "width: 100px">
+          <div class = "anecf-grph-tabs-tab-txt">2014</div>
+          <div class = "anecf-grph-tabs-tab-circ"><i class = "fa fa-caret-down"></i></div>
+        </div>
+      </div>
+      <div class = "anecf-grph-totals">
+        <div class = "anecf-grph-totals-ttl">Cash Flow Chart</div>
+        <div class = "anecf-grph-totals-total">
+          <div class = "anecf-grph-totals-total-ind">
+            <div class = "anecf-grph-totals-total-ind-box" style = "background-color: #3098FF"></div>
+            <div class = "anecf-grph-totals-total-ind-txt">
+              <div class = "anecf-grph-totals-total-ind-txt-top">${{money1}}</div>
+              <div class = "anecf-grph-totals-total-ind-txt-bttm">Operating Income</div>
+            </div>
+          </div>
+          <div class = "anecf-grph-totals-total-ind" style = "margin-left: 22px;">
+            <div class = "anecf-grph-totals-total-ind-box" style = "background-color: #F7701D"></div>
+            <div class = "anecf-grph-totals-total-ind-txt">
+              <div class = "anecf-grph-totals-total-ind-txt-top">${{money2}}</div>
+              <div class = "anecf-grph-totals-total-ind-txt-bttm">Investing</div>
+            </div>
+          </div>
+          <div class = "anecf-grph-totals-total-ind" style = "margin-left: 22px;">
+            <div class = "anecf-grph-totals-total-ind-box" style = "background-color: #CA1010"></div>
+            <div class = "anecf-grph-totals-total-ind-txt">
+              <div class = "anecf-grph-totals-total-ind-txt-top">${{money3}}</div>
+              <div class = "anecf-grph-totals-total-ind-txt-bttm">Financing</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class = "anecf-grph-chart" id = "annualECFgraph"></div>
+    </div>
+    <!-- END Graph Section -->
+
+    <!-- Statistics Section -->
+    <div class = "anecf-stats">
+      <div class = "anecf-stats-hdr">
+        <div class = "anecf-stats-hdr-txt">In Millions of USD (except for per share items)</div>
+      </div>
+      <div class = "anecf-stats-labels">
+        <div class = "anecf-stats-labels-label" style = "width: 215px">Key Metric</div>
+        <div class = "anecf-stats-labels-label" style = "font-family: HN-B">12-31-2014</div>
+        <div class = "anecf-stats-labels-label">12-31-2013</div>
+        <div class = "anecf-stats-labels-label">12-31-2012</div>
+        <div class = "anecf-stats-labels-label">12-31-2011</div>
+      </div>
+
+      <!--Data Row-->
+      {{#each data}}
+      <div class="anecf-stats-row-{{color}} anecf-stats-{{border}}">
+        <div class="anecf-stats-data-title">{{metric}}</div>
+        <div class="anecf-stats-data" style={{style1}}>{{amnt1}}</div>
+        <div class="anecf-stats-data" style={{style2}}>{{amnt2}}</div>
+        <div class="anecf-stats-data" style={{style3}}>{{amnt3}}</div>
+        <div class="anecf-stats-data" style={{style4}}>{{amnt4}}</div>
+      </div>
+      {{/each}}
+      <!-- END Data Row -->
+
+    </div>
+    <!-- END Statistics Section -->
+  </div>
+</template>

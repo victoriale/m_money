@@ -6,96 +6,100 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
 -->
 
 <template name="co_fin_overview">
-    {{#with company}} <!--object used throughout the page for things like the company name-->
+    {{#with companyData}} <!--object used throughout the page for things like the company name-->
         <div class="cfo-page"> <!--container for whole page-->
+          <a href="{{backToComp}}">
+            <div class="excmp-return">
+              <div class="excmp-return-button">
+                <i class="fa fa-mail-reply"></i>
+              </div>
+              <div class="excmp-return-triangle"></div>
+
+
+              Go Back To <span class="excmp-b">{{c_name}}'s</span> Company Profile
+            </div>
+          </a>
             <div class="cfo-pr cfo-top"> <!--container for white background area at top-->
-                <div class="cfo-pr cfo-top-circle"> <!--back arrow in top-->
-                    <div class="cfo-pr cfo-top-circle-btn">
-                        <i class="fa fa-reply"></i>
-                    </div>
+                <div class="cfo-pr cfo-top-circle" style="background-image: url('/{{c_logo}}')"> <!--back arrow in top-->
                 </div>
                 <i class="cfo-pa cfo-n cfo-top-txt1">
-                    LAST UPDATED: 06/25/2015, 8:00 AM EST
+                    LAST UPDATED: {{c_tr_last_updated}}
                 </i>
                 <i class="cfo-pa cfo-n cfo-top-txt2">
-                    <i class="fa fa-map-marker"></i>
-                    United States
+                    <i class="fa fa-map-marker"></i> {{location}}
                 </i>
                 <i class="cfo-pa cfo-b cfo-top-txt3">
                     Financial Overview
                 </i>
                 <i class="cfo-pa cfo-l cfo-top-txt4">
-                    for {{formalName}}
+                    for {{c_name}}
                 </i>
             </div>
             <div class="cfo-pr cfo-mid"> <!--the black-grey-black section in the middle-ish-->
-                <div class="cfo-pa cfo-mid-top"> <!--the black header of the middle-->
-                    <div class="cfo-b cfo-mid-top-txt1"> <!--the left part of the header-->
-                        {{formalName}}'s Financial Overview
-                    </div>
-                    <div class="cfo-l cfo-mid-top-txt2"> <!--the first right part of the header-->
-                        <i class="fa fa-heart"></i>
-                        Save
-                    </div>
-                    <div class="cfo-l cfo-mid-top-txt2"> <!--the second right part of the header-->
-                        <i class="fa fa-share-alt"></i>
-                        Share
-                    </div>
+              <div class="cfo-pa cfo-mid-top"> <!--the black header of the middle-->
+                  <div class="cfo-b cfo-mid-top-txt1"> <!--the left part of the header-->
+                      {{c_name}}'s Financial Overview
+                  </div>
+                  <div class="cfo-l cfo-mid-top-txt2"> <!--the first right part of the header-->
+                      <i class="fa fa-heart"></i>
+                      Save
+                  </div>
+                  <div class="cfo-l cfo-mid-top-txt2"> <!--the second right part of the header-->
+                      <i class="fa fa-share-alt"></i>
+                      Share
+                  </div>
+              </div>
+              <div class="cfo-pa cfo-mid-mid"> <!--the grey section in the middle-->
+                <div class="cfo-pa cfo-mid-mid-circle" style="background-image: url('/{{c_logo}}')">
                 </div>
-                <div class="cfo-pa cfo-mid-mid"> <!--the grey section in the middle-->
-                    <div class="navigation-button-left">
-                        <i class="fa fa-angle-left cfo-mid-mid-l"></i>
-                    </div>
-                    <div class="cfo-pa cfo-mid-mid-circle">
-                    </div>
-                    <div class="cfo-pa cfo-mid-mid-building">
-                        <i class="fa fa-building-o fa-lg"></i>
-                    </div>
-                    <i class="cfo-pa cfo-b cfo-mid-mid-txt1">
-                        {{formalName}}
-                    </i>
-                    <i class="cfo-pa cfo-l cfo-mid-mid-txt2">
-                        <i class="fa fa-heart"></i>
-                        Save
-                    </i>
-                    <i class="cfo-pa cfo-l cfo-mid-mid-txt3">
-                        <i class="fa fa-share-alt"></i>
-                        Share
-                    </i>
-                    <div class="cfo-pa cfo-l cfo-mid-mid-txtbox"> <!--the part of the middle-middle that has the important and long text-->
-                        <i class="cfo-mid-mid-txtbox-txt">
-                            <i class="cfo-b">{{formalName}}</i>'s overall annual financials are <i class="cfo-b cfo-i">up
-                            10%</i> from 2014. With an <i class="cfo-b cfo-i">$20 increase</i> in stock
-                            price bringing individual <i class="cfo-b cfo-i">share price to $94.01.</i>
-                            <br>
-                        </i>
-                        <i class="cfo-mid-mid-txtbox-btm1">
-                            <i class="cfo-b">{{formalName}}</i> is currently priced at:<br>
-                        </i>
-                        <i class="cfo-pr cfo-mid-mid-txtbox-btm2">
-                            <i class="cfo-b">$94.31 </i> <i class="cfo-grn"><i class="fa fa-arrow-up"></i> +0.22 (+0.23%)</i>
-                        </i>
-                    </div>
-                    <div class="navigation-button-right">
-                        <i class="fa fa-angle-right cfo-mid-mid-r"></i>
-                    </div>
+                <div class="cfo-pa cfo-mid-mid-building">
+                    <i class="fa fa-building-o fa-lg"></i>
                 </div>
-                <div class="cfo-pa cfo-mid-btm"> <!--the footer of the middle area-->
-                    <div class="cfo-pa cfo-l cfo-mid-btm-txt1">
-                        Want more information about {{informalName}}'s stock?
-                    </div>
-                    <div class="cfo-pa cfo-l cfo-mid-btm-txt2">
-                        Profile Last Updated On: <i class="cfo-b">07/29/2015</i>
-                    </div>
+                <i class="cfo-pa cfo-b cfo-mid-mid-txt1">
+                    {{c_name}}
+                </i>
+                <i class="cfo-pa cfo-l cfo-mid-mid-txt2">
+                    <i class="fa fa-heart"></i>
+                    Save
+                </i>
+                <i class="cfo-pa cfo-l cfo-mid-mid-txt3">
+                    <i class="fa fa-share-alt"></i>
+                    Share
+                </i>
+                <div class="cfo-pa cfo-l cfo-mid-mid-txtbox"> <!--the part of the middle-middle that has the important and long text-->
+                  <i class="cfo-mid-mid-txtbox-txt">
+                      <i class="cfo-b">{{c_name}}</i>'s overall annual financials are <i class="cfo-b cfo-i">{{percent_year_type}}
+                      {{percent_year_value}}%</i> from this time last year. With a <i class="cfo-b cfo-i">${{amount_year_value}} {{percent_year_text}}</i> in stock
+                      price bringing individual <i class="cfo-b cfo-i">share price to ${{csi_price}}.</i>
+                      <br>
+                  </i>
+                  <i class="cfo-mid-mid-txtbox-btm1">
+                      <i class="cfo-b">{{c_name}}</i> is currently priced at:<br>
+                  </i>
+                  <i class="cfo-pr cfo-mid-mid-txtbox-btm2">
+                      <i class="cfo-b">${{csi_price}} </i> <span style="color: {{change_color}}"><i class="fa {{icon}}"></i> {{csi_price_change_since_last}} ({{csi_percent_change_since_last}})</span>
+                  </i>
+                </div>
+              </div>
+              <div class="cfo-pa cfo-mid-btm"> <!--the footer of the middle area-->
+                  <div class="cfo-pa cfo-l cfo-mid-btm-txt1">
+                      Want more information about {{c_name}}?
+                  </div>
+                  <div class="cfo-pa cfo-l cfo-mid-btm-txt2">
+                      Profile Last Updated On: <i class="cfo-b"></i> {{c_tr_last_updated}}
+                  </div>
+                  <a href="{{backToComp}}">
                     <div class="cfo-pa cfo-mid-btm-btn">
-                        Open Stock Graph <i class="fa fa-angle-right"></i>
+                        View Profile <i class="fa fa-angle-right"></i>
                     </div>
-                </div>
+                  </a>
+              </div>
             </div>
             <div class="cfo-pr cfo-btm"> <!--holds anything but the search module below the middle area-->
+                <!-- Currently unused:
                 <div class="cfo-b cfo-btm-txt1">
                     Sort by: <i class="cfo-l">Annual Financials </i><i class="fa fa-angle-down cfo-btm-txt1-blue"></i>
-                </div>
+                </div> -->
                 <div class="cfo-btm-what"> <!--a box that looks like it can be closed-->
                     <div class="cfo-b cfo-btm-what-top">
                         What is this page?
@@ -108,22 +112,28 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 </div>
                 <div class="cfo-pr cfo-btm-data"> <!--a divide to seperate data from the box above-->
                     <div class="cfo-pr cfo-btm-data-title">
-                        Stock Graph <i class="cfo-l">for {{formalName}}:</i>
+                        Stock Graph <i class="cfo-l">for {{c_name}}:</i>
                     </div>
                     <div class="cfo-pr cfo-btm-data-date">
                         <i class="fa fa-calendar"></i>
-                        Updated 08/03/2015 at 4PM EST
+                        Updated {{csi_price_last_updated}}
                     </div>
                     <div class="cfo-pr cfo-btm-data-graph" id="cfoGraph">
-                        <!--Put graph here-->
-                        {{> highchartsHelper chartId="cfoChart" chartWidth="650px" chartHeight="221px" chartObject=getGraphObject}}
+                      <!--Put graph here-->
+                      {{> highchartsHelper chartId="cfoGraph" chartWidth="650px" chartHeight="221px" chartObject=getGraphObject}}
                     </div>
                     <div class="cfo-btm-data-period"> <!--this holds the buttons that change the x scale of the graph-->
-                        {{#each btns}}
-                            <div class="cfo-btm-data-period-btn{{isInitial num}}" id="cfoBtn{{num}}" onclick="cfoBtns({{num}})">
-                                {{text}}
-                            </div>
-                        {{/each}}
+                      <div class="cfo-btm-data-period-btn {{isRangeSelected 'cfoBtn0'}}" id="cfoBtn0">1D</div>
+                      <div class="cfo-btm-data-period-btn {{isRangeSelected 'cfoBtn1'}}" id="cfoBtn1">5D</div>
+                      <div class="cfo-btm-data-period-btn {{isRangeSelected 'cfoBtn2'}}" id="cfoBtn2">10D</div>
+                      <div class="cfo-btm-data-period-btn {{isRangeSelected 'cfoBtn3'}}" id="cfoBtn3">1M</div>
+                      <div class="cfo-btm-data-period-btn {{isRangeSelected 'cfoBtn4'}}" id="cfoBtn4">3M</div>
+                      <div class="cfo-btm-data-period-btn {{isRangeSelected 'cfoBtn5'}}" id="cfoBtn5">6M</div>
+                      <div class="cfo-btm-data-period-btn {{isRangeSelected 'cfoBtn6'}}" id="cfoBtn6">9M</div>
+                      <div class="cfo-btm-data-period-btn {{isRangeSelected 'cfoBtn7'}}" id="cfoBtn7">1Y</div>
+                      <div class="cfo-btm-data-period-btn {{isRangeSelected 'cfoBtn8'}}" id="cfoBtn8">3Y</div>
+                      <div class="cfo-btm-data-period-btn {{isRangeSelected 'cfoBtn9'}}" id="cfoBtn9">5Y</div>
+                      <div class="cfo-btm-data-period-btn {{isRangeSelected 'cfoBtn10'}}" id="cfoBtn10">10Y</div>
                     </div>
                     <div class="cfo-pr cfo-btm-data-list"> <!--List various figures but is not a tile-->
                         <div class="cfo-pr cfo-btm-data-list-l">
@@ -132,7 +142,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                                     Current Price
                                 </i>
                                 <i class="cfo-b cfo-btm-data-list-i-r">
-                                    $94.31
+                                    ${{csi_price}}
                                 </i>
                             </div>
                             <div class="cfo-btm-data-list-i">
@@ -140,7 +150,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                                     Open Price
                                 </i>
                                 <i class="cfo-b cfo-btm-data-list-i-r">
-                                    $93.53
+                                    ${{csi_opening_price}}
                                 </i>
                             </div>
                             <div class="cfo-btm-data-list-i">
@@ -148,23 +158,23 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                                     Close Price
                                 </i>
                                 <i class="cfo-b cfo-btm-data-list-i-r">
-                                    $95.21
+                                    ${{csi_closing_price}}
                                 </i>
                             </div>
                             <div class="cfo-btm-data-list-i">
                                 <i class="cfo-l cfo-btm-data-list-i-l">
                                     Day Change $-%
                                 </i>
-                                <i class="cfo-grn cfo-btm-data-list-i-r">
-                                    <i class="fa fa-arrow-up"></i> +0.52 <i class="cfo-black">|</i> +0.57%
-                                </i>
+                                <span class="cfo-btm-data-list-i-r" style="color: {{change_color}}">
+                                    <i class="fa {{icon}}"></i> {{csi_price_change_since_last}} <i class="cfo-black">|</i> {{csi_percent_change_since_last}}%
+                                </span>
                             </div>
                             <div class="cfo-btm-data-list-i-b">
                                 <i class="cfo-l cfo-btm-data-list-i-l">
                                     Day Range
                                 </i>
                                 <i class="cfo-b cfo-btm-data-list-i-r">
-                                    $93.53 - $93.21
+                                    ${{min_range}} - ${{max_range}}
                                 </i>
                             </div>
                         </div>
@@ -174,7 +184,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                                     52 Week Range
                                 </i>
                                 <i class="cfo-b cfo-btm-data-list-i-r">
-                                    $99.24 - $70.32
+                                    ${{start_range}} - ${{max_range}}
                                 </i>
                             </div>
                             <div class="cfo-btm-data-list-i">
@@ -182,68 +192,152 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                                     Vol/Avg.
                                 </i>
                                 <i class="cfo-b cfo-btm-data-list-i-r">
-                                    4M/10M
+                                    {{csi_trading_vol}}/{{avg_volume}}
                                 </i>
                             </div>
                             <div class="cfo-btm-data-list-e"> <!--the abnormal list item-->
                                 <div class="cfo-btm-data-list-e-title cfo-l">
-                                    <i class="cfo-b">Learn why </i>{{formalName}} is <i class="cfo-grn"><i class="fa fa-arrow-up"></i> +0.52%</i> today:
+                                    <i class="cfo-b">Learn why </i>{{c_name}} is <span style="color: {{change_color}}"><i class="fa {{icon}}"></i> {{csi_percent_change_since_last}}%</span> today:
                                 </div>
-                                <div class="cfo-pr cfo-btm-data-list-e-circle">
+                                <div class="cfo-pr cfo-btm-data-list-e-circle" style="background-image: url('/{{c_logo}}')">
                                 </div>
                                 <div class="cfo-pr cfo-btm-data-list-e-txt">
-                                    {{formalName}} ({{ticker}}) stock is currently priced
-                                    at $94.31 per share. Yesterday, <i class="cfo-blue">3 articles</i>
-                                    were written about {{ticker}}: 100% are positive.
-                                    <i class="cfo-blue">Click here</i> to read more about {{formalName}} in the news.
+                                    {{c_name}} ({{c_ticker}}) stock is currently priced
+                                    at ${{csi_price}} per share. Yesterday, <i class="cfo-blue">3 articles</i>
+                                    were written about {{c_ticker}}: 100% are positive.
+                                    <i class="cfo-blue">Click here</i> to read more about {{c_name}} in the news.
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {{#each tiles}} <!--tiles are the alternating grey-white spaces at the bottom which have a left and right side-->
-                        <div class="cfo-pr {{getTileColor}}">
-                            {{#with left}}
-                                <div class="cfo-pr cfo-btm-data-tile-l" id="cfoTileL{{num}}">
-                                    <div class="cfo-pa cfo-btm-data-tile-circle">
-                                        <i class="fa fa-question"></i>
-                                    </div>
-                                    <div class="cfo-b cfo-pa cfo-btm-data-tile-title">
-                                        {{title}}
-                                    </div>
-                                    {{#each item}}
-                                        <div class="cfo-btm-data-tile-stat">
-                                            <div class="cfo-btm-data-tile-stat-l">
-                                                {{text}}
-                                            </div>
-                                            <div class="cfo-b cfo-btm-data-tile-stat-r">
-                                                {{value}}
-                                            </div>
-                                        </div>
-                                    {{/each}}
-                                </div>
-                            {{/with}}
-                            {{#with right}}
-                                <div class="cfo-pr cfo-btm-data-tile-r" id="cfoTileR{{num}}">
-                                    <div class="cfo-pa cfo-btm-data-tile-circle">
-                                        <i class="fa fa-question"></i>
-                                    </div>
-                                    <div class="cfo-b cfo-pa cfo-btm-data-tile-title">
-                                        {{title}}
-                                    </div>
-                                    {{#each item}}
-                                        <div class="cfo-btm-data-tile-stat">
-                                            <div class="cfo-btm-data-tile-stat-l">
-                                                {{text}}
-                                            </div>
-                                            <div class="cfo-b cfo-btm-data-tile-stat-r">
-                                                {{value}}
-                                            </div>
-                                        </div>
-                                    {{/each}}
-                                </div>
-                            {{/with}}
+                    <div class="cfo-pr cfo-btm-data-tile-grey">
+                      <div class="cfo-pr cfo-btm-data-tile-l" id="cfoTileL1">
+                        <div class="cfo-pa cfo-btm-data-tile-circle">
+                          <i class="fa fa-question"></i>
                         </div>
-                    {{/each}}
+                      <div class="cfo-b cfo-pa cfo-btm-data-tile-title">
+                        P.E. - Price to Earnings
+                      </div>
+
+                      <div class="cfo-btm-data-tile-stat">
+                        <div class="cfo-btm-data-tile-stat-l">
+                          P.E. Ratio
+                        </div>
+                        <div class="cfo-b cfo-btm-data-tile-stat-r">
+                          {{csi_pe_ratio}}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="cfo-pr cfo-btm-data-tile-r" id="cfoTileR1">
+                      <div class="cfo-pa cfo-btm-data-tile-circle">
+                          <i class="fa fa-question"></i>
+                      </div>
+                      <div class="cfo-b cfo-pa cfo-btm-data-tile-title">
+                        E.P.S - Earnings Per Share
+                      </div>
+
+                      <div class="cfo-btm-data-tile-stat">
+                        <div class="cfo-btm-data-tile-stat-l">
+                          P.E. Ratio
+                        </div>
+                        <div class="cfo-b cfo-btm-data-tile-stat-r">
+                          277.78
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="cfo-pr cfo-btm-data-tile">
+
+                    <div class="cfo-pr cfo-btm-data-tile-l" id="cfoTileL2">
+                      <div class="cfo-pa cfo-btm-data-tile-circle">
+                        <i class="fa fa-question"></i>
+                      </div>
+                      <div class="cfo-b cfo-pa cfo-btm-data-tile-title">
+                        Dividend Yield
+                      </div>
+
+                      <div class="cfo-btm-data-tile-stat">
+                        <div class="cfo-btm-data-tile-stat-l">
+                          Yield
+                        </div>
+                        <div class="cfo-b cfo-btm-data-tile-stat-r">
+                          0
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="cfo-pr cfo-btm-data-tile-r" id="cfoTileR2">
+                      <div class="cfo-pa cfo-btm-data-tile-circle">
+                        <i class="fa fa-question"></i>
+                      </div>
+                      <div class="cfo-b cfo-pa cfo-btm-data-tile-title">
+                        Market Cap
+                      </div>
+
+                      <div class="cfo-btm-data-tile-stat">
+                        <div class="cfo-btm-data-tile-stat-l">
+                          Market Cap
+                        </div>
+                        <div class="cfo-b cfo-btm-data-tile-stat-r">
+                          {{csi_market_cap}}
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="cfo-pr cfo-btm-data-tile-grey">
+                    <div class="cfo-pr cfo-btm-data-tile-l" id="cfoTileL3">
+                      <div class="cfo-pa cfo-btm-data-tile-circle">
+                        <i class="fa fa-question"></i>
+                      </div>
+                      <div class="cfo-b cfo-pa cfo-btm-data-tile-title">
+                        Today's Volume vs Average
+                      </div>
+
+                      <div class="cfo-btm-data-tile-stat">
+                          <div class="cfo-btm-data-tile-stat-l">
+                            Today vs Average
+                          </div>
+                          <div class="cfo-b cfo-btm-data-tile-stat-r">
+                            {{csi_trading_vol}} vs {{avg_volume}}
+                          </div>
+                      </div>
+                    </div>
+
+                    <div class="cfo-pr cfo-btm-data-tile-r" id="cfoTileR3">
+                      <div class="cfo-pa cfo-btm-data-tile-circle">
+                        <i class="fa fa-question"></i>
+                      </div>
+                      <div class="cfo-b cfo-pa cfo-btm-data-tile-title">
+                        Alpha &amp; Beta
+                      </div>
+
+                      <div class="cfo-btm-data-tile-stat">
+                        <div class="cfo-btm-data-tile-stat-l">
+                          Alpha
+                        </div>
+                        <div class="cfo-b cfo-btm-data-tile-stat-r">
+                          N/A
+                        </div>
+                      </div>
+
+                      <div class="cfo-btm-data-tile-stat">
+                        <div class="cfo-btm-data-tile-stat-l">
+                          Beta
+                        </div>
+                        <div class="cfo-b cfo-btm-data-tile-stat-r">
+                          N/A
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+
                 </div>
             </div>
             {{> search_module}}

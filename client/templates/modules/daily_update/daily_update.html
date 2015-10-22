@@ -89,19 +89,16 @@ Associated Files: [daily_update.less][daily_update_logic.js]
               </div>
               <!--Graph Plugin(High Charts)!-->
               <div class="all_daily_update_modules-wrapper-graph">
-                {{> highchartsHelper chartId="container" chartWidth="100%" chartHeight="100%" chartObject=dailyupdategraphh}}
+                <div class="daily_update-stockgraph">
+                  {{> highchartsHelper chartId="daily_update-stockgraph" chartWidth="100%" chartHeight="100%" chartObject=getGraph}}
+                </div>
+                <div class="daily_update-buttons">
+                  {{#each buttons}}
+                    <button class="daily_update-buttons-circle" id="{{data}}">{{data}}</button>
+                  {{/each}}
+                </div>
               </div>
-              <!--Buttons Below the Graph!-->
-              <div class="all_daily_update_modules-graphbutton">
-                <div class="all_daily_update_modules-graphbutton_circle1">1D</div>
-                <div class="all_daily_update_modules-graphbutton_circle1">5D</div>
-                <div class="all_daily_update_modules-graphbutton_circle1">1M</div>
-                <div class="all_daily_update_modules-graphbutton_circle1">3M</div>
-                <div class="all_daily_update_modules-graphbutton_circle1">6M</div>
-                <div class="all_daily_update_modules-graphbutton_circle1">1Y</div>
-                <div class="all_daily_update_modules-graphbutton_circle1">3Y</div>
-                <div class="all_daily_update_modules-graphbutton_circle1">5Y</div>
-              </div>
+
             </div>
           </div>
           <!--Profile Feeds wrapper!-->

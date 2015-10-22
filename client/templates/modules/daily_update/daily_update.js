@@ -5,19 +5,34 @@ Associated Files: [daily_update.less][daily_update.html]*/
 
 Template.daily_update.onCreated(function(){
   this.autorun(function(){
-    var companyid =  Session.get('profile_header');
-    if(typeof companyid != 'undefined'){
-    Meteor.call('GetAIContent', companyid.c_id, function(err, data){
-      if(err){
-        console.log("error Call", err);
-        return false;
-      }else{
-        var aiContent = createGenericString(false, data);
-        Session.set('AI_daily_update',aiContent);
-      }
-    })
+    
+    if(Session.get('IsLocation')){
+      Meteor.call('GetAIContent2', Session.get('state_id'), Session.get('city_id'), function(err, data){
+        if(err){
+          console.log("error Call", err);
+          return false;
+        }else{
+          var aiContent = createGenericString(false, data);
+          Session.set('AI_daily_update',aiContent);
+        }
+      })
     }
-
+  })
+  this.autorun(function(){
+    if(Session.get('IsCompany')){
+      var companyid =  Session.get('profile_header');
+      if(typeof companyid != 'undefined'){
+        Meteor.call('GetAIContent', companyid.c_id, function(err, data){
+          if(err){
+            console.log("error Call", err);
+            return false;
+          }else{
+            var aiContent = createGenericString(false, data);
+            Session.set('AI_daily_update',aiContent);
+          }
+        })
+      }
+    }
   })
 })
 
@@ -33,8 +48,28 @@ Template.daily_update.onRendered(function(){
   })
 })
 
+Template.daily_update.events({
+  'click .daily_update-buttons-circle': function(e, t){
+    Session.set('d_u_range', e.currentTarget.id);
+  },
+})
 
 Template.daily_update.helpers({
+  buttons: function(){
+    var buttons = [
+      {data:"1D"},
+      {data:"5D"},
+      {data:"10D"},
+      {data:"1M"},
+      {data:"3M"},
+      {data:"6M"},
+      {data:"9M"},
+      {data:"1Y"},
+      {data:"3Y"},
+      {data:"5Y"},
+    ];
+    return buttons;
+  },
   aiInfo: function(){
       var data = Session.get('AI_daily_update');
       var content = {};
@@ -56,7 +91,7 @@ Template.daily_update.helpers({
   lbInfo: function(){
     var data = Session.get('daily_update');
     if(typeof data == 'undefined'){
-      return '';
+      return {new:"stuff"};
     }
     //data is being returned as string so convert to numbers and round to fit design
     data['csi_closing_price'] = Number(data['csi_closing_price']).toFixed(2);
@@ -70,96 +105,145 @@ Template.daily_update.helpers({
 
     return data;
   },
-});
 
-///////Chart Creation ///////////
-Template.daily_update.dailyupdategraphh =  function(){
-  var graphdata = Session.get('daily_update');
-  var ticker = Session.get('profile_header');
-  var newDataArray = [];
-  //JSON array is converted into usable code for Highcharts also does not push NULL values
-  $.each(graphdata.stock_hist, function(i, val) {
-    var yVal = parseFloat(val.sh_close);
-    //makes sure any value passed is null
-    if (!isNaN(yVal)) {
-      newDataArray.push([val.sh_date * 1000, yVal]);
+  //Helper to determine chart
+  getGraph: function(){
+    var data = Session.get('graph_data');
+    var d_u_range = Session.get('d_u_range');
+
+    //If data does not exists exit helper
+    if(typeof data === 'undefined'){
+      return ''
     }
-  });
 
-  var options = {
-    exporting:{
-      enabled:false
-    },
-    credits:{
-      enabled:false
-    },
+    //Get dependencies to find date range
+    var dataLength = data.highchartsData.length;
+    var latestDate = moment(data.highchartsData[dataLength - 1][0]);
+    //Get range value based on option selected
 
-    scrollbar:{
-      enabled:false
-    },
-
-    rangeSelector: {
-      enabled:false,
-      buttonTheme: { // styles for the buttons
-        fill: 'none',
-        stroke: 'none',
-        'stroke-width': 0,
-        r: 8,
-        style: {
-          color: '#039',
-          fontWeight: 'bold'
-        },
-        states: {
-          hover: {
-          },
-          select: {
-            fill: '#039',
-            style: {
-              color: 'white'
-            }
+    //GRAPH MUST BE ASC order from [0] - [max] where max is the latest date in unix
+    //if above is correct the below will work
+    switch(d_u_range){
+      case '1D':
+        var range = 1;
+        var min = latestDate.subtract(1, 'days').format('X') * 1000;
+      break;
+      case '5D':
+        var range = 5;
+        var min = latestDate.subtract(5, 'days').format('X') * 1000;
+      break;
+      case '10D':
+        var range = 10;
+        var min = latestDate.subtract(10, 'days').format('X') * 1000;
+      break;
+      case '1M':
+        var range = 30;
+        var min = latestDate.subtract(1, 'months').format('X') * 1000;
+      break;
+      case '3M':
+        var range = 90;
+        var min = latestDate.subtract(3, 'months').format('X') * 1000;
+      break;
+      case '6M':
+        var range = 180;
+        var min = latestDate.subtract(6, 'months').format('X') * 1000;
+      break;
+      case '9M':
+        var range = 270;
+        var min = latestDate.subtract(9, 'months').format('X') * 1000;
+      break;
+      case '1Y':
+        var range = 365;
+        var min = latestDate.subtract(1, 'years').format('X') * 1000;
+      break;
+      case '3Y':
+        var range = 1095;
+        var min = latestDate.subtract(3, 'years').format('X') * 1000;
+      break;
+      case '5Y':
+        var range = 1825;
+        var min = latestDate.subtract(5, 'years').format('X') * 1000;
+      break;
+      case '10Y':
+        var range = 3650;
+        var min = latestDate.subtract(10, 'years').format('X') * 1000;
+      break;
+      default:
+        var range = 3650;
+      break;
+    }
+    //Get oldest date available to check if data range is possible
+    var oldestDate = moment(data.highchartsData[0][0]).format('X') * 1000;
+    //If min is less than oldest data available, set min to oldest date
+    if(min <= oldestDate){
+      min = oldestDate;
+    }
+    var cfoGraphObject = {
+      title: {
+          text: ''
+      },
+      chart: {
+          height:120,
+          type: 'spline',
+          events: {
+              redraw: function() {}
           }
-        }
       },
-      inputBoxBorderColor: 'gray',
-      inputBoxWidth: 120,
-      inputBoxHeight: 18,
-      inputStyle: {
-        color: '#039',
-        fontWeight: 'bold'
+      xAxis: {
+          type: 'datetime',
+          labels: {
+              overflow: 'justify'
+          },
+          min: min
       },
-      labelStyle: {
-        color: 'silver',
-        fontWeight: 'bold'
+      yAxis: {
+          title: '',
+          floor: 0,
+          opposite:true,
+          gridLineDashStyle: 'longdash',
+          tickPixelInterval:25,
+          minTickInterval: 5,
+          plotLines: [{
+              value: 0,
+              width: 1,
+              color: '#808080'
+          }],
+          labels: {
+              formatter: function() {
+                  return '$' + this.value
+              }
+          },
       },
-      selected: 1,
-    },
-    chart:{
-      width:400,
-      height:110
-    },
-    title: {
-      text: ''
-    },
-    yAxis:{
-      min:0,
-      opposite: true,
-      title:'',
-      labels:{
-        format: '${value}',
+      tooltip: {
+        pointFormat: "Value: ${point.y:.2f}"
       },
-    },
-    xAxis: {
-      type:'datetime',
-      labels: {
-        enabled: false,
+      plotOptions: {
+          spline: {
+              lineWidth: 2,
+              states: {
+                  hover: {
+                      lineWidth: 3
+                  }
+              },
+              marker: {
+                  enabled: false
+              },
+              pointInterval: 3600000, // one hour
+              pointStart: Date.UTC(2015, 4, 31, 0, 0, 0)
+          }
       },
-    },
-    series: [{
-      name: ticker.c_ticker,
-      data: newDataArray,
-      type: 'spline',
-      showInLegend: false,
-    }],
-  };
-  return options;
-};
+      legend: {
+        enabled: false
+      },
+      credits: {
+        enabled: false
+      },
+      series: [{
+          name: data.c_name,
+          data: data.highchartsData
+      }]
+    }
+
+    return cfoGraphObject;
+  },
+});

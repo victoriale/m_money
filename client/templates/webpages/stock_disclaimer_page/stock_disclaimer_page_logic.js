@@ -1,16 +1,47 @@
 /*
-Author: jyothyswaroop
-Created: 07/30/2015
-Description: stock disclaimer page
-Associated Files: stock_disclaimer_page.less and stock_disclaimer_page.html
+Author: David Wibowo
+Created: [10-15-2015]
+Description:conatct us webpage
+Associated Files: stock_disclaimer_page.html, stock_disclaimer_page_logic.js, about_us_page.less
 */
 
+Template.stock_disclaimer_page.helpers({
+  Title:"Stock Disclaimer",
+  About:"InvestKit’s Stock Disclaimer",
+  Profile: function(){
+    if(Session.get('IsCompany')) {
+       return Session.get("profile_header").c_name;
+    } else if(Session.get('IsExec')){
+      data = Session.get('profile_header');
+      return data['o_first_name'] + " " + data['o_last_name'];
+    } else if(Session.get('IsLocation')){
+      return "San Francisco";
+    }
+  },
+  Country: "The United States",
+  Statement: "For InvestKit",
+  Update: "06/24/2015,8:00 AM EST",
+  back_url: function(){
+    if(Session.get('IsCompany')) {
+       return "/company/"+ Session.get("profile_header").c_ticker;
+    } else if(Session.get('IsExec')){
+       return "/executive/"+ Session.get("profile_header").o_id;
+    } else if(Session.get('IsLocation')){
+      return "/location";
+    } else {
+      return "/";
+    }
+  },
+  profile_ulr:"#",
+  image_url:"/tribune_logo.png"
+})
+
 Template.stock_disclaimer_page.onRendered(function(){
-  $('#sdsort_by').val("Stock");
+  $('#sort_by').val("Stock");
 })
 
 Template.stock_disclaimer_page.events({
-  'change #sdsort_by': function(e){
+  'change #sort_by': function(e){
     var page = e.target.value;
     switch(page){
       case 'About':

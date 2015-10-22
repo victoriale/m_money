@@ -122,6 +122,12 @@ Template.money_memory.helpers({
 
     return Router.path('content.competitor', {company_id: params.company_id});
   },
+  //Helper to determine URL to competitors page
+  linkToFinOverview: function(){
+    var params = Router.current().getParams();
+
+    return Router.path('content.finoverview', {company_id: params.company_id});
+  },
   //Helper to display initial investment
   user_initial_investment: function(){
     var data = Session.get('user_initial_investment');
@@ -184,9 +190,11 @@ Template.money_memory.helpers({
     data['most_recent_close_date'] = data['most_recent_close_date'].replace(/-/g,'/');
     data['investment_total'] = data['investment_total'].toFixed(2);
     data['percent_change'] = data['percent_change'].toFixed(2);
+    //Set roi value to positive for display (You could have lost $10 instead of You could have lost $-10)
+    data['roi'] = Math.abs(data['roi'])
 
     //If rounded absolute roi number is less than or equal to 6 characters in length add commas and fix to 2 decimal points, else shorten to shorthand form
-    if(Math.abs(Math.round(data['roi'])).toString().length <= 5){
+    if(Math.round(data['roi']).toString().length <= 5){
       data['roi'] = commaSeparateNumber_decimal(Math.round(data['roi'] * 100) / 100);
     }else{
       data['roi'] = data['roi'] >= 0 ? nFormatter(Number(data['roi'])) : nFormatter_neg(Number(data['roi']));

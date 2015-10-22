@@ -27,53 +27,180 @@ Template.project_history.onCreated( function() {
           comp['exec_nearest_pos'] = compList['officer_positions'][0];
           comp['connections'] = compList['connections'];
           comp['o_id'] = data['officer_data'].o_id;
-          console.log("Converted Data", comp);
           projArray.push(comp);
         }
         Session.set('new_project_history', projArray);
+        //SetprojList();
       }else{
         Session.set('new_project_history', '');
         return '';
       }
     }
+  }),
+
+  this.autorun(function(){
+    var data = Session.get('new_project_history');
+    var x = 0;
+    if(typeof data != "undefined")
+    {
+      for(x;x<data.length;x++)//forloop iterates through each object returned by Session.get
+      {//each object returned by session.get represents a single project
+        var startmonth = data[x]['exec_nearest_pos']['start_month'];
+        var startyear = data[x]['exec_nearest_pos']['start_year']*12;//coverts years to months
+        data[x]["iteration"] = x;//to keep track of which project it loops through
+        data[x]['title'] = data[x]['exec_nearest_pos']['Title'];
+        data[x]['start_month'] = calendar_Months[startmonth-1];
+        data[x]['start_year'] = startyear/12;
+        if(typeof data[x]['exec_nearest_pos']['end_year'] != 'undefined')
+        {//if undefined then current project else old project
+          var endmonth = data[x]['exec_nearest_pos']['end_month'];
+          var endyear = data[x]['exec_nearest_pos']['end_year']*12;
+          data[x]['end_date'] = endyear.toString()/12;
+          var monthsDiff = endyear+endmonth - startyear-startmonth;
+          var yearsDiff = Math.floor(monthsDiff/12);
+
+          if(yearsDiff == 0)//checks to see if length is shorter than year
+          {
+            data[x]['project_time_elapsed'] = monthsDiff.toString() + " month";
+            if(monthsDiff>1)
+            {
+              data[x]['project_time_elapsed'] = data[x]['project_time_elapsed']+"s";
+            }
+
+          }
+          else{
+            monthsDiff = monthsDiff - yearsDiff*12;
+            data[x]['project_time_elapsed'] = (yearsDiff).toString()+" years & " + (monthsDiff).toString() + " month";
+            if(monthsDiff>1)
+            {
+              data[x]['project_time_elapsed'] = data[x]['project_time_elapsed']+"s";
+            }
+          }
+
+        }
+        else{
+          var date = new Date();
+          var currentMonth = date.getMonth()+1;//getMonth returns months labeled as 0,1,...,11. Must add 1 to compensate
+          var currentYear = (date.getYear()+1900)*12;//getYear returns years since 1900, must add 1900 to compensate
+          var monthsDiff = currentYear+currentMonth - startyear-startmonth;
+          var yearsDiff = Math.floor(monthsDiff/12);
+          monthsDiff = monthsDiff - yearsDiff*12;
+          data[x]['end_date'] = "Present";
+          data[x]['project_time_elapsed'] = (yearsDiff).toString()+" years & " + (monthsDiff).toString() + " month";
+          if(monthsDiff>1)
+          {
+            data[x]['project_time_elapsed'] = data[x]['project_time_elapsed']+"s";
+          }
+        }
+
+      }
+      //The code below creates multiple sub-arrays of length 3, stores the sub-arrays in a larger array
+      //and save the larger array as a Session variable
+      var rows = Math.floor(data.length/3);
+      var columns = data[0].length;
+      var i = -1;
+      var array = [rows];
+      array[0]=[]
+      for(x=0;x<data.length;x++)
+      {
+        if(x%3 == 0)
+        {
+          i++;
+          array[i] = []
+        }
+        array[i].push(data[x]);
+      }
+
+      var text = $(".proj_hist-page-selector-selected").text();
+      Session.set("ProjList", array);
+      Session.set("ListPage", array[0]);
+      //return Session.get("ProjList")[parseInt(text)-1];
+    }
+
+    //alert("here");
+    //return data;
   })
 
 });
 
-Template.project_history.onRendered( function() {
-  Session.set("project_history_list",
-  [
-    {
-      project_name:"Internet.org",
-      project_location:"Palo Alto, CA",
-      project_start_date: "August 2013",
-      project_end_date: "present",
-      project_time_elapsed: "1 year & 9 months",
-      project_position_name: "Founder"
-    },
-    {
-      project_name:"Facebook, Inc.",
-      project_location:"Menlo Park, CA",
-      project_start_date: "February 2004",
-      project_end_date: "present",
-      project_time_elapsed: "12 years & 1 month",
-      project_position_name: "Chief Executive Officer"
-    },
-    {
-      project_name:"Wirehog",
-      project_location:"Palo Alto, CA",
-      project_start_date: "October 2004",
-      project_end_date: "2006",
-      project_time_elapsed: "1 year & 2 months",
-      project_position_name: "Co-Founder"
-    }
-  ]);
-});
+Handlebars.registerHelper("isEven", function(val){
+  return val%2;
+})
 
+var calendar_Months = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'June',
+  'July',
+  'Aug',
+  'Sept',
+  'Oct',
+  'Nov',
+  'Dec'
+];
 
 var backgroundStyle = "white"; //Tracks the background color of the company tiles
+
+function resetPage(){
+  Session.set("ListPage",[]);
+  alert("yo");
+};
+
+
+
+Template.project_history.events({
+  'click .proj_hist-featured-image': function (e, t) {
+    var routename = Router.current().route.getName();
+
+    Router.go("/executive/"+e.target.id);
+  },
+
+  'click .proj_hist-page-selector':function(e,t){//Updates list when switching between pages
+    delete Session.keys["ListPage"];
+    backgroundStyle = "white";
+    Session.set('new_project_history',Session.get('new_project_history'));
+    $(".proj_hist-page-selector-selected").addClass("proj_hist-page-selector-font");
+    $(".proj_hist-page-selector-selected").removeClass("proj_hist-page-selector-selected-font");
+    $(".proj_hist-page-selector-selected").removeClass("proj_hist-page-selector-selected");
+
+    $(e.target).removeClass("proj_hist-page-selector-font");
+    $(e.target).addClass("proj_hist-page-selector-selected proj_hist-page-selector-selected-font");
+    var backgroundStyle = "grey";
+    Session.set("ListPage", Session.get("ProjList")[parseInt($(".proj_hist-page-selector-selected").text())-1]);
+  }
+});
 Template.project_history.helpers (
   {
+
+    setPages: function(){//sets the number of pages that are needed to few whole work history
+      var list = Session.get("ProjList");
+      var array = [];
+      for(var x = 1; x<=list.length; x++)
+      {
+        array.push(x);
+      }
+      return array;
+    },
+
+    connections: function(){
+      var data = Session.get('new_project_history');
+      var index = this["iteration"];//gets element "iteration" from array returned by projList (see function below)
+      return data[index]['connections'];//index makes sures the connections list belongs to the particular company
+
+    },
+    firstName: function(){
+      var exec = Session.get('profile_header');
+      return exec['o_first_name'];
+
+    },
+
+    lastName: function(){
+      var exec = Session.get('profile_header');
+      return exec['o_last_name'];
+    },
 
     moduleCheck: function(){
       var check = Session.get('work_history');
@@ -84,12 +211,11 @@ Template.project_history.helpers (
     },
 
     projList: function(){
-      var data = Session.get('new_project_history');
-      if(typeof data == 'undefined'){
-        return '';
-      }
-      return data;
+      backgroundStyle = "white";
+      return Session.get("ListPage");
     },
+
+//Function returns list of all projects worked by the current executive
 
 
     //getProjectList returns the structure in Session.get("project_history_list")
@@ -109,4 +235,4 @@ Template.project_history.helpers (
         return backgroundStyle;
       }
     }
-  })
+  });

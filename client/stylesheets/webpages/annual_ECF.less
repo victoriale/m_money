@@ -1,0 +1,382 @@
+
+
+@import (reference)"../global_vars.less";
+@import (reference)"../modules.less";
+
+// anecf
+.anecf {
+  width: 680px;
+  height: 1546px;
+  background-color: @white;
+  margin: 10px;
+  position: relative;
+  text-align: left;
+
+  // anecf-hdr
+  &-hdr {
+    width: 100%;
+    height: 50px;
+    background-image: url('/header_texture.png');
+
+    // anecf-hdr-box
+    &-box {
+      width: 60px;
+      height: 50px;
+      background-color: @blue;
+      float: left;
+
+      // anecf-hdr-box .fa
+      .fa {
+        color: white;
+        font-size: 30px;
+        margin: 11px 0px 0px 15px;
+        float: left;
+      } // END anecf-hdr-box .fa
+    } // END anecf-hdr-box
+
+    // anecf-hdr-tri
+    &-tri {
+      width: 0;
+      height: 0;
+      border-top: 25px solid transparent;
+      border-bottom: 25px solid transparent;
+      border-left: 15px solid @blue;
+      float: left;
+    } // END anecf-hdr-tri
+
+    // anecf-hdr-txt
+    &-txt {
+      height: 19px;
+      line-height: 15px;
+      float: left;
+      font-family: HN-L;
+      font-size: 19px;
+      margin-left: 20px;
+      margin-top: 17px;
+      color: @white;
+
+      // anecf-hdr-txt strong
+      strong {
+        height: 19px;
+        vertical-align: top;
+        display: inline-block;
+        max-width: 400px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight: normal;
+        font-family: HN-B;
+      } // END anecf-hdr-txt strong
+    } // END anecf-hdr-txt
+  } // END anecf-hdr
+
+  // anecf-ttl
+  &-ttl {
+    width: 100%;
+    height: 131px;
+    border-bottom: 1px solid @grey-3;
+
+    // anecf-ttl-img
+    &-img {
+      width: 100px;
+      height: 100px;
+      border: 2px solid @grey-3;
+      border-radius: 50%;
+      background-color: @white;
+      margin: 15px;
+      float: left;
+
+
+    } // END anecf-ttl-img
+    // anecf-ttl-txt
+    &-txt {
+      width: 500px;
+      height: 98px;
+      margin: 14px 0px 0px 14px;
+      float: left;
+
+      // anecf-ttl-txt-upd
+      &-upd {
+        max-width: 500px;
+        height: 10px;
+        font-family: HN;
+        font-size: 10px;
+        color: #838383;
+        line-height: 8px;
+        text-transform: uppercase;
+        .txtc;
+      } // END anecf-ttl-txt-upd
+
+      // anecf-ttl-txt-loc
+      &-loc {
+        max-height: 12px;
+        font-family: HN;
+        font-size: 12px;
+        color: @black;
+        margin-top: 16px;
+        line-height: 8px;
+        .txtc;
+      } // END anecf-ttl-txt-loc
+
+      // anecf-ttl-txt-ttl
+      &-ttl {
+        height: 26px;
+        font-family: HN-B;
+        font-size: 28px;
+        color: @black;
+        margin-top: 5px;
+        line-height: 20px;
+      } // END anecf-ttl-txt-ttl
+
+      // anecf-ttl-txt-nm
+      &-comp {
+        max-width: 500px;
+        height: 26px;
+        font-family: HN-L;
+        font-size: 28px;
+        color: @black;
+        margin-top: 3px;
+        line-height: 20px;
+        .txtc;
+      } // END anecf-ttl-txt-nm
+    } // END anecf-ttl-txt
+  } // END anecf-ttl
+
+  // anecf-grph
+  &-grph {
+    width: 100%;
+    height: 449px;
+
+    // anecf-grph-tabs
+    &-tabs {
+      width: 670px;
+      height: 30px;
+      margin: 9px 0px 0px 10px;
+
+      // anecf-grph-tabs-tab
+      &-tab {
+        width: 160px;
+        height: 30px;
+        border: 1px solid @bgcolor;
+        border-radius: 3px;
+        background-color: @grey-8;
+        margin-right: 10px;
+        float: left;
+        cursor: pointer;
+
+        // anecf-grph-tabs-tab-txt
+        &-txt {
+          height: 12px;
+          font-family: HN;
+          font-size: 12px;
+          margin: 9px 0px 0px 12px;
+          line-height: 12px;
+          float: left;
+        } // END anecf-grph-tabs-tab-txt
+
+        // anecf-grph-tabs-tab-circ
+        &-circ {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background-color: @white;
+          margin: 4px 10px 5px 0px;
+          float: right;
+
+          // anecf-grph-tabs-tab-circ .fa
+          .fa {
+            font-size: 12px;
+            color: @blue;
+            margin: 4px 0px 0px 6.5px;
+          } // END anecf-grph-tabs-tab-circ .fa
+        } // END anecf-grph-tabs-tab-circ
+      } // END anecf-grph-tabs-tab
+
+    } // END anecf-grph-tabs
+
+    // anecf-grph-totals
+    &-totals {
+      width: 660px;
+      height: 50px;
+      background-color: @grey-8;
+      margin: 15px 0px 0px 10px;
+      overflow: hidden;
+
+      // anecf-grph-totals-ttl
+      &-ttl {
+        height: 18px;
+        font-family: HN-L;
+        font-size: 18px;
+        color: #666666;
+        margin: 17px 0px 0px 20px;
+        line-height: 14px;
+        float: left;
+      } // END anecf-grph-totals-ttl
+
+      // anecf-grph-totals-total
+      &-total {
+        height: 29px;
+        margin: 10px 22px 0px 0px;
+        float: right;
+
+        &-ind {
+          height: 29px;
+          float: left;
+
+          &-box {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            margin-top: 2px;
+            float: left;
+          }
+
+          &-txt {
+            margin-left: 5px;
+            float: left;
+
+            &-top {
+              height: 14px;
+              font-family: HN-B;
+              font-size: 14px;
+              color: @black;
+              line-height: 13px;
+            }
+
+            &-bttm {
+              height: 12px;
+              font-size: 12px;
+              font-weight: bold;
+              color: @black;
+              margin-top: 3px;
+              line-height: 10px;
+            }
+          }
+        } // END anecf-grph-totals-total-ind
+      } // END anecf-grph-totals-total
+    } // END anecf-grph-totals
+
+    // anecf-grph
+    &-chart {
+      width: 676px;
+      height: 345px;
+      margin-top: 9px;
+    } // END anecf-grph
+  } // END anecf-grph
+
+  // anecf-stats
+  &-stats {
+    width: 100%;
+    overflow: hidden;
+
+    // anecf-stats-hdr
+    &-hdr {
+      width: 665px;
+      height: 40px;
+      background-image: url('/header_texture2.png');
+      border-left: 5px solid @blue;
+      overflow: hidden;
+
+      // anecf-stats-hdr-txt
+      &-txt {
+        height: 18px;
+        font-family: HN-B;
+        font-size: 18px;
+        color: @white;
+        margin: 13px 0px 0px 9px;
+        line-height: 14px;
+      } // END anecf-stats-hdr-txt
+    } // END anecf-stats-hdr
+
+    &-labels {
+      width: 665px;
+      height: 30px;
+      margin-top: 10px;
+
+      &-label {
+        width: 100px;
+        height: 30px;
+        font-size: 12px;
+        border: 1px solid #CACACA;
+        text-align: center;
+        margin-left: 10px;
+        line-height: 30px;
+        float: left;
+      }
+    }
+
+    //Table row
+    &-row{
+      &-white{
+        background-color: @white;
+        width: 655px;
+        height: 50px;
+        margin-left: 10px;
+      }
+
+      &-grey{
+        background-color: @bgcolor;
+        width: 655px;
+        height: 50px;
+        margin-left: 10px;
+      }
+    }
+
+    //Table cell
+    &-data{
+        width: 100px;
+        font-size: 12px;
+        margin-left: 10px;
+        text-align: center;
+        float: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        line-height: 50px;
+
+        &-title{
+          width: 215px;
+          font-size: 12px;
+          text-align: left;
+          padding-left: 20px;
+          float: left;
+          height: 50px;
+
+          //Vertical alignment
+          /* Internet Explorer 10 */
+          display:-ms-flexbox;
+          -ms-flex-align:center;
+
+          /* Firefox */
+          display:-moz-box;
+          -moz-box-align:center;
+
+          /* Safari, Opera, and Chrome */
+          display:-webkit-box;
+          -webkit-box-align:center;
+
+          /* W3C */
+          display:box;
+          box-align:center;
+          }
+      }
+
+    //border styles
+    &-dashed{
+      border-bottom: 1px dashed #d7d7d7;
+    }
+    &-solid{
+      border-bottom: 5px solid #707070;
+    }
+    &-end{
+      border-bottom: 5px solid #d7d7d7;
+    }
+  } // END anecf-stats
+} // END anecf
+
+// txtc
+.txtc {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+} // END txtc
