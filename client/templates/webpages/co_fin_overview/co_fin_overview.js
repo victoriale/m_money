@@ -37,51 +37,40 @@ Template.co_fin_overview.helpers({
     //Get range value based on option selected
     switch(fo_range){
       case 'cfoBtn0':
-        var range = 1;
         var min = latestDate.subtract(1, 'days').format('X') * 1000;
       break;
       case 'cfoBtn1':
-        var range = 5;
         var min = latestDate.subtract(5, 'days').format('X') * 1000;
       break;
       case 'cfoBtn2':
-        var range = 10;
         var min = latestDate.subtract(10, 'days').format('X') * 1000;
       break;
       case 'cfoBtn3':
-        var range = 30;
         var min = latestDate.subtract(1, 'months').format('X') * 1000;
       break;
       case 'cfoBtn4':
-        var range = 90;
         var min = latestDate.subtract(3, 'months').format('X') * 1000;
       break;
       case 'cfoBtn5':
-        var range = 180;
         var min = latestDate.subtract(6, 'months').format('X') * 1000;
       break;
       case 'cfoBtn6':
-        var range = 270;
         var min = latestDate.subtract(9, 'months').format('X') * 1000;
       break;
       case 'cfoBtn7':
-        var range = 365;
         var min = latestDate.subtract(1, 'years').format('X') * 1000;
       break;
       case 'cfoBtn8':
-        var range = 1095;
         var min = latestDate.subtract(3, 'years').format('X') * 1000;
       break;
       case 'cfoBtn9':
-        var range = 1825;
         var min = latestDate.subtract(5, 'years').format('X') * 1000;
       break;
       case 'cfoBtn10':
-        var range = 3650;
         var min = latestDate.subtract(10, 'years').format('X') * 1000;
       break;
       default:
-        var range = 3650;
+        var min = latestDate.subtract(10, 'years').format('X') * 1000;
       break;
     }
 
