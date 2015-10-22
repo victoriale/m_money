@@ -1,145 +1,84 @@
 <!--
-Author: jyothyswaroop
-Created: 07/30/2015
-Description: stock disclaimer page
-Associated Files: stock_disclaimer_page_logic.js and stock_disclaimer_page.less
-
+Author: David Wibowo
+Created: [10-15-2015]
+Description:conatct us webpage
+Associated Files: stock_disclaimer_page.html, stock_disclaimer_page_logic.js, about_us_page.less
 -->
-<!--Gave a template name stock_disclaimer_page !-->
 <template name="stock_disclaimer_page">
-  <!--Defined a class name globally for height and width !-->
-  <div class= "dis_st">
-    <!--gave the dimensions for the module with total height and width !-->
-    <div class = "dis_st-n_m">
-      <a href="#" onclick="history.go(-1)">
-          <div class="dis_st-hdtl">
-            <div class="dis_st-hdtl-or">
-              <div class="dis_st-hdtl-mailrep" >
-                <i class="dis_st-mailrep fa fa-reply"></i>
-              </div>
-              <div class="dis_st-hdtl-rta">
-              </div>
-            </div>
-            <!-- for the text contianer!-->
-            <div class="dis_st-hdtl-txtctt">
-              <div class="dis_st-hdtl-gb">
-                GO Back
-                <!-- To
-                <div class="dis_st-hdtl-bar-title">
-                <div class="dis_st-hdtl-bar-helper">
-                  [Profile]'s
-                </div>
-                  <div class="dis_st-hdtl-bar-side">Profile </div>
-                </div>
-              -->
-              </div>
-            </div>
-            <!-- for the circle on the right to navigate!
-            <div class="dis_st-hdtl-indcir">
-                <i class="fa fa-angle-right"></i>
-            </div>
-            -->
-          </div>
-        </a>
-      <!--dimensions for the circle container as ('cir-d') !-->
-      <div class="dis_st-cir_d">
-      <!-- dimensions for the circle as ('circ')!-->
-      <div class="dis_st-circ">
-        <!-- defines container for the smaller blue circle('sc_d') !-->
-        <div class= "dis_st-sc_d">
-        <!-- defines the dimension for the small circle('sc') !-->
-        <!-- <div class="dis_st-sc_d dis_st-sc">
-        <i class="dis_st-bfo fa fa-reply"></i>
-        </div> -->
-        </div>
+  <div class="abus">
+    <a href="{{back_url}}">
+      <div class="abus-bkbx">
+        <div class="abus-bkbx-bx"><i class="fa fa-reply"></i></div>
+        <div class="abus-bkbx-tgl"></div>
+        <div class="abus-bkbx-txt">GO Back</div>
       </div>
+    </a>
+    <div class="abus-about">
+        <div class="abus-about-image" style="background-image: url('{{image_url}}');"></div>
+      <div class="abus-about-head">
+        <div class="abus-about-head-update">LAST UPDATED:{{Update}}</div>
+        <div class="abus-about-head-country"><i class="fa fa-map-marker"></i> &nbsp;{{Country}}</div>
+        <H1>{{Title}}</H1>
+        <H2>{{Statement}}</H2>
       </div>
-      <!--defines the container for text box !-->
-      <div class="dis_st-tc">
-      <!-- class date has all the font-weight and font specific !-->
-      <div class="dis_st-date">
-        LAST UPDATED: 06/24/2015, 8:00 AM EST
+    </div>
+    <div class="abus-kit">
+      <div class="abus-kit-left">{{About}}</div>
+      <div class="abus-kit-right">
+        <a href="#"><i class="fa fa-heart"></i><span>Save</span></a>
+        <a href="#"><i class="fa fa-share-alt"></i><span class="abt_us-bar-text">Share</span></a>
       </div>
-      <!--specified font style for location !-->
-      <div class="dis_st-loc_st">
-         <i class="fa fa-map-marker"></i>
-      <!--specified font style for the state name !-->
-      <span class="dis_st-loc_st">
-        United States of America
-      </span>
-      </div>
-      <!-- specified font sytle for the stock disclaimer !-->
-      <div class="dis_st-loc_st dis_st-disc">
-      Stock Disclaimer
-      </div>
-      <!--specified font style for the inveskit finance  !-->
-      <div class="dis_st-loc_st dis_st-fin">
-      For Inveskit
-      </div>
-      </div>
+    </div>
 
-      <div class="dis_st-oth-bar">
-        <div class="dis_st-oth-bar-title">
-        <div class="dis_st-oth-bar-helper">
-          InvestKit's Stock Disclaimer
-        </div>
-          <!-- <div class="dis_st-oth-bar-side">[getheadername1] </div> -->
-        </div>
-        <!-- </div> -->
-        <div class="dis_st-oth-bar-button">
-          <!-- the save option button-->
-          <a href="#"><i class="fa fa-heart"></i><span class="dis_st-oth-bar-text">Save</span></a>
-        </div>
-        <div class="dis_st-oth-bar-button">
-          <!-- share option button -->
-          <a href="#"><i class="fa fa-share-alt"></i><span class="dis_st-oth-bar-text">Share</span></a>
+    <div class="abus-cnt">
+
+      <div class="abus-cnt-top">
+        <div class="abus-cnt-top-left">Stock Disclaimer</div>
+        <div class = "abus-cnt-dropdown">
+          Now Reading:
+          <select id="sort_by" style = "margin-top: 1px;">
+            <option value="About">About Us</option>
+            <option value="Contact">Contact Us</option>
+            <option value="Copyright">Copyright Infringement</option>
+            <option value="Disclaimer">Disclaimer</option>
+            <option value="Privacy">Privacy Policy</option>
+            <option value="Stock">Stock Disclaimer</option>
+            <option value="Terms">Terms of Service</option>
+          </select>
         </div>
       </div>
 
-      <!--created a line after the container !-->
-      <div class="dis_st-line1">
-      <!--created a class name dic2 for the stock disclaimer text !-->
-        <div class="dis_st-disc2">
-          Stock Disclaimer
-        </div>
-        <!--created a line after the stock disclaimer !-->
-        <div class="dis_st-line2">
-        </div>
-      </div>
-
-      <div class="dis_st-nr">
-        Now Reading:
-      </div>
-        <!-- <i class="cup_nr_bold">{{dataPoint}}</i> <i class="fa fa-angle-down cup_nr_blue"></i> -->
-        <div class="dis_st-nr2">
-        <select id="sdsort_by">
-          <option value="About">About Us</option>
-          <option value="Contact">Contact Us</option>
-          <option value="Copyright">Copyright Infringement</option>
-          <option value="Disclaimer">Disclaimer</option>
-          <option value="Privacy">Privacy Policy</option>
-          <option value="Stock">Stock Disclaimer</option>
-          <option value="Terms">Terms of Service</option>
-        </select>
-      </div>
-
-      <!--createad paragraph container for the paragraph gave class name as (para) !-->
-      <div class="dis_st-para">
-        <div class="dis_st-parat">
+      <div class="abus-cnt-article">
         <p>  Market data delayed 15 minutes.</P>
 
-<p>  This site is powered by InvestKit. Ideas and opinions presented on this website are for informational and educational purposes only, and do not reflect the opinions of InvestKit, or any of its affiliates, subsidiaries or partners. In no way should any content contained herein be interpreted to represent trading or investment advice.</p>
+        <p>  This site is powered by InvestKit. Ideas and opinions presented on this website are for informational and educational purposes only, and do not reflect the opinions of InvestKit, or any of its affiliates, subsidiaries or partners. In no way should any content contained herein be interpreted to represent trading or investment advice.</p>
 
-<p>  © 2015 Data provided by Thompson Reuters® Read Full Disclaimer. </p>
+        <p>  © 2015 Data provided by Thompson Reuters® Read Full Disclaimer. </p>
 
-<p> OTC Data provided by OTC Markets Group Inc.</p>
+        <p> OTC Data provided by OTC Markets Group Inc.</p>
 
+      </div>
+
+    </div>
+
+    <div class="abus-invhead">Because you like <b>InvestKit</b>, we recommend: <b>The InvestKit Magazine</b></div>
+
+    <div class="abus-rdr">
+      <div class="abus-rdr-container">
+        <div class="abus-rdr-container-icon"></div>
+        <div class="abus-rdr-container-dr">Digital Reader</div>
+        <div class="abus-rdr-container-explore">Explore InvestKit</div>
+        <div class="abus-rdr-container-line"></div>
+        <a href="{{profile_ulr}}">
+          <div class="abus-rdr-container-circle"><i class="fa fa-angle-right"></i></div>
+        </a>
+        <div class="abus-rdr-container-left">{{Profile}}</div>
+        <div class="abus-rdr-container-text">Get an in–depth, visual look at today’s stock price,
+the compeition, executive compensation
+and much more.
         </div>
       </div>
-      <!--created a container for the fotter('ft')  !-->
-      <div class="dis_st-ft">
-      {{> recommend}}
     </div>
+
   </div>
-</div>
 </template>

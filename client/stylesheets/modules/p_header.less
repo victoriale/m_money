@@ -10,6 +10,7 @@
 .p {
   margin: 10px;
   text-align: left;
+  overflow: hidden;
   // Begin p-head
   &-bold_font{
     font-family: HN-B!important;
@@ -133,18 +134,10 @@
         background-color:  #3098ff;
         width: 40px;
         height: 40px;
-
-        // Begin p-head-bottom-icon .fa
-        .fa {
-        position: relative;
-        top:8px;
-        left:13px;
-        color: #ffffff;
+        line-height: 40px;
+        text-align: center;
+        color: @white;
         font-size: 22px;
-        font-weight: 400;
-        line-height: 22px;
-        text-align: left;
-        } // End p-head-bottom-icon .fa
       } // End p-head-bottom-icon
       // Begin p-head-botom-about
       &-about {
@@ -210,7 +203,6 @@
     background-color: #ffffff;
     padding-top: 20px;
     padding-bottom: 20px;
-    border-bottom: 3px solid #ebebeb;
     // Begin p-body-box
     &-box {
       width: 170px;
@@ -369,5 +361,55 @@
   width:150px;
   &-text{
     font-size:25px;
+  }
+}
+
+.c_p_graph{
+  width:100%;
+  height:300px;
+  background-color: @white;
+  &-line{
+    width:95%;
+    border-top: 2px solid #ebebeb;
+    margin: 0 auto;
+  }
+  &-updated{
+    width:100%;
+    height:30px; 
+    padding: 5px 20px;
+    overflow: hidden;
+    font-size: 12px;
+    color: #959595;
+    background-color: @white;
+    >.fa-calendar{
+      margin-right: 6px;
+    }
+  }
+}
+.c_p_graph-stockgraph{
+    width:100%;
+    height:83.3%;
+    padding: 0 10px;
+    overflow: hidden;
+    //background-color:@grey-5;
+}
+
+.c_p_graph-buttons{
+  width:100%;
+  height:16.6%;
+  background-color: @grey-1;
+  padding: 0 38px;
+  &-circle{
+    width:35px;
+    height:35px;
+    border-radius: 50%;
+    margin:8px 10px;
+    background-color: @grey-2;
+    border:none;
+    color:@black;
+    &:hover{
+      background-color: @blue;
+      color:@white;
+    }
   }
 }

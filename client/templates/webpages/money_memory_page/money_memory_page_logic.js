@@ -3,16 +3,29 @@
 ** Description: .js file for Company Executive Page - Money Memory
 ** Associated Files: money_memory_page.html, money_memory_page.less, money_memory_page_logic.js
 */
+
 Template.money_memory_page.onCreated(function(){
   //Set default values
   var default_end = moment().format('X');
   var default_start = moment().add(-30, 'days').format('X');
 
+  //Set default values
   Session.set('user_initial_investment', 1000);
   Session.set('user_start_date', Number(default_start));
   Session.set('user_end_date', Number(default_end));
+  //Default value for graph range
+  Session.set('mm_range', 'mmbbl-10');
 
   recallMoneyMemory_page();
+
+  this.autorun(function(){
+    var data = Session.get("fin_overview");
+
+    //If data does exist reformat data
+    if(typeof data !== 'undefined'){
+      reformatMoneyMemoryData();
+    }
+  })
 })
 
 Template.mm_page_start_date.onRendered(function(){
@@ -80,18 +93,148 @@ Template.mm_page_end_date.onRendered(function(){
 })
 
 Template.money_memory_page.helpers({
+  //Helper to determine which range button is selected
+  isRangeSelected: function(val){
+    var mm_range = Session.get('mm_range');
+
+    return val === mm_range ? 'mmpg-stock-sort-bbl-selected' : '';
+  },
+  //Helper to determine chart
   getMonMemChart: function(){
-      //get data for chart here
-      var url =  "";
-      $.getJSON(url,  function(data) {
-        // dupGraphObject.series[0].data = data;
-        // //set chart to initial position
-        // var ctime = dupGraphObject.series[0].data[dupGraphObject.series[0].data.length-1][0];
-        // dupGraphObject.xAxis.min = ctime - 24*3600000;
-        // dupGraphObject.xAxis.labels.format = "{value:%l%p}";
-        new Highcharts.Chart(monmemGraphObject);
-      });
-      return monmemGraphObject;
+    var data = Session.get('new_fin_overview');
+    var mm_range = Session.get('mm_range');
+
+    //If data does not exists exit helper
+    if(typeof data === 'undefined'){
+      return ''
+    }
+
+    //Get dependencies to find date range
+    var dataLength = data.highchartsData.length;
+    var latestDate = moment(data.highchartsData[dataLength - 1][0]);
+
+    //Get range value based on option selected
+    switch(mm_range){
+      case 'mmbbl-0':
+        var range = 1;
+        var min = latestDate.subtract(1, 'days').format('X') * 1000;
+      break;
+      case 'mmbbl-1':
+        var range = 5;
+        var min = latestDate.subtract(5, 'days').format('X') * 1000;
+      break;
+      case 'mmbbl-2':
+        var range = 10;
+        var min = latestDate.subtract(10, 'days').format('X') * 1000;
+      break;
+      case 'mmbbl-3':
+        var range = 30;
+        var min = latestDate.subtract(1, 'months').format('X') * 1000;
+      break;
+      case 'mmbbl-4':
+        var range = 90;
+        var min = latestDate.subtract(3, 'months').format('X') * 1000;
+      break;
+      case 'mmbbl-5':
+        var range = 180;
+        var min = latestDate.subtract(6, 'months').format('X') * 1000;
+      break;
+      case 'mmbbl-6':
+        var range = 270;
+        var min = latestDate.subtract(9, 'months').format('X') * 1000;
+      break;
+      case 'mmbbl-7':
+        var range = 365;
+        var min = latestDate.subtract(1, 'years').format('X') * 1000;
+      break;
+      case 'mmbbl-8':
+        var range = 1095;
+        var min = latestDate.subtract(3, 'years').format('X') * 1000;
+      break;
+      case 'mmbbl-9':
+        var range = 1825;
+        var min = latestDate.subtract(5, 'years').format('X') * 1000;
+      break;
+      case 'mmbbl-10':
+        var range = 3650;
+        var min = latestDate.subtract(10, 'years').format('X') * 1000;
+      break;
+      default:
+        var range = 3650;
+      break;
+    }
+
+    //Get oldest date available to check if data range is possible
+    var oldestDate = moment(data.highchartsData[0][0]).format('X') * 1000;
+    //If min is less than oldest data available, set min to oldest date
+    if(min <= oldestDate){
+      min = oldestDate;
+    }
+
+    var monmemGraphObject = {
+      title: {
+          text: ''
+      },
+      chart: {
+          type: 'spline',
+          events: {
+              redraw: function() {}
+          }
+      },
+      xAxis: {
+          type: 'datetime',
+          labels: {
+              overflow: 'justify'
+          },
+          min: min
+      },
+      yAxis: {
+          title: '',
+          floor: 0,
+          gridLineDashStyle: 'longdash',
+          minTickInterval: 5,
+          plotLines: [{
+              value: 0,
+              width: 1,
+              color: '#808080'
+          }],
+          labels: {
+              formatter: function() {
+                  return '$' + this.value
+              }
+          }
+      },
+      tooltip: {
+      	pointFormat: "Value: ${point.y:.2f}"
+      },
+      plotOptions: {
+          spline: {
+              lineWidth: 2,
+              states: {
+                  hover: {
+                      lineWidth: 3
+                  }
+              },
+              marker: {
+                  enabled: false
+              },
+              pointInterval: 3600000, // one hour
+              pointStart: Date.UTC(2015, 4, 31, 0, 0, 0)
+          }
+      },
+      legend: {
+        enabled: false
+      },
+      credits: {
+        enabled: false
+      },
+      series: [{
+          name: data.company_data.c_name,
+          data: data.highchartsData
+      }]
+    }
+
+    return monmemGraphObject;
   },
   //Helper to return to company profile page
   backToComp: function(){
@@ -101,7 +244,7 @@ Template.money_memory_page.helpers({
   },
   //Helper to get company data
   companyData: function(){
-    var data = Session.get('fin_overview');
+    var data = Session.get('new_fin_overview');
 
     //If data is undefined exit helper
     if(typeof(data) === 'undefined'){
@@ -114,11 +257,16 @@ Template.money_memory_page.helpers({
     company_data.c_hq_city = toTitleCase(company_data.c_hq_city);
     company_data.csi_trading_vol = nFormatter(Number(company_data.csi_trading_vol));
     company_data.avg_volume = nFormatter(Math.round(company_data.avg_volume));
+
+    company_data.min_range = commaSeparateNumber_decimal((Math.min(Number(company_data.csi_opening_price), Number(company_data.csi_closing_price), Number(company_data.csi_price)) * 100) / 100);
+    company_data.max_range = commaSeparateNumber_decimal((Math.max(Number(company_data.csi_opening_price), Number(company_data.csi_closing_price), Number(company_data.csi_price)) * 100) / 100);
+
     company_data.csi_price = commaSeparateNumber_decimal(Number(company_data.csi_price));
     company_data.csi_closing_price = commaSeparateNumber_decimal(Number(company_data.csi_closing_price));
     company_data.csi_opening_price = commaSeparateNumber_decimal(Number(company_data.csi_opening_price));
     company_data.csi_price_change_since_last = commaSeparateNumber_decimal(Math.round(Number(company_data.csi_price_change_since_last) * 100) / 100);
     company_data.csi_percent_change_since_last = commaSeparateNumber_decimal(Math.round(Number(company_data.csi_percent_change_since_last) * 100) / 100);
+
 
     //Transform dates
     company_data.csi_price_last_updated = moment(company_data.csi_price_last_updated).tz('America/New_York').format('dddd MM/DD/YYYY hh:mm A') + ' EST';
@@ -208,120 +356,6 @@ Template.money_memory_page.helpers({
   }
 })
 
-monmemGraphObject = {
-  title: {
-      text: ''
-  },
-  chart: {
-      type: 'spline',
-      events: {
-          redraw: function() {}
-      }
-  },
-  xAxis: {
-      type: 'datetime',
-      labels: {
-          overflow: 'justify'
-      }
-  },
-  yAxis: {
-      title: '',
-      floor: 0,
-      gridLineDashStyle: 'longdash',
-      minTickInterval: 5,
-      plotLines: [{
-          value: 0,
-          width: 1,
-          color: '#808080'
-      }],
-      labels: {
-          formatter: function() {
-              return '$' + this.value
-          }
-      }
-  },
-  tooltip: {
-  	pointFormat: "Value: ${point.y:.2f}"
-  },
-  plotOptions: {
-      spline: {
-          lineWidth: 4,
-          states: {
-              hover: {
-                  lineWidth: 5
-              }
-          },
-          marker: {
-              enabled: false
-          },
-          pointInterval: 3600000, // one hour
-          pointStart: Date.UTC(2015, 4, 31, 0, 0, 0)
-      }
-  },
-  legend: {
-    enabled: false
-  },
-  credits: {
-    enabled: false
-  },
-  series: [{
-      name: 'Facebook, Inc.',
-      data: [40.20, 40.80, 50.80, 40.80, 41.00, 41.30, 41.50, 42.90, 41.90, 42.60, 41.60, 43.00, 44.00, 43.60, 44.50, 44.20, 44.50, 44.50, 44.00, 43.10, 42.70, 44.00, 42.70, 42.30, 42.30, 44.10, 47.70, 47.10, 45.60, 46.10, 45.80, 48.60, 47.20, 49.00, 50.90, 51.50, 51.60, 51.10, 52.00, 52.30, 50.70, 49.40, 49.80, 49.60, 49.80, 49.50, 48.50, 47.40, 47.60]
-  }]
-}
-
-monmemChangeSort = function(index){
-
-  for(var i = 0; i < 11; i++)
-  {
-    var e = document.getElementById('mmbbl-' + i);
-    if(i == index)
-    {
-      e.className = "mmpg-stock-sort-bbl mmpg-stock-sort-bbl-selected";
-    } else {
-      e.className = "mmpg-stock-sort-bbl";
-    }
-  }
-
-  var chart = $('#monmemChart').highcharts();
-  switch(index)
-  {
-    case 0:
-      chart.series[0].update({ data: [40.20, 40.80, 50.80, 40.80, 41.00, 41.30, 41.50, 42.90, 41.90, 42.60, 41.60, 43.00, 44.00, 43.60, 44.50, 44.20, 44.50, 44.50, 44.00, 43.10, 42.70, 44.00, 42.70, 42.30, 42.30, 44.10, 47.70, 47.10, 45.60, 46.10, 45.80, 48.60, 47.20, 49.00, 50.90, 51.50, 51.60, 51.10, 52.00, 52.30, 50.70, 49.40, 49.80, 49.60, 49.80, 49.50, 48.50, 47.40, 47.60]});
-      break;
-    case 1:
-      chart.series[0].update({ data: [44.10, 47.70, 47.10, 45.60, 46.10, 45.80, 48.60, 47.20, 49.00, 50.90, 51.50, 51.60, 51.10, 52.00, 52.30, 50.70, 49.40, 49.80, 49.60, 49.80, 49.50, 48.50, 47.40, 47.60]});
-      break;
-    case 2:
-      chart.series[0].update({ data: [40.20, 40.80, 50.80, 40.80, 41.00, 41.30, 41.50, 42.90, 41.90, 42.60, 41.60, 43.00, 44.00, 43.60, 44.50, 44.20, 44.50, 44.50, 44.00, 43.10, 42.70, 44.00, 42.70, 42.30, 42.30, 44.10, 47.70, 47.10, 45.60, 46.10, 45.80, 48.60, 47.20, 49.00, 50.90, 51.50, 51.60, 51.10, 52.00, 52.30, 50.70, 49.40, 49.80, 49.60, 49.80, 49.50, 48.50, 47.40, 47.60]});
-      break;
-    case 3:
-      chart.series[0].update({ data: [44.10, 47.70, 47.10, 45.60, 46.10, 45.80, 48.60, 47.20, 49.00, 50.90, 51.50, 51.60, 51.10, 52.00, 52.30, 50.70, 49.40, 49.80, 49.60, 49.80, 49.50, 48.50, 47.40, 47.60]});
-      break;
-    case 4:
-      chart.series[0].update({ data: [40.20, 40.80, 50.80, 40.80, 41.00, 41.30, 41.50, 42.90, 41.90, 42.60, 41.60, 43.00, 44.00, 43.60, 44.50, 44.20, 44.50, 44.50, 44.00, 43.10, 42.70, 44.00, 42.70, 42.30, 42.30, 44.10, 47.70, 47.10, 45.60, 46.10, 45.80, 48.60, 47.20, 49.00, 50.90, 51.50, 51.60, 51.10, 52.00, 52.30, 50.70, 49.40, 49.80, 49.60, 49.80, 49.50, 48.50, 47.40, 47.60]});
-      break;
-    case 5:
-      chart.series[0].update({ data: [44.10, 47.70, 47.10, 45.60, 46.10, 45.80, 48.60, 47.20, 49.00, 50.90, 51.50, 51.60, 51.10, 52.00, 52.30, 50.70, 49.40, 49.80, 49.60, 49.80, 49.50, 48.50, 47.40, 47.60]});
-      break;
-    case 6:
-      chart.series[0].update({ data: [40.20, 40.80, 50.80, 40.80, 41.00, 41.30, 41.50, 42.90, 41.90, 42.60, 41.60, 43.00, 44.00, 43.60, 44.50, 44.20, 44.50, 44.50, 44.00, 43.10, 42.70, 44.00, 42.70, 42.30, 42.30, 44.10, 47.70, 47.10, 45.60, 46.10, 45.80, 48.60, 47.20, 49.00, 50.90, 51.50, 51.60, 51.10, 52.00, 52.30, 50.70, 49.40, 49.80, 49.60, 49.80, 49.50, 48.50, 47.40, 47.60]});
-      break;
-    case 7:
-      chart.series[0].update({ data: [44.10, 47.70, 47.10, 45.60, 46.10, 45.80, 48.60, 47.20, 49.00, 50.90, 51.50, 51.60, 51.10, 52.00, 52.30, 50.70, 49.40, 49.80, 49.60, 49.80, 49.50, 48.50, 47.40, 47.60]});
-      break;
-    case 8:
-      chart.series[0].update({ data: [40.20, 40.80, 50.80, 40.80, 41.00, 41.30, 41.50, 42.90, 41.90, 42.60, 41.60, 43.00, 44.00, 43.60, 44.50, 44.20, 44.50, 44.50, 44.00, 43.10, 42.70, 44.00, 42.70, 42.30, 42.30, 44.10, 47.70, 47.10, 45.60, 46.10, 45.80, 48.60, 47.20, 49.00, 50.90, 51.50, 51.60, 51.10, 52.00, 52.30, 50.70, 49.40, 49.80, 49.60, 49.80, 49.50, 48.50, 47.40, 47.60]});
-      break;
-    case 9:
-      chart.series[0].update({ data: [44.10, 47.70, 47.10, 45.60, 46.10, 45.80, 48.60, 47.20, 49.00, 50.90, 51.50, 51.60, 51.10, 52.00, 52.30, 50.70, 49.40, 49.80, 49.60, 49.80, 49.50, 48.50, 47.40, 47.60]});
-      break;
-    case 10:
-      chart.series[0].update({ data: [40.20, 40.80, 50.80, 40.80, 41.00, 41.30, 41.50, 42.90, 41.90, 42.60, 41.60, 43.00, 44.00, 43.60, 44.50, 44.20, 44.50, 44.50, 44.00, 43.10, 42.70, 44.00, 42.70, 42.30, 42.30, 44.10, 47.70, 47.10, 45.60, 46.10, 45.80, 48.60, 47.20, 49.00, 50.90, 51.50, 51.60, 51.10, 52.00, 52.30, 50.70, 49.40, 49.80, 49.60, 49.80, 49.50, 48.50, 47.40, 47.60]});
-      break;
-  }
-}
-
 Template.money_memory_page.events({
   //Event to close tooltip
   'click .mmpg-about-hdr-icon': function(e, t){
@@ -357,6 +391,11 @@ Template.money_memory_page.events({
     Session.set('user_initial_investment', input);
 
     recallMoneyMemory_page();
+  },
+  //Event set range session variable
+  'click .mmpg-stock-sort-bbl': function(e, t){
+
+    Session.set('mm_range', e.currentTarget.id);
   }
 })
 
@@ -376,4 +415,23 @@ function recallMoneyMemory_page(){
       Session.set('money_memory', result.money_memory);
     }
   })
+}
+
+function reformatMoneyMemoryData(){
+  var data = Session.get('fin_overview');
+
+  var highchartsData = [];
+
+  data.stock_history.forEach(function(item, index){
+    //Transform date
+    var date = moment(item.sh_date).format('X') * 1000;
+    //Build point array
+    var point = [date, Number(item.sh_close)]
+    //Push point array to data set
+    highchartsData.push(point);
+  })
+
+  data.highchartsData = highchartsData;
+
+  Session.set('new_fin_overview', data);
 }

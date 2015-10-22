@@ -1,148 +1,97 @@
 <!--
-Author:Meghana yerramilli
-Created: [07-30-2015]
-Description: conatct us webpage
-Associated Files: about_us_page.less
+Author: David Wibowo
+Created: [10-15-2015]
+Description:conatct us webpage
+Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
 -->
+
 <template name="about_us_page">
-  <!--Webpage dimensions-->
-  <div class="abt_us-dimensions">
-    <a href = "#" onclick="history.go(-1)">
-      <div class = "abt_us-hdr">
-        <div class = "abt_us-hdr-box"><i class = "fa fa-reply"></i></div>
-        <div class = "abt_us-hdr-arrw"></div>
-        <div class = "abt_us-hdr-txt">Go Back</div>
+  <div class="abus">
+    <a href="{{back_url}}">
+      <div class="abus-bkbx">
+        <div class="abus-bkbx-bx"><i class="fa fa-reply"></i></div>
+        <div class="abus-bkbx-tgl"></div>
+        <div class="abus-bkbx-txt">GO Back</div>
       </div>
     </a>
-    <div style = "overflow:hidden">
-      <!--creating  image-->
-      <a href = "#">
-        <div class="abt_us-image">
-        <!--small circle & icon on image circle-->
-      <!--  <div class="abt_us-replyimg"><span class="abt_us-replyicon"><i class="fa fa-reply"></i></span></div>-->
-        </div>
-      </a>
-      <!--container for information-->
-      <div class="abt_us-head_cont">
-        <!--date-->
-        <div class="abt_us-head_date">LAST UPDATED: {{upd}}</div>
-        <!--country-->
-        <div class="abt_us-country"><i class="fa fa-map-marker"></i><span class="abt_us-countxt">{{country}}</span></div>
-        <!--text in the container-->
-        <div class="abt_us-heading">About Us</div>
-        <div class="abt_us-subheading">{{statement}}</div>
+    <div class="abus-about">
+      <div class="abus-about-image" style="background-image: url('{{image_url}}');"></div>
+      <div class="abus-about-head">
+        <div class="abus-about-head-update">LAST UPDATED:{{Update}}</div>
+        <div class="abus-about-head-country"><i class="fa fa-map-marker"></i> &nbsp;{{Country}}</div>
+        <H1>{{Title}}</H1>
+        <H2>{{Statement}}</H2>
       </div>
     </div>
-    <!--line under the container-->
-    <div class="abt_us-blackhd">
-      <div class="abt_us-bar-title">InvestKit's About Us</div>
-      <div class="abt_us-linee"></div>
-      <div class="abt_us-bar-button">
-        <!-- the save option button-->
-        <a href="#"><i class="fa fa-heart"></i><span class="abt_us-bar-text">Save</span></a>
-      </div>
-      <div class="abt_us-bar-button" style = "width: 59px;">
-        <!-- share option button -->
+    <div class="abus-kit">
+      <div class="abus-kit-left">{{About}}</div>
+      <div class="abus-kit-right">
+        <a href="#"><i class="fa fa-heart"></i><span>Save</span></a>
         <a href="#"><i class="fa fa-share-alt"></i><span class="abt_us-bar-text">Share</span></a>
       </div>
     </div>
-    <!-- what is invest_kit!-->
-    <div style = "height: 43px;">
-      <div class="abt_us-wt">
-        <div class="abt_us-wtft"> What is <span class="abt_us-wtin">Invest Kit?</span></div>
+    <div class="abus-cnt">
+
+      <div class="abus-cnt-top">
+        <div class="abus-cnt-top-left">What is <b>Invest kit?</b></div>
+        <div class = "abus-cnt-dropdown">
+          Now Reading:
+          <select id="sort_by" style = "margin-top: 1px;">
+            <option value="About">About Us</option>
+            <option value="Contact">Contact Us</option>
+            <option value="Copyright">Copyright Infringement</option>
+            <option value="Disclaimer">Disclaimer</option>
+            <option value="Privacy">Privacy Policy</option>
+            <option value="Stock">Stock Disclaimer</option>
+            <option value="Terms">Terms of Service</option>
+          </select>
+        </div>
       </div>
-      <div class = "abt_us-dropdown">
-        Now Reading:
-        <select id="sort_by" style = "margin-top: 1px;">
-          <option value="About">About Us</option>
-          <option value="Contact">Contact Us</option>
-          <option value="Copyright">Copyright Infringement</option>
-          <option value="Disclaimer">Disclaimer</option>
-          <option value="Privacy">Privacy Policy</option>
-          <option value="Stock">Stock Disclaimer</option>
-          <option value="Terms">Terms of Service</option>
-        </select>
+
+      <div class="abus-cnt-article">
+        <p>Lorem ipsum dolor sit amet, eu aeterno aliquip molestie qui, Est cu graeco consectetuer, et his debet volutpat. Ne mel timeam patrioque molestiae. Vim aliquid scaevola voluptaria cu.</p>
+        <p>Elitr legere perfecto est in, choro integre legendos at sea, ey malis ornatus qui. In duo case dignisim. Vix voluptua corrumpit incorrupte in, vis molestie gubergren ne. Nam alia suavitate ad, pri bonorum reformidans ea.</p>
+        <p>Sir iudico delicata efficiantur ad. Qui soleat legimus at. Vel te intellegebat deterruisset, aliquid expetenda honestatis ad ius. Vel choro diceret officiis ne, ius ea verear dignissim assentior. No vel congue intellegebat, quo et dictas aperiam, civibus definitionem cu vis. Vim molestie volutpat electram ad, cum mundi officiis principes eu.</p>
       </div>
     </div>
 
-    <!-- long line after the what is invest kit   !-->
-    <div class="abt_us-lgline">
-    </div>
-
-    <!-- text container!-->
-    <div class="abt_us-txtct">
-      <div class="abt_us-txtft">
-            Lorem ipsum dolor sit amet, eu aeterno aliquip molestie qui, Est cu graeco consectetuer, et his debet volutpat. Ne mel timeam patrioque molestiae. Vim aliquid scaevola voluptaria cu.
-            <br>
-            <br>
-            Elitr legere perfecto est in, choro integre legendos at sea, ey malis ornatus qui. In duo case dignisim. Vix voluptua corrumpit incorrupte in, vis molestie gubergren ne. Nam alia suavitate ad, pri bonorum reformidans ea.
-            <br>
-            <br>
-            Sir iudico delicata efficiantur ad. Qui soleat legimus at. Vel te intellegebat deterruisset, aliquid expetenda honestatis ad ius. Vel choro diceret officiis ne, ius ea verear dignissim assentior. No vel congue intellegebat, quo et dictas aperiam,
-            civibus definitionem cu vis. Vim molestie volutpat electram ad, cum mundi officiis principes eu.
-      </div>
-    </div>
-    <!-- small boxes!-->
-    <div style = "margin-top: 10px; overflow: hidden;">
+    <div class="abus-boxes">
       {{# each items}}
-      <div class="abt_us-wct">
-        <div class="abt_us-smb1">
-          <div class="abt_us-lftp"></div>
-          <!-- for image !-->
-          <div class="abt_us-img" style="background-image:url('/{{image}}')"></div>
-          <div class="abt_us-smbct">
-            <div class="abt_us-smbct-total">
-              {{totals}}
-            </div>
-            <div class="abt_us-smbct-num">
-              {{numbers}}
-            </div>
-          </div>
-        </div>
-        <div class="abt_us-smb2">
-          <div class="abt_us-lftp2"></div>
-          <!-- for image !-->
-          <div class="abt_us-img" style="background-image:url('/{{image2}}')"></div>
-          <!-- for txt container !-->
-          <div class="abt_us-smbct">
-            <div class="abt_us-smbct-total">
-              {{totals2}}
-            </div>
-            <div class="abt_us-smbct-num">
-              {{numbers2}}
-            </div>
-          </div>
-        </div>
+      <div class="abus-boxes-box">
+        <div class="abus-boxes-box-sml"></div>
+        <div class="abus-boxes-box-img" style="background-image:url('/{{image}}')"></div>
+        <div class="abus-boxes-box-totals">{{totals}}</div>
+        <div class="abus-boxes-box-numbers">{{numbers}}</div>
       </div>
       {{/each}}
     </div>
-    <div class="abt_us-compct">
-    <!--memeber nationwide container !-->
-    <div class="abt_us-member">
-      <!-- member font style !-->
-      <div class="abt_us-memft">
-        Members Nationwide
-      </div>
-      <!--number + !-->
-      <div class="abt_us-number">
-        {{members}}
+
+    <div class="abus-member">
+      <div class="abus-member-map"></div>
+      <div class="abus-member-txt">
+        <h1>Member nationwide</h1>
+        <h2>1,200,000+</h2>
       </div>
     </div>
-    <!-- conatiner for map image !-->
-    <div class="abt_us-mapct">
+
+    <div class="abus-invhead">Because you like <b>InvestKit</b>, we recommend: <b>The InvestKit Magazine</b></div>
+
+    <div class="abus-rdr">
+      <div class="abus-rdr-container">
+        <div class="abus-rdr-container-icon"></div>
+        <div class="abus-rdr-container-dr">Digital Reader</div>
+        <div class="abus-rdr-container-explore">Explore InvestKit</div>
+        <div class="abus-rdr-container-line"></div>
+        <a href="{{profile_ulr}}">
+          <div class="abus-rdr-container-circle"><i class="fa fa-angle-right"></i></div>
+        </a>
+        <div class="abus-rdr-container-left">{{Profile}}</div>
+        <div class="abus-rdr-container-text">Get an in–depth, visual look at today’s stock price,
+the compeition, executive compensation
+and much more.
+        </div>
+      </div>
     </div>
-  </div>
-    <!--created a container for the fotter  !-->
-  <!-- <div class="abt_us-fotter">
-      <div class="abt_us-srchbox">
-        <div class="abt_us-srcctt">
-        <div class="abt_us-srchtxt1">LOOKING FOR SOMETHING MORE?</div>
-        <div class="abt_us-srchtxt2">Search our database for all U.S.public companies and their affiliates.</div>
-      </div>
-        <input type="textbox" class="abt_us-inptbox" placeholder="Search...">
-        <button class="abt_us-srcbtn"><span class="abt_us-srchicon" ><i class="fa fa-search"></i></span></button>
-      </div>
-  </div> -->
-  {{> recommend}}
+
   </div>
 </template>

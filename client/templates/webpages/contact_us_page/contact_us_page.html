@@ -1,71 +1,38 @@
 <!--
-Author:Meghana yerramilli
-Created: [07-30-2015]
-Description: conatct us webpage
-Associated Files: contact_us_page.less,contact_us_page.js
+Author: David Wibowo
+Created: [10-15-2015]
+Description:conatct us webpage
+Associated Files: contact_us_page.html, contact_us_page.js, contact_us.less, about_us_page.less
 -->
-
 <template name="contact_us_page">
-
-  <!--Webpage dimensions-->
-  <div class="cup_dimensions">
-    <a href="#" onclick="history.go(-1)">
-    <div class="hdtl">
-      <div class="hdtl-or">
-        <div class="hdtl-mailrep" >
-          <i class="eara_find-mailrep fa fa-reply"></i>
-        </div>
-        <div class="hdtl-rta">
-        </div>
+  <div class="abus">
+    <a href="{{back_url}}">
+      <div class="abus-bkbx">
+        <div class="abus-bkbx-bx"><i class="fa fa-reply"></i></div>
+        <div class="abus-bkbx-tgl"></div>
+        <div class="abus-bkbx-txt">GO Back</div>
       </div>
-      <!-- for the text contianer!-->
-      <div class="hdtl-txtctt">
-        <div class="hdtl-txtctt-txt">
-          GO Back
-        </div>
+    </a>
+    <div class="abus-about">
+      <div class="abus-about-image" style="background-image: url('{{image_url}}');"></div>
+      <div class="abus-about-head">
+        <div class="abus-about-head-update">LAST UPDATED:{{Update}}</div>
+        <div class="abus-about-head-country"><i class="fa fa-map-marker"></i> &nbsp;{{Country}}</div>
+        <H1>{{Title}}</H1>
+        <H2>{{Statement}}</H2>
       </div>
     </div>
-  </a>
-    <!--creating  image-->
-    <div class="cup_image">
-    </div>
-    <!--container for information-->
-    <div class="cup_head_cont">
-      <!--date-->
-      <div class="cup_head_date">LAST UPDATED:06/24/2015,8:00 AM EST</div>
-      <!--country-->
-      <div class="cup_country"><i class="fa fa-map-marker"></i><span class="cup_countxt">United States</span></div>
-      <!--text in the container-->
-      <div class="cup_heading">Contact Us</div>
-      <div class="cup_subheading">Help us help you faster</div>
-    </div>
-    <!--bar with the options to save or share-->
-    <div class="cup_sharebar">
-      <div class="cup_sharebar_left">
-        {{profile}}'s {{pageName}}
-      </div>
-      <div class="cup_sharebar_right">
-        <i class="fa fa-heart cup_sharebar_fa"></i> Save
-        <i class="fa fa-share-alt cup_sharebar_fa cup_sharebar_fa_lm"></i> Share
+    <div class="abus-kit">
+      <div class="abus-kit-left">{{About}}</div>
+      <div class="abus-kit-right">
+        <a href="#"><i class="fa fa-heart"></i><span>Save</span></a>
+        <a href="#"><i class="fa fa-share-alt"></i><span class="abt_us-bar-text">Share</span></a>
       </div>
     </div>
-    <!--form begins-->
-    <form name="submissionform" action="mailto:support@investkit.com" method="post" enctype="text/plain" class="cup_form">
-      <!--text fields -->
-      <div class="cup_fields">
-        <!--Asterisk & text-->
-        <span class="cup_ast">*</span>
-        <span class="cup_astxt">All fields are required</span>
-      </div>
-      <!--the "now reading area"-->
-      <!-- <div style="width:100%;height:40px;"> -->
-        <!-- <div class="con_tact">Contact Us</div> -->
-      <div class="cup_nr">
+    <div class="abus-cnt">
+      <div class = "abus-cnt-dropdown">
         Now Reading:
-      </div>
-        <!-- <i class="cup_nr_bold">{{dataPoint}}</i> <i class="fa fa-angle-down cup_nr_blue"></i> -->
-        <div class="cup_nr2">
-        <select id="csort_by">
+        <select id="sort_by" style = "margin-top: 1px;">
           <option value="About">About Us</option>
           <option value="Contact">Contact Us</option>
           <option value="Copyright">Copyright Infringement</option>
@@ -76,41 +43,71 @@ Associated Files: contact_us_page.less,contact_us_page.js
         </select>
       </div>
 
+      <div class="abus-cnt-article">
 
+        <form name="submissionform" action="mailto:support@investkit.com" method="post" enctype="text/plain" class="cup">
+          <div class="cup-fieldsinfo"><b>*</b> All fields are required</div>
 
-      <!--name field-->
-      <span class="cup_fname">Full Name</span><input type="textbox" class="cup_namefield" placeholder="Vance L Banks" name="FullName">
-      <!--email field-->
-      <div class="cup_fmail">Email Address</div><input type="textbox" class="cup_emailfield" placeholder="vancelbanks@gmail.com" name="EmailAddress">
-      <!--question category-->
-      <div class="cup_ques">My question is regarding:</div>
-      <!--holds the radio buttons-->
-      <div class="cup_radiobtns">
-        <!--options for given category-->
-        <span class="cup_pos"><input type="checkbox" class="cup_myp" value="MyProfile" name="Type"><span class="cup_boxspace">My Profile</span></span><br>
-        <span class="cup_pos"><input type="checkbox" class="cup_myp" value="Email" name="Type"><span class="cup_boxspace">Email</span></span><br>
-        <span class="cup_pos"><input type="checkbox" class="cup_myp" value="Advertisement" name="Type"><span class="cup_boxspace">Advertisement</span></span><br>
-        <span class="cup_pos"><input type="checkbox" class="cup_myp" value="Fraud" name="Type"><span class="cup_boxspace">Fraud</span></span><br>
-        <span class="cup_pos"><input type="checkbox" class="cup_myp" value="FindinganAdvisor" name="Type"><span class="cup_boxspace">Finding an Advisor</span></span><br>
-        <span class="cup_pos"><input type="checkbox" class="cup_myp" value="Investment" name="Type"><span class="cup_boxspace">Investment</span></span><br>
-        <span class="cup_pos"><input type="checkbox" class="cup_myp" value="Portfolios" name="Type"><span class="cup_boxspace">Portfolios</span></span><br>
-        <span class="cup_pos"><input type="checkbox" class="cup_myp" value="Harrasment" name="Type"><span class="cup_boxspace">Harrasment</span></span>
+          <div class="cup-field">
+            <div class="cup-field-lbl">Full Name</div>
+            <div class="cup-field-cntr"><input type="textbox" placeholder="Vance L Banks" name="FullName" class="cup-field-cntr-txt" /></div>
+          </div>
+
+          <div class="cup-field">
+            <div class="cup-field-lbl">Email Address</div>
+            <div class="cup-field-cntr"><input type="textbox" placeholder="vancelbanks@gmail.com" name="EmailAddress" class="cup-field-cntr-txt" /></div>
+          </div>
+
+          <div class="cup-field" style="height:330px;">
+            <div class="cup-field-lbl2">My question is regarding:</div>
+            <div class="cup-field-cntr">
+              <input type="checkbox" class="cup-field-cntr-ckb" value="MyProfile" name="Type">
+              <span>My Profile</span><br />
+              <input type="checkbox" class="cup-field-cntr-ckb" value="Email" name="Type">
+              <span>Email</span><br />
+              <input type="checkbox" class="cup-field-cntr-ckb" value="Advertisement" name="Type">
+              <span>Advertisement</span><br />
+              <input type="checkbox" class="cup-field-cntr-ckb" value="Fraud" name="Type">
+              <span>Fraud</span><br />
+              <input type="checkbox" class="cup-field-cntr-ckb" value="FindinganAdvisor" name="Type">
+              <span>Finding an Advisor</span><br />
+              <input type="checkbox" class="cup-field-cntr-ckb" value="Investment" name="Type">
+              <span>Investment</span><br />
+              <input type="checkbox" class="cup-field-cntr-ckb" value="Portfolios" name="Type">
+              <span>Portfolios</span><br />
+              <input type="checkbox" class="cup-field-cntr-ckb" value="Harrasment" name="Type">
+              <span>Harrasment</span>
+              <textarea type="text" maxlength="500" class="cup-field-cntr-desc" name="Message" placeholder="Detailed description of your question here..."></textarea>
+            </div>
+          </div>
+          <div class="cup-field" style="height:100px;"><br />
+            <div class="cup-field-cntr" style="text-align:right">
+              <input type="reset" class="cup-field-cntr-reset" value="RESET">
+              <button type="submit" class="cup-field-cntr-button">Submit  <i class="fa fa-angle-right"></i></button>
+            </div>
+          </div>
+        </form>
       </div>
-      <!--text area -->
-      <div class="cup_textarea">
-        <textarea type="text" maxlength="500" class="cup_desc" name="Message" placeholder="Detailed description of your question here..."></textarea>
-      </div>
-      <!--reset button-->
-      <input type="reset" class="cup_reset" value="RESET">
-      <!--submit button-->
-      <input type="submit" class="cup_submit">
-      <span class="cup_subicon"><i class="fa fa-angle-right"></i></span>
-    </form>
-    <div class="cup_srchbox">
-      <!--put the bottom template here-->
-    {{> recommend}}
     </div>
-  </div>
-  <!--search box-->
 
+    <div class="abus-invhead">Because you like <b>InvestKit</b>, we recommend: <b>The InvestKit Magazine</b></div>
+
+    <div class="abus-rdr">
+      <div class="abus-rdr-container">
+        <div class="abus-rdr-container-icon"></div>
+        <div class="abus-rdr-container-dr">Digital Reader</div>
+        <div class="abus-rdr-container-explore">Explore InvestKit</div>
+        <div class="abus-rdr-container-line"></div>
+        <a href="{{profile_ulr}}">
+          <div class="abus-rdr-container-circle"><i class="fa fa-angle-right"></i></div>
+        </a>
+        <div class="abus-rdr-container-left">{{Profile}}</div>
+        <div class="abus-rdr-container-text">Get an in–depth, visual look at today’s stock price,
+the compeition, executive compensation
+and much more.
+        </div>
+      </div>
+    </div>
+
+  </div>
 </template>

@@ -1,0 +1,129 @@
+<!-- Author: Ryan Fisher
+**** Created: [10/19/2015]
+**** Description: Quarterly EIS
+**** Associated Files: quarterly_EIS.html, quarterly_EIS.less, quarterly_EIS_logic.js
+-->
+
+<template name="quarterly_EIS">
+
+  <div class="qeis">
+    <!--Go Back Bar-->
+    <a href="#" onclick="history.go(-1)">
+      <div class="qeis-hdtl">
+       <div class="qeis-hdtl-or">
+         <div class="qeis-hdtl-mailrep" >
+           <i class="qeis-mailrep fa fa-reply"></i>
+         </div>
+         <div class="qeis-hdtl-rta">
+         </div>
+       </div>
+       <!-- for the text contianer!-->
+       <div class="qeis-hdtl-txtctt">
+         <div class="qeis-hdtl-gb">
+           Go Back To
+           <div class="qeis-hdtl-bar-title">
+           <div class="qeis-hdtl-bar-helper">
+             {{company}}'s
+           </div>
+             <div class="qeis-hdtl-bar-side">Profile</div>
+           </div>
+         </div>
+       </div>
+     </div>
+    </a>
+    <!--End Go Back Bar-->
+
+    <!--Page header-->
+    <div class="qeis-hdr">
+      <div class="qeis-hdr-img" style="background-image:url()"></div>
+      <div class="qeis-hdr-txt">
+        <div class="qeis-hdr-txt-upd">LAST UPDATED: {{updated}}</div>
+        <div class="qeis-hdr-txt-loc"><i class="fa fa-map-marker"></i>{{location}}</div>
+        <div class="qeis-hdr-txt-title">2015 Q2 Income Statement</div>
+        <div class="qeis-hdr-txt-for">For {{company}}</div>
+      </div>
+    </div>
+    <!--End Page header-->
+
+    <!--Dropdown menus-->
+    <div class="qeis-ddn">
+      <div class="qeis-ddn-mnu" style="width:160px" id="qeis-ddn-0">
+        Income Statement
+        <div class="qeis-ddn-cir"><i class="fa fa-caret-down"></i></div>
+      </div>
+      <div class="qeis-ddn-mnu" style="width:130px" id="qeis-ddn-1">
+        Quarterly Data
+        <div class="qeis-ddn-cir"><i class="fa fa-caret-down"></i></div>
+      </div>
+      <div class="qeis-ddn-mnu" style="width:100px" id="qeis-ddn-2">
+        2015
+        <div class="qeis-ddn-cir"><i class="fa fa-caret-down"></i></div>
+      </div>
+    </div>
+    <!--End Dropdown menus-->
+
+    <!--Chart legend-->
+    <div class="qeis-lgnd">
+      <div class="qeis-lgnd-txt">
+        <div class="qeis-lgnd-clr" style="background-color:#434348" id="qeis-clr-0"></div>
+        <div style="float:left;margin-right:5px;">
+          <div class="qeis-lgnd-amnt">$4.99 Million</div>
+          <div class="qeis-lgnd-lbl">Net Income</div>
+        </div>
+      </div>
+      <div class="qeis-lgnd-txt">
+        <div class="qeis-lgnd-clr" style="background-color:#3098ff" id="qeis-clr-1"></div>
+        <div style="float:left;margin-right:5px;">
+          <div class="qeis-lgnd-amnt">$12.46 Million</div>
+          <div class="qeis-lgnd-lbl">Revenue</div>
+        </div>
+      </div>
+      <div class="qeis-lgnd-txt">
+        <div class="qeis-lgnd-clr" style="background-color:#f8a354" id="qeis-clr-2"></div>
+        <div style="float:left;margin-right:5px;">
+          <div class="qeis-lgnd-amnt">23%</div>
+          <div class="qeis-lgnd-lbl">Profit Margin (%)</div>
+        </div>
+      </div>
+      <div class="qeis-ddn-mnu" style="width:160px;float:right;" id="qeis-ddn-3">
+        Net Income Chart
+        <div class="qeis-ddn-cir"><i class="fa fa-caret-down"></i></div>
+      </div>
+    </div>
+    <!--End Chart legend-->
+
+    <!--Chart-->
+    <div class="qeis-chart" id="quarterlyEISgraph"></div>
+    <!--End Chart-->
+
+    <!--Data Table-->
+    <div class="qeis-tbl">
+      <div class="qeis-tbl-hdr">In Millions of USD (except for per share items)</div>
+
+      <!--Data labels-->
+      <div class="qeis-tbl-lbls">
+        <div class="qeis-tbl-lbl" style="width:205px;margin-left:0px;">Key Metric</div>
+        <div class="qeis-tbl-lbl" style="font-family:HN-B">Q2 - 2015</div>
+        <div class="qeis-tbl-lbl">Q1 - 2015</div>
+        <div class="qeis-tbl-lbl">Q4 - 2014</div>
+        <div class="qeis-tbl-lbl">Q3 - 2014</div>
+        <div class="qeis-tbl-lbl" style="margin-right:0px">Q2 - 2014</div>
+      </div>
+
+      <!--Data Row-->
+      {{#each data}}
+      <div class="qeis-tbl-row-{{color}} qeis-tbl-{{border}}">
+        <div class="qeis-tbl-data-title">{{metric}}</div>
+        <div class="qeis-tbl-data" style={{style1}}>{{amnt1}}</div>
+        <div class="qeis-tbl-data" style={{style2}}>{{amnt2}}</div>
+        <div class="qeis-tbl-data" style={{style3}}>{{amnt3}}</div>
+        <div class="qeis-tbl-data" style={{style4}}>{{amnt4}}</div>
+        <div class="qeis-tbl-data" style={{style5}}>{{amnt5}}</div>
+      </div>
+      {{/each}}
+    </div>
+    <!--End Data Table-->
+
+    {{> recommend}}
+  </div>
+</template>

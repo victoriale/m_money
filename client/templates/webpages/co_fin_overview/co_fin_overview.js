@@ -5,271 +5,303 @@ Decription: A page for showing what has happened with a company over a period of
 Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
 */
 
-cfoTiles = [
-    {
-        left: {
-            title: "P.E. - Price to Earnings",
-            item: [
-                {
-                    text: "P.E. Ratio",
-                    value: "277.78"
-                }
-            ]
-        },
-        right: {
-            title: "E.P.S - Earnings Per Share",
-            item: [
-                {
-                    text: "P.E. Ratio",
-                    value: "277.78"
-                }
-            ]
-        }
-    },
-    {
-        left: {
-            title: "Dividend Yield",
-            item: [
-                {
-                    text: "Yield",
-                    value: "0"
-                }
-            ]
-        },
-        right: {
-            title: "Market Cap",
-            item: [
-                {
-                    text: "Market Cap",
-                    value: "8 Billion"
-                }
-            ]
-        }
-    },
-    {
-        left: {
-            title: "Today's Volume vs Average",
-            item: [
-                {
-                    text: "Today vs Average",
-                    value: "7Mil vs 10Mil"
-                }
-            ]
-        },
-        right: {
-            title: "Alpha & Beta",
-            item: [
-                {
-                    text: "Alpha",
-                    value: "N/A"
-                },
-                {
-                    text: "Beta",
-                    value: "N/A"
-                }
-            ]
-        }
+Template.co_fin_overview.onCreated(function(){
+  //Default value for graph range
+  Session.set('fo_range', 'cfoBtn10');
+
+  this.autorun(function(){
+    var data = Session.get("fin_overview");
+
+    //If data does exist reformat data
+    if(typeof data !== 'undefined'){
+      reformatFinancialOverviewData();
     }
-];
+  })
+})
 
-cfoIsGrey = true;
+Template.co_fin_overview.helpers({
+  //Helper to determine chart
+  getGraphObject: function(){
+    var data = Session.get('new_fin_overview');
+    var fo_range = Session.get('fo_range');
 
-cfoGraphObject = {
-    chart: {
-        type: 'line',
-        events: {
-            redraw: function() {
-            }
-        }
-    },
-    title: {
-        text: ''
-    },
-    credits: {
+    //If data does not exists exit helper
+    if(typeof data === 'undefined'){
+      return ''
+    }
+
+    //Get dependencies to find date range
+    var dataLength = data.highchartsData.length;
+    var latestDate = moment(data.highchartsData[dataLength - 1][0]);
+
+    //Get range value based on option selected
+    switch(fo_range){
+      case 'cfoBtn0':
+        var range = 1;
+        var min = latestDate.subtract(1, 'days').format('X') * 1000;
+      break;
+      case 'cfoBtn1':
+        var range = 5;
+        var min = latestDate.subtract(5, 'days').format('X') * 1000;
+      break;
+      case 'cfoBtn2':
+        var range = 10;
+        var min = latestDate.subtract(10, 'days').format('X') * 1000;
+      break;
+      case 'cfoBtn3':
+        var range = 30;
+        var min = latestDate.subtract(1, 'months').format('X') * 1000;
+      break;
+      case 'cfoBtn4':
+        var range = 90;
+        var min = latestDate.subtract(3, 'months').format('X') * 1000;
+      break;
+      case 'cfoBtn5':
+        var range = 180;
+        var min = latestDate.subtract(6, 'months').format('X') * 1000;
+      break;
+      case 'cfoBtn6':
+        var range = 270;
+        var min = latestDate.subtract(9, 'months').format('X') * 1000;
+      break;
+      case 'cfoBtn7':
+        var range = 365;
+        var min = latestDate.subtract(1, 'years').format('X') * 1000;
+      break;
+      case 'cfoBtn8':
+        var range = 1095;
+        var min = latestDate.subtract(3, 'years').format('X') * 1000;
+      break;
+      case 'cfoBtn9':
+        var range = 1825;
+        var min = latestDate.subtract(5, 'years').format('X') * 1000;
+      break;
+      case 'cfoBtn10':
+        var range = 3650;
+        var min = latestDate.subtract(10, 'years').format('X') * 1000;
+      break;
+      default:
+        var range = 3650;
+      break;
+    }
+
+    //Get oldest date available to check if data range is possible
+    var oldestDate = moment(data.highchartsData[0][0]).format('X') * 1000;
+    //If min is less than oldest data available, set min to oldest date
+    if(min <= oldestDate){
+      min = oldestDate;
+    }
+
+    var cfoGraphObject = {
+      title: {
+          text: ''
+      },
+      chart: {
+          type: 'spline',
+          events: {
+              redraw: function() {}
+          }
+      },
+      xAxis: {
+          type: 'datetime',
+          labels: {
+              overflow: 'justify'
+          },
+          min: min
+      },
+      yAxis: {
+          title: '',
+          floor: 0,
+          gridLineDashStyle: 'longdash',
+          minTickInterval: 5,
+          plotLines: [{
+              value: 0,
+              width: 1,
+              color: '#808080'
+          }],
+          labels: {
+              formatter: function() {
+                  return '$' + this.value
+              }
+          }
+      },
+      tooltip: {
+      	pointFormat: "Value: ${point.y:.2f}"
+      },
+      plotOptions: {
+          spline: {
+              lineWidth: 2,
+              states: {
+                  hover: {
+                      lineWidth: 3
+                  }
+              },
+              marker: {
+                  enabled: false
+              },
+              pointInterval: 3600000, // one hour
+              pointStart: Date.UTC(2015, 4, 31, 0, 0, 0)
+          }
+      },
+      legend: {
         enabled: false
-    },
-    yAxis: {
-            title: '',
-            labels: {
-                format: '${value:.2f}'
-            },
-            gridLineDashStyle: "Dash"
-    },
-    xAxis: {
-        type: 'datetime',
-        categories: ['8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '<b>NOW</b>'],
-        tickLength: 0,
-        labels: {
-            format: "{value:%l%p}",
-        },
-        minTickInterval: 3600000*6
-    },
-    series: [{
-        name: 'Facebook, Inc.',
-        type: 'spline',
-        showInLegend: false
-    }]
-};
-
-Template.co_fin_overview.helpers(
-    {
-        getGraphObject: function()
-        {
-            var url =  "http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?";
-            $.getJSON(url,  function(data) {
-              cfoGraphObject.series[0].data = data;
-              //set chart to initial position
-              var ctime = cfoGraphObject.series[0].data[cfoGraphObject.series[0].data.length-1][0];
-              cfoGraphObject.xAxis.min = ctime - 24*3600000;
-              cfoGraphObject.xAxis.labels.format = "{value:%l%p}";
-              new Highcharts.Chart(cfoGraphObject);
-            });
-            return cfoGraphObject;
-        },
-        btns: function()
-        {
-            var btns = [
-                {text: "1D"},
-                {text: "5D"},
-                {text: "10D"},
-                {text: "1M"},
-                {text: "3M"},
-                {text: "6M"},
-                {text: "9M"},
-                {text: "1Y"},
-                {text: "3Y"},
-                {text: "5Y"},
-                {text: "10Y"}
-            ];
-            for(var i = 1; i <= 11; i++)
-            {
-                btns[i-1].num = i;
-            }
-            return btns;
-        },
-
-        isInitial: function(num)
-        {
-            if(num==1)
-                return " cfo-btm-data-period-btn-a";
-            else
-                return "";
-        },
-
-        tiles: function()
-        {
-            for(var i = 0; i < cfoTiles.length; i++)
-            {
-                cfoTiles[i].left.num = i+1;
-                cfoTiles[i].right.num = i+1;
-            }
-            return cfoTiles;
-        },
-
-        getTileColor: function()
-        {
-            if(cfoIsGrey)
-            {
-                cfoIsGrey = false;
-                return "cfo-btm-data-tile-grey";
-            } else {
-                cfoIsGrey = true;
-                return "cfo-btm-data-tile";
-            }
-        },
-
-        company: function()
-        {
-            var c = {
-                formalName: "Facebook, Inc.",
-                informalName: "Facebook",
-                ticker: "FB"
-            };
-            return c;
-        }
+      },
+      credits: {
+        enabled: false
+      },
+      series: [{
+          name: data.company_data.c_name,
+          data: data.highchartsData
+      }]
     }
-);
 
-Template.co_fin_overview.onRendered(function(){
-    for(var i = 1; i <= cfoTiles.length; i++)
-    {
-        var a = document.getElementById("cfoTileL"+i);
-        var b = document.getElementById("cfoTileR"+i);
-        if(b.clientHeight>a.clientHeight)
-            a.style.height = b.clientHeight + "px";
+    return cfoGraphObject;
+  },
+  //Helper to determine which range button is selected
+  isRangeSelected: function(val){
+    var mm_range = Session.get('fo_range');
+
+    return val === mm_range ? 'cfo-btm-data-period-btn-a' : '';
+  },
+  //Helper to return to company profile page
+  backToComp: function(){
+    var params = Router.current().getParams();
+
+    return Router.path('content.companyprofile', {company_id: params.company_id});
+  },
+  //Helper to get company data
+  companyData: function(){
+    var data = Session.get('new_fin_overview');
+
+    //If data is undefined exit helper
+    if(typeof(data) === 'undefined'){
+      return ''
     }
+
+    var company_data = data.company_data;
+
+    //Get beginning of 52 week range (Esitmated 250 open stock market days)
+    if(data.stock_history.length >= 250){
+      var sh_length = data.stock_history.length;
+      var start_val = data.stock_history[sh_length - 250].sh_close;
+      company_data.start_range = Math.round(Number(start_val) * 100) / 100;
+      //Find percentage change since a year ago
+      var pResult = findPercentage(Number(company_data.csi_price), company_data.start_range);
+      //Set value for percent change
+      company_data.percent_year_value = pResult.value;
+      //Set text to be displayed before value
+      if(pResult.type === 'increase'){
+        company_data.percent_year_type = 'up';
+        company_data.percent_year_text = 'increase';
+        company_data.amount_year_value = commaSeparateNumber_decimal(Math.round((Number(company_data.csi_price) - company_data.start_range) * 100 ) / 100);
+      }else{
+        company_data.percent_year_type = 'down';
+        company_data.percent_year_text = 'decrease';
+        company_data.amount_year_value = commaSeparateNumber_decimal(Math.round((company_data.start_range - Number(company_data.csi_price)) * 100) / 100);
+      }
+
+      company_data.start_range = commaSeparateNumber_decimal(company_data.start_range );
+    }else{
+      company_data.start_range = 'N/A';
+      company_data.percent_year_value = 'N/A';
+    }
+
+    //Format values
+    company_data.c_hq_city = toTitleCase(company_data.c_hq_city);
+    company_data.csi_trading_vol = nFormatter(Number(company_data.csi_trading_vol));
+    company_data.avg_volume = nFormatter(Math.round(company_data.avg_volume));
+
+    company_data.min_range = commaSeparateNumber_decimal((Math.min(Number(company_data.csi_opening_price), Number(company_data.csi_closing_price), Number(company_data.csi_price)) * 100) / 100);
+    company_data.max_range = commaSeparateNumber_decimal((Math.max(Number(company_data.csi_opening_price), Number(company_data.csi_closing_price), Number(company_data.csi_price)) * 100) / 100);
+
+    company_data.csi_price = commaSeparateNumber_decimal(Number(company_data.csi_price));
+    company_data.csi_closing_price = commaSeparateNumber_decimal(Number(company_data.csi_closing_price));
+    company_data.csi_opening_price = commaSeparateNumber_decimal(Number(company_data.csi_opening_price));
+    company_data.csi_price_change_since_last = commaSeparateNumber_decimal(Math.round(Number(company_data.csi_price_change_since_last) * 100) / 100);
+    company_data.csi_percent_change_since_last = commaSeparateNumber_decimal(Math.round(Number(company_data.csi_percent_change_since_last) * 100) / 100);
+    company_data.csi_market_cap = nFormatter(Number(company_data.csi_market_cap));
+
+    company_data.csi_pe_ratio = (Number(company_data.csi_pe_ratio)).toFixed(2);
+
+    //Transform dates
+    company_data.csi_price_last_updated = moment(company_data.csi_price_last_updated).tz('America/New_York').format('dddd MM/DD/YYYY hh:mm A') + ' EST';
+    company_data.c_tr_last_updated = moment(company_data.c_tr_last_updated).tz('America/New_York').format('MM/DD/YYYY');
+
+    //Determine icon to be displayed
+    if(company_data.csi_price_change_since_last > 0){
+      company_data.icon = 'fa-arrow-up';
+      company_data.change_color = '#44b224';
+    }else if(company_data.csi_price_change_since_last < 0){
+      company_data.icon = 'fa-arrow-down';
+      company_data.change_color = '#ca1010';
+    }else{
+      company_data.icon = '';
+      company_data.change_color = '';
+    }
+
+    //Build location string
+    if(company_data.c_hq_city !== '' && company_data.c_hq_state !== ''){
+      company_data.location = company_data.c_hq_city + ', ' + company_data.c_hq_state;
+    }else if(company_data.c_hq_city === '' && company_data.c_hq_state !== ''){
+      company_data.location = company_data.c_hq_state;
+    }else if(company_data.c_hq_city !== '' && company_data.c_hq_state === ''){
+      company_data.location = company_data.c_hq_city;
+    }else{
+      company_data.location = '';
+    }
+
+
+
+    return company_data;
+  }
 });
 
-cfoBtns = function(num)
-{
-    var ctime = cfoGraphObject.series[0].data[cfoGraphObject.series[0].data.length-1][0];
-    var day = 24*3600000;
-    var month = 24*3600000*30;
-    var year = 24*3600000*30*12;
-    switch(num)
-    {
-    case 1:
-        cfoGraphObject.xAxis.min = ctime - day;
-        cfoGraphObject.xAxis.minTickInterval = day/4;
-        cfoGraphObject.xAxis.labels.format = "{value:%l%p}";
-        break;
-    case 2:
-        cfoGraphObject.xAxis.min = ctime - day*5;
-        cfoGraphObject.xAxis.minTickInterval = day;
-        cfoGraphObject.xAxis.labels.format = "{value:%a %l%p}";
-        break;
-    case 3:
-        cfoGraphObject.xAxis.min = ctime - day*10;
-        cfoGraphObject.xAxis.minTickInterval = day*2;
-        cfoGraphObject.xAxis.labels.format = "{value:%b %d}";
-        break;
-    case 4:
-        cfoGraphObject.xAxis.min = ctime - month;
-        cfoGraphObject.xAxis.minTickInterval = day*5;
-        cfoGraphObject.xAxis.labels.format = "{value:%b %d}";
-        break;
-    case 5:
-        cfoGraphObject.xAxis.min = ctime - month*3;
-        cfoGraphObject.xAxis.minTickInterval = day*15;
-        cfoGraphObject.xAxis.labels.format = "{value:%b %d}";
-        break;
-    case 6:
-        cfoGraphObject.xAxis.min = ctime - month*6;
-        cfoGraphObject.xAxis.minTickInterval = month;
-        cfoGraphObject.xAxis.labels.format = "{value:%b %d}";
-        break;
-    case 7:
-        cfoGraphObject.xAxis.min = ctime - month*9;
-        cfoGraphObject.xAxis.minTickInterval = month;
-        cfoGraphObject.xAxis.labels.format = "{value:%b %d}";
-        break;
-    case 8:
-        cfoGraphObject.xAxis.min = ctime - year;
-        cfoGraphObject.xAxis.minTickInterval = month*2;
-        cfoGraphObject.xAxis.labels.format = "{value:%b %d %Y}";
-        break;
-    case 9:
-        cfoGraphObject.xAxis.min = ctime - year*3;
-        cfoGraphObject.xAxis.minTickInterval = month*6;
-        cfoGraphObject.xAxis.labels.format = "{value:%b %d %Y}";
-        break;
-    case 10:
-        cfoGraphObject.xAxis.min = ctime - year*5;
-        cfoGraphObject.xAxis.minTickInterval = year;
-        cfoGraphObject.xAxis.labels.format = "{value:%b %Y}";
-        break;
-    case 11:
-        cfoGraphObject.xAxis.min = ctime - year*10;
-        cfoGraphObject.xAxis.minTickInterval = year*2;
-        cfoGraphObject.xAxis.labels.format = "{value:%b %Y}";
-        break;
+Template.co_fin_overview.events({
+  //Event to close tooltip
+  'click .cfo-btm-what-top-x': function(e, t){
+    t.$('.cfo-btm-what').hide();
+  },
+  //Event set range session variable
+  'click .cfo-btm-data-period-btn': function(e, t){
+    Session.set('fo_range', e.currentTarget.id);
+  }
+})
+
+function reformatFinancialOverviewData(){
+  var data = Session.get('fin_overview');
+
+  var highchartsData = [];
+
+  data.stock_history.forEach(function(item, index){
+    //Transform date
+    var date = moment(item.sh_date).format('X') * 1000;
+    //Build point array
+    var point = [date, Number(item.sh_close)]
+    //Push point array to data set
+    highchartsData.push(point);
+  })
+
+  data.highchartsData = highchartsData;
+
+  Session.set('new_fin_overview', data);
+}
+
+//Finds percentage increase or decrease (ex. increase from val 2 to val 1)
+ function findPercentage(val1, val2){
+  //If recent value is greater than or equal to old value
+  if(val1 >= val2){
+    var percent = ((((val1 / val2) - 1) * 100)).toFixed(1);
+    return {
+      value: percent,
+      type: 'increase'
     }
-    new Highcharts.Chart(cfoGraphObject);
-    for(var i = 1; i <= 11; i++)
-    {
-        var a = document.getElementById("cfoBtn" + i);
-        a.className = "cfo-btm-data-period-btn";
-        if(i==num)
-            a.className += " cfo-btm-data-period-btn-a";
+  //Else if recent value is less than old value
+  }else if(val1 < val2){
+    var percent = (((1 - (val1 / val2)) * 100)).toFixed(1);
+    //Return decrease object
+    return {
+      value: percent,
+      type: 'decrease'
     }
+  }
 }

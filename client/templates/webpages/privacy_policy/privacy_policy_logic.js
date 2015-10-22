@@ -1,7 +1,8 @@
-/* Author: Ryan Fisher
-** Created: 10/09/2015
-** Description: .js file for Privacy Policy Page
-** Associated Files: privacy_policy_page.html, privacy_policy_page.less, privacy_policy_logic.js
+/*
+Author: David Wibowo
+Created: [10-15-2015]
+Description:conatct us webpage
+Associated Files: privacy_policy_page.html, privacy_policy_logic.js, about_us_page.less
 */
 
 Template.privacy_policy_page.onRendered(function(){
@@ -38,5 +39,32 @@ Template.privacy_policy_page.events({
 });
 
 Template.privacy_policy_page.helpers({
-  BackTxt: "[Profile]"
+  Title:"Privacy Policy",
+  About:"InvestKit’s Privacy Policy",
+  Profile: function(){
+    if(Session.get('IsCompany')) {
+       return Session.get("profile_header").c_name;
+    } else if(Session.get('IsExec')){
+      data = Session.get('profile_header');
+      return data['o_first_name'] + " " + data['o_last_name'];
+    } else if(Session.get('IsLocation')){
+      return "San Francisco";
+    }
+  },
+  Country: "The United States",
+  Statement: "For InvestKit",
+  Update: "06/24/2015,8:00 AM EST",
+  back_url: function(){
+    if(Session.get('IsCompany')) {
+       return "/company/"+ Session.get("profile_header").c_ticker;
+    } else if(Session.get('IsExec')){
+       return "/executive/"+ Session.get("profile_header").o_id;
+    } else if(Session.get('IsLocation')){
+      return "/location";
+    } else {
+      return "/";
+    }
+  },
+  profile_ulr:"#",
+  image_url:"/tribune_logo.png"
 })

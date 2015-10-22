@@ -1,7 +1,8 @@
-/* Author: Ryan Fisher
-** Created: 10/09/2015
-** Description: .js file for Disclaimer Page
-** Associated Files: disclaimer_page.html, disclaimer_page.less, disclaimer_page_logic.js
+/*
+Author: David Wibowo
+Created: [10-15-2015]
+Description:conatct us webpage
+Associated Files: disclaimer_page.html, disclaimer_page_logic.js, about_us_page.less
 */
 
 Template.disclaimer_page.onRendered(function(){
@@ -38,7 +39,34 @@ Template.disclaimer_page.events({
 });
 
 Template.disclaimer_page.helpers({
-  BackTxt: "[Profile]"
+  Title:"Disclaimer",
+  About:"InvestKit's Disclaimer",
+  Profile: function(){
+    if(Session.get('IsCompany')) {
+       return Session.get("profile_header").c_name;
+    } else if(Session.get('IsExec')){
+      data = Session.get('profile_header');
+      return data['o_first_name'] + " " + data['o_last_name'];
+    } else if(Session.get('IsLocation')){
+      return "San Francisco";
+    }
+  },
+  Country: "The United States",
+  Statement: "For Investkit",
+  Update: "06/24/2015,8:00 AM EST",
+  back_url: function(){
+    if(Session.get('IsCompany')) {
+       return "/company/"+ Session.get("profile_header").c_ticker;
+    } else if(Session.get('IsExec')){
+       return "/executive/"+ Session.get("profile_header").o_id;
+    } else if(Session.get('IsLocation')){
+      return "/location";
+    } else {
+      return "/";
+    }
+  },
+  profile_ulr:"#",
+  image_url:"/tribune_logo.png"
 })
 
 /*

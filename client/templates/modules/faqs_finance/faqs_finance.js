@@ -9,9 +9,23 @@ Associated Files: faqs_finance.html & faqs_finance.less
 Template.faqs_finance.helpers ({
   faqCheck:function(){
     var data = Session.get("faqs");
-    if(typeof data == 'undefined'){
+    var price = Session.get('daily_update');
+
+    if(typeof data == 'undefined' || typeof price == 'undefined'){
       return '';
     }
+
+    //get answer for faq[1]
+    var faq1 = data['faq'][1].answer;
+    var newAnswer = faq1[0].o_first_name + " " + faq1[0].o_first_name;
+    if(typeof faq1 != 'undefined'){
+      for(var i = 1; i < faq1.length - 1; i++){
+        newAnswer += ", " + faq1[i]['o_first_name'] + " " + faq1[i]['o_last_name'];
+      }
+    }
+    data['faq'][1].answer = newAnswer;
+    data['faq'][3].answer = "$"+price.csi_price;
+
     return data;
   },
 
@@ -22,7 +36,6 @@ Template.faqs_finance.helpers ({
     }
     return data.c_name;
   },
-  company: 'Apple, Inc.'
 })
 
 var target  = null;

@@ -15,6 +15,7 @@ iron:router
 maazalik:highcharts
 jquery
 meteorhacks:ssr
+meteorhacks:picker
 
 ian:accounts-ui-bootstrap-3
 gadicohen:robots-txt
@@ -33,3 +34,4 @@ spacebars
 check
 rajit:bootstrap3-datepicker
 mrt:moment-timezone
+art1sec8:nlp-compromise

@@ -1,221 +1,195 @@
 <!--
-Author: Kyle Toom
-Date: 08/04/15
-Description: Stylesheet for the terms of service
-Associated Files: terms_of_service.less, terms_of_service.html
+Author: David Wibowo
+Created: [10-15-2015]
+Description:conatct us webpage
+Associated Files: terms_of_service.html, terms_of_service_logic.js, about_us_page.less
 -->
 <template name="terms_of_service">
-  <div class="tos-container">
-    <div class="tos-doc">
-      <a href="#" onclick="history.go(-1)">
-        <div class="tos-hdtl">
-         <div class="tos-hdtl-or">
-           <div class="tos-hdtl-mailrep" >
-             <i class="tos-mailrep fa fa-reply"></i>
-           </div>
-           <div class="tos-hdtl-rta">
-           </div>
-         </div>
-         <!-- for the text contianer!-->
-         <div class="tos-hdtl-txtctt">
-           <div class="tos-hdtl-gb">
-             Go Back
-             <!-- To
-             <div class="tos-hdtl-bar-title">
-             <div class="tos-hdtl-bar-helper">
-               {{BackTxt}}'s
-             </div>
-               <div class="tos-hdtl-bar-side">Profile </div>
-             </div>-->
-           </div>
-         </div>
-         <!-- for the circle on the right to navigate!
-         <div class="tos-hdtl-indcir">
-             <i class="fa fa-angle-right"></i>
-         </div>
-         -->
-       </div>
-     </a>
-      <div class="tos-info">
-        <div class="tos-info-image-container">
-          <div class="tos-info-image"></div>
-          <!-- <div class="tos-info-small-circle tos-clickable"><i class="fa fa-reply tos-info-small-circle-arrow"></i></div> -->
-        </div>
-        <div class="tos-info-text-cnt">
-          <div class="tos-info-last-updated">LAST UPDATED: 06/24/2015, 8:00AM EST</div>
-          <div class="tos-info-loc-text">
-            <i class="fa fa-map-marker"></i>The United States of America
-          </div>
-          <div class="tos-info-title">Terms of Service</div>
-          <div class="tos-info-text">For InvestKit</div>
-
-        </div>
+  <div class="abus">
+    <a href="{{back_url}}">
+      <div class="abus-bkbx">
+        <div class="abus-bkbx-bx"><i class="fa fa-reply"></i></div>
+        <div class="abus-bkbx-tgl"></div>
+        <div class="abus-bkbx-txt">GO Back</div>
       </div>
-      <div class="tos-headbar">
-        <div class="tos-headbar-txt">InvestKit's Terms of Service</div>
-        <div class="tos-headbar-save"><i class="fa fa-heart"></i>Save</div>
-        <div class="tos-headbar-share"><i class="fa fa-share-alt"></i>Share</div>
+    </a>
+    <div class="abus-about">
+        <div class="abus-about-image" style="background-image: url('{{image_url}}');"></div>
+      <div class="abus-about-head">
+        <div class="abus-about-head-update">LAST UPDATED:{{Update}}</div>
+        <div class="abus-about-head-country"><i class="fa fa-map-marker"></i> &nbsp;{{Country}}</div>
+        <H1>{{Title}}</H1>
+        <H2>{{Statement}}</H2>
       </div>
-        <div class="tos-doc-textblock">
-          <div class="tos-sec">
-            <div class="tos-nowread">
-              Now Reading:
-              <select id="sort_by">
-                <option value="About">About Us</option>
-                <option value="Contact">Contact Us</option>
-                <option value="Copyright">Copyright Infringement</option>
-                <option value="Disclaimer">Disclaimer</option>
-                <option value="Privacy">Privacy Policy</option>
-                <option value="Stock">Stock Disclaimer</option>
-                <option value="Terms">Terms of Service</option>
-              </select>
-            </div>
-            <div class="tos-header">Terms of Service</div>
-            <div class="tos-small-text">
-              <i class="tos-small-icon fa fa-calendar"></i> Dated June 24, 2015
-            </div>
-            <div class="tos-text">
-              <ol class="tos-list">
-                <li><i class="tos-list-title">The Agreement</i><br><br>
-                  <i class="tos-list-item">
-                    By using the InvestKit site, user agrees to be bound by the Terms of Use (the "TOU"). If a user does not agree to the terms and conditions contained in the TOU and InvestKit's Privacy Policy, the user may not access or otherwise use the Site or any information contained therein.<br><br>
-                    The user affirms that the user is over 18 years of age. The InvestKit Site is not intended for anyone under 18. InvestKit will cancel the account of any user under the age of 18 should the age of the user come to the attention of InvestKit.<br><br>
-                    The user recognizes that content on company pages, or professional advisor pages, unless otherwise indicated, is published by InvestKit, not the company or the advisor.
-                  </i>
-                </li><br>
-                <li><i class="tos-list-title">Terms Of Use (tou) Changes</i><br><br>
-                  <i class="tos-list-item">
-                    InvestKit reserves the right to change the TOU terms and conditions, add or remove content, features, or functionalities of the site. Modifications may be made at any time without notice. The user automatically accepts such changes as indicated by using the site. Users are encouraged to check the site regularly for all changes.
-                  </i>
-                </li><br>
-                <li><i class="tos-list-title">Securities Disclaimer</i><br><br>
-                    <i class="tos-list-item">
-                    The user acknowledges that nothing contained or published on the InvestKit Site constitutes a recommendation that any specific security, group of securities, portfolio of securities, or investment strategy is suitable for any particular user or person. The user further acknowledges that no content provider, including InvestKit, news providers, bloggers, advertisers or their affiliates are giving advise concerning the suitability, value, or potential value of any specific security, group of securities, portfolio of securities, or investment strategy or other financial or investment matter. To the extent that any of the content published on the Site may be deemed to be investment advice or recommendations in connection with a specific security, the user acknowledges that the information is impersonal and not tailored to their or any user's investment needs. Investments in securities, by their nature have inherent and sometimes hidden risks. The user acknowledges that discussions regarding any investment or security will not always contain full disclosure of risk factors that any prudent investor might need to know. InvestKit strongly recommends that any user seek the advice of qualified investment professionals and other financial advisors prior to any investment or securities transaction.<br><br>
-                    The user acknowledges that content on InvestKit may present opinions from various sources such as financial reporters, bloggers, and other users. The user acknowledges that those content providers may write about securities in which they or their firms have a position, and that they may trade for their own account, and that they may or may not be subject to a disclosure policy. InvestKit strongly recommends that any user seek the advice of qualified investment professionals and other financial advisors prior to any investment or securities transaction.<br><br>
-                    The user acknowledges that all data, including information regarding the performance of various securities and companies, is provided by sources InvestKit believes to be reliable; however, the information is not always guaranteed to be accurate by the provider and therefore, the user acknowledges that the calculations herein are made using such data, and that such calculations are not guaranteed by these sources, the information providers, or any other person or entity, and may not be complete.<br><br>
-                    The user acknowledges that information regarding financial and security transactions is often time sensitive. The user acknowledges that the user may not rely on information previously published on the Site as it may not be current, and the user further acknowledges that prior to making any investment decision the user should seek current information.<br><br>
-                    All content on the Site is presented only as of the date published or indicated, and may be superseded by subsequent market events or for other reasons become out-of-date.
-                  </i>
-                </li><br>
-                <li><i class="tos-list-title">InvestKit Does Not Recommend Or Give Advice</i><br><br>
-                  <i class="tos-list-item">
-                    The InvestKit Site is not intended to provide tax, legal, insurance or investment advice, and nothing on the Site should be construed as an offer to sell, a solicitation of an offer to buy, or a recommendation for any security by InvestKit or any third party. Each user is responsible for doing their own due diligence and determining the advisability, suitability and appropriateness of the user's decisions and transactions regarding the sale or purchase of securities. InvestKit strongly recommends that any user seek the advice of qualified investment professionals and other financial advisors prior to any investment or securities transaction.
-                  </i>
-                </li><br>
-                <li><i class="tos-list-title">Copyright, Intellectual Property And Trademarks</i><br><br>
-                  <i class="tos-list-item">
-                    The Site and the content contained herein, as well as all copyrights, including without limitation, the text, documents, articles, products, software, graphics, photos, sounds, videos, interactive features, services, links, user posted content, content submitted by other users, any other content on the Site ("content") and the trademarks, service marks and logos contained therein are the property of InvestKit and its third-party licensors or providers. Users may access and use the content, and download and/or print out copies of any content from the Site, solely for their personal, non-commercial use. Users acknowledge that they do not acquire any ownership rights by using the Site. InvestKit reserves all rights not expressly granted in and to the Site.<br><br>
-                    The Site may contain links to other Internet websites or links to content created by third parties. InvestKit does not approve, endorse, review or approve other websites or the content contained therein. Users acknowledge and agree that InvestKit shall not be held responsible for the legality, accuracy, or appropriateness of any content, advertising, products, services, or information located on our Site or any other websites, nor for any loss or damages caused or alleged to have been caused by the use of or reliance on any such content.
-                  </i>
-                </li><br>
-                <li><i class="tos-list-title">Conduct Of Users</i><br><br>
-                  <i class="tos-list-item">
-                    Users may not use, copy, display, sell, license, decompile, republish, upload, post, transmit, distribute or otherwise export content from the Site to online bulletin boards, message boards, newsgroups or chat rooms, in any manner, without our prior written permission. Modification of the content or use of the content for any purpose other than the user's own personal, noncommercial use is a violation of our copyright and other proprietary rights, and can subject the user to legal liability.<br><br>
-                    Users expressly agree that they will not:<br><br>
-                    <div class="tos-list-container">
-                      Use the InvestKit site for any illegal or unlawful purpose;<br>
-                      Use the site to bully, harass or harm another user;<br>
-                      Use the site to bring up "hot button" issues that detract from the value of the site for other users;<br>
-                      Detract from the use of the site by other users by "hacking" the site or any other activity that changes, impairs or defaces the site;<br>
-                      Send spam, chain letters, or unauthorized solicitations or unauthorized advertisements to other users;<br>
-                      Send out or put onto the site content that contains viruses, or other harmful code, files or programs;<br>
-                      Harvest personal information on other users without their consent;<br>
-                      Claim or imply that content the user provides is endorsed or approved by InvestKit without its consent;<br>
-                      Modify, adapt, sublicense, translate, sell, reverse engineer, decompile, or disassemble any portion of the site;<br>
-                      Use any robot, spider, site search/retrieval application, or other manual or automatic device or process to download, retrieve, index, "data mine," or in any way reproduce or circumvent the navigational structure or presentation of the Site or its content.<br>
-                      Use another user's account to access the Site.<br><br>
-                    </div>
-                    The user agrees to comply with all applicable laws, rules and regulations in connection with the use of the Site. In order to access the Site, the user will have to create an account. When creating an account, the user must provide accurate and complete information.<br><br>
-                    Each user further agrees that they will:<br><br>
-                    Immediately notify InvestKit of any breach of security or unauthorized use of the users account;<br>
-                    Be liable for any unauthorized use of their account including damages to InvestKit;<br>
-                    The user acknowledges that InvestKit has the right to terminate the user's access to the Site in its sole discretion, and that InvestKit will not be liable for any loss by the user for the unauthorized use of a user's account.
-                  </i>
-                </li><br>
-                <li><i class="tos-list-title">Posting And Monitoring Of Content</i><br><br>
-                  <i class="tos-list-item">
-                    InvestKit has the right, in its sole discretion, and without further notice to the user, to monitor, censor, edit, move, delete, and/or remove any and all content posted on its Site or any content transmitted to or from InvestKit email accounts at any time and for any reason. Without limiting the foregoing, InvestKit has the right to delete any comment that it believes, in its sole discretion, does or may violate the TOU of the Site.<br><br>
-                    With regard to user generated content, InvestKit reserves the right to remove content that falls into any of the categories listed below. Violations will be determined by InvestKit, at its sole discretion:<br><br>
-                    <div class="tos-list-container">
-                      Material that promotes hatred toward groups based on race, color, ethnic origin, religion, disability, gender, age, or sexual orientation/gender identification;<br>
-                      Material considered to be pornographic;<br>
-                      Material that infringes on copyrights or trademarks of InvestKit or its content partners;<br>
-                      Material that threatens harm to any user or group;<br>
-                      Material containing vulgar or profane language;<br>
-                      Material designed to bully, intimidate or harass another user;<br>
-                      Material containing the personal, confidential information of another person;<br>
-                      Material impersonating another user that is meant to deceive or confuse;<br>
-                      Material deemed to be unlawful, or promoting unlawful, dangerous or illegal activities;<br>
-                      Any material deemed by InvestKit to not be in the spirit of thought provoking debate, the open exchange of ideas and information, or any material that is otherwise deemed inappropriate or contrary to the professional level of content the Site strives to maintain.<br><br>
-                    </div>
-                    If a user has any comments, complaints or concerns, please contact us at policies@InvestKit.com. We will review all of the information sent to us, but we may not be able to take action or respond directly to each email.
-                  </i>
-                </li><br>
-                <li><i class="tos-list-title">Online Rules Of Conduct</i><br><br>
-                  <i class="tos-list-item">
-                    When a user posts any content on the Site or gives InvestKit permission to post your content, you agree to grant InvestKit royalty-free, perpetual, worldwide, irrevocable, non-exclusive and fully transferable and sub-licensable right and license to use, reproduce, modify, adapt, publish, translate, create derivative works from, distribute, perform and display any user submitted content (in whole or in part) and/or to incorporate any of your content in other works now or in the future and in any media formats and through any media channels, and user confirms and warrants to InvestKit that user owns the copyright in each of your user submitted content and has all the rights, power and authority necessary to grant the above license and rights.<br><br>
-                    When a user posts any content on the Site, the user also agrees to abide by the following disclosure rules:<br><br>
-                    <div class="tos-list-container">
-                      A user may not write about any securities with the intent to increase or decrease the value of the security, with or without the intent to profit on any change of value of the security.<br>
-                      Use of an alias. InvestKit supports transparency with regard to users, companies, and investment professionals.<br>
-                      A user may not post content that the user does not have the right to post under the law, by regulation or order of any court, or as a result of any employment, contractual, fiduciary or other legal obligation or relationship.<br>
-                      A user is prohibited from posting any material the user knows or should know is false, deceptive or misleading, or is intended to mislead or deceive others with regard to the source, accuracy, integrity or completeness of any comment posted.<br>
-                      A user must disclose the user's intent to sell or purchase any security commented on, if the user intends to buy or sell the security within three days of the post.<br>
-                      The user must disclose if the user is employed by a company whose stock the user is writing about, or performs consulting for which the user receives compensation or sponsorship fees.<br>
-                      The user may not violate any local, state, national or international law, regulation or order of any court, including but not limited to regulations of the U.S. Securities and Exchange Commission, any rules of any securities exchange, including without limitation, the New York Stock Exchange, the NYSE MKT or The Nasdaq Stock Market.<br>
-                      Users are prohibited from posting any non-public or restricted, confidential or proprietary information without proper authorization.
-                    </div>
-                  </i>
-                </li><br>
-                <li><i class="tos-list-title">Rights Of Review</i><br><br>
-                  <i class="tos-list-item">
-                    InvestKit reserves the right to access, read, preserve, and disclose any user content or any other information as it reasonably believes is necessary to (a) satisfy any applicable law, regulation, legal process, subpoena or governmental request, (b) enforce these TOU, including investigation of potential violations of it, (c) detect, prevent, or otherwise address fraud, security or technical issues, (d) respond to user support requests, or (e) protect the rights, property or safety of InvestKit, its users or the public.
-                  </i>
-                </li><br>
-                <li><i class="tos-list-title">Disclaimer Of Warranties</i><br><br>
-                  <i class="tos-list-item">
-                    THE SITE, AND ANY PRODUCT OR SERVICE OBTAINED OR ACCESSED THROUGH THE SITE, IS PROVIDED "AS IS" AND WITHOUT REPRESENTATIONS OR WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, INVESTKIT, ITS OFFICERS, DIRECTORS, EMPLOYEES, AFFILIATES, SUPPLIERS, ADVERTISERS, AND AGENTS DISCLAIM ALL WARRANTIES, EXPRESS, IMPLIED OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF TITLE AND NON-INFRINGEMENT, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, AND ALL WARRANTIES RELATING TO THE ADEQUACY, ACCURACY OR COMPLETENESS OF ANY INFORMATION ON OUR SITE.<br><br>
-                    Some jurisdictions do not allow the exclusion of implied warranties, so the above exclusions do not apply to everyone.<br><br>
-                    INVESTKIT AND ITS AFFILIATES, SUPPLIERS, AGENTS AND SPONSORS DO NOT WARRANT THAT THE USE OF THE SITE BY A USER SITE WILL BE UNINTERRUPTED, ERROR-FREE OR SECURE, OR THAT THE SITE OR THE SERVER(S) ON WHICH THE SITE IS HOSTED ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS. USER ASSUMES TOTAL RESPONSIBILITY AND RISK FOR THE USER'S USE AND RELIANCE ON THE SITE. NO OPINION, ADVICE, OR STATEMENT OF INVESTKIT OR ITS AFFILIATES, SUPPLIERS, AGENTS, MEMBERS, OR VISITORS, WHETHER MADE ON THE SITE OR OTHERWISE, SHALL CREATE ANY WARRANTY.
-                  </i>
-                </li><br>
-                <li><i class="tos-list-title">Limitations Of Liability</i><br><br>
-                  <i class="tos-list-item">
-                    NEITHER INVESTKIT NOR ITS AFFILIATES AND THEIR RESPECTIVE OFFICERS, DIRECTORS, EMPLOYEES, SUPPLIERS, ADVERTISERS, AGENTS AND SPONSORS ARE LIABLE FOR ANY INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL, EXEMPLARY, PUNITIVE OR OTHER DAMAGES UNDER ANY CONTRACT, NEGLIGENCE, STRICT LIABILITY OR OTHER THEORY ARISING OUT OF OR RELATING IN ANY WAY TO THE SITE AND/OR ANY CONTENT CONTAINED THEREIN, OR ANY PRODUCT OR SERVICE USED OR PURCHASED THROUGH INVESTKIT. THE USER'S SOLE REMEDY FOR DISSATISFACTION WITH THE SITE IS TO STOP USING IT.<br><br>
-                    Some jurisdictions do not allow the limitation or exclusion of liability for incidental or consequential damages, so the above limitations may not apply to you.
-                  </i>
-                </li><br>
-                <li><i class="tos-list-title">Indemnification</i><br><br>
-                  <i class="tos-list-item">
-                    As a condition of using the Site, user agrees to indemnify, defend and hold harmless InvestKit, its officers, directors, employees, agents and representatives from and against any and all claims, damages, losses, costs (including reasonable attorneys' fees), or other expenses that arise directly or indirectly out of or from (a) violation of the TOU; (b) use of the Site; (c) violation of the rights of any third party, or (d) any claim that user posted information caused damage to a third party. This defense and indemnification obligation will survive these TOU and the use of the Site.
-                  </i>
-                </li><br>
-                <li><i class="tos-list-title">Termination Of User Accounts</i><br><br>
-                  <i class="tos-list-item">
-                    A user's access to the user's account may be terminated without notice for reasons that include but are not limited to:<br><br>
-                    <div class="tos-list-container">
-                      Violations or breaches of the TOU or other policies, agreements or guidelines;<br>
-                      Violations of copyright, trademarks or other intellectual property rights;<br>
-                      Requests made by law enforcement or government authorities, or regulatory authorities.
-                    </div>
-                  </i>
-                </li><br>
-                <li><i class="tos-list-title">Copyright And Intellectual Property Concerns</i><br><br>
-                  <i class="tos-list-item">
-                    If you believe that your work has been copied in a way that constitutes copyright infringement, please contact InvestKit at policies@InvestKit.com.
-                  </i>
-                </li><br>
-                <li><i class="tos-list-title">Jurisdiction</i><br><br>
-                  <i class="tos-list-item">
-                    The Site is directed solely to individuals residing in jurisdictions in which provision of the Site's content is legal. InvestKit makes no representation that materials provided on the Site are appropriate or available for use in other locations. Those who choose to access the Site from other locations do so on their own initiative and at their own risk, and are responsible for compliance with local laws, if and to the extent applicable. We reserve the right to limit the availability of the Site to any person, geographic area, or jurisdiction we so desire, at any time and in our sole discretion, and to limit the quantities of any such service or product that we provide.<br><br>
-                    The TOU, together with all InvestKit policies referred to herein, constitutes the entire agreement between the user and InvestKit relating to user's access and use of the Site. The TOU, privacy policy and the relationship between the user and InvestKit are governed by and construed in accordance with the laws of the State of California, without regard to its principles of conflict of laws. The user and InvestKit agree to submit to the personal and exclusive jurisdiction of the federal and state courts located in Marin County California, and waive any jurisdictional, venue, or inconvenient forum objections to such courts. If any provision of the TOU is found to be unlawful, void, or for any reason unenforceable, then that provision shall be deemed severable from the TOU and shall not affect the validity and enforceability of any remaining provisions. No waiver by either party of any breach or default hereunder shall be deemed to be a waiver of any preceding or subsequent breach or default. Any heading, caption or section title contained in the TOU is inserted only as a matter of convenience and in no way defines or explains any section or provision hereof. We reserve the right to require a user to sign a non-electronic version of the TOU.
-                  </i>
-                </li><br>
-              </ol>
-            </div>
-          </div>
-        </div>
     </div>
-    {{> search_module}}
+    <div class="abus-kit">
+      <div class="abus-kit-left">{{About}}</div>
+      <div class="abus-kit-right">
+        <a href="#"><i class="fa fa-heart"></i><span>Save</span></a>
+        <a href="#"><i class="fa fa-share-alt"></i><span class="abt_us-bar-text">Share</span></a>
+      </div>
+    </div>
+
+    <div class="abus-cnt">
+
+      <div class="abus-cnt-top">
+        <div class="abus-cnt-top-left">Terms of Service</div>
+        <div class = "abus-cnt-dropdown">
+          Now Reading:
+          <select id="sort_by" style = "margin-top: 1px;">
+            <option value="About">About Us</option>
+            <option value="Contact">Contact Us</option>
+            <option value="Copyright">Copyright Infringement</option>
+            <option value="Disclaimer">Disclaimer</option>
+            <option value="Privacy">Privacy Policy</option>
+            <option value="Stock">Stock Disclaimer</option>
+            <option value="Terms">Terms of Service</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="abus-cnt-article">
+        <h7><i class="fa fa-calendar"></i> Dated June 24,2015</h7>
+        <ol style="font-weight: bold;font-family: HN;">
+          <li><b>The Agreement</b><br /><br />
+            <p>By using the InvestKit site, user agrees to be bound by the Terms of Use (the "TOU"). If a user does not agree to the terms and conditions contained in the TOU and InvestKit's Privacy Policy, the user may not access or otherwise use the Site or any information contained therein.</p>
+            <p>The user affirms that the user is over 18 years of age. The InvestKit Site is not intended for anyone under 18. InvestKit will cancel the account of any user under the age of 18 should the age of the user come to the attention of InvestKit.</p>
+            <p>The user recognizes that content on company pages, or professional advisor pages, unless otherwise indicated, is published by InvestKit, not the company or the advisor.</p>
+          </li><br />
+          <li><b>Terms Of Use (tou) Changes</b><br /><br />
+            <p>InvestKit reserves the right to change the TOU terms and conditions, add or remove content, features, or functionalities of the site. Modifications may be made at any time without notice. The user automatically accepts such changes as indicated by using the site. Users are encouraged to check the site regularly for all changes.</p>
+          </li><br />
+          <li><b>Securities Disclaimer</b><br /><br />
+            <p>The user acknowledges that nothing contained or published on the InvestKit Site constitutes a recommendation that any specific security, group of securities, portfolio of securities, or investment strategy is suitable for any particular user or person. The user further acknowledges that no content provider, including InvestKit, news providers, bloggers, advertisers or their affiliates are giving advise concerning the suitability, value, or potential value of any specific security, group of securities, portfolio of securities, or investment strategy or other financial or investment matter. To the extent that any of the content published on the Site may be deemed to be investment advice or recommendations in connection with a specific security, the user acknowledges that the information is impersonal and not tailored to their or any user's investment needs. Investments in securities, by their nature have inherent and sometimes hidden risks. The user acknowledges that discussions regarding any investment or security will not always contain full disclosure of risk factors that any prudent investor might need to know. InvestKit strongly recommends that any user seek the advice of qualified investment professionals and other financial advisors prior to any investment or securities transaction.</p>
+            <p>The user acknowledges that content on InvestKit may present opinions from various sources such as financial reporters, bloggers, and other users. The user acknowledges that those content providers may write about securities in which they or their firms have a position, and that they may trade for their own account, and that they may or may not be subject to a disclosure policy. InvestKit strongly recommends that any user seek the advice of qualified investment professionals and other financial advisors prior to any investment or securities transaction.</p>
+            <p>The user acknowledges that all data, including information regarding the performance of various securities and companies, is provided by sources InvestKit believes to be reliable; however, the information is not always guaranteed to be accurate by the provider and therefore, the user acknowledges that the calculations herein are made using such data, and that such calculations are not guaranteed by these sources, the information providers, or any other person or entity, and may not be complete.</p>
+            <p>The user acknowledges that information regarding financial and security transactions is often time sensitive. The user acknowledges that the user may not rely on information previously published on the Site as it may not be current, and the user further acknowledges that prior to making any investment decision the user should seek current information.</p>
+            <p>All content on the Site is presented only as of the date published or indicated, and may be superseded by subsequent market events or for other reasons become out-of-date.</p>
+          </li><br />
+          <li><b>InvestKit Does Not Recommend Or Give Advice</b><br /><br />
+            <p>The InvestKit Site is not intended to provide tax, legal, insurance or investment advice, and nothing on the Site should be construed as an offer to sell, a solicitation of an offer to buy, or a recommendation for any security by InvestKit or any third party. Each user is responsible for doing their own due diligence and determining the advisability, suitability and appropriateness of the user's decisions and transactions regarding the sale or purchase of securities. InvestKit strongly recommends that any user seek the advice of qualified investment professionals and other financial advisors prior to any investment or securities transaction.</p>
+          </li><br />
+          <li><b>Copyright, Intellectual Property And Trademarks</b><br /><br />
+            <p>The Site and the content contained herein, as well as all copyrights, including without limitation, the text, documents, articles, products, software, graphics, photos, sounds, videos, interactive features, services, links, user posted content, content submitted by other users, any other content on the Site ("content") and the trademarks, service marks and logos contained therein are the property of InvestKit and its third-party licensors or providers. Users may access and use the content, and download and/or print out copies of any content from the Site, solely for their personal, non-commercial use. Users acknowledge that they do not acquire any ownership rights by using the Site. InvestKit reserves all rights not expressly granted in and to the Site.</p>
+            <p>The Site may contain links to other Internet websites or links to content created by third parties. InvestKit does not approve, endorse, review or approve other websites or the content contained therein. Users acknowledge and agree that InvestKit shall not be held responsible for the legality, accuracy, or appropriateness of any content, advertising, products, services, or information located on our Site or any other websites, nor for any loss or damages caused or alleged to have been caused by the use of or reliance on any such content.</p>
+          </li><br />
+          <li><b>Conduct Of Users</b><br /><br />
+            <p>Users may not use, copy, display, sell, license, decompile, republish, upload, post, transmit, distribute or otherwise export content from the Site to online bulletin boards, message boards, newsgroups or chat rooms, in any manner, without our prior written permission. Modification of the content or use of the content for any purpose other than the user's own personal, noncommercial use is a violation of our copyright and other proprietary rights, and can subject the user to legal liability.</p>
+            <p>Users expressly agree that they will not:</p>
+              <blockquote>
+                Use the InvestKit site for any illegal or unlawful purpose;<br />
+                Use the site to bully, harass or harm another user;<br />
+                Use the site to bring up "hot button" issues that detract from the value of the site for other users;<br />
+                Detract from the use of the site by other users by "hacking" the site or any other activity that changes, impairs or defaces the site;<br />
+                Send spam, chain letters, or unauthorized solicitations or unauthorized advertisements to other users;<br />
+                Send out or put onto the site content that contains viruses, or other harmful code, files or programs;<br />
+                Harvest personal information on other users without their consent;<br />
+                Claim or imply that content the user provides is endorsed or approved by InvestKit without its consent;<br />
+                Modify, adapt, sublicense, translate, sell, reverse engineer, decompile, or disassemble any portion of the site;<br />
+                Use any robot, spider, site search/retrieval application, or other manual or automatic device or process to download, retrieve, index, "data mine," or in any way reproduce or circumvent the navigational structure or presentation of the Site or its content.<br />
+                Use another user's account to access the Site.<br />
+              </blockquote>
+              <p>The user agrees to comply with all applicable laws, rules and regulations in connection with the use of the Site. In order to access the Site, the user will have to create an account. When creating an account, the user must provide accurate and complete information.</p>
+              <p>Each user further agrees that they will:</p>
+              <p>Immediately notify InvestKit of any breach of security or unauthorized use of the users account;<br />
+              Be liable for any unauthorized use of their account including damages to InvestKit;<br />
+              The user acknowledges that InvestKit has the right to terminate the user's access to the Site in its sole discretion, and that InvestKit will not be liable for any loss by the user for the unauthorized use of a user's account.
+            </p>
+          </li><br />
+          <li><b>Posting And Monitoring Of Content</b><br /><br />
+            <p>
+              InvestKit has the right, in its sole discretion, and without further notice to the user, to monitor, censor, edit, move, delete, and/or remove any and all content posted on its Site or any content transmitted to or from InvestKit email accounts at any time and for any reason. Without limiting the foregoing, InvestKit has the right to delete any comment that it believes, in its sole discretion, does or may violate the TOU of the Site.</p>
+              <p>With regard to user generated content, InvestKit reserves the right to remove content that falls into any of the categories listed below. Violations will be determined by InvestKit, at its sole discretion:</p>
+              <blockquote>
+                Material that promotes hatred toward groups based on race, color, ethnic origin, religion, disability, gender, age, or sexual orientation/gender identification;<br />
+                Material considered to be pornographic;<br />
+                Material that infringes on copyrights or trademarks of InvestKit or its content partners;<br />
+                Material that threatens harm to any user or group;<br />
+                Material containing vulgar or profane language;<br />
+                Material designed to bully, intimidate or harass another user;<br />
+                Material containing the personal, confidential information of another person;<br />
+                Material impersonating another user that is meant to deceive or confuse;<br />
+                Material deemed to be unlawful, or promoting unlawful, dangerous or illegal activities;<br />
+                Any material deemed by InvestKit to not be in the spirit of thought provoking debate, the open exchange of ideas and information, or any material that is otherwise deemed inappropriate or contrary to the professional level of content the Site strives to maintain.<br />
+              </blockquote>
+              <p>If a user has any comments, complaints or concerns, please contact us at policies@InvestKit.com. We will review all of the information sent to us, but we may not be able to take action or respond directly to each email.
+            </p>
+          </li><br />
+
+
+            <li><b>Online Rules Of Conduct</b><br /><br />
+              <p>When a user posts any content on the Site or gives InvestKit permission to post your content, you agree to grant InvestKit royalty-free, perpetual, worldwide, irrevocable, non-exclusive and fully transferable and sub-licensable right and license to use, reproduce, modify, adapt, publish, translate, create derivative works from, distribute, perform and display any user submitted content (in whole or in part) and/or to incorporate any of your content in other works now or in the future and in any media formats and through any media channels, and user confirms and warrants to InvestKit that user owns the copyright in each of your user submitted content and has all the rights, power and authority necessary to grant the above license and rights.</p>
+              <p>When a user posts any content on the Site, the user also agrees to abide by the following disclosure rules:</p>
+              <blockquote>
+                A user may not write about any securities with the intent to increase or decrease the value of the security, with or without the intent to profit on any change of value of the security.<br />
+                Use of an alias. InvestKit supports transparency with regard to users, companies, and investment professionals.<br />
+                A user may not post content that the user does not have the right to post under the law, by regulation or order of any court, or as a result of any employment, contractual, fiduciary or other legal obligation or relationship.<br />
+                A user is prohibited from posting any material the user knows or should know is false, deceptive or misleading, or is intended to mislead or deceive others with regard to the source, accuracy, integrity or completeness of any comment posted.<br />
+                A user must disclose the user's intent to sell or purchase any security commented on, if the user intends to buy or sell the security within three days of the post.<br />
+                The user must disclose if the user is employed by a company whose stock the user is writing about, or performs consulting for which the user receives compensation or sponsorship fees.<br />
+                The user may not violate any local, state, national or international law, regulation or order of any court, including but not limited to regulations of the U.S. Securities and Exchange Commission, any rules of any securities exchange, including without limitation, the New York Stock Exchange, the NYSE MKT or The Nasdaq Stock Market.<br />
+                Users are prohibited from posting any non-public or restricted, confidential or proprietary information without proper authorization.
+              </blockquote>
+            </li><br />
+            <li><b>Rights Of Review</b><br /><br />
+              <p>
+                InvestKit reserves the right to access, read, preserve, and disclose any user content or any other information as it reasonably believes is necessary to (a) satisfy any applicable law, regulation, legal process, subpoena or governmental request, (b) enforce these TOU, including investigation of potential violations of it, (c) detect, prevent, or otherwise address fraud, security or technical issues, (d) respond to user support requests, or (e) protect the rights, property or safety of InvestKit, its users or the public.
+              </p>
+            </li><br />
+            <li><b>Disclaimer Of Warranties</b><br /><br />
+              <p>THE SITE, AND ANY PRODUCT OR SERVICE OBTAINED OR ACCESSED THROUGH THE SITE, IS PROVIDED "AS IS" AND WITHOUT REPRESENTATIONS OR WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, INVESTKIT, ITS OFFICERS, DIRECTORS, EMPLOYEES, AFFILIATES, SUPPLIERS, ADVERTISERS, AND AGENTS DISCLAIM ALL WARRANTIES, EXPRESS, IMPLIED OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF TITLE AND NON-INFRINGEMENT, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, AND ALL WARRANTIES RELATING TO THE ADEQUACY, ACCURACY OR COMPLETENESS OF ANY INFORMATION ON OUR SITE.</p>
+              <p>Some jurisdictions do not allow the exclusion of implied warranties, so the above exclusions do not apply to everyone.</p>
+              <p>INVESTKIT AND ITS AFFILIATES, SUPPLIERS, AGENTS AND SPONSORS DO NOT WARRANT THAT THE USE OF THE SITE BY A USER SITE WILL BE UNINTERRUPTED, ERROR-FREE OR SECURE, OR THAT THE SITE OR THE SERVER(S) ON WHICH THE SITE IS HOSTED ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS. USER ASSUMES TOTAL RESPONSIBILITY AND RISK FOR THE USER'S USE AND RELIANCE ON THE SITE. NO OPINION, ADVICE, OR STATEMENT OF INVESTKIT OR ITS AFFILIATES, SUPPLIERS, AGENTS, MEMBERS, OR VISITORS, WHETHER MADE ON THE SITE OR OTHERWISE, SHALL CREATE ANY WARRANTY.</p>
+            </li><br />
+            <li><b>Limitations Of Liability</b><br /><br />
+              <p>NEITHER INVESTKIT NOR ITS AFFILIATES AND THEIR RESPECTIVE OFFICERS, DIRECTORS, EMPLOYEES, SUPPLIERS, ADVERTISERS, AGENTS AND SPONSORS ARE LIABLE FOR ANY INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL, EXEMPLARY, PUNITIVE OR OTHER DAMAGES UNDER ANY CONTRACT, NEGLIGENCE, STRICT LIABILITY OR OTHER THEORY ARISING OUT OF OR RELATING IN ANY WAY TO THE SITE AND/OR ANY CONTENT CONTAINED THEREIN, OR ANY PRODUCT OR SERVICE USED OR PURCHASED THROUGH INVESTKIT. THE USER'S SOLE REMEDY FOR DISSATISFACTION WITH THE SITE IS TO STOP USING IT.</p>
+              <p>Some jurisdictions do not allow the limitation or exclusion of liability for incidental or consequential damages, so the above limitations may not apply to you.
+              </p>
+            </li><br />
+            <li><b>Indemnification</b><br /><br />
+              <p>As a condition of using the Site, user agrees to indemnify, defend and hold harmless InvestKit, its officers, directors, employees, agents and representatives from and against any and all claims, damages, losses, costs (including reasonable attorneys' fees), or other expenses that arise directly or indirectly out of or from (a) violation of the TOU; (b) use of the Site; (c) violation of the rights of any third party, or (d) any claim that user posted information caused damage to a third party. This defense and indemnification obligation will survive these TOU and the use of the Site.
+              </p>
+            </li><br />
+            <li><b>Termination Of User Accounts</b><br /><br />
+              <p>
+                A user's access to the user's account may be terminated without notice for reasons that include but are not limited to:</p>
+                <blockquote>
+                  Violations or breaches of the TOU or other policies, agreements or guidelines;<br />
+                  Violations of copyright, trademarks or other intellectual property rights;<br />
+                  Requests made by law enforcement or government authorities, or regulatory authorities.
+                </blockquote>
+            </li><br />
+            <li><b>Copyright And Intellectual Property Concerns</b><br /><br />
+              <p>If you believe that your work has been copied in a way that constitutes copyright infringement, please contact InvestKit at policies@InvestKit.com.</p>
+            </li><br />
+
+            <li><b>Jurisdiction</b><br /><br />
+                <p>The Site is directed solely to individuals residing in jurisdictions in which provision of the Site's content is legal. InvestKit makes no representation that materials provided on the Site are appropriate or available for use in other locations. Those who choose to access the Site from other locations do so on their own initiative and at their own risk, and are responsible for compliance with local laws, if and to the extent applicable. We reserve the right to limit the availability of the Site to any person, geographic area, or jurisdiction we so desire, at any time and in our sole discretion, and to limit the quantities of any such service or product that we provide.</p>
+                <p>The TOU, together with all InvestKit policies referred to herein, constitutes the entire agreement between the user and InvestKit relating to user's access and use of the Site. The TOU, privacy policy and the relationship between the user and InvestKit are governed by and construed in accordance with the laws of the State of California, without regard to its principles of conflict of laws. The user and InvestKit agree to submit to the personal and exclusive jurisdiction of the federal and state courts located in Marin County California, and waive any jurisdictional, venue, or inconvenient forum objections to such courts. If any provision of the TOU is found to be unlawful, void, or for any reason unenforceable, then that provision shall be deemed severable from the TOU and shall not affect the validity and enforceability of any remaining provisions. No waiver by either party of any breach or default hereunder shall be deemed to be a waiver of any preceding or subsequent breach or default. Any heading, caption or section title contained in the TOU is inserted only as a matter of convenience and in no way defines or explains any section or provision hereof. We reserve the right to require a user to sign a non-electronic version of the TOU.</p>
+              </li><br />
+          </ol>
+      </div>
+
+    </div>
+
+    <div class="abus-invhead">Because you like <b>InvestKit</b>, we recommend: <b>The InvestKit Magazine</b></div>
+
+    <div class="abus-rdr">
+      <div class="abus-rdr-container">
+        <div class="abus-rdr-container-icon"></div>
+        <div class="abus-rdr-container-dr">Digital Reader</div>
+        <div class="abus-rdr-container-explore">Explore InvestKit</div>
+        <div class="abus-rdr-container-line"></div>
+        <a href="{{profile_ulr}}">
+          <div class="abus-rdr-container-circle"><i class="fa fa-angle-right"></i></div>
+        </a>
+        <div class="abus-rdr-container-left">{{Profile}}</div>
+        <div class="abus-rdr-container-text">Get an in–depth, visual look at today’s stock price,
+the compeition, executive compensation
+and much more.
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
