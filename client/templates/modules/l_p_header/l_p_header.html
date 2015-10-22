@@ -13,14 +13,15 @@
 </template>
 
 <template name="lp_head">
+  {{#with locationData}}
   <div class="p-head">
     <div class="p-head-top">
       <div class="p-head-top-lastUpdate">LAST UPDATED: {{LastUpdate}}</div>
       <div class="p-head-top-container">
-        <div class="p-head-top-container-location"><i class="fa fa-map-marker"></i>&nbsp; {{Comp_Location}}</div>
+        <div class="p-head-top-container-location"><i class="fa fa-map-marker"></i>&nbsp; United States</div>
         <div class="p-head-top-container-profile"><span class="p-bold_font">LOCATION</span> PROFILE</div>
       </div>
-      <div class="p-head-top-name"><span class="p-head-top-name-txt">{{Name}}</span></div>
+      <div class="p-head-top-name"><span class="p-head-top-name-txt">{{location}}</span></div>
     </div>
     <div class="p-head-bottom">
       <div class="p-head-bottom-triangle"></div>
@@ -28,7 +29,7 @@
         <div class="p-head-bottom-img-sml"></div>
       </div>
       <div class="p-head-bottom-icon"><i class="fa fa-map-marker"></i></div>
-      <div class="p-head-bottom-about">Info about <span class="p-bold_font">{{Name}}</span></div>
+      <div class="p-head-bottom-about">Info about <span class="p-bold_font">{{location}}</span></div>
       <div class="p-head-bottom-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
         nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
@@ -41,35 +42,38 @@
         dolore magnam aliquam quaerat voluptatem.</div>
     </div>
   </div>
-
+  {{/with}}
 </template>
 
 <template name="lp_body">
+  {{#with locationData}}
   <div class="p-body">
     <div class="p-body-box" style="width:140px;">
         <div>Total Companies</div>
-        <div class="value">{{Companies}}</div>
+        <div class="value">{{total_companies}}</div>
         <div>&nbsp;</div>
     </div>
     <div class="p-body-box" style="width:190px;">
         <div>Total Market Cap</div>
-        <div class="value">{{Market_Cap}}</div>
+        <div class="value">{{total_market_cap}}</div>
         <div>&nbsp;</div>
     </div>
     <div class="p-body-box" style="width:160px;">
         <div>Total Executives</div>
-        <div class="value">{{Executives}}</div>
+        <div class="value">{{total_executives}}</div>
         <div>&nbsp;</div>
     </div>
     <div class="p-body-box" style="border-right: 0px;width:190px;">
         <div>Total Exec. Compensation</div>
-        <div class="value">${{Compensation}}</div>
+        <div class="value">${{total_executives_comp}}</div>
         <div>&nbsp;</div>
     </div>
   </div>
+  {{/with}}
 </template>
 
 <template name="lp_rdr">
+  {{#with locationData}}
   <div class="p-rdr">
     <a href="{{ulr}}">
       <div class="p-rdr-tri"></div>
@@ -80,11 +84,11 @@
         <div class="p-rdr-container-line"></div>
         <div class="p-rdr-container-circle"><i class="fa fa-angle-right"></i></div>
         <div class="p-rdr-container-left">{{Name}}</div>
-        <div class="p-rdr-container-text">Get an in–depth, visual look at today’s composite value,
-the local companies, exeucitves, advisors
-and so much more.
+        <div class="p-rdr-container-text">
+          Get an in–depth, visual look at today’s composite value, the local companies, exeucitves, advisors and so much more.
         </div>
       </div>
     </a>
   </div>
+  {{/with}}
 </template>

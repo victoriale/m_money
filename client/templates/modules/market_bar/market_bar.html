@@ -4,30 +4,33 @@ files:[market_bar.js, market_bar.less]
 -->
 <!-- Main template-->
 <template name="market_bar">
-  <!--Calllin the main class -->
-  <div class="mrk-br">
-    <!-- the div template for location-->
-    <div class="mrk-br-loc"> {{date}}
+  {{#with marketData}}
+    <!--Calllin the main class -->
+    <div class="mrk-br">
+      <!-- the div template for location-->
+      <div class="mrk-br-loc"> {{lastUpdated}}
+      </div>
+      <!-- the class for each line -->
+      {{#each market}}
+      <div class="mrk-br-main">
+        <!--the horizontal line class -->
+        <div class="mrk-br-line">
+        </div>
+        <!-- the details class-->
+        <div class="mrk-br-details">
+          <div class="mrk-br-name">{{name}}</div>
+          <div class="mrk-br-value">{{close_value}}</div>
+          <div class="mrk-br-high">[value] ({{percent}})</div>
+        </div>
+        <!-- the class properties to call the graph-->
+        <div class="mrk-br-graph">
+          <!-- to class the grpah values from js-->
+          <div id="market{{index}}">
+            {{> highchartsHelper chartId=getChartID chartWidth="100%" chartHeight="100%" chartObject=getMarketGraph}}
+          </div>
+        </div>
+      </div>
+      {{/ each}}
     </div>
-    <!-- the class for each line -->
-    {{#each market}}
-    <div class="mrk-br-main">
-      <!--the horizontal line class -->
-      <div class="mrk-br-line">
-      </div>
-      <!-- the details class-->
-      <div class="mrk-br-details">
-        <div class="mrk-br-name">{{name}}</div>
-        <div class="mrk-br-value">{{value}}</div>
-        <div class="mrk-br-high">{{high}}</div>
-      </div>
-      <!-- the class properties to call the graph-->
-      <div class="mrk-br-graph">
-        <!-- to class the grpah values from js-->
-        <div id="{{graphID}}"></div>
-      </div>
-    </div>
-    {{/ each}}
-
-  </div>
+  {{/with}}
 </template>

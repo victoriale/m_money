@@ -15,7 +15,23 @@ if(Meteor.isClient){
   var cmnt3;
   Template.comments_page.helpers({
     c_name:'GoPro, Inc.',
-
+    upd: "10/24/2014, 12:36PM EDT",
+    location: "The United States of America",
+    rec_num: "2",
+    comment1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sodales "
+            + "magna non felis auctor, vel egestas nisi porta. Donec auctor felis nec maximus "
+            + "mattis. Phaselllus eu dui vitae elit tristique vulputate. Integer diam risus, "
+            + "sodales at euismod et, vehicula in nisi. Cras velit enim, suscipit set ultrices "
+            + "id, scelerisque at nibh. Pellentesque vel mi ut velit congue commodo eget egestas "
+            + "quam.",
+    comment2: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sodales magna " +
+              "magna non felis auctor, vel egestas nisi porta.",
+    num1: "1",
+    num2: "",
+    name1: "Jacob Turner",
+    name2: "Cameron Brocken",
+    time1: "9 hours",
+    time2: "9 hours",
     post3: function () {
       return POST3.find().fetch().reverse();
     },
@@ -41,7 +57,9 @@ if(Meteor.isClient){
     },
   });
 
-
+  Template.comments_page.onRendered(function () {
+    $('.cspace-hdr-tabs-best').addClass('active');
+  });
   //Event Handlers
   Template.comments_page.events({
     'click .u_input_share_button': function(e) {
@@ -76,6 +94,24 @@ if(Meteor.isClient){
     'click #mostrecent': function(e) {
       $('.result-sort').html("Most Recent");
       $('.dropdown-menu').hide();
+    },
+
+    'click .cspace-hdr-tabs-best': function(e) {
+      $('.cspace-hdr-tabs-best').addClass('active');
+      $('.cspace-hdr-tabs-new').removeClass('active');
+      $('.cspace-hdr-tabs-old').removeClass('active');
+    },
+
+    'click .cspace-hdr-tabs-new': function(e) {
+      $('.cspace-hdr-tabs-best').removeClass('active');
+      $('.cspace-hdr-tabs-new').addClass('active');
+      $('.cspace-hdr-tabs-old').removeClass('active');
+    },
+
+    'click .cspace-hdr-tabs-old': function(e) {
+      $('.cspace-hdr-tabs-best').removeClass('active');
+      $('.cspace-hdr-tabs-new').removeClass('active');
+      $('.cspace-hdr-tabs-old').addClass('active');
     }
   });
 }

@@ -6,8 +6,8 @@ Associated Files: featured_list.html, featured_list.less
 */
 //render function to set the array with data
 Template.featured_list.onRendered( function() {
-  var counter=1;
-  Session.set("counter",counter);
+  Session.set("fl_counter",0);
+
   Session.set("fl_data",
   [
     {
@@ -35,11 +35,74 @@ Template.featured_list.onRendered( function() {
     },
 
   ]);
-
 });
+
+Template.featured_list.events({
+  'click .fl_block_leftbutton': function(){
+    var counter = Session.get("fl_counter");
+    var list = Session.get('featured_lists')['featured_list_data'];
+    if(counter > 0){
+      counter--;
+      Session.set("fl_counter",counter);
+    }
+    else
+    {
+      counter = list.length-1;
+      Session.set("fl_counter", counter);
+    }
+  },
+  'click .fl_block_rightbutton': function(){
+    var counter = Session.get("fl_counter");
+    var list = Session.get('featured_lists')['featured_list_data'];
+    if(counter < list.length - 1)
+    {
+      counter++;
+      Session.set("fl_counter",counter);
+    }
+    else
+    {
+      counter = 0;
+      Session.set("fl_counter", counter);
+    }
+  },
+})
 //helper function to retrieve data from array
 Template.featured_list.helpers (
   {
+    featuredData: function(){
+      var data = Session.get('featured_lists');
+      if(typeof data == 'undefined'){
+        return '';
+      }
+      return data;
+    },
+
+    featuredList: function(){
+      var data = Session.get('featured_lists');
+      var count = Session.get('fl_counter');
+      if(typeof data == 'undefined'){
+        return '';
+      }
+      var newData = data.featured_list_data;
+      $.map(newData, function(data ,index){
+        data.trading_volume = dNumberToCommaNumber(Number(data.trading_volume).toFixed(0));
+      })
+      return newData[count];
+    },
+
+    compName: function(){
+      var data = Session.get('profile_header');
+      if(typeof data == 'undefined'){
+        return '';
+      }
+      return data.c_name;
+    },
+
+    counter: function(){
+      var count = Session.get('fl_counter');
+      return count+1;
+    },
+
     company_name: function() {
       var data = Session.get("fl_data");
       return typeof(data) !== 'undefined' ? data[0].company_name : '';
@@ -59,10 +122,6 @@ Template.featured_list.helpers (
     company_shares: function() {
       var data = Session.get("fl_data");
       return typeof(data) !== 'undefined' ? data[0].company_shares : '';
-    },
-    counter: function() {
-      var data = Session.get("counter");
-      return data;
     },
     gettitle: function() {
       var data = Session.get("fl_data");
