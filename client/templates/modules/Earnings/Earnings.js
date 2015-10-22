@@ -49,6 +49,18 @@ Template.Earnings.helpers({ //helper for the template earnings  is created to pr
     return company['c_name'];
   },
 
+  title: function() {
+    if ( typeof Router.current().params.loc_id == "undefined" ) {
+      var company = Session.get("profile_header");
+      if(typeof company == 'undefined'){
+        return '';
+      }
+      return 'What\'s Happening With ' + company['c_name'] + '\'s Earnings?';
+    } else {
+      return 'What\'s Happening With The Area\'s Earnings?';
+    }
+  },
+
   preleasedURL:function(){
     var data = Session.get('profile_header');
     if(typeof data =='undefined'){
