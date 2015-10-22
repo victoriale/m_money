@@ -27,7 +27,6 @@ Template.project_history.onCreated( function() {
           comp['exec_nearest_pos'] = compList['officer_positions'][0];
           comp['connections'] = compList['connections'];
           comp['o_id'] = data['officer_data'].o_id;
-          console.log("Converted Data", comp);
           projArray.push(comp);
         }
         Session.set('new_project_history', projArray);
