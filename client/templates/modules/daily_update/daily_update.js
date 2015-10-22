@@ -5,7 +5,7 @@ Associated Files: [daily_update.less][daily_update.html]*/
 
 Template.daily_update.onCreated(function(){
   this.autorun(function(){
-    console.log(Session.get('state_id'),Session.get('city_id'));
+    
     if(Session.get('IsLocation')){
       Meteor.call('GetAIContent2', Session.get('state_id'), Session.get('city_id'), function(err, data){
         if(err){

@@ -3,8 +3,9 @@ Created: [07/31/2015]
 Description: defferedcomments
 <Associated Files: defferedcomments.html, defferedcomments.js, comments.less, commentserver.js, defferedcomments.less*/
 
-POST3 = new Mongo.Collection('post3');
-REPLY3 = new Mongo.Collection('reply3');
+//Disabled to remove error from console (Duplicate of these mongo definitions throwing error )
+//POST3 = new Mongo.Collection('post3');
+//REPLY3 = new Mongo.Collection('reply3');
 
 if(Meteor.isClient){
 

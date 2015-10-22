@@ -57,7 +57,7 @@ Template.latest_news.helpers({
 
   isData: function(){
     var data = Session.get('latest_news');
-    if(typeof data == undefined){
+    if(typeof data == 'undefined'){
       return false;
     }
     else if(data.data.length == 0){

@@ -42,23 +42,23 @@ Template.featured_list.helpers (
   {
     company_name: function() {
       var data = Session.get("fl_data");
-      return data[0].company_name;
+      return typeof(data) !== 'undefined' ? data[0].company_name : '';
     },
     company_location: function() {
       var data = Session.get("fl_data");
-      return data[0].company_location;
+      return typeof(data) !== 'undefined' ? data[0].company_location : '';
     },
     company_CEO: function() {
       var data = Session.get("fl_data");
-      return data[0].company_CEO;
+      return typeof(data) !== 'undefined' ? data[0].company_CEO : '';
     },
     company_stock: function() {
       var data = Session.get("fl_data");
-      return data[0].company_stock;
+      return typeof(data) !== 'undefined' ? data[0].company_stock : '';
     },
     company_shares: function() {
       var data = Session.get("fl_data");
-      return data[0].company_shares;
+      return typeof(data) !== 'undefined' ? data[0].company_shares : '';
     },
     counter: function() {
       var data = Session.get("counter");
