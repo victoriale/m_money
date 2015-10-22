@@ -10,7 +10,7 @@ Associated Files: project_history.html, project_history.js
     <div class="module-header">
       <span class="module-header-line"></span>
       <!--widget title-->
-      <span class="module-header-title">Mark Zuckerberg Work & Profject History</span>
+      <span class="module-header-title">{{firstName}} {{lastName}}'s Work & Project History</span>
     </div>
     <div class="module-wrapper">
       <!--Begin Panel-->
@@ -23,67 +23,74 @@ Associated Files: project_history.html, project_history.js
               <i class="fa fa-angle-down proj_hist-list-sort-box-blue"></i>
             </span>
           </div>
-          {{#each getProjectList}}
-          <div class="proj_hist-list-tile-{{getBackgroundStyle}}">
-            <!--Project Picture & Response Buttons-->
-            <span class="proj_hist-profile-info">
-              <span class="proj_hist-profile-image"></span>
-            </span>
+          <div class="proj_hist-list-panel" style="height:555px;">
+            {{#each projList}}
+              {{#if this}}<!--checks validity of array element-->
+                <div class="proj_hist-list-tile-{{#if isEven @index}}white{{else}}grey{{/if}}"><!--isEven is used to alternate between background colors-->
+                  <!--Project Picture & Response Buttons-->
+                  <span class="proj_hist-profile-info">
+                    <span class="proj_hist-profile-image"></span>
+                  </span>
 
-            <span class="proj_hist-resp-btns">
-              <span class="proj_hist-resp-btns-btn">
-                <i class="fa proj_hist-resp-btns-icon fa-heart"></i>
-                <span class="proj_hist-resp-btns-text">Save</span>
-              </span>
-              <span class="proj_hist-resp-btns-share proj_hist-resp-btns-btn">
-                <i class="fa proj_hist-resp-btns-icon fa-share-alt"></i>
-                <span class="proj_hist-resp-btns-text">Share</span>
-              </span>
-              <span class="proj_hist-resp-btns-feedback proj_hist-resp-btns-btn">
-                <i class="fa proj_hist-resp-btns-icon fa-flag"></i>
-                <span class="proj_hist-resp-btns-text">Feedback</span>
-              </span>
-            </span>
-            <!--/Project Picture & Response Buttons-->
+                  <span class="proj_hist-resp-btns">
+                    <span class="proj_hist-resp-btns-btn">
+                      <i class="fa proj_hist-resp-btns-icon fa-heart"></i>
+                      <span class="proj_hist-resp-btns-text">Save</span>
+                    </span>
+                    <span class="proj_hist-resp-btns-share proj_hist-resp-btns-btn">
+                      <i class="fa proj_hist-resp-btns-icon fa-share-alt"></i>
+                      <span class="proj_hist-resp-btns-text">Share</span>
+                    </span>
+                    <span class="proj_hist-resp-btns-feedback proj_hist-resp-btns-btn">
+                      <i class="fa proj_hist-resp-btns-icon fa-flag"></i>
+                      <span class="proj_hist-resp-btns-text">Feedback</span>
+                    </span>
+                  </span>
+                  <!--/Project Picture & Response Buttons-->
 
-            <!--Project Information-->
-            <span class="proj_hist-tile-info">
-              <div>
-                <i class="fa proj_hist-tile-info-mark fa-map-marker"></i>
-                <span class="proj_hist-tile-info-loc">{{project_location}}</span>
-              </div>
-              <div class="proj_hist-tile-info-comp-name">{{project_name}}</div>
-              <div class="proj_hist-tile-info-pos-dets">
-                <span class="proj_hist-tile-info-pos-name">{{project_position_name}}</span>
-                <span class="proj_hist-tile-info-pos-work-date"> since {{project_start_date}} - {{project_end_date}}</span>
-                <span class="proj_hist-tile-info-pos-time">{{project_time_elapsed}}</span>
-              </div>
-              <span class="proj_hist-featured-image"></span>
-              <span class="proj_hist-featured-image"></span>
-              <span class="proj_hist-featured-image"></span>
-              <span class="proj_hist-featured-image"></span>
-              <span class="proj_hist-featured-image"></span>
-              <div class="proj_hist-va-connections">
-                <span class="proj_hist-va-connections-text">View All Connections</span>
-                <i class="fa proj_hist-va-connections-icon fa-angle-right"></i>
-              </div>
-            </span>
-            <!--/Project Information-->
+                  <!--Project Information-->
+                  <span class="proj_hist-tile-info">
+                    <div>
+                      <i class="fa proj_hist-tile-info-mark fa-map-marker"></i>
+                      <span class="proj_hist-tile-info-loc">{{location}}</span>
+                    </div>
+                    <div class="proj_hist-tile-info-comp-name">{{c_name}}</div>
+                    <div class="proj_hist-tile-info-pos-dets">
+                      <span class="proj_hist-tile-info-pos-name">{{title}}</span>
+                      <span class="proj_hist-tile-info-pos-work-date"> since {{start_month}} {{start_year}} - {{end_date}}</span>
+                      <span class="proj_hist-tile-info-pos-time">{{project_time_elapsed}}</span>
+                    </div>
+                    {{#each connections}}
+                      <span class="proj_hist-featured-image" id="{{o_id}}"></span>
+                    {{/each}}
+                    <div class="proj_hist-va-connections">
+                      <span class="proj_hist-va-connections-text">View All Connections</span>
+                      <i class="fa proj_hist-va-connections-icon fa-angle-right"></i>
+                    </div>
+                  </span>
+                  <!--/Project Information-->
+                </div>
+              {{else}}
+                <div class="proj_hist-list-tile-{{getBackgroundStyle}}"></div>
+              {{/if}}
+            {{/each}}
           </div>
-          {{/each}}
           <!--Project Footer-->
           <div class="proj_hist-content-panel-footer">
             <div class="proj_hist-va project_hiview-allory-view-all-font">
               <div class="proj_hist-va-text">VIEW ALL</div>
               <div class="proj_hist-va-pos"><img src="/infinite-icon.png"></div>
             </div>
-            <span class="proj_hist-navigation">
+            <div class="proj_hist-navigation">
               <i class="fa fa-angle-left proj_hist-content-panel-footer-icon proj_hist-page-selector-left-arrow"></i>
-              <div class="proj_hist-page-selector proj_hist-page-selector-selected proj_hist-page-selector-selected-font">1</div>
-              <div class="proj_hist-page-selector proj_hist-page-selector-font">2</div>
-              <div class="proj_hist-page-selector proj_hist-page-selector-font">3</div>
+              {{#each setPages}}
+              <!--<div class="proj_hist-page-selector proj_hist-page-selector-selected proj_hist-page-selector-selected-font">1</div>
+              <div class="proj_hist-page-selector proj_hist-page-selector-font">2</div>-->
+                {{#if @index}}<div class='proj_hist-page-selector proj_hist-page-selector-font'>{{this}}</div>{{/if}}
+                {{#unless @index}}<div class='proj_hist-page-selector proj_hist-page-selector-selected proj_hist-page-selector-selected-font'>{{this}}</div>{{/unless}}
+              {{/each}}
               <i class="fa fa-angle-right proj_hist-content-panel-footer-icon proj_hist-page-selector-right-arrow"></i>
-            </span>
+            </div>
           </div>
           <!--/Project footer-->
         </div>
