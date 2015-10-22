@@ -143,8 +143,6 @@ Meteor.methods({
     var future = new Future();
     console.log("New Executive Request",comp_id);
 
-
-
     var UrlString =   "http://apifin.synapsys.us/call_controller.php?action="+page+"&option=about&param=" + comp_id;
     console.log(UrlString);
 
@@ -158,9 +156,6 @@ Meteor.methods({
         future.return(data);
     });
 
-
-
-
     this.unblock();
     return future.wait();
   },
@@ -168,8 +163,6 @@ Meteor.methods({
   CompIndie: function(comp_id, call) {
     var future = new Future();
     console.log("New Executive Request",comp_id);
-
-
 
     var UrlString =   "http://apifin.synapsys.us/call_controller.php?action=company_profile&option=indie&call="+call+"&param=" + comp_id;
     console.log(UrlString);
@@ -183,9 +176,6 @@ Meteor.methods({
       }
         future.return(data);
     });
-
-
-
 
     this.unblock();
     return future.wait();
@@ -209,9 +199,6 @@ Meteor.methods({
       }
         future.return(data);
     });
-
-
-
 
     this.unblock();
     return future.wait();
