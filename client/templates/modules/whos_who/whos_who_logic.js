@@ -72,7 +72,9 @@ Template.whos_who.helpers({
   },
 
   author_name:function(){
-    var who = Session.get('whos_who')['officers'];
+    var data = Session.get('whos_who');
+    //Check if data and data.officers is defined. If so set who to data.officers, else set to undefined (Force to exit helper)
+    var who = typeof(data) !== 'undefined' && typeof(data.officers) !== 'undefined' ? data['officers'] : undefined;
     var index = Session.get("whos_count");
     if(typeof who == 'undefined')
     {

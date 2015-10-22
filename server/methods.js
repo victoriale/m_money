@@ -53,6 +53,28 @@ Meteor.methods({
     return future.wait();
   },
 
+  GetLocationData: function(loc_id, batchNum) {
+    console.log(typeof loc_id);
+    var future = new Future();
+    console.log("New Company Request",loc_id,batchNum);
+
+    var UrlString = "http://apifin.synapsys.us/call_controller.php?action=location_profile&option="+batchNum+"&state="+loc_id;
+    console.log(UrlString);
+
+    Meteor.http.get(UrlString, function(error, data){
+      try{
+        data = JSON.parse(data['content']);
+      } catch (e) {
+        future.throw(e);
+        return false;
+      }
+        future.return(data);
+    });
+
+    this.unblock();
+    return future.wait();
+  },
+
   GetExecData: function(exec_id, batchNum) {
     var future = new Future();
     console.log("New Executive Request",exec_id,batchNum);

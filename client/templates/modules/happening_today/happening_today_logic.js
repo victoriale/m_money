@@ -67,9 +67,10 @@ Template.happening_today.helpers({
   news: function(){
     var data = Session.get('whats_happening');
     var count = Session.get('ht_count');
-    if(typeof data == 'undefined'){
+    if(typeof data == 'undefined' || data === null){
       return '';
     }
+
     return data['stories'][count];
   },
 
