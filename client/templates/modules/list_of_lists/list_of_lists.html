@@ -12,7 +12,7 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists.l
     {{#each listsData}}
     <div class="list_ol" style="background-color:{{index_color}}">
       <div class="list_ol-top">
-        <div class="list_ol-top-img1" style="background-image:url('/{{c_logo}}')">
+        <div class="list_ol-top-img1" style="background-image:url('{{imageUrl c_logo}}')">
           <div class="list_ol-top-img2">#{{tle_ranking}}</div>
         </div>
         <div class="list_ol-top-content">
@@ -29,7 +29,7 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists.l
           <div class="list_ol-top-content-compbox">
             {{#each list_of_lists_data}}
             <a href="">
-              <div class="list_ol-top-content-compbox-subimages" style="background-image:url('/{{c_logo}}')"></div>
+              <div class="list_ol-top-content-compbox-subimages" style="background-image:url('{{imageUrl c_logo}}')"></div>
             </a>
             {{/each}}
           </div>
