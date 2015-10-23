@@ -317,7 +317,7 @@ Meteor.methods({
     console.log("New featured List Request",loc_id);
 
     //random number to pick random list in list_index that's in database
-    var x = Math.floor((Math.random() * 25) + 1);
+    var x = Math.floor((Math.random() * 2) + 1);
     //param={list_index} , {location/DMA}
     var UrlString = "http://apifin.synapsys.us/call_controller.php?action=top_list&option=list&param="+ x +","+ loc_id
     console.log(UrlString);
