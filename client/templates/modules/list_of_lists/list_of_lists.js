@@ -28,6 +28,14 @@ Template.list_of_lists.helpers({
     return list.list_rankings;
   },
 
+  checkList: function(){
+    var list = Session.get('list_of_lists');
+    if(typeof list =='undefined' || list == ''){
+      return false;
+    }
+    return true;
+  },
+
   headerInfo: function(){
     var data = Session.get('profile_header');
     if(typeof data == 'undefined'){

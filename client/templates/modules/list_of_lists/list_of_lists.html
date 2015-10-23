@@ -5,6 +5,7 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists.l
 -->
 <!-- The program starts here-->
 <template name="list_of_lists">
+  {{#with checkList}}
   <div class="module-listoflists">
     <div class="list_header"><div class='list_header-line'></div>Top Lists That Feature [Profile Name]{{headerInfo}}
     </div>
@@ -47,5 +48,6 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists.l
     </div>
     {{/each}}
   </div>
+  {{/with}}
   <!-- End of Template-->
 </template>
