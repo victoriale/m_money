@@ -26,3 +26,13 @@ Template.share.onRendered(function(){
     $(".pinterest-link").attr("href", String_pinterest);
 
 })
+
+Template.share.helpers({
+  compImage: function(){
+    var image = Session.get('profile_header');
+    if(typeof image == 'undefined'){
+      return '';
+    }
+    return image.c_logo;
+  },
+})

@@ -5,6 +5,32 @@ Description: featured top 100 lists
 Associated Files: featured_list.html, featured_list.less
 */
 //render function to set the array with data
+
+Template.featured_list.onCreated(function(){
+  this.autorun(function(){
+    if(Session.get('IsExec')){
+      var data = Session.get('profile_header').c_hq_state;
+    }
+    if(Session.get('IsLocation')){
+      var data = Session.get('loc_id');
+    }
+    if(!Session.get('IsCompany')){
+      Meteor.call('featuredData', data, function(error, result){
+        console.log(result);
+        if(error){
+          console.log('Invalid Player Error',error);
+          return '';
+        }
+        var featured_lists = {};
+        featured_lists['featured_list_title'] = result.top_list_gen.top_list_title;
+        featured_lists['featured_list_data'] = result.top_list_gen.top_list_list;
+        console.log(featured_lists);
+        Session.set('featured_lists', featured_lists);
+      })
+    }
+  })
+})
+
 Template.featured_list.onRendered( function() {
   Session.set("fl_counter",0);
 
@@ -95,7 +121,13 @@ Template.featured_list.helpers (
       if(typeof data == 'undefined'){
         return '';
       }
-      return data.c_name;
+      if(Session.get('IsLocation')){
+        var comp = data['location'];
+      }else{
+        var comp = data.c_name;
+      }
+
+      return comp;
     },
 
     counter: function(){

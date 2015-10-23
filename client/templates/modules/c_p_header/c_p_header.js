@@ -282,7 +282,9 @@ Template.c_p_graph.onCreated(function(){
   this.autorun(function(){
     var data = Session.get('daily_update');
     var highchartsData = [];
-
+    if(typeof data == 'undefined'){
+      return '';
+    }
     data.stock_hist.forEach(function(item, index){
       //Transform date
       var date = item.sh_date * 1000;
