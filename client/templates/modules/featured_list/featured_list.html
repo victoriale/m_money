@@ -5,6 +5,7 @@ Description: featured top 100 lists
 Associated Files: featured_list.html, featured_list.js
 -->
 <template name="featured_list">
+  {{#with checkData}}
   {{#with featuredData}}
   <!--whole panel for the page-->
   <div class="fl_panel">
@@ -147,5 +148,6 @@ Associated Files: featured_list.html, featured_list.js
         </div>
       </div>
     </div>
+    {{/with}}
     {{/with}}
   </template>

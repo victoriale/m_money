@@ -9,7 +9,11 @@ Associated Files: featured_list.html, featured_list.less
 Template.featured_list.onCreated(function(){
   this.autorun(function(){
     if(Session.get('IsExec')){
-      var data = Session.get('profile_header').c_hq_state;
+      var data = Session.get('profile_header');
+      if(typeof data =='undefined' || data == ''){
+        return '';
+      }
+      data = data.c_hq_state;
     }
     if(Session.get('IsLocation')){
       var data = Session.get('loc_id');
@@ -95,6 +99,13 @@ Template.featured_list.events({
 //helper function to retrieve data from array
 Template.featured_list.helpers (
   {
+    checkData:function(){
+      var data = Session.get('featured_lists').featured_list_data;
+      if(typeof data == 'undefined'){
+        return '';
+      }
+      return true;
+    },
     featuredData: function(){
       var data = Session.get('featured_lists');
       if(typeof data == 'undefined'){
