@@ -169,8 +169,6 @@ Template.daily_update.helpers({
     data['csi_price'] = commaSeparateNumber_decimal(Math.round(data['csi_price'] * 100) / 100);
     data['csi_price_change_since_last'] = Number(data['csi_price_change_since_last']).toFixed(2);
 
-    console.log('adfDATA', data);
-
     return data;
   },
 
