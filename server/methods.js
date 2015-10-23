@@ -336,6 +336,31 @@ Meteor.methods({
     return future.wait();
   },
 
+  listData: function(id){
+    var future = new Future();
+    console.log("New featured List Request",id);
+
+    //random number to pick random list in list_index that's in database
+    var x = Math.floor((Math.random() * 2) + 1);
+    //param={list_index} , {location/DMA}
+    var UrlString = "http://apifin.synapsys.us/call_controller.php?action=company_profile&option=batch_3&param="+id+"&limit=1,3";
+    console.log(UrlString);
+
+    Meteor.http.get(UrlString, function(error, data){
+      try{
+        data = JSON.parse(data['content']);
+      } catch (e) {
+        future.throw(e);
+        return false;
+      }
+        future.return(data);
+    });
+
+    this.unblock();
+    return future.wait();
+  },
+
+
   //AI CONTENT METEOR CALL
   GetAIContent: function(comp_id){
     this.unblock();

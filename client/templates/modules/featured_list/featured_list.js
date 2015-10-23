@@ -20,15 +20,13 @@ Template.featured_list.onCreated(function(){
     }
     if(!Session.get('IsCompany')){
       Meteor.call('featuredData', data, function(error, result){
-        console.log(result);
         if(error){
-          console.log('Invalid Player Error',error);
+          console.log('Invalid parameters Error',error);
           return '';
         }
         var featured_lists = {};
         featured_lists['featured_list_title'] = result.top_list_gen.top_list_title;
         featured_lists['featured_list_data'] = result.top_list_gen.top_list_list;
-        console.log(featured_lists);
         Session.set('featured_lists', featured_lists);
       })
     }
