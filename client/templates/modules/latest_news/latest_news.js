@@ -45,6 +45,14 @@ Template.latest_news.onRendered(function(){
 })
 
 Template.latest_news.helpers({
+  compImage: function(){
+    var image = Session.get('profile_header');
+    if(typeof daimageta == 'undefined'){
+      return '';
+    }
+    return image.c_logo;
+  },
+
   newsURL: function(){
     var data = Session.get('profile_header');
     if(typeof data == 'undefined'){
@@ -57,7 +65,7 @@ Template.latest_news.helpers({
 
   isData: function(){
     var data = Session.get('latest_news');
-    
+
     if(typeof data == 'undefined'){
       return false;
     }else if(data.data === null){
