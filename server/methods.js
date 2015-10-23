@@ -413,6 +413,30 @@ Meteor.methods({
     this.unblock();
     return future.wait();
   },
+  GetSuggestion: function(searchString,currentTime){
+    var stringURL = 'http://apifin.synapsys.us/call_controller.php?action=search&option=batch&wild=true&param=' + searchString;
+    var future = new Future();
+    curTime.withValue(currentTime,function(){
+      var boundFunction = Meteor.bindEnvironment(function(error, data){
+        if ( error ) {
+          future.throw(error);
+        }
+
+        try {
+          data = JSON.parse(data['content']);
+        } catch(e) {
+          future.throw(e);
+          return false;
+        }
+        var nowTime = curTime.get();
+
+        future.return({data: data, time: nowTime});
+      });
+      Meteor.http.get(stringURL,boundFunction);
+    });
+    this.unblock();
+    return future.wait();
+  },
 });
 
 Meteor.startup(function(){
