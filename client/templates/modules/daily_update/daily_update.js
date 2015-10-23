@@ -5,8 +5,10 @@ Associated Files: [daily_update.less][daily_update.html]*/
 
 Template.daily_update.onCreated(function(){
   this.autorun(function(){
-    
     if(Session.get('IsLocation')){
+      //Set initial range
+      Session.set('d_u_range', '5Y');
+
       Meteor.call('GetAIContent2', Session.get('state_id'), Session.get('city_id'), function(err, data){
         if(err){
           console.log("error Call", err);
@@ -16,6 +18,8 @@ Template.daily_update.onCreated(function(){
           Session.set('AI_daily_update',aiContent);
         }
       })
+
+      transformLocationDailyUpdate();
     }
   })
   this.autorun(function(){
@@ -35,6 +39,45 @@ Template.daily_update.onCreated(function(){
     }
   })
 })
+
+//Function to transform location data to form useable my already existing helpers
+function transformLocationDailyUpdate(){
+  var data = Session.get('location_daily_update');
+  //If data is undefined exit function
+  if(typeof data === 'undefined'){
+    return '';
+  }
+
+  var highchartsData = [];
+  var daily_update = {};
+
+  data.composite_history.forEach(function(item, index){
+    //Transform date
+    var date = moment(item.date).format('X') * 1000;
+    //Build point array
+    var point = [date, Number(item.price)]
+    //Push point array to data set
+    highchartsData.push(point);
+  })
+
+  //GRAPH MUST BE ASC order from [0] - [max] where max is the latest date in unix
+  highchartsData.reverse();
+  data.highchartsData = highchartsData;
+
+  Session.set('graph_data', data);
+
+  daily_update.csi_price = data.composite_summary.current_price;
+  daily_update.csi_percent_change_since_last = data.composite_summary.percent_change;
+  daily_update.csi_price_change_since_last = data.composite_summary.price_change;
+  daily_update.lastUpdated = moment(data.composite_summary.last_updated).tz('America/New_York').format('dddd MM/DD/YYYY hh:mma') + ' EST';
+  daily_update.todays_high = data.composite_summary.todays_high;
+  daily_update.todays_low = data.composite_summary.todays_low;
+  daily_update.previous_close = data.composite_summary.previous_close;
+  daily_update.total_companies = data.composite_summary.total_companies;
+
+
+  Session.set('daily_update', daily_update);
+}
 
 Template.daily_update.onRendered(function(){
   this.autorun(function(){
@@ -93,15 +136,40 @@ Template.daily_update.helpers({
     if(typeof data == 'undefined'){
       return {new:"stuff"};
     }
+
+    var currentRoute = Router.current().route.getName();
+
+    switch(currentRoute){
+      case 'content.locationprofile':
+        data.text1 = 'Todays Low';
+        data.text2 = 'Todays High';
+        data.text3 = 'Previous Close';
+        data.text4 = 'Total Companies';
+
+        data.value1 = data.todays_low;
+        data.value2 = data.todays_high;
+        data.value3 = commaSeparateNumber_decimal(Number(data.previous_close));
+        data.value4 = data.total_companies;
+      break;
+      case 'content.companyprofile':
+        data.text1 = 'Market Cap';
+        data.text2 = 'PE Ratio';
+        data.text3 = 'Total Shares';
+        data.text4 = 'Average Volume';
+
+        data.value1 = nFormatter(Number(data['csi_market_cap']));;
+        data.value2 = Number(data['csi_pe_ratio']).toFixed(2);
+        data.value3 = nFormatter(Number(data['csi_total_shares']));
+        data.value4 = nFormatter(Number(data['csi_trading_vol']));
+      break;
+    }
+
     //data is being returned as string so convert to numbers and round to fit design
-    data['csi_closing_price'] = Number(data['csi_closing_price']).toFixed(2);
-    data['csi_market_cap'] = nFormatter(Number(data['csi_market_cap']));
-    data['csi_pe_ratio'] = Number(data['csi_pe_ratio']).toFixed(2);
     data['csi_percent_change_since_last'] = Number(data['csi_percent_change_since_last']).toFixed(2);
-    data['csi_price'] = Number(data['csi_price']).toFixed(2);
+    data['csi_price'] = commaSeparateNumber_decimal(Math.round(data['csi_price'] * 100) / 100);
     data['csi_price_change_since_last'] = Number(data['csi_price_change_since_last']).toFixed(2);
-    data['csi_total_shares'] = nFormatter(Number(data['csi_total_shares']));
-    data['csi_trading_vol'] = nFormatter(Number(data['csi_trading_vol']));
+
+    console.log('adfDATA', data);
 
     return data;
   },
@@ -125,51 +193,40 @@ Template.daily_update.helpers({
     //if above is correct the below will work
     switch(d_u_range){
       case '1D':
-        var range = 1;
         var min = latestDate.subtract(1, 'days').format('X') * 1000;
       break;
       case '5D':
-        var range = 5;
         var min = latestDate.subtract(5, 'days').format('X') * 1000;
       break;
       case '10D':
-        var range = 10;
         var min = latestDate.subtract(10, 'days').format('X') * 1000;
       break;
       case '1M':
-        var range = 30;
         var min = latestDate.subtract(1, 'months').format('X') * 1000;
       break;
       case '3M':
-        var range = 90;
         var min = latestDate.subtract(3, 'months').format('X') * 1000;
       break;
       case '6M':
-        var range = 180;
         var min = latestDate.subtract(6, 'months').format('X') * 1000;
       break;
       case '9M':
-        var range = 270;
         var min = latestDate.subtract(9, 'months').format('X') * 1000;
       break;
       case '1Y':
-        var range = 365;
         var min = latestDate.subtract(1, 'years').format('X') * 1000;
       break;
       case '3Y':
-        var range = 1095;
         var min = latestDate.subtract(3, 'years').format('X') * 1000;
       break;
       case '5Y':
-        var range = 1825;
         var min = latestDate.subtract(5, 'years').format('X') * 1000;
       break;
       case '10Y':
-        var range = 3650;
         var min = latestDate.subtract(10, 'years').format('X') * 1000;
       break;
       default:
-        var range = 3650;
+        var min = latestDate.subtract(5, 'years').format('X') * 1000;
       break;
     }
     //Get oldest date available to check if data range is possible
@@ -210,12 +267,15 @@ Template.daily_update.helpers({
           }],
           labels: {
               formatter: function() {
-                  return '$' + this.value
+                  return '$' + commaSeparateNumber_decimal(this.value)
               }
           },
       },
       tooltip: {
-        pointFormat: "Value: ${point.y:.2f}"
+        //pointFormat: "Value: ${point.y:.2f}",
+        formatter: function(){
+          return moment(this.x).format('dddd MM/DD/YYYY') + '<br />Value: $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+        }
       },
       plotOptions: {
           spline: {
