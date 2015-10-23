@@ -26,7 +26,8 @@ function GetSuggest(nowTime) {
   if ( searchString == "" ) {
     $('.fi_search_recommendations').removeClass('active');
   } else {
-    var HTMLString = '';
+    /*var HTMLString = '';
+
     var data = [{city:'Wichita', state:'KS'}, {city:'Derby', state:'KS'}, {city: 'Andover', state: 'KS'}];
     for ( var index = 0; index < data.length; index++ ) {
       if ( index < 10 ) {
@@ -37,40 +38,40 @@ function GetSuggest(nowTime) {
       }
     }
     $('.fi_search_recommendations')[0].innerHTML = HTMLString;
-    $('.fi_search_recommendations').addClass('active');
+    $('.fi_search_recommendations').addClass('active');*/
 
 
-    // Meteor.call('GetSuggestion',encodeURIComponent(searchString),nowTime,function(error, data){
-    //   if ( error ) {
-    //     console.log('Suggestion Error',error);
-    //     return false;
-    //   }
-    //
-    //   if ( Session.get('SuggestTime') > data.time ) {
-    //     return false;
-    //   }
-    //
-    //   Session.set('SuggestTime',data.time);
-    //
-    //   data = data.data;
-    //
-    //   if ( data.length == 0 ) {
-    //     $('.fi_search_recommendations').removeClass('active');
-    //     return false;
-    //   }
-    //   //var HTMLString = '<div class="caret-top"></div><i class="fa fa-times fi_search_recommendations_close"></i>';
-    //   var HTMLString = '';
-    //   for ( var index = 0; index < data.length; index++ ) {
-    //     if ( index < 10 ) {
-    //       if ( index != 0 ) {
-    //         HTMLString = HTMLString + '<div class="border-li"></div>';
-    //       }
-    //       HTMLString = HTMLString + '<a style="color: #000" href="' + LocationURL(data[index].city + "_" + data[index].state) + '"><div class="fi_search_recommendations_item">' + data[index].city + ", " + data[index].state + '<i class="fa fa-angle-right"></i></div></a>';
-    //     }
-    //   }
-    //   $('.fi_search_recommendations')[0].innerHTML = HTMLString;
-    //   $('.fi_search_recommendations').addClass('active');
-    // });
+     Meteor.call('GetSuggestion',encodeURIComponent(searchString),nowTime,function(error, data){
+       if ( error ) {
+         console.log('Suggestion Error',error);
+         return false;
+       }
+
+       if ( Session.get('SuggestTime') > data.time ) {
+         return false;
+       }
+
+       Session.set('SuggestTime',data.time);
+
+       data = data.data;
+
+       if ( data.length == 0 ) {
+         $('.fi_search_recommendations').removeClass('active');
+         return false;
+       }
+       //var HTMLString = '<div class="caret-top"></div><i class="fa fa-times fi_search_recommendations_close"></i>';
+       var HTMLString = '';
+       for ( var index = 0; index < data.length; index++ ) {
+         if ( index < 10 ) {
+           if ( index != 0 ) {
+             HTMLString = HTMLString + '<div class="border-li"></div>';
+           }
+           HTMLString = HTMLString + '<a style="color: #000" href="' + LocationURL(data[index].city + "_" + data[index].state) + '"><div class="fi_search_recommendations_item">' + data[index].city + ", " + data[index].state + '<i class="fa fa-angle-right"></i></div></a>';
+         }
+       }
+       $('.fi_search_recommendations')[0].innerHTML = HTMLString;
+       $('.fi_search_recommendations').addClass('active');
+     });
   }
 }
 
