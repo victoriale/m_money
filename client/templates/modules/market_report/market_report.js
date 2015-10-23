@@ -4,82 +4,234 @@
 ** Associated Files: market_report.html, market_report.less
 */
 
-mreportTabChange = function(t) {
-  for(var i = 1; i <= 4; i++)
-  {
-    if(i==t)
-    {
-      document.getElementById("mreport_tab" + i).className = "mreport-mtabs mreport-active_tab";
-      document.getElementById("mreport_tab" + i + "_i").className = "mreport-underline";
-    } else {
-      document.getElementById("mreport_tab" + i).className = "mreport-mtabs mreport-inactive_tab";
-      document.getElementById("mreport_tab" + i + "_i").className = "";
-    }
-  }
+var ToCommaNumber = function(Number) {
+  var split = Number.toString().split('.');
+  split[0] = split[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return split.join('.');
 }
+
+Template.market_report.onCreated(function(){
+  Session.set('market_report_current','NASDAQ');
+  Session.set('market_report_company',0);
+});
 
 Template.market_report.onRendered( function() {
   Session.set("how_are_markets");
 });
 
+Template.market_report.events({
+  'click .mreport-mtabs': function(event) {
+    $('.mreport-bts_mtabs').find('.mreport-mtabs').each(function(){
+      $(this).attr('class','mreport-mtabs mreport-inactive_tab');
+      $(this).find('span').removeClass('mreport-underline');
+    });
+
+    $(event.currentTarget).attr('class','mreport-mtabs mreport-active_tab');
+    $(event.currentTarget).find('span').addClass('mreport-underline');
+    Session.set('market_report_current',$(event.currentTarget).find('span')[0].innerHTML);
+    Session.set('market_report_company',0);
+  },
+  'click .mreport-rbb3': function(event) {
+    var data = Session.get('market_report');
+    var current = Session.get('market_report_current');
+    var company = Session.get('market_report_company');
+    if ( typeof data == "undefined" || typeof data.market_history[current] == "undefined" ) {
+      return {};
+    }
+
+    if ( company + 1 == data.biggest_losers[current].top_list_list.length ) {
+      Session.set('market_report_company',0);
+    } else {
+      Session.set('market_report_company',company + 1);
+    }
+  },
+  'click .mreport-lbb3': function(event) {
+    var data = Session.get('market_report');
+    var current = Session.get('market_report_current');
+    var company = Session.get('market_report_company');
+    if ( typeof data == "undefined" || typeof data.market_history[current] == "undefined" ) {
+      return {};
+    }
+
+    if ( company == 0 ) {
+      Session.set('market_report_company',data.biggest_losers[current].top_list_list.length - 1);
+    } else {
+      Session.set('market_report_company',company - 1);
+    }
+  }
+});
+
 Template.market_report.helpers({                   //helper class for adding data to template dictionary
+  mr_info: function() {
+    if ( typeof Session.get('market_report') != "undefined" ) {
+      return true;
+    }
+    return false;
+  },
+
   mreport_tiles:[
-    {open_page:'OPEN PAGE',tile_name:'NASDAQ Companies',class_name:'mreport-c1_tile'},
-    {open_page:'OPEN PAGE',tile_name:'NYSE Companies',class_name:'mreport-c2_tile'},
-    {open_page:'OPEN PAGE',tile_name:'AMEX Companies',class_name:'mreport-c3_tile'}
+    {open_page:'OPEN PAGE',tile_name:'NASDAQ Companies', image:'/exchange/NASDAQ.png'},
+    {open_page:'OPEN PAGE',tile_name:'NYSE Companies', image:'/exchange/NYSE.png'},
+    {open_page:'OPEN PAGE',tile_name:'AMEX Companies', image:'/exchange/AMEX.png'}
   ],
 
-  title:function() {
-    var data = Session.get("how_are_markets");
-    return ["how are the markets doing today"];
+  title: "How Are The Markets Doing Today?",
+
+  subtitle: "Market Report",
+
+  stock_info: function() {
+    var data = Session.get('market_report');
+    var current = Session.get('market_report_current');
+    if ( typeof data == "undefined" || typeof data.market_history[current] == "undefined" ) {
+      return {};
+    }
+    data.market_history[current][0].sh_close = Math.round(data.market_history[current][0].sh_close*100)/100
+    var percent_change = parseFloat(data.market_history[current][0].percent_change);
+    var change_amt = Math.round(data.market_history[current][0].sh_close*percent_change)/100;
+    if ( percent_change >= 0 ) {
+      var arrow_class = "fa-arrow-circle-o-up";
+      var color_class = "mreport_up";
+      change_amt = '$' + change_amt;
+    } else {
+      var arrow_class = "fa-arrow-circle-o-down";
+      var color_class = "mreport_down";
+      change_amt = '-$' + Math.abs(change_amt);
+    }
+
+    // Create graph
+    var g_data = [];
+    for ( var index = 0; index < data.market_history[current].length; index++ ) {
+      g_data[g_data.length] = [
+        (new Date(data.market_history[current][index].sh_date)).getTime(), data.market_history[current][index].sh_close
+      ];
+    }
+
+    return {
+      index_name: current + ' Index',
+      stock_price: '$' + ToCommaNumber(data.market_history[current][0].sh_close),
+      stock_price_number: change_amt,
+      stock_price_percent: percent_change + '%',
+      arrow_class: arrow_class,
+      color_class: color_class,
+      image: '/exchange/' + current + '.png'
+    };
   },
 
-  subtitle:function() {
-    var data = Session.get("how_are_markets");
-    return ["market report"];
+  market_info: function() {
+    var data = Session.get('market_report');
+    var current = Session.get('market_report_current');
+    if ( typeof data == "undefined" || typeof data.market_history[current] == "undefined" ) {
+      return {};
+    }
+    var retArr = {};
+    retArr.top_list_title = data.biggest_losers[current].top_list_title;
+    retArr.exchange_name = current;
+    return retArr;
   },
-  index_name:function() {
-    var data = Session.get("how_are_markets");
-    return ["Dow Jones Index"];
+
+  c_info: function() {
+    var data = Session.get('market_report');
+    var current = Session.get('market_report_current');
+    var company = Session.get('market_report_company');
+    if ( typeof data == "undefined" || typeof data.market_history[current] == "undefined" ) {
+      return {};
+    }
+    var retArr = {};
+    retArr.counter = company + 1;
+    retArr.company_name = data.biggest_losers[current].top_list_list[company].c_name;
+    retArr.lost_percent = Math.round(data.biggest_losers[current].top_list_list[company].stock_percent*100)/100 + '%';
+    retArr.logo = data.biggest_losers[current].top_list_list[company].c_logo;
+    retArr.url = Router.path('content.companyprofile',{partner_id: Router.current().params.partner_id, company_id: data.biggest_losers[current].top_list_list[company].c_id});
+    return retArr;
   },
-  stock_price:function() {
-    var data = Session.get("how_are_markets");
-    return ["16,405.84"];
+
+  getGraph: function() {
+    var data = Session.get('market_report');
+    var current = Session.get('market_report_current');
+    if ( typeof data == "undefined" || typeof data.market_history[current] == "undefined" ) {
+      return {};
+    }
+
+    // Create graph
+    var g_data = [];
+    for ( var index = data.market_history[current].length - 1; index > -1; index-- ) {
+      g_data[g_data.length] = [
+        (new Date(data.market_history[current][index].sh_date)).getTime(), parseFloat(data.market_history[current][index].sh_close)
+      ];
+    }
+
+    var data = {
+      c_name: current,
+      highchartsData: g_data
+    };
+
+    var cfoGraphObject = {
+      title: {
+          text: ''
+      },
+      chart: {
+          type: 'spline',
+          events: {
+              redraw: function() {}
+          },
+          height: 100,
+          width: 433
+      },
+      xAxis: {
+          type: 'datetime',
+          labels: {
+              overflow: 'justify'
+          }
+      },
+      yAxis: {
+          title: '',
+          floor: 0,
+          opposite:true,
+          gridLineDashStyle: 'longdash',
+          minTickInterval: 5,
+          plotLines: [{
+              value: 0,
+              width: 1,
+              color: '#808080'
+          }],
+          labels: {
+              formatter: function() {
+                  return '$' + this.value
+              }
+          },
+      },
+      tooltip: {
+        pointFormat: "Value: ${point.y:.2f}"
+      },
+      plotOptions: {
+          spline: {
+              lineWidth: 2,
+              states: {
+                  hover: {
+                      lineWidth: 3
+                  }
+              },
+              marker: {
+                  enabled: false
+              },
+              pointInterval: 3600000, // one hour
+              pointStart: Date.UTC(2015, 4, 31, 0, 0, 0)
+          }
+      },
+      legend: {
+        enabled: false
+      },
+      credits: {
+        enabled: false
+      },
+      series: [{
+          name: data.c_name,
+          data: data.highchartsData
+      }]
+    };
+
+    return cfoGraphObject;
   }
-  ,
-  stock_price_number:function() {
-    var data = Session.get("how_are_markets");
-    return ["37.50"];
-  },
-  stock_price_percent:function() {
-    var data = Session.get("how_are_markets");
-    return ["1.80%"];
-  },
-  number_down:function() {
-    var data = Session.get("how_are_markets");
-    return ["30"];
-  },
-  stock_name:function() {
-    var data = Session.get("how_are_markets");
-    return ["dow"];
-  },
-  company_name:function() {
-    var data = Session.get("how_are_markets");
-    return ["Disney Corporation"];
-  },
-  counter_number:function() {
-    var data = Session.get("how_are_markets");
-    return ["1"];
-  },
-  lost_percent:function() {
-    var data = Session.get("how_are_markets");
-    return ["Lost 18.14%"];
-  },
-  national_market:function() {
-    var data = Session.get("how_are_markets");
-    return ["national market"];
-  },
-
 });
 
 //Function to render the spline chart
@@ -170,7 +322,7 @@ function mreportgraph() {
       seriesCounter += 1;
 
       if (seriesCounter === names.length) {
-        createChart();
+        // createChart();
       }
     });
   });

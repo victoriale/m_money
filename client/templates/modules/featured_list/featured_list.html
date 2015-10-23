@@ -5,6 +5,7 @@ Description: featured top 100 lists
 Associated Files: featured_list.html, featured_list.js
 -->
 <template name="featured_list">
+  {{#with checkData}}
   {{#with featuredData}}
   <!--whole panel for the page-->
   <div class="fl_panel">
@@ -57,7 +58,7 @@ Associated Files: featured_list.html, featured_list.js
 
         <div class="fl_cr">
           <!--image in the circle-->
-            <div class="fl_block_pic" style="background-image:url('/{{c_logo}}')">
+            <div class="fl_block_pic" style="background-image:url('{{imageUrl c_logo}}')">
               <!--passfail icon-->
               <!-- <div class="fl_block_pass-fail "></div> -->
               <!--circle for position number-->
@@ -147,5 +148,6 @@ Associated Files: featured_list.html, featured_list.js
         </div>
       </div>
     </div>
+    {{/with}}
     {{/with}}
   </template>

@@ -25,8 +25,7 @@ Template.latest_news.onRendered(function(){
       }
     }
     else if(Session.get('IsLocation')){
-      var city = "San+Francisco";
-      urlString = "http://api.synapsys.us/news/?action=get_finance_news&city=" + city;
+      urlString = "http://api.synapsys.us/news/?action=get_finance_news";
     }
     else{
       urlString = "http://api.synapsys.us/news/?action=get_finance_news";
@@ -45,6 +44,14 @@ Template.latest_news.onRendered(function(){
 })
 
 Template.latest_news.helpers({
+  compImage: function(){
+    var image = Session.get('profile_header');
+    if(typeof daimageta == 'undefined'){
+      return '';
+    }
+    return image.c_logo;
+  },
+
   newsURL: function(){
     var data = Session.get('profile_header');
     if(typeof data == 'undefined'){
@@ -57,7 +64,7 @@ Template.latest_news.helpers({
 
   isData: function(){
     var data = Session.get('latest_news');
-    
+
     if(typeof data == 'undefined'){
       return false;
     }else if(data.data === null){
@@ -91,18 +98,11 @@ Template.latest_news.helpers({
     return data['o_first_name'] + " " + data['o_last_name'];
   },
   loc: function(){
-    var state = Session.get('state_id');
-    var city = Session.get('city_id');
-    if(typeof state == 'undefined'){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
       return '';
-    }else{
-      if(typeof city == 'undefined' || city == null){
-        return state + ', ' + city;
-      }else{
-        return state;
-      }
     }
-    return data['company_location'];
+    return data['location'];
   },
   updt_dt: function(){
     return "05/24/2015, 12:36PM EDT";

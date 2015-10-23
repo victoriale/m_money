@@ -8,11 +8,17 @@ var counter=0;
 
 //Global Function to initialize the map
 initializeAreaPageMap = function() {
+  var map = Session.get('bio_location');
+  if(typeof map == 'undefined'){
+    return '';
+  }
+  var lat = Number(map.c_latitude);
+  var long = Number(map.c_longitude);
   //Map options
   var mapOptions = {
     zoom: 11,
-    center: new google.maps.LatLng(37.77, -122.42),
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+    center: new google.maps.LatLng(lat, long),
+    mapTypeId: google.maps.MapTypeId.HYBRID
   };
   map = new google.maps.Map(
     document.getElementById('map'),

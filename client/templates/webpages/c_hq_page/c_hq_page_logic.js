@@ -31,11 +31,17 @@ Template.c_hq_page.helpers({
         ]
       },
       {
+        title: 'Company URL',
+        line:[
+          {text: data.c_url, isLink: true}
+        ]
+      },
+      /*{
         title: 'InvestKit ID',
         line:[
           {text: Router.path('content.companyprofile', {company_id: company.c_id}), isLink: true}
         ]
-      },
+      },*/
     ];
 
     return category;
@@ -52,6 +58,13 @@ Template.c_hq_page.helpers({
     return data;
   },
 
+  compImage: function(){
+    var image = Session.get('profile_header');
+    if(typeof image == 'undefined'){
+      return '';
+    }
+    return image.c_logo;
+  },
 });
 
 Template.c_hq_page.onRendered(function(){
@@ -62,14 +75,25 @@ Template.c_hq_page.onRendered(function(){
 
 //Global Function to initialize the map
 initializeHQMap = function() {
+  var map = Session.get('bio_location');
+  if(typeof map == 'undefined'){
+    return '';
+  }
+  var lat = Number(map.c_latitude);
+  var long = Number(map.c_longitude);
   //Map options
   var mapOptions = {
-    zoom: 11,
-    center: new google.maps.LatLng(37.33072, -122.029674),
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+    zoom: 19,
+    center: new google.maps.LatLng(lat, long),
+    mapTypeId: google.maps.MapTypeId.HYBRID
   };
   mainmap = new google.maps.Map(
     document.getElementById('mainmap'),
     mapOptions
   );
+  var marker = new google.maps.Marker({
+    position: {lat:lat, lng:long},
+    map: mainmap,
+    icon: '/mapmarker.png'
+  });
 }

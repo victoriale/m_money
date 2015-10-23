@@ -38,18 +38,24 @@ Template.about_company.onRendered(function(){
 })
 
 MapInit = function() {
+  var map = Session.get('bio_location');
+  if(typeof map == 'undefined'){
+    return '';
+  }
+  var lat = Number(map.c_latitude);
+  var long = Number(map.c_longitude);
   //Map options
   var mapOptions = {
-    zoom: 10,
-    center: new google.maps.LatLng(37.33177, -122.03042),
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+    zoom: 19,
+    center: new google.maps.LatLng(lat, long),
+    mapTypeId: google.maps.MapTypeId.HYBRID
   };
   mainmap = new google.maps.Map(
     document.getElementById('mainmap'),
     mapOptions
   );
   var marker = new google.maps.Marker({
-  position: {lat:37.33177, lng:-122.03042},
+  position: {lat:lat, lng:long},
   map: mainmap,
   icon: '/mapmarker.png'
 });

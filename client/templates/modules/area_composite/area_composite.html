@@ -5,105 +5,90 @@ Associated Files: [area_composite.html,area_composite.less,area_composite.js]
 -->
 
 <template name="area_composite">
-  <div class="module-3"><div class="module-header"><span class="module-header-line"></span><span class="module-header-title">{{locl_cmpns}}</span></div>
+  {{#with module_info}}
+  <div class="module-3">
+    <div class="module-header"><span class="module-header-line"></span><span class="module-header-title">{{title}}</span></div>
     <div class="module-wrapper">
       <!--Panel of the module-->
-
-      <div class="s_b-panel">
-
+      <div class="ar_comp-panel">
         <!--Panel Header and title -->
-        <div class="s_b-panel-header">
-          <div class="s_b-panel-title">
-            <div class="s_b-panel-smac">
-            <i class="fa fa-circle s_b-blue"></i>
-          </div>
-            <div class="s_b-panel-helper"> {{loc_brkdwn}} </div> <div class="s_b-panel-side">AREA COMPOSITE </div>
+        <div class="ar_comp-panel-header">
+          <div class="ar_comp-panel-title">
+            <div class="ar_comp-panel-smac">
+              <i class="fa fa-circle ar_comp-blue"></i>
+            </div>
+            <div class="ar_comp-panel-helper">{{subtitle}}</div>
           </div>
         </div>
-        <!--Panel Header and title ends-->
-
         <!--Top left Panel of 5 colums-->
-        <div class="s_b-sectbrkdn">
+        <div class="ar_comp-sectbrkdn">
           <!--Title column of Top left Panel-->
-          <div class="s_b-sectbrkdn-titlecontainer">
-            <span class="s_b-sectbrkdn-titletext"><i class="fa fa-th-large s_b-sectbrkdn-titletext"></i> Sectors</span>
-            <span class="s_b-sectbrkdn-titletext s_b-sectbrkdn-titlerighttext"> Net %</span>
+          <div class="ar_comp-sectbrkdn-titlecontainer">
+            <span class="ar_comp-sectbrkdn-titletext"><i class="fa fa-th-large ar_comp-sectbrkdn-titletext"></i> Sectors</span>
+            <span class="ar_comp-sectbrkdn-titletext ar_comp-sectbrkdn-titlerighttext"> Net %</span>
           </div>
           <!--Title column of Top left Panel ends-->
 
           <!--First column of Top left Panel list-->
-          {{#each sector}}
+          {{#each sectors}}
           <a href="">
-            <div class="s_b-sectbrkdnlist">
-              <div class="s_b-itemidentifier s_b-{{lft_clr}}">
+            <div class="ar_comp-sectbrkdnlist">
+              <div class="ar_comp-itemidentifier ar_comp-{{color}}">
               </div>
-              <span class="s_b-sectbrkdncontent">{{sect}}</span>
-              <i class="s_b-fa-angle-right-align fa fa-angle-right"></i>
-              <span class="s_b-contentrighttext">{{percent}}</span>
+              <span class="ar_comp-sectbrkdncontent">{{title}}</span>
+              <i class="ar_comp-fa-angle-right-align fa fa-angle-right"></i>
+              <span class="ar_comp-contentrighttext">{{percentage}}%</span>
             </div>
           </a>
           {{/each}}
           <!--First column of Top left Panel list ends-->
-
         </div>
         <!--Top left Panel of 5 colums ends-->
 
         <!--Pie Chart-->
-        <div class="s_b-donutchart">
-
-            <!--<img src='http://images.chicagotraveler.com/sites/default/files/billboard/cloud-gate_C.jpg' alt='' class='s_b-piechartimage' > -->
-            {{> highchartsHelper chartId="devices" chartWidth="100%" chartHeight="100%" chartObject=sector_breakdwn}}
+        <div class="ar_comp-donutchart">
+          <!--<img src='http://images.chicagotraveler.com/sites/default/files/billboard/cloud-gate_C.jpg' alt='' class='ar_comp-piechartimage' > -->
+          {{> highchartsHelper chartId="devices" chartWidth="100%" chartHeight="100%" chartObject=sector_breakdown}}
         </div>
         <!--Pie Chart ends-->
 
-        <!--Bottom pannel of 4 columns-->
-        <div class="s_b-sect_lst">
-
-          <!--First Column of Bottom pannel-->
-            {{#each companies}}
-          <a href="">
-            <div class="s_b-sect_lst-content">
-              <div class="s_b-itemidentifier s_b-greyidentifier"></div>
-              <div class="s_b-sect_lst-sect_img_cntnt">
-                <div class="s_b-sect_lst-sect_img1">
-              <i class="fa {{fntawwsm}} s_b-sect_lst-sect_img s_b-sect_lst-fntawsm"></i>
-            </div>
+        <!-- Bottom Panel -->
+        <div class="area_comp_bottom">
+          {{#each companies}}
+          <div class="area_comp_row">
+            <div class="area_comp_row_left {{color}}"></div>
+            <div class="area_comp_row_image"><i class="fa {{image}}"></i></div>
+            <div class="area_comp_row_right">
+              <div class="area_comp_row_right_text">
+                <div class="area_comp_row_right_text_1">{{count}}</div>
+                <div class="area_comp_row_right_text_2">{{title}} Companies</div>
               </div>
-
-              <div class="s_b-sect_lst-total_cnt">{{count}}
-              <div class="s_b-sect_lst-cmpny_domn">{{domain}}</div>
+              <div class="area_comp_row_right_comp">
+                {{#each comp}}
+                <a href="{{url}}"><div class="area_comp_row_right_comp_circle" style="background-image: url({{logo}});" index="{{index}}"></div></a>
+                {{/each}}
               </div>
-              <div class="s_b-sect_lst-cmpny_imgs"></div>
-              <div class="s_b-sect_lst-cmpny_imgs"></div>
-              <div class="s_b-sect_lst-cmpny_imgs"></div>
-              <i class="s_b-sect_lst-fa-angle-right-align fa fa-angle-right"></i>
+              <i class="fa fa-angle-right"></i>
             </div>
-          </a>
-          {{/each}}
-
-        </div>
-        <!--Bottom pannel of 4 columns ends-->
-
-        <!--Footer of the module-->
-        <div class="s_b-module-footer">
           </div>
-        <!--Footer of the module ends-->
+          {{/each}}
+        </div>
       </div>
       <!--Panel of the modulee ends-->
 
       <!--First tile in top right of the panel-->
-      <div class="s_b-rpanel">
-      {{#each tile}}
-      <div class="s_b-tiles">
+      <div class="ar_comp-rpanel">
+      {{#each tiles}}
+      <div class="ar_comp-tiles">
         <div class="module-tile">
           <div class="module-tile-default">
             <div class="module-tile-default-container">
-              <!-- <div class="module-tile-default-icon s_b-tileicon"> -->
+              <!-- <div class="module-tile-default-icon ar_comp-tileicon"> -->
               <div class="module-tile-default-icon">
                 <i class="fa {{fnt}}"></i>
               </div>
               <div class="module-tile-default-text">
-              {{name}}
+                {{name}}
               </div>
             </div>
           </div>
@@ -111,7 +96,7 @@ Associated Files: [area_composite.html,area_composite.less,area_composite.js]
             <div class="module-tile-hover">
               <div class="module-tile-name">
                 <i class="fa {{fnt}}"></i>
-				{{name}}
+                {{name}}
               </div>
               <div class="module-tile-info"></div>
               <button class="module-tile-button module-tile-button-align">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
@@ -120,8 +105,8 @@ Associated Files: [area_composite.html,area_composite.less,area_composite.js]
         </div>
       </div>
       {{/each}}
+      </div>
     </div>
-
-</div>
-</div>
+  </div>
+  {{/with}}
 </template>

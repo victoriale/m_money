@@ -5,6 +5,34 @@ Description: featured top 100 lists
 Associated Files: featured_list.html, featured_list.less
 */
 //render function to set the array with data
+
+Template.featured_list.onCreated(function(){
+  this.autorun(function(){
+    if(Session.get('IsExec')){
+      var data = Session.get('profile_header');
+      if(typeof data =='undefined' || data == ''){
+        return '';
+      }
+      data = data.c_hq_state;
+    }
+    if(Session.get('IsLocation')){
+      var data = Session.get('loc_id');
+    }
+    if(!Session.get('IsCompany')){
+      Meteor.call('featuredData', data, function(error, result){
+        if(error){
+          console.log('Invalid parameters Error',error);
+          return '';
+        }
+        var featured_lists = {};
+        featured_lists['featured_list_title'] = result.top_list_gen.top_list_title;
+        featured_lists['featured_list_data'] = result.top_list_gen.top_list_list;
+        Session.set('featured_lists', featured_lists);
+      })
+    }
+  })
+})
+
 Template.featured_list.onRendered( function() {
   Session.set("fl_counter",0);
 
@@ -69,6 +97,13 @@ Template.featured_list.events({
 //helper function to retrieve data from array
 Template.featured_list.helpers (
   {
+    checkData:function(){
+      var data = Session.get('featured_lists').featured_list_data;
+      if(typeof data == 'undefined'){
+        return '';
+      }
+      return true;
+    },
     featuredData: function(){
       var data = Session.get('featured_lists');
       if(typeof data == 'undefined'){
@@ -95,7 +130,13 @@ Template.featured_list.helpers (
       if(typeof data == 'undefined'){
         return '';
       }
-      return data.c_name;
+      if(Session.get('IsLocation')){
+        var comp = data['location'];
+      }else{
+        var comp = data.c_name;
+      }
+
+      return comp;
     },
 
     counter: function(){

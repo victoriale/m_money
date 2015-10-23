@@ -11,6 +11,7 @@ Description: comments_page
   margin: 5px;
   background-color: @white;
   max-height:1207px;
+  text-align: left;
 
   &-hdr {
   width: 680px;
@@ -19,7 +20,7 @@ Description: comments_page
     //the head box consisting of the white background
     &-head-box {
       width: 680px;
-      height: 140px;
+      height: 131px;
       background-color: @white;
       text-align: left;
       margin: 0;
@@ -28,40 +29,19 @@ Description: comments_page
     &-head-image {
       width: 100px;
       height: 100px;
-      margin: 20px;
+      margin: 15px;
       border: solid 2px @grey-3;
       border-radius: 50%;
       float: left;
       background-image: url("");
       background-size: cover !important;
       background-position: center center !important;
-
-      //the symbol above the image
-      &-icon {
-        height: 35px;
-        width: 35px;
-        background-color: @blue;
-        position: relative;
-        bottom: 5px;
-        right: 5px;
-        border-radius: 50%;
-        border: solid 1px @white;
-        color: @white;
-        line-height: 33px;
-        font-size: 15px;
-        text-align: center;
-
-        .fa{
-          position: relative;
-          bottom: 2px;
-          right: 1px;
-        }
-      }
     }
+
     //the text consisting the latest update
     &-text {
-
-      padding: 15px;
+      height: 98px;
+      margin-top: 14px;
       float: left;
       color: @black;
       text-align: left;
@@ -69,27 +49,37 @@ Description: comments_page
       overflow: hidden;
       //the update part
       &-update {
+        height: 10px;
         font-size: 10px;
         color: #959595;
-        margin-bottom: 10px;
+        margin-bottom: 16px;
+        line-height: 8px;
       }
       //the location
       &-loc {
+        height: 12px;
         font-size: 12px;
+        line-height: 10px;
       }
       // the name of the person
       &-name {
-        font-size: 22px;
+        height: 27px;
+        font-size: 28px;
         font-family: HN-B;
+        line-height: 22px;
+        margin-top: 3px;
       }
       // the person description
       &-auth {
         max-width: 495px;
+        height: 27px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        font-size: 22px;
+        font-size: 28px;
+        line-height: 22px;
         font-family: HN-L;
+        margin-top: 3px;
       }
     }
 
@@ -148,10 +138,530 @@ Description: comments_page
 .cspace {
   // Class for comments module
 
-  width:640px;
-  max-height:750px;
-}
+  width: 641px;
+  max-height: 750px;
+
+  &-hdr {
+    width: 641px;
+    height: 36px;
+    margin: 15px 0px 0px 20px;
+
+    &-rec {
+      width: 140px;
+      height: 34px;
+      border: 1px solid #CCE8FF;
+      border-radius: 5px;
+      float: left;
+      cursor: pointer;
+
+      .fa {
+        font-size: 13px;
+        color: #2F9BFF;
+        float: left;
+        margin: 10px 0px 0px 13px;
+      }
+
+      &-txt {
+        height: 13px;
+        font-family: HN-B;
+        font-size: 13px;
+        color: #2F9BFF;
+        line-height: 10px;
+        float: left;
+        margin: 12px 0px 0px 5px;
+      }
+
+      &-num {
+        height: 13px;
+        font-family: HN-B;
+        font-size: 13px;
+        color: #536573;
+        margin: 12px 0px 0px 5px;
+        line-height: 10px;
+        float: left;
+      }
+    } // END cspace-hdr-rec
+
+    &-shr {
+      width: 85px;
+      height: 13px;
+      float: left;
+      margin: 9px 0px 0px 20px;
+      cursor: pointer;
+
+      .fa {
+        font-size: 15px;
+        color: #2F9BFF;
+        float: left;
+      }
+
+      &-txt {
+        width: 15px;
+        font-size: 15px;
+        color: #2F9BFF;
+        line-height: 13px;
+        margin-left: 5px;
+        float: left;
+      }
+    }
+
+    &-tabs {
+      width: 161px;
+      height: 11px;
+      margin-top: 10px;
+      float: right;
+
+      &-best {
+        height: 11px;
+        font-weight: bold;
+        color: #999999;
+        font-size: 14px;
+        line-height: 11px;
+        float: left;
+        cursor: pointer;
+      }
+
+      &-new {
+        height: 11px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #999999;
+        line-height: 11px;
+        float: left;
+        margin-left: 14px;
+        cursor: pointer;
+      }
+
+      &-old {
+        height: 11px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #999999;
+        line-height: 11px;
+        margin-left: 14px;
+        float: left;
+        cursor: pointer;
+      }
+    }
+  } // END cspace-hdr
+} // END cspace
+
 .c_footer{
   //container for search_module
   width: 100%;
+}
+
+.main {
+  // main-hdr
+  &-hdr {
+    width: 100%;
+    height: 50px;
+    background-image: url('/header_texture.png');
+
+    // main-hdr-box
+    &-box {
+      width: 60px;
+      height: 50px;
+      background-color: @blue;
+      float: left;
+
+      // main-hdr-box .fa
+      .fa {
+        color: white;
+        font-size: 30px;
+        margin: 11px 0px 0px 15px;
+        float: left;
+      } // END main-hdr-box .fa
+    } // END main-hdr-box
+
+    // main-hdr-arrw
+    &-arrw {
+      width: 0;
+  	  height: 0;
+  	  border-top: 25px solid transparent;
+  	  border-bottom: 25px solid transparent;
+  	  border-left: 15px solid @blue;
+      float: left;
+    } // END main-hdr-arrw
+
+    // main-hdr-txt
+    &-txt {
+      height: 19px;
+      line-height: 15px;
+      float: left;
+      font-family: HN-L;
+      font-size: 19px;
+      margin-left: 20px;
+      margin-top: 17px;
+      color: @white;
+
+      // main-hdr-txt strong
+      strong {
+        height: 19px;
+        vertical-align: top;
+        display: inline-block;
+        max-width: 400px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight: normal;
+        font-family: HN-B;
+      } // END main-hdr-txt strong
+    } // END main-hdr-txt
+  } // END main-hdr
+}
+
+.c_input{
+  //input text box to insert post
+  width: 650px;
+  height: 50px;
+  margin-left: 20px;
+  margin-top: 20px;
+  overflow: hidden;
+
+  &_crt{
+    width: 0;
+    height: 0;
+    box-shadow: 1px 1px 1px 0 #dadada;
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    border: 5px solid @white;
+    margin-left: 21%;
+    margin-top: 4%;
+  }
+
+  &_box{
+    width:578px;
+    height: 48px;
+    border: 2px solid #CCD2D7;
+    border-radius: 5px;
+    margin-left: 13px;
+    float: left;
+  }
+
+  &_share {
+    width:500px;
+    height:40px;
+    background-color: @grey-1;
+    vertical-align: bottom;
+    padding:5px;
+    -moz-transform: translateY(4px);
+    -webkit-transform: translateY(1px);
+
+  }
+  &_text{
+    width: 574px;
+    height: 44px;
+    resize: none;
+    border: none;
+    font-size: 18px;
+  }
+
+  &_img{
+    height: 48px;
+    width: 48px;
+    border-radius: 3px;
+    background-repeat: no-repeat;
+    float: left;
+    cursor: pointer;
+    background-image: url('/prof1.png');
+  }
+}
+
+.f-right{
+  float:right;
+}
+.f-left{
+  float:left;
+}
+
+.cu-box{
+  //  comment box
+  width: 640px;
+  margin-left: 20px;
+  margin-top: 20px;
+  overflow: hidden;
+
+  &-main {
+    width: 640px;
+    height: 131px;
+
+    &-img {
+      width: 48px;
+      height: 48px;
+      background-image: url('/prof2.png');
+      border-radius: 5px;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    &-txt {
+      width: 583px;
+      height: 130px;
+      margin-left: 5px;
+      display: inline-block;
+
+      &-top {
+        height: 13px;
+
+        &-nm {
+          height: 13px;
+          display: block;
+          float: left;
+          color: #2F9BFF;
+          font-family: HN-B;
+          font-size: 13px;
+          max-width: 450px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          line-height: 11px;
+        }
+
+        &-tm {
+          height: 13px;
+          line-height: 11px;
+          display: block;
+          font-size: 13px;
+          color: #999999;
+          float: left;
+        }
+      }
+
+      &-mid {
+        font-size: 15px;
+        font-family: HN-L;
+        line-height: 19px;
+        margin-top: 3px;
+      }
+
+      &-bttm {
+        width: 169px;
+        height: 16px;
+        color: #C1CACF;
+        margin-top: 5px;
+        line-height: 14px;
+
+        &-txt {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  &-sub {
+    margin-left: 55px;
+    margin-top: 11px;
+    overflow: hidden;
+
+    &-img {
+      width: 37px;
+      height: 37px;
+      border-radius: 3px;
+      background-image: url('/prof3.png');
+      float: left;
+    }
+
+    &-txt {
+      width: 500px;
+      margin-left: 6px;
+      float:left;
+      overflow: hidden;
+
+      &-top {
+        width: 500px;
+        height: 13px;
+        overflow: hidden;
+
+        &-nm {
+          height: 13px;
+          display: block;
+          float: left;
+          color: #2F9BFF;
+          font-family: HN-B;
+          font-size: 13px;
+          max-width: 250px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          line-height: 11px;
+        }
+
+        .fa {
+          margin-left: 8px;
+          margin-right: 8px;
+          font-size: 13px;
+          color: #999999;
+          line-height: 11px;
+          float: left;
+        }
+
+        &-rply {
+          height: 13px;
+          float: left;
+          color: #999999;
+          max-width: 100px;
+          font-size: 13px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          line-height: 11px;
+        }
+
+        span {
+          float: left;
+          display: block;
+          font-size: 13px;
+          line-height: 11px;
+          color: #999999;
+          margin-left: 10px;
+          margin-right: 10px;
+        }
+
+        &-tm {
+          height: 13px;
+          line-height: 11px;
+          display: block;
+          font-size: 13px;
+          color: #999999;
+          float: left;
+        }
+      }
+
+      &-mid {
+        font-size: 15px;
+        color: @black;
+        line-height: 19px;
+        font-family: HN-L;
+      }
+
+      &-bttm {
+
+      }
+    }
+  }
+}
+
+.c-load {
+  width: 640px;
+  height: 45px;
+  border: 1px solid #E0E3E9;
+  border-radius: 4px;
+  margin-top: 18px;
+  margin-bottom: 15px;
+  margin-left: 20px;
+
+  &-txt {
+    width: 85px;
+    height: 14px;
+    display: block;
+    color: #2F9BFF;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 16px auto;
+    cursor: pointer;
+    line-height: 10px;
+
+    .fa {
+      font-size: 14px;
+    }
+  }
+}
+
+.r-box{
+  //reply box
+  width: 535px;;
+
+  border: 1px solid @grey-1;
+  max-height: 250px;
+  margin-left: 12%;
+  margin-bottom: 10px;
+  overflow-y:scroll;
+
+
+  &_row{
+    //row for reply box
+    width:100%;
+    height:55px;
+    border-bottom: 1px solid @grey-1;
+
+    &_image{
+      padding:2.5px;
+      border-radius: 100%;
+      background-color: #fff;
+      box-shadow: 0 0 0 2px #ccc;
+      display: block;
+      width:45px;
+      height:45px;
+      margin-top: 8px;
+      margin-left: 12px;
+
+    }
+
+    &_text{
+      //text box for reply
+      width:402px;
+      height:35px;
+      resize:none;
+    }
+    &_user-reply{
+      width:100%;
+      height:20px;
+      font-size: 12px;
+      font-family: HN-B;
+      display: block;
+      color:@blue;
+    }
+  }
+}
+.boxnum{
+  // class attributes for user replies
+  .r-box;
+  width:570px;
+  min-height: 65px;
+  border-left: 5px solid @grey-3;
+  border-bottom: none;
+}
+.reply_button{
+  //ellipse for posting reply
+  width: 25px;
+  Height:25px;
+  border-radius: 100%;
+  background-color: #3098ff;
+  display: block;
+  color:#fff;
+  float:right;
+  position: relative;
+  margin-top: -8%;
+  font-size: 12px;
+  padding-top: 4px;
+  padding-right: 3px;
+  margin-right: 2%;
+  cursor: pointer;
+  text-align: center;
+}
+
+.r-text{
+  float:right;
+  width:435px;
+  height:38px;
+  display: block;
+  border: 1px solid #ccc;
+  margin-top: -8%;
+  margin-right: 9%;
+}
+textarea {
+  border: none;
+  overflow: auto;
+  outline: none;
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  padding-left: 10px;
+  padding-top: 8px;
+}
+
+.active {
+  color: #2F9BFF;
 }
