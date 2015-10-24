@@ -360,6 +360,31 @@ Meteor.methods({
     return future.wait();
   },
 
+  topListData: function(index ,loc_id){
+    var future = new Future();
+    console.log("New featured List Request For",loc_id);
+    console.log("List Index:",index);
+
+    //random number to pick random list in list_index that's in database
+    var x = Math.floor((Math.random() * 2) + 1);
+    //param={list_index} , {location/DMA}
+    var UrlString = "http://apifin.synapsys.us/call_controller.php?action=top_list&option=list&param="+index+","+loc_id;
+    console.log(UrlString);
+
+    Meteor.http.get(UrlString, function(error, data){
+      try{
+        data = JSON.parse(data['content']);
+      } catch (e) {
+        future.throw(e);
+        return false;
+      }
+        future.return(data);
+    });
+
+    this.unblock();
+    return future.wait();
+  },
+
 
   //AI CONTENT METEOR CALL
   GetAIContent: function(comp_id){
