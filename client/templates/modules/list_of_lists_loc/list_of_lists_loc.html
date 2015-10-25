@@ -4,7 +4,7 @@ Description: Top lists Facebook
 Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists.less
 -->
 <!-- The program starts here-->
-<template name="list_of_lists">
+<template name="list_of_lists_loc">
   {{#with checkList}}
   <div class="module-listoflists">
     <div class="list_header"><span class='list_header-line'></span>Top Lists That Feature {{headerInfo}}
@@ -12,28 +12,26 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists.l
     {{#each listsData}}
     <div class="list_ol" style="background-color:{{index_color}}">
       <div class="list_ol-top">
-        <div class="list_ol-top-img1" style="background-image:url('{{imageUrl c_logo}}')">
-          <div class="list_ol-top-img2">#{{tle_ranking}}</div>
-        </div>
+        {{#with top}}
+        <div class="list_ol-top-img1" style="background-image:url('{{imageUrl c_logo}}')"></div>
+        {{/with}}
         <div class="list_ol-top-content">
-          {{#each top_list_list}}
           <div class="list_ol-top-content-textbox">
             <div class="list_ol-top-content-textbox-txt1">
               <i class="fa fa-map-marker" style="color:#3098ff"></i>
               United States
             </div>
             <div class="list_ol-top-content-textbox-txt2">
-                {{list_of_lists_title}}
+              {{top_list_title}}
             </div>
           </div>
           <div class="list_ol-top-content-compbox">
-            {{#each list_of_lists_data}}
+            {{#each top_list_list}}
             <a href="">
               <div class="list_ol-top-content-compbox-subimages" style="background-image:url('{{imageUrl c_logo}}')"></div>
             </a>
             {{/each}}
           </div>
-          {{/each}}
           <button class="list_ol-top-content-button">
             <div class="fin_icon"></div>
             <div class="fin_text">See The List <i class="fa fa-angle-right"></i></div>

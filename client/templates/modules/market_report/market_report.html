@@ -5,6 +5,8 @@
 -->
 
 <template name="market_report">
+  <!-- Market Report Goes Here when there is info -->
+  {{#if mr_info}}
   <!--Page wrapper-->
   <div class="mreport">
     <!--Main page header-->
@@ -22,7 +24,7 @@
         <div class="module-tile-default">
           <div class="module-tile-default-container">
             <div class="module-tile-default-icon mreport-tile_adjust">
-              <button class="{{class_name}}"></button>
+              <button class="mreport-c1_tile" style="background-image: url({{image}})"></button>
             </div>
             <div class="module-tile-default-text">
               {{tile_name}}
@@ -32,7 +34,7 @@
         <a class="module-tile-link" href="#">
           <div class="module-tile-hover">
             <div class="module-tile-name">
-              <button class="{{class_name}}" style="width:17px; height:17px; margin:0 10px 0 0;"></button>{{tile_name}}
+              <button class="mreport-c1_tile" style="width:17px; height:17px; margin:0 10px 0 0; background-image: url({{image}});"></button>{{tile_name}}
             </div>
             <div class="module-tile-info"></div>
             <button class="module-tile-button module-tile-button-align">{{open_page}} <i class="fa fa-mail-forward"></i></button>
@@ -61,7 +63,7 @@
       <!--Company image-->
       {{#with stock_info}}
       <div class="mreport-b3wrap">
-        <div class="mreport_body_image"></div>
+        <div class="mreport_body_image" style="background-image: url({{image}})"></div>
         <div class="mreport-b3info">
           <div class="mreport_body_company">
             <span style="font-family: HN-B;">{{index_name}}</span>
@@ -131,7 +133,8 @@
       </button>
       <!--*************list view button ends here******************-->
     </div>
-  </div><!--End Main page body-->
-  <div class="module-footer"></div>
-</div><!--End Page wrapper-->
+    </div><!--End Main page body-->
+    <div class="module-footer"></div>
+  </div><!--End Page wrapper-->
+  {{/if}}
 </template>
