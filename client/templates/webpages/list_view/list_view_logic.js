@@ -4,9 +4,12 @@ Created: 07/30/2015
 Description: followers page
 Associated Files: list_view.less and list_view.html
 */
-var counter=0;
 
-//renders the data when page loads 
+Template.list_view.onCreated(function(){
+  Session.set('lv_count', 0);
+})
+
+//renders the data when page loads
 Template.list_view.onRendered(function () {
 $(".list_vw-page-selector1").css("background-color","#3098ff");
 
@@ -14,42 +17,101 @@ $(".list_vw-page-selector1").css("background-color","#3098ff");
 
 var backgroundStyle="tilewhite";
 Template.list_view.helpers({
-//gave names for dyamic access {{getheadername}}
-  getheadername: function(){
-    var name= "Apple, Inc.";
-    return name;
+  toplist:function(){
+    var listdata = Session.get('top_list_gen');
+    if(typeof listdata =='undefined'){
+      return '';
+    }
+    $.map(listdata.top_list_list, function(data,index){
+      if(index % 2 == 0){
+        data['background'] = 'tilewhite';
+      }else{
+        data['background'] = 'tilegrey';
+      }
+
+      data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
+      data['rank'] = index+1;
+      data['url'] = Router.path('content.companyprofile',{
+        company_id: data.c_id
+      });
+
+      //data from list can come in 6 different ways these values will catch and give results back
+      for(objName in data){
+        if(objName === 'stock_percent'){
+          data['data_name'] = "Stock Percent";
+          data['data_value'] = Number(data['stock_percent']).toFixed(2)+"%";
+        }
+        if(objName === 'market_cap'){
+          data['data_name'] = "Market Cap";
+          data['data_value'] = '$'+nFormatter2(data['market_cap']);
+        }
+        if(objName === 'market_percent'){
+          data['data_name'] = "Market Percent";
+          data['data_value'] = Number(data['market_percent']).toFixed(2)+"%";
+        }
+        if(objName === 'trading_volume'){
+          data['data_name'] = "Trading Volume";
+          data['data_value'] = nFormatter2(data['trading_volume']);
+        }
+        if(objName === 'pe_ratio'){
+          data['data_name'] = "PE Ratio";
+          data['data_value'] = Number(data['pe_ratio']).toFixed(0);
+        }
+        if(objName === 'eps'){
+          data['data_name'] = "Earnings Per Share";
+          data['data_value'] = Number(data['eps']).toFixed(2);
+        }
+      }
+    })
+    return listdata;
   },
-  //gave names for dyamic access {{getheadername2}}
-  getheadername2: function(){
-    var name2= "$712 Billion";
-    return name2;
+
+  carouselList:function(){
+    var count = Session.get("lv_count");
+    var listdata = Session.get('top_list_gen');
+    if(typeof listdata =='undefined'){
+      return '';
+    }
+    $.map(listdata.top_list_list, function(data,index){
+
+      data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
+      data['rank'] = index+1;
+      data['url'] = Router.path('content.companyprofile',{
+        company_id: data.c_id
+      });
+
+      //data from list can come in 6 different ways these values will catch and give results back
+      for(objName in data){
+        if(objName === 'stock_percent'){
+          data['data_name'] = "Stock Percent";
+          data['data_value'] = Number(data['stock_percent']).toFixed(2)+"%";
+        }
+        if(objName === 'market_cap'){
+          data['data_name'] = "Market Cap";
+          data['data_value'] = '$'+nFormatter2(data['market_cap']);
+        }
+        if(objName === 'market_percent'){
+          data['data_name'] = "Market Percent";
+          data['data_value'] = Number(data['market_percent']).toFixed(2)+"%";
+        }
+        if(objName === 'trading_volume'){
+          data['data_name'] = "Trading Volume";
+          data['data_value'] = nFormatter2(data['trading_volume']);
+        }
+        if(objName === 'pe_ratio'){
+          data['data_name'] = "PE Ratio";
+          data['data_value'] = Number(data['pe_ratio']).toFixed(0);
+        }
+        if(objName === 'eps'){
+          data['data_name'] = "Earnings Per Share";
+          data['data_value'] = Number(data['eps']).toFixed(2);
+        }
+      }
+    })
+    return listdata.top_list_list[count];
   },
-  //gave names for dyamic access {{getheadername3}}
-  getheadername3: function(){
-    var name3= "$112.25";
-    return name3;
-  },
-  //gave names for dyamic access {{getheadername4}}
-  getheadername4: function(){
-    var name4= "-0.74 (-0.6%)";
-    return name4;
-  },
-  //loads data for the image
-  quote:[
-    {name: 'Exxon Mobile Corp.', text: '$46.69 ', text2: ' +0.39(+0.85%)'},
-    {name: 'Johnson & Johnson', text: '$99.55 ', text2: ' +0.18(+0.18%)'},
-    {name: 'Facebook Inc.', text: '$94.31 ', text2: ' +2.68(+2.76%)'},
-    {name: 'Wells Fargo & Co.', text: '$58.07 ', text2: ' +0.18(+0.13%)'},
-  ],
-  //This is the list of data the program will return to the html page
-  items: [
-    { counter_no: "1", color: "#f2f2f2", data: "Apple, Inc.", location: "Cupertino, CA", fall: "true", number: "$712 Billion", stck1: "$112.25", stck2: "-0.74 (-0.6%)", date: "as of 07/30/2015", following: "true" },
-    { counter_no: "2", color: "#ffffff", data: "Google, Inc.", location: "Mountain View, CA", google: "true", fall: "true", number: "$449 Billion",  stck1: "$659.89", stck2: "-1.54 (-0.23%)", date: "as of 07/30/2015" },
-    { counter_no: "3", color: "#f2f2f2", data: "Google, Inc.", location: "Mountain View, CA", google: "true", fall: "true", number: "$428 Billion",  stck1: "$629.48", stck2: "-2.54 (-0.23%)", date: "as of 07/30/2015"},
-    {imghld: "true"},
-    { counter_no: "4", color: "#f2f2f2", data: "Microsoft Corporation", location: "Redmond, WA", number: "$383 Billion",  stck1: "$46.69", stck2: "+0.39 (+0.85%)", date: "as of 07/30/2015", following: "true" },
-    { counter_no: "5", color: "#f2f2f2", data: "Bershire Hathaway", location: "Redmond, WA", number: "$350 Billion",  stck1: "$214,400", stck2: "+80.00 (+0.04%)", date: "as of 07/30/2015", following: "true"}
-  ],
+
+
   //This function is called everytime "each" loop runs, it returns the respective class which is suppose to use on each iteration
   getBackgroundStyle: function() {
 
@@ -65,40 +127,31 @@ Template.list_view.helpers({
 });
 //This handles the events on button clicks of 1,2,3 and 200
 Template.list_view.events({
-    //This function is called when user presses the button "1" and the function makes the button background turn
-    //blue and make the other buttons background white
-    'click .list_vw-page-selector1': function()
-    {
-        $(".list_vw-page-selector1").css("background-color","#3098ff");
-        $(".list_vw-page-selector2").css("background-color","#ffffff");
-        $(".list_vw-page-selector3").css("background-color","#ffffff");
-        $(".list_vw-page-selector200").css("background-color","#ffffff");
-    },
-    //This function is called when user presses the button "2" and the function makes the button background turn
-    //blue and make the other buttons background white
-    'click .list_vw-page-selector2': function()
-    {
-        $(".list_vw-page-selector2").css("background-color","#3098ff");
-        $(".list_vw-page-selector1").css("background-color","#ffffff");
-        $(".list_vw-page-selector3").css("background-color","#ffffff");
-        $(".list_vw-page-selector200").css("background-color","#ffffff");
-    },
-    //This function is called when user presses the button "3" and the function makes the button background turn
-    //blue and make the other buttons background white
-    'click .list_vw-page-selector3': function()
-    {
-        $(".list_vw-page-selector3").css("background-color","#3098ff");
-        $(".list_vw-page-selector2").css("background-color","#ffffff");
-        $(".list_vw-page-selector1").css("background-color","#ffffff");
-        $(".list_vw-page-selector200").css("background-color","#ffffff");
-    },
-    //This function is called when user presses the button "200" and the function makes the button background turn
-    //blue and make the other buttons background white
-    'click .list_vw-page-selector200': function()
-    {
-        $(".list_vw-page-selector200").css("background-color","#3098ff");
-        $(".list_vw-page-selector2").css("background-color","#ffffff");
-        $(".list_vw-page-selector3").css("background-color","#ffffff");
-        $(".list_vw-page-selector1").css("background-color","#ffffff");
+  'click .list_vw-lefthov': function(){
+    var counter = Session.get("lv_count");
+    var list = Session.get('top_list_gen')['top_list_list'];
+    if(counter > 0){
+      counter--;
+      Session.set("lv_count",counter);
     }
+    else
+    {
+      counter = list.length-1;
+      Session.set("lv_count", counter);
+    }
+  },
+  'click .list_vw-righthov': function(){
+    var counter = Session.get("lv_count");
+    var list = Session.get('top_list_gen')['top_list_list'];
+    if(counter < list.length - 1)
+    {
+      counter++;
+      Session.set("lv_count",counter);
+    }
+    else
+    {
+      counter = 0;
+      Session.set("lv_count", counter);
+    }
+  },
 });

@@ -62,10 +62,17 @@ Template.market_report.events({
 });
 
 Template.market_report.helpers({                   //helper class for adding data to template dictionary
+  mr_info: function() {
+    if ( typeof Session.get('market_report') != "undefined" ) {
+      return true;
+    }
+    return false;
+  },
+
   mreport_tiles:[
-    {open_page:'OPEN PAGE',tile_name:'NASDAQ Companies',class_name:'mreport-c1_tile'},
-    {open_page:'OPEN PAGE',tile_name:'NYSE Companies',class_name:'mreport-c2_tile'},
-    {open_page:'OPEN PAGE',tile_name:'AMEX Companies',class_name:'mreport-c3_tile'}
+    {open_page:'OPEN PAGE',tile_name:'NASDAQ Companies', image:'/exchange/NASDAQ.png'},
+    {open_page:'OPEN PAGE',tile_name:'NYSE Companies', image:'/exchange/NYSE.png'},
+    {open_page:'OPEN PAGE',tile_name:'AMEX Companies', image:'/exchange/AMEX.png'}
   ],
 
   title: "How Are The Markets Doing Today?",
@@ -105,7 +112,8 @@ Template.market_report.helpers({                   //helper class for adding dat
       stock_price_number: change_amt,
       stock_price_percent: percent_change + '%',
       arrow_class: arrow_class,
-      color_class: color_class
+      color_class: color_class,
+      image: '/exchange/' + current + '.png'
     };
   },
 

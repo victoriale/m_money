@@ -46,7 +46,7 @@ Associated Files: [daily_update.less][daily_update_logic.js]
                 <div class= "all_daily_update_modules-homestext"> <b>${{csi_price}}</b>
                   <div class= "all_daily_update_modules-homestext_wrapper2">
                     &nbsp;
-                    <span class="all_daily_update_modules-homestext_icon" style="color:{{changeColor csi_price_change_since_last}}"><i class="fa fa-arrow-up"></i></span>
+                    <span class="all_daily_update_modules-homestext_icon" style="color:{{changeColor csi_price_change_since_last}}"><i class="fa {{changeIcon csi_price_change_since_last}}"></i></span>
                     <span class="all_daily_update_modules-homestext2" style="color:{{changeColor csi_price_change_since_last}}">{{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%)</span>
                   </div>
                 </div>
@@ -67,16 +67,16 @@ Associated Files: [daily_update.less][daily_update_logic.js]
             </div>
             <!--The Avg values to be plugged in!-->
             <div class="all_daily_update_modules-Area-stats">
-              Market Cap:<br>
-              PE Ratio:<br>
-              Total Shares:<br>
-              Average Volume:<br>
+              {{text1}}:<br>
+              {{text2}}:<br>
+              {{text3}}:<br>
+              {{text4}}:<br>
             </div>
             <div class="all_daily_update_modules-Area-stats-values">
-              {{csi_market_cap}}<br>
-              {{csi_pe_ratio}}<br>
-              {{csi_total_shares}}<br>
-              {{csi_trading_vol}}</div>
+              {{value1}}<br>
+              {{value2}}<br>
+              {{value3}}<br>
+              {{value4}}</div>
             </div>
             <!--Wrapper below the Image right side!-->
             <div class="all_daily_update_modules-wrapper-right-body">
