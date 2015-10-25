@@ -25,24 +25,15 @@ Template.lp_head.helpers({
 });
 
 Template.lp_body.helpers({
-  Companies    : "101",
-  Market_Cap   : "4.5 Trillion",
-  Executives   : "586",
-  Compensation : "45 Billion",
   locationData: function(){
     var data = Session.get('profile_header');
 
     if(typeof(data) === 'undefined'){
       return false;
     }
+    //Removed from api due to slowing down api. Will be in rev1b
+    //data.total_executives_comp = data.total_executives_comp.replace(' Dollars', '');
 
-    data.total_executives_comp = data.total_executives_comp.replace(' Dollars', '');
-    
     return data;
   }
-});
-
-Template.lp_rdr.helpers({
-  url          : "#",
-  Name         : Company_Name
 });
