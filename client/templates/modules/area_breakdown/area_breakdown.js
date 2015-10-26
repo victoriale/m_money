@@ -6,15 +6,34 @@ Associated files: area_breakdown.html,area_breakdown.less,area_breakdown.js
 */
 var full_page = false;
 Template.area_breakdown.helpers({
-   City:"San Francisco",
-   State:"CA",
-   LastUpdate:"Today at 8:00AM EST",
-   items:[
-     {money:"4 Trillion", desci:"Total Public Market Cap", fa:"fa-users", url:"#"},
-     {money:"$7 Billion",desci:"Total Executive Compensation",fa:"fa-globe", url:"#"},
-     {money:"$537,500",desci:"Average Executive Compensation",fa:"fa-user", url:"#"},
-     {money:"44.53 Million",desci:"Total Shares",fa:"fa-building-o", url:"#"}
-   ]
+  statistics:function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return false;
+    }
+    var statistics = [
+      {money:data.total_market_cap, desci:"Total Public Market Cap", fa:"fa-globe"},
+      {money:data.total_companies,desci:"Total Companies",fa:"fa-building-o"},
+      {money:data.total_executives,desci:"Total Executives",fa:"fa-user"}
+    ];
+    return statistics;
+  },
+
+  location: function(){
+    var loc = Session.get('loc_id');
+    if(typeof loc == 'undefined'){
+      return false;
+    }
+    return loc;
+  },
+
+  statURL: function(){
+    var loc = Session.get('loc_id');
+    if(typeof loc == 'undefined'){
+      return false;
+    }
+    return Router.path('content.statistics',{loc_id:loc});
+  },
 });
 
 Template.area_breakdown.onRendered(function(){

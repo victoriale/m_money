@@ -121,6 +121,8 @@ Template.market_bar.onCreated(function(){
         var marketArr = [];
         var latestItem = marketData[0];
         var close_value = commaSeparateNumber_decimal(Math.round(latestItem.sh_close * 100) / 100);
+        var change_value = (latestItem.amount_change).toFixed(2);
+        var change_value_number = Math.round(latestItem.amount_change * 100) / 100;
         lastUpdated = latestItem.c_tr_last_updated;
 
 
@@ -142,6 +144,8 @@ Template.market_bar.onCreated(function(){
           graphData: marketArr,
           name: latestItem.c_exchange,
           close_value: close_value,
+          change_value: change_value,
+          change_value_number: change_value_number,
           percent: latestItem.percent_change
         })
 

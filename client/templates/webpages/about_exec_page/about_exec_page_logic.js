@@ -9,18 +9,13 @@
 var data = Session.get('profile_header');
 //Helpers to display dynamic data from session
 Template.about_exec_page.helpers({
-//url to link to the executive page from top bar and view profile
-  Execurl: function() {
-    var data = Session.get("profile_header");
-    if(typeof data == "undefined")
-    {
-      return '';
-    }
-    var urlid= data['o_id'];
-     return Router.path('content.executiveprofile',{
-      partnerid: null,
-      exec_id: urlid
-    });
+  //Helper to navigate back to executive profile
+  backToExec: function(){
+    var params = Router.current().getParams();
+
+    return Router.path('content.executiveprofile', {
+      exec_id: params.exec_id
+    })
   },
   //to get and display first name
   fname: function() {

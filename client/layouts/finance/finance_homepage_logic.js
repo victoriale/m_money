@@ -26,8 +26,8 @@ function GetSuggest(nowTime) {
   if ( searchString == "" ) {
     $('.fi_search_recommendations').removeClass('active');
   } else {
-    /*var HTMLString = '';
-
+    /*
+    var HTMLString = '';
     var data = [{city:'Wichita', state:'KS'}, {city:'Derby', state:'KS'}, {city: 'Andover', state: 'KS'}];
     for ( var index = 0; index < data.length; index++ ) {
       if ( index < 10 ) {
@@ -52,7 +52,7 @@ function GetSuggest(nowTime) {
        }
 
        Session.set('SuggestTime',data.time);
-
+       console.log(data);
        data = data.data;
 
        if ( data.length == 0 ) {
@@ -137,7 +137,7 @@ Template.finance_homepage.events({
 });
 
 Template.finance_homepage.onCreated(function() {
-  // Session.set('SuggestTime',0);
+   Session.set('SuggestTime',0);
   // this.autorun(function(){
   //   var data = Session.get('UserLoc');
   //   if ( typeof data == "undefined" ) {

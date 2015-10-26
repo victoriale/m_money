@@ -7,30 +7,7 @@ Associated Files: featured_list.html, featured_list.less
 //render function to set the array with data
 
 Template.featured_list.onCreated(function(){
-  this.autorun(function(){
-    if(Session.get('IsExec')){
-      var data = Session.get('profile_header');
-      if(typeof data =='undefined' || data == ''){
-        return '';
-      }
-      data = data.c_hq_state;
-    }
-    if(Session.get('IsLocation')){
-      var data = Session.get('loc_id');
-    }
-    if(!Session.get('IsCompany')){
-      Meteor.call('featuredData', data, function(error, result){
-        if(error){
-          console.log('Invalid parameters Error',error);
-          return '';
-        }
-        var featured_lists = {};
-        featured_lists['featured_list_title'] = result.top_list_gen.top_list_title;
-        featured_lists['featured_list_data'] = result.top_list_gen.top_list_list;
-        Session.set('featured_lists', featured_lists);
-      })
-    }
-  })
+
 })
 
 Template.featured_list.onRendered( function() {
@@ -120,7 +97,33 @@ Template.featured_list.helpers (
       }
       var newData = data.featured_list_data;
       $.map(newData, function(data ,index){
-        data.trading_volume = dNumberToCommaNumber(Number(data.trading_volume).toFixed(0));
+        console.log(objName, data);
+        for(objName in data){
+          if(objName === 'stock_percent'){
+            data['data_name'] = "Stock Percent";
+            data['data_value'] = Number(data['stock_percent']).toFixed(2)+"%";
+          }
+          if(objName === 'market_cap'){
+            data['data_name'] = "Market Cap";
+            data['data_value'] = '$'+nFormatter2(data['market_cap']);
+          }
+          if(objName === 'market_percent'){
+            data['data_name'] = "Market Percent";
+            data['data_value'] = Number(data['market_percent']).toFixed(2)+"%";
+          }
+          if(objName === 'trading_volume'){
+            data['data_name'] = "Trading Volume";
+            data['data_value'] = dNumberToCommaNumber(Number(data.trading_volume).toFixed(0));
+          }
+          if(objName === 'pe_ratio'){
+            data['data_name'] = "PE Ratio";
+            data['data_value'] = Number(data['pe_ratio']).toFixed(0);
+          }
+          if(objName === 'eps'){
+            data['data_name'] = "Earnings Per Share";
+            data['data_value'] = Number(data['eps']).toFixed(2);
+          }
+        }
       })
       return newData[count];
     },

@@ -6,16 +6,20 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
 -->
 
 <template name="statistics_page">
-    {{#with location}} <!--object used throughout the page for things like the location name-->
+    {{#with statistics}} <!--object used throughout the page for things like the location name-->
         <div class="stat-page"> <!--container for whole page-->
+          <a href="{{back_url}}">
+            <div class="abus-bkbx">
+              <div class="abus-bkbx-bx"><i class="fa fa-reply"></i></div>
+              <div class="abus-bkbx-tgl"></div>
+              <div class="abus-bkbx-txt">GO Back</div>
+            </div>
+          </a>
             <div class="stat-pr stat-top"> <!--container for white background area at top-->
                 <div class="stat-pr stat-top-circle"> <!--back arrow in top-->
-                    <div class="stat-pr stat-top-circle-btn">
-                        <i class="fa fa-reply"></i>
-                    </div>
                 </div>
                 <i class="stat-pa stat-n stat-top-txt1">
-                    LAST UPDATED: 06/24/2015, 8:00 AM EST
+
                 </i>
                 <i class="stat-pa stat-n stat-top-txt2">
                     <i class="fa fa-map-marker"></i>
@@ -25,7 +29,7 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                     Statistics
                 </i>
                 <i class="stat-pa stat-l stat-top-txt4 stat-cap">
-                    for {{name}}
+                    for {{fullName}}
                 </i>
             </div>
             <div class="stat-pr stat-mid"> <!--the black-grey-black section in the middle-ish-->
@@ -35,7 +39,7 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                           Statistics For
                       </div>
                       <div class="stat-mid-top-txt1-name stat-cap">
-                          {{name}}
+                          {{fullName}}
                       </div>
                     </div>
                     <div class="stat-l stat-mid-top-txt2"> <!--the first right part of the header-->
@@ -47,10 +51,9 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                         Share
                     </div>
                 </div>
+
                 <div class="stat-pa stat-mid-mid"> <!--the grey section in the middle-->
-                    <div class="navigation-button-left">
-                        <i class="fa fa-angle-left stat-mid-mid-l"></i>
-                    </div>
+
                     <div class="stat-pa stat-mid-mid-circle">
                     </div>
                     <div class="stat-pa stat-mid-mid-building">
@@ -69,50 +72,49 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                     </i>
                     <div class="stat-pa stat-l stat-mid-mid-txtbox"> <!--the part of the middle-middle that has the important and long text-->
                         <i class="stat-l stat-mid-mid-txtbox-txt">
-                          <i class="stat-cap">{{name}}</i> is home to <i class="stat-i">9,278 public companies.</i>
-                          The <i class="stat-i">average executive compensation</i>
-                          in {{name}} is <i class="stat-i">$625,687.00</i> and the <i class="stat-i">average market cap</i>
-                          for a company is <i class="stat-i">$2.83 Billion USD.</i>
+                          <i class="stat-cap">{{fullName}}</i> is home to <i class="stat-i">{{aggregates.total_companies}} public companies.</i>
+                          The <i class="stat-i">average market cap</i>
+                          in {{fullName}} is <i class="stat-i">${{aggregates.average_market_cap}}</i> and the <i class="stat-i">total market cap</i>
+                          for a company is <i class="stat-i">${{aggregates.market_cap}} Billion USD.</i>
                         </i>
                     </div>
-                    <div class="navigation-button-right">
-                        <i class="fa fa-angle-right stat-mid-mid-r"></i>
-                    </div>
+
                 </div>
+
                 <div class="stat-pa stat-mid-btm"> <!--the footer of the middle area-->
                     <div class="stat-pa stat-l stat-mid-btm-txt1">
                         Discover more information about this location?
                     </div>
                     <div class="stat-pa stat-l stat-mid-btm-txt2">
-                        Profile Last Updated On: <i class="stat-b">07/29/2015</i>
+                        Profile Last Updated On: <i class="stat-b">10/20/2015</i>
                     </div>
-                    <div class="stat-pa stat-mid-btm-btn">
-                        View Profile <i class="fa fa-angle-right"></i>
-                    </div>
+                    <a href="{{back_url}}">
+                      <div class="stat-pa stat-mid-btm-btn">
+                          View Profile <i class="fa fa-angle-right"></i>
+                      </div>
+                    </a>
                 </div>
             </div>
             <div class="stat-pr stat-btm"> <!--holds anything but the search module below the middle area-->
-                <div class="stat-b stat-btm-txt1">
-                    Sort by: <i class="stat-l">Location Statistics </i><i class="fa fa-angle-down stat-btm-txt1-blue"></i>
-                </div>
                 <div class="stat-btm-what"> <!--a box that looks like it can be closed-->
                     <div class="stat-b stat-btm-what-top">
                         What is this page?
                         <i class="fa fa-times stat-pr stat-btm-what-top-x"></i>
                     </div>
                     <div class="stat-btm-what-txt">
-                        This page contains all of the statistics around {{name}}. Stats include total companies,
+                        This page contains all of the statistics around {{fullName}}. Stats include total companies,
                         total executives, and more.
                     </div>
                 </div>
                 <div class="stat-pr stat-btm-data"> <!--a divide to seperate data from the box above-->
                     <div class="stat-pr stat-btm-data-title">
-                        Statistical Overview <i class="stat-l">for the {{name}}:</i>
+                        Statistical Overview <i class="stat-l">for the {{fullName}}:</i>
                     </div>
                     <div class="stat-pr stat-btm-data-date">
                         <i class="fa fa-calendar"></i>
-                        Last Updated 07/30/2015
+                        Last Updated 10/26/2015
                     </div>
+                    {{#with statOverview}}
                     <div class="stat-btm-data-text">
                         <div class="stat-btm-data-stat-l"> <!--for the left tiles-->
                           {{#each overviewStatsL}} <!--for each of the left tiles-->
@@ -153,10 +155,11 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                           {{/each}}
                         </div>
                     </div>
+                    {{/with}}
                 </div>
                 <div class="stat-pr stat-btm-data stat-pr"> <!--a divide to seperate data from the box above-->
                     <div class="stat-pr stat-btm-data-title">
-                        Sector Breakdown <i class="stat-l">for {{name}}:</i>
+                        Sector Breakdown <i class="stat-l">for {{fullName}}:</i>
                     </div>
                     <div class="stat-pr stat-btm-data-date">
                         <div class="stat-btm-data-sector">
@@ -185,17 +188,19 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                         {{> highchartsHelper chartId="statChart" chartWidth="180px" chartHeight="180px" chartObject=getGraphObject}}
                     </div>
                 </div>
+
+                <!-- Dont have enough Data
                 <div class="stat-pr stat-btm-data">
                   <div class="stat-pr stat-btm-data-title">
-                    Population Breakdown <i class="stat-l">for {{name}}:</i>
+                    Population Breakdown <i class="stat-l">for {{fullName}}:</i>
                   </div>
                   <div class="stat-pr stat-btm-data-date">
                       <i class="fa fa-calendar"></i>
                       Updated 08/03/2015 at 4PM EST
                   </div>
                   <div class="stat-btm-data-text">
-                      <div class="stat-btm-data-stat-l"> <!--holds the left tiles-->
-                        {{#each populationStatsL}} <!--for each left tile-->
+                      <div class="stat-btm-data-stat-l">
+                        {{#each populationStatsL}}
                           <div class="stat-btm-data-stat-box stat-pr">
                             <div class="stat-btm-data-stat-bar"></div>
                             <div class="stat-btm-data-stat-fa">
@@ -213,8 +218,8 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                           </div>
                         {{/each}}
                       </div>
-                      <div class="stat-btm-data-stat-r"> <!--holds the right tiles-->
-                        {{#each populationStatsR}} <!--for each right tile-->
+                      <div class="stat-btm-data-stat-r">
+                        {{#each populationStatsR}}
                           <div class="stat-btm-data-stat-box stat-pr">
                             <div class="stat-btm-data-stat-bar"></div>
                             <div class="stat-btm-data-stat-fa">
@@ -233,7 +238,8 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                         {{/each}}
                       </div>
                   </div>
-                </div>
+                </div>-->
+
             </div>
             {{> search_module}}
         </div>

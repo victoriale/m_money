@@ -65,7 +65,9 @@ Associated Files: [area_composite.html,area_composite.less,area_composite.js]
               </div>
               <div class="area_comp_row_right_comp">
                 {{#each comp}}
-                <a href="{{url}}"><div class="area_comp_row_right_comp_circle" style="background-image: url({{logo}});" index="{{index}}"></div></a>
+                <a href="{{url}}">
+                  <div class="area_comp_row_right_comp_circle" style="background-image: url({{imageUrl logo}});" index="{{index}}"></div>
+                </a>
                 {{/each}}
               </div>
               <i class="fa fa-angle-right"></i>
@@ -92,7 +94,7 @@ Associated Files: [area_composite.html,area_composite.less,area_composite.js]
               </div>
             </div>
           </div>
-          <a class="module-tile-link" href="#">
+          <a class="module-tile-link" href="{{url}}">
             <div class="module-tile-hover">
               <div class="module-tile-name">
                 <i class="fa {{fnt}}"></i>
