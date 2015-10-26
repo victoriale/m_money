@@ -33,7 +33,8 @@ Template.marketmovers.helpers({
       //get list of list URL to top-list Page
       var id_param = data.data.top_list_params.length;
       var loc_param = data.data.top_list_params[0];
-      var list_param = data.data.top_list_params[id_param-1];
+      var list_param = data.data.top_list_info['top_list_id'];
+      console.log(data);
       data.data['list_url'] = Router.path('content.toplist',{
         loc_id:loc_param,
         list_id:list_param

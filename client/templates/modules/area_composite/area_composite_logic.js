@@ -1,10 +1,12 @@
-/*Author: [Vinay Vittal Karagod]
-Created: [05/30/2015]
+/*Author: [William Klausmeyer]
+Created: [10/22/2015]
 Description: [.js file for Sector Breakdown Module where pie chart code and logic related to Sector Breakdown module is written]
-Associated Files: [local_companies_what_they_do.html,local_companies_what_they_do.less,local_companies_what_they_do.js]
+Associated Files: [area_composite.html,area_composite.less,area_composite.js]
 */
 
 Template.area_composite.helpers({
+
+
   module_info: function() {
     var data = Session.get('companies_by_sector');
     if ( typeof data == "undefined" ) {
@@ -148,23 +150,24 @@ Template.area_composite.helpers({
     // Tiles
     var tiles = [];
     for ( var index = 0; index < sect_arr.length; index++ ) {
-      if ( index < 2 ) {
+      console.log("Sector Array",sect_arr);
+      if ( index < 3 ) {
         tiles[index] = {
           name: sect_arr[index].title + ' Sector',
-          fnt: images[sect_arr[index].title]
+          fnt: images[sect_arr[index].title],
+          url: Router.path('content.sector',{
+            loc_id:Session.get('loc_id'),
+            sector_id: sect_arr[index].title
+          })
         };
       }
     }
-    tiles[2] = {name:"All Sectors",fnt:"fa-th"};
+    //tiles[2] = {name:"All Sectors",fnt:"fa-th"};
     RetArr.tiles = tiles;
 
     return RetArr;
   },
-  tile:[
-    {name:"Technology Sector",fnt:"fa-laptop"},
-    {name:"Real Estate Sector",fnt:"fa-home"},
-    {name:"All Sector",fnt:"fa-th"},
-  ],
-  loc_brkdwn:['SAN FRANCISCO BAY'],
-  locl_cmpns:['Local Companies Sorted By Sectors']
+
+
+
 });
