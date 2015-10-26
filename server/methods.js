@@ -529,6 +529,29 @@ Meteor.methods({
     this.unblock();
     return future.wait();
   },
+
+  GetDirectoryData: function(pageNum, query){
+    if(query === null){
+      var URLString = 'http://apifin.synapsys.us/call_controller.php?action=global_page&option=directory&page=' + pageNum;
+    }else{
+      var URLString = 'http://apifin.synapsys.us/call_controller.php?action=global_page&option=directory&page=' + pageNum + '&letter=' + query;
+    }
+
+    console.log('Directory URL');
+
+    var future = new Future();
+    Meteor.http.get(URLString, function(error, data){
+      //Error Code
+      if( error ){
+        console.log(error);
+        future.return(error);
+      }
+      //Success Code
+      future.return(data.data);
+    });
+    this.unblock();
+    return future.wait();
+  }
 });
 
 Meteor.startup(function(){
