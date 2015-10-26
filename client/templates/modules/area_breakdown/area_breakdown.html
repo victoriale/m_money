@@ -9,19 +9,18 @@ Associated files: area_breakdown.html,area_breakdown.less,area_breakdown.js
     <div clas="bkdn-cnr">
       <div class="bkdn-cnr-head">
         <span class="bkdn-cnr-head-line"></span>
-        <span class="bkdn-cnr-head-title">{{City}}, {{State}} Breakdown</span>
+        <span class="bkdn-cnr-head-title">{{location}} Breakdown</span>
       </div>
       <div class="bkdn-cnr-map"  id="loc_map"></div>
       <div class="bkdn-cnr-container">
         <div class="bkdn-cnr-container-stat">
-          <span class="bkdn-cnr-container-stat-left">{{City}}, {{State}} Statistics</span>
-          <span class="bkdn-cnr-container-stat-right">Last Updated {{LastUpdate}}</span>
+          <span class="bkdn-cnr-container-stat-left">{{location}} Statistics</span>
+          <span class="bkdn-cnr-container-stat-right"></span>
         </div>
         <div class="bkdn-cnr-container-content" >
           <div class="bkdn-cnr-container-content-line"></div>
-          {{#each items}}
+          {{#each statistics}}
             <div class = "bkdn-cnr-container-content-Bttom_dtls" >
-              <a href="{{url}}">
                 <div class="bkdn-cnr-container-content-Bttom_dtls-Stnd_bx_dtls">
                   <div class = "bkdn-cnr-container-content-Bttom_dtls-shading_awsm"><i class="fa {{fa}} bkdn-cnr-container-content-Bttom_dtls-users fa-2x"></i></div>
                   <div class = "bkdn-cnr-container-content-Bttom_dtls-Stat_txt_aln">
@@ -30,18 +29,19 @@ Associated files: area_breakdown.html,area_breakdown.less,area_breakdown.js
                   </div>
                   <i class="fa fa-angle-right bkdn-cnr-container-content-Bttom_dtls-angrit fa-2x"></i>
                 </div>
-              </a>
             </div>
           {{/each}}
         </div>
       </div>
     </div>
     <!--container for footer-->
-    <div class="ftr">
-        <div class="module-footer-button ftr-btn">
-            <span class="module-footer-button-ellipse ftr-btn-icn"><i class="fa fa-line-chart"></i></span>
-            <span class="module-footer-button-text ftr-btn-txt">See All Statistics &nbsp;<i class="fa fa-angle-right"></i></span>
-        </div>
-    </div><!-- end of container for footer-->
+    <a href="{{statURL}}">
+      <div class="ftr">
+          <div class="module-footer-button ftr-btn">
+              <span class="module-footer-button-ellipse ftr-btn-icn"><i class="fa fa-line-chart"></i></span>
+              <span class="module-footer-button-text ftr-btn-txt">See All Statistics &nbsp;<i class="fa fa-angle-right"></i></span>
+          </div>
+      </div><!-- end of container for footer-->
+    </a>
   </div>
 </template>

@@ -1,0 +1,264 @@
+/*Not Victoria, 10/23/2015*/
+@import (reference)"../global_vars.less" ;
+//
+ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+li{
+	float: left;
+}
+.lu{
+  width: 680px;
+  min-height:690px;
+	margin: 0 auto;
+  background-color: @white;
+  overflow:hidden;
+  text-overflow: hidden;
+  &-label{
+    width: 100%;
+    height:45px;
+    background-color: #000;
+    &-title{
+      font-family: HN-B;
+      color: @white;
+      font-size: 18px;
+      font-weight: 700;
+      text-align: left;
+      margin-left: 10px;
+      padding-top: 8px;
+      &-blue{
+        color: @blue;
+      }
+    }//end label-title
+  } //end lu-label
+  &-header{
+    width: 100%;
+    height:250px;
+    //background-image: url("public/");
+    background-color: rgba(0, 0, 0, 0.65);
+    background-size:cover;
+    background-position: center center !important;
+    background-repeat: no-repeat;
+    &-l{
+      float: left;
+      height: 100%;
+      width: 33%;
+      &-img1{
+        height: 150px;
+        width: 150px;
+				background-size: contain !important;
+				background-position: center center !important;
+				background-repeat: no-repeat;
+				border-radius: 50%;
+				margin-left: 20%;
+				margin-top: 18%;
+				position: relative;
+				box-shadow: 0 0 0 10px rgba(0, 0, 0, .25);
+				border-radius: 50%;
+        &-img2{
+          float:right;
+          height: 50px;
+          width: 50px;
+          background-color: @white;
+					background-size: contain !important;
+					background-position: center center !important;
+					background-repeat: no-repeat;
+          border-radius: 50%;
+          border-style: solid;
+  				border-width: 1px;
+  				border-color: #CCC;
+          margin-top: 65%;
+        }//end img1-img2
+      }//end l-img1
+    }//end header-l
+    &-c{
+      float: left;
+      width: 51%;
+      height: 100%;
+      color: @white;
+      &-icon{
+        margin-top: 10%;
+        font-size: 12px;
+        font-weight: 400;
+        text-align: left;
+        font-family: HN-L;
+        >.fa-circle{
+          display: inline-block;
+          color: @blue;
+          font-size: 10px;
+        }
+      }//end c-icon
+      &-details{
+        font-size: 24px;
+        text-align: left;
+        font-family: HN-L;
+        &-com{
+          font-family: HN-B;
+        }
+      }//end c-details
+      &-date{
+        font-size: 16px;
+        text-align: left;
+        font-family: HN-L;
+      }//end c-date
+    }//end header-c
+    &-r{
+      float: right;
+      height: 25%;
+      width: 10%;
+      border: solid 2px @white;
+      border-radius: 50%;
+      font-family: HN-B;
+      font-size: 25px;
+      margin: 12% 15px;
+      padding-left: 8px;
+      padding-top: 12px;
+      >.fa-angle-right{
+        display: inline-block;
+        color: @white;
+				font-size: 36px;
+				font-weight: 400;
+      }//end fa-chevron-right
+    }//end header-r
+  }//end lu-header
+  &-menu{
+    height: 60px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 400;
+    &-active{
+      height: 50px;
+      font-size: 14px;
+      font-weight: 400;
+      text-align: center;
+      transform: scaleX(1.0001);
+      &-list{
+        background-color: #EBEBEB;
+        height: 100%;
+        width: 20%;
+        font-family: HN;
+        color: #000000;
+        border-bottom: 1px solid @grey-3;
+        padding-top: 16px;
+        cursor: pointer;
+        >.fa-circle{
+          display: none;
+        }// end .fa-circle
+      }//end active-list
+      >.current-list{
+        background-color: #FFFFFF;
+        border-bottom: 1px solid #FFFFFF;
+        font-family: HN-B;
+        >.fa-circle{
+          display: inline-block;
+          color: @blue;
+          font-size: 10px;
+        }//end .fa-circle
+      }//end .current-list
+    }//end menu-active
+  }// end lu-menu
+
+  &-update{
+		width: 100%;
+		min-height: 300px;
+		overflow: hidden;
+		&-row{
+			width: 100%;
+			padding-top: 15px;
+	    padding-bottom: 50px;
+	    position: relative;
+	    &-l{
+	      width: 20%;
+	      float: left;
+	      font-family: HN-L;
+				font-size: 14px;
+				font-weight: 300;
+				text-align: center;
+	      line-height: 28px;
+	      margin: 10px 18px;
+	    }//end update-l
+	    &-c{
+				margin-top: 17px;
+		    width: 20px;
+		    height: 20px;
+		    border-radius: 50%;
+		    border: 1px solid #3098ff;
+		    background-color: @white;
+		    float: left;
+		    z-index: 1;
+			}//end row-c
+			  &-innerbullet{
+			    width: 14px;
+			    height: 14px;
+			    border-radius: 50%;
+			    background-color: #3098ff;
+			    z-index: 2;
+					margin: 1.7px;
+			  }
+				&-line{
+				width: 3px;
+				min-height: 265px;
+				background-color: #3098ff;
+				position: absolute;
+				left: 26.5%;
+				z-index: 0;
+
+			}
+	    &-r{
+	      float: left;
+	      &-img{
+					margin-left: 25px;
+					margin-right: 20px;
+	        float: left;
+					height: 50px;
+					width: 50px;
+					background-color: @white;
+					background-size: contain !important;
+					background-position: center center !important;
+					background-repeat: no-repeat;
+					border-radius: 50%;
+					border: 2px solid @grey-3;
+	      }//end r-img
+	      &-info{
+	        float: left;
+					font-family: HN-L;
+					margin-top: 5px;
+					width: 375px;
+					color:  @black;
+					font-size: 16px;
+					text-align: left;
+	      }//end r-info
+	    }//end update-r
+		}//end update-row
+  }//end lu-update
+	&-footer{
+		&-button{
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+			background-color: #3098ff;
+			width: 220px;
+			height: 35px;
+			font-family: HN-B;
+			color: @white;
+			font-size: 15px;
+			font-weight: 400;
+			line-height: 28px;
+			text-align: left;
+			&-logo{
+				float: left;
+				width: 25px;
+				height: 25px;
+				border-radius: 50%;
+				background-color: @black;
+				margin: 1px 10px 0 10px;
+				>.fa-line-chart{
+          display: inline-block;
+          padding-left: 4px;
+        }//end .fa-circle
+			}//end button-logo
+		}//end footer-button
+	}//end lu-footer
+} //end .lu
