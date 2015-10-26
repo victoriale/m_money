@@ -6,10 +6,6 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists.l
 */
 //This variable is set as white as our first background is grey, the program checks whether its white and changes it to grey.
 
-Template.marketmovers.onCreated(function () {
-
-});
-
 Template.marketmovers.helpers({
 
   listsData: function(){
@@ -28,13 +24,14 @@ Template.marketmovers.helpers({
         data['url'] = Router.path('content.companyprofile',{
           company_id: data.c_id
         });
+
+        return data;
       })
 
       //get list of list URL to top-list Page
       var id_param = data.data.top_list_params.length;
       var loc_param = data.data.top_list_params[0];
-      var list_param = data.data.top_list_info['top_list_id'];
-      console.log(data);
+      var list_param = data.data.top_list_info.top_list_id;
       data.data['list_url'] = Router.path('content.toplist',{
         loc_id:loc_param,
         list_id:list_param
@@ -43,7 +40,10 @@ Template.marketmovers.helpers({
       //move first listed item to a seperate object to go into big circle
       data.data['top'] = data.data.top_list_list[0];
       data.data['top_list_list'].shift();
+
+      return data;
     })
+    console.log('LIST AFTER', list);
     return list;
   },
 
