@@ -68,7 +68,7 @@
         if(typeof data === 'undefined'){
           return '';
         }
-        console.log('DATATATA', data);
+
         //Build return array
         var returnArr = [];
         //Loop through each entry

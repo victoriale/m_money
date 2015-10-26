@@ -537,7 +537,7 @@ Meteor.methods({
       var URLString = 'http://apifin.synapsys.us/call_controller.php?action=global_page&option=directory&page=' + pageNum + '&letter=' + query;
     }
 
-    console.log('Directory URL');
+    console.log('Directory URL', URLString);
 
     var future = new Future();
     Meteor.http.get(URLString, function(error, data){
