@@ -583,7 +583,7 @@ Meteor.methods({
     this.unblock();
     return future.wait();
   }
->>>>>>> c99cb23d49c49bc6bad5be5a5422449a135be3e7
+
 });
 
 Meteor.startup(function(){
