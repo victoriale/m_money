@@ -73,9 +73,13 @@ Location Module: Find Company
     overflow: hidden;
 
     &:hover {
-      color: @white;
+      color: @white !important;
       background-color: @blue;
     }
+
+    &.active {
+      color: @blue;
+    } // END .dropdown_item.active
   } // END .dropdown_item
 } // END .dropdown
 
@@ -202,6 +206,10 @@ Location Module: Find Company
     .fa {
       margin-left: 5px;
     }
+
+    &:hover {
+      background-color: @red;
+    } // END .find_cmp_clear:hover
   } // END .find_cmp_clear
 
   &_dd {
@@ -220,10 +228,12 @@ Location Module: Find Company
 
       &_txt {
         width: 160px;
+        height: 38px;
         position: absolute;
         left: 20px;
         text-align: left;
         line-height: 38px;
+        overflow: hidden;
       } // END .find_cmp_dd_menu_txt
 
       &.disabled {

@@ -288,44 +288,6 @@ function moveBallShare(ball, left) {
   $(slider).find('.slider_avg').html('$' + avg + ' Average');
 }
 
-// Populates the Industry dropdown based on Sector
-// Array of industries
-var Industries = {
-  'BasicMaterials': ["Agricultural Chemicals", "Aluminum", "Chemicals - Major Diversified", "Copper", "Gold", "Independent Oil & Gas", "Industrial Metals & Minerals", "Major Integrated Oil & Gas", "Nonmetallic Mineral Mining", "Oil & Gas Drilling & Exploration", "Oil & Gas Equipment & Services", "Oil & Gas Pipelines", "Oil & Gas Refining & Marketing", "Silver", "Specialty Chemicals", "Steel & Iron", "Synthetics"],
-  'Conglomerates': [],
-  'ConsumerGoods': ["Appliances", "Auto Manufacturers - Major", "Auto Parts", "Beverages - Brewers", "Beverages - Soft Drinks", "Beverages - Wineries & Distillers", "Business Equipment", "Cigarettes", "Cleaning Products", "Confectioners", "Dairy Products", "Electronic Equipment", "Farm Products", "Food - Major Diversified", "Home Furnishings & Fixtures", "Housewares & Accessories", "Meat Products", "Office Supplies", "Packaging & Containers", "Paper & Paper Products", "Personal Products", "Photographic Equipment & Supplies", "Processed & Packaged Goods", "Recreational Goods, Other", "Recreational Vehicles", "Rubber & Plastics", "Sporting Goods", "Textile - Apparel Clothing", "Textile - Apparel Footwear & Accessories", "Tobacco Products, Other", "Toys & Games", "Trucks & Other Vehicles"],
-  'Financial': ["Accident & Health Insurance", "Asset Management", "Closed-End Fund - Debt", "Closed-End Fund - Equity", "Closed-End Fund - Foreign", "Credit Services", "Diversified Investments", "Foreign Money Center Banks", "Foreign Regional Banks", "Insurance Brokers", "Investment Brokerage - National", "Investment Brokerage - Regional", "Life Insurance", "Money Center Banks", "Mortgage Investment", "Property & Casualty Insurance", "Property Management", "REIT - Diversified", "REIT - Healthcare Facilities", "REIT - Hotel/Motel", "REIT - Industrial", "REIT - Office", "REIT - Residential", "REIT - Retail", "Real Estate Development", "Regional - Mid-Atlantic Banks", "Regional - Midwest Banks", "Regional - Northeast Banks", "Regional - Pacific Banks", "Regional - Southeast Banks", "Regional - Southwest Banks", "Savings & Loans", "Surety & Title Insurance"],
-  'Healthcare': ["Biotechnology", "Diagnostic Substances", "Drug Delivery", "Drug Manufacturers - Major", "Drug Manufacturers - Other", "Drug Related Products", "Drugs - Generic", "Health Care Plans", "Home Health Care", "Hospitals", "Long-Term Care Facilities", "Medical Appliances & Equipment", "Medical Instruments & Supplies", "Medical Laboratories & Research", "Medical Practitioners", "Specialized Health Services"],
-  'IndustrialGoods': ["Aerospace/Defense - Major Diversified", "Aerospace/Defense Products & Services", "Cement", "Diversified Machinery", "Farm & Construction Machinery", "General Building Materials", "General Contractors", "Heavy Construction", "Industrial Electrical Equipment", "Industrial Equipment & Components", "Lumber, Wood Production", "Machine Tools & Accessories", "Manufactured Housing", "Metal Fabrication", "Pollution & Treatment Controls", "Residential Construction", "Small Tools & Accessories", "Textile Industrial", "Waste Management"],
-  'Services': ["Advertising Agencies", "Air Delivery & Freight Services", "Air Services, Other", "Apparel Stores", "Auto Dealerships", "Auto Parts Stores", "Auto Parts Wholesale", "Basic Materials Wholesale", "Broadcasting - Radio", "Broadcasting - TV", "Building Materials Wholesale", "Business Services", "CATV Systems", "Catalog & Mail Order Houses", "Computers Wholesale", "Consumer Services", "Department Stores", "Discount, Variety Stores", "Drug Stores", "Drugs Wholesale", "Education & Training Services", "Electronics Stores", "Electronics Wholesale", "Entertainment - Diversified", "Food Wholesale", "Gaming Activities", "General Entertainment", "Grocery Stores", "Home Furnishing Stores", "Home Improvement Stores", "Industrial Equipment Wholesale", "Jewelry Stores", "Lodging", "Major Airlines", "Management Services", "Marketing Services", "Medical Equipment Wholesale", "Movie Production, Theaters", "Music & Video Stores", "Personal Services", "Publishing - Books", "Publishing - Newspapers", "Publishing - Periodicals", "Railroads", "Regional Airlines", "Rental & Leasing Services", "Research Services", "Resorts & Casinos", "Restaurants", "Security & Protection Services", "Shipping", "Specialty Eateries", "Specialty Retail, Other", "Sporting Activities", "Sporting Goods Stores", "Staffing & Outsourcing Services", "Technical Services", "Toy & Hobby Stores", "Trucking", "Wholesale, Other"],
-  'Technology': ["Application Software", "Business Software & Services", "Communication Equipment", "Computer Based Systems", "Computer Peripherals", "Data Storage Devices", "Diversified Communication Services", "Diversified Computer Systems", "Diversified Electronics", "Healthcare Information Services", "Information & Delivery Services", "Information Technology Services", "Internet Information Providers", "Internet Service Providers", "Internet Software & Services", "Long Distance Carriers", "Multimedia & Graphics Software", "Networking & Communication Devices", "Personal Computers", "Printed Circuit Boards", "Processing Systems & Products", "Scientific & Technical Instruments", "Security Software & Services", "Semiconductor - Broad Line", "Semiconductor - Integrated Circuits", "Semiconductor - Specialized", "Semiconductor Equipment & Materials", "Semiconductor- Memory Chips", "Technical & System Software", "Telecom Services - Domestic", "Telecom Services - Foreign", "Wireless Communications"],
-  'Utilities': ["Diversified Utilities", "Electric Utilities", "Foreign Utilities", "Gas Utilities", "Water Utilities"]
-};
-function populateIndustry(Sector) {
-  Sector = Sector.replace(/ /,'');
-
-  // Check that there are industries for the sector
-  if ( typeof Industries[Sector] == "undefined" || Industries[Sector].length == 0 ) {
-    console.log(typeof Industries[Sector] == "undefined", Industries[Sector].length == 0);
-    return false;
-  }
-
-  // Save industries in data
-  var data = Industries[Sector];
-
-  // Create the string
-  var RetStr = '<div class="dropdown_car"></div>'; // Caret on top of dropdown
-  for ( var index = 0; index < data.length; index++ ) {
-    if ( index > 0 ) {
-      RetStr = RetStr + '<div class="dropdown_divider"></div>';
-    }
-    RetStr = RetStr + '<div class="dropdown_item" title="' + data[index] + '">' + data[index] + '</div>';
-  }
-
-  $('#ModIndustry .dropdown').html(RetStr);
-  $('#ModIndustry').removeClass('disabled');
-}
-
 Template.find_company.events({
   'mousedown #ModShare .slider_ball': function(event) {
     if ( !$(event.target).hasClass('slider_ball') ) {
@@ -375,12 +337,75 @@ Template.find_company.events({
   },
   'click .dropdown .dropdown_item': function(event) {
     var name = $(event.target)[0].innerHTML;
-    $('.find_cmp_dd_menu').click({'text': name},function(event){
-      $(event.currentTarget).find('.find_cmp_dd_menu_txt').each(function(){
-        $(this).html(event.data.text);
-      });
-      $('.find_cmp_dd_menu').unbind('click');
+    var parentTarg = $(event.target).closest('.find_cmp_dd_menu')[0];
+    $(parentTarg).find('.find_cmp_dd_menu_txt').each(function(){
+      $(this).html(name);
     });
-    populateIndustry(name);
+    $(parentTarg).find('.dropdown_item.active').removeClass('active');
+    $(event.target).addClass('active');
+    Session.set($(parentTarg)[0].id,name);
+  }
+});
+
+Template.find_company.helpers({
+  range: function() {
+    return {
+      ranges: [
+        {name: '15'},
+        {name: '25'},
+        {name: '50', class: 'active'},
+        {name: '100'},
+        {name: '150+'}
+      ]
+    };
+  },
+
+  exchange: function() {
+    var data = Session.get('find_company');
+    if ( typeof data != "object" || typeof data.exchanges == "undefined" ) {
+      return false;
+    }
+    var retArr = data.exchanges;
+    return {exchanges: retArr};
+  },
+
+  sector: function() {
+    var data = Session.get('find_company');
+    if ( typeof data != "object" || typeof data.sector_to_industry == "undefined" ) {
+      return false;
+    }
+    var retArr = [];
+    for ( var attr in data.sector_to_industry ) {
+      if ( data.sector_to_industry.hasOwnProperty(attr) ) {
+        retArr[retArr.length] = attr.toTitleCase();
+      }
+    }
+
+    return {sectors: retArr};
+  },
+
+  industry: function() {
+    var data = Session.get('find_company');
+    var current = Session.get('ModSector');
+    if ( typeof data != "object" || typeof data.sector_to_industry == "undefined" ) {
+      return false;
+    }
+    if ( typeof current == "undefined" || current == "All Sectors" ) {
+      return {class: 'disabled', default: 'All Industries'};
+    }
+    return {industries: data.sector_to_industry[current], default: 'All Industries'};
+  },
+
+  metric: function() {
+    var data = Session.get('find_company');
+    if ( typeof data != "object" || typeof data.key_metrics == "undefined" ) {
+      return false;
+    }
+    var RetArr = [];
+    var def = data.key_metrics[0].toTitleCase();
+    for ( var index = 1; index < data.key_metrics.length; index++ ) {
+      RetArr[RetArr.length] = data.key_metrics[index].toTitleCase();
+    }
+    return {default: def, metrics: RetArr};
   }
 });
