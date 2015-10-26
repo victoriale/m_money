@@ -62,22 +62,31 @@ Template.market_report.events({
 });
 
 Template.market_report.helpers({                   //helper class for adding data to template dictionary
+  //default title and subtitle for header and panel
+  title: "How Are The Markets Doing Today?",
+  subtitle: "Market Report",
+
+  mreport_tiles:function(){
+  //Create an object holding the default lists for exchange Tiles in Market_report modules
+  var loc_id = Session.get('loc_id');
+  if(typeof loc_id == 'undefined'){
+    return false;
+  }
+    tileURL = [
+      {open_page:'OPEN PAGE',tile_name:'NASDAQ Companies', image:'/exchange/NASDAQ.png', url: Router.path('content.toplist',{loc_id:loc_id,list_id: 5191})},
+      {open_page:'OPEN PAGE',tile_name:'NYSE Companies', image:'/exchange/NYSE.png', url: Router.path('content.toplist',{loc_id:loc_id,list_id: 5205})},
+      {open_page:'OPEN PAGE',tile_name:'AMEX Companies', image:'/exchange/AMEX.png', url: Router.path('content.toplist',{loc_id:loc_id,list_id: 5219})}
+    ];
+
+    return tileURL;
+  },
+
   mr_info: function() {
     if ( typeof Session.get('market_report') != "undefined" ) {
       return true;
     }
     return false;
   },
-
-  mreport_tiles:[
-    {open_page:'OPEN PAGE',tile_name:'NASDAQ Companies', image:'/exchange/NASDAQ.png'},
-    {open_page:'OPEN PAGE',tile_name:'NYSE Companies', image:'/exchange/NYSE.png'},
-    {open_page:'OPEN PAGE',tile_name:'AMEX Companies', image:'/exchange/AMEX.png'}
-  ],
-
-  title: "How Are The Markets Doing Today?",
-
-  subtitle: "Market Report",
 
   stock_info: function() {
     var data = Session.get('market_report');

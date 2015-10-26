@@ -1,18 +1,18 @@
-<!--Name: Venkatesh
-Created:7/21/2015
-Description: Top lists Facebook
-Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists.less
+<!--Name: Larry Pham
+Created:10/26/2015
+Description: Top lists for market
+Associated Files: marketmovers.html, marketmovers.js and list_of_lists.less
 -->
 <!-- The program starts here-->
-<template name="list_of_lists_loc">
+<template name="marketmovers">
   {{#with checkList}}
   <div class="module-listoflists">
-    <div class="list_header"><span class='list_header-line'></span>Top Lists That Feature {{headerInfo}}
+    <div class="list_header"><span class='list_header-line'></span>Top Companies Moving The Market
     </div>
     {{#each listsData}}
     <div class="list_ol" style="background-color:{{index_color}}">
       <div class="list_ol-top">
-        {{#with top}}
+        {{#with data.top}}
         <a href="{{url}}">
           <div class="list_ol-top-img1" style="background-image:url('{{imageUrl data.c_logo}}')"></div>
         </a>
@@ -24,17 +24,17 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists.l
               United States
             </div>
             <div class="list_ol-top-content-textbox-txt2">
-              {{top_list_title}}
+              {{data.top_list_title}}
             </div>
           </div>
           <div class="list_ol-top-content-compbox">
-            {{#each top_list_list}}
+            {{#each data.top_list_list}}
             <a href="{{url}}">
               <div class="list_ol-top-content-compbox-subimages" style="background-image:url('{{imageUrl c_logo}}')"></div>
             </a>
             {{/each}}
           </div>
-          <a href="{{list_url}}">
+          <a href="{{data.list_url}}">
             <button class="list_ol-top-content-button">
               <div class="fin_icon"></div>
               <div class="fin_text">See The List <i class="fa fa-angle-right"></i></div>
