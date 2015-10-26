@@ -16,6 +16,14 @@ $(".exr_riva-page-selector1").css("background-color","#3098ff");
 
 var backgroundStyle="tilewhite";
 Template.exec_college_rivals.helpers({
+  //Helper to navigate back to executive profile
+  backToExec: function(){
+    var params = Router.current().getParams();
+
+    return Router.path('content.executiveprofile', {
+      exec_id: params.exec_id
+    })
+  },
 //gave names for dyamic access {{getheadername}}
   getheadername: function(){
     var name0= "College Rivals";
@@ -24,24 +32,39 @@ Template.exec_college_rivals.helpers({
 //gave names for dyamic access {{getheadername}}
   PageExec: function(){
     var data = Session.get('college_rivals');
+    if(typeof data === 'undefined'){
+      return '';
+    }
     return data['officer']['o_first_name'] + " " + data['officer']['o_last_name'];
   },
   //gave names for dyamic access {{getheadername3}}
   MainRival: function(){
     var data = Session.get('college_rivals');
+    if(typeof data === 'undefined'){
+      return '';
+    }
     return data['rivals'][0]['o_first_name'] + " " + data['rivals'][0]['o_last_name'];
   },
   //gave names for dyamic access cureent date {{getheadername6}}
   RivalDesc: function(){
     var data = Session.get('college_rivals');
+    if(typeof data === 'undefined'){
+      return '';
+    }
     return data['rivals'][0]['o_bio'];
   },
   HeadImg: function(){
     var data = Session.get('college_rivals');
+    if(typeof data === 'undefined'){
+      return '';
+    }
     return data['rivals'][0]['o_pic'];
   },
   MainExecUrl: function(){
     var data = Session.get('college_rivals');
+    if(typeof data === 'undefined'){
+      return '';
+    }
     return Router.path('content.executiveprofile',{
       partner_id: '',
       exec_id: data['rivals'][0]['o_id']
@@ -51,6 +74,9 @@ Template.exec_college_rivals.helpers({
   items: function(){
     var returnArray = [];
     var data = Session.get('college_rivals');
+    if(typeof data === 'undefined'){
+      return '';
+    }
     var i, j;
 
     for(i = 0; i < data['rivals'].length; i++){

@@ -8,34 +8,17 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
 <template name="exec_college_rivals">
 <!--Defined a class name globally for height and width !-->
 <div class= "exr_riva">
+  <a href="{{backToExec}}">
+    <div class="excmp-return">
+      <div class="excmp-return-button">
+        <i class="fa fa-mail-reply"></i>
+      </div>
+      <div class="excmp-return-triangle"></div>
 
-  <div class="dp_head-hdtl">
-   <div class="dp_head-hdtl-or">
-     <div class="dp_head-hdtl-mailrep" >
-       <i class="dp_head-mailrep fa fa-reply"></i>
-     </div>
-     <div class="dp_head-hdtl-rta">
-     </div>
-   </div>
-   <!-- for the text contianer!-->
-   <div class="dp_head-hdtl-txtctt">
-     <div class="dp_head-hdtl-gb">
-       Go Back To
-       <div class="dp_head-hdtl-bar-title">
-       <div class="dp_head-hdtl-bar-helper">
-         {{PageExec}}'s
-       </div>
-         <div class="dp_head-hdtl-bar-side">Profile </div>
-       </div>
-     </div>
-   </div>
-   <!-- for the circle on the right to navigate!
-   <div class="dp_head-hdtl-indcir">
-       <i class="fa fa-angle-right"></i>
-   </div>
-   -->
- </div>
 
+      Go Back To <span class="excmp-b">{{PageExec}}'s</span> Profile
+    </div>
+  </a>
 
   <!--gave the dimensions for the module with total height and width !-->
   <div class = "exr_riva-n_m">
