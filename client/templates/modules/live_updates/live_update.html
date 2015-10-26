@@ -1,0 +1,105 @@
+<!--Not Victoria, 10/23/2015-->
+<template name="live_update">
+  {{#with lu_info}}
+  <div class="lu">
+    <!--module label-->
+    <div class="lu-label">
+      <!--module title-->
+      <div class="lu-label-title">
+        <span class="lu-label-title-blue">I</span>
+        Live Updates For {{c_hq_city}}, {{c_hq_state}}
+      </div>
+    </div>
+    <!--module header-->
+    <div class="lu-header">
+      <!--left-->
+      <div class="lu-header-l">
+        <!--big image-->
+        <div class="lu-header-l-img1"  style="background-image: url('{{imageUrl c_logo}}')">
+          <div class="lu-header-l-img1-img2">
+          </div>
+        </div>
+        <!--small image-->
+
+      </div>
+      <!--center-->
+      <div class="lu-header-c">
+        <!--icon and live status-->
+        <div class="lu-header-c-icon">
+          <i class="fa fa-circle"></i>  LIVE UPDATES
+        </div>
+        <br/>
+        <!--header details-->
+        {{#with stockInfo}}
+        <div class="lu-header-c-details">
+          <!--company name-->
+          <span class="lu-header-c-details-com">{{c_name}}</span>'s stock price traded within a range of ${{csi_opening_price}} - ${{csi_closing_price}}
+        </div>
+        {{/with}}
+        <br/>
+        <!--current date-->
+        <div class="lu-header-c-date">
+          {{c_tr_last_updated}}
+        </div>
+      </div>
+      <!--right-->
+      <div class="lu-header-r">
+         <!--magazine-->
+          <i class="fa fa-angle-right"><a href="#"></a></i>
+      </div>
+    </div>
+
+    <!--menu options-->
+    <nav class="lu-menu">
+  		<ul class="lu-menu-active">
+  			<li class="lu-menu-active-list current-list"><i class="fa fa-circle"></i> Live Update Feed</li>
+      	<li class="lu-menu-active-list"><i class="fa fa-circle"></i> Top Updates</li>
+  			<li class="lu-menu-active-list"><i class="fa fa-circle"></i> 2013/2014</li>
+  			<li class="lu-menu-active-list"><i class="fa fa-circle"></i> 2012/2013</li>
+  			<li class="lu-menu-active-list"><i class="fa fa-circle"></i> 2011/2010</li>
+  		</ul>
+  	</nav>
+
+
+    <!--module live updates-->
+    <div class="lu-update">
+      <!--{{#each company}}-->
+      <!--left: date-->
+      <div class="lu-update-row">
+        <div class="lu-update-row-l">
+          Sept 31, 2015
+        </div>
+        <!--center: bullet-->
+        <div class="lu-update-row-c">
+          <div class="lu-update-row-innerbullet"></div>
+          <div class="lu-update-row-line"></div>
+        </div>
+      <!--right: picture and info-->
+        <div class="lu-update-row-r">
+          <!--image for each update-->
+          <div class="lu-update-row-r-img"></div>
+          <!--info for each update-->
+          <div class="lu-update-row-r-info">
+            [Company]'s stock price traded within a range of $70.00 - $75.00.
+          </div>
+        </div>
+      </div> <!--end lu-update-row-->
+      <!--{{/each}}-->
+    </div>
+
+
+    <div class="lu-footer">
+      <a href="{{WholeListURL}}">
+        <button class="lu-footer-button">
+          <div class="lu-footer-button-logo"><i class="fa fa-line-chart"></i></div>
+          <div class="lu-footer-button-text ptt-footer">
+            <span style="padding-right:10px">See All Live Update
+            </span>
+            <i class="fa fa-angle-right"></i>
+          </div>
+        </button>
+      </a>
+    </div>
+  </div>
+  {{/with}}
+</template>
