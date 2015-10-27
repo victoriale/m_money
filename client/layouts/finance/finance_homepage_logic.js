@@ -151,9 +151,8 @@ Template.finance_homepage.onCreated(function() {
        obj = obj.split(', ');
        var state = [obj[obj.length-1]];
      }
-
+     Session.set('home_state',state);
      console.log(state);
-
    });
 });
 
@@ -175,22 +174,37 @@ Template.finance_homepage.helpers({
 
   Cities: function() {
     var state = homestates();
-    console.log(state);
 
     var randomState = [];
     for(i = 0; i < 6; i++){
-      var x = Math.floor((Math.random() * 52));
+      var x = Math.floor((Math.random() * 50));
       randomState[i] = state[x];
+      var curLoc = state.indexOf(Session.get('home_state'));
+
+      //remove the current home location gotten from removeaddr api
+      if(typeof curLoc != 'undefined'){
+        if (curLoc > -1) {
+          state.splice(curLoc, 1);
+        }
+      }
+
+      //remove the random states that were randomized and chosen so that it doesnt pop into the array again
+      var index = state.indexOf(state[x]);
+      if (index > -1) {
+        state.splice(index, 1);
+      }
     }
-    console.log(randomState);
+
+    //plug in the data
     Cities = [
-      {URL: '', class: "fi_explore-image1",id: "explore1", State: fullstate(randomState[0]), txt: '', index: 0, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/08_L.png'},
-      {URL: '', class: "fi_explore-image2",id: "explore2", State: fullstate(randomState[1]), txt: '', index: 1, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/21_L.png'},
-      {URL: '', class: "fi_explore-image3",id: "explore3", isString: true, GeoLocation: '', txt: '', image: ''},
-      {URL: '', class: "fi_explore-image1",id: "explore4", State: fullstate(randomState[2]), txt: '', index: 2, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/24_L.png'},
-      {URL: '', class: "fi_explore-image1",id: "explore5", State: fullstate(randomState[3]), txt: '', index: 3, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/27_L.png'},
-      {URL: '', class: "fi_explore-image2",id: "explore6", State: fullstate(randomState[4]), txt: '', index: 4, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/15_L.png'}
+      {URL: Router.path('content.locationprofile',{loc_id:Session.get('home_state')}), class: "fi_explore-image1",id: "explore1", State: fullstate(Session.get('home_state')), txt: '', index: 0, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/08_L.png'},
+      {URL: Router.path('content.locationprofile',{loc_id:randomState[1]}), class: "fi_explore-image2",id: "explore2", State: fullstate(randomState[1]), txt: '', index: 1, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/21_L.png'},
+      {URL: Router.path('content.locationprofile',{loc_id:Session.get('home_state')}), class: "fi_explore-image3",id: "explore3", isString: true, GeoLocation: '', txt: 'Check out the public companies in ' + fullstate(Session.get('home_state')), image: ''},
+      {URL: Router.path('content.locationprofile',{loc_id:randomState[2]}), class: "fi_explore-image1",id: "explore4", State: fullstate(randomState[2]), txt: '', index: 2, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/24_L.png'},
+      {URL: Router.path('content.locationprofile',{loc_id:randomState[3]}), class: "fi_explore-image1",id: "explore5", State: fullstate(randomState[3]), txt: '', index: 3, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/27_L.png'},
+      {URL: Router.path('content.locationprofile',{loc_id:randomState[4]}), class: "fi_explore-image2",id: "explore6", State: fullstate(randomState[4]), txt: '', index: 4, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/15_L.png'}
     ];
+    console.log(Cities);
     return Cities;
   }
 });
