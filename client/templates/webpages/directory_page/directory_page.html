@@ -14,7 +14,7 @@
       <div class="dir_pg-h-h1">
           <div class="dir_pg-h-h1-fai"><i class="fa fa-map-marker"></i></div>
           <div class="dir_pg-h-h1-l">{{location}}</div>
-          <div class="dir_pg-h-h1-txt">Finance and Business Profiles in The United States of America</div>
+          <div class="dir_pg-h-h1-txt">{{title}}</div>
       </div>
         <!-- container for top separator-->
       <div class="dir_pg-ln"></div>
@@ -88,7 +88,7 @@
   <div class="dir_pg-tp-sw">
     <!-- container for showing details -->
     {{#with pageRange}}
-      <div class="dir_pg-tp-sw-shw">Showing: {{start}} - {{end}} of ### Profiles</div>
+      <div class="dir_pg-tp-sw-shw">Showing: {{start}} - {{end}} of {{total}} Profiles</div>
     {{/with}}
   </div>
   <!-- container for gray button -->

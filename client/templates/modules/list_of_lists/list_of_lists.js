@@ -39,7 +39,20 @@ Template.list_of_lists.helpers({
       }else{
         data['index_color'] = '#ffffff';
       }
+
+      //Define array to map through
+      var subData = data.top_list_list[0].list_of_lists_data;
+
+      //Build url for sub circle images
+      subData.map(function(item, index){
+        item.imageURL = Router.path('content.companyprofile', {company_id: item.c_id});
+
+        return item;
+      })
+
+      data.url = Router.path('content.toplist', {list_id: data.tli_id});
     })
+
     return list.list_rankings;
   },
 

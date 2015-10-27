@@ -31,20 +31,33 @@
  Template.directory_page.helpers({
    //to print a to z
    location:'United States',
+   title: function(){
+    var params = Router.current().getParams();
+
+    if(params.type === 'officer'){
+      var title = 'Executive Profiles in the United States of America';
+    }else if(params.type === 'company'){
+      var title = 'Company Profiles in the United States of America';
+    }else if(params.type === 'location'){
+      var title = 'Location Profiles in the United States of America';
+    }
+
+    return title;
+  },
      //Helper to build sort buttons
      sortButtons: function(){
       var params = Router.current().getParams();
       var atoz = [
          {az: '#', vln:true},
          {az: 'A', vln:true},{az: 'B', vln:true}, {az: 'C', vln:true},{az: 'D', vln:true},{az: 'E', vln:true},{az: 'F', vln:true},{az: 'G', vln:true},{az: 'H', vln:true},{az: 'I', vln:true},{az: 'J', vln:true},{az: 'K', vln:true},{az: 'L', vln:true},{az: 'M', vln:true},
-         {az: 'N', vln:true},{az:'O', vln:true},{az: 'P', vln:true}, {az: 'Q', vln:true}, {az: 'R', vln:true}, {az: 'S', vln:true}, {az: 'T', vln:true}, {az: 'U', vln:true}, {az: 'V', vln:true},{az: 'W', vln:true},{az: 'X', vln:true}, {az: 'Y', vln:true}, {az: 'Z', vln:true}, {az: 'Newly Added', color: true, vln:false}];
+         {az: 'N', vln:true},{az:'O', vln:true},{az: 'P', vln:true}, {az: 'Q', vln:true}, {az: 'R', vln:true}, {az: 'S', vln:true}, {az: 'T', vln:true}, {az: 'U', vln:true}, {az: 'V', vln:true},{az: 'W', vln:true},{az: 'X', vln:true}, {az: 'Y', vln:true}, {az: 'Z', vln:false}];
 
        atoz.map(function(item, index){
          //If the button does not equal # or Newly Added (Newly added not available right now and blank is the same as #)
-         if(item.az !== '#' && item.az !== 'Newly Added'){
-           var path = Router.path('content.finance.directory', {pageNum: 1}, {query: 'sort=' + item.az});
+         if(item.az !== '#'){
+           var path = Router.path('content.finance.directory', {pageNum: 1, type: params.type}, {query: 'sort=' + item.az});
          }else{
-           var path = Router.path('content.finance.directory', {pageNum: 1});
+           var path = Router.path('content.finance.directory', {pageNum: 1, type: params.type});
          }
          //Set button path
          item.path = path;
@@ -69,18 +82,32 @@
           return '';
         }
 
+        console.log('RETURNED DATA', data);
+
         //Build return array
         var returnArr = [];
         //Loop through each entry
-        data.directory.forEach(function(item, index){
+        data.directory.listings.forEach(function(item, index){
 
           switch(item.type){
             case 'officer':
 
               var years = new Date().getFullYear() - item.o_current_title.start_year;
               var years = years === 1 ? years + ' year' : years + ' years';
-              //Data not available for this url yet
-              var url1 = Router.path('content.executiveprofile', {exec_id: item.c_ceo_id});
+              
+              var url1 = Router.path('content.executiveprofile', {exec_id: item.o_id});
+
+              //Build path 1 variable (Location of officer)
+              if(item.c_hq_city !== '' && item.c_hq_state !== ''){
+                var path1 = toTitleCase(item.c_hq_city) + ', ' + item.c_hq_state;
+              }else if(item.c_hq_city !== '' && item.c_hq_state === ''){
+                var path1 = toTitleCase(item.c_hq_city);
+              }else if(item.c_hq_city === '' && item.c_hq_state !== ''){
+                var path1 = item.c_hq_state;
+              }else{
+                var path1 = 'Location N/A';
+              }
+
 
               returnArr.push({
                 text1: item.o_first_name + ' ' + item.o_last_name,
@@ -88,7 +115,7 @@
                 text3: item.c_name,
                 url1: url1,
                 lastUpdated: item.o_last_updated,
-                path1: 'Location N/A',
+                path1: path1,
                 path2: item.o_current_title.long_title,
                 path3: years
               })
@@ -108,6 +135,13 @@
                 path2: item.c_sector,
                 path3: item.c_industry,
                 path4: item.c_ceo_name
+              })
+            break;
+            case 'location':
+
+              returnArr.push({
+                text1: item.location_name,
+                text2: 'DMA: ' + item.dma_region_id
               })
             break;
           }//Close switch
@@ -133,24 +167,59 @@
    pageRange: function(){
      var params = Router.current().getParams();
      var pageNum = Number(params.pageNum);
+     var data = Session.get('directory_data');
+
+     if(typeof data === 'undefined'){
+       return '';
+     }
+
+     var total = data.directory.total_profiles;
+
+     if(pageNum * 25 > total){
+       var end = total;
+     }else{
+       var end = pageNum * 25;
+     }
 
      return {
        start: ((pageNum - 1) * 25) + 1,
-       end: pageNum * 25
+       end: end,
+       total: commaSeparateNumber_decimal(total)
      }
    },
    //Helper to create links
    navLink: function(){
      var params = Router.current().getParams();
      var pageNum = Number(params.pageNum);
+     var data = Session.get('directory_data');
+
+     if(typeof data === 'undefined'){
+       return '';
+     }
+
+     var total = data.directory.total_profiles;
+
+     if(typeof params.query !== 'undefined' && typeof params.query.sort !== 'undefined'){
+       var query = {sort: params.query.sort};
+     }else{
+       var query = undefined;
+     }
 
      if(pageNum === 1){
        var prev = '';
+     }else if(pageNum !== 1 && typeof query !== 'undefined'){
+       var prev = Router.path('content.finance.directory', {pageNum: pageNum - 1, type: params.type}, {query: query});
      }else{
-       var prev = Router.path('content.finance.directory', {pageNum: pageNum - 1});
+        var prev = Router.path('content.finance.directory', {pageNum: pageNum - 1, type: params.type});
      }
 
-     var next = Router.path('content.finance.directory', {pageNum: pageNum + 1});
+     if(pageNum * 25 >= total){
+       var next = '';
+     }else if(typeof query !== 'undefined'){
+       var next = Router.path('content.finance.directory', {pageNum: pageNum + 1, type: params.type}, {query: query});
+     }else{
+       var next = Router.path('content.finance.directory', {pageNum: pageNum + 1, type: params.type});
+    }
 
      return{
        next: next,

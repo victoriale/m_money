@@ -22,7 +22,6 @@ Template.list_view.helpers({
     if(typeof listdata =='undefined'){
       return '';
     }
-    
     $.map(listdata.top_list_list, function(data,index){
       if(index % 2 == 0){
         data['background'] = 'tilewhite';
@@ -128,6 +127,11 @@ Template.list_view.helpers({
 });
 //This handles the events on button clicks of 1,2,3 and 200
 Template.list_view.events({
+  //Event to close tooltip
+  'click .list_vw-x': function(e, t){
+    //Currently disabled: Styling needs to be fixed to handle this event
+    //t.$('.list_vw-wl').hide();
+  },
   'click .list_vw-lefthov': function(){
     var counter = Session.get("lv_count");
     var list = Session.get('top_list_gen')['top_list_list'];

@@ -410,7 +410,12 @@ Meteor.methods({
     //random number to pick random list in list_index that's in database
     var x = Math.floor((Math.random() * 2) + 1);
     //param={list_index} , {location/DMA}
-    var UrlString = "http://apifin.synapsys.us/call_controller.php?action=top_list&option=list&param="+index+","+loc_id;
+
+    if(loc_id === null){
+      var UrlString = "http://apifin.synapsys.us/call_controller.php?action=top_list&option=list&param="+index;
+    }else{
+      var UrlString = "http://apifin.synapsys.us/call_controller.php?action=top_list&option=list&param="+index+","+loc_id;
+    }
     console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){
@@ -530,11 +535,37 @@ Meteor.methods({
     return future.wait();
   },
 
-  GetDirectoryData: function(pageNum, query){
+  GetSuggestion: function(searchString,currentTime){
+    var stringURL = 'http://apifin.synapsys.us/call_controller.php?action=search&option=batch&wild=true&param=' + searchString;
+    var future = new Future();
+    curTime.withValue(currentTime,function(){
+      var boundFunction = Meteor.bindEnvironment(function(error, data){
+        if ( error ) {
+          future.throw(error);
+        }
+
+        try {
+          data = JSON.parse(data['content']);
+        } catch(e) {
+          future.throw(e);
+          return false;
+        }
+        var nowTime = curTime.get();
+
+        future.return({data: data, time: nowTime});
+      });
+      Meteor.http.get(stringURL,boundFunction);
+    });
+    this.unblock();
+    return future.wait();
+  },
+
+
+  GetDirectoryData: function(pageNum, type, query){
     if(query === null){
-      var URLString = 'http://apifin.synapsys.us/call_controller.php?action=global_page&option=directory&page=' + pageNum;
+      var URLString = 'http://apifin.synapsys.us/call_controller.php?action=global_page&option=directory&page=' + pageNum + '&type=' + type;
     }else{
-      var URLString = 'http://apifin.synapsys.us/call_controller.php?action=global_page&option=directory&page=' + pageNum + '&letter=' + query;
+      var URLString = 'http://apifin.synapsys.us/call_controller.php?action=global_page&option=directory&page=' + pageNum + '&type=' + type + '&letter=' + query;
     }
 
     console.log('Directory URL', URLString);
@@ -552,6 +583,7 @@ Meteor.methods({
     this.unblock();
     return future.wait();
   }
+
 });
 
 Meteor.startup(function(){
