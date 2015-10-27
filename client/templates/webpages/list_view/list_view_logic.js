@@ -11,8 +11,7 @@ Template.list_view.onCreated(function(){
 
 //renders the data when page loads
 Template.list_view.onRendered(function () {
-$(".list_vw-page-selector1").css("background-color","#3098ff");
-
+  $(".list_vw-page-selector1").css("background-color","#3098ff");
 });
 
 var backgroundStyle="tilewhite";

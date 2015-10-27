@@ -69,11 +69,9 @@ Template.Earnings.helpers({ //helper for the template earnings  is created to pr
   preleasedURL:function(){
     var data = Session.get('profile_header');
     if(typeof data =='undefined'){
-      return '#';
+      return '';
     }
-    return Router.path('content.earningsPR',{
-      comp_id: data.c_id
-    });
+    return Router.path('content.earningsPR');
     /*
     var data = Session.get('profile_header');
     if(typeof data =='undefined'){
