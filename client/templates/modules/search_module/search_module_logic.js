@@ -59,11 +59,11 @@ Template.search_module.events({
   },
   'keypress .re_mainsearch input': function(event){
     if ( event.which === 13 ) {
-      ExecSearch();
+      Finance_Search($('.re_mainsearch-text')[0].value);
     }
   },
   'click .re_searchbtn.fa-search': function() {
-    ExecSearch();
+    Finance_Search($('.re_mainsearch-text')[0].value);
   },
   'keyup .re_mainsearch input': function(event) {
     if ( event.which === 13 ) {
@@ -84,7 +84,7 @@ Template.search_module.events({
   'click .discover_recommendations_item': function(event) {
     $('.re_mainsearch input')[0].value = $(event.target)[0].innerHTML;
     $('.discover_recommendations').removeClass('active');
-    ExecSearch();
+    Finance_Search($('.re_mainsearch-text')[0].value);
   },
   'click .discover_recommendations_close': function() {
     $('.discover_recommendations').removeClass('active');

@@ -9,15 +9,15 @@ Associated Files: list_view_logic.js and list_view.less
   {{#with toplist}}
   <!--Defined a class name globally for height and width !-->
   <div class= "list_vw">
-    <a href="{{back_url}}">
-      <div class="abus-bkbx">
-        <div class="abus-bkbx-bx"><i class="fa fa-reply"></i></div>
-        <div class="abus-bkbx-tgl"></div>
-        <div class="abus-bkbx-txt">GO Back</div>
-      </div>
-    </a>
     <!--gave the dimensions for the module with total height and width !-->
     <div class = "list_vw-n_m">
+      <a onClick="history.go(-1);" style="cursor:pointer">
+        <div class="abus-bkbx">
+          <div class="abus-bkbx-bx"><i class="fa fa-reply"></i></div>
+          <div class="abus-bkbx-tgl"></div>
+          <div class="abus-bkbx-txt">GO Back</div>
+        </div>
+      </a>
       <!--dimensions for the circle container as ('cir-d') !-->
       <div class="list_vw_header">
         <div class="list_vw-cir_d">
