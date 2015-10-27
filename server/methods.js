@@ -561,11 +561,11 @@ Meteor.methods({
   },
 
 
-  GetDirectoryData: function(pageNum, query){
+  GetDirectoryData: function(pageNum, type, query){
     if(query === null){
-      var URLString = 'http://apifin.synapsys.us/call_controller.php?action=global_page&option=directory&page=' + pageNum;
+      var URLString = 'http://apifin.synapsys.us/call_controller.php?action=global_page&option=directory&page=' + pageNum + '&type=' + type;
     }else{
-      var URLString = 'http://apifin.synapsys.us/call_controller.php?action=global_page&option=directory&page=' + pageNum + '&letter=' + query;
+      var URLString = 'http://apifin.synapsys.us/call_controller.php?action=global_page&option=directory&page=' + pageNum + '&type=' + type + '&letter=' + query;
     }
 
     console.log('Directory URL', URLString);
