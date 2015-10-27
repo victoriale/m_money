@@ -12,50 +12,52 @@ Description: This file includes html code for the module Earnings_Page
 Associated Files: [The Earnings.less, Earnings.html for the module]
 !-->
 <template name="Earnings">
-  <div class="module-3 earning_body-bottomline">   <!-- module 3 of height of 654px and width of 680px !-->
-    <div class="module-header">
-      <span class="module-header-line"></span> <!-- for blue line in the header!-->
-      <span class="module-header-title">{{title}}</span> <!-- Header Title !-->
-    </div>
-    <div class="earning_body">   <!-- created a class name called earning_body and kept all the syling of this widget in those paranthesis !-->
+  {{#if dataExists}}
+    <div class="module-3 earning_body-bottomline">   <!-- module 3 of height of 654px and width of 680px !-->
+      <div class="module-header">
+        <span class="module-header-line"></span> <!-- for blue line in the header!-->
+        <span class="module-header-title">{{title}}</span> <!-- Header Title !-->
+      </div>
+      <div class="earning_body">   <!-- created a class name called earning_body and kept all the syling of this widget in those paranthesis !-->
 
-      <!--{{> earnings_tile}}-->
+        <!--{{> earnings_tile}}-->
 
-      <div class="earning_body-home_left_column">  <!-- created a class name right_column which has all the other classes inside this and applies all the right styling of "content bg" !-->
-        {{#each earns}} <!-- handlebar with each loop to call the helper  -->
-        <a class="module-tile-link" href="{{preleasedURL}}"> <!-- link class in module.less !-->
-          <div class="earning_body-content_rectangle"><!-- created a class of the content with date and text, circle and text !-->
-            <div class="earning_body-month_text">{{month}} <!-- handlebar to display months  -->
-              <div class="earning_body-date_text">{{day}}</div>  <!-- class is with specs of date and month !-->
-              <div class="earning_body-small_circle"> <!-- creates a circle with given specs !-->
-                <div class="home_images1">
+        <div class="earning_body-home_left_column">  <!-- created a class name right_column which has all the other classes inside this and applies all the right styling of "content bg" !-->
+          {{#each earns}} <!-- handlebar with each loop to call the helper  -->
+          <a class="module-tile-link" href="{{preleasedURL}}"> <!-- link class in module.less !-->
+            <div class="earning_body-content_rectangle"><!-- created a class of the content with date and text, circle and text !-->
+              <div class="earning_body-month_text">{{month}} <!-- handlebar to display months  -->
+                <div class="earning_body-date_text">{{day}}</div>  <!-- class is with specs of date and month !-->
+                <div class="earning_body-small_circle"> <!-- creates a circle with given specs !-->
+                  <div class="home_images1">
+                  </div>
                 </div>
               </div>
+              <div class="earning_body-rect_boxtext" > <!-- this div with class rect_boxtext is to keep the text bounded  !-->
+                <div class="earning_body-neib_name">{{company}}
+                  <span class="earning_body-listing_name"><!--{{fiscYear}}-->
+                    <span class="earning_body-available_name">{{description}} </span>   <!-- text with bold and aligned (inline-block) with given specs !-->
+                  </span>  <!-- text with regular and aligned with given specs !-->
+                </div> <!-- the text is listed with given specs !-->
+              </div>
+              <i class="fa fa-angle-right" id="icon"></i>
             </div>
-            <div class="earning_body-rect_boxtext" > <!-- this div with class rect_boxtext is to keep the text bounded  !-->
-              <div class="earning_body-neib_name">{{company}}
-                <span class="earning_body-listing_name"><!--{{fiscYear}}-->
-                  <span class="earning_body-available_name">{{description}} </span>   <!-- text with bold and aligned (inline-block) with given specs !-->
-                </span>  <!-- text with regular and aligned with given specs !-->
-              </div> <!-- the text is listed with given specs !-->
-            </div>
-            <i class="fa fa-angle-right" id="icon"></i>
-          </div>
-        </a>
-        {{/each}}<!--end of the loop -->
-      </div>
+          </a>
+          {{/each}}<!--end of the loop -->
+        </div>
 
-      <div class="module-footer">
-        <a href="{{preleasedURL}}">
-          <button class="module-footer-button">
-            <span class="module-footer-button-text">See The Full List<i class = "fa fa-angle-right" style="margin-left:5%"></i></span>
-            <span class="module-footer-button-ellipse"><i class="fa fa-line-chart"></i></span>
-          </button>
-        </a>
-        <!-- END -->
+        <div class="module-footer">
+          <a href="{{preleasedURL}}">
+            <button class="module-footer-button">
+              <span class="module-footer-button-text">See The Full List<i class = "fa fa-angle-right" style="margin-left:5%"></i></span>
+              <span class="module-footer-button-ellipse"><i class="fa fa-line-chart"></i></span>
+            </button>
+          </a>
+          <!-- END -->
+        </div>
       </div>
     </div>
-  </div>
+  {{/if}}
 </template>
 
 

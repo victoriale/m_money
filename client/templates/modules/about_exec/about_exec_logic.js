@@ -46,6 +46,7 @@ Template.about_exec.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
+
     return data;
   },
 
@@ -132,6 +133,19 @@ Template.about_exec.helpers({
     var univ = data[index]['education_data'][0]['College'];
     return univ;
   },
+  //Helper to get image url
+  pic: function(){
+    var data = Session.get('about_exec');
+    var index = Session.get("count");
+
+    if(typeof data == "undefined")
+    {
+      return '';
+    }
+
+    var pic = data[index].o_pic;
+    return pic;
+  },
     //degree below the image circle
     degree: function() {
     var data = Session.get('about_exec');
@@ -204,6 +218,7 @@ Template.about_exec.helpers({
     var data1 = Session.get("about_exec");
     var returnArray = [];
     var j = counter + 1;
+    console.log('data1', data1);
     //var arr = " ";
     //logic to move the first item in the tile to the data below the image circle.
     for(var i=0;i<data1.length-1;i++)
@@ -220,6 +235,7 @@ Template.about_exec.helpers({
       var degr = data1[j]['education_data'][0]['Degree'];
       var longtl = data1[j]['long_title'];
       var urlid = data1[j]['o_id'];
+      var img = data1[j]['o_pic'];
     //  var abb = abbr();
       if(j < data1.length)
       {
@@ -229,6 +245,7 @@ Template.about_exec.helpers({
         returnArray[i]['univer1'] = univer;
         var arr = " ";
         returnArray[i]['degr1'] = degr;
+        returnArray[i]['img'] = img;
         //returnArray[i]['abbr1']=  abb;
         if(degr)
         {

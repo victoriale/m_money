@@ -134,7 +134,8 @@ Template.daily_update.helpers({
   lbInfo: function(){
     var data = Session.get('daily_update');
     if(typeof data == 'undefined'){
-      return {new:"stuff"};
+      //return {new:"stuff"};
+      return '';
     }
 
     var currentRoute = Router.current().route.getName();

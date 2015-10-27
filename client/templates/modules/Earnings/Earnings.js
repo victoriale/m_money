@@ -15,7 +15,12 @@ Template.Earnings.helpers({ //helper for the template earnings  is created to pr
     {open_page:'OPEN PAGE',awesome:'fa-search',descrip:'Find Earning Releases',tile_name:'Find Earning Releases ',red:'',style:'earnings-displaynone'},
     {open_page:'OPEN PAGE',awesome:'fa-calendar',descrip:'Earnings Calendar',tile_name:'Earnings Calendar ',red:'NEW',style:'earning_body-redbutton'}
   ],
+  //Helper to show/hide data if data exists
+  dataExists: function(){
+    var data = Session.get('earnings');
 
+    return typeof data === 'undefined' ? false : true;
+  },
   earns: function(){//function to retrieve data for earnings
     var data = Session.get("earnings");
     var company = Session.get("profile_header");
