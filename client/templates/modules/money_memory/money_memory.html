@@ -40,16 +40,23 @@
       <div id="moneymemorygraph" class="mon-mem_body_chart">
         {{> highchartsHelper chartId="moneymemorygraph" chartWidth="450px" chartHeight="125px"  chartObject=getMMGraphObject}}
       </div>
-      {{#with mmInfo}}
-      <!--"You could have earned..."-->
-      <div class="mon-mem_body_potential">
-        <span>You could have {{earn_lose}}:  </span>
-        <span class="mon-mem_body_potential_amount" style = "color: {{colorIndicator}}">${{roi}}</span>
-      </div>
-      <!--Stock price history-->
-      <div class="mon-mem_body_history">
-        <span>The stock price has {{chng}} ({{percent_change}}%) from {{furthest_close_date}} to {{most_recent_close_date}}</span>
-      </div>
+      {{#if resultExists}}
+        {{#with mmInfo}}
+          <!--"You could have earned..."-->
+          <div class="mon-mem_body_potential">
+            <span>You could have {{earn_lose}}:  </span>
+            <span class="mon-mem_body_potential_amount" style = "color: {{colorIndicator}}">${{roi}}</span>
+          </div>
+          <!--Stock price history-->
+          <div class="mon-mem_body_history">
+            <span>The stock price has {{chng}} ({{percent_change}}%) from {{furthest_close_date}} to {{most_recent_close_date}}</span>
+          </div>
+        {{/with}}
+      {{else}}
+        <div class="mon-mem_body_error">
+          No data for this time period.<br>Please try a different time range.
+        </div>
+      {{/if}}
       <!--Initial investment box-->
       <div class="mon-mem_body_investment">
         <div class="mon-mem_body_investment_icon">
@@ -105,7 +112,6 @@
         </div>
         {{> mm_end_date}}
       </div>
-      {{/with}}
     </div><!--End Main page body-->
 
     <!--Modules to the left of the module-->

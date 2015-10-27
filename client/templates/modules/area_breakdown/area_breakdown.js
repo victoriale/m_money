@@ -6,6 +6,11 @@ Associated files: area_breakdown.html,area_breakdown.less,area_breakdown.js
 */
 var full_page = false;
 Template.area_breakdown.helpers({
+  dataExists:function(){
+    var data = Session.get('breakdown');
+
+    return typeof data === 'undefined' ? false : true;
+  },
   statistics:function(){
     var data = Session.get('profile_header');
     if(typeof data == 'undefined'){
@@ -36,9 +41,15 @@ Template.area_breakdown.helpers({
   },
 });
 
-Template.area_breakdown.onRendered(function(){
+Template.breakdown_map.onRendered(function(){
+
   this.autorun(function(){
     var data = Session.get('breakdown');
+
+    if(typeof data === 'undefined'){
+      return '';
+    }
+
      // Map
      var mapOptions = {
        zoom: 11,

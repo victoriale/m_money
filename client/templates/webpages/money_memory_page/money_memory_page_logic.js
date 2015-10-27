@@ -93,6 +93,12 @@ Template.mm_page_end_date.onRendered(function(){
 })
 
 Template.money_memory_page.helpers({
+  //Helper to determine if result exists (Fix for if no stock data for time range). If results DNE, show error message
+  resultExists: function(){
+    var data = Session.get('money_memory');
+    console.log('heres johnny ie. data', data);
+    return typeof data === 'undefined' ? false : true;
+  },
   //Helper to determine which range button is selected
   isRangeSelected: function(val){
     var mm_range = Session.get('mm_range');

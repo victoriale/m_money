@@ -66,12 +66,48 @@ Template.market_report.helpers({                   //helper class for adding dat
   title: "How Are The Markets Doing Today?",
   subtitle: "Market Report",
 
+  mrURL: function(){
+    var current = Session.get('market_report_current');
+    if(typeof current == 'undefined'){
+      return '';
+    }
+    var loc = Session.get('loc_id');
+    switch(current){
+      case 'NASDAQ':
+        var URL = Router.path('content.toplist', {
+          loc_id: loc,
+          list_id: 5192
+        });
+      break;
+      case 'NYSE':
+        var URL = Router.path('content.toplist', {
+          loc_id: loc,
+          list_id: 5206
+        });
+      break;
+      case 'AMEX':
+        var URL = Router.path('content.toplist', {
+          loc_id: loc,
+          list_id: 5220
+        });
+      break;
+      default:
+        var URL = Router.path('content.toplist', {
+          loc_id: loc,
+          list_id: 5192
+        });
+      break;
+    }
+    console.log(URL);
+    return URL;
+  },
+
   mreport_tiles:function(){
-  //Create an object holding the default lists for exchange Tiles in Market_report modules
-  var loc_id = Session.get('loc_id');
-  if(typeof loc_id == 'undefined'){
-    return false;
-  }
+    //Create an object holding the default lists for exchange Tiles in Market_report modules
+    var loc_id = Session.get('loc_id');
+    if(typeof loc_id == 'undefined'){
+      return false;
+    }
     tileURL = [
       {open_page:'OPEN PAGE',tile_name:'NASDAQ Companies', image:'/exchange/NASDAQ.png', url: Router.path('content.toplist',{loc_id:loc_id,list_id: 5191})},
       {open_page:'OPEN PAGE',tile_name:'NYSE Companies', image:'/exchange/NYSE.png', url: Router.path('content.toplist',{loc_id:loc_id,list_id: 5205})},

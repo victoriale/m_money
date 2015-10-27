@@ -11,6 +11,13 @@ Associated Files: list_view_logic.js and list_view.less
   <div class= "list_vw">
     <!--gave the dimensions for the module with total height and width !-->
     <div class = "list_vw-n_m">
+      <a onClick="history.go(-1);" style="cursor:pointer">
+        <div class="abus-bkbx">
+          <div class="abus-bkbx-bx"><i class="fa fa-reply"></i></div>
+          <div class="abus-bkbx-tgl"></div>
+          <div class="abus-bkbx-txt">GO Back</div>
+        </div>
+      </a>
       <!--dimensions for the circle container as ('cir-d') !-->
       <div class="list_vw_header">
         <div class="list_vw-cir_d">
@@ -36,7 +43,7 @@ Associated Files: list_view_logic.js and list_view.less
           </div>
           <!-- specified font sytle for the stock disclaimer !-->
           <div class="list_vw-loc_st list_vw-disc">
-          {{top_list_title}}
+          {{top_list_info.top_list_title}}
           </div>
           <!--specified font style for the inveskit finance  !-->
         </div>
