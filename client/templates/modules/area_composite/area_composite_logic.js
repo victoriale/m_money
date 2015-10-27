@@ -150,7 +150,6 @@ Template.area_composite.helpers({
     // Tiles
     var tiles = [];
     for ( var index = 0; index < sect_arr.length; index++ ) {
-      console.log("Sector Array",sect_arr);
       if ( index < 3 ) {
         tiles[index] = {
           name: sect_arr[index].title + ' Sector',
@@ -167,7 +166,5 @@ Template.area_composite.helpers({
 
     return RetArr;
   },
-
-
 
 });

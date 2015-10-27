@@ -43,7 +43,6 @@ Template.marketmovers.helpers({
 
       return data;
     })
-    console.log('LIST AFTER', list);
     return list;
   },
 

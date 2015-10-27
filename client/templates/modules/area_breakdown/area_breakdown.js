@@ -38,12 +38,37 @@ Template.area_breakdown.helpers({
 
 Template.area_breakdown.onRendered(function(){
   this.autorun(function(){
+    var data = Session.get('breakdown');
      // Map
-     map = new google.maps.Map(document.getElementById('loc_map'), {
+     var mapOptions = {
        zoom: 11,
-       center: {lat: 37.7833, lng: -122.4167},  // Latitude and longtitude in decimal form
-       scrollwheel: false
-     });
+       center: new google.maps.LatLng(data[0].c_latitude, data[0].c_longitude),
+       mapTypeId: google.maps.MapTypeId.HYBRID
+     };
+
+     mainmap = new google.maps.Map(
+       document.getElementById('loc_map'),
+       mapOptions
+     );
+
+     var infowindow = new google.maps.InfoWindow();
+     var marker, i;
+
+     for(i = 0; i < data.length; i++){
+       marker = new google.maps.Marker({
+         position: {lat:Number(data[i].c_latitude), lng:Number(data[i].c_longitude)},
+         map: mainmap,
+         icon: '/mapmarker.png'
+       });
+
+       google.maps.event.addListener(marker, 'click', (function(marker, i , data) {
+          return function() {
+            infowindow.setContent(data[i]['c_name']);
+            infowindow.open(mainmap, marker);
+          }
+        })
+      );
+     }
 
      // Enable full page or short view
      if (full_page == true) {
