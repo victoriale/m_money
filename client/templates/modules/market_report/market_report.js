@@ -107,7 +107,6 @@ Template.market_report.helpers({                   //helper class for adding dat
         });
       break;
     }
-    console.log(URL);
     return URL;
   },
 
@@ -117,10 +116,33 @@ Template.market_report.helpers({                   //helper class for adding dat
     if(typeof loc_id == 'undefined'){
       return false;
     }
+    var data = Session.get('market_report');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    data = data.biggest_losers;
     tileURL = [
-      {open_page:'OPEN PAGE',tile_name:'NASDAQ Companies', image:'/exchange/NASDAQ.png', url: Router.path('content.toplist',{loc_id:loc_id,list_id: 5191})},
-      {open_page:'OPEN PAGE',tile_name:'NYSE Companies', image:'/exchange/NYSE.png', url: Router.path('content.toplist',{loc_id:loc_id,list_id: 5205})},
-      {open_page:'OPEN PAGE',tile_name:'AMEX Companies', image:'/exchange/AMEX.png', url: Router.path('content.toplist',{loc_id:loc_id,list_id: 5219})}
+      {open_page:'OPEN PAGE',tile_name:'NASDAQ Companies', image:'/exchange/NASDAQ.png',
+        url: Router.path('content.toplist', {
+          loc_id: data.NASDAQ.top_list_info.top_list_location,
+          l_name: compUrlName(data.NASDAQ.top_list_info.top_list_title),
+          list_id: data.NASDAQ.top_list_info.top_list_id
+        })
+      },
+      {open_page:'OPEN PAGE',tile_name:'NYSE Companies', image:'/exchange/NYSE.png',
+        url: Router.path('content.toplist', {
+          loc_id: data.NASDAQ.top_list_info.top_list_location,
+          l_name: compUrlName(data.NASDAQ.top_list_info.top_list_title),
+          list_id: data.NASDAQ.top_list_info.top_list_id
+        })
+      },
+      {open_page:'OPEN PAGE',tile_name:'AMEX Companies', image:'/exchange/AMEX.png',
+        url: Router.path('content.toplist', {
+          loc_id: data.AMEX.top_list_info.top_list_location,
+          l_name: compUrlName(data.AMEX.top_list_info.top_list_title),
+          list_id: data.AMEX.top_list_info.top_list_id
+        })
+      }
     ];
 
     return tileURL;
