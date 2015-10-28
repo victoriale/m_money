@@ -55,13 +55,13 @@ function GetSuggest(nowTime) {
        data = data.data;
 
        console.log(data);
-       if(data['name']['func_data']['search_data'] !== undefined){
+       if(data['name']['func_success'] == true){
          var NameRes = data['name']['func_data']['search_data'];
        }
-       if(data['location']['func_data']['search_data'] !== undefined){
+       if(data['location']['func_success'] == true){
          var LocRes = data['location']['func_data']['search_data'];
        }
-       if(data['ticker']['func_data']['search_data'] !== undefined){
+       if(data['ticker']['func_success'] == true){
          var TickRes = data['ticker']['func_data']['search_data'];
        }
        console.log(NameRes);
