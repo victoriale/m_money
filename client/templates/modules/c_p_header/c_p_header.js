@@ -77,6 +77,15 @@ Template.cp_head.helpers({
     }
     return data.c_desc;
   },
+  locationURL: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return Router.path('content.locationprofile',{
+      loc_id:data.c_hq_state,
+    })
+  },
 });
 
 Template.cp_body.helpers({
