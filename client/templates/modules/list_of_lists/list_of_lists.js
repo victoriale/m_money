@@ -50,14 +50,20 @@ Template.list_of_lists.helpers({
 
       //Build url for sub circle images
       subData.map(function(item, index){
-        item.imageURL = Router.path('content.companyprofile', {company_id: item.c_id});
+        item.imageURL = Router.path('content.companyprofile', {
+          ticker:item.c_ticker,
+          name:compUrlName(item.c_name),
+          company_id: item.c_id
+        });
 
         return item;
       })
 
-      data.url = Router.path('content.toplist', {list_id: data.tli_id});
+      data.url = Router.path('content.toplist', {
+        l_name:compUrlName(data.top_list_list[0].list_of_lists_title),
+        list_id: data.tli_id
+      });
     })
-
     return list.list_rankings;
   },
 

@@ -84,7 +84,13 @@ Template.area_composite.helpers({
       }
       for ( var subind = 0; subind < limit; subind++ ) {
         loc_arr[subind] = {
-          url: Router.path('content.companyprofile',{partner_id: Router.current().params.partner_id, company_id: data[cmp_arr[index].title][subind].c_id}),
+          url: Router.path('content.companyprofile',
+          {
+            partner_id: Router.current().params.partner_id,
+            ticker:'undefined',
+            name:'undefined',
+            company_id: data[cmp_arr[index].title][subind].c_id
+          }),
           logo: data[cmp_arr[index].title][subind].c_logo,
           index: subind
         }
