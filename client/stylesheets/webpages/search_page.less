@@ -49,4 +49,47 @@
       }//end .current-list
     }//end menu-active
   }// end lu-menu
+}//end search_tab
+
+.search_results{
+  width:100%;
+  height: auto;
+  overflow: hidden;
+  box-sizing: border-box;
+  background-color: @white;
+  &-showing{
+    height:27px;
+    width:100%;
+    padding-top:14px;
+    padding-left:18px;
+    color: #7f7f7f;
+    text-align: left;
+  }
+  &-info{
+    width:91%;
+    height:auto;
+    padding: 18px 0;
+    margin: 0 30px;
+    border-bottom: 1px solid @grey-3;
+    text-align: left;
+    &-h1{
+      font-size: 20px;
+      color:@black;
+      line-height:24px;
+      text-align: left;
+    }
+    &-link{
+      font-size: 14px;
+      color:@blue;
+      line-height:24px;
+      text-align: left;
+      padding: 5px 0;
+    }
+    &-desc{
+      font-size: 14px;
+      color:@black;
+      line-height:24px;
+      text-align: left;
+    }
+  }
 }
