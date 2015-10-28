@@ -39,7 +39,7 @@ function GetSuggest(nowTime) {
 
        Session.set('SuggestTime',data.time);
        data = data.data;
-       console.log(data);
+
 
         //var HTMLString = '<div class="caret-top"></div><i class="fa fa-times fi_search_recommendations_close"></i>';
         var HTMLStringLoc = '';
@@ -47,7 +47,6 @@ function GetSuggest(nowTime) {
         var HTMLStringTick = '';
 
        if(data['name']['func_success'] == true){
-         console.log(NameRes);
          var NameRes = data['name']['func_data']['search_data'];
          for(var i = 0; i < NameRes.length; i++){
            if(NameRes[i]['name_type'] == 'officer' && i < 3){
@@ -66,7 +65,6 @@ function GetSuggest(nowTime) {
        }
 
        if(data['location']['func_success'] == true){
-         console.log(LocRes);
          var LocRes = data['location']['func_data']['search_data'];
          for(var i = 0; i < LocRes.length; i++){
           if(i < 3 ){
@@ -81,7 +79,6 @@ function GetSuggest(nowTime) {
        }
 
        if(data['ticker']['func_success'] == true){
-         console.log(TickRes);
          var TickRes = data['ticker']['func_data']['search_data'];
          for(var i = 0; i < TickRes.length; i++){
           if(i < 3 ){
