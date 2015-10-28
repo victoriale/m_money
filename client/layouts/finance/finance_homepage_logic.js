@@ -52,8 +52,21 @@ function GetSuggest(nowTime) {
        }
 
        Session.set('SuggestTime',data.time);
-       console.log(data);
        data = data.data;
+
+       console.log(data);
+       if(data['name']['func_data']['search_data'] !== undefined){
+         var NameRes = data['name']['func_data']['search_data'];
+       }
+       if(data['location']['func_data']['search_data'] !== undefined){
+         var LocRes = data['location']['func_data']['search_data'];
+       }
+       if(data['ticker']['func_data']['search_data'] !== undefined){
+         var TickRes = data['ticker']['func_data']['search_data'];
+       }
+       console.log(NameRes);
+       console.log(LocRes);
+       console.log(TickRes);
 
        if ( data.length == 0 ) {
          $('.fi_search_recommendations').removeClass('active');
@@ -61,14 +74,31 @@ function GetSuggest(nowTime) {
        }
        //var HTMLString = '<div class="caret-top"></div><i class="fa fa-times fi_search_recommendations_close"></i>';
        var HTMLString = '';
-       for ( var index = 0; index < data.length; index++ ) {
+
+//Location Reccomendations
+    /* if(LocRes !== undefined){
+       for(var i = 0; i < LocRes.length; i++){
+        if(i < 3){
+          if ( i != 0 ) {
+            HTMLString = HTMLString + '<div class="border-li"></div>';
+          }
+           HTMLString = HTMLString + '<a style="color: #000" href="' + LocationURL(LocRes[i]['c_hq_city'] + "_" + LocRes[i]['c_hq_state']) + '"><div class="fi_search_recommendations_item">' + LocRes[i]['c_hq_city'] + ", " + LocRes[i]['c_hq_state'] + '<i class="fa fa-angle-right"></i></div></a>';
+        }
+       }
+     }*/
+
+
+//OLD
+      /* for ( var index = 0; index < data.length; index++ ) {
          if ( index < 10 ) {
            if ( index != 0 ) {
              HTMLString = HTMLString + '<div class="border-li"></div>';
            }
            HTMLString = HTMLString + '<a style="color: #000" href="' + LocationURL(data[index].city + "_" + data[index].state) + '"><div class="fi_search_recommendations_item">' + data[index].city + ", " + data[index].state + '<i class="fa fa-angle-right"></i></div></a>';
          }
-       }
+       }*/
+//////
+
        $('.fi_search_recommendations')[0].innerHTML = HTMLString;
        $('.fi_search_recommendations').addClass('active');
      });
@@ -109,7 +139,7 @@ Template.finance_homepage.events({
     $('.fi_search_recommendations').removeClass('active');
     $('.fi_searchbtn').css("background-color", "black");
     $(".fi_mainsearch").addClass("boxhighlight-black");
-     Search($('.fi_mainsearch input')[0].value);
+     Finance_Search($('.fi_mainsearch input')[0].value);
   },
 
   'click .fi_search_recommendations_close': function() {
