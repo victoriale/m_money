@@ -71,6 +71,8 @@
         padding-left: 19px;
         font-family: HN-l;
         color:  @white;
+        text-overflow: ellipsis;
+        overflow: hidden;
         &-txt{
           white-space: nowrap;
           font-size: 44px;
@@ -153,6 +155,9 @@
         text-align: left;
         width:50%;
         white-space: nowrap;
+        width:380px;
+        text-overflow: ellipsis;
+        overflow: hidden;
         // Begin p-head-botom-about b
         b {
           font-family: HN-B;
@@ -226,6 +231,8 @@
           color: #000000;
           text-align: center;
           line-height: 30px;
+          text-overflow: ellipsis;
+          overflow: hidden;
           // Begin p-body-box div.value b
           b {
             color: #999999;
@@ -375,7 +382,7 @@
   }
   &-updated{
     width:100%;
-    height:30px; 
+    height:30px;
     padding: 5px 20px;
     overflow: hidden;
     font-size: 12px;
