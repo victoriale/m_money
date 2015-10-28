@@ -20,15 +20,18 @@ Template.co_competitor.helpers({
       return '';
     }
     var newData = data.company;
+
+    var company = compUrlName(newData.c_name);
+    var ticker = newData.c_ticker;
+    var company_id = newData.c_id;
+
     newData['c_tr_last_updated'] = newData['c_tr_last_updated'].replace(/-/g, '/');
 
     newData['market_cap'] = numConverter(Number(newData['market_cap']));
     newData['csi_price_change_since_last'] = Number(newData['csi_price_change_since_last']).toFixed(2);
     newData['csi_price'] = Number(newData['csi_price']).toFixed(2);
     newData['csi_percent_change_since_last'] = Number(newData['csi_percent_change_since_last']).toFixed(2);
-    newData['url'] = Router.path('content.companyprofile',{
-      company_id: newData['c_id']
-    });
+    newData['url'] = Router.path('content.companyprofile', {company_id: company_id, name: company, ticker: ticker});
 
     return newData;
   },
@@ -45,9 +48,12 @@ Template.co_competitor.helpers({
       data['csi_price_change_since_last'] = Number(data['csi_price_change_since_last']).toFixed(2);
       data['csi_price'] = Number(data['csi_price']).toFixed(2);
       data['csi_percent_change_since_last'] = Number(data['csi_percent_change_since_last']).toFixed(2);
-      data['url'] = Router.path('content.companyprofile',{
-        company_id: data['c_id']
-      });
+
+      var company = compUrlName(data.c_name);
+      var ticker = data.c_ticker;
+      var company_id = data.c_id;
+
+      data['url'] = Router.path('content.companyprofile', {company_id: company_id, name: company, ticker: ticker});
       data['rank'] = index+1;
       data['compare_to'] = compare.c_ticker;
       data['compared_percent'] = (((data['csi_price'] - compare['csi_price'])/compare['csi_price'])* 100).toFixed(2);

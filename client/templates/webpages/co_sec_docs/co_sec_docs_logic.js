@@ -17,7 +17,7 @@ var backgroundStyle="tilewhite";
 Template.co_sec_docs.helpers({
 //gave names for dyamic access {{getheadername0}}
     getheadername0: function(){
-      var name0= "United States";
+      var name0= "The United States of America";
       return name0;
     },
 //gave names for dyamic access {{getheadername0}}
@@ -71,10 +71,10 @@ Template.co_sec_docs.helpers({
        },
   //loads data for the image
   quote:[
-    {name: 'Exxon Mobil Corp.', text1: '$46.69' ,text2: '+0.39(+0.85%)'},
-    {name: 'Johnson & Johnson', text1: '$99.69' ,text2: '+0.18(+0.18%)'},
-    {name: 'Facebook Inc', text1: '$54.69' ,text2: '+2.68(+2.76%)'},
-    {name: 'Wells Fargo & Co', text1: '$106.69' ,text2: '+0.18(+0.13%)'},
+    {name: 'Exxon Mobil Corp.', text1: '$46.69' ,text2: '+0.39 (+0.85%)'},
+    {name: 'Johnson & Johnson', text1: '$99.69' ,text2: '+0.18 (+0.18%)'},
+    {name: 'Facebook Inc', text1: '$54.69' ,text2: '+2.68 (+2.76%)'},
+    {name: 'Wells Fargo & Co', text1: '$106.69' ,text2: '+0.18 (+0.13%)'},
   ],
   //This is the list of data the program will return to the html page
   items: [

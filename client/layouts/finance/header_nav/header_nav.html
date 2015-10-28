@@ -5,6 +5,9 @@
 -->
 <head>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "a7dd8e08-20fc-474f-900e-bec257d30f98", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 </head>
 <!-- This is the template for header-->
 <template name="header_navtest">
@@ -108,7 +111,7 @@
   {{> directory_list_button}}
 
   <div class="layout_nav">
-    <table>
+    <table style="min-width:1700px; max-width: 1750px; margin: 0 auto;">
       <tr>
         <td class="layout_nav-logo-cell">
           {{#if notPartner}}
@@ -117,7 +120,7 @@
           </a>
           {{/if}}
         </td>
-        <td>
+        <td style="padding-left: 400px;">
           <div class="layout_nav-search">
             <div class="search_icon fa fa-search"></div>
             <input type="text" name="keyword" class="layout_nav-search_input" placeholder="Search for any company, location, or executive">
@@ -128,10 +131,21 @@
           </div>
         </td>
         <td>
-          <div class="layout_nav-share"><i class="fa fa-share-alt"></i></div>
-          <div class="layout_nav-fb"><i class="fa fa-facebook"></i></div>
-          <div class="layout_nav-share_text">Share It</div>
+          <a class="share-link">
+            <div class="layout_nav-share">
+                <span style="text-decoration:none;color:#000000;display:inline-block;cursor:pointer;" class="stButton">
+                  <span class="stLarge" style="border-radius: 50%;background-image: url(http://w.sharethis.com/images/sharethis_32.png);">
+                  </span>
+              </span>
+              <span class='st__large' displayText=''></span>
+            </div>
+          </a>
+          <a class="facebook-link">
+            <div class="layout_nav-fb"><i class="fa fa-facebook"></i></div>
+            <div class="layout_nav-share_text">Share It</div>
+          </a>
         </td>
+
       </tr>
     </table>
   </div>
