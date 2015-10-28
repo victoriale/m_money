@@ -560,6 +560,26 @@ Meteor.methods({
     return future.wait();
   },
 
+  listOfListData: function(company_id){
+    var future = new Future();
+
+    var UrlString = 'http://apifin.investkit.com/call_controller.php?action=company_profile&option=batch_3&param=' + company_id + '&limit=1,100';
+    console.log(UrlString);
+
+    Meteor.http.get(UrlString, function(error, data){
+      try{
+        data = JSON.parse(data['content']);
+      } catch (e) {
+        future.throw(e);
+        return false;
+      }
+        future.return(data);
+    });
+
+    this.unblock();
+    return future.wait();
+  },
+
 
   GetDirectoryData: function(pageNum, type, query){
     if(query === null){

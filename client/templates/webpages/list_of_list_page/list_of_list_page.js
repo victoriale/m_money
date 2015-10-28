@@ -1,36 +1,14 @@
-/*
-Name: Venkatesh
-Created:7/21/2015
-Description: Top lists Facebook
-Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists.less
-*/
-//This variable is set as white as our first background is grey, the program checks whether its white and changes it to grey.
 
-Template.list_of_lists.onCreated(function () {
-  this.autorun(function(){
-    if(Session.get('IsCompany') || Session.get('IsExec')){
-      var data = Session.get('profile_header');
-      if(typeof data =='undefined'){
-        return ''
-      }
-
-      Meteor.call('listData', data.c_ticker, function(error, result){
-        if(error){
-          console.log('Invalid parameters Error',error);
-          return '';
-        }
-        Session.set('list_of_lists', result.list_of_lists);
-      })
-    }
-  })
-});
-
-Template.list_of_lists.helpers({
-  //Helper to build url for list of list page
-  toListOfList: function(){
+Template.list_of_list_page.helpers({
+  //Helper to determine list of list title
+  title: function(){
     var data = Session.get('list_of_lists');
 
-    return Router.path('content.listoflist', {company_id: data.list_rankings[0].c_id});
+    if(typeof data === 'undefined'){
+      return '';
+    }
+
+    return data.list_rankings[0].c_name;
   },
   listsData: function(){
     var list = Session.get('list_of_lists');
@@ -54,8 +32,9 @@ Template.list_of_lists.helpers({
 
         return item;
       })
-
       data.url = Router.path('content.toplist', {list_id: data.tli_id});
+
+      data.shareURL = "https://www.facebook.com/sharer/sharer.php?u="+ data.url;
     })
 
     return list.list_rankings;
@@ -82,8 +61,4 @@ Template.list_of_lists.helpers({
     }
     return name;
   },
-});
-//This handles the events on button clicks of 1,2,3 and 200
-Template.list_of_lists.events({
-
 });
