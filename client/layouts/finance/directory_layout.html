@@ -14,25 +14,22 @@
     <span class="dropdown-button">INVESTKIT > TRENDING LISTS</span>
     <div class="dropdown-container" style="display: none">
       <ul class="ul-list">
-        {{#each dirList}}
-          <a href="{{pathFor 'content.finance.directory' list=linkVal pageNum=pageNum}}">
-            <li class="dir-list-item" title={{name}}>
-              <i class="fa fa-angle-right"></i>{{name}}
-            </li>
-          </a>
-        {{/each}}
+
       </ul>
     </div>
     <span class="dropdown-button2">Directories</span>
     <div class="dropdown-container" style="display: none">
       <ul class="ul-list">
-        {{#each dirList}}
-          <a href="{{pathFor 'content.finance.directory' list=linkVal pageNum=pageNum}}">
-            <li class="dir-list-item" title={{name}}>
-              <i class="fa fa-angle-right"></i>{{name}}
-            </li>
-          </a>
-        {{/each}}
+        <a href="{{pathFor 'content.finance.directory' type='company' pageNum='1'}}">
+          <li class="dir-list-item" title="Company Profiles">
+            <i class="fa fa-angle-right"></i>Company Profiles
+          </li>
+        </a>
+        <a href="{{pathFor 'content.finance.directory' type='officer' pageNum='1'}}">
+          <li class="dir-list-item" title="Executive Profiles">
+            <i class="fa fa-angle-right"></i>Executive Profiles
+          </li>
+        </a>
       </ul>
     </div>
   </div>
