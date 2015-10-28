@@ -1,0 +1,22 @@
+<template name="search_page">
+  <div class="search_page">
+    <a href="" onclick="history.go(-1)">
+      <div class="excmp-return">
+        <div class="excmp-return-button">
+          <i class="fa fa-mail-reply"></i>
+        </div>
+        <div class="excmp-return-triangle"></div>
+        Go Back
+      </div>
+    </a>
+    {{> search_module}}
+    <!--menu options-->
+    <nav class="search_tab-menu">
+      <ul class="search_tab-menu-active">
+        <li class="search_tab-menu-active-list current-list"><i class="fa fa-circle"></i> Executive(13)</li>
+        <li class="search_tab-menu-active-list"><i class="fa fa-circle"></i> Company(0)</li>
+        <li class="search_tab-menu-active-list"><i class="fa fa-circle"></i> Location(3)</li>
+      </ul>
+    </nav>
+  </div>
+</template>

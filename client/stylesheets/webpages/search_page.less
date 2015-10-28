@@ -1,0 +1,52 @@
+
+
+@import (reference)"../global_vars.less";
+@import (reference)"../modules.less";
+
+.search_page{
+  width:680px;
+  height:auto;
+  background-color: @white;
+}
+
+.search_tab{
+  width:680px;
+  height:50px;
+  &-menu{
+    height: 60px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 400;
+    &-active{
+      height: 100%;
+      font-size: 14px;
+      font-weight: 400;
+      text-align: center;
+      background-color: @grey-8;
+
+      &-list{
+        background-color: @grey-8;
+        height: 100%;
+        width: 180px;
+        font-family: HN;
+        color: #000000;
+        border-bottom: 1px solid @grey-3;
+        padding-top: 20px;
+        cursor: pointer;
+        >.fa-circle{
+          display: none;
+        }// end .fa-circle
+      }//end active-list
+      >.current-list{
+        background-color: #FFFFFF;
+        border-bottom: 1px solid #FFFFFF;
+        font-family: HN-B;
+        >.fa-circle{
+          display: inline-block;
+          color: @blue;
+          font-size: 10px;
+        }//end .fa-circle
+      }//end .current-list
+    }//end menu-active
+  }// end lu-menu
+}

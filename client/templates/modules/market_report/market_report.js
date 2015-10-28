@@ -98,7 +98,6 @@ Template.market_report.helpers({                   //helper class for adding dat
         });
       break;
     }
-    console.log(URL);
     return URL;
   },
 
