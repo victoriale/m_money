@@ -223,7 +223,7 @@ Template.finance_homepage.helpers({
       }
     }
     var image = randomimage();
-    var x = Math.floor(Math.random()*5);
+    var x = Math.floor(Math.random()*3);
     //plug in the data
     Cities = [
       {URL: Router.path('content.locationprofile',{loc_id:Session.get('home_state')}), class: "fi_explore-image1",id: "explore1", State: fullstate(Session.get('home_state')), txt: '', index: 0, image: image[x]},

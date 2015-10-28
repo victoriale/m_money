@@ -4,6 +4,22 @@ var ToCommaNumber = function(Number) {
   return split.join('.');
 }
 
+function author() {
+  var authors = [
+    'Kevin Owens',
+    'Emily Behlmann',
+    'William Klausmeyer',
+    'Tommy Lofgren',
+    'Larry Pham',
+    'Lutz Lai',
+    'Taewook Kang'
+  ];
+
+  var rand = Math.floor(Math.random()*authors.length);
+
+  return authors[rand];
+}
+
 // Create a custom handler for multiple async functions
 var async_mult = function(functions, callback) {
   this._functions = functions;
@@ -82,6 +98,7 @@ seoPicker.route('/:partner_id?/company/:company_id',function(params, req, res){
 
       var data = res_arr;
       data.profile_header.c_hq_city = data.profile_header.c_hq_city.replace(/(.)(.*)/,function(a,b,c){ return b.toUpperCase() + c.toLowerCase(); });
+      data.profile_header.comp_name = data.profile_header.c_name + ' (' + data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ')';
 
       if ( typeof data.content != "undefined" ) {
         var temp_d = JSON.parse(data.content);
@@ -96,18 +113,18 @@ seoPicker.route('/:partner_id?/company/:company_id',function(params, req, res){
       for ( var m_index = 0; m_index < earnings.length; m_index++ ) {
         var c_data = earnings[m_index];
         earnings_report_data[m_index] = {
-          title: c_data.e_report_title
+          title: data.profile_header.comp_name + ' ' + c_data.e_report_title
         };
         var localdata = [
-          'The ' + c_data.e_report_title + ' was filed on ' + c_data.e_filing_date + '. This is an ' + c_data.e_report_type.toLowerCase() + ' report. This report is for fiscal year ' + c_data.e_fiscal_year + '.'
+          'The ' + c_data.e_report_title + ' was filed on ' + c_data.e_filing_date + ' to ' + data.profile_header.c_exchange + '. This is an ' + c_data.e_report_type.toLowerCase() + ' report. This report is for fiscal year ' + c_data.e_fiscal_year + '.'
         ];
         for ( var index = 0; index < c_data.e_report_data.length; index++ ) {
-          localdata[localdata.length] = c_data.e_report_data[index].coa_title + ' (' + c_data.e_report_data[index].coa_code + '): $' + ToCommaNumber(c_data.e_report_data[index].coa_data * 1000000);
+          localdata[localdata.length] = data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' - ' + c_data.e_report_data[index].coa_title + ' (' + c_data.e_report_data[index].coa_code + '): $' + ToCommaNumber(c_data.e_report_data[index].coa_data * 1000000);
         }
         earnings_report_data[m_index].content = {line: localdata};
       }
       // Executives
-      var executives = data.whos_who;
+      var executives = data.whos_who.officers;
       var exec_data = [];
       for ( var index = 0; index < executives.length; index++ ) {
         var e_data = executives[index];
@@ -116,13 +133,29 @@ seoPicker.route('/:partner_id?/company/:company_id',function(params, req, res){
           exec_data[index] = exec_data[index] + '<br>' + e_data.o_titles[t_ind];
         }
       }
+      // Featured Lists
+      var featured_lists = [];
+      var flist_data = data.list_of_lists.list_rankings;
+      for ( var index = 0; index < flist_data.length; index++ ) {
+        var ldata = {};
+        ldata.title = flist_data[index].top_list_list[0].list_of_lists_title.toTitleCase();
+        ldata.content = {ul: []};
+        for ( var i = 0; i < flist_data[index].top_list_list[0].list_of_lists_data.length; i++ ) {
+          var c_cmp = flist_data[index].top_list_list[0].list_of_lists_data[i];
+          ldata.content.ul[ldata.content.ul.length] = 'Number ' + (i + 1) + ': <a href="' + Router.path('content.companyprofile',{partner_id: params.partner_id, company_id: c_cmp.c_id}) + '">' + c_cmp.c_name + ' (' + c_cmp.c_exchange + ':' + c_cmp.c_ticker + ')</a>';
+        }
+        ldata.content.ul[ldata.content.ul.length] = 'Number ' + flist_data[index].tle_ranking + ': ' + data.profile_header.comp_name;
+        featured_lists[featured_lists.length] = ldata;
+      }
+
+      var published = (new Date()).toSNTForm();
+      var updated = (new Date(data.daily_update.csi_price_last_updated)).toSNTFormTime();
 
       if ( typeof data.results != "undefined" ) {
-        var head_data = { // Data to put into the head of the document (partner site)
-          description: 'Get financial information for ' + data.profile_header.c_name + ' (' + data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + '), including executive information, SEC documents, news, and more!',
-          title: 'All About ' + data.profile_header.c_name + ' | ' + data.results.name + ' Finance',
-          url: 'http://www.myinvestkit.com/' + info.params.partner_id + '/company/' + data.profile_header.c_id,
-          siteName: data.results.name,
+        var head_data = { // Data to put into the head of the document (regular site)
+          description: data.profile_header.comp_name + ' SEC Documents, financial data, news, executive details and other valuable information for investors.',
+          title: 'Everything You Need To Know About ' + data.profile_header.c_name + ' | ' + data.results.name + ' Finance',
+          url: 'http://www.myinvestkit.com' + Router.path('content.companyprofile', {partner_id: info.params.partner_id, company_id: data.profile_header.c_id}),
           other_tags: [
             {
               name: 'og:image',
@@ -133,12 +166,69 @@ seoPicker.route('/:partner_id?/company/:company_id',function(params, req, res){
               content: 'website'
             }
           ]
+        };
+        var page_data = {
+          head_data: head_data,
+          partner_header: data.results.header.script,
+          h1: {
+            title: 'Everything You Need To Know About ' + data.profile_header.comp_name,
+            content: {
+              line: [
+                'Written By: ' + authors[rand],
+                'Page Published: ' + data.daily_update.csi_price_last_updated,
+                '',
+                data.bio_location.c_desc + ' - By <a href="http://thomsonreuters.com/">Thomson Reuters</a>',
+                '',
+                data.profile_header.comp_name + ' company headquarters: ' + data.bio_location.c_street_addr + ' ' + data.profile_header.c_hq_city + ', ' + data.profile_header.c_hq_state + ' ' + data.bio_location.c_zip,
+                data.profile_header.comp_name + ' Sector: ' + data.profile_header.c_sector.toLowerCase()
+              ]
+            },
+            h2: [
+              {
+                title: data.profile_header.c_name + '\'s Daily Update',
+                content: {
+                  line: [
+                    'Last Updated: ' + data.daily_update.csi_price_last_updated,
+                    '',
+                    data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' Share Price: $' + ToCommaNumber(data.daily_update.csi_price),
+                    data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' Change: $' + data.daily_update.csi_price_change_since_last + ' (' + data.daily_update.csi_percent_change_since_last + '%)',
+                    data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' Opening Price: $' + ToCommaNumber(data.daily_update.csi_opening_price),
+                    data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' Closing Price: $' + ToCommaNumber(data.daily_update.csi_closing_price),
+                    data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' Total Shares: ' + ToCommaNumber(data.daily_update.csi_total_shares),
+                    data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' Market Cap: ' + ToCommaNumber(data.daily_update.csi_market_cap),
+                    data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' PE Ratio: ' + data.daily_update.csi_pe_ratio,
+                    data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' Trading Volume: ' + ToCommaNumber(data.daily_update.csi_trading_vol)
+                  ]
+                }
+              },
+              {
+                title: 'Who\'s Who at ' + data.profile_header.comp_name,
+                content: {
+                  ul: exec_data
+                }
+              },
+              {
+                title: data.profile_header.comp_name + '\'s Featured Lists',
+                h3: featured_lists
+              },
+              {
+                title: data.profile_header.comp_name + '\'s Earnings Reports',
+                h3: earnings_report_data
+              },
+              {
+                title: data.profile_header.comp_name + '\'s Random Facts',
+                content: {
+                  line: data.did_you_know.facts
+                }
+              }
+            ]
+          }
         };
       } else {
         var head_data = { // Data to put into the head of the document (regular site)
-          description: 'Find out everything you need to know about ' + data.profile_header.c_name + ' (' + data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + '): financial data, SEC documents, news, executive information, and more!',
-          title: 'Everything You Need To Know About ' + data.profile_header.c_name + ' | InvestKit.com',
-          url: 'http://www.investkit.com/company/' + data.profile_header.c_id,
+          description: 'SEC Documents, financial data, news, executive details and other valuable information about ' + data.profile_header.comp_name,
+          title: 'An Investors Guide To ' + data.profile_header.c_name + ' | InvestKit.com',
+          url: 'http://www.investkit.com' + Router.path('content.companyprofile', {partner_id: info.params.partner_id, company_id: data.profile_header.c_id}),
           other_tags: [
             {
               name: 'og:image',
@@ -150,69 +240,74 @@ seoPicker.route('/:partner_id?/company/:company_id',function(params, req, res){
             }
           ]
         };
-      }
-
-      var page_data = {
-        head_data: head_data,
-        h1: {
-          title: 'Everything You Need To Know About ' + data.profile_header.c_name,
-          content: {
-            line: [
-              data.bio_location.c_desc,
-              'Headquarters Location: ' + data.bio_location.c_street_addr + ' ' + data.profile_header.c_hq_city + ', ' + data.profile_header.c_hq_state + ' ' + data.bio_location.c_zip,
-              'Company Sector: ' + data.profile_header.c_sector
+        var page_data = {
+          head_data: head_data,
+          h1: {
+            title: 'An Investors Guide To ' + data.profile_header.comp_name,
+            content: {
+              line: [
+                'Written By: ' + author(),
+                'Page Published on ' + published,
+                'Page Updated on ' + updated,
+                '',
+                data.profile_header.comp_name + ' headquarters are located in ' + data.bio_location.c_street_addr + ' ' + data.profile_header.c_hq_city + ', ' + data.profile_header.c_hq_state + ' ' + data.bio_location.c_zip,
+                data.profile_header.comp_name + ' is in the ' + data.profile_header.c_sector.toLowerCase() + ' sector.',
+                '',
+                'Thomson Reuters Summary:',
+                data.bio_location.c_desc
+              ]
+            },
+            h2: [
+              {
+                title: 'Today At ' + data.profile_header.c_name,
+                content: {
+                  line: [
+                    data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' Share Price: $' + ToCommaNumber(data.daily_update.csi_price),
+                    data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' Last Updated: ' + data.daily_update.csi_price_last_updated,
+                    data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' Change: $' + data.daily_update.csi_price_change_since_last + ' (' + data.daily_update.csi_percent_change_since_last + '%)',
+                    data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' Opening Price: $' + ToCommaNumber(data.daily_update.csi_opening_price),
+                    data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' Closing Price: $' + ToCommaNumber(data.daily_update.csi_closing_price),
+                    data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' Total Shares: ' + ToCommaNumber(data.daily_update.csi_total_shares),
+                    data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' Market Cap: ' + ToCommaNumber(data.daily_update.csi_market_cap),
+                    data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' PE Ratio: ' + data.daily_update.csi_pe_ratio,
+                    data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' Trading Volume: ' + ToCommaNumber(data.daily_update.csi_trading_vol)
+                  ]
+                }
+              },
+              {
+                title: 'Who\'s Who at ' + data.profile_header.comp_name,
+                content: {
+                  ul: exec_data
+                }
+              },
+              {
+                title: 'Featured Lists of ' + data.profile_header.comp_name,
+                h3: featured_lists
+              },
+              {
+                title: 'Earnings Reports for ' + data.profile_header.comp_name,
+                h3: earnings_report_data
+              },
+              {
+                title: 'Random Facts About ' + data.profile_header.comp_name,
+                content: {
+                  line: data.did_you_know.facts
+                }
+              }
             ]
-          },
-          h2: [
-            {
-              title: data.profile_header.c_name + '\'s Daily Update',
-              content: {
-                line: [
-                  'Share Price: $' + ToCommaNumber(data.daily_update.csi_price),
-                  '  Last Updated: ' + data.daily_update.csi_price_last_updated,
-                  '  Change: $' + data.daily_update.csi_price_change_since_last + ' (' + data.daily_update.csi_percent_change_since_last + '%)',
-                  'Opening Price: $' + ToCommaNumber(data.daily_update.csi_opening_price),
-                  'Closing Price: $' + ToCommaNumber(data.daily_update.csi_closing_price),
-                  'Total Shares: ' + ToCommaNumber(data.daily_update.csi_total_shares),
-                  'Market Cap: ' + ToCommaNumber(data.daily_update.csi_market_cap),
-                  'PE Ratio: ' + data.daily_update.csi_pe_ratio,
-                  'Trading Volume: ' + ToCommaNumber(data.daily_update.csi_trading_vol)
-                ]
-              }
-            },
-            {
-              title: data.profile_header.c_name + '\'s Earnings Reports',
-              h3: earnings_report_data
-            },
-            {
-              title: 'Who\'s Who at ' + data.profile_header.c_name,
-              content: {
-                ul: exec_data
-              }
-            },
-            {
-              title: data.profile_header.c_name + '\'s Random Facts',
-              content: {
-                line: data.did_you_know.facts
-              }
-            }
-          ]
-        }
-      };
-
-      if ( typeof data.results != "undefined" ) {
-        page_data.partner_header = data.results.header.script;
+          }
+        };
       }
 
       // res.end(JSON.stringify(res_arr, null, 2));
 
-      // res.end(SSR.render('generic_page',page_data));
-      res.end(minify(SSR.render('generic_page',page_data), {
-        minifyCSS: true,
-        minifyJS: true,
-        removeComments: true,
-        collapseWhitespace: true
-      })); // Write the pages template
+      res.end(SSR.render('generic_page',page_data));
+      // res.end(minify(SSR.render('generic_page',page_data), {
+      //   minifyCSS: true,
+      //   minifyJS: true,
+      //   removeComments: true,
+      //   collapseWhitespace: true
+      // })); // Write the pages template
       // Also minifies the HTML string
 
       // Log how long it took to render the page
@@ -294,7 +389,7 @@ seoPicker.route('/:partner_id?/executive/:exec_id',function(params, req, res){
       var cmp_reg = new RegExp(profile_header.c_name,'g');
       profile_header.o_bio = (profile_header.o_bio || '').replace(cmp_reg,'<a href="' + Router.path('content.companyprofile',{company_id: profile_header.c_id, partner_id: info.params.partner_id}) + '">' + profile_header.c_name + '</a>');
       profile_header.c_name_orig = profile_header.c_name;
-      profile_header.c_name = '<a href="' + Router.path('content.companyprofile',{company_id: profile_header.c_id, partner_id: info.params.partner_id}) + '">' + profile_header.c_name + '</a>';
+      profile_header.c_name = '<a href="' + Router.path('content.companyprofile',{company_id: profile_header.c_id, partner_id: info.params.partner_id}) + '">' + profile_header.c_name + ' (' + profile_header.c_ticker + ')</a>';
       data.profile_header.o_full_name = data.profile_header.o_first_name + ' ' + data.profile_header.o_middle_initial + ' ' + data.profile_header.o_last_name;
 
       if ( typeof data.content != "undefined" ) {
@@ -361,10 +456,9 @@ seoPicker.route('/:partner_id?/executive/:exec_id',function(params, req, res){
 
       if ( typeof data.results != "undefined" ) {
         var head_data = { // Data to put into the head of the document (meta tags/title)
-          description: 'Learn about ' + profile_header.o_full_name + ', ' + profile_header.o_current_title.long_title + ' of ' + profile_header.c_name_orig + '.',
-          title: 'Learn About ' + profile_header.o_full_name + ' | ' + data.results.name + ' Finance',
-          url: 'http://www.investkit.com/' + info.params.partner_id + '/executive/' + profile_header.o_id,
-          siteName: data.results.name,
+          description: profile_header.c_name_orig + ' Executive ' + profile_header.o_full_name + ', the ' + profile_header.o_current_title.long_title + ' from ' +  + '.',
+          title: profile_header.c_name_orig + ' Executive ' + profile_header.o_full_name + ' | ' + data.results.name + ' Finance',
+          url: 'http://www.investkit.com/executive/' + profile_header.o_id,
           other_tags: [
             {
               name: 'og:image',
@@ -427,7 +521,7 @@ seoPicker.route('/:partner_id?/executive/:exec_id',function(params, req, res){
               }
             },
             {
-              title: profile_header.o_full_name + '\'s Rivals',
+              title: profile_header.o_full_name + '\'s College Rivals',
               content: {
                 ul: rival_data
               }
@@ -450,13 +544,13 @@ seoPicker.route('/:partner_id?/executive/:exec_id',function(params, req, res){
 
       // res.end(JSON.stringify(res_arr, null, 2));
 
-      // res.end(SSR.render('generic_page',page_data));
-      res.end(minify(SSR.render('generic_page',page_data), {
-        minifyCSS: true,
-        minifyJS: true,
-        removeComments: true,
-        collapseWhitespace: true
-      })); // Write the pages template
+      res.end(SSR.render('generic_page',page_data));
+      // res.end(minify(SSR.render('generic_page',page_data), {
+      //   minifyCSS: true,
+      //   minifyJS: true,
+      //   removeComments: true,
+      //   collapseWhitespace: true
+      // })); // Write the pages template
       // Also minifies the HTML string
 
       // Log how long it took to render the page
@@ -492,6 +586,168 @@ seoPicker.route('/:partner_id?/executive/:exec_id',function(params, req, res){
       batch_envar.withValue(batch, function(){
         var bound_cb = Meteor.bindEnvironment(method_cb);
         Meteor.call("GetExecData",params.exec_id,"batch_3", bound_cb);
+      });
+    });
+
+    if ( typeof params.partner_id != "undefined" ) {
+      functions.push(function(batch){
+        batch_envar.withValue(batch, function(){
+          var bound_cb = Meteor.bindEnvironment(method_cb);
+          Meteor.call('GetPartnerHeader',params.partner_id, bound_cb);
+        });
+      });
+    }
+
+    var company_batch = new async_mult(functions, callback);
+
+    company_batch.execute();
+  });
+});
+
+// Location Profile
+seoPicker.route('/:partner_id?/location/:loc_id',function(params, req, res){
+  console.log('***Executive Profile SSR***');
+  var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
+
+  // Get the data
+  info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){
+    var callback = Meteor.bindEnvironment(function(results){
+      var res_arr = {};
+      for ( var index = 0; index < results.length; index++ ) {
+        for ( var attr in results[index] ) {
+          if ( results[index].hasOwnProperty(attr) ) {
+            res_arr[attr] = results[index][attr];
+          }
+        }
+      }
+
+      var info = info_envar.get();
+      var res = info.res;
+
+      var data = res_arr;
+
+      if ( typeof data.content != "undefined" ) {
+        var temp_d = JSON.parse(data.content);
+        temp_d.results.name = temp_d.name;
+        data.results = temp_d.results;
+      }
+
+      // Section specific data
+      // Companies by Sector
+      var cmp_sector = [];
+      for ( var attr in data.companies_by_sector ) {
+        if ( data.companies_by_sector.hasOwnProperty(attr) && attr != "total_company_count" ) {
+          var ldata = {};
+          ldata.title = attr + ' (' + (Math.round(data.companies_by_sector[attr].percentage*1000)/10) + '% of companies in ' + data.profile_header.location + ')';
+          var arr = [];
+          for ( var index = 0; index < data.companies_by_sector[attr].count; index++ ) {
+            c_data = data.companies_by_sector[attr][index];
+            arr.push('<a href="' + Router.path('content.companyprofile',{partner_id: info.params.partner_id, company_id: c_data.c_id}) + '">' + c_data.c_name + ' (' + c_data.c_ticker + ')</a><br>' + c_data.c_desc);
+          }
+          ldata.content = {ul: arr};
+          cmp_sector[cmp_sector.length] = ldata;
+        }
+      }
+      // Earnings Reports
+      var earnings = [];
+      for ( var index = 0; index < data.earnings.length; index++ ) {
+        var ldata = {};
+        var cdata = data.earnings[index];
+        ldata.title = '<a href="' + Router.path('content.companyprofile',{partner_id: info.params.partner_id, company_id: cdata.c_id}) + '">' + cdata.c_name + ' (' + cdata.c_exchange + ':' + cdata.c_ticker + ')</a> ' + cdata.e_report_title;
+        ldata.content = {line: [cdata.c_desc]};
+        earnings[earnings.length] = ldata;
+      }
+
+      var head_data = { // Data to put into the head of the document (meta tags/title)
+        description: 'Learn more about ' + data.profile_header.location,
+        title: 'Everything You Need To Know About ' + data.profile_header.location + ' | InvestKit.com',
+        url: Router.path('content.locationprofile',{partner_id: info.params.partner_id, loc_id: info.params.loc_id})
+      };
+
+      var page_data = {
+        head_data: head_data,
+        h1: {
+          title: data.profile_header.location,
+          content: {
+            line: [
+              'Page last updated: ' + data.location_daily_update.composite_summary.last_updated,
+              data.profile_header.location + ' is home to ' + data.profile_header.total_companies + ' companies with a total market cap of $' + data.profile_header.total_market_cap + '. ' + data.profile_header.location + ' is also home to ' + data.profile_header.total_executives + ' executives.',
+              data.profile_header.location + ' Current Aggragate Price: $' + ToCommaNumber(data.location_daily_update.composite_summary.current_price),
+              data.profile_header.location + ' Previous Close: $' + ToCommaNumber(data.location_daily_update.composite_summary.previous_close),
+              data.profile_header.location + ' Percent Change: ' + data.location_daily_update.composite_summary.percent_change + '%',
+              data.profile_header.location + ' Price Change: $' + ToCommaNumber(data.location_daily_update.composite_summary.price_change),
+              data.profile_header.location + ' Today\'s High: $' + ToCommaNumber(data.location_daily_update.composite_summary.todays_high),
+              data.profile_header.location + ' Today\'s Low: $' + ToCommaNumber(data.location_daily_update.composite_summary.todays_low),
+              data.profile_header.location + ' Total Companies: ' + ToCommaNumber(data.location_daily_update.composite_summary.total_companies)
+            ]
+          },
+          h2: [
+            {
+              title: data.profile_header.location + ' Companies By Sector',
+              h3: cmp_sector
+            },
+            {
+              title: data.profile_header.location + ' Earnings Reports',
+              h3: earnings
+            }
+          ]
+        }
+      };
+
+      if ( typeof data.results != "undefined" ) {
+        page_data.partner_header = data.results.header.script;
+      }
+
+      // res.end(JSON.stringify(res_arr, null, 2));
+
+      res.end(SSR.render('generic_page',page_data));
+      // res.end(minify(SSR.render('generic_page',page_data), {
+      //   minifyCSS: true,
+      //   minifyJS: true,
+      //   removeComments: true,
+      //   collapseWhitespace: true
+      // })); // Write the pages template
+      // Also minifies the HTML string
+
+      // Log how long it took to render the page
+      var endTime = (new Date()).getTime();
+      console.log("SSRSTAT|\"Executive Profile\",\"" + info.params.exec_id + "\"," + (Math.round((endTime - info.startTime)/10)/100) + "," + endTime + "|");
+      return false;
+    });
+
+    var functions = [];
+    var method_cb = function(error, data) {
+      var batch = batch_envar.get();
+      if ( error ) {
+        console.log("Batch Error:", error);
+        batch.done({});
+        return false;
+      }
+      batch.done(data);
+    }
+
+    functions.push(function(batch){
+      batch_envar.withValue(batch, function(){
+        var bound_cb = Meteor.bindEnvironment(method_cb);
+        Meteor.call("GetLocationData",params.loc_id,"batch_1", bound_cb);
+      });
+    });
+    functions.push(function(batch){
+      batch_envar.withValue(batch, function(){
+        var bound_cb = Meteor.bindEnvironment(method_cb);
+        Meteor.call("GetLocationData",params.loc_id,"batch_2", bound_cb);
+      });
+    });
+    functions.push(function(batch){
+      batch_envar.withValue(batch, function(){
+        var bound_cb = Meteor.bindEnvironment(method_cb);
+        Meteor.call("GetLocationData",params.loc_id,"batch_3", bound_cb);
+      });
+    });
+    functions.push(function(batch){
+      batch_envar.withValue(batch, function(){
+        var bound_cb = Meteor.bindEnvironment(method_cb);
+        Meteor.call("GetLocationData",params.loc_id,"batch_4", bound_cb);
       });
     });
 

@@ -20,6 +20,7 @@ Location Module: Find Company
           <i class="fa fa-search"></i>
         </div>
       </div>
+      {{#with range}}
       <div class="find_cmp_dd">
         <div class="find_cmp_label">Range</div>
         <div class="find_cmp_dd_menu" id="ModDistance">
@@ -29,21 +30,17 @@ Location Module: Find Company
           <div class="dropdown">
             <div class="dropdown_car"></div>
             <div class="dropdown_item">5 Miles</div>
+            {{#each ranges}}
             <div class="dropdown_divider"></div>
-            <div class="dropdown_item">15 Miles</div>
-            <div class="dropdown_divider"></div>
-            <div class="dropdown_item">25 Miles</div>
-            <div class="dropdown_divider"></div>
-            <div class="dropdown_item">50 Miles</div>
-            <div class="dropdown_divider"></div>
-            <div class="dropdown_item">100 Miles</div>
-            <div class="dropdown_divider"></div>
-            <div class="dropdown_item">150+ Miles</div>
+            <div class="dropdown_item {{class}}">{{name}} Miles</div>
+            {{/each}}
           </div>
         </div>
       </div>
+      {{/with}}
     </div>
     <div class="find_cmp_sec1">
+      {{#with exchange}}
       <div class="find_cmp_dd">
         <div class="find_cmp_label">Pick an Exchange</div>
         <div class="find_cmp_dd_menu" id="ModExchange">
@@ -52,16 +49,16 @@ Location Module: Find Company
           <i class="fa fa-caret-up"></i>
           <div class="dropdown">
             <div class="dropdown_car"></div>
-            <div class="dropdown_item">NASDAQ</div>
+            <div class="dropdown_item active">All Exchanges</div>
+            {{#each exchanges}}
             <div class="dropdown_divider"></div>
-            <div class="dropdown_item">NYSE</div>
-            <div class="dropdown_divider"></div>
-            <div class="dropdown_item">AMEX</div>
-            <div class="dropdown_divider"></div>
-            <div class="dropdown_item">OTC</div>
+            <div class="dropdown_item">{{this}}</div>
+            {{/each}}
           </div>
         </div>
       </div>
+      {{/with}}
+      {{#with sector}}
       <div class="find_cmp_dd">
         <div class="find_cmp_label">Pick a Sector</div>
         <div class="find_cmp_dd_menu" id="ModSector">
@@ -70,35 +67,33 @@ Location Module: Find Company
           <i class="fa fa-caret-up"></i>
           <div class="dropdown">
             <div class="dropdown_car"></div>
-            <div class="dropdown_item">Basic Materials</div>
+            <div class="dropdown_item">All Sectors</div>
+            {{#each sectors}}
             <div class="dropdown_divider"></div>
-            <div class="dropdown_item">Conglomerates</div>
-            <div class="dropdown_divider"></div>
-            <div class="dropdown_item">Consumer Goods</div>
-            <div class="dropdown_divider"></div>
-            <div class="dropdown_item">Financial</div>
-            <div class="dropdown_divider"></div>
-            <div class="dropdown_item">Healthcare</div>
-            <div class="dropdown_divider"></div>
-            <div class="dropdown_item">Industrial Goods</div>
-            <div class="dropdown_divider"></div>
-            <div class="dropdown_item">Services</div>
-            <div class="dropdown_divider"></div>
-            <div class="dropdown_item">Technology</div>
-            <div class="dropdown_divider"></div>
-            <div class="dropdown_item">Utilities</div>
+            <div class="dropdown_item">{{this}}</div>
+            {{/each}}
           </div>
         </div>
       </div>
+      {{/with}}
+      {{#with industry}}
       <div class="find_cmp_dd">
         <div class="find_cmp_label">Pick an Industry</div>
-        <div class="find_cmp_dd_menu disabled" id="ModIndustry">
-          <div class="find_cmp_dd_menu_txt">All Industries</div>
+        <div class="find_cmp_dd_menu {{class}}" id="ModIndustry">
+          <div class="find_cmp_dd_menu_txt">{{default}}</div>
           <i class="fa fa-caret-down"></i>
           <i class="fa fa-caret-up"></i>
-          <div class="dropdown"></div>
+          <div class="dropdown">
+            <div class="dropdown_car"></div>
+            <div class="dropdown_item">All Industries</div>
+            {{#each industries}}
+            <div class="dropdown_divider"></div>
+            <div class="dropdown_item">{{this}}</div>
+            {{/each}}
+          </div>
         </div>
       </div>
+      {{/with}}
     </div>
     <div class="find_cmp_sec2">
       <div class="slider">
@@ -136,22 +131,24 @@ Location Module: Find Company
       </div>
     </div>
     <div class="find_cmp_sec1">
+      {{#with metric}}
       <div class="find_cmp_dd">
         <div class="find_cmp_label">Key Metrics</div>
         <div class="find_cmp_dd_menu" id="ModMetrics">
-          <div class="find_cmp_dd_menu_txt">Stock % Gain</div>
+          <div class="find_cmp_dd_menu_txt">{{default}}</div>
           <i class="fa fa-caret-down"></i>
           <i class="fa fa-caret-up"></i>
           <div class="dropdown">
             <div class="dropdown_car"></div>
-            <div class="dropdown_item">Stock % Gain</div>
+            <div class="dropdown_item active">{{default}}</div>
+            {{#each metrics}}
             <div class="dropdown_divider"></div>
-            <div class="dropdown_item">Volume</div>
-            <div class="dropdown_divider"></div>
-            <div class="dropdown_item">Market Cap</div>
+            <div class="dropdown_item">{{this}}</div>
+            {{/each}}
           </div>
         </div>
       </div>
+      {{/with}}
       <div class="find_cmp_dd">
         <div class="find_cmp_label">Start Date</div>
         <div class="find_cmp_dd_menu noclick">
