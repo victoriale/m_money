@@ -84,7 +84,7 @@ Template.cp_head.helpers({
     }
     return Router.path('content.locationprofile',{
       loc_id:data.c_hq_state,
-    })
+    });
   },
 });
 
