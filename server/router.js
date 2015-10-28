@@ -149,7 +149,7 @@ seoPicker.route('/:partner_id?/company/:company_id',function(params, req, res){
       }
 
       var published = (new Date()).toSNTForm();
-      var updated = (new Date(data.daily_update.csi_price_last_updated)).toTimeString();
+      var updated = (new Date(data.daily_update.csi_price_last_updated)).toSNTFormTime();
 
       if ( typeof data.results != "undefined" ) {
         var head_data = { // Data to put into the head of the document (regular site)
