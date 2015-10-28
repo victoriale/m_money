@@ -19,7 +19,6 @@ Template.lp_head.helpers({
     if(typeof(data) === 'undefined'){
       return false;
     }
-
     return data;
   }
 });
@@ -33,7 +32,16 @@ Template.lp_body.helpers({
     }
     //Removed from api due to slowing down api. Will be in rev1b
     //data.total_executives_comp = data.total_executives_comp.replace(' Dollars', '');
-
     return data;
   }
+});
+Template.lp_head.helpers({
+  image: function(){
+    var data = Session.get('profile_header');
+    console.log(data);
+    var state = data['location'].replace(/ /g, '_');
+    console.log(state);
+    return "background-image: url('/StateImages/Location_"+ state +".jpg');";
+  },
+
 });

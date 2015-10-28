@@ -108,7 +108,7 @@
   {{> directory_list_button}}
 
   <div class="layout_nav">
-    <table>
+    <table style="min-width:1440px; max-width: 1460px; margin: 0 auto;">
       <tr>
         <td class="layout_nav-logo-cell">
           {{#if notPartner}}
@@ -129,8 +129,10 @@
         </td>
         <td>
           <div class="layout_nav-share"><i class="fa fa-share-alt"></i></div>
-          <div class="layout_nav-fb"><i class="fa fa-facebook"></i></div>
-          <div class="layout_nav-share_text">Share It</div>
+          <a class="facebook-link">
+            <div class="layout_nav-fb"><i class="fa fa-facebook"></i></div>
+            <div class="layout_nav-share_text">Share It</div>
+          </a>
         </td>
       </tr>
     </table>
