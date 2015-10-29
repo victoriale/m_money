@@ -535,6 +535,27 @@ Meteor.methods({
     return future.wait();
   },
 
+  GetPartnerProfile: function(partner_id, batch) {
+    var future = new Future();
+    console.log("New Partner Request",partner_id,batch);
+
+    var UrlString = "http://apifin.synapsys.us/call_controller.php?action=location_profile&option="+batch+"&partner_domain="+partner_id;
+    console.log(UrlString);
+
+    Meteor.http.get(UrlString, function(error, data){
+      try{
+        data = JSON.parse(data['content']);
+      } catch (e) {
+        future.throw(e);
+        return false;
+      }
+      future.return(data);
+    });
+
+    this.unblock();
+    return future.wait();
+  },
+
   GetSuggestion: function(searchString,currentTime){
     var stringURL = 'http://apifin.synapsys.us/call_controller.php?action=search&option=batch&wild=true&param=' + searchString;
     var future = new Future();
