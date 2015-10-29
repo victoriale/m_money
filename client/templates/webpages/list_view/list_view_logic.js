@@ -11,8 +11,7 @@ Template.list_view.onCreated(function(){
 
 //renders the data when page loads
 Template.list_view.onRendered(function () {
-$(".list_vw-page-selector1").css("background-color","#3098ff");
-
+  $(".list_vw-page-selector1").css("background-color","#3098ff");
 });
 
 var backgroundStyle="tilewhite";
@@ -22,7 +21,6 @@ Template.list_view.helpers({
     if(typeof listdata =='undefined'){
       return '';
     }
-    
     $.map(listdata.top_list_list, function(data,index){
       if(index % 2 == 0){
         data['background'] = 'tilewhite';
@@ -33,6 +31,8 @@ Template.list_view.helpers({
       data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
       data['rank'] = index+1;
       data['url'] = Router.path('content.companyprofile',{
+        ticker: data.c_ticker,
+        name: compUrlName(data.c_name),
         company_id: data.c_id
       });
 
@@ -78,6 +78,8 @@ Template.list_view.helpers({
       data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
       data['rank'] = index+1;
       data['url'] = Router.path('content.companyprofile',{
+        ticker: data.c_ticker,
+        name: compUrlName(data.c_name),
         company_id: data.c_id
       });
 
@@ -128,6 +130,11 @@ Template.list_view.helpers({
 });
 //This handles the events on button clicks of 1,2,3 and 200
 Template.list_view.events({
+  //Event to close tooltip
+  'click .list_vw-x': function(e, t){
+    //Currently disabled: Styling needs to be fixed to handle this event
+    //t.$('.list_vw-wl').hide();
+  },
   'click .list_vw-lefthov': function(){
     var counter = Session.get("lv_count");
     var list = Session.get('top_list_gen')['top_list_list'];

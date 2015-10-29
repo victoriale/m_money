@@ -28,25 +28,38 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists.l
           </div>
           <div class="list_ol-top-content-compbox">
             {{#each list_of_lists_data}}
-            <a href="">
+            <a href="{{imageURL}}">
               <div class="list_ol-top-content-compbox-subimages" style="background-image:url('{{imageUrl c_logo}}')"></div>
             </a>
             {{/each}}
           </div>
           {{/each}}
-          <button class="list_ol-top-content-button">
-            <div class="fin_icon"></div>
-            <div class="fin_text">See The List <i class="fa fa-angle-right"></i></div>
-          </button>
+          <a href="{{url}}">
+            <button class="list_ol-top-content-button">
+              <div class="fin_icon"></div>
+              <div class="fin_text">See The List <i class="fa fa-angle-right"></i></div>
+            </button>
+          </a>
         </div>
       </div>
       <div class="list_ol-bottom">
-        <a href=""><div class="list_ol-bottom-share"><i class="fa fa-heart"></i> Save</div></a>
+        <!--<a href=""><div class="list_ol-bottom-share"><i class="fa fa-heart"></i> Save</div></a>-->
         <a href=""><div class="list_ol-bottom-share"><i class="fa fa-share-alt"></i> Share</div></a>
-        <a href=""><div class="list_ol-bottom-feedback"><i class="fa fa-flag"></i> Feedback</div></a>
+        <!--<a href=""><div class="list_ol-bottom-feedback"><i class="fa fa-flag"></i> Feedback</div></a>-->
       </div>
     </div>
     {{/each}}
+    <div class="module-footer">
+      <a href= "{{toListOfList}}">
+        <button class="module-footer-button">
+          <div class="nws-footer"><i class="fa fa-share"></i></div>
+          <div class="module-footer-button-text list_ol-footer-button">
+            <span style="left:0%;padding-right:10px; font-family: HN-B; font-size: 14px">View All Lists</span>
+            <i class="fa fa-angle-right"></i>
+          </div>
+        </button>
+      </a>
+    </div>
   </div>
   {{/with}}
   <!-- End of Template-->

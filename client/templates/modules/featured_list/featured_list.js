@@ -97,7 +97,6 @@ Template.featured_list.helpers (
       }
       var newData = data.featured_list_data;
       $.map(newData, function(data ,index){
-        console.log(objName, data);
         for(objName in data){
           if(objName === 'stock_percent'){
             data['data_name'] = "Stock Percent";

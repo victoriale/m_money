@@ -110,23 +110,41 @@ Template.mm_end_date.onRendered(function(){
 })
 
 Template.money_memory.helpers({
+  //Helper to determine if result exists (Fix for if no stock data for time range). If results DNE, show error message
+  resultExists: function(){
+    var data = Session.get('money_memory');
+
+    return typeof data === 'undefined' ? false : true;
+  },
   //Helper to determine URL to money memory page
   linkToMM: function(){
     var params = Router.current().getParams();
 
-    return Router.path('content.moneymemory', {company_id: params.company_id});
+    return Router.path('content.moneymemory', {
+      ticker:params.ticker,
+      name:params.name,
+      company_id: params.company_id
+    });
   },
   //Helper to determine URL to competitors page
   linkToCompetitors: function(){
     var params = Router.current().getParams();
 
-    return Router.path('content.competitor', {company_id: params.company_id});
+    return Router.path('content.competitor', {
+      ticker:params.ticker,
+      name:params.name,
+      company_id: params.company_id
+    });
   },
   //Helper to determine URL to competitors page
   linkToFinOverview: function(){
     var params = Router.current().getParams();
 
-    return Router.path('content.finoverview', {company_id: params.company_id});
+    return Router.path('content.finoverview', {
+      ticker:params.ticker,
+      name:params.name,
+      company_id: params.company_id
+    });
   },
   //Helper to display initial investment
   user_initial_investment: function(){

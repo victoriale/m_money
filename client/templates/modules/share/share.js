@@ -35,4 +35,9 @@ Template.share.helpers({
     }
     return image.c_logo;
   },
+  image: function(){
+    var data = Session.get('profile_header');
+    var state = data['location'].replace(/ /g, '_');;
+    return "background-image: url('/StateImages/Location_"+ state +".jpg');";
+  },
 })

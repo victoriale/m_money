@@ -385,7 +385,7 @@
 }
 
 .layout_nav{
-  min-width: 1042px;
+  min-width: 100%;
   width:100%;
   height:40px;
   background-color: #252525;
@@ -399,16 +399,16 @@
     &-cell{
       width:135px;
       height:30px;
-      margin: 5px 0 5px 8vw;
+      margin: 5px 0 5px auto;
       display: inline-block;
       float: left;
     }
   }
   &-search{
-    min-width: 350px;
-    max-width: 400px;
+    min-width: 25vw;
+    //max-width: 400px;
     height:30px;
-    margin: 5px 10vw 5px 15vw;
+    margin: 5px 0 5px auto;
     border-radius: 5px;
     background-color: @white;
     float:left;
@@ -444,12 +444,12 @@
   &-share{
     width:30px;
     height:30px;
-    background-color: @green;
+    //background-color: @green;
     line-height: 30px;
     color:@white;
-    border-radius: 50%;
+    //border-radius: 50%;
     float: left;
-    margin: 5px 2px;
+    margin: 5px 10px;
     text-align: center;
   }
   &-share_text{

@@ -84,7 +84,13 @@ Template.area_composite.helpers({
       }
       for ( var subind = 0; subind < limit; subind++ ) {
         loc_arr[subind] = {
-          url: Router.path('content.companyprofile',{partner_id: Router.current().params.partner_id, company_id: data[cmp_arr[index].title][subind].c_id}),
+          url: Router.path('content.companyprofile',
+          {
+            partner_id: Router.current().params.partner_id,
+            ticker:'undefined',
+            name:'undefined',
+            company_id: data[cmp_arr[index].title][subind].c_id
+          }),
           logo: data[cmp_arr[index].title][subind].c_logo,
           index: subind
         }
@@ -150,7 +156,6 @@ Template.area_composite.helpers({
     // Tiles
     var tiles = [];
     for ( var index = 0; index < sect_arr.length; index++ ) {
-      console.log("Sector Array",sect_arr);
       if ( index < 3 ) {
         tiles[index] = {
           name: sect_arr[index].title + ' Sector',
@@ -167,7 +172,5 @@ Template.area_composite.helpers({
 
     return RetArr;
   },
-
-
 
 });

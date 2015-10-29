@@ -57,9 +57,28 @@ Template.latest_news.helpers({
     if(typeof data == 'undefined'){
       return '#';
     }
-    return Router.path('content.articlenews',{
-      comp_id: data.c_id
-    });
+    var params = Router.current().getParams();
+    if(Session.get('IsLocation')){
+      return Router.path('content.articlenews',{
+        loc_id:params.loc_id
+      });
+    }
+    if(Session.get('IsExec')){
+      return Router.path('content.articlenews',{
+        lname:params.lname,
+        fname:params.fname,
+        ticker:params.ticker,
+        comp_id: data.c_id
+      });
+    }
+    if(Session.get('IsCompany')){
+      return Router.path('content.articlenews',{
+        ticker:params.ticker,
+        name:params.name,
+        comp_id: data.c_id
+      });
+    }
+
   },
 
   isData: function(){

@@ -155,8 +155,17 @@ Template.co_fin_overview.helpers({
   //Helper to return to company profile page
   backToComp: function(){
     var params = Router.current().getParams();
+    var data = Session.get('new_fin_overview');
 
-    return Router.path('content.companyprofile', {company_id: params.company_id});
+    if(typeof data === 'undefined'){
+      return '#';
+    }
+
+
+    var company = compUrlName(data.company_data.c_name);
+    var ticker = data.company_data.c_ticker;
+
+    return Router.path('content.companyprofile', {company_id: params.company_id, name: company, ticker: ticker});
   },
   //Helper to get company data
   companyData: function(){

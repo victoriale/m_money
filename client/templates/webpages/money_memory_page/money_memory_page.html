@@ -92,10 +92,16 @@
           </div>
         </div>
         <div class="mmpg-monmem-result">
-          {{#with moneyMemoryResult}}
-            <div class="mmpg-monmem-result-lbl">you would have {{earn_lose}}</div>
-            <div class="mmpg-monmem-result-amt" style="color: {{colorIndicator}}">${{roi}}</div>
-          {{/with}}
+          {{#if resultExists}}
+            {{#with moneyMemoryResult}}
+              <div class="mmpg-monmem-result-lbl">you would have {{earn_lose}}</div>
+                <div class="mmpg-monmem-result-amt" style="color: {{colorIndicator}}">${{roi}}</div>
+            {{/with}}
+          {{else}}
+            <div class="mmpg-monmem-result-error">
+              No data for this time period.<br>Please try a different time range.
+            </div>
+          {{/if}}
           <div class="mmpg-monmem-result-bot">
             <button class="mmpg-monmem-result-submit" type="submit">Submit <i class="fa fa-angle-right"></i></button>
           </div>

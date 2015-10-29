@@ -93,6 +93,12 @@ Template.mm_page_end_date.onRendered(function(){
 })
 
 Template.money_memory_page.helpers({
+  //Helper to determine if result exists (Fix for if no stock data for time range). If results DNE, show error message
+  resultExists: function(){
+    var data = Session.get('money_memory');
+    
+    return typeof data === 'undefined' ? false : true;
+  },
   //Helper to determine which range button is selected
   isRangeSelected: function(val){
     var mm_range = Session.get('mm_range');
@@ -229,8 +235,16 @@ Template.money_memory_page.helpers({
   //Helper to return to company profile page
   backToComp: function(){
     var params = Router.current().getParams();
+    var data = Session.get('fin_overview');
 
-    return Router.path('content.companyprofile', {company_id: params.company_id});
+    if(typeof data === 'undefined'){
+      return '#';
+    }
+
+    var company = compUrlName(data.company_data.c_name);
+    var ticker = data.company_data.c_ticker;
+
+    return Router.path('content.companyprofile', {company_id: params.company_id, name: company, ticker: ticker});
   },
   //Helper to get company data
   companyData: function(){

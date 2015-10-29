@@ -11,7 +11,7 @@
 
    <div class="c_p_graph-updated">
      <div class="c_p_graph-line"></div>
-     <i class="fa fa-calendar"></i>Updated 08/03/2015 a 5PM EST
+     <!--<i class="fa fa-calendar"></i>Updated 08/03/2015 a 5PM EST-->
    </div>
    <div class="c_p_graph">
      {{> c_p_graph}}
@@ -26,7 +26,7 @@
     <div class="p-head-top">
       <div class="p-head-top-lastUpdate">LAST UPDATED: {{c_tr_last_updated}}</div>
       <div class="p-head-top-container">
-        <div class="p-head-top-container-location"><i class="fa fa-map-marker"></i>&nbsp; {{c_hq_city}}, {{c_hq_state}}
+        <div class="p-head-top-container-location"><i class="fa fa-map-marker"></i>&nbsp;<a href="{{locationURL}}"> {{c_hq_city}}, {{c_hq_state}}</a>
           <!-- | INDUSTRY:<span class="p-head-bottom-name">INDUSTRY STUFF HERE</span>-->
         </div>
         <div class="p-head-top-container-profile"><span class="p-bold_font">COMPANY</span> PROFILE &nbsp;<i class="fa fa-angle-down"></i></div>
