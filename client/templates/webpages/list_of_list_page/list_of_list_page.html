@@ -6,9 +6,11 @@
     {{#each listsData}}
       <div class="list_ol" style="background-color:{{index_color}}">
         <div class="list_ol-top">
-          <div class="list_ol-top-img1" style="background-image:url('{{imageUrl c_logo}}')">
-            <div class="list_ol-top-img2">#{{tle_ranking}}</div>
-          </div>
+          <a href="{{compURL}}">
+            <div class="list_ol-top-img1" style="background-image:url('{{imageUrl c_logo}}')">
+              <div class="list_ol-top-img2">#{{tle_ranking}}</div>
+            </div>
+          </a>
           <div class="list_ol-top-content">
             {{#each top_list_list}}
             <div class="list_ol-top-content-textbox">
