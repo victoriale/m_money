@@ -98,6 +98,14 @@ Template.daily_update.events({
 })
 
 Template.daily_update.helpers({
+  image: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data.c_logo;
+  },
+
   buttons: function(){
     var buttons = [
       {data:"1D"},

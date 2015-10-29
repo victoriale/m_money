@@ -25,14 +25,30 @@ Template.list_of_list_page.helpers({
 
       //Define array to map through
       var subData = data.top_list_list[0].list_of_lists_data;
+      var params = Router.current().getParams();
+
+      data.compURL =  Router.path('content.companyprofile', {
+        ticker:params.ticker,
+        name:params.name,
+        company_id: data.c_id
+      });
 
       //Build url for sub circle images
       subData.map(function(item, index){
-        item.imageURL = Router.path('content.companyprofile', {company_id: item.c_id});
+        item.imageURL = Router.path('content.companyprofile', {
+          ticker:params.ticker,
+          name:params.name,
+          company_id: item.c_id
+        });
 
         return item;
       })
-      data.url = Router.path('content.toplist', {list_id: data.tli_id});
+      console.log(data);
+      var title = compUrlName(data.top_list_list[0].list_of_lists_title);
+      data.url = Router.path('content.toplist', {
+        l_name:title,
+        list_id: data.tli_id
+      });
 
       data.shareURL = "https://www.facebook.com/sharer/sharer.php?u="+ data.url;
     })

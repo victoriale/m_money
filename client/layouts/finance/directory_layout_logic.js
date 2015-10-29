@@ -11,7 +11,7 @@ Template.directory_list_button.events({
     t.$('.dropdown-container').stop(true).toggle();
   },
   //Event to hide directory dropdown when directory is chosen
-  'click .dir-list-item2': function(e, t){
+  'click .dir-list-item': function(e, t){
     t.$('.dropdown-container').stop(true).hide();
   }
 })
