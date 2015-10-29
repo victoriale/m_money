@@ -11,9 +11,6 @@ Template.c_hq_page.helpers({
     if(typeof data == 'undefined' || typeof company == 'undefined'){
       return '';
     }
-    data['url'] = Router.path('content.companyprofile',{
-      company_id: data.c_id
-    });
 
     var category = [
       {
@@ -53,6 +50,8 @@ Template.c_hq_page.helpers({
       return '';
     }
     data['url'] = Router.path('content.companyprofile',{
+      name: compUrlName(data.c_name),
+      ticker: data.c_ticker,
       company_id: data.c_id
     });
     return data;

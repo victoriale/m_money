@@ -52,7 +52,7 @@ Template.breakdown_map.onRendered(function(){
 
      // Map
      var mapOptions = {
-       zoom: 11,
+       zoom: 10,
        center: new google.maps.LatLng(data[0].c_latitude, data[0].c_longitude),
        mapTypeId: google.maps.MapTypeId.HYBRID
      };

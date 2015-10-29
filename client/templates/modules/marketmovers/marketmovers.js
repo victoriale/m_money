@@ -22,6 +22,8 @@ Template.marketmovers.helpers({
       //create URL before shifting array
       $.map(data.data['top_list_list'], function(data, index){
         data['url'] = Router.path('content.companyprofile',{
+          ticker: data.c_ticker,
+          name:compUrlName(data.c_name),
           company_id: data.c_id
         });
 
@@ -32,11 +34,13 @@ Template.marketmovers.helpers({
       var id_param = data.data.top_list_params.length;
       var loc_param = data.data.top_list_params[0];
       var list_param = data.data.top_list_info.top_list_id;
+      var list_name = compUrlName(data.data.top_list_info.top_list_title);
       data.data['list_url'] = Router.path('content.toplist',{
         loc_id:loc_param,
+        lname:list_name,
         list_id:list_param
       });
-
+      data.shareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + data.data['list_url'];
       //move first listed item to a seperate object to go into big circle
       data.data['top'] = data.data.top_list_list[0];
       data.data['top_list_list'].shift();

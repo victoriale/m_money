@@ -411,7 +411,7 @@ Meteor.methods({
     var x = Math.floor((Math.random() * 2) + 1);
     //param={list_index} , {location/DMA}
 
-    if(loc_id === null){
+    if(loc_id === null || typeof loc_id == "undefined"){
       var UrlString = "http://apifin.synapsys.us/call_controller.php?action=top_list&option=list&param="+index;
     }else{
       var UrlString = "http://apifin.synapsys.us/call_controller.php?action=top_list&option=list&param="+index+","+loc_id;
@@ -556,6 +556,26 @@ Meteor.methods({
       });
       Meteor.http.get(stringURL,boundFunction);
     });
+    this.unblock();
+    return future.wait();
+  },
+
+  listOfListData: function(company_id){
+    var future = new Future();
+
+    var UrlString = 'http://apifin.investkit.com/call_controller.php?action=company_profile&option=batch_3&param=' + company_id + '&limit=1,100';
+    console.log(UrlString);
+
+    Meteor.http.get(UrlString, function(error, data){
+      try{
+        data = JSON.parse(data['content']);
+      } catch (e) {
+        future.throw(e);
+        return false;
+      }
+        future.return(data);
+    });
+
     this.unblock();
     return future.wait();
   },

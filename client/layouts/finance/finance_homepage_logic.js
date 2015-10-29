@@ -143,16 +143,16 @@ Template.finance_homepage.onCreated(function() {
    Session.set('SuggestTime',0);
 
    Meteor.http.get('http://apireal.synapsys.us/listhuv/?action=get_remote_addr', function(error, data){
-     console.log(data);
+     //console.log(data);
 
      var getLoc = data.data.loc;
      for(obj in getLoc){
-       console.log(obj);
+       //console.log(obj);
        obj = obj.split(', ');
        var state = [obj[obj.length-1]];
      }
      Session.set('home_state',state);
-     console.log(state);
+     //console.log(state);
    });
 });
 
@@ -180,35 +180,32 @@ Template.finance_homepage.helpers({
       var x = Math.floor((Math.random() * 50));
       randomState[i] = state[x];
       var curLoc = state.indexOf(Session.get('home_state'));
-
       //remove the current home location gotten from removeaddr api
       if(typeof curLoc != 'undefined'){
         if (curLoc > -1) {
           state.splice(curLoc, 1);
         }
       }
-
       //remove the random states that were randomized and chosen so that it doesnt pop into the array again
       var index = state.indexOf(state[x]);
       if (index > -1) {
         state.splice(index, 1);
       }
     }
-
+    var image = randomimage();
+    var x = Math.floor(Math.random()*3);
     //plug in the data
     Cities = [
-      {URL: Router.path('content.locationprofile',{loc_id:Session.get('home_state')}), class: "fi_explore-image1",id: "explore1", State: fullstate(Session.get('home_state')), txt: '', index: 0, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/08_L.png'},
-      {URL: Router.path('content.locationprofile',{loc_id:randomState[1]}), class: "fi_explore-image2",id: "explore2", State: fullstate(randomState[1]), txt: '', index: 1, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/21_L.png'},
+      {URL: Router.path('content.locationprofile',{loc_id:Session.get('home_state')}), class: "fi_explore-image1",id: "explore1", State: fullstate(Session.get('home_state')), txt: '', index: 0, image: image[x]},
+      {URL: Router.path('content.locationprofile',{loc_id:randomState[1]}), class: "fi_explore-image2",id: "explore2", State: fullstate(randomState[1]), txt: '', index: 1, image: image[x+1]},
       {URL: Router.path('content.locationprofile',{loc_id:Session.get('home_state')}), class: "fi_explore-image3",id: "explore3", isString: true, GeoLocation: '', txt: 'Check out the public companies in ' + fullstate(Session.get('home_state')), image: ''},
-      {URL: Router.path('content.locationprofile',{loc_id:randomState[2]}), class: "fi_explore-image1",id: "explore4", State: fullstate(randomState[2]), txt: '', index: 2, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/24_L.png'},
-      {URL: Router.path('content.locationprofile',{loc_id:randomState[3]}), class: "fi_explore-image1",id: "explore5", State: fullstate(randomState[3]), txt: '', index: 3, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/27_L.png'},
-      {URL: Router.path('content.locationprofile',{loc_id:randomState[4]}), class: "fi_explore-image2",id: "explore6", State: fullstate(randomState[4]), txt: '', index: 4, image: 'http://cdn.joyfulhome.com/Home_Stock_Images/15_L.png'}
+      {URL: Router.path('content.locationprofile',{loc_id:randomState[2]}), class: "fi_explore-image1",id: "explore4", State: fullstate(randomState[2]), txt: '', index: 2, image: image[x+2]},
+      {URL: Router.path('content.locationprofile',{loc_id:randomState[3]}), class: "fi_explore-image1",id: "explore5", State: fullstate(randomState[3]), txt: '', index: 3, image: image[x+3]},
+      {URL: Router.path('content.locationprofile',{loc_id:randomState[4]}), class: "fi_explore-image2",id: "explore6", State: fullstate(randomState[4]), txt: '', index: 4, image: image[x+4]}
     ];
-    console.log(Cities);
     return Cities;
   }
 });
-
 
 function homestates(){
   var stateName = [
@@ -268,19 +265,19 @@ function homestates(){
   ];
   return stateName;
 }
-
 //store few images for randomization on home page Exlore area
 function randomimage(){
-  var image_array = new Array();
-  image_array['0'] = 'http://cdn.joyfulhome.com/Home_Stock_Images/08_L.png';
-  image_array['1'] = 'http://cdn.joyfulhome.com/Home_Stock_Images/21_L.png';
-  image_array['2'] = 'http://cdn.joyfulhome.com/Home_Stock_Images/24_L.png';
-  image_array['3'] = 'http://cdn.joyfulhome.com/Home_Stock_Images/27_L.png';
-  image_array['4'] = 'http://cdn.joyfulhome.com/Home_Stock_Images/15_L.png';
-  image_array['5'] = 'http://cdn.joyfulhome.com/Home_Stock_Images/13_L.png';
-  image_array['6'] = 'http://cdn.joyfulhome.com/Home_Stock_Images/03_L.png';
-  image_array['7'] = 'http://cdn.joyfulhome.com/Home_Stock_Images/07_L.png';
-  image_array['8'] = 'http://cdn.joyfulhome.com/Home_Stock_Images/02_L.png';
-  image_array['9'] = 'http://cdn.joyfulhome.com/Home_Stock_Images/09_L.png';
-  return image_array;
+  var image_array = [
+    '/homepage_images/img1.png',
+    '/homepage_images/img2.png',
+    '/homepage_images/img3.png',
+    '/homepage_images/img4.png',
+    '/homepage_images/img5.png',
+    '/homepage_images/img6.png',
+    '/homepage_images/img7.png',
+    '/homepage_images/img8.png',
+    '/homepage_images/img9.png',
+    '/homepage_images/img10.png'
+];
+return image_array;
 }
