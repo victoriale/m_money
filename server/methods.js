@@ -411,7 +411,7 @@ Meteor.methods({
     var x = Math.floor((Math.random() * 2) + 1);
     //param={list_index} , {location/DMA}
 
-    if(loc_id === null){
+    if(loc_id === null || typeof loc_id == "undefined"){
       var UrlString = "http://apifin.synapsys.us/call_controller.php?action=top_list&option=list&param="+index;
     }else{
       var UrlString = "http://apifin.synapsys.us/call_controller.php?action=top_list&option=list&param="+index+","+loc_id;
@@ -432,6 +432,29 @@ Meteor.methods({
     return future.wait();
   },
 
+  listOfListLoc:function(loc_id){
+    var future = new Future();
+    console.log("New featured List Request For",loc_id);
+
+    //random number to pick random list in list_index that's in database
+    //param={list_index} , {location/DMA}
+    var UrlString = "http://apifin.synapsys.us/call_controller.php?action=location_page&option=list_of_lists&state="+loc_id;
+
+    console.log(UrlString);
+
+    Meteor.http.get(UrlString, function(error, data){
+      try{
+        data = JSON.parse(data['content']);
+      } catch (e) {
+        future.throw(e);
+        return false;
+      }
+        future.return(data);
+    });
+
+    this.unblock();
+    return future.wait();
+  },
 
   //AI CONTENT METEOR CALL
   GetAIContent: function(comp_id){
@@ -587,7 +610,7 @@ Meteor.methods({
     if(query === null){
       var URLString = 'http://apifin.synapsys.us/call_controller.php?action=global_page&option=directory&page=' + pageNum + '&type=' + type;
     }else{
-      var URLString = 'http://apifin.synapsys.us/call_controller.php?action=global_page&option=directory&page=' + pageNum + '&type=' + type + '&letter=' + query;
+      var URLString = 'http://apifin.synapsys.us/call_controller.php?action=global_page&option=directory&page=' + pageNum + '&type=' + type + query;
     }
 
     console.log('Directory URL', URLString);

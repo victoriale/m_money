@@ -106,6 +106,9 @@ Template.whos_who.helpers({
 
     if(Session.get('IsExec')){
       var url = Router.path('content.executiveprofile',{
+        lname:'undefined',
+        fname:'undefined',
+        ticker:'undefined',
         exec_id:who[index].o_id
       });
     }
@@ -152,12 +155,8 @@ Template.whos_who.helpers({
         var lname = who[j]['o_last_name'];
         var mname = who[j]['o_middle_initial'];
         var title = who[j]['o_titles'][0];
-        var url = Router.path('content.executiveprofile',{
-          lname:'undefined',
-          fname:'undefined',
-          ticker:'undefined',
-          exec_id:who[j].o_id
-        });
+        var url = foundersURL(who[j].o_id);
+
         if(j < who.length)
         {
           returnArray[i]['pnames'] = fname +" "+ mname +" "+ lname;
@@ -216,7 +215,11 @@ Template.whos_who.helpers({
 });
 
 function foundersURL(c_id){
+  var params = Router.current().getParams();
+  
   return Router.path('content.boardcommittee',{
+    ticker:params.ticker,
+    name:params.name,
     comp_id: c_id
   })
 }

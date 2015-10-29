@@ -21,6 +21,7 @@ Template.list_view.helpers({
     if(typeof listdata =='undefined'){
       return '';
     }
+    
     $.map(listdata.top_list_list, function(data,index){
       if(index % 2 == 0){
         data['background'] = 'tilewhite';
@@ -35,6 +36,10 @@ Template.list_view.helpers({
         name: compUrlName(data.c_name),
         company_id: data.c_id
       });
+
+      data.price = commaSeparateNumber_decimal(Number(data.csi_price).toFixed(2));
+      data.price_change = commaSeparateNumber_decimal(Number(data.csi_price_change_since_last).toFixed(2));
+      data.percent_change = commaSeparateNumber_decimal(Number(data.csi_percent_change_since_last).toFixed(2));
 
       //data from list can come in 6 different ways these values will catch and give results back
       for(objName in data){
