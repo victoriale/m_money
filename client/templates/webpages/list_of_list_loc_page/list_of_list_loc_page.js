@@ -58,12 +58,7 @@ Template.list_of_list_loc_page.helpers({
   },
 
   headerInfo: function(){
-    var data = Session.get('profile_header');
     var params = Router.current().getParams();
-    if(typeof data == 'undefined'){
-      return false;
-    }
-
     return fullstate(params.loc_id);;
   },
 });
