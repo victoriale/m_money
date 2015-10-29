@@ -40,7 +40,6 @@ Template.marketmovers.helpers({
         lname:list_name,
         list_id:list_param
       });
-      console.log(data.data);
       data.shareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + data.data['list_url'];
       //move first listed item to a seperate object to go into big circle
       data.data['top'] = data.data.top_list_list[0];
