@@ -9,6 +9,7 @@ Associated Files: latest_news.html, latest_news.less
 Template.latest_news.onRendered(function(){
   this.autorun(function(){
     var data, urlString;
+    var params = Router.current().getParams();
     if(Session.get('IsCompany')){
       data = Session.get('profile_header');
       if(data != undefined){
@@ -25,7 +26,7 @@ Template.latest_news.onRendered(function(){
       }
     }
     else if(Session.get('IsLocation')){
-      urlString = "http://api.synapsys.us/news/?action=get_finance_news";
+      urlString = "http://api.synapsys.us/news/?action=get_finance_news&state="+fullstate(params.loc_id);
     }
     else{
       urlString = "http://api.synapsys.us/news/?action=get_finance_news";

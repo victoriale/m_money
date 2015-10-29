@@ -432,6 +432,29 @@ Meteor.methods({
     return future.wait();
   },
 
+  listOfListLoc:function(loc_id){
+    var future = new Future();
+    console.log("New featured List Request For",loc_id);
+
+    //random number to pick random list in list_index that's in database
+    //param={list_index} , {location/DMA}
+    var UrlString = "http://apifin.synapsys.us/call_controller.php?action=location_page&option=list_of_lists&state="+loc_id;
+
+    console.log(UrlString);
+
+    Meteor.http.get(UrlString, function(error, data){
+      try{
+        data = JSON.parse(data['content']);
+      } catch (e) {
+        future.throw(e);
+        return false;
+      }
+        future.return(data);
+    });
+
+    this.unblock();
+    return future.wait();
+  },
 
   //AI CONTENT METEOR CALL
   GetAIContent: function(comp_id){
