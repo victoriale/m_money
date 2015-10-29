@@ -14,7 +14,7 @@
       <div class="dir_pg-h-h1">
           <div class="dir_pg-h-h1-fai"><i class="fa fa-map-marker"></i></div>
           <div class="dir_pg-h-h1-l">{{location}}</div>
-          <div class="dir_pg-h-h1-txt">{{title}}</div>
+          <div class="dir_pg-h-h1-txt">{{location_title}}</div>
       </div>
         <!-- container for top separator-->
       <div class="dir_pg-ln"></div>
@@ -22,12 +22,12 @@
       <div  class="dir_pg-cs">
           <!-- container for browse profiles-->
         <div  class="dir_pg-cs-bf">
-            <div  class="dir_pg-cs-bf-brw">Browse All Profiles from A to Z</div>
+            <div  class="dir_pg-cs-bf-brw">{{sort_title}}</div>
             <div  class="dir_pg-cs-bf-all">
             <span  class="dir_pg-cs-bf-vln">|</span>
             {{#each sortButtons}}
               <a href="{{path}}">
-                <span  class="dir_pg-cs-bf-az {{#if color}} dir_pg-cs-bf-az-nw {{/if}}">{{az}}</span>
+                <span  class="dir_pg-cs-bf-az {{#if color}} dir_pg-cs-bf-az-nw {{/if}}">{{disp}}</span>
               </a>
             {{#if vln}}
               <span  class="dir_pg-cs-bf-vln">|</span>
@@ -62,12 +62,16 @@
                     </a>
                 </div>
                 <div class="dir_pg-tp-con-line3">
-                  <div class="dir_pg-tp-con-loc">{{path1}} </div>
+                  <a href="{{url4}}">
+                    <div class="dir_pg-tp-con-loc">{{path1}} </div>
+                  </a>
                   <div class="dir_pg-tp-con-pos"> <i class="fa fa-angle-right"></i>  {{path2}}</div>
                   <div class="dir_pg-tp-con-yrs"> <i class="fa fa-angle-right"></i> {{path3}}</div>
                     <!-- container for Ceo details prints only for every third tile-->
                   {{#if path4}}
-                   <div class="dir_pg-tp-con-ceo"> <i class="fa fa-angle-right"></i> {{path4}}</div>
+                    <a href="{{url7}}">
+                      <div class="dir_pg-tp-con-ceo"> <i class="fa fa-angle-right"></i> {{path4}}</div>
+                    </a>
                   {{/if}}
                 </div>
           </div>
@@ -91,17 +95,14 @@
       <div class="dir_pg-tp-sw-shw">Showing: {{start}} - {{end}} of {{total}} Profiles</div>
     {{/with}}
   </div>
-  <!-- container for gray button -->
-  <!-- <div class="dir_pg-tp-btn1">
-    <span  class="dir_pg-tp-fa1"><i class="fa fa-angle-left"></i></span>
-    <span  class="dir_pg-tp-txt">Back</span>
- </div> -->
-  <a href="{{navLink.prev}}">
-    <span class="dir_pg-tp-btn1"><span  class="dir_pg-tp-fa1"><i class="fa fa-angle-left"></i></span>&nbsp; &nbsp;Back</span>
-    <span>&nbsp; &nbsp;</span>
-  </a>
- <!-- container blue button -->
+
  <a href="{{navLink.next}}">
    <span class="dir_pg-tp-btn2">Next &nbsp; &nbsp;<span  class="dir_pg-tp-fa1"><i class="fa fa-angle-right"></i></span></span>
  </a>
+
+ <a href="{{navLink.prev}}">
+   <span class="dir_pg-tp-btn1"><span  class="dir_pg-tp-fa1"><i class="fa fa-angle-left"></i></span>&nbsp; &nbsp;Back</span>
+   <span>&nbsp; &nbsp;</span>
+ </a>
+ 
 </template>

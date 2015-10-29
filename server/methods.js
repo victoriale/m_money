@@ -585,7 +585,7 @@ Meteor.methods({
     if(query === null){
       var URLString = 'http://apifin.synapsys.us/call_controller.php?action=global_page&option=directory&page=' + pageNum + '&type=' + type;
     }else{
-      var URLString = 'http://apifin.synapsys.us/call_controller.php?action=global_page&option=directory&page=' + pageNum + '&type=' + type + '&letter=' + query;
+      var URLString = 'http://apifin.synapsys.us/call_controller.php?action=global_page&option=directory&page=' + pageNum + '&type=' + type + query;
     }
 
     console.log('Directory URL', URLString);
