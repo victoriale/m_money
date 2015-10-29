@@ -411,7 +411,7 @@ Meteor.methods({
     var x = Math.floor((Math.random() * 2) + 1);
     //param={list_index} , {location/DMA}
 
-    if(loc_id === null){
+    if(loc_id === null || typeof loc_id == "undefined"){
       var UrlString = "http://apifin.synapsys.us/call_controller.php?action=top_list&option=list&param="+index;
     }else{
       var UrlString = "http://apifin.synapsys.us/call_controller.php?action=top_list&option=list&param="+index+","+loc_id;
