@@ -560,7 +560,7 @@ Meteor.methods({
 
   GetSuggestion: function(searchString,currentTime){
 
-    var stringURL = 'http://apifin.synapsys.us/call_controller.php?action=search&option=batch&wild=true&param=' + searchString;
+    var stringURL = 'http://apifin.investkit.com/call_controller.php?action=search&option=batch&wild=true&param=' + searchString;
 
     var future = new Future();
     curTime.withValue(currentTime,function(){

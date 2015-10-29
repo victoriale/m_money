@@ -159,7 +159,7 @@ Finance_Search = function(quer){
     if(AllCapped.length !== 0){
       for(i=0;i<AllCapped.length;i++){
         $.ajax({
-          url: 'http://apifin.synapsys.us/call_controller.php?action=search&wild=0&option=ticker&param=' + AllCapped[i],
+          url: 'http://apifin.investkit.com/call_controller.php?action=search&wild=0&option=ticker&param=' + AllCapped[i],
           dataType: 'json',
           async: false,
           success: function(r){
@@ -180,9 +180,9 @@ Finance_Search = function(quer){
     /*==== NAME -- EXACT ( based on second degree ngrams ) ====*/
     if(Session.get('TickCheck') == false && Session.get('NameCheck') == false && Session.get('LocCheck') == false){
     for(i=0;i<quer_ngrams[1].length;i++){
-      //http://apifin.synapsys.us/call_controller.php?action=search&option=name&param=mark%20zuckerberg
+      //http://apifin.investkit.com/call_controller.php?action=search&option=name&param=mark%20zuckerberg
       $.ajax({
-        url: 'http://apifin.synapsys.us/call_controller.php?action=search&wild=0&option=name&param=' + quer_ngrams[1][i].word,
+        url: 'http://apifin.investkit.com/call_controller.php?action=search&wild=0&option=name&param=' + quer_ngrams[1][i].word,
         dataType: 'json',
         async: false,
         success: function(r){
@@ -204,7 +204,7 @@ Finance_Search = function(quer){
       for(i=0;i<words.length;i++){
         if(nlp.pos(words[i]).tags()[0][0] == 'NN'){
           $.ajax({
-            url: 'http://apifin.synapsys.us/call_controller.php?action=search&wild=0&option=name&param=' + words[i],
+            url: 'http://apifin.investkit.com/call_controller.php?action=search&wild=0&option=name&param=' + words[i],
             dataType: 'json',
             async: false,
             success: function(r){
@@ -228,9 +228,9 @@ Finance_Search = function(quer){
     if(Session.get('TickCheck') == false && Session.get('NameCheck') == false && Session.get('LocCheck') == false){
       for(i=0;i<words.length;i++){
         if(words[i].toLowerCase() !== 'the'){
-        //http://apifin.synapsys.us/call_controller.php?action=search&option=location&param=ks
+        //http://apifin.investkit.com/call_controller.php?action=search&option=location&param=ks
         $.ajax({
-          url: 'http://apifin.synapsys.us/call_controller.php?action=search&wild=0&option=location&param=' + words[i],
+          url: 'http://apifin.investkit.com/call_controller.php?action=search&wild=0&option=location&param=' + words[i],
           dataType: 'json',
           async: false,
           success: function(r){
@@ -250,9 +250,9 @@ Finance_Search = function(quer){
     /*==== LOCATION -- EXACT ( based on second degree ngrams ) ====*/
     if(Session.get('TickCheck') == false && Session.get('NameCheck') == false && Session.get('LocCheck') == false){
       for(i=0;i<quer_ngrams[1].length;i++){
-        //http://apifin.synapsys.us/call_controller.php?action=search&option=location&param=ks
+        //http://apifin.investkit.com/call_controller.php?action=search&option=location&param=ks
         $.ajax({
-          url: 'http://apifin.synapsys.us/call_controller.php?action=search&wild=0&option=location&param=' + quer_ngrams[1][i].word,
+          url: 'http://apifin.investkit.com/call_controller.php?action=search&wild=0&option=location&param=' + quer_ngrams[1][i].word,
           dataType: 'json',
           async: false,
           success: function(r){
@@ -284,9 +284,9 @@ Finance_Search = function(quer){
     /*==== NAME -- OPEN ( based on second degree ngrams ) ====*/
     if(Session.get('TickCheck') == false && Session.get('NameCheck') == false && Session.get('LocCheck') == false){
     for(i=0;i<quer_ngrams[1].length;i++){
-      //http://apifin.synapsys.us/call_controller.php?action=search&option=name&param=mark%20zuckerberg
+      //http://apifin.investkit.com/call_controller.php?action=search&option=name&param=mark%20zuckerberg
       $.ajax({
-        url: 'http://apifin.synapsys.us/call_controller.php?action=search&wild=1&option=name&param=' + quer_ngrams[1][i].word,
+        url: 'http://apifin.investkit.com/call_controller.php?action=search&wild=1&option=name&param=' + quer_ngrams[1][i].word,
         dataType: 'json',
         async: false,
         success: function(r){
@@ -308,7 +308,7 @@ Finance_Search = function(quer){
       for(i=0;i<words.length;i++){
         if(nlp.pos(words[i]).tags()[0][0] == 'NN'){
           $.ajax({
-            url: 'http://apifin.synapsys.us/call_controller.php?action=search&wild=1&option=name&param=' + words[i],
+            url: 'http://apifin.investkit.com/call_controller.php?action=search&wild=1&option=name&param=' + words[i],
             dataType: 'json',
             async: false,
             success: function(r){
@@ -329,7 +329,7 @@ Finance_Search = function(quer){
     if(Session.get('NameCheck') == false && Session.get('TickCheck') == false && Session.get('LocCheck') == false && words.length <= 3){
       for(i=0;i<words.length;i++){
           $.ajax({
-            url: 'http://apifin.synapsys.us/call_controller.php?action=search&wild=1&option=name&param=' + words[i],
+            url: 'http://apifin.investkit.com/call_controller.php?action=search&wild=1&option=name&param=' + words[i],
             dataType: 'json',
             async: false,
             success: function(r){
@@ -351,7 +351,7 @@ Finance_Search = function(quer){
     if(Session.get('NameCheck') == false && Session.get('TickCheck') == false && Session.get('LocCheck') == false && words.length == 1){
       for(i=0;i<words.length;i++){
         $.ajax({
-          url: 'http://apifin.synapsys.us/call_controller.php?action=search&wild=0&option=ticker&param=' + words[i],
+          url: 'http://apifin.investkit.com/call_controller.php?action=search&wild=0&option=ticker&param=' + words[i],
           dataType: 'json',
           async: false,
           success: function(r){

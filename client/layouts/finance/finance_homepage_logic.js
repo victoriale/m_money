@@ -161,15 +161,18 @@ Template.finance_homepage.events({
 
   'click .fi_searchbtn.fa-search': function() {
      Finance_Search($('.fi_mainsearch input')[0].value);
+     $('.fi_search_recommendations').removeClass('active');
   },
 
   'mousedown .fi_searchbtn': function(){
     $('.fi_searchbtn').css("background-color", "black");
+    $('.fi_search_recommendations').removeClass('active');
     $(".fi_mainsearch").addClass("boxhighlight-black");
   },
 
   'mouseup .fi_searchbtn': function(){
     $('.fi_searchbtn').css("background-color", "#3098ff");
+    $('.fi_search_recommendations').removeClass('active');
     $(".fi_mainsearch").removeClass("boxhighlight-black");
   },
 
