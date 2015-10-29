@@ -29,8 +29,12 @@ Template.list_of_lists.helpers({
   //Helper to build url for list of list page
   toListOfList: function(){
     var data = Session.get('list_of_lists');
-
-    return Router.path('content.listoflist', {company_id: data.list_rankings[0].c_id});
+    var params = Router.current().getParams();
+    return Router.path('content.listoflist', {
+      ticker:params.ticker,
+      name:params.name,
+      company_id: data.list_rankings[0].c_id
+    });
   },
   listsData: function(){
     var list = Session.get('list_of_lists');
@@ -44,7 +48,7 @@ Template.list_of_lists.helpers({
       }else{
         data['index_color'] = '#ffffff';
       }
-
+      data.tle_ranking = data.tle_ranking+1;
       //Define array to map through
       var subData = data.top_list_list[0].list_of_lists_data;
 

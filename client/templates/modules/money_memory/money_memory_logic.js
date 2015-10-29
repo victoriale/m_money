@@ -120,19 +120,31 @@ Template.money_memory.helpers({
   linkToMM: function(){
     var params = Router.current().getParams();
 
-    return Router.path('content.moneymemory', {company_id: params.company_id});
+    return Router.path('content.moneymemory', {
+      ticker:params.ticker,
+      name:params.name,
+      company_id: params.company_id
+    });
   },
   //Helper to determine URL to competitors page
   linkToCompetitors: function(){
     var params = Router.current().getParams();
 
-    return Router.path('content.competitor', {company_id: params.company_id});
+    return Router.path('content.competitor', {
+      ticker:params.ticker,
+      name:params.name,
+      company_id: params.company_id
+    });
   },
   //Helper to determine URL to competitors page
   linkToFinOverview: function(){
     var params = Router.current().getParams();
 
-    return Router.path('content.finoverview', {company_id: params.company_id});
+    return Router.path('content.finoverview', {
+      ticker:params.ticker,
+      name:params.name,
+      company_id: params.company_id
+    });
   },
   //Helper to display initial investment
   user_initial_investment: function(){
