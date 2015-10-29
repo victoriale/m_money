@@ -21,7 +21,7 @@ Template.list_view.helpers({
     if(typeof listdata =='undefined'){
       return '';
     }
-    console.log('listData', listdata);
+    
     $.map(listdata.top_list_list, function(data,index){
       if(index % 2 == 0){
         data['background'] = 'tilewhite';
