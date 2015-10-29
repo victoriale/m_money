@@ -27,6 +27,7 @@ Template.project_history.onCreated( function() {
           comp['exec_nearest_pos'] = compList['officer_positions'][0];
           comp['connections'] = compList['connections'];
           comp['o_id'] = data['officer_data'].o_id;
+          comp['c_logo'] = compList.company_data.c_logo;
           projArray.push(comp);
         }
         Session.set('new_project_history', projArray);

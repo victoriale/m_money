@@ -45,12 +45,19 @@ Template.latest_news.onRendered(function(){
 })
 
 Template.latest_news.helpers({
-  compImage: function(){
-    var image = Session.get('profile_header');
-    if(typeof daimageta == 'undefined'){
+  topImage: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
       return '';
     }
-    return image.c_logo;
+
+    if(Session.get('IsCompany')){
+      var image = data.c_logo;
+    }else if(Session.get('IsExec')){
+      var image = data.o_pic;
+    }
+
+    return image;
   },
 
   newsURL: function(){
