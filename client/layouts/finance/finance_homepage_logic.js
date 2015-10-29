@@ -53,13 +53,13 @@ function GetSuggest(nowTime) {
              if ( i != 0 ) {
                HTMLStringName = HTMLStringName + '<div class="border-li"></div>';
              }
-              HTMLStringName = HTMLStringName + '<a style="color: #000" href="' + ExecutiveURL(NameRes[i]['o_id']) + '"><div class="fi_search_recommendations_item">' + NameRes[i]['o_first_name'] + " " + NameRes[i]['o_last_name'] + " - " + NameRes[i]['c_name'] + '<i class="fa fa-angle-right"></i></div></a>';
+              HTMLStringName = HTMLStringName + '<a style="color: #000" href="' + ExecutiveURL(NameRes[i]['o_id'], NameRes[i]['c_ticker'], NameRes[i]['o_last_name'], NameRes[i]['o_first_name']) + '"><div class="fi_search_recommendations_item">' + NameRes[i]['o_first_name'] + " " + NameRes[i]['o_last_name'] + " - " + NameRes[i]['c_name'] + '<i class="fa fa-angle-right"></i></div></a>';
            }
            if(NameRes[i]['name_type'] == 'company' && i < 3){
              if ( i != 0 ) {
                HTMLStringName = HTMLStringName + '<div class="border-li"></div>';
              }
-               HTMLStringName = HTMLStringName + '<a style="color: #000" href="' + CompanyURL(NameRes[i]['c_id']) + '"><div class="fi_search_recommendations_item">' + NameRes[i]['c_ticker'] + " - " + NameRes[i]['c_name'] + '<i class="fa fa-angle-right"></i></div></a>';
+               HTMLStringName = HTMLStringName + '<a style="color: #000" href="' + CompanyURL(NameRes[i]['c_ticker'], NameRes[i]['c_name'], NameRes[i]['c_id']) + '"><div class="fi_search_recommendations_item">' + NameRes[i]['c_ticker'] + " - " + NameRes[i]['c_name'] + '<i class="fa fa-angle-right"></i></div></a>';
            }
          }
        }
@@ -85,7 +85,7 @@ function GetSuggest(nowTime) {
             if ( i != 0 ) {
               HTMLStringTick = HTMLStringTick + '<div class="border-li"></div>';
             }
-             HTMLStringTick = HTMLStringTick + '<a style="color: #000" href="' + CompanyURL(TickRes[i]['c_id']) + '"><div class="fi_search_recommendations_item">' + TickRes[i]['c_ticker'] + " - " + TickRes[i]['c_name'] + '<i class="fa fa-angle-right"></i></div></a>';
+             HTMLStringTick = HTMLStringTick + '<a style="color: #000" href="' + CompanyURL(TickRes[i]['c_ticker'], TickRes[i]['c_name'], TickRes[i]['c_id']) + '"><div class="fi_search_recommendations_item">' + TickRes[i]['c_ticker'] + " - " + TickRes[i]['c_name'] + '<i class="fa fa-angle-right"></i></div></a>';
           }
          }
        }else{
@@ -129,6 +129,7 @@ Template.finance_homepage.events({
       event.preventDefault();
         //ExecSearch();
       Finance_Search($('.fi_mainsearch input')[0].value);
+      $('.fi_search_recommendations').removeClass('active');
       return "";
     }
     if ( typeof StartTime == "undefined" ) {

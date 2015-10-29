@@ -14,6 +14,78 @@ Finance_Search = function(quer){
         return this.substr(0, index) + character + this.substr(index+character.length);
       };
 
+  function abbrState(input, to){
+
+    var states = [
+        ['Arizona', 'AZ'],
+        ['Alabama', 'AL'],
+        ['Alaska', 'AK'],
+        ['Arkansas', 'AR'],
+        ['California', 'CA'],
+        ['Colorado', 'CO'],
+        ['Connecticut', 'CT'],
+        ['Delaware', 'DE'],
+        ['Florida', 'FL'],
+        ['Georgia', 'GA'],
+        ['Hawaii', 'HI'],
+        ['Idaho', 'ID'],
+        ['Illinois', 'IL'],
+        ['Indiana', 'IN'],
+        ['Iowa', 'IA'],
+        ['Kansas', 'KS'],
+        ['Kentucky', 'KY'],
+        ['Louisiana', 'LA'],
+        ['Maine', 'ME'],
+        ['Maryland', 'MD'],
+        ['Massachusetts', 'MA'],
+        ['Michigan', 'MI'],
+        ['Minnesota', 'MN'],
+        ['Mississippi', 'MS'],
+        ['Missouri', 'MO'],
+        ['Montana', 'MT'],
+        ['Nebraska', 'NE'],
+        ['Nevada', 'NV'],
+        ['New Hampshire', 'NH'],
+        ['New Jersey', 'NJ'],
+        ['New Mexico', 'NM'],
+        ['New York', 'NY'],
+        ['North Carolina', 'NC'],
+        ['North Dakota', 'ND'],
+        ['Ohio', 'OH'],
+        ['Oklahoma', 'OK'],
+        ['Oregon', 'OR'],
+        ['Pennsylvania', 'PA'],
+        ['Rhode Island', 'RI'],
+        ['South Carolina', 'SC'],
+        ['South Dakota', 'SD'],
+        ['Tennessee', 'TN'],
+        ['Texas', 'TX'],
+        ['Utah', 'UT'],
+        ['Vermont', 'VT'],
+        ['Virginia', 'VA'],
+        ['Washington', 'WA'],
+        ['West Virginia', 'WV'],
+        ['Wisconsin', 'WI'],
+        ['Wyoming', 'WY'],
+    ];
+
+    if (to == 'abbr'){
+        input = input.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+        for(i = 0; i < states.length; i++){
+            if(states[i][0] == input){
+                return(states[i][1]);
+            }
+        }
+    } else if (to == 'name'){
+        input = input.toUpperCase();
+        for(i = 0; i < states.length; i++){
+            if(states[i][1] == input){
+                return(states[i][0]);
+            }
+        }
+    }
+}
+
     /*==== SET UP THE CLEAN VARIABLES  ====*/
 
           var toss = {};
@@ -92,7 +164,7 @@ Finance_Search = function(quer){
           async: false,
           success: function(r){
             if(r['success'] == true){
-              Session.set('TickCheck', r['ticker']['search_data'][0]);
+              Session.set('TickCheck', r['ticker']['search_data']);
               //console.log(r['name']['search_data'][0]);
             }
           }
@@ -115,7 +187,7 @@ Finance_Search = function(quer){
         async: false,
         success: function(r){
           if(r['success'] == true){
-            Session.set('NameCheck', r['name']['search_data'][0]);
+            Session.set('NameCheck', r['name']['search_data']);
             //console.log(r['name']['search_data'][0]);
           }
         }
@@ -137,7 +209,7 @@ Finance_Search = function(quer){
             async: false,
             success: function(r){
               if(r['success'] == true){
-                Session.set('NameCheck', r['name']['search_data'][0]);
+                Session.set('NameCheck', r['name']['search_data']);
                 //console.log(r['name']['search_data'][0]);
               }
             }
@@ -164,7 +236,7 @@ Finance_Search = function(quer){
           success: function(r){
             if(r['success'] == true){
               console.log(words[i]);
-              Session.set('LocCheck', r['location']['search_data'][0]);
+              Session.set('LocCheck', r['location']['search_data']);
               //console.log(r['location']['search_data'][0]);
             }
           }
@@ -186,7 +258,7 @@ Finance_Search = function(quer){
           success: function(r){
             if(r['success'] == true){
               console.log(quer_ngrams[1][i].word);
-              Session.set('LocCheck', r['location']['search_data'][0]);
+              Session.set('LocCheck', r['location']['search_data']);
             //  console.log(r['location']['search_data'][0]);
             }
           }
@@ -219,7 +291,7 @@ Finance_Search = function(quer){
         async: false,
         success: function(r){
           if(r['success'] == true){
-            Session.set('NameCheck', r['name']['search_data'][0]);
+            Session.set('NameCheck', r['name']['search_data']);
             //console.log(r['name']['search_data'][0]);
           }
         }
@@ -241,7 +313,7 @@ Finance_Search = function(quer){
             async: false,
             success: function(r){
               if(r['success'] == true){
-                Session.set('NameCheck', r['name']['search_data'][0]);
+                Session.set('NameCheck', r['name']['search_data']);
                 //console.log(r['name']['search_data'][0]);
               }
             }
@@ -262,7 +334,7 @@ Finance_Search = function(quer){
             async: false,
             success: function(r){
               if(r['success'] == true){
-                Session.set('NameCheck', r['name']['search_data'][0]);
+                Session.set('NameCheck', r['name']['search_data']);
                 //console.log(r['name']['search_data'][0]);
               }
             }
@@ -284,7 +356,7 @@ Finance_Search = function(quer){
           async: false,
           success: function(r){
             if(r['success'] == true){
-              Session.set('TickCheck', r['ticker']['search_data'][0]);
+              Session.set('TickCheck', r['ticker']['search_data']);
               //console.log(r['name']['search_data'][0]);
             }
           }
@@ -298,41 +370,34 @@ Finance_Search = function(quer){
 
 
     /*==== ROUTING CONTROL LOGIC ====*/
-    if(Session.get('TickCheck') !== false && Session.get('NameCheck') == false && Session.get('LocCheck') == false){
+    if(Session.get('TickCheck') !== false && Session.get('TickCheck').length == 1 && Session.get('NameCheck') == false && Session.get('LocCheck') == false){
       //TICKER route
-      console.log(Session.get('TickCheck'));
-      Router.go('content.companyprofile', {partner_id: Session.get('partner_id'), company_id: Session.get('TickCheck')['c_id']});
-      //NEW ROUTE
-        //Router.go('content.companyprofile', {partner_id: Session.get('partner_id'), exchange: Session.get('TickCheck')['c_exchange'], comp_name: Session.get('TickCheck')['c_name']}, company_id: Session.get('TickCheck')['c_id']}})
-    }
-    else if(Session.get('TickCheck') == false && Session.get('NameCheck') !== false && Session.get('LocCheck') == false){
+      //console.log(Session.get('TickCheck'));
+      Router.go('content.companyprofile', {ticker: Session.get('TickCheck')[0]['c_ticker'], name: Session.get('TickCheck')[0]['c_name'], company_id: Session.get('TickCheck')[0]['c_id']});
+
+      }
+      else if(Session.get('TickCheck') == false && Session.get('NameCheck') !== false && Session.get('NameCheck').length == 1 && Session.get('LocCheck') == false){
       //NAME route + logic to determine type of name
-      console.log(Session.get('NameCheck'));
-        if(Session.get('NameCheck')['name_type'] == 'company'){
-          Router.go('content.companyprofile', {partner_id: Session.get('partner_id'), company_id: Session.get('NameCheck')['c_id']});
-      //NEW ROUTE
-        //Router.go('content.companyprofile', {partner_id: Session.get('partner_id'), exchange: Session.get('NameCheck')['c_exchange'], comp_name: Session.get('NameCheck')['c_name'], company_id: Session.get('NameCheck')['c_id']})
-        }else if(Session.get('NameCheck')['name_type'] == 'officer'){
-          Router.go('content.executiveprofile', {partner_id: Session.get('partner_id'), exec_id: Session.get('NameCheck')['o_id']})
-        //NEW ROUTE
-          //Router.go('content.executiveprofile', {partner_id: Session.get('partner_id'), comp_name: Session.get('NameCheck')['c_name'], exec_name: ####, exec_id: Session.get('NameCheck')['o_id']})
+      //console.log(Session.get('NameCheck'));
+        if(Session.get('NameCheck')[0]['name_type'] == 'company'){
+          Router.go('content.companyprofile', {ticker: Session.get('NameCheck')[0]['c_ticker'], name: Session.get('NameCheck')[0]['c_name'], company_id: Session.get('NameCheck')[0]['c_id']});
+
+        }else if(Session.get('NameCheck')[0]['name_type'] == 'officer'){
+          Router.go('content.executiveprofile', {lname: Session.get('NameCheck')[0]['o_last_name'], fname: Session.get('NameCheck')[0]['o_first_name'], ticker: Session.get('NameCheck')[0]['c_ticker'], exec_id: Session.get('NameCheck')[0]['o_id']})
+
         }
     }
-    else if(Session.get('TickCheck') == false && Session.get('NameCheck') == false && Session.get('LocCheck') !== false){
+    else if(Session.get('TickCheck') == false && Session.get('NameCheck') == false && Session.get('LocCheck') !== false && Session.get('LocCheck').length == 1){
       //LOCATION route
-      console.log(Session.get('LocCheck'));
-      //Router.go('content.locationprofile', {partner_id: Session.get('partner_id'), })
-  //NEW ROUTE
-      if(Session.get('LocCheck')['c_dma_code'] !== ""){
-        //Router.go('content.locationprofile', {partner_id: Session.get('partner_id'), loc_id: Session.get('LocCheck')['c_dma_code'], city_id: Session.get('LocCheck')['c_hq_city']});
-      }else if(Session.get('LocCheck')['c_dma_code'] == ""){
-          //Router.go('content.locationprofile', {partner_id: Session.get('partner_id'), loc_id: Session.get('LocCheck')['c_hq_state'], city_id: Session.get('LocCheck')['c_hq_city']});
-      }
+      ///console.log(Session.get('LocCheck'));
+      Router.go('content.locationprofile', {loc_id: abbrState(Session.get('LocCheck')[0]['c_hq_state'],'name'), city: Session.get('LocCheck')[0]['c_hq_city']})
 
-    }else{
-      //Route null
-      //console.log('ROUTE NULL // No Results');
+    }
+    else if(Session.get('TickCheck') == false && Session.get('NameCheck') == false && Session.get('LocCheck') == false){
       Router.go('content.noresults', {partner_id: Session.get('partner_id')});
+    }
+    else{
+      Router.go('content.search', {partner_id: Session.get('partner_id'), search_results: quer});
     }
 
     /*********************************/
