@@ -1221,7 +1221,7 @@ function sector_page(params, req, res) {
 
       // Make the company list
       var c_list = [];
-      if ( typeof data.sector_companies == "array" ) {
+      if ( typeof data.sector_companies.companies == "array" || typeof data.sector_companies.companies == "object" ) {
         for ( var index = 0; index < data.sector_companies.companies.length; index++ ) {
           c_list.push('<a href="' + Router.pick_path('content.companyprofile',{name: compUrlName(data.sector_companies.companies[index].c_name), ticker: data.sector_companies.companies[index].c_ticker, company_id: data.sector_companies.companies[index].c_id}, info.params) + '">' + data.sector_companies.companies[index].c_name + ' (' + data.sector_companies.companies[index].c_exchange + ':' + data.sector_companies.companies[index].c_ticker + ')');
         }
@@ -1338,7 +1338,7 @@ function cmp_news(params, req, res) {
       if ( typeof data.news != "undefined" ) {
         for ( var index = 0; index < data.news.length; index++ ) {
           var n_data = {
-            title: '<a href="' + Router.pick_path('content.company_profile',{company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker}, info.params) + '">' + data.profile_header.c_name + ' (' + data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ')</a> ' + (new Date(parseInt(data.news[index].pubDate_ut)*1000)).toSNTFormTime() + ': <a href="' + data.news[index].link + '">' + data.news[index].title + '</a>',
+            title: '<a href="' + Router.pick_path('content.companyprofile',{company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker}, info.params) + '">' + data.profile_header.c_name + ' (' + data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ')</a> ' + (new Date(parseInt(data.news[index].pubDate_ut)*1000)).toSNTFormTime() + ': <a href="' + data.news[index].link + '">' + data.news[index].title + '</a>',
             content: {
               line: [
                 data.news[index].description,
@@ -1365,7 +1365,7 @@ function cmp_news(params, req, res) {
       var page_data = {
         head_data: head_data,
         h1: {
-          title: 'News About <a href="' + Router.pick_path('content.company_profile',{company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker}, info.params) + '">' + data.profile_header.c_name + ' (' + data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ')</a>',
+          title: 'News About <a href="' + Router.pick_path('content.companyprofile',{company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker}, info.params) + '">' + data.profile_header.c_name + ' (' + data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ')</a>',
           h2: news_list
         }
       };
@@ -1509,6 +1509,8 @@ function exec_comp(params, req, res){
               }
             }
           }
+        } else {
+          l_data.content.line[l_data.content.line.length] = 'No Compensation Information Found';
         }
         if ( c_data[index].c_name != null && l_data.content.line.length > 0 ) {
           loc_data.h3[loc_data.h3.length] = l_data;
@@ -1558,13 +1560,13 @@ function exec_comp(params, req, res){
         head_data.description = 'Compensation details about ' + profile_header.c_name_orig;
         head_data.url = 'http://www.myinvestkit.com' + Router.pick_path('content.compensation',{partner_id: info.params.partner_id, exec_id: profile_header.o_id, fname: profile_header.o_first_name, lname: profile_header.o_last_name, ticker: profile_header.c_ticker}, info.params);
         var h1 = {
-          title: 'Everything You Need To Know About ' + profile_header.c_name + '\'s ' + profile_header.o_full_name,
+          title: 'Everything You Need To Know About ' + profile_header.c_name + '\'s Compensation',
           content: h1content,
           h2: compensation
         };
       } else {
         var h1 = {
-          title: 'An Investors Guide To ' + profile_header.o_full_name + ' From ' + profile_header.c_name,
+          title: 'An Investors Guide To ' + profile_header.o_full_name + '\'s Compensation',
           content: h1content,
           h2: compensation
         };
