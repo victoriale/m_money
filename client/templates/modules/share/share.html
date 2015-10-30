@@ -17,8 +17,11 @@ Associated Files: share_logic.js and share.less
         <!--class named left_side was defined to body circle !-->
         <div class ="fin_style-lside">
           <!--class named left_circle was defined with given parameters !-->
-          <span class = "fin_style-lcircle" style="{{image}}">
-          </span>
+          {{#if isLocation}}
+          <span class = "fin_style-lcircle" style="{{image}}"></span>
+          {{else}}
+          <span class = "fin_style-lcircle" style="background-image:url('{{imageUrl topImage}}')"></span>
+          {{/if}}
         </div>
         <!--class named right_side was defined to text !-->
         <div class = "fin_style-rside">

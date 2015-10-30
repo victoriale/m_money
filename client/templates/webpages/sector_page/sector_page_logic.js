@@ -69,7 +69,6 @@ Template.sector_page.helpers({
       data['csi_percent_change_since_last'] = Number(data['csi_percent_change_since_last']).toFixed(2);
     });
     data['location'] = fullstate(Session.get('loc_id'));
-    console.log(data['companies'][count]);
     return data['companies'][count];
   },
 

@@ -42,7 +42,20 @@ Template.co_board_committee.helpers({
     $.map(list,function(data, index){
       data['o_last_updated'] = data['o_last_updated'].split(' ')[0];
       data['o_last_updated'] = data['o_last_updated'].replace(/-/g, '/');
+
+      if(typeof data['compensation'] == 'undefined'){
+        data['compensation'] = {};
+      }else{
+        if(typeof data['compensation'].TotalComp == 'undefined'){
+          data['compen'] = 0;
+        }else{
+          data['compen'] = dNumberToCommaNumber(data['compensation'].TotalComp);
+        }
+      }
       data['url'] = Router.path('content.executiveprofile',{
+        fname:data.o_first_name,
+        lname:data.o_last_name,
+        ticker:Router.current().getParams().ticker,
         exec_id: data.o_id
       });
     });
@@ -58,6 +71,9 @@ Template.co_board_committee.helpers({
     list[count]['o_last_updated'] = list[count]['o_last_updated'].split(' ')[0];
     list[count]['o_last_updated'] = list[count]['o_last_updated'].replace(/-/g, '/');
     list[count]['url'] = Router.path('content.executiveprofile',{
+      fname:list[count].o_first_name,
+      lname:list[count].o_last_name,
+      ticker:Router.current().getParams().ticker,
       exec_id: list[count].o_id
     });
 

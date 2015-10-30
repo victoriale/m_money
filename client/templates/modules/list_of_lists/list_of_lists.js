@@ -30,11 +30,21 @@ Template.list_of_lists.helpers({
   toListOfList: function(){
     var data = Session.get('list_of_lists');
     var params = Router.current().getParams();
-    return Router.path('content.listoflist', {
-      ticker:params.ticker,
-      name:params.name,
-      company_id: data.list_rankings[0].c_id
-    });
+    var header = Session.get('profile_header');
+    if(Session.get('IsCompany')){
+      return Router.path('content.listoflist', {
+        ticker:params.ticker,
+        name:params.name,
+        company_id: data.list_rankings[0].c_id
+      });
+    }
+    if(Session.get('IsExec')){
+      return Router.path('content.listoflist', {
+        ticker:params.ticker,
+        name:compUrlName(header.c_name),
+        company_id: header.c_id
+      });
+    }
   },
   listsData: function(){
     var list = Session.get('list_of_lists');

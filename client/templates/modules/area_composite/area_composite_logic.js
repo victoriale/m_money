@@ -87,8 +87,8 @@ Template.area_composite.helpers({
           url: Router.path('content.companyprofile',
           {
             partner_id: Router.current().params.partner_id,
-            ticker:'undefined',
-            name:'undefined',
+            ticker: data[cmp_arr[index].title][subind].c_ticker,
+            name: compUrlName(data[cmp_arr[index].title][subind].c_name),
             company_id: data[cmp_arr[index].title][subind].c_id
           }),
           logo: data[cmp_arr[index].title][subind].c_logo,

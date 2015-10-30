@@ -30,9 +30,9 @@
       <!--Price of stock-->
       <div class="mon-mem_body_stock">
         <span class="mon-mem_body_stock_price"><b>${{csi_price}}</b></span>
-        <span class="mon-mem_body_stock_history" style = "color: {{stck_chng}}">
-          <i class="fa fa-{{arrow}}" style="margin-left:10px"></i>
-          <span class="mon-mem_body_stock_history_text" style = "font-family: HN-B; color:{{changeColor csi_price_change_since_last}}">{{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%)</span>
+        <span class="mon-mem_body_stock_history" style = "color: {{changeColor csi_price_last_operator}}">
+          <i class="fa {{changeIcon csi_price_last_operator}}" style="margin-left:10px"></i>
+          <span class="mon-mem_body_stock_history_text" style = "font-family: HN-B; color:{{changeColor csi_price_last_operator}}">{{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%)</span>
         </span>
       </div>
 ​

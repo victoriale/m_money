@@ -14,6 +14,78 @@ Finance_Search = function(quer){
         return this.substr(0, index) + character + this.substr(index+character.length);
       };
 
+  function abbrState(input, to){
+
+    var states = [
+        ['Arizona', 'AZ'],
+        ['Alabama', 'AL'],
+        ['Alaska', 'AK'],
+        ['Arkansas', 'AR'],
+        ['California', 'CA'],
+        ['Colorado', 'CO'],
+        ['Connecticut', 'CT'],
+        ['Delaware', 'DE'],
+        ['Florida', 'FL'],
+        ['Georgia', 'GA'],
+        ['Hawaii', 'HI'],
+        ['Idaho', 'ID'],
+        ['Illinois', 'IL'],
+        ['Indiana', 'IN'],
+        ['Iowa', 'IA'],
+        ['Kansas', 'KS'],
+        ['Kentucky', 'KY'],
+        ['Louisiana', 'LA'],
+        ['Maine', 'ME'],
+        ['Maryland', 'MD'],
+        ['Massachusetts', 'MA'],
+        ['Michigan', 'MI'],
+        ['Minnesota', 'MN'],
+        ['Mississippi', 'MS'],
+        ['Missouri', 'MO'],
+        ['Montana', 'MT'],
+        ['Nebraska', 'NE'],
+        ['Nevada', 'NV'],
+        ['New Hampshire', 'NH'],
+        ['New Jersey', 'NJ'],
+        ['New Mexico', 'NM'],
+        ['New York', 'NY'],
+        ['North Carolina', 'NC'],
+        ['North Dakota', 'ND'],
+        ['Ohio', 'OH'],
+        ['Oklahoma', 'OK'],
+        ['Oregon', 'OR'],
+        ['Pennsylvania', 'PA'],
+        ['Rhode Island', 'RI'],
+        ['South Carolina', 'SC'],
+        ['South Dakota', 'SD'],
+        ['Tennessee', 'TN'],
+        ['Texas', 'TX'],
+        ['Utah', 'UT'],
+        ['Vermont', 'VT'],
+        ['Virginia', 'VA'],
+        ['Washington', 'WA'],
+        ['West Virginia', 'WV'],
+        ['Wisconsin', 'WI'],
+        ['Wyoming', 'WY'],
+    ];
+
+    if (to == 'abbr'){
+        input = input.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+        for(i = 0; i < states.length; i++){
+            if(states[i][0] == input){
+                return(states[i][1]);
+            }
+        }
+    } else if (to == 'name'){
+        input = input.toUpperCase();
+        for(i = 0; i < states.length; i++){
+            if(states[i][1] == input){
+                return(states[i][0]);
+            }
+        }
+    }
+}
+
     /*==== SET UP THE CLEAN VARIABLES  ====*/
 
           var toss = {};
@@ -34,7 +106,7 @@ Finance_Search = function(quer){
 
     /*******************************************/
 
-    console.log(words);
+    console.log('Words: ' + words);
 
 
     /*==== PARSING ALL UPPER CASE WORDS ====*/
@@ -87,12 +159,12 @@ Finance_Search = function(quer){
     if(AllCapped.length !== 0){
       for(i=0;i<AllCapped.length;i++){
         $.ajax({
-          url: 'http://apifin.synapsys.us/call_controller.php?action=search&wild=0&option=ticker&param=' + AllCapped[i],
+          url: 'http://apifin.investkit.com/call_controller.php?action=search&wild=0&option=ticker&param=' + AllCapped[i],
           dataType: 'json',
           async: false,
           success: function(r){
             if(r['success'] == true){
-              Session.set('TickCheck', r['ticker']['search_data'][0]);
+              Session.set('TickCheck', r['ticker']['search_data']);
               //console.log(r['name']['search_data'][0]);
             }
           }
@@ -108,14 +180,14 @@ Finance_Search = function(quer){
     /*==== NAME -- EXACT ( based on second degree ngrams ) ====*/
     if(Session.get('TickCheck') == false && Session.get('NameCheck') == false && Session.get('LocCheck') == false){
     for(i=0;i<quer_ngrams[1].length;i++){
-      //http://apifin.synapsys.us/call_controller.php?action=search&option=name&param=mark%20zuckerberg
+      //http://apifin.investkit.com/call_controller.php?action=search&option=name&param=mark%20zuckerberg
       $.ajax({
-        url: 'http://apifin.synapsys.us/call_controller.php?action=search&wild=0&option=name&param=' + quer_ngrams[1][i].word,
+        url: 'http://apifin.investkit.com/call_controller.php?action=search&wild=0&option=name&param=' + quer_ngrams[1][i].word,
         dataType: 'json',
         async: false,
         success: function(r){
           if(r['success'] == true){
-            Session.set('NameCheck', r['name']['search_data'][0]);
+            Session.set('NameCheck', r['name']['search_data']);
             //console.log(r['name']['search_data'][0]);
           }
         }
@@ -132,12 +204,12 @@ Finance_Search = function(quer){
       for(i=0;i<words.length;i++){
         if(nlp.pos(words[i]).tags()[0][0] == 'NN'){
           $.ajax({
-            url: 'http://apifin.synapsys.us/call_controller.php?action=search&wild=0&option=name&param=' + words[i],
+            url: 'http://apifin.investkit.com/call_controller.php?action=search&wild=0&option=name&param=' + words[i],
             dataType: 'json',
             async: false,
             success: function(r){
               if(r['success'] == true){
-                Session.set('NameCheck', r['name']['search_data'][0]);
+                Session.set('NameCheck', r['name']['search_data']);
                 //console.log(r['name']['search_data'][0]);
               }
             }
@@ -156,15 +228,15 @@ Finance_Search = function(quer){
     if(Session.get('TickCheck') == false && Session.get('NameCheck') == false && Session.get('LocCheck') == false){
       for(i=0;i<words.length;i++){
         if(words[i].toLowerCase() !== 'the'){
-        //http://apifin.synapsys.us/call_controller.php?action=search&option=location&param=ks
+        //http://apifin.investkit.com/call_controller.php?action=search&option=location&param=ks
         $.ajax({
-          url: 'http://apifin.synapsys.us/call_controller.php?action=search&wild=0&option=location&param=' + words[i],
+          url: 'http://apifin.investkit.com/call_controller.php?action=search&wild=0&option=location&param=' + words[i],
           dataType: 'json',
           async: false,
           success: function(r){
             if(r['success'] == true){
               console.log(words[i]);
-              Session.set('LocCheck', r['location']['search_data'][0]);
+              Session.set('LocCheck', r['location']['search_data']);
               //console.log(r['location']['search_data'][0]);
             }
           }
@@ -178,15 +250,15 @@ Finance_Search = function(quer){
     /*==== LOCATION -- EXACT ( based on second degree ngrams ) ====*/
     if(Session.get('TickCheck') == false && Session.get('NameCheck') == false && Session.get('LocCheck') == false){
       for(i=0;i<quer_ngrams[1].length;i++){
-        //http://apifin.synapsys.us/call_controller.php?action=search&option=location&param=ks
+        //http://apifin.investkit.com/call_controller.php?action=search&option=location&param=ks
         $.ajax({
-          url: 'http://apifin.synapsys.us/call_controller.php?action=search&wild=0&option=location&param=' + quer_ngrams[1][i].word,
+          url: 'http://apifin.investkit.com/call_controller.php?action=search&wild=0&option=location&param=' + quer_ngrams[1][i].word,
           dataType: 'json',
           async: false,
           success: function(r){
             if(r['success'] == true){
               console.log(quer_ngrams[1][i].word);
-              Session.set('LocCheck', r['location']['search_data'][0]);
+              Session.set('LocCheck', r['location']['search_data']);
             //  console.log(r['location']['search_data'][0]);
             }
           }
@@ -212,14 +284,14 @@ Finance_Search = function(quer){
     /*==== NAME -- OPEN ( based on second degree ngrams ) ====*/
     if(Session.get('TickCheck') == false && Session.get('NameCheck') == false && Session.get('LocCheck') == false){
     for(i=0;i<quer_ngrams[1].length;i++){
-      //http://apifin.synapsys.us/call_controller.php?action=search&option=name&param=mark%20zuckerberg
+      //http://apifin.investkit.com/call_controller.php?action=search&option=name&param=mark%20zuckerberg
       $.ajax({
-        url: 'http://apifin.synapsys.us/call_controller.php?action=search&wild=1&option=name&param=' + quer_ngrams[1][i].word,
+        url: 'http://apifin.investkit.com/call_controller.php?action=search&wild=1&option=name&param=' + quer_ngrams[1][i].word,
         dataType: 'json',
         async: false,
         success: function(r){
           if(r['success'] == true){
-            Session.set('NameCheck', r['name']['search_data'][0]);
+            Session.set('NameCheck', r['name']['search_data']);
             //console.log(r['name']['search_data'][0]);
           }
         }
@@ -236,12 +308,12 @@ Finance_Search = function(quer){
       for(i=0;i<words.length;i++){
         if(nlp.pos(words[i]).tags()[0][0] == 'NN'){
           $.ajax({
-            url: 'http://apifin.synapsys.us/call_controller.php?action=search&wild=1&option=name&param=' + words[i],
+            url: 'http://apifin.investkit.com/call_controller.php?action=search&wild=1&option=name&param=' + words[i],
             dataType: 'json',
             async: false,
             success: function(r){
               if(r['success'] == true){
-                Session.set('NameCheck', r['name']['search_data'][0]);
+                Session.set('NameCheck', r['name']['search_data']);
                 //console.log(r['name']['search_data'][0]);
               }
             }
@@ -257,12 +329,12 @@ Finance_Search = function(quer){
     if(Session.get('NameCheck') == false && Session.get('TickCheck') == false && Session.get('LocCheck') == false && words.length <= 3){
       for(i=0;i<words.length;i++){
           $.ajax({
-            url: 'http://apifin.synapsys.us/call_controller.php?action=search&wild=1&option=name&param=' + words[i],
+            url: 'http://apifin.investkit.com/call_controller.php?action=search&wild=1&option=name&param=' + words[i],
             dataType: 'json',
             async: false,
             success: function(r){
               if(r['success'] == true){
-                Session.set('NameCheck', r['name']['search_data'][0]);
+                Session.set('NameCheck', r['name']['search_data']);
                 //console.log(r['name']['search_data'][0]);
               }
             }
@@ -279,12 +351,12 @@ Finance_Search = function(quer){
     if(Session.get('NameCheck') == false && Session.get('TickCheck') == false && Session.get('LocCheck') == false && words.length == 1){
       for(i=0;i<words.length;i++){
         $.ajax({
-          url: 'http://apifin.synapsys.us/call_controller.php?action=search&wild=0&option=ticker&param=' + words[i],
+          url: 'http://apifin.investkit.com/call_controller.php?action=search&wild=0&option=ticker&param=' + words[i],
           dataType: 'json',
           async: false,
           success: function(r){
             if(r['success'] == true){
-              Session.set('TickCheck', r['ticker']['search_data'][0]);
+              Session.set('TickCheck', r['ticker']['search_data']);
               //console.log(r['name']['search_data'][0]);
             }
           }
@@ -296,34 +368,40 @@ Finance_Search = function(quer){
 
 
 
+
     /*==== ROUTING CONTROL LOGIC ====*/
+    
+    //if(Session.get('TickCheck') !== false && Session.get('TickCheck').length == 1 && Session.get('NameCheck') == false && Session.get('LocCheck') == false){
     if(Session.get('TickCheck') !== false && Session.get('NameCheck') == false && Session.get('LocCheck') == false){
-      //TICKER route
-      //console.log(Session.get('TickCheck'));
-      Router.go('content.companyprofile', {partner_id: Session.get('partner_id'), company_id: Session.get('TickCheck')['c_id']});
-    }
-    else if(Session.get('TickCheck') == false && Session.get('NameCheck') !== false && Session.get('LocCheck') == false){
-      //NAME route + logic to determine type of name
-      //console.log(Session.get('NameCheck'));
-        if(Session.get('NameCheck')['name_type'] == 'company'){
-          Router.go('content.companyprofile', {partner_id: Session.get('partner_id'), company_id: Session.get('NameCheck')['c_id']});
-        }else if(Session.get('NameCheck')['name_type'] == 'officer'){
-          Router.go('content.executiveprofile', {partner_id: Session.get('partner_id'), exec_id: Session.get('NameCheck')['o_id']})
+
+      Router.go('content.companyprofile', {ticker: Session.get('TickCheck')[0]['c_ticker'], name: Session.get('TickCheck')[0]['c_name'], company_id: Session.get('TickCheck')[0]['c_id']});
+
+      }
+      //else if(Session.get('TickCheck') == false && Session.get('NameCheck') !== false && Session.get('NameCheck').length == 1 && Session.get('LocCheck') == false){
+      else if(Session.get('TickCheck') == false && Session.get('NameCheck') !== false && Session.get('LocCheck') == false){
+
+        if(Session.get('NameCheck')[0]['name_type'] == 'company'){
+          Router.go('content.companyprofile', {ticker: Session.get('NameCheck')[0]['c_ticker'], name: Session.get('NameCheck')[0]['c_name'], company_id: Session.get('NameCheck')[0]['c_id']});
+
+        }else if(Session.get('NameCheck')[0]['name_type'] == 'officer'){
+          Router.go('content.executiveprofile', {lname: Session.get('NameCheck')[0]['o_last_name'], fname: Session.get('NameCheck')[0]['o_first_name'], ticker: Session.get('NameCheck')[0]['c_ticker'], exec_id: Session.get('NameCheck')[0]['o_id']})
+
         }
     }
+    //else if(Session.get('TickCheck') == false && Session.get('NameCheck') == false && Session.get('LocCheck') !== false && Session.get('LocCheck').length == 1){
     else if(Session.get('TickCheck') == false && Session.get('NameCheck') == false && Session.get('LocCheck') !== false){
-      //LOCATION route
-      //console.log(Session.get('LocCheck'));
-      Router.go('content.location', {partner_id: Session.get('partner_id') /* ADDITIONAL PARAMS WILL BE ADDED */})
 
-  //ROUTING NULL UNTIL LOCATIONS ARE SORTED OUT
-        //Router.go('content.noresults', {partner_id: Session.get('partner_id')});
+      Router.go('content.locationprofile', {loc_id: abbrState(Session.get('LocCheck')[0]['c_hq_state'],'name'), city: Session.get('LocCheck')[0]['c_hq_city']})
 
-    }else{
-      //Route null
-      //console.log('ROUTE NULL // No Results');
+    }
+    else if(Session.get('TickCheck') == false && Session.get('NameCheck') == false && Session.get('LocCheck') == false){
+      //NO RESULTS Route -- rarely happens.
       Router.go('content.noresults', {partner_id: Session.get('partner_id')});
     }
+    /*else{
+      //WildCard Route -- for multiple results.
+      Router.go('content.search', {partner_id: Session.get('partner_id'), search_results: quer});
+    }*/
 
     /*********************************/
 

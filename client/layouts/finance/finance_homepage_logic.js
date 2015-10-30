@@ -26,20 +26,6 @@ function GetSuggest(nowTime) {
   if ( searchString == "" ) {
     $('.fi_search_recommendations').removeClass('active');
   } else {
-    /*
-    var HTMLString = '';
-    var data = [{city:'Wichita', state:'KS'}, {city:'Derby', state:'KS'}, {city: 'Andover', state: 'KS'}];
-    for ( var index = 0; index < data.length; index++ ) {
-      if ( index < 10 ) {
-        if ( index != 0 ) {
-          HTMLString = HTMLString + '<div class="border-li"></div>';
-        }
-        HTMLString = HTMLString + '<a style="color: #000" href=""><div class="fi_search_recommendations_item">' + data[index].city + ", " + data[index].state + '<i class="fa fa-angle-right"></i></div></a>';
-      }
-    }
-    $('.fi_search_recommendations')[0].innerHTML = HTMLString;
-    $('.fi_search_recommendations').addClass('active');*/
-
 
      Meteor.call('GetSuggestion',encodeURIComponent(searchString),nowTime,function(error, data){
        if ( error ) {
@@ -52,24 +38,81 @@ function GetSuggest(nowTime) {
        }
 
        Session.set('SuggestTime',data.time);
-       console.log(data);
        data = data.data;
 
-       if ( data.length == 0 ) {
+
+        //var HTMLString = '<div class="caret-top"></div><i class="fa fa-times fi_search_recommendations_close"></i>';
+        var HTMLStringLoc = '';
+        var HTMLStringName = '';
+        var HTMLStringTick = '';
+
+       if(data['name']['func_success'] == true){
+         var NameRes = data['name']['func_data']['search_data'];
+         for(var i = 0; i < NameRes.length; i++){
+           if(NameRes[i]['name_type'] == 'officer' && i < 4){
+             if ( i != 0 ) {
+               HTMLStringName = HTMLStringName + '<div class="border-li"></div>';
+             }
+              HTMLStringName = HTMLStringName + '<a style="color: #000" href="' + ExecutiveURL(NameRes[i]['o_id'], NameRes[i]['c_ticker'], NameRes[i]['o_last_name'], NameRes[i]['o_first_name']) + '"><div class="fi_search_recommendations_item">' + NameRes[i]['o_first_name'] + " " + NameRes[i]['o_last_name'] + " - " + NameRes[i]['c_name'] + '<i class="fa fa-angle-right"></i></div></a>';
+           }
+           if(NameRes[i]['name_type'] == 'company' && i < 4){
+             if ( i != 0 ) {
+               HTMLStringName = HTMLStringName + '<div class="border-li"></div>';
+             }
+               HTMLStringName = HTMLStringName + '<a style="color: #000" href="' + CompanyURL(NameRes[i]['c_ticker'], NameRes[i]['c_name'], NameRes[i]['c_id']) + '"><div class="fi_search_recommendations_item">' + NameRes[i]['c_ticker'] + " - " + NameRes[i]['c_name'] + '<i class="fa fa-angle-right"></i></div></a>';
+           }
+         }
+       }
+
+       if(data['location']['func_success'] == true){
+         var LocRes = data['location']['func_data']['search_data'];
+         for(var i = 0; i < LocRes.length; i++){
+          if(i < 3 ){
+            if(i > 0 && LocRes[i]['c_hq_city'] == LocRes[i - 1]['c_hq_city']){
+              continue;
+            }
+            if ( i != 0 ) {
+              HTMLStringLoc = HTMLStringLoc + '<div class="border-li"></div>';
+            }
+
+            //this var and for loop makes the word casing corrct
+            var LocCity = LocRes[i]['c_hq_city'];
+            var LocNew = [];
+            for(var i=0;i<LocCity.length;i++){
+              if(i == 0){
+                LocNew[i] = LocCity[i];
+              }else if(i !== 0){
+                LocNew[i] = LocCity[i].toLowerCase();
+              }
+            }
+            LocNew = LocNew.join('');
+            HTMLStringLoc = HTMLStringLoc + '<a style="color: #000" href="' + LocationURL(LocNew + "_" + LocRes[i]['c_hq_state']) + '"><div class="fi_search_recommendations_item">' + LocNew + ", " + LocRes[i]['c_hq_state'] + '<i class="fa fa-angle-right"></i></div></a>';
+          }
+         }
+       }else{
+         HTMLStringLoc = '';
+       }
+
+       if(data['ticker']['func_success'] == true){
+         var TickRes = data['ticker']['func_data']['search_data'];
+         for(var i = 0; i < TickRes.length; i++){
+          if(i < 3 ){
+            if ( i != 0 ) {
+              HTMLStringTick = HTMLStringTick + '<div class="border-li"></div>';
+            }
+             HTMLStringTick = HTMLStringTick + '<a style="color: #000" href="' + CompanyURL(TickRes[i]['c_ticker'], TickRes[i]['c_name'], TickRes[i]['c_id']) + '"><div class="fi_search_recommendations_item">' + TickRes[i]['c_ticker'] + " - " + TickRes[i]['c_name'] + '<i class="fa fa-angle-right"></i></div></a>';
+          }
+         }
+       }else{
+         HTMLStringTick = '';
+       }
+
+       if ( data['name']['func_success'] == false && data['location']['func_success'] == false && data['ticker']['func_success'] == false) {
          $('.fi_search_recommendations').removeClass('active');
          return false;
        }
-       //var HTMLString = '<div class="caret-top"></div><i class="fa fa-times fi_search_recommendations_close"></i>';
-       var HTMLString = '';
-       for ( var index = 0; index < data.length; index++ ) {
-         if ( index < 10 ) {
-           if ( index != 0 ) {
-             HTMLString = HTMLString + '<div class="border-li"></div>';
-           }
-           HTMLString = HTMLString + '<a style="color: #000" href="' + LocationURL(data[index].city + "_" + data[index].state) + '"><div class="fi_search_recommendations_item">' + data[index].city + ", " + data[index].state + '<i class="fa fa-angle-right"></i></div></a>';
-         }
-       }
-       $('.fi_search_recommendations')[0].innerHTML = HTMLString;
+
+       $('.fi_search_recommendations')[0].innerHTML = '<div class="caret-top"></div>' /*' <i class="fa fa-times fi_search_recommendations_close"></i>'*/ + HTMLStringName + HTMLStringLoc + HTMLStringTick;
        $('.fi_search_recommendations').addClass('active');
      });
   }
@@ -88,6 +131,7 @@ Template.finance_homepage.events({
       event.preventDefault();
         //ExecSearch();
       Finance_Search($('.fi_mainsearch input')[0].value);
+      $('.fi_search_recommendations').removeClass('active');
       return "";
     }
     if ( typeof StartTime == "undefined" ) {
@@ -109,7 +153,7 @@ Template.finance_homepage.events({
     $('.fi_search_recommendations').removeClass('active');
     $('.fi_searchbtn').css("background-color", "black");
     $(".fi_mainsearch").addClass("boxhighlight-black");
-     Search($('.fi_mainsearch input')[0].value);
+     Finance_Search($('.fi_mainsearch input')[0].value);
   },
 
   'click .fi_search_recommendations_close': function() {
@@ -119,15 +163,18 @@ Template.finance_homepage.events({
 
   'click .fi_searchbtn.fa-search': function() {
      Finance_Search($('.fi_mainsearch input')[0].value);
+     $('.fi_search_recommendations').removeClass('active');
   },
 
   'mousedown .fi_searchbtn': function(){
     $('.fi_searchbtn').css("background-color", "black");
+    $('.fi_search_recommendations').removeClass('active');
     $(".fi_mainsearch").addClass("boxhighlight-black");
   },
 
   'mouseup .fi_searchbtn': function(){
     $('.fi_searchbtn').css("background-color", "#3098ff");
+    $('.fi_search_recommendations').removeClass('active');
     $(".fi_mainsearch").removeClass("boxhighlight-black");
   },
 

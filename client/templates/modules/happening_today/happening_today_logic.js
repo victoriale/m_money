@@ -64,6 +64,22 @@ Template.happening_today.helpers({
     return data.c_name;
   },
 
+  exchange: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data.c_exchange;
+  },
+
+  image: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data.c_logo;
+  },
+
   news: function(){
     var data = Session.get('whats_happening');
     var count = Session.get('ht_count');

@@ -62,23 +62,27 @@ Template.breakdown_map.onRendered(function(){
        mapOptions
      );
 
-     var infowindow = new google.maps.InfoWindow();
-     var marker, i;
-
-     for(i = 0; i < data.length; i++){
-       marker = new google.maps.Marker({
+     for(var i = 0; i < data.length; i++){
+       var URL = Router.path('content.companyprofile',{
+         ticker:data[i]['c_ticker'],
+         name:compUrlName(data[i]['c_name']),
+         company_id:data[i]['c_id'],
+       })
+       var content = "<a href='"+URL+"'>" + data[i]['c_name'] + "</a>";
+       var marker = new google.maps.Marker({
          position: {lat:Number(data[i].c_latitude), lng:Number(data[i].c_longitude)},
          map: mainmap,
          icon: '/mapmarker.png'
        });
 
-       google.maps.event.addListener(marker, 'click', (function(marker, i , data) {
-          return function() {
-            infowindow.setContent(data[i]['c_name']);
-            infowindow.open(mainmap, marker);
-          }
-        })
-      );
+       var infowindow = new google.maps.InfoWindow();
+       google.maps.event.addListener(marker, 'click',
+       (function(marker, content, infowindow) {
+         return function(){
+           infowindow.setContent(content);
+           infowindow.open(mainmap, marker);
+         };
+      })(marker, content, infowindow));
      }
 
      // Enable full page or short view
