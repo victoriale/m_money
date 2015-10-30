@@ -93,7 +93,7 @@ var batch_envar = new Meteor.EnvironmentVariable;
 
 // Filter out bot requests
 var seoPicker = Picker.filter(function(req, res) {
-  // return true;
+  return true;
   if ( /bot/.test(req.headers['user-agent']) || /Webmaster/.test(req.headers['user-agent']) || /Bing/.test(req.headers['user-agent']) || /externalhit/.test(req.headers['user-agent']) ) {
     return true;
   }
@@ -230,7 +230,7 @@ function company_profile(params, req, res){
         ]
       };
       var todayAt = {
-        title: 'Today At ' + data.profile_header.comp_name,
+        title: '<a href="' + Router.pick_path('content.finoverview',{partner_id: info.params.partner_id, company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker}, info.params) + '">Today At ' + data.profile_header.comp_name + '</a>',
         content: {
           line: [
             'Last Updated: ' + (new Date(data.daily_update.csi_price_last_updated)).toSNTFormTime(),
@@ -307,7 +307,7 @@ function company_profile(params, req, res){
         head_data.title = 'Everything You Need To Know About ' + data.profile_header.c_name + ' | ' + data.results.name + ' Finance';
         head_data.description = data.profile_header.comp_name + ' SEC documents, financial data, news, executive details and other valuable information for investors.';
         head_data.url = 'http://www.myinvestkit.com' + Router.pick_path('content.companyprofile', {partner_id: info.params.partner_id, company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker},info.params);
-        todayAt.title = data.profile_header.comp_name + '\'s Daily Update';
+        todayAt.title = '<a href="' + Router.pick_path('content.finoverview',{partner_id: info.params.partner_id, company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker}, info.params) + '">' + data.profile_header.comp_name + '\'s Daily Update</a>';
         whosWho.title = '<a href="' + Router.pick_path('content.boardcommittee',{partner_id: info.params.partner_id, ticker: data.profile_header.c_ticker, name: compUrlName(data.profile_header.c_name), company_id: data.profile_header.c_id}, info.params) + '">Meet the Executives For ' + data.profile_header.comp_name + '</a>';
         featList.title = data.profile_header.comp_name + '\'s Featured Lists';
         earnings.title = data.profile_header.comp_name + '\'s Earnings Reports';
@@ -1452,7 +1452,7 @@ seoPicker.route('/:partner_id/:ticker/:lname-:fname/comp/:exec_id',exec_comp);
 
 // Executive Compensation Function
 function exec_comp(params, req, res){
-  console.log('***Executive Profile SSR***');
+  console.log('***Executive Compensation SSR***');
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
   // Get the data
@@ -1622,6 +1622,174 @@ function exec_comp(params, req, res){
       batch_envar.withValue(batch, function(){
         var bound_cb = Meteor.bindEnvironment(method_cb);
         Meteor.call("GetExecData",params.exec_id,"batch_1", bound_cb);
+      });
+    });
+
+    if ( typeof params.partner_id != "undefined" ) {
+      functions.push(function(batch){
+        batch_envar.withValue(batch, function(){
+          var bound_cb = Meteor.bindEnvironment(method_cb);
+          Meteor.call('GetPartnerHeader',params.partner_id, bound_cb);
+        });
+      });
+    }
+
+    var company_batch = new async_mult(functions, callback);
+
+    company_batch.execute();
+  });
+}
+
+// Financial Overview
+seoPicker.route('/:ticker/:name/financial-overview/:company_id',fin_ovw);
+seoPicker.route('/:partner_id/:name/:ticker/fin-view/:company_id',fin_ovw);
+
+// Financial Overview Function
+function fin_ovw(params, req, res) {
+  console.log('***Financial Overview SSR***');
+  var startTime = (new Date()).getTime();
+
+  info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){
+    var callback = Meteor.bindEnvironment(function(results){
+      var res_arr = {};
+      for ( var index = 0; index < results.length; index++ ) {
+        for ( var attr in results[index] ) {
+          if ( results[index].hasOwnProperty(attr) ) {
+            res_arr[attr] = results[index][attr];
+          }
+        }
+      }
+
+      var info = info_envar.get();
+      var res = info.res;
+
+      var data = res_arr;
+
+      if ( typeof data.content != "undefined" ) {
+        var temp_d = JSON.parse(data.content);
+        temp_d.results.name = temp_d.name;
+        data.results = temp_d.results;
+      }
+
+      // AI String
+      if ( typeof data.ai == "object" ) {
+        data.ai = '';
+      } else {
+        data.ai = data.ai.match(/<y.txt[^\n]*/)[0].replace(/<y.txt[^>]*>/,'');
+      }
+      // Financial Data
+      function areDefined(data, array) {
+        try{
+          for ( var i = 0; i < array.length; i++ ) {
+            if ( typeof data[array[i]] == "undefined" || data[array[i]] == null ) {
+              return false;
+            }
+          }
+          return true;
+        } catch(e) {
+          return false;
+        }
+      }
+      var cdata = data.fin_overview.company_data;
+      var c_name1 = '<a href="' + Router.pick_path('content.companyprofile',{company_id: cdata.c_id, name: compUrlName(cdata.c_name), ticker: cdata.c_ticker}, info.params) + '">' + cdata.c_name + ' (ticker: ' + cdata.c_ticker + ')</a>';
+      var c_name = '<a href="' + Router.pick_path('content.companyprofile',{company_id: cdata.c_id, name: compUrlName(cdata.c_name), ticker: cdata.c_ticker}, info.params) + '">' + cdata.c_name + '</a>';
+      var line = [];
+      line[line.length] = 'Page Updated on ' + (new Date(data.fin_overview.company_data.csi_price_last_updated)).toSNTFormTime();
+      line[line.length] = '';
+      line[line.length] = data.ai;
+      var l_line = '';
+      if ( areDefined(cdata,['c_hq_city','c_hq_state']) ) {
+        l_line = l_line + c_name1 + ' is headquartered in ' + cdata.c_hq_city.toTitleCase() + ', <a href="' + Router.pick_path('content.locationprofile',{loc_id: fullstate(cdata.c_hq_state)}, info.params) + '">' + cdata.c_hq_state + '</a>. ';
+      }
+      if ( areDefined(cdata,['csi_price','csi_price_change_since_last','csi_percent_change_since_last','csi_price_last_operator']) ) {
+        l_line = l_line + 'The stock for ' + c_name + ' is currently trading at $' + ToCommaNumber(cdata.csi_price) + ', which is ';
+        if ( cdata.csi_price_last_operator == 0 ) {
+          l_line = l_line + ' down';
+        } else {
+          l_line = l_line + ' up';
+        }
+        l_line = l_line + ' $' + ToCommaNumber(cdata.csi_price_change_since_last) + ' or ' + ToCommaNumber(cdata.csi_percent_change_since_last) + '%. '
+      }
+      if ( areDefined(cdata,['csi_opening_price','csi_closing_price','csi_high','csi_low']) ) {
+        l_line = l_line + c_name + ' most recently opened at $' + ToCommaNumber(cdata.csi_opening_price) + ' and closed at $' + ToCommaNumber(cdata.csi_closing_price) + '. ';
+        l_line = l_line + 'In ' + c_name + '\'s most recent trading day, ' + c_name + ' hit a high of $' + ToCommaNumber(cdata.csi_high) + ' and a low of $' + ToCommaNumber(cdata.csi_low) + '. ';
+      }
+      if ( areDefined(cdata,['avg_volume','csi_total_shares','csi_market_cap']) ) {
+        l_line = l_line + 'There are ' + ToCommaNumber(cdata.csi_total_shares) + ' shares of ' + c_name + ', while the trading volume averages ' + ToCommaNumber(Math.round(cdata.avg_volume)) + ' shares. The total market cap of ' + c_name + ' is $' + ToCommaNumber(cdata.csi_market_cap) + '. ';
+      }
+      line[line.length] = l_line;
+      line[line.length] = '';
+      line[line.length] = 'Summary By Thomson Reuters:';
+      line[line.length] = cdata.c_desc;
+
+      var head_data = { // Data to put into the head of the document (meta tags/title)
+        description: 'A daily stock update for ' + cdata.c_name,
+        title: 'An Investors Guide To ' + cdata.c_name + ': Daily Report | InvestKit.com',
+        url: 'http://www.investkit.com' + Router.pick_path('content.finoverview',{company_id: cdata.c_id, name: compUrlName(cdata.c_name), ticker: cdata.c_ticker}, info.params)
+      };
+
+      var h1 = {
+        title: 'An Investors Guide To ' + c_name1 + ': Daily Report',
+        content: {
+          line: line
+        }
+      };
+
+      if ( typeof data.results != "undefined" ) {
+        head_data.siteName = data.results.name;
+        head_data.title = 'Everything You Need To Know About ' + cdata.c_name + ': Daily Report | ' + data.results.name + ' Finance';
+        h1.title = 'Everything You Need To Know About ' + c_name1 + ': Daily Report';
+      }
+
+      var page_data = {
+        head_data: head_data,
+        h1: h1
+      };
+
+      if ( typeof data.results != "undefined" ) {
+        page_data.partner_header = data.results.header.script;
+      }
+
+      // res.end(JSON.stringify(res_arr, null, 2));
+
+      // res.end(SSR.render('generic_page',page_data));
+      res.end(minify(SSR.render('generic_page',page_data), {
+        minifyCSS: true,
+        minifyJS: true,
+        removeComments: true,
+        collapseWhitespace: true
+      })); // Write the pages template
+      // Also minifies the HTML string
+
+      // Log how long it took to render the page
+      var endTime = (new Date()).getTime();
+      console.log("SSRSTAT|\"Financial Overview\",\"" + info.params.company_id + "\"," + (Math.round((endTime - info.startTime)/10)/100) + "," + endTime + "|");
+      return false;
+    });
+
+    var functions = [];
+    var method_cb = function(error, data) {
+      var batch = batch_envar.get();
+      if ( error ) {
+        console.log("Batch Error:", error);
+        batch.done({});
+        return false;
+      }
+      batch.done(data);
+    }
+
+    functions.push(function(batch){
+      batch_envar.withValue(batch, function(){
+        var bound_cb = Meteor.bindEnvironment(method_cb);
+        Meteor.call("CompWebPageData",params.company_id,"fin_overview", bound_cb);
+      });
+    });
+    functions.push(function(batch){
+      batch_envar.withValue(batch, function(){
+        var bound_cb = function(error, data) {
+          batch_envar.get().done({ai: data});
+        }
+        Meteor.call("GetAIContent",params.company_id, bound_cb);
       });
     });
 
