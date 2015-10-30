@@ -99,14 +99,6 @@ Template.whos_who.helpers({
     return fname +" "+ mname +" "+ lname;
   },
 
-  execImage:function(){
-    var data = Session.get('whos_who');
-    if(typeof data =='undefined'){
-      return '';
-    }
-    var index = Session.get("whos_count");
-    return data[index].o_pic;
-  },
   execURL:function(){
     var who = Session.get('whos_who');
     var index = Session.get("whos_count");

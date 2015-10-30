@@ -12,34 +12,6 @@ Template.featured_list.onCreated(function(){
 
 Template.featured_list.onRendered( function() {
   Session.set("fl_counter",0);
-
-  Session.set("fl_data",
-  [
-    {
-      company_name:"[Profile Name #1]",
-      company_location:"City, State",
-      company_CEO:"[Profile's Title]",
-      // company_stock:"FB",
-      company_shares:"[Data Entry]",
-      title:"[Profile's]'s Trending Lists",
-      fl_none:'none',
-      tile2_icon_none:'none',
-      tile3_icon_none:'none'
-
-    },
-    {
-      title:"Top 100 [Profile Type]",
-      fl_none:'none',
-      tile1_icon_none:'none',
-      tile3_icon_none:'none'
-    },
-    {
-      title:"All Finance Top 100 Lists",
-      tile1_icon_none:'none',
-      tile2_icon_none:'none'
-    },
-
-  ]);
 });
 
 Template.featured_list.events({
@@ -75,7 +47,7 @@ Template.featured_list.events({
 Template.featured_list.helpers (
   {
     checkData:function(){
-      var data = Session.get('featured_lists').featured_list_data;
+      var data = Session.get('featured_lists');
       if(typeof data == 'undefined'){
         return '';
       }
@@ -95,7 +67,17 @@ Template.featured_list.helpers (
       if(typeof data == 'undefined'){
         return '';
       }
-      var newData = data.featured_list_data;
+      console.log(data);
+      if(Session.get('IsLocation')){
+        data.featured_list_data = data[0].top_list_list;
+        data.featured_list_title = data[0].top_list_info.top_list_title;
+        var newData = data.featured_list_data;
+      }else{
+        var newData = data.featured_list_data;
+      }
+      console.log(data);
+      console.log(newData);
+
       $.map(newData, function(data ,index){
         for(objName in data){
           if(objName === 'stock_percent'){
@@ -146,18 +128,6 @@ Template.featured_list.helpers (
       return count+1;
     },
 
-    company_name: function() {
-      var data = Session.get("fl_data");
-      return typeof(data) !== 'undefined' ? data[0].company_name : '';
-    },
-    company_location: function() {
-      var data = Session.get("fl_data");
-      return typeof(data) !== 'undefined' ? data[0].company_location : '';
-    },
-    company_CEO: function() {
-      var data = Session.get("fl_data");
-      return typeof(data) !== 'undefined' ? data[0].company_CEO : '';
-    },
     company_stock: function() {
       var data = Session.get("fl_data");
       return typeof(data) !== 'undefined' ? data[0].company_stock : '';
@@ -167,7 +137,68 @@ Template.featured_list.helpers (
       return typeof(data) !== 'undefined' ? data[0].company_shares : '';
     },
     gettitle: function() {
-      var data = Session.get("fl_data");
+      var header = Session.get('profile_header');
+      var data = Session.get('list_of_lists');
+      var params = Router.current().getParams();
+      if(typeof header == 'undefined'){
+        return false;
+      }
+
+      if(Session.get('IsCompany')){
+
+      }
+      //Helper to build url for list of list page
+        if(Session.get('IsCompany')){
+          var title = header.c_ticker;
+          var url = Router.path('content.listoflist', {
+            ticker:params.ticker,
+            name:params.name,
+            company_id: data.list_rankings[0].c_id
+          });
+          var url2 = Router.path('content.listoflistloc', {
+            loc_id:header.c_hq_state
+          });
+        }
+        if(Session.get('IsExec')){
+          var title = header.c_ticker;
+          var url = Router.path('content.listoflist', {
+            loc_id:header.c_hq_state
+          });
+          var url2 = Router.path('content.listoflistloc', {
+            loc_id:header.c_hq_state
+          });
+        }
+        if(Session.get('IsLocation')){
+          var title = fullstate(params.loc_id);
+          var url = Router.path('content.listoflistloc', {
+            loc_id:params.loc_id
+          });
+          var url2 = Router.path('content.listoflistloc', {
+            loc_id:params.loc_id
+          });
+        }
+      var data = [
+        {
+          title: title + " Trending Lists",
+          fl_none:'none',
+          tile2_icon_none:'none',
+          tile3_icon_none:'none',
+          url:url
+        },
+        {
+          title:"Top Featured Lists",
+          fl_none:'none',
+          tile1_icon_none:'none',
+          tile3_icon_none:'none',
+          url:url2
+        },
+        {
+          title:"All Finance Top 100 Lists",
+          tile1_icon_none:'none',
+          tile2_icon_none:'none',
+          url:url2
+        },
+      ]
       return data;
     },
     profile: function(){
