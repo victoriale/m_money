@@ -415,15 +415,15 @@ Meteor.methods({
     //random number to pick random list in list_index that's in database
     var x = Math.floor((Math.random() * 2) + 1);
     //param={list_index} , {location/DMA}
-    if(isNaN(loc_id)){
+    if(isNaN(loc_id) || index == null){
       console.log('widget_list');
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=top_list&option="+loc_id;
+      console.log(UrlString);
     }else if(loc_id === null || typeof loc_id == "undefined"){
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=top_list&option=list&param="+index;
     }else{
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=top_list&option=list&param="+index+","+loc_id;
     }
-    console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){
       try{
