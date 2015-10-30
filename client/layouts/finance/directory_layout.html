@@ -11,10 +11,14 @@
 
 <template name="directory_list_button">
   <div class="dir-dropdown-block">
-    <span class="dropdown-button">INVESTKIT > TRENDING LISTS</span>
-    <div class="dropdown-container" style="display: none">
-      <ul class="ul-list">
-
+    <span id="invest-list" class="dropdown-button">INVESTKIT > TRENDING LISTS</span>
+    <div class="dir-dropdown-block-list" style="display: none">
+      <ul class="dir-dropdown-block-list-ul">
+        {{#each trending_list}}
+          <a href="{{url}}">
+            <li class="dir-dropdown-block-list-ul-item" title="{{top_list_info.top_list_title}}">{{top_list_info.top_list_title}}</li>
+          </a>
+        {{/each}}
       </ul>
     </div>
     <span class="dropdown-button2">DIRECTORIES</span>
