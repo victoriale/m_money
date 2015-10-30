@@ -17,18 +17,28 @@ Template.list_view.onRendered(function () {
 var backgroundStyle="tilewhite";
 Template.list_view.helpers({
   toplist:function(){
-    var listdata = Session.get('top_list_gen');
+    var params = Router.current().getParams();
+    if(params.list_id == 'sv150_gainers' || params.list_id == 'sv150_losers'){
+      var listdata = Session.get('sv150_list');
+      listdata['top_list_list'] = listdata['sv150_list_data'];
+      listdata['top_list_info'] = {};
+      if(params.list_id == 'sv150_gainers'){
+        listdata['top_list_info']['top_list_title'] = "Top SV150 List Gainers";
+      }else{
+        listdata['top_list_info']['top_list_title'] = "Top SV150 List Losers";
+      }
+    }else{
+      var listdata = Session.get('top_list_gen');
+    }
     if(typeof listdata =='undefined'){
       return '';
     }
-
     $.map(listdata.top_list_list, function(data,index){
       if(index % 2 == 0){
         data['background'] = 'tilewhite';
       }else{
         data['background'] = 'tilegrey';
       }
-      console.log(data);
       data['locUrl'] = Router.path('content.locationprofile',{
         loc_id:data.c_hq_state,
       })
@@ -77,10 +87,23 @@ Template.list_view.helpers({
 
   carouselList:function(){
     var count = Session.get("lv_count");
-    var listdata = Session.get('top_list_gen');
+    var params = Router.current().getParams();
+    if(params.list_id == 'sv150_gainers' || params.list_id == 'sv150_losers'){
+      var listdata = Session.get('sv150_list');
+      listdata['top_list_list'] = listdata['sv150_list_data'];
+      listdata['top_list_info'] = {};
+      if(params.list_id == 'sv150_gainers'){
+        listdata['top_list_info']['top_list_title'] = "Top SV150 List Gainers";
+      }else{
+        listdata['top_list_info']['top_list_title'] = "Top SV150 List Losers";
+      }
+    }else{
+      var listdata = Session.get('top_list_gen');
+    }
     if(typeof listdata =='undefined'){
       return '';
     }
+    Session.set('top_list_gen', listdata);
     $.map(listdata.top_list_list, function(data,index){
 
       data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
