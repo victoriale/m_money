@@ -55,6 +55,9 @@ Template.about_exec.helpers({
     var params = Router.current().getParams();
     if(typeof params != 'undefined'){
         return Router.path('content.collegerivals',{
+          lname:params.lname,
+          fname:params.fname,
+          ticker:params.ticker,
           exec_id: params.exec_id,
         });
     }
@@ -65,6 +68,9 @@ Template.about_exec.helpers({
     var params = Router.current().getParams();
     if(typeof params != 'undefined'){
         return Router.path('content.aboutexec',{
+          lname:params.lname,
+          fname:params.fname,
+          ticker:params.ticker,
           exec_id: params.exec_id,
         });
     }
@@ -75,6 +81,9 @@ Template.about_exec.helpers({
     var params = Router.current().getParams();
     if(typeof params != 'undefined'){
         return Router.path('content.aboutexec',{
+          lname:params.lname,
+          fname:params.fname,
+          ticker:params.ticker,
           exec_id: params.exec_id,
         });
     }
@@ -84,6 +93,9 @@ Template.about_exec.helpers({
     var params = Router.current().getParams();
     if(typeof params != 'undefined'){
         return Router.path('content.collegerivals',{
+          lname:params.lname,
+          fname:params.fname,
+          ticker:params.ticker,
           exec_id: params.exec_id,
         });
     }

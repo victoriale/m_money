@@ -199,9 +199,9 @@ Associated Files: co_board_committee_logic.js and co_board_committee_page.html
       height: 172px;
       border: none;
       border-radius: 50%;
-      background-size: cover !important;
-      background-position: center center !important;
-      background-image: url("");
+      background-size: contain;
+      background-position: center center;
+      background-repeat: no-repeat;
       //the wrapper to wrap up the container height and width
       &-wr {
         width: 180px;
@@ -225,7 +225,6 @@ Associated Files: co_board_committee_logic.js and co_board_committee_page.html
       position: absolute;
       top: 109px;
       left: 103px;
-      background-image: url("");
     }
     /*small circle */
     &-sma_cr{
@@ -236,7 +235,6 @@ Associated Files: co_board_committee_logic.js and co_board_committee_page.html
       background-color:  #ffffff;
       width: 75px;
       height: 75px;
-      background-image: url("");
     }
     //the sub-conatainer
     &-cr {
@@ -276,6 +274,9 @@ Associated Files: co_board_committee_logic.js and co_board_committee_page.html
         text-align: center;
         padding: auto;
         font-size: 20px;
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
       }
       &-text{
         font-family: HN;
@@ -570,7 +571,9 @@ Associated Files: co_board_committee_logic.js and co_board_committee_page.html
       float: left;
       position: relative;
       left: -2px;
-
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
       &-text{
         width: 150px;
         height: 50px;
@@ -1138,6 +1141,8 @@ Associated Files: co_board_committee_logic.js and co_board_committee_page.html
   }
   //This style is used to hold the main image of the template of diameter 125px
   &-head-image{
+    background-size: contain;
+    background-position: center center;
     background-repeat: no-repeat;
     border-radius: 50%;
     border: 2px solid gray;
@@ -1161,6 +1166,9 @@ Associated Files: co_board_committee_logic.js and co_board_committee_page.html
     background-color: #ffffff;
     width: 45px;
     height: 45px;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
   }
   //This style is used to create the second to fifth small image
   &-tile-image2

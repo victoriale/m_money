@@ -10,9 +10,12 @@ Template.about_company.helpers({
     if(typeof params == 'undefined'){
       return '#';
     }
-    return Router.path('content.abouthq',{
-      comp_id: params.company_id,
+    var url = Router.path('content.abouthq', {
+      ticker:params.ticker,
+      name:params.name,
+      company_id: params.company_id
     });
+    return url;
   },
   company: function(){
     var data = Session.get('profile_header');

@@ -215,9 +215,16 @@ Template.market_report.helpers({                   //helper class for adding dat
     var retArr = {};
     retArr.counter = company + 1;
     retArr.company_name = data.biggest_losers[current].top_list_list[company].c_name;
+    retArr.ticker = data.biggest_losers[current].top_list_list[company].c_ticker;
     retArr.lost_percent = Math.round(data.biggest_losers[current].top_list_list[company].stock_percent*100)/100 + '%';
     retArr.logo = data.biggest_losers[current].top_list_list[company].c_logo;
-    retArr.url = Router.path('content.companyprofile',{partner_id: Router.current().params.partner_id, company_id: data.biggest_losers[current].top_list_list[company].c_id});
+    retArr.url = Router.path('content.companyprofile',
+      {
+        partner_id: Router.current().params.partner_id,
+        ticker:retArr.ticker,
+        name:compUrlName(retArr.company_name),
+        company_id: data.biggest_losers[current].top_list_list[company].c_id
+      });
     return retArr;
   },
 

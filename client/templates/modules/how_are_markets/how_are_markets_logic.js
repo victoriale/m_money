@@ -38,47 +38,6 @@ Template.how_are_markets.helpers({                   //helper class for adding d
     var data = Session.get("how_are_markets");
     return ["market report"];
   },
-  index_name:function() {
-    var data = Session.get("how_are_markets");
-    return ["Dow Jones Index"];
-  },
-  stock_price:function() {
-    var data = Session.get("how_are_markets");
-    return ["16,405.84"];
-  }
-  ,
-  stock_price_number:function() {
-    var data = Session.get("how_are_markets");
-    return ["37.50"];
-  },
-  stock_price_percent:function() {
-    var data = Session.get("how_are_markets");
-    return ["1.80%"];
-  },
-  number_down:function() {
-    var data = Session.get("how_are_markets");
-    return ["30"];
-  },
-  stock_name:function() {
-    var data = Session.get("how_are_markets");
-    return ["dow"];
-  },
-  company_name:function() {
-    var data = Session.get("how_are_markets");
-    return ["Disney Corporation"];
-  },
-  counter_number:function() {
-    var data = Session.get("how_are_markets");
-    return ["1"];
-  },
-  lost_percent:function() {
-    var data = Session.get("how_are_markets");
-    return ["Lost 18.14%"];
-  },
-  national_market:function() {
-    var data = Session.get("how_are_markets");
-    return ["national market"];
-  },
 
 });
 
