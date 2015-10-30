@@ -1,0 +1,333 @@
+/*
+Author: Zachary Pearson
+Created: [10-30-2015]
+Description: sec_doc_page
+Associated Files: sec_doc_page.html, sec_doc_page.less, sec_doc_page_logic.js
+*/
+
+
+@import (reference)"../global_vars.less";
+@import (reference)"../modules.less";
+
+//header specs
+.header{
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+  height:50px;
+  background-image:url("/header_texture.png");
+  &-back{
+    color:@white;
+    background-color: #3098ff;
+    width: 54px;
+    height: 45px;
+    float:left;
+  }
+
+  &-wedge{
+    float:left;
+    width: 0;
+    height: 0;
+    border-top: 26px solid transparent;
+    border-bottom: 19px solid transparent;
+    border-left: 15px solid #3098ff;
+  }
+}
+
+//global page specs
+.doc_page{
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+  width: 680px;
+  margin: 5px;
+  background-color: @white;
+
+    &-hdr {
+    width: 100%;
+    height: 130px;
+    background-color: @white;
+
+    //the head box consisting of the white background
+    &-head {
+      width: 680px;
+      height: 130px;
+      background-color: @white;
+      text-align: left;
+      border-bottom: 1px solid @grey-2;
+    }
+    //image inside the copyright head
+    &-head-image {
+      width: 100px;
+      height: 100px;
+      margin: 20px;
+      margin-bottom:0px;
+      border: solid 2px @grey-3;
+      border-radius: 50%;
+      float: left;
+      background-image: url("");
+      background-size: cover !important;
+      background-position: center center !important;
+
+      //the symbol above the image
+      &-icon {
+        height: 35px;
+        width: 35px;
+        background-color: @blue;
+        position: relative;
+        bottom: 5px;
+        right: 5px;
+        border-radius: 50%;
+        border: solid 1px @white;
+        color: @white;
+        line-height: 33px;
+        font-size: 12px;
+        text-align: center;
+
+        .fa{
+          position: relative;
+          bottom: 2px;
+          right: 1px;
+        }
+      }
+    }
+    //share border
+
+
+    //the text consisting the latest update
+    &-text {
+      max-width: 400px;
+      text-overflow: ellipsis;
+
+      /* Required for text-overflow to do anything */
+      white-space: nowrap;
+      overflow: hidden;
+      padding: 15px;
+      padding-bottom:0px;
+      float: left;
+      color: @black;
+      text-align: left;
+      list-style-type: none;
+      //the update part
+      &-update {
+        font-size: 10px;
+        color: #959595;
+        margin-bottom: 10px;
+      }
+      //the location
+      &-loc {
+        font-size: 12px;
+      }
+      // the name of the person
+      &-name {
+        text-overflow: ellipsis;
+
+        /* Required for text-overflow to do anything */
+        white-space: nowrap;
+        overflow: hidden;
+        margin-top:-6px;
+        font-size: 28px;
+        font-family: HN-B;
+      }
+      // the person description
+      &-company {
+        text-overflow: ellipsis;
+
+        /* Required for text-overflow to do anything */
+        white-space: nowrap;
+        overflow: hidden;
+        margin-top:-13px;
+        font-size: 28px;
+        font-family: HN-L;
+      }
+    }
+  }
+}
+
+//common tabs specs
+.tabs{
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+  border-bottom-style:solid;
+  border-bottom-width:3px;
+  border-bottom-color: #3098ff;
+  width:680px;
+  height:88px;
+  color:#333333;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: HN-B;
+}
+
+//docview tab specs
+.reading{
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+  width:340px;
+  height:85px;
+  float:left;
+  &-group{
+    margin-left: 125px;
+    margin-top: 27px;
+    &-text{
+      float:left;
+      max-width:140px;
+    }
+  }
+}
+
+//doclist tab specs
+.alldocs{
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+  width:340px;
+  height:85px;
+  float:right;
+  &-group{
+    margin-left: 70px;
+    margin-top: 27px;
+    &-text{
+      float:left;
+      float:left;
+      max-width:200px;
+    }
+  }
+}
+
+//tabtext specs
+.toptext{
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: left;
+}
+.bottomtext{
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: left;
+  line-height: 10px;
+}
+
+//tab selection specs
+.selected{
+  background-color:#3098ff;
+  color:@white;
+}
+.unselected{
+  cursor: pointer;
+}
+
+//docview header specs
+.documentPane{
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+  &-header{
+    color:@white;
+    height:40px;
+    width:680px;
+    background-color: rgba(0, 0, 0, 0.8);
+    .opendoc{
+      margin-left:20px;
+      margin-top:10px;
+      color:@white;
+      font-weight:400px;
+      float:left;
+      font-family: HN-L;
+    }
+    .download{
+      cursor: pointer;
+      float:right;
+      margin-right:19px;
+      margin-top:10px;
+      &-text{
+        font-weight: 400;
+        float:left;
+      }
+    }
+  }
+}
+//docview size
+.document{
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+  width:680px;
+  height: 940px
+}
+
+
+//doclist specs
+.listpane{
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+  width:680px;
+  height:500px;
+  display: none;
+  .doclist{
+    margin-left:10px;
+    margin-top:15px;
+    .listitem{
+      width: 660px;
+      height: 50px;
+      &-docname{
+        float:left;
+        margin-top:12px;
+        margin-left: 20px;
+        color:  #000000;
+        font-size: 18px;/* Approximation due to font substitution */
+        font-weight: 100;
+        font-family: HN-L;
+        text-align: right;
+      }
+      .current{
+        background-color:  #3098ff;
+      }
+
+      &-button{
+        cursor:pointer;
+        float: right;
+        margin-top:5px;
+        margin-right:5px;
+        border-radius: 3px;
+        background-color:  #707070;
+        width: 110px;
+        height: 40px;
+
+        .buttonText{
+          margin-top:12px;
+          font-family: HN-L;
+          color:  #ffffff;
+          font-size: 12px;/* Approximation due to font substitution */
+          font-weight: 400;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
