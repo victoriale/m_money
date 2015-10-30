@@ -656,8 +656,3 @@ Meteor.methods({
   }
 
 });
-
-Meteor.startup(function(){
-  robots.addLine('User-agent: *');
-  robots.addLine('Disallow: /');
-});
