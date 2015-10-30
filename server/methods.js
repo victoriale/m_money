@@ -54,11 +54,13 @@ Meteor.methods({
   },
 
   GetLocationData: function(loc_id, batchNum) {
-    console.log(typeof loc_id);
     var future = new Future();
     console.log("New Company Request",loc_id,batchNum);
-
-    var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_profile&option="+batchNum+"&state="+loc_id;
+    if(Number(loc_id) == NaN){
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_profile&option="+batchNum+"&state="+loc_id;
+    }else{
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_profile&option="+batchNum+"&dma="+loc_id;
+    }
     console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){

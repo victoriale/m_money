@@ -46,7 +46,15 @@ Template.about_exec.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
-
+    console.log(data);
+    $.map(data, function(val, i){
+      val.url = Router.path('content.executiveprofile',{
+        lname: val.o_last_name,
+        fname:val.o_first_name,
+        ticker:val.c_ticker,
+        company_id:val.c_id
+      })
+    })
     return data;
   },
 

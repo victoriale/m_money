@@ -28,7 +28,10 @@ Template.list_view.helpers({
       }else{
         data['background'] = 'tilegrey';
       }
-
+      console.log(data);
+      data['locUrl'] = Router.path('content.locationprofile',{
+        loc_id:data.c_hq_state,
+      })
       data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
       data['rank'] = index+1;
       data['url'] = Router.path('content.companyprofile',{

@@ -58,6 +58,13 @@ Template.featured_list.helpers (
       if(typeof data == 'undefined'){
         return '';
       }
+      if(Session.get('IsLocation')){
+        data.featured_list_data = data[0].top_list_list;
+        data.featured_list_title = data[0].top_list_info.top_list_title;
+        var newData = data.featured_list_data;
+      }else{
+        var newData = data.featured_list_data;
+      }
       return data;
     },
 
@@ -67,7 +74,6 @@ Template.featured_list.helpers (
       if(typeof data == 'undefined'){
         return '';
       }
-      console.log(data);
       if(Session.get('IsLocation')){
         data.featured_list_data = data[0].top_list_list;
         data.featured_list_title = data[0].top_list_info.top_list_title;
