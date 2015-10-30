@@ -93,7 +93,7 @@ var batch_envar = new Meteor.EnvironmentVariable;
 
 // Filter out bot requests
 var seoPicker = Picker.filter(function(req, res) {
-  // return true;
+  return true;
   if ( /bot/.test(req.headers['user-agent']) || /Webmaster/.test(req.headers['user-agent']) || /Bing/.test(req.headers['user-agent']) || /externalhit/.test(req.headers['user-agent']) ) {
     return true;
   }
@@ -900,6 +900,24 @@ function location_profile(params, req, res){
       batch_envar.withValue(batch, function(){
         var bound_cb = Meteor.bindEnvironment(method_cb);
         Meteor.call("GetLocationData",loc_id,"batch_4", bound_cb);
+      });
+    });
+    functions.push(function(batch){
+      batch_envar.withValue(batch, function(){
+        var bound_cb = Meteor.bindEnvironment(method_cb);
+        Meteor.call("GetLocationData",loc_id,"batch_5", bound_cb);
+      });
+    });
+    functions.push(function(batch){
+      batch_envar.withValue(batch, function(){
+        var bound_cb = Meteor.bindEnvironment(method_cb);
+        Meteor.call("GetLocationData",loc_id,"batch_6", bound_cb);
+      });
+    });
+    functions.push(function(batch){
+      batch_envar.withValue(batch, function(){
+        var bound_cb = Meteor.bindEnvironment(method_cb);
+        Meteor.call("GetLocationData",loc_id,"batch_7", bound_cb);
       });
     });
 
