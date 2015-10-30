@@ -158,6 +158,13 @@ Template.statistics_page.helpers(
     }
 );
 
+Template.statistics_page.events({
+  //Event to close tooltip
+  'click .stat-btm-what-top-x': function(e, t){
+    t.$('.stat-btm-what').hide();
+  }
+})
+
 Template.statistics_page.onRendered(function(){
   //used to stick the circle in the graph
   $('#statGraph').highcharts(statGraphObject, function (chart) {

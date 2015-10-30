@@ -62,10 +62,12 @@ Template.latest_news.helpers({
 
   newsURL: function(){
     var data = Session.get('profile_header');
+
     if(typeof data == 'undefined'){
       return '#';
     }
     var params = Router.current().getParams();
+
     if(Session.get('IsLocation')){
       return Router.path('content.articlenewsloc',{
         loc_id:params.loc_id
@@ -82,8 +84,8 @@ Template.latest_news.helpers({
     if(Session.get('IsCompany')){
       return Router.path('content.articlenews',{
         ticker:params.ticker,
-        name:params.name,
-        comp_id: data.c_id
+        name: params.name,
+        company_id: data.c_id
       });
     }
   },
