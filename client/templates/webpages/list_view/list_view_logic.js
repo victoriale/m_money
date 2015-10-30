@@ -21,7 +21,7 @@ Template.list_view.helpers({
     if(typeof listdata =='undefined'){
       return '';
     }
-    
+
     $.map(listdata.top_list_list, function(data,index){
       if(index % 2 == 0){
         data['background'] = 'tilewhite';
@@ -56,7 +56,7 @@ Template.list_view.helpers({
           data['data_value'] = Number(data['market_percent']).toFixed(2)+"%";
         }
         if(objName === 'trading_volume'){
-          data['data_name'] = "Trading Volume";
+          data['data_name'] = "trading volume";
           data['data_value'] = nFormatter2(data['trading_volume']);
         }
         if(objName === 'pe_ratio'){
@@ -103,7 +103,7 @@ Template.list_view.helpers({
           data['data_value'] = Number(data['market_percent']).toFixed(2)+"%";
         }
         if(objName === 'trading_volume'){
-          data['data_name'] = "Trading Volume";
+          data['data_name'] = "trading volume";
           data['data_value'] = nFormatter2(data['trading_volume']);
         }
         if(objName === 'pe_ratio'){
@@ -132,6 +132,7 @@ Template.list_view.helpers({
       return backgroundStyle;
     }
   }
+
 });
 //This handles the events on button clicks of 1,2,3 and 200
 Template.list_view.events({

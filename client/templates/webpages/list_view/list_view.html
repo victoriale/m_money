@@ -11,7 +11,7 @@ Associated Files: list_view_logic.js and list_view.less
   <div class= "list_vw">
     <!--gave the dimensions for the module with total height and width !-->
     <div class = "list_vw-n_m">
-      <a onClick="history.go(-1);" style="cursor:pointer">
+      <a href="#" onclick="history.go(-1)" style="cursor:pointer;">
         <div class="abus-bkbx">
           <div class="abus-bkbx-bx"><i class="fa fa-reply"></i></div>
           <div class="abus-bkbx-tgl"></div>
@@ -20,9 +20,10 @@ Associated Files: list_view_logic.js and list_view.less
       </a>
       <!--dimensions for the circle container as ('cir-d') !-->
       <div class="list_vw_header">
-        <div class="list_vw-cir_d">
+        <div class="list_vw-cir_d"  >
           <!-- dimensions for the circle as ('circ')!-->
-          <div class="list_vw-circ">
+          <div class="list_vw-circ" style="background-image:url('{{exchange c_exchange}}')">
+
             <!-- defines container for the smaller blue circle('sc_d') !-->
             <div class= "list_vw-sc_d"></div>
           </div>
@@ -96,7 +97,7 @@ Associated Files: list_view_logic.js and list_view.less
           <!-- the description about the person-->
           <li class="list_vw-m_c-dp">
             <div class="list_vw-m_c-dp-dpct">
-            {{c_name}} ({{c_exchange}}: {{c_ticker}}) current {{data_name}} is valued at
+            {{c_name}} ({{c_exchange}}: {{c_ticker}})'s {{data_name}} is currently at
               <span class="list_vw-m_c-dp-itl">{{data_value}}</span>
             </div>
             <!-- <div class="list_vw-m_c-dp-itl list_vw-m_c-dp-it2">{{c_name}}
@@ -112,7 +113,7 @@ Associated Files: list_view_logic.js and list_view.less
         <div class="list_vw-m_c-view_more">
           <!-- the details about the comapny-->
           <div class="list_vw-m_c-view_more-text">
-            <div class="list_vw-m_c-view_more-text-ln1">Interesed in discovering more about {{c_name}}?</div>
+            <div class="list_vw-m_c-view_more-text-ln1">Interested in discovering more about {{c_name}}?</div>
             <div class="list_vw-m_c-view_more-text-ln2">Profile Last Updated On: <span class="list_vw-m_c-dp-itl">{{newDate}}</span></div>
           </div>
           <a href="{{url}}">
@@ -169,6 +170,7 @@ Associated Files: list_view_logic.js and list_view.less
             <div  class="list_vw-space">
               <!-- This displays the font awesome map sybmol infornt of the united states-->
               <i class="fa fa-map-marker"></i>
+
               <span  class="list_vw-space list_vw-space2">
                 {{c_hq_state}}, {{c_hq_city}}
               </span>
