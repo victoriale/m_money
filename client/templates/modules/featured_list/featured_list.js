@@ -212,6 +212,14 @@ Template.featured_list.helpers (
       return data;
     },
     featURL: function(){
-      return Router.path('content.toplist');
+      var data = Session.get('featured_lists');
+      var count = Session.get('fl_counter');
+
+      if(typeof data === 'undefined'){
+        return '';
+      }
+
+      var linkData = data[count].top_list_info;
+      return Router.path('content.toplist', {loc_id: linkData.top_list_location[0], l_name: compUrlName(linkData.top_list_title), list_id: linkData.top_list_id});
     },
   });

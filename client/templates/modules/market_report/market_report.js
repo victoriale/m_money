@@ -131,9 +131,9 @@ Template.market_report.helpers({                   //helper class for adding dat
       },
       {open_page:'OPEN PAGE',tile_name:'NYSE Companies', image:'/exchange/NYSE.png',
         url: Router.path('content.toplist', {
-          loc_id: data.NASDAQ.top_list_info.top_list_location,
-          l_name: compUrlName(data.NASDAQ.top_list_info.top_list_title),
-          list_id: data.NASDAQ.top_list_info.top_list_id
+          loc_id: data.NYSE.top_list_info.top_list_location,
+          l_name: compUrlName(data.NYSE.top_list_info.top_list_title),
+          list_id: data.NYSE.top_list_info.top_list_id
         })
       },
       {open_page:'OPEN PAGE',tile_name:'AMEX Companies', image:'/exchange/AMEX.png',
