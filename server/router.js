@@ -100,6 +100,11 @@ var seoPicker = Picker.filter(function(req, res) {
   return false;
 });
 
+// Robots.txt
+seoPicker.route('/robots.txt',function(params, req, res){
+  res.end('User-agent: *\nAllow: /');
+});
+
 // Company Profile
 seoPicker.route('/:ticker/:name/company/:company_id',company_profile);
 seoPicker.route('/:partner_id/:name/:ticker/c/:company_id',company_profile);
