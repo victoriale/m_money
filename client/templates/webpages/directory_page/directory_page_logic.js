@@ -227,6 +227,13 @@
           var years = years === 1 ? years + ' year' : years + ' years';
 
           var url1 = Router.path('content.executiveprofile', {lname: item.o_last_name, fname: item.o_first_name, exec_id: item.o_id, ticker: null});
+          var url3 = Router.path('content.companyprofile', {company_id: item.c_id, name: compUrlName(item.c_name), ticker: item.c_ticker});
+
+          if(item.c_hq_state !== ''){
+            var url4 = Router.path('content.locationprofile', {loc_id: toTitleCase(item.c_hq_state), city: item.c_hq_city});
+          }else{
+            var url4 = '';
+          }
 
           //Build path 1 variable (Location of officer)
           if(item.c_hq_city !== '' && item.c_hq_state !== ''){
@@ -245,6 +252,8 @@
             text2: 'Executive',
             text3: item.c_name,
             url1: url1,
+            url3: url3,
+            url4: url4,
             lastUpdated: item.o_last_updated,
             path1: path1,
             path2: item.o_current_title.long_title,
@@ -256,7 +265,7 @@
           var name = FullNameSplit(item.c_ceo_name);
 
 
-          var url1 = Router.path('content.companyprofile', {company_id: item.c_ticker, name: compUrlName(item.c_name), ticker: item.c_ticker});
+          var url1 = Router.path('content.companyprofile', {company_id: item.c_id, name: compUrlName(item.c_name), ticker: item.c_ticker});
           var url4 = Router.path('content.locationprofile', {loc_id: item.c_hq_state, city: item.c_hq_city});
           var url7 = Router.path('content.executiveprofile', {lname: name.lname, fname: name.fname, exec_id: item.c_ceo_id, ticker: item.c_ticker});
 

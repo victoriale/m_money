@@ -170,8 +170,6 @@ Template.area_composite.helpers({
     //tiles[2] = {name:"All Sectors",fnt:"fa-th"};
     RetArr.tiles = tiles;
 
-    console.log('YOYOYO', RetArr);
-
     return RetArr;
   },
 
