@@ -56,7 +56,7 @@ Meteor.methods({
   GetLocationData: function(loc_id, batchNum) {
     var future = new Future();
     console.log("New Company Request",loc_id,batchNum);
-    if(Number(loc_id) == NaN){
+    if(isNaN(loc_id)){
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_profile&option="+batchNum+"&state="+loc_id;
     }else{
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_profile&option="+batchNum+"&dma="+loc_id;
