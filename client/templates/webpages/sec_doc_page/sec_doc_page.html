@@ -1,0 +1,103 @@
+<!--
+/*
+Author: Zachary Pearson
+Created: [10-30-2015]
+Description: sec_doc_page
+Associated Files: sec_doc_page.html, sec_doc_page.less, sec_doc_page_logic.js
+*/
+-->
+<template name="sec_doc_page">
+  <div class="doc_page">
+    <div class="module-header header" style="padding-left:0px;">
+      <div class="header-back"><i class="fa fa-reply fa-2x" style="margin-top:9px; margin-left:12px;"></i></div>
+      <div class="header-wedge"></div>
+      <div class="module-header-title" style="float:left; margin-left:20px;">
+        <div style="font-weight:300px; float:left;">Go Back to</div>
+        <div style="font-weight:700px; float:left; font-family:HN-B; max-width:350px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">&nbsp;{{company}}'s&nbsp;</div>
+        <div style="font-weight:300px; float:left;"> Profile</div>
+      </div>
+    </div>
+    <div class="box1">
+      <div class="doc_page-hdr">
+        <div class="doc_page-hdr-head">
+          <!-- image inside the header box-->
+          <div class="doc_page-hdr-head-image">
+          </div>
+          <!-- the text inside the header box-->
+          <div class="doc_page-hdr-text">
+            <!-- the latest update-->
+            <div class="doc_page-hdr-text-update">
+              LAST UPDATED: 05/15/2015, 12:36 PM EST
+            </div>
+            <!-- location of the doc_pageicle-->
+            <div class="doc_page-hdr-text-loc">
+              <i class="fa fa-map-marker" style="color:#3098ff;"></i> United States
+            </div>
+            <!-- the name of the doc_pageicle-->
+            <div class="doc_page-hdr-text-name">
+              {{docName}} - Annual Reports
+            </div>
+            <!-- the author of the doc_pageicle-->
+            <div class="doc_page-hdr-text-company">
+              For {{company}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="box2">
+        <div class= "tabs">
+          <!--docview tab-->
+          <div class="lefttab reading selected">
+            <div class="lefttab reading-group">
+              <i class="lefttab fa fa-file-text-o" style="float:left;font-size: 25px; margin-right:10px;margin-top: 3px;"></i>
+              <div class="lefttab reading-group-text">
+                <div class="lefttab toptext">READING:</div>
+                <div class="lefttab bottomtext">{{docName}}</div>
+              </div>
+            </div>
+          </div>
+
+          <!--doclist tab-->
+          <div class="righttab alldocs unselected">
+            <div class="righttab alldocs-group">
+              <i class="righttab fa fa-link" style="float:left;font-size: 25px; margin-right:10px;margin-top: 3px;"></i>
+              <div class="righttab alldocs-group-text">
+                <div class="righttab toptext">ALL DOCUMENTS LINKED</div>
+                <div class="righttab bottomtext">TO FORM {{docName}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--displays the document currently selected-->
+        <div class="documentPane">
+          <div class="documentPane-header">
+            <div class="opendoc">Document: {{docName}}</div>
+            <div class="download">
+              <i class="fa fa-download" style="float:left; color:#3098ff; margin-right:12px; margin-top:3px;"></i>
+              <div class="download-text">Download PDF</div>
+            </div>
+          </div>
+          <embed class="document" src="/doc1.pdf">
+        </div>
+
+        <!--displays the list of documents that are associated with the current document-->
+        <div class="listpane">
+          <div class="doclist">
+            {{#each list}}
+              <div class="listitem" style="{{#if isEven @index}}background-color: #ffffff;{{else}}background-color: #ebebeb;{{/if}} {{#if isFirst @index}}{{else}}border-top-width:1px; border-top-style:solid; border-top-color:#d7d7d7{{/if}}">
+                <div class="listitem-docname" id="{{class}}">{{name}}</div>
+                {{#if isCurrent @index}}
+                <div class="{{name}} {{class}} listitem-button current"><div class="buttonText {{name}}">Reading Now</div></div>
+                {{else}}
+                <div class="{{name}} {{class}} listitem-button notcurrent"><div class="buttonText {{name}}">Read Doc</div></div>
+                {{/if}}
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

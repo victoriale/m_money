@@ -9,6 +9,7 @@ Associated Files: latest_news.html, latest_news.less
 Template.latest_news.onRendered(function(){
   this.autorun(function(){
     var data, urlString;
+    var params = Router.current().getParams();
     if(Session.get('IsCompany')){
       data = Session.get('profile_header');
       if(data != undefined){
@@ -25,7 +26,7 @@ Template.latest_news.onRendered(function(){
       }
     }
     else if(Session.get('IsLocation')){
-      urlString = "http://api.synapsys.us/news/?action=get_finance_news";
+      urlString = "http://api.synapsys.us/news/?action=get_finance_news&state="+fullstate(params.loc_id);
     }
     else{
       urlString = "http://api.synapsys.us/news/?action=get_finance_news";
@@ -44,41 +45,49 @@ Template.latest_news.onRendered(function(){
 })
 
 Template.latest_news.helpers({
-  compImage: function(){
-    var image = Session.get('profile_header');
-    if(typeof daimageta == 'undefined'){
+  topImage: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
       return '';
     }
-    return image.c_logo;
+
+    if(Session.get('IsCompany')){
+      var image = data.c_logo;
+    }else if(Session.get('IsExec')){
+      var image = data.o_pic;
+    }
+
+    return image;
   },
 
   newsURL: function(){
     var data = Session.get('profile_header');
+
     if(typeof data == 'undefined'){
       return '#';
     }
     var params = Router.current().getParams();
+
     if(Session.get('IsLocation')){
-      return Router.path('content.articlenews',{
+      return Router.path('content.articlenewsloc',{
         loc_id:params.loc_id
       });
     }
     if(Session.get('IsExec')){
-      return Router.path('content.articlenews',{
+      return Router.path('content.articlenewsexec',{
         lname:params.lname,
         fname:params.fname,
         ticker:params.ticker,
-        comp_id: data.c_id
+        company_id: data.c_id
       });
     }
     if(Session.get('IsCompany')){
       return Router.path('content.articlenews',{
         ticker:params.ticker,
-        name:params.name,
-        comp_id: data.c_id
+        name: params.name,
+        company_id: data.c_id
       });
     }
-
   },
 
   isData: function(){

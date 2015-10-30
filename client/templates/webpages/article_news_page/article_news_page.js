@@ -13,23 +13,24 @@ Template.article_news_page.onRendered(function(){
 
   this.autorun(function(){
     var data, urlString;
-    if(Session.get('IsCompany')){
+    var params = Router.current().getParams();
+    if(typeof params.comp_id != 'undefined'){
       data = Session.get('profile_header');
       if(data != undefined){
-        var ticker = data['c_ticker'];
+        var ticker = params.ticker;
         urlString = "http://api.synapsys.us/news/?action=get_finance_news&ticker=" + ticker;
       }
     }
-    else if(Session.get('IsExec')){
+    if(typeof params.fname != 'undefined'){
       data = Session.get('profile_header');
       if(data != undefined){
-        var ticker = data['c_ticker'];
-        var name = data['o_first_name'] + "+" + data['o_last_name'];
+        var ticker = params.ticker;
+        var name = params.fname + "+" + params.lname;
         urlString = "http://api.synapsys.us/news/?action=get_finance_news&ticker=" + ticker + "&name=" + name;
       }
     }
-    else if(Session.get('IsLocation')){
-      var city = "San+Francisco";
+    if(typeof params.loc_id != 'undefined'){
+      var city = fullstate(params.loc_id);
       urlString = "http://api.synapsys.us/news/?action=get_finance_news&city=" + city;
     }
     else{
@@ -79,10 +80,21 @@ Template.article_news_page.events({
 })
 
 Template.article_news_page.helpers({
-  compInfo: function(){
-    var data = Session.get('profile_header');
-    if(typeof data == 'undefined'){
-      return '';
+  headerinfo: function(){
+    var params = Router.current().getParams();
+    var data = {};
+
+    if(typeof params.loc_id != 'undefined'){
+      data.header = fullstate(params.loc_id);
+      console.log(data);
+    }
+    if(typeof params.comp_id != 'undefined'){
+      data.header = params.name.replace(/-/g, ' ');
+      console.log(data);
+    }
+    if(typeof params.fname != 'undefined'){
+      data.header = params.fname + ' ' + params.lname;
+      console.log(data);
     }
     return data;
   },

@@ -28,12 +28,22 @@ Template.share.onRendered(function(){
 })
 
 Template.share.helpers({
-  compImage: function(){
-    var image = Session.get('profile_header');
-    if(typeof image == 'undefined'){
+  topImage: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
       return '';
     }
-    return image.c_logo;
+
+    if(Session.get('IsCompany')){
+      var image = data.c_logo;
+    }else if(Session.get('IsExec')){
+      var image = data.o_pic;
+    }
+
+    return image;
+  },
+  isLocation:function(){
+    return Session.get('IsLocation');
   },
   image: function(){
     var data = Session.get('profile_header');

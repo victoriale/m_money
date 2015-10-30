@@ -14,6 +14,9 @@ Template.about_exec_page.helpers({
     var params = Router.current().getParams();
 
     return Router.path('content.executiveprofile', {
+      lname:params.lname,
+      fname:params.fname,
+      ticker:params.ticker,
       exec_id: params.exec_id
     })
   },

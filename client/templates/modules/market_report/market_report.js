@@ -131,9 +131,9 @@ Template.market_report.helpers({                   //helper class for adding dat
       },
       {open_page:'OPEN PAGE',tile_name:'NYSE Companies', image:'/exchange/NYSE.png',
         url: Router.path('content.toplist', {
-          loc_id: data.NASDAQ.top_list_info.top_list_location,
-          l_name: compUrlName(data.NASDAQ.top_list_info.top_list_title),
-          list_id: data.NASDAQ.top_list_info.top_list_id
+          loc_id: data.NYSE.top_list_info.top_list_location,
+          l_name: compUrlName(data.NYSE.top_list_info.top_list_title),
+          list_id: data.NYSE.top_list_info.top_list_id
         })
       },
       {open_page:'OPEN PAGE',tile_name:'AMEX Companies', image:'/exchange/AMEX.png',
@@ -215,9 +215,16 @@ Template.market_report.helpers({                   //helper class for adding dat
     var retArr = {};
     retArr.counter = company + 1;
     retArr.company_name = data.biggest_losers[current].top_list_list[company].c_name;
+    retArr.ticker = data.biggest_losers[current].top_list_list[company].c_ticker;
     retArr.lost_percent = Math.round(data.biggest_losers[current].top_list_list[company].stock_percent*100)/100 + '%';
     retArr.logo = data.biggest_losers[current].top_list_list[company].c_logo;
-    retArr.url = Router.path('content.companyprofile',{partner_id: Router.current().params.partner_id, company_id: data.biggest_losers[current].top_list_list[company].c_id});
+    retArr.url = Router.path('content.companyprofile',
+      {
+        partner_id: Router.current().params.partner_id,
+        ticker:retArr.ticker,
+        name:compUrlName(retArr.company_name),
+        company_id: data.biggest_losers[current].top_list_list[company].c_id
+      });
     return retArr;
   },
 

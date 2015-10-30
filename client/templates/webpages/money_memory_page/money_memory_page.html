@@ -156,8 +156,8 @@
         </div>
         <div class="mmpg-stock-stats-data" style="border:none">
           <div class="mmpg-stock-stats-data-lbl">Day Change $-%</div>
-          <div class="mmpg-stock-stats-data-amt" style="color: {{change_color}}">
-            <span><i class="fa {{icon}}"></i>{{csi_price_change_since_last}}</span>
+          <div class="mmpg-stock-stats-data-amt" style="color: {{changeColor csi_price_last_operator}}">
+            <span><i class="fa {{changeIcon csi_price_last_operator}}"></i>{{csi_price_change_since_last}}</span>
              |
             <span style="margin-right:0px">{{csi_percent_change_since_last}}</span>
           </div>

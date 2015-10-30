@@ -218,7 +218,12 @@ Template.compensation.helpers({
   compURL: function(){
     var params = Router.current().getParams();
 
-    return Router.path('content.compensation', {exec_id: params.exec_id});
+    return Router.path('content.compensation', {
+      lname:params.lname,
+      fname:params.fname,
+      ticker:params.ticker,
+      exec_id: params.exec_id
+    });
   },
 });
 

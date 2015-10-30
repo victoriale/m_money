@@ -71,7 +71,7 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
       <!-- end of the module.less navigation button -->
       <!-- wrapper class-->
       <div class="co_commi-m_c-image-wr">
-        <div class="co_commi-m_c-image">
+        <div class="co_commi-m_c-image" style="background-image:url('{{imageUrl o_pic}}')">
           <div class="co_commi-m_c-sma_ct">
           <div class="co_commi-m_c-sma_cr">
 
@@ -158,7 +158,7 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
       <div class="co_commi-{{getBackgroundStyle}}"><br>
         <!--This is the main (circle) image-->
         <div class="co_commi-head-circ">
-          <div class="co_commi-head-image">
+          <div class="co_commi-head-image"  style="background-image:url('{{imageUrl o_pic}}')">
             <!-- Here displays the counter number which is a result of each loop-->
             <span class="co_commi-counter">#{{o_rank}}</span>
             <span class="co_commi-counter2"></span>
@@ -190,11 +190,11 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
           </a>
         </div>
         <div class="co_commi-rtct">
-          <div class="co_commi-rttx1"> Last Updated</div>
+          <div class="co_commi-rttx1"> Total Compensation</div>
           <div class="co_commi-follwt">
-          <span class="co_commi-follw1"> {{o_last_updated}}</span>
+          <span class="co_commi-follw1"> {{compen}}</span>
           </div>
-          <div class="co_commi-rttxg"> <span class="co_commi-follws"></span></div>
+          <div class="co_commi-rttxg"> <span class="co_commi-follws">{{o_last_updated}}</span></div>
         </div>
         <!-- This displays the font awesome heart symbol beside the text "save"-->
         <div class="co_commi-sn">

@@ -17,7 +17,19 @@ Template.list_view.onRendered(function () {
 var backgroundStyle="tilewhite";
 Template.list_view.helpers({
   toplist:function(){
-    var listdata = Session.get('top_list_gen');
+    var params = Router.current().getParams();
+    if(params.list_id == 'sv150_gainers' || params.list_id == 'sv150_losers'){
+      var listdata = Session.get('sv150_list');
+      listdata['top_list_list'] = listdata['sv150_list_data'];
+      listdata['top_list_info'] = {};
+      if(params.list_id == 'sv150_gainers'){
+        listdata['top_list_info']['top_list_title'] = "Top SV150 List Gainers";
+      }else{
+        listdata['top_list_info']['top_list_title'] = "Top SV150 List Losers";
+      }
+    }else{
+      var listdata = Session.get('top_list_gen');
+    }
     if(typeof listdata =='undefined'){
       return '';
     }
@@ -27,7 +39,9 @@ Template.list_view.helpers({
       }else{
         data['background'] = 'tilegrey';
       }
-
+      data['locUrl'] = Router.path('content.locationprofile',{
+        loc_id:data.c_hq_state,
+      })
       data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
       data['rank'] = index+1;
       data['url'] = Router.path('content.companyprofile',{
@@ -35,6 +49,10 @@ Template.list_view.helpers({
         name: compUrlName(data.c_name),
         company_id: data.c_id
       });
+
+      data.price = commaSeparateNumber_decimal(Number(data.csi_price).toFixed(2));
+      data.price_change = commaSeparateNumber_decimal(Number(data.csi_price_change_since_last).toFixed(2));
+      data.percent_change = commaSeparateNumber_decimal(Number(data.csi_percent_change_since_last).toFixed(2));
 
       //data from list can come in 6 different ways these values will catch and give results back
       for(objName in data){
@@ -51,7 +69,7 @@ Template.list_view.helpers({
           data['data_value'] = Number(data['market_percent']).toFixed(2)+"%";
         }
         if(objName === 'trading_volume'){
-          data['data_name'] = "Trading Volume";
+          data['data_name'] = "trading volume";
           data['data_value'] = nFormatter2(data['trading_volume']);
         }
         if(objName === 'pe_ratio'){
@@ -69,10 +87,23 @@ Template.list_view.helpers({
 
   carouselList:function(){
     var count = Session.get("lv_count");
-    var listdata = Session.get('top_list_gen');
+    var params = Router.current().getParams();
+    if(params.list_id == 'sv150_gainers' || params.list_id == 'sv150_losers'){
+      var listdata = Session.get('sv150_list');
+      listdata['top_list_list'] = listdata['sv150_list_data'];
+      listdata['top_list_info'] = {};
+      if(params.list_id == 'sv150_gainers'){
+        listdata['top_list_info']['top_list_title'] = "Top SV150 List Gainers";
+      }else{
+        listdata['top_list_info']['top_list_title'] = "Top SV150 List Losers";
+      }
+    }else{
+      var listdata = Session.get('top_list_gen');
+    }
     if(typeof listdata =='undefined'){
       return '';
     }
+    Session.set('top_list_gen', listdata);
     $.map(listdata.top_list_list, function(data,index){
 
       data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
@@ -98,7 +129,7 @@ Template.list_view.helpers({
           data['data_value'] = Number(data['market_percent']).toFixed(2)+"%";
         }
         if(objName === 'trading_volume'){
-          data['data_name'] = "Trading Volume";
+          data['data_name'] = "trading volume";
           data['data_value'] = nFormatter2(data['trading_volume']);
         }
         if(objName === 'pe_ratio'){
@@ -127,6 +158,7 @@ Template.list_view.helpers({
       return backgroundStyle;
     }
   }
+
 });
 //This handles the events on button clicks of 1,2,3 and 200
 Template.list_view.events({

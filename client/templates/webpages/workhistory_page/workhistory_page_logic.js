@@ -25,7 +25,6 @@ Template.workhistory_page.onCreated( function() {
           comp['o_id'] = data['officer_data'].o_id;
           comp['c_last_updated'] = compList['company_data'].c_tr_last_updated;
           comp['c_desc'] = compList['company_data'].c_desc;
-          console.log("Converted Data", comp);
           projArray.push(comp);
         }
         Session.set('new_work_history', projArray);
@@ -87,6 +86,9 @@ Template.workhistory_page.helpers({
       return '';
     }
     return Router.path('content.executiveprofile',{
+      lname:params.lname,
+      fname:params.fname,
+      ticker:params.ticker,
       exec_id: params.exec_id,
     });
   },
@@ -152,10 +154,20 @@ Template.workhistory_page.helpers({
         returnArray[i]['position'] = company['exec_nearest_pos']['Title'];
         returnArray[i]['execPic'] = exec['o_pic'];
 
+        $.map(company.connections, function(data, i){
+          data['execUrl'] = Router.path('content.executiveprofile',{
+            lname:data.o_last_name,
+            fname:data.o_first_name,
+            ticker:'undefined',
+            exec_id:data.o_id,
+          });
+        })
+
         //Array of connection pictures
         returnArray[i]['connection'] = [];
         for(j = 0; j < company['connections'].length; j++){
           returnArray[i]['connection'][j] = company['connections'][j]['o_pic'];
+
         }
 
         //Start and end dates
@@ -211,8 +223,16 @@ Template.workhistory_page.helpers({
         returnArray[i]['numofmonths'] = timeString;
       }
 
+      $.map(data, function(val, i){
+        val.listUrl = Router.path('content.boardcommitee',{
+          ticker:val.c_ticker,
+          name:compUrlName(val.c_name),
+          company_id:val.c_id
+        })
+      })
       return returnArray;
     },
+
 //this is used to change the color of the background
 getBackgroundStyle: function() {
   if (backgroundStyle === "greycolor")

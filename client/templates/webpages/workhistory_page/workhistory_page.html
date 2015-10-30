@@ -44,7 +44,7 @@
         <div class="wrkh-p_pghead_pgloc_ComNm">For {{getName}}</div>
       </div>
       <!--images in header section-->
-      <div class="wrkh-p_pghead_headimg"></div>
+      <div class="wrkh-p_pghead_headimg" style="background-image:url({{imageUrl getPic}})"></div>
       <!-- <div class="wrkh-p_pghead_headimg_headcir">
         <i class="fa fa-reply"></i>
       </div> -->
@@ -71,7 +71,7 @@
           <div class="wrkh-p_lnfrmwrk_lncon_carousel_lntxt">
             <p class="wrkh-p_lnfrmwrk_lncon_carousel_lntxt_p">{{getDesc}}</p>
           </div></div>
-          <div class="wrkh-p_lnfrmwrk_lncon_lnimg" style="background-image:url({{getPic}})"></div>
+          <div class="wrkh-p_lnfrmwrk_lncon_lnimg" style="background-image:url({{imageUrl getPic}})"></div>
           <div class="wrkh-p_lnfrmwrk_lncon_lnimg_lnsimg"></div>
           <div class="wrkh-p_lnfrmwrk_lncon_conid">
             <div class="wrkh-p_lnfrmwrk_lncon_conid_lncir">
@@ -129,12 +129,16 @@
           <div class="wrkh-p_lstcon_txtlft_posdur_numofmnts">{{numofmonths}}</div>
         </div>
       </div>
-      <div class="wrkh-p_lstcon_imgs" style="background-image:url({{execPic}})"></div>
+      <div class="wrkh-p_lstcon_imgs" style="background-image:url({{imageUrl execPic}})"></div>
       <div class="wrkh-p_lstcon_Listvw">
         {{#each connection}}
-        <div class="wrkh-p_lstcon_Listvw_lstcir" style="background-image:url({{this}})"></div>
+        <a href="{{execUrl}}">
+          <div class="wrkh-p_lstcon_Listvw_lstcir" style="background-image:url({{imageUrl execPic}})"></div>
+        </a>
         {{/each}}
-        <div class="wrkh-p_lstcon_morebtn">View All Connections<span style="margin-left:6px"><i class="fa fa-angle-right"></i></span></div>
+        <a href="{{listUrl}}">
+          <div class="wrkh-p_lstcon_morebtn">View All Connections<span style="margin-left:6px"><i class="fa fa-angle-right"></i></span></div>
+        </a>
       </div>
       <div class="wrkh-p_lstcon_sav-shr">
         <div class="wrkh-p_lstcon_sav-shr_sav"><i class="fa fa-heart" style="margin-right: 8px"></i> Save</div>
@@ -144,18 +148,9 @@
     </div>
       {{/each}}
     </div>
-    <div class="wrkh-p_lstpaging">
-      <i class="fa fa-angle-left faarwlft"></i>
-        <div class="wrkh-p_lstpaging_pagcir1">1</div>
-        <div class="wrkh-p_lstpaging_pagcir2">2</div>
-        <div class="wrkh-p_lstpaging_pagcir3">3</div>
-        <div class="wrkh-p_lstpaging_lstcir">...</div>
-        <div class="wrkh-p_lstpaging_pagoval">200</div>
-        <i class="fa fa-angle-right faarwrgt"></i>
-        <div class="wrkh-p_lstpaging_Vwall">VIEW ALL <img style="padding-bottom:4px" src="/infinite-icon.png"></div>
-    </div>
+
     <div class="wrkh-p_srchpanel">
-      {{> recommend}}
+      <!--{{> recommend}}-->
     </div>
   </div>
 

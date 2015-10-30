@@ -46,7 +46,15 @@ Template.about_exec.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
-
+    console.log(data);
+    $.map(data, function(val, i){
+      val.url = Router.path('content.executiveprofile',{
+        lname: val.o_last_name,
+        fname:val.o_first_name,
+        ticker:val.c_ticker,
+        company_id:val.c_id
+      })
+    })
     return data;
   },
 
@@ -55,6 +63,9 @@ Template.about_exec.helpers({
     var params = Router.current().getParams();
     if(typeof params != 'undefined'){
         return Router.path('content.collegerivals',{
+          lname:params.lname,
+          fname:params.fname,
+          ticker:params.ticker,
           exec_id: params.exec_id,
         });
     }
@@ -65,6 +76,9 @@ Template.about_exec.helpers({
     var params = Router.current().getParams();
     if(typeof params != 'undefined'){
         return Router.path('content.aboutexec',{
+          lname:params.lname,
+          fname:params.fname,
+          ticker:params.ticker,
           exec_id: params.exec_id,
         });
     }
@@ -75,6 +89,9 @@ Template.about_exec.helpers({
     var params = Router.current().getParams();
     if(typeof params != 'undefined'){
         return Router.path('content.aboutexec',{
+          lname:params.lname,
+          fname:params.fname,
+          ticker:params.ticker,
           exec_id: params.exec_id,
         });
     }
@@ -84,6 +101,9 @@ Template.about_exec.helpers({
     var params = Router.current().getParams();
     if(typeof params != 'undefined'){
         return Router.path('content.collegerivals',{
+          lname:params.lname,
+          fname:params.fname,
+          ticker:params.ticker,
           exec_id: params.exec_id,
         });
     }
@@ -218,7 +238,6 @@ Template.about_exec.helpers({
     var data1 = Session.get("about_exec");
     var returnArray = [];
     var j = counter + 1;
-    console.log('data1', data1);
     //var arr = " ";
     //logic to move the first item in the tile to the data below the image circle.
     for(var i=0;i<data1.length-1;i++)
