@@ -49,13 +49,13 @@ function GetSuggest(nowTime) {
        if(data['name']['func_success'] == true){
          var NameRes = data['name']['func_data']['search_data'];
          for(var i = 0; i < NameRes.length; i++){
-           if(NameRes[i]['name_type'] == 'officer' && i < 3){
+           if(NameRes[i]['name_type'] == 'officer' && i < 4){
              if ( i != 0 ) {
                HTMLStringName = HTMLStringName + '<div class="border-li"></div>';
              }
               HTMLStringName = HTMLStringName + '<a style="color: #000" href="' + ExecutiveURL(NameRes[i]['o_id'], NameRes[i]['c_ticker'], NameRes[i]['o_last_name'], NameRes[i]['o_first_name']) + '"><div class="fi_search_recommendations_item">' + NameRes[i]['o_first_name'] + " " + NameRes[i]['o_last_name'] + " - " + NameRes[i]['c_name'] + '<i class="fa fa-angle-right"></i></div></a>';
            }
-           if(NameRes[i]['name_type'] == 'company' && i < 3){
+           if(NameRes[i]['name_type'] == 'company' && i < 4){
              if ( i != 0 ) {
                HTMLStringName = HTMLStringName + '<div class="border-li"></div>';
              }
@@ -68,10 +68,25 @@ function GetSuggest(nowTime) {
          var LocRes = data['location']['func_data']['search_data'];
          for(var i = 0; i < LocRes.length; i++){
           if(i < 3 ){
+            if(i > 0 && LocRes[i]['c_hq_city'] == LocRes[i - 1]['c_hq_city']){
+              continue;
+            }
             if ( i != 0 ) {
               HTMLStringLoc = HTMLStringLoc + '<div class="border-li"></div>';
             }
-             HTMLStringLoc = HTMLStringLoc + '<a style="color: #000" href="' + LocationURL(LocRes[i]['c_hq_city'] + "_" + LocRes[i]['c_hq_state']) + '"><div class="fi_search_recommendations_item">' + LocRes[i]['c_hq_city'] + ", " + LocRes[i]['c_hq_state'] + '<i class="fa fa-angle-right"></i></div></a>';
+
+            //this var and for loop makes the word casing corrct
+            var LocCity = LocRes[i]['c_hq_city'];
+            var LocNew = [];
+            for(var i=0;i<LocCity.length;i++){
+              if(i == 0){
+                LocNew[i] = LocCity[i];
+              }else if(i !== 0){
+                LocNew[i] = LocCity[i].toLowerCase();
+              }
+            }
+            LocNew = LocNew.join('');
+            HTMLStringLoc = HTMLStringLoc + '<a style="color: #000" href="' + LocationURL(LocNew + "_" + LocRes[i]['c_hq_state']) + '"><div class="fi_search_recommendations_item">' + LocNew + ", " + LocRes[i]['c_hq_state'] + '<i class="fa fa-angle-right"></i></div></a>';
           }
          }
        }else{
@@ -97,20 +112,7 @@ function GetSuggest(nowTime) {
          return false;
        }
 
-
-
-//OLD
-      /* for ( var index = 0; index < data.length; index++ ) {
-         if ( index < 10 ) {
-           if ( index != 0 ) {
-             HTMLString = HTMLString + '<div class="border-li"></div>';
-           }
-           HTMLString = HTMLString + '<a style="color: #000" href="' + LocationURL(data[index].city + "_" + data[index].state) + '"><div class="fi_search_recommendations_item">' + data[index].city + ", " + data[index].state + '<i class="fa fa-angle-right"></i></div></a>';
-         }
-       }*/
-//////
-
-       $('.fi_search_recommendations')[0].innerHTML = HTMLStringName + HTMLStringLoc + HTMLStringTick;
+       $('.fi_search_recommendations')[0].innerHTML = '<div class="caret-top"></div>' /*' <i class="fa fa-times fi_search_recommendations_close"></i>'*/ + HTMLStringName + HTMLStringLoc + HTMLStringTick;
        $('.fi_search_recommendations').addClass('active');
      });
   }

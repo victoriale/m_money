@@ -370,15 +370,16 @@ Finance_Search = function(quer){
 
 
     /*==== ROUTING CONTROL LOGIC ====*/
-    if(Session.get('TickCheck') !== false && Session.get('TickCheck').length == 1 && Session.get('NameCheck') == false && Session.get('LocCheck') == false){
-      //TICKER route
-      //console.log(Session.get('TickCheck'));
+    
+    //if(Session.get('TickCheck') !== false && Session.get('TickCheck').length == 1 && Session.get('NameCheck') == false && Session.get('LocCheck') == false){
+    if(Session.get('TickCheck') !== false && Session.get('NameCheck') == false && Session.get('LocCheck') == false){
+
       Router.go('content.companyprofile', {ticker: Session.get('TickCheck')[0]['c_ticker'], name: Session.get('TickCheck')[0]['c_name'], company_id: Session.get('TickCheck')[0]['c_id']});
 
       }
-      else if(Session.get('TickCheck') == false && Session.get('NameCheck') !== false && Session.get('NameCheck').length == 1 && Session.get('LocCheck') == false){
-      //NAME route + logic to determine type of name
-      //console.log(Session.get('NameCheck'));
+      //else if(Session.get('TickCheck') == false && Session.get('NameCheck') !== false && Session.get('NameCheck').length == 1 && Session.get('LocCheck') == false){
+      else if(Session.get('TickCheck') == false && Session.get('NameCheck') !== false && Session.get('LocCheck') == false){
+
         if(Session.get('NameCheck')[0]['name_type'] == 'company'){
           Router.go('content.companyprofile', {ticker: Session.get('NameCheck')[0]['c_ticker'], name: Session.get('NameCheck')[0]['c_name'], company_id: Session.get('NameCheck')[0]['c_id']});
 
@@ -387,18 +388,20 @@ Finance_Search = function(quer){
 
         }
     }
-    else if(Session.get('TickCheck') == false && Session.get('NameCheck') == false && Session.get('LocCheck') !== false && Session.get('LocCheck').length == 1){
-      //LOCATION route
-      ///console.log(Session.get('LocCheck'));
+    //else if(Session.get('TickCheck') == false && Session.get('NameCheck') == false && Session.get('LocCheck') !== false && Session.get('LocCheck').length == 1){
+    else if(Session.get('TickCheck') == false && Session.get('NameCheck') == false && Session.get('LocCheck') !== false){
+
       Router.go('content.locationprofile', {loc_id: abbrState(Session.get('LocCheck')[0]['c_hq_state'],'name'), city: Session.get('LocCheck')[0]['c_hq_city']})
 
     }
     else if(Session.get('TickCheck') == false && Session.get('NameCheck') == false && Session.get('LocCheck') == false){
+      //NO RESULTS Route -- rarely happens.
       Router.go('content.noresults', {partner_id: Session.get('partner_id')});
     }
-    else{
+    /*else{
+      //WildCard Route -- for multiple results.
       Router.go('content.search', {partner_id: Session.get('partner_id'), search_results: quer});
-    }
+    }*/
 
     /*********************************/
 
