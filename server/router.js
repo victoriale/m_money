@@ -103,8 +103,6 @@ var seoPicker = Picker.filter(function(req, res) {
 // Company Profile
 seoPicker.route('/:ticker/:name/company/:company_id',company_profile);
 seoPicker.route('/:partner_id/:name/:ticker/c/:company_id',company_profile);
-
-// Company Profile Function
 function company_profile(params, req, res){
   console.log('***Company Profile SSR***');
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
@@ -423,8 +421,6 @@ function company_profile(params, req, res){
 // Executive Profile
 seoPicker.route('/:name/:ticker/executive/:exec_id',executive_profile);
 seoPicker.route('/:partner_id/:ticker/:name/e/:exec_id',executive_profile);
-
-// Executive Profile Function
 function executive_profile(params, req, res){
   console.log('***Executive Profile SSR***');
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
@@ -692,8 +688,6 @@ function executive_profile(params, req, res){
 // Location Profile
 seoPicker.route('/:loc_id/:city?/location',location_profile);
 seoPicker.route('/:partner_id/:city?/:loc_id/loc',location_profile);
-
-// Location Profile Function
 function location_profile(params, req, res){
   console.log('***Location Profile SSR***');
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
@@ -939,8 +933,6 @@ function location_profile(params, req, res){
 // List Page
 seoPicker.route('/:loc_id?/:l_name/:list_id/list',list_page);
 seoPicker.route('/:partner_id/:l_name/:loc_id?/:list_id/list',list_page);
-
-// List Function
 function list_page(params, req, res){
   console.log('***List Page SSR***');
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
@@ -1054,8 +1046,6 @@ function list_page(params, req, res){
 // Executive List Page
 seoPicker.route('/:ticker/:name/executives/:company_id',exec_list);
 seoPicker.route('/:partner_id/:name/:ticker/execs/:company_id',exec_list);
-
-// Executive List Function
 function exec_list(params, req, res){
   console.log('***Company Executives SSR***');
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
@@ -1188,8 +1178,6 @@ function exec_list(params, req, res){
 // Sector page
 seoPicker.route('/:loc_id/sector/:sector_id',sector_page);
 seoPicker.route('/:partner_id/sector/:loc_id/:sector_id',sector_page);
-
-// Sector Page Function
 function sector_page(params, req, res) {
   console.log('***Sector Page SSR***');
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
@@ -1313,8 +1301,6 @@ function sector_page(params, req, res) {
 // Company News Pages
 seoPicker.route('/:ticker/:name/news/:company_id',cmp_news);
 seoPicker.route('/:partner_id/:name/:ticker/n/:company_id',cmp_news);
-
-// Company News Function
 function cmp_news(params, req, res) {
   console.log('***Sector Page SSR***');
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
@@ -1449,8 +1435,6 @@ function cmp_news(params, req, res) {
 // Executive Compensation Page
 seoPicker.route('/:lname-:fname/:ticker/compensation/:exec_id',exec_comp);
 seoPicker.route('/:partner_id/:ticker/:lname-:fname/comp/:exec_id',exec_comp);
-
-// Executive Compensation Function
 function exec_comp(params, req, res){
   console.log('***Executive Compensation SSR***');
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
@@ -1643,8 +1627,6 @@ function exec_comp(params, req, res){
 // Financial Overview
 seoPicker.route('/:ticker/:name/financial-overview/:company_id',fin_ovw);
 seoPicker.route('/:partner_id/:name/:ticker/fin-view/:company_id',fin_ovw);
-
-// Financial Overview Function
 function fin_ovw(params, req, res) {
   console.log('***Financial Overview SSR***');
   var startTime = (new Date()).getTime();
@@ -1807,6 +1789,196 @@ function fin_ovw(params, req, res) {
     company_batch.execute();
   });
 }
+
+//**********************STATIC PAGES**********************
+// Disclaimer
+seoPicker.route('/disclaimer',disclaimer);
+seoPicker.route('/:partner_id/disclaimer',disclaimer);
+function disclaimer(params, req, res) {
+  var startTime = (new Date()).getTime();
+
+  if ( typeof params.partner_id != "undefined" ) {
+    var page_data = {
+      head_data: {
+        title: 'Disclaimer',
+        url: 'http://www.myinvestkit.com/' + params.partner_id + '/disclaimer',
+        siteName: params.partner_id
+      },
+      privacy: '/' + params.partner_id + '/privacy-policy',
+      tos: '/' + params.partner_id + '/terms-of-service',
+      dmca: '/' + params.partner_id + '/copyright',
+      stock: '/' + params.partner_id + '/stock-disclaimer'
+    };
+  } else {
+    var page_data = {
+      head_data: {
+        title: 'Disclaimer | InvestKit.com',
+        url: 'http://www.investkit.com/disclaimer'
+      },
+      privacy: '/privacy-policy',
+      tos: '/terms-of-service',
+      dmca: '/copyright',
+      stock: '/stock-disclaimer'
+    };
+  }
+
+  res.end(minify(SSR.render('disclaimer',page_data), {
+    minifyCSS: true,
+    minifyJS: true,
+    removeComments: true,
+    collapseWhitespace: true
+  })); // Write the pages template
+
+  // Log how long it took to render the page
+  var endTime = (new Date()).getTime();
+  console.log("SSRSTAT|\"Disclaimer\",," + (Math.round((endTime - info.startTime)/10)/100) + "," + endTime + "|");
+  return false;
+}
+
+// Copyright
+seoPicker.route('/copyright',copyright);
+seoPicker.route('/:partner_id/copyright',copyright);
+function copyright(params, req, res) {
+  var startTime = (new Date()).getTime();
+
+  if ( typeof params.partner_id != "undefined" ) {
+    var page_data = {
+      head_data: {
+        title: 'Copyright Page',
+        url: 'http://www.myinvestkit.com/' + params.partner_id + '/copyright',
+        siteName: params.partner_id
+      }
+    };
+  } else {
+    var page_data = {
+      head_data: {
+        title: 'Copyright Page | InvestKit.com',
+        url: 'http://www.investkit.com/copyright'
+      }
+    };
+  }
+
+  res.end(minify(SSR.render('copyright',page_data), {
+    minifyCSS: true,
+    minifyJS: true,
+    removeComments: true,
+    collapseWhitespace: true
+  })); // Write the pages template
+
+  // Log how long it took to render the page
+  var endTime = (new Date()).getTime();
+  console.log("SSRSTAT|\"Copyright Page\",," + (Math.round((endTime - info.startTime)/10)/100) + "," + endTime + "|");
+  return false;
+}
+
+// Privacy Policy
+seoPicker.route('/privacy-policy',privacypolicy);
+seoPicker.route('/:partner_id/privacy-policy',privacypolicy);
+function privacypolicy(params, req, res) {
+  var startTime = (new Date()).getTime();
+
+  if ( typeof params.partner_id != "undefined" ) {
+    var page_data = {
+      head_data: {
+        title: 'Privacy Policy',
+        url: 'http://www.myinvestkit.com/' + params.partner_id + '/privacy-policy',
+        siteName: params.partner_id
+      }
+    };
+  } else {
+    var page_data = {
+      head_data: {
+        title: 'Privacy Policy | InvestKit.com',
+        url: 'http://www.investkit.com/privacy-policy'
+      }
+    };
+  }
+
+  res.end(minify(SSR.render('privacypolicy',page_data), {
+    minifyCSS: true,
+    minifyJS: true,
+    removeComments: true,
+    collapseWhitespace: true
+  })); // Write the pages template
+
+  // Log how long it took to render the page
+  var endTime = (new Date()).getTime();
+  console.log("SSRSTAT|\"Privacy Policy Page\",," + (Math.round((endTime - info.startTime)/10)/100) + "," + endTime + "|");
+  return false;
+}
+
+// Stock Disclaimer
+seoPicker.route('/stock-disclaimer',stockdisclaimer);
+seoPicker.route('/:partner_id/stock-disclaimer',stockdisclaimer);
+function stockdisclaimer(params, req, res) {
+  var startTime = (new Date()).getTime();
+
+  if ( typeof params.partner_id != "undefined" ) {
+    var page_data = {
+      head_data: {
+        title: 'Stock Disclaimer',
+        url: 'http://www.myinvestkit.com/' + params.partner_id + '/stock-disclaimer',
+        siteName: params.partner_id
+      }
+    };
+  } else {
+    var page_data = {
+      head_data: {
+        title: 'Stock Disclaimer | InvestKit.com',
+        url: 'http://www.investkit.com/stock-disclaimer'
+      }
+    };
+  }
+
+  res.end(minify(SSR.render('stockdisclaimer',page_data), {
+    minifyCSS: true,
+    minifyJS: true,
+    removeComments: true,
+    collapseWhitespace: true
+  })); // Write the pages template
+
+  // Log how long it took to render the page
+  var endTime = (new Date()).getTime();
+  console.log("SSRSTAT|\"Stock Disclaimer\",," + (Math.round((endTime - info.startTime)/10)/100) + "," + endTime + "|");
+  return false;
+}
+
+// Terms of Service
+seoPicker.route('/terms-of-service',termsofservice);
+seoPicker.route('/:partner_id/terms-of-service',termsofservice);
+function termsofservice(params, req, res) {
+  var startTime = (new Date()).getTime();
+
+  if ( typeof params.partner_id != "undefined" ) {
+    var page_data = {
+      head_data: {
+        title: 'Terms Of Service',
+        url: 'http://www.myinvestkit.com/' + params.partner_id + '/terms-of-service',
+        siteName: params.partner_id
+      }
+    };
+  } else {
+    var page_data = {
+      head_data: {
+        title: 'Terms Of Service | InvestKit.com',
+        url: 'http://www.investkit.com/terms-of-service'
+      }
+    };
+  }
+
+  res.end(minify(SSR.render('termsofservice',page_data), {
+    minifyCSS: true,
+    minifyJS: true,
+    removeComments: true,
+    collapseWhitespace: true
+  })); // Write the pages template
+
+  // Log how long it took to render the page
+  var endTime = (new Date()).getTime();
+  console.log("SSRSTAT|\"Terms Of Service\",," + (Math.round((endTime - info.startTime)/10)/100) + "," + endTime + "|");
+  return false;
+}
+//**********************END STATIC PAGES**********************
 
 // Partner Home Page
 seoPicker.route('/:partner_id',function(params, req, res){
