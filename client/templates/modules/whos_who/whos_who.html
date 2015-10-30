@@ -4,6 +4,7 @@ Description: [Finance : Who's Who Page Module]-->
 
 <!--template begins-->
 <template name="whos_who">
+  {{#with checkdata}}
   <!-- Html and CSS implementation-->
   <div class="module-who-layout">
     <div class="module-header">
@@ -135,5 +136,6 @@ Description: [Finance : Who's Who Page Module]-->
     </div>
     <!--end of outer wrapper-->
   </div>
+  {{/with}}
 </template>
 <!--end of template-->

@@ -230,7 +230,6 @@ Template.about_exec.helpers({
     var data1 = Session.get("about_exec");
     var returnArray = [];
     var j = counter + 1;
-    console.log('data1', data1);
     //var arr = " ";
     //logic to move the first item in the tile to the data below the image circle.
     for(var i=0;i<data1.length-1;i++)

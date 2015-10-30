@@ -6,6 +6,7 @@ Associated Files: project_history.html, project_history.js
 -->
 
 <template name="project_history">
+  {{#with moduleCheck}}
   <div class="module-4">
     <div class="module-header">
       <span class="module-header-line"></span>
@@ -29,7 +30,9 @@ Associated Files: project_history.html, project_history.js
                 <div class="proj_hist-list-tile-{{#if isEven @index}}white{{else}}grey{{/if}}"><!--isEven is used to alternate between background colors-->
                   <!--Project Picture & Response Buttons-->
                   <span class="proj_hist-profile-info">
+                    <a href="{{url}}">
                     <span class="proj_hist-profile-image" style="background-image: url('{{imageUrl c_logo}}')"></span>
+                    </a>
                   </span>
 
                   <span class="proj_hist-resp-btns">
@@ -61,12 +64,16 @@ Associated Files: project_history.html, project_history.js
                       <span class="proj_hist-tile-info-pos-time">{{project_time_elapsed}}</span>
                     </div>
                     {{#each connections}}
-                      <span class="proj_hist-featured-image" id="{{o_id}}"></span>
+                      <a href="{{url}}">
+                        <span class="proj_hist-featured-image" id="{{o_id}}"></span>
+                      </a>
                     {{/each}}
+                    <a href="{{workurl}}">
                     <div class="proj_hist-va-connections">
                       <span class="proj_hist-va-connections-text">View All Connections</span>
                       <i class="fa proj_hist-va-connections-icon fa-angle-right"></i>
                     </div>
+                    </a>
                   </span>
                   <!--/Project Information-->
                 </div>
@@ -75,7 +82,7 @@ Associated Files: project_history.html, project_history.js
               {{/if}}
             {{/each}}
           </div>
-          <!--Project Footer-->
+          <!--Project Footer
           <div class="proj_hist-content-panel-footer">
             <div class="proj_hist-va project_hiview-allory-view-all-font">
               <div class="proj_hist-va-text">VIEW ALL</div>
@@ -84,18 +91,17 @@ Associated Files: project_history.html, project_history.js
             <div class="proj_hist-navigation">
               <i class="fa fa-angle-left proj_hist-content-panel-footer-icon proj_hist-page-selector-left-arrow"></i>
               {{#each setPages}}
-              <!--<div class="proj_hist-page-selector proj_hist-page-selector-selected proj_hist-page-selector-selected-font">1</div>
-              <div class="proj_hist-page-selector proj_hist-page-selector-font">2</div>-->
                 {{#if @index}}<div class='proj_hist-page-selector proj_hist-page-selector-font'>{{this}}</div>{{/if}}
                 {{#unless @index}}<div class='proj_hist-page-selector proj_hist-page-selector-selected proj_hist-page-selector-selected-font'>{{this}}</div>{{/unless}}
               {{/each}}
               <i class="fa fa-angle-right proj_hist-content-panel-footer-icon proj_hist-page-selector-right-arrow"></i>
             </div>
           </div>
-          <!--/Project footer-->
+          /Project footer-->
         </div>
       </div>
       <!--End Panel-->
     </div>
   </div>
+  {{/with}}
 </template>

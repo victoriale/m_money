@@ -153,12 +153,6 @@ function resetPage(){
 
 
 Template.project_history.events({
-  'click .proj_hist-featured-image': function (e, t) {
-    var routename = Router.current().route.getName();
-
-    Router.go("/executive/"+e.target.id);
-  },
-
   'click .proj_hist-page-selector':function(e,t){//Updates list when switching between pages
     delete Session.keys["ListPage"];
     backgroundStyle = "white";
@@ -189,8 +183,20 @@ Template.project_history.helpers (
     connections: function(){
       var data = Session.get('new_project_history');
       var index = this["iteration"];//gets element "iteration" from array returned by projList (see function below)
-      return data[index]['connections'];//index makes sures the connections list belongs to the particular company
+      var params = Router.current().getParams();
 
+      $.map(data,function(val,i){
+        $.map(val.connections,function(value, index){
+          value.url = Router.path('content.executiveprofile',{
+            lname:value.o_last_name,
+            fname:value.o_first_name,
+            ticker:'undefined',
+            exec_id:value.o_id,
+          });
+        })
+      })
+
+      return data[index]['connections'];//index makes sures the connections list belongs to the particular company
     },
     firstName: function(){
       var exec = Session.get('profile_header');
@@ -204,7 +210,7 @@ Template.project_history.helpers (
     },
 
     moduleCheck: function(){
-      var check = Session.get('work_history');
+      var check = Session.get('ListPage');
       if(typeof check == 'undefined'){
         return '';
       }
@@ -213,9 +219,39 @@ Template.project_history.helpers (
 
     projList: function(){
       backgroundStyle = "white";
-      return Session.get("ListPage");
+      var data = Session.get('ListPage');
+      var params = Router.current().getParams();
+      $.map(data, function(val, i){
+        val.url = Router.path('content.companyprofile',{
+          ticker:val.c_ticker,
+          name:compUrlName(val.c_name),
+          company_id:val.c_id,
+        });
+
+        val.workurl = Router.path('content.workhistory',{
+          lname:params.lname,
+          fname:params.fname,
+          ticker:val.c_ticker,
+          exec_id:val.o_id
+        });
+      });
+      return data;
     },
 
+    workhistory:function(){
+      var data = Session.get('ListPage');
+      var params = Router.current().getParams();
+
+      $.map(data, function(val, i){
+        val.url = Router.path('content.workhistory',{
+          lname:val.o_last_name,
+          fname:val.o_first_name,
+          ticker:val.c_ticker,
+          exec_id:val.o_id
+        });
+      });
+      return data[0]
+    },
 //Function returns list of all projects worked by the current executive
 
 

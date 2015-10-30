@@ -76,7 +76,7 @@ Template.latest_news.helpers({
         lname:params.lname,
         fname:params.fname,
         ticker:params.ticker,
-        comp_id: data.c_id
+        company_id: data.c_id
       });
     }
     if(Session.get('IsCompany')){
@@ -86,7 +86,6 @@ Template.latest_news.helpers({
         comp_id: data.c_id
       });
     }
-
   },
 
   isData: function(){
