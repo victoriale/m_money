@@ -7,7 +7,7 @@ Related Files:
 - /client/stylesheets/webpages/article_list_page.less
 -->
 <template name="article_news_page">
-  {{#with compInfo}}
+  {{#with headerinfo}}
   <div class="art-lst">
     <a href="#" onclick="history.go(-1)">
       <div class="excmp-return">
@@ -28,11 +28,11 @@ Related Files:
         <div class="art-lst-hdr-text">
           <!-- the latest update-->
           <div class="art-lst-hdr-text-update">
-          Last Updated {{c_tr_last_updated}} EST
+
           </div>
           <!-- location of the article-->
           <div class="art-lst-hdr-text-loc">
-            <i class="fa fa-map-marker"></i> {{c_hq_city}} {{c_hq_state}}
+            <i class="fa fa-map-marker"></i> {{header}}
           </div>
           <!-- the name of the article-->
           <div class="art-lst-hdr-text-name">
@@ -40,7 +40,7 @@ Related Files:
           </div>
           <!-- the author of the article-->
           <div class="art-lst-hdr-text-auth">
-            Covering All News In The {{c_hq_city}} {{c_hq_state}}
+            Covering All News about {{header}}
           </div>
         </div>
       </div>

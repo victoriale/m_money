@@ -42,6 +42,9 @@ Template.share.helpers({
 
     return image;
   },
+  isLocation:function(){
+    return Session.get('IsLocation');
+  },
   image: function(){
     var data = Session.get('profile_header');
     var state = data['location'].replace(/ /g, '_');;

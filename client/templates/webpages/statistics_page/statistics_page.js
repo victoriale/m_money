@@ -9,6 +9,12 @@ statGreyTile = true; //used to determine whether a list item is grey or not
 
 Template.statistics_page.helpers(
     {
+      image: function(){
+        var data = Session.get('loc_id');
+        var state = fullstate(data).replace(/ /g, '_');
+        return "background-image: url('/StateImages/Location_"+ state +".jpg');";
+      },
+
       back_url: function(){
         return Router.path('content.locationprofile',{
           loc_id: Session.get('loc_id')
