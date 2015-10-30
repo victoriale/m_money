@@ -21,6 +21,9 @@ Template.list_view_exec.helpers({
     if(params.list_id == 'dollar_ceo'){
       var listdata = Session.get('dollar_ceo');
     }
+    if(params.list_id == 'female_ceo'){
+      var listdata = Session.get('female_ceo');
+    }
     if(typeof listdata =='undefined'){
       return '';
     }
@@ -39,7 +42,7 @@ Template.list_view_exec.helpers({
         ticker: data.c_ticker,
         exec_id: data.o_id
       });
-      
+
       //data from list can come in 6 different ways these values will catch and give results back
       for(objName in data){
         if(objName === 'stock_percent'){
@@ -76,6 +79,9 @@ Template.list_view_exec.helpers({
     var params = Router.current().getParams();
     if(params.list_id == 'dollar_ceo'){
       var listdata = Session.get('dollar_ceo');
+    }
+    if(params.list_id == 'female_ceo'){
+      var listdata = Session.get('female_ceo');
     }
     if(typeof listdata =='undefined'){
       return '';
