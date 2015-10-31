@@ -30,6 +30,7 @@ Template.search_page.events({
 
 Template.search_page.helpers({
 
+  //will
   Results: function(){
     var allResults = Session.get('data');
     if(typeof allResults == 'undefined'){
@@ -49,6 +50,7 @@ Template.search_page.helpers({
         console.log('push company');
         allResults['NewList']['company'].push(data);
       }
+      //funtion to push locatio into allResults['NewList']['location']
     })
     console.log(allResults);
   },
