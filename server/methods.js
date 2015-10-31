@@ -66,14 +66,25 @@ Meteor.methods({
     }
     console.log(UrlString);
 
-    Meteor.http.get(UrlString, function(error, data){
-      try{
-        data = JSON.parse(data['content']);
-      } catch (e) {
-        future.throw(e);
-        return false;
-      }
-        future.return(data);
+    curloc_id.withValue(batchNum, function(){
+      Meteor.http.get(UrlString, Meteor.bindEnvironment(function(error, data){
+        data.content = data.content.toString().replace(/^[^{]*/,function(a){ return ''; });
+        var batch = curloc_id.get();
+        if ( error ) {
+          console.log('Done - Error (Request)',batch);
+          future.throw(error);
+          return false;
+        }
+        try{
+          data = JSON.parse(data['content']);
+        } catch (e) {
+          console.log('Done - Error (Parse)',batch);
+          future.throw(e);
+          return false;
+        }
+        console.log('Done - Success',batch);
+          future.return(data);
+      }));
     });
 
     this.unblock();
@@ -552,7 +563,7 @@ Meteor.methods({
   },
 
   GetPartnerHeader: function(partner_id) {
-    var URLString = "http://apireal.investkit.com/listhuv/?action=get_partner_data&domain=" + partner_id;
+    var URLString = "http://apireal.synapsys.us/listhuv/?action=get_partner_data&domain=" + partner_id;
     var future = new Future();
     Meteor.http.get(URLString,function(error,data){
       if ( error ) {
