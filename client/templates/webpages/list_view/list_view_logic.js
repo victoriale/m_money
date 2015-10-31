@@ -33,23 +33,23 @@ Template.list_view.helpers({
     if(typeof listdata =='undefined'){
       return '';
     }
+ 
     $.map(listdata.top_list_list, function(data,index){
       if(index % 2 == 0){
         data['background'] = 'tilewhite';
       }else{
         data['background'] = 'tilegrey';
       }
-      data['locUrl'] = Router.path('content.locationprofile',{
+      data['locUrl'] = Router.pick_path('content.locationprofile',{
         loc_id:data.c_hq_state,
       })
       data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
       data['rank'] = index+1;
-      data['url'] = Router.path('content.companyprofile',{
+      data['url'] = Router.pick_path('content.companyprofile',{
         ticker: data.c_ticker,
         name: compUrlName(data.c_name),
         company_id: data.c_id
       });
-
       data.price = commaSeparateNumber_decimal(Number(data.csi_price).toFixed(2));
       data.price_change = commaSeparateNumber_decimal(Number(data.csi_price_change_since_last).toFixed(2));
       data.percent_change = commaSeparateNumber_decimal(Number(data.csi_percent_change_since_last).toFixed(2));
@@ -80,8 +80,9 @@ Template.list_view.helpers({
           data['data_name'] = "Earnings Per Share";
           data['data_value'] = Number(data['eps']).toFixed(2);
         }
-      }
-    })
+      }//END OF FOR LOOP
+    })//END OF MAP function
+
     return listdata;
   },
 
@@ -108,7 +109,7 @@ Template.list_view.helpers({
 
       data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
       data['rank'] = index+1;
-      data['url'] = Router.path('content.companyprofile',{
+      data['url'] = Router.pick_path('content.companyprofile',{
         ticker: data.c_ticker,
         name: compUrlName(data.c_name),
         company_id: data.c_id
@@ -144,7 +145,6 @@ Template.list_view.helpers({
     })
     return listdata.top_list_list[count];
   },
-
 
   //This function is called everytime "each" loop runs, it returns the respective class which is suppose to use on each iteration
   getBackgroundStyle: function() {
