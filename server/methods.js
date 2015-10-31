@@ -22,9 +22,11 @@ Meteor.methods({
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
+        console.log("ERROR ON ",batchNum);
         future.throw(e);
         return false;
       }
+        console.log("Got Data!", batchNum);
         future.return(data);
     });
 
@@ -43,9 +45,11 @@ Meteor.methods({
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
+        console.log("ERROR ON ",batchNum);
         future.throw(e);
         return false;
       }
+        console.log("Got Data!", batchNum);
         future.return(data);
     });
 
@@ -420,7 +424,7 @@ Meteor.methods({
 
   topListData: function(index ,loc_id){
     var future = new Future();
-    console.log("New featured List Request For",loc_id);
+    console.log("New featured List Request",loc_id);
     console.log("List Index:",index);
 
     //random number to pick random list in list_index that's in database
@@ -452,11 +456,17 @@ Meteor.methods({
 
   listOfListLoc:function(loc_id){
     var future = new Future();
-    console.log("New featured List Request For",loc_id);
+    console.log("New featured List Request",loc_id);
 
     //random number to pick random list in list_index that's in database
     //param={list_index} , {location/DMA}
-    var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=list_of_lists&state="+loc_id;
+    if(loc_id == "National" || loc_id == ''){
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=list_of_lists";
+    }else if(isNaN(loc_id)){
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=list_of_lists&state="+loc_id;
+    }else{
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=list_of_lists&dma="+loc_id;
+    }
 
     console.log(UrlString);
 
@@ -477,7 +487,7 @@ Meteor.methods({
   //AI CONTENT METEOR CALL
   GetAIContent: function(comp_id){
     this.unblock();
-    var URL = "http://apifin.investkit.com/yseop/yseop-company-class.php?id=" + comp_id;
+    var URL = "http://apifin.synapsys.us/yseop/yseop-company-class.php?id=" + comp_id;
     console.log(URL);
     var future = new Future();
     curTime.withValue((new Date()).getTime(),function(){
@@ -519,7 +529,7 @@ Meteor.methods({
   //AI CONTENT METEOR CALL
   GetAIContent2: function(state, city){
     this.unblock();
-    var URL = "http://apifin.investkit.com/yseop/yseop-location-class.php?state=" + state;
+    var URL = "http://apifin.synpays.us/yseop/yseop-location-class.php?state=" + state;
     var loc_id = state;
     if(typeof city != 'undefined' && city != null){
       URL += "&city="+ city;

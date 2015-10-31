@@ -1,6 +1,7 @@
 Template.search_page.onRendered(function(){
   this.autorun(function(){
-
+    var searchParams = Router.current().getParams();
+    console.log(searchParams.search_results);
   })
 })
 
