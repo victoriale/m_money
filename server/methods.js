@@ -477,7 +477,7 @@ Meteor.methods({
   //AI CONTENT METEOR CALL
   GetAIContent: function(comp_id){
     this.unblock();
-    var URL = "http://apifin.synapsys.us/yseop/yseop-company-class.php?id=" + comp_id;
+    var URL = "http://apifin.investkit.com/yseop/yseop-company-class.php?id=" + comp_id;
     console.log(URL);
     var future = new Future();
     curTime.withValue((new Date()).getTime(),function(){
@@ -519,7 +519,7 @@ Meteor.methods({
   //AI CONTENT METEOR CALL
   GetAIContent2: function(state, city){
     this.unblock();
-    var URL = "http://apifin.synapsys.us/yseop/yseop-location-class.php?state=" + state;
+    var URL = "http://apifin.investkit.com/yseop/yseop-location-class.php?state=" + state;
     var loc_id = state;
     if(typeof city != 'undefined' && city != null){
       URL += "&city="+ city;
