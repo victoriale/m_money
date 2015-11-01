@@ -10,8 +10,6 @@ Template.l_p_header.helpers({
 })
 
 Template.lp_head.helpers({
-  LastUpdate   : "4:59:00PM PST",
-  Comp_Location: "UNITED STATES",
   Name         : Company_Name,
   locationData: function(){
     var data = Session.get('profile_header');
@@ -37,9 +35,14 @@ Template.lp_body.helpers({
 });
 Template.lp_head.helpers({
   image: function(){
-    var data = Session.get('profile_header');
-    var state = data['location'].replace(/ /g, '_');
-    return "background-image: url('/StateImages/Location_"+ state +".jpg');";
+    var data = Session.get('loc_id');
+    if(isNaN(data)){
+      data = fullstate(data);
+      data = data.replace(/ /g, '_');
+      return "background-image: url('/StateImages/Location_"+ data +".jpg');";
+    }else{
+      return "background-image: url('/DMA_images/location-"+ data +".jpg');";
+    }
   },
 
 });

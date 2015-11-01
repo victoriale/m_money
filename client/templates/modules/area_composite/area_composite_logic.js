@@ -6,6 +6,16 @@ Associated Files: [area_composite.html,area_composite.less,area_composite.js]
 
 Template.area_composite.helpers({
 
+  image: function(){
+    var data = Session.get('loc_id');
+    if(isNaN(data)){
+      data = fullstate(data);
+      data = data.replace(/ /g, '_');
+      return "background-image: url('/StateImages/Location_"+ data +".jpg');";
+    }else{
+      return "background-image: url('/DMA_images/location-"+ data +".jpg');";
+    }
+  },
 
   module_info: function() {
     var data = Session.get('companies_by_sector');
