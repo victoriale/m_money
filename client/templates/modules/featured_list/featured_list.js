@@ -81,8 +81,8 @@ Template.featured_list.helpers (
       }else{
         var newData = data.featured_list_data;
       }
-      console.log(data);
-      console.log(newData);
+      //console.log(data);
+      //console.log(newData);
 
       $.map(newData, function(data ,index){
         for(objName in data){
