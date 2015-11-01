@@ -163,7 +163,7 @@ Template.market_report.helpers({                   //helper class for adding dat
     }
     data.market_history[current][0].sh_close = Math.round(data.market_history[current][0].sh_close*100)/100
     var percent_change = parseFloat(data.market_history[current][0].percent_change);
-    var change_amt = Math.round(data.market_history[current][0].sh_close*percent_change)/100;
+    var change_amt = Number(data.market_history[current][0].price_change).toFixed(2);
     if ( percent_change >= 0 ) {
       var arrow_class = "fa-arrow-circle-o-up";
       var color_class = "mreport_up";
@@ -173,24 +173,24 @@ Template.market_report.helpers({                   //helper class for adding dat
       var color_class = "mreport_down";
       change_amt = '-$' + Math.abs(change_amt);
     }
-
     // Create graph
     var g_data = [];
     for ( var index = 0; index < data.market_history[current].length; index++ ) {
       g_data[g_data.length] = [
-        (new Date(data.market_history[current][index].sh_date)).getTime(), data.market_history[current][index].sh_close
+        (new Date(data.market_history[current][0]['graph_data'][index].sh_date)).getTime(), data.market_history[current][0]['graph_data'][index].sh_open
       ];
     }
 
-    return {
+    var dataReturn = {
       index_name: current + ' Index',
-      stock_price: '$' + ToCommaNumber(data.market_history[current][0].sh_close),
+      stock_price: '$' + ToCommaNumber(Number(data.market_history[current][0]['graph_data'][0].sh_open).toFixed(2)),
       stock_price_number: change_amt,
       stock_price_percent: percent_change + '%',
       arrow_class: arrow_class,
       color_class: color_class,
       image: '/exchange/' + current + '.png'
-    };
+      };
+    return dataReturn;
   },
 
   market_info: function() {
@@ -234,12 +234,11 @@ Template.market_report.helpers({                   //helper class for adding dat
     if ( typeof data == "undefined" || typeof data.market_history[current] == "undefined" ) {
       return {};
     }
-
     // Create graph
     var g_data = [];
-    for ( var index = data.market_history[current].length - 1; index > -1; index-- ) {
+    for ( var index = data.market_history[current][0]['graph_data'].length - 1; index > -1; index-- ) {
       g_data[g_data.length] = [
-        (new Date(data.market_history[current][index].sh_date)).getTime(), parseFloat(data.market_history[current][index].sh_close)
+        (new Date(data.market_history[current][0]['graph_data'][index].sh_date)).getTime()*1000, parseFloat(data.market_history[current][0]['graph_data'][index].sh_open)
       ];
     }
 

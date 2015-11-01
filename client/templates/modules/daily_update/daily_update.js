@@ -50,16 +50,16 @@ function transformLocationDailyUpdate(){
 
   var highchartsData = [];
   var daily_update = {};
-
   data.composite_history.forEach(function(item, index){
     //Transform date
     var date = moment(item.date).format('X') * 1000;
     //Build point array
-    var point = [date, Number(item.price)]
-    //Push point array to data set
-    highchartsData.push(point);
+    if (!isNaN(Number(item.price)) && !isNaN(date) ){
+			var point = [date, Number(item.price)];
+      //Push point array to data set
+      highchartsData.push(point);
+		}
   })
-
   //GRAPH MUST BE ASC order from [0] - [max] where max is the latest date in unix
   highchartsData.reverse();
   data.highchartsData = highchartsData;
