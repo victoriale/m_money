@@ -243,12 +243,12 @@ Template.finance_homepage.helpers({
     var x = Math.floor(Math.random()*3);
     //plug in the data
     Cities = [
-      {URL: Router.pick_path('content.locationprofile',{loc_id:Session.get('home_state')}), class: "fi_explore-image1",id: "explore1", State: fullstate(Session.get('home_state')), txt: '', index: 0, image: image[x]},
-      {URL: Router.pick_path('content.locationprofile',{loc_id:randomState[1]}), class: "fi_explore-image2",id: "explore2", State: fullstate(randomState[1]), txt: '', index: 1, image: image[x+1]},
-      {URL: Router.pick_path('content.locationprofile',{loc_id:Session.get('home_state')}), class: "fi_explore-image3",id: "explore3", isString: true, GeoLocation: '', txt: 'Check out the public companies in ' + fullstate(Session.get('home_state')), image: ''},
-      {URL: Router.pick_path('content.locationprofile',{loc_id:randomState[2]}), class: "fi_explore-image1",id: "explore4", State: fullstate(randomState[2]), txt: '', index: 2, image: image[x+2]},
-      {URL: Router.pick_path('content.locationprofile',{loc_id:randomState[3]}), class: "fi_explore-image1",id: "explore5", State: fullstate(randomState[3]), txt: '', index: 3, image: image[x+3]},
-      {URL: Router.pick_path('content.locationprofile',{loc_id:randomState[4]}), class: "fi_explore-image2",id: "explore6", State: fullstate(randomState[4]), txt: '', index: 4, image: image[x+4]}
+      {URL: Router.path('content.locationprofile',{loc_id:Session.get('home_state')}), class: "fi_explore-image1",id: "explore1", State: fullstate(Session.get('home_state')), txt: '', index: 0, image: image[x]},
+      {URL: Router.path('content.locationprofile',{loc_id:randomState[1]}), class: "fi_explore-image2",id: "explore2", State: fullstate(randomState[1]), txt: '', index: 1, image: image[x+1]},
+      {URL: Router.path('content.locationprofile',{loc_id:Session.get('home_state')}), class: "fi_explore-image3",id: "explore3", isString: true, GeoLocation: '', txt: 'Check out the public companies in ' + fullstate(Session.get('home_state')), image: ''},
+      {URL: Router.path('content.locationprofile',{loc_id:randomState[2]}), class: "fi_explore-image1",id: "explore4", State: fullstate(randomState[2]), txt: '', index: 2, image: image[x+2]},
+      {URL: Router.path('content.locationprofile',{loc_id:randomState[3]}), class: "fi_explore-image1",id: "explore5", State: fullstate(randomState[3]), txt: '', index: 3, image: image[x+3]},
+      {URL: Router.path('content.locationprofile',{loc_id:randomState[4]}), class: "fi_explore-image2",id: "explore6", State: fullstate(randomState[4]), txt: '', index: 4, image: image[x+4]}
     ];
     return Cities;
   }
