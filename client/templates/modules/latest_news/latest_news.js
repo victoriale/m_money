@@ -126,18 +126,20 @@ Template.latest_news.helpers({
     return data['o_first_name'] + " " + data['o_last_name'];
   },
   loc: function(){
-    var data = Session.get('profile_header');
+    var data = Session.get('loc_id');
     if(typeof data == 'undefined'){
       return '';
     }
-    return data['location'];
+    return fullstate(data);
   },
   updt_dt: function(){
+    var date = new Date();
     return "05/24/2015, 12:36PM EDT";
   },
 
   location: function(){
-    return "The United States of America";
+    var data = Session.get('profile_header');
+    return 'United States of America';
   },
 
   main_title: function(){

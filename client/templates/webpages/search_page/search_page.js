@@ -4,7 +4,7 @@ Template.search_page.onRendered(function(){
     console.log(searchParams.search_results);
     Meteor.call("GetSuggestion", searchParams.search_results, time,  function(error, data){
       if(error){
-        console.log('Invalid Team Error',error);
+        console.log('Invalid Search Error',error);
         Session.set('IsError',true);
         return '';
       }
@@ -33,6 +33,7 @@ Template.search_page.helpers({
   //will
   Results: function(){
     var allResults = Session.get('data');
+    var allResults = Session.get('searchTab');
     if(typeof allResults == 'undefined'){
       return '';
     }
@@ -52,6 +53,7 @@ Template.search_page.helpers({
       }
       //funtion to push locatio into allResults['NewList']['location']
     })
+
     console.log(allResults);
   },
 })
