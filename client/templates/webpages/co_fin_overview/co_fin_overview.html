@@ -40,14 +40,16 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                   <div class="cfo-b cfo-mid-top-txt1"> <!--the left part of the header-->
                       {{c_name}}'s Financial Overview
                   </div>
-                  <div class="cfo-l cfo-mid-top-txt2"> <!--the first right part of the header-->
+                  <!--<div class="cfo-l cfo-mid-top-txt2">
                       <i class="fa fa-heart"></i>
                       Save
-                  </div>
-                  <div class="cfo-l cfo-mid-top-txt2"> <!--the second right part of the header-->
-                      <i class="fa fa-share-alt"></i>
-                      Share
-                  </div>
+                  </div>-->
+                  <a href="{{share_company_fin_overview_url}}">
+                    <div class="cfo-l cfo-mid-top-txt2"> <!--the second right part of the header-->
+                        <i class="fa fa-share-alt"></i>
+                        Share
+                    </div>
+                  </a>
               </div>
               <div class="cfo-pa cfo-mid-mid"> <!--the grey section in the middle-->
                 <div class="cfo-pa cfo-mid-mid-circle" style="background-image: url('{{imageUrl c_logo}}')">
@@ -58,14 +60,16 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 <i class="cfo-pa cfo-b cfo-mid-mid-txt1">
                     {{c_name}}
                 </i>
-                <i class="cfo-pa cfo-l cfo-mid-mid-txt2">
+                <!--<i class="cfo-pa cfo-l cfo-mid-mid-txt2">
                     <i class="fa fa-heart"></i>
                     Save
-                </i>
-                <i class="cfo-pa cfo-l cfo-mid-mid-txt3">
-                    <i class="fa fa-share-alt"></i>
-                    Share
-                </i>
+                </i>-->
+                <a href="{{share_company_url}}">
+                  <i class="cfo-pa cfo-l cfo-mid-mid-txt3">
+                      <i class="fa fa-share-alt"></i>
+                      Share
+                  </i>
+                </a>
                 <div class="cfo-pa cfo-l cfo-mid-mid-txtbox"> <!--the part of the middle-middle that has the important and long text-->
                   <i class="cfo-mid-mid-txtbox-txt">
                       <i class="cfo-b">{{c_name}}</i>'s overall annual financials are <i class="cfo-b cfo-i">{{percent_year_type}}
@@ -195,7 +199,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                                     {{csi_trading_vol}}/{{avg_volume}}
                                 </i>
                             </div>
-                            <div class="cfo-btm-data-list-e"> <!--the abnormal list item-->
+                            <!--<div class="cfo-btm-data-list-e">
                                 <div class="cfo-btm-data-list-e-title cfo-l">
                                     <i class="cfo-b">Learn why </i>{{c_name}} is <span style="color: {{change_color}}"><i class="fa {{icon}}"></i> {{csi_percent_change_since_last}}%</span> today:
                                 </div>
@@ -207,7 +211,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                                     were written about {{c_ticker}}: 100% are positive.
                                     <i class="cfo-blue">Click here</i> to read more about {{c_name}} in the news.
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                     <div class="cfo-pr cfo-btm-data-tile-grey">
@@ -242,7 +246,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                           P.E. Ratio
                         </div>
                         <div class="cfo-b cfo-btm-data-tile-stat-r">
-                          277.78
+                          {{csi_earnings_per_share}}
                         </div>
                       </div>
                     </div>
@@ -256,15 +260,15 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                         <i class="fa fa-question"></i>
                       </div>
                       <div class="cfo-b cfo-pa cfo-btm-data-tile-title">
-                        Dividend Yield
+                        Today's Volume vs Average
                       </div>
 
                       <div class="cfo-btm-data-tile-stat">
                         <div class="cfo-btm-data-tile-stat-l">
-                          Yield
+                          Today vs Average
                         </div>
                         <div class="cfo-b cfo-btm-data-tile-stat-r">
-                          0
+                          {{csi_trading_vol}} vs {{avg_volume}}
                         </div>
                       </div>
                     </div>
@@ -289,21 +293,21 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
 
                   </div>
 
-                  <div class="cfo-pr cfo-btm-data-tile-grey">
+                  <!--<div class="cfo-pr cfo-btm-data-tile-grey">
                     <div class="cfo-pr cfo-btm-data-tile-l" id="cfoTileL3">
                       <div class="cfo-pa cfo-btm-data-tile-circle">
                         <i class="fa fa-question"></i>
                       </div>
                       <div class="cfo-b cfo-pa cfo-btm-data-tile-title">
-                        Today's Volume vs Average
+                        Dividend Yield
                       </div>
 
                       <div class="cfo-btm-data-tile-stat">
                           <div class="cfo-btm-data-tile-stat-l">
-                            Today vs Average
+                            Yield
                           </div>
                           <div class="cfo-b cfo-btm-data-tile-stat-r">
-                            {{csi_trading_vol}} vs {{avg_volume}}
+                            0
                           </div>
                       </div>
                     </div>
@@ -336,7 +340,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
 
                     </div>
 
-                  </div>
+                  </div>-->
 
                 </div>
             </div>
