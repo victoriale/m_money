@@ -119,34 +119,31 @@ Template.market_bar.onCreated(function(){
       for(name in data.market_history){
         var marketData = data.market_history[name];
         var marketArr = [];
-        var latestItem = marketData[0];
-        var close_value = commaSeparateNumber_decimal(Math.round(latestItem.sh_close * 100) / 100);
-        var change_value = (latestItem.amount_change).toFixed(2);
-        var change_value_number = Math.round(latestItem.amount_change * 100) / 100;
+        var latestItem = marketData[0]['graph_data'];
+        var close_value = commaSeparateNumber_decimal(Math.round(latestItem[0].sh_open * 100) / 100);
+        var change_value = Number(marketData[0].price_change).toFixed(2);
+        var change_value_number = Math.round(marketData[0].price_change * 100) / 100;
         lastUpdated = latestItem.c_tr_last_updated;
-
-
-        marketData.forEach(function(item, index){
+        latestItem.forEach(function(item, index){
           //Transform date
           var date = moment(item.sh_date).format('X') * 1000;
           //Build point array
-          var point = [date, Number(item.sh_close)]
+          var point = [date, Number(item.sh_open)]
           //Push point array to data set
           marketArr.push(point);
 
         })
         //Reverse array order so highcharts doesnt throw exceptions
         marketArr.reverse();
-
         //Push market's data to
         displayData.push({
           index: count,
           graphData: marketArr,
-          name: latestItem.c_exchange,
+          name: name,
           close_value: close_value,
           change_value: change_value,
           change_value_number: change_value_number,
-          percent: latestItem.percent_change
+          percent: Number(marketData[0].percent_change).toFixed(2)
         })
 
         count++;
