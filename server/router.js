@@ -790,7 +790,7 @@ function location_profile(params, req, res){
         var t_data = data.market_movers[index];
         var items = [];
         for ( var i = 0; i < t_data.data.top_list_list.length; i++ ) {
-          items.push('<a href="' + Router.pick_path('content.companyprofile',{comapny_id: t_data.data.top_list_list[i].c_id, ticker: t_data.data.top_list_list[i].c_ticker, name: t_data.data.top_list_list[i].c_name}) + '">' + t_data.data.top_list_list[i].c_name + ' (' + t_data.data.top_list_list[i].c_exchange + ':' + t_data.data.top_list_list[i].c_ticker + ')</a> as of ' + (new Date(t_data.data.top_list_list[i].csi_price_last_updated)).toSNTFormTime());
+          items.push('<a href="' + Router.pick_path('content.companyprofile',{company_id: t_data.data.top_list_list[i].c_id, ticker: t_data.data.top_list_list[i].c_ticker, name: t_data.data.top_list_list[i].c_name}) + '">' + t_data.data.top_list_list[i].c_name + ' (' + t_data.data.top_list_list[i].c_exchange + ':' + t_data.data.top_list_list[i].c_ticker + ')</a> as of ' + (new Date(t_data.data.top_list_list[i].csi_price_last_updated)).toSNTFormTime());
         }
         var l_data = {
           title: '<a href="' + Router.pick_path('content.toplist',{l_name: compUrlName(t_data.data.top_list_info.top_list_title), list_id: t_data.data.top_list_info.top_list_id, loc_id: data.profile_header.location}, info.params) + '">' + t_data.data.top_list_info.top_list_title + '</a>',
@@ -810,10 +810,10 @@ function location_profile(params, req, res){
           'Page Published on ' + published,
           'Page Updated on ' + updated,
           '',
-          data.profile_header.location + ' is home to ' + data.profile_header.total_companies + ' companies with a total market cap of $' + data.profile_header.total_market_cap + '. ' + data.profile_header.location + ' is also home to ' + data.profile_header.total_executives + ' executives.',
+          data.profile_header.location + ' is home to <a href="' + Router.pick_path('content.toplist',getListID(undefined,data.profile_header.location), info.params) + '">' + data.profile_header.total_companies + ' companies</a> with a total market cap of $' + data.profile_header.total_market_cap + '. ' + data.profile_header.location + ' is also home to ' + data.profile_header.total_executives + ' executives.',
           data.profile_header.location + ' Current Aggragate Price: $' + ToCommaNumber(data.location_daily_update.composite_summary.current_price),
           data.profile_header.location + ' Previous Close: $' + ToCommaNumber(data.location_daily_update.composite_summary.previous_close),
-          data.profile_header.location + ' Percent Change: ' + data.location_daily_update.composite_summary.percent_change + '%',
+          data.profile_header.location + ' <a href="' + Router.pick_path('content.toplist',getListID(undefined, data.profile_header.location), info.params) + '">Percent Change</a>: ' + data.location_daily_update.composite_summary.percent_change + '%',
           data.profile_header.location + ' Price Change: $' + ToCommaNumber(data.location_daily_update.composite_summary.price_change),
           data.profile_header.location + ' Today\'s High: $' + ToCommaNumber(data.location_daily_update.composite_summary.todays_high),
           data.profile_header.location + ' Today\'s Low: $' + ToCommaNumber(data.location_daily_update.composite_summary.todays_low),
@@ -849,7 +849,7 @@ function location_profile(params, req, res){
       };
 
       if ( typeof data.results != "undefined" ) {
-        h1content.line[0] = 'Written By: ' + author(info.params.loc_id.length + 1); // CHANGE TO DIFF AUTHOR WHEN CONST
+        h1content.line[0] = 'Written By: ' + author(info.params.loc_id.length + 1);
         head_data.siteName = data.results.name + ' Finance';
         head_data.title = 'Everything You Need To Know About Public Companies in ' + data.profile_header.location + ' | ' + data.results.name + ' Finance';
         head_data.description = 'Find out everything you need to know about publicly traded companies in ' + data.profile_header.location + ': Financial data, SEC documents, news, executive information and more.';
@@ -924,24 +924,24 @@ function location_profile(params, req, res){
         Meteor.call("GetLocationData",loc_id,"batch_4", bound_cb);
       });
     });
-    functions.push(function(batch){
-      batch_envar.withValue(batch, function(){
-        var bound_cb = Meteor.bindEnvironment(method_cb);
-        Meteor.call("GetLocationData",loc_id,"batch_5", bound_cb);
-      });
-    });
-    functions.push(function(batch){
-      batch_envar.withValue(batch, function(){
-        var bound_cb = Meteor.bindEnvironment(method_cb);
-        Meteor.call("GetLocationData",loc_id,"batch_6", bound_cb);
-      });
-    });
-    functions.push(function(batch){
-      batch_envar.withValue(batch, function(){
-        var bound_cb = Meteor.bindEnvironment(method_cb);
-        Meteor.call("GetLocationData",loc_id,"batch_7", bound_cb);
-      });
-    });
+    // functions.push(function(batch){
+    //   batch_envar.withValue(batch, function(){
+    //     var bound_cb = Meteor.bindEnvironment(method_cb);
+    //     Meteor.call("GetLocationData",loc_id,"batch_5", bound_cb);
+    //   });
+    // });
+    // functions.push(function(batch){
+    //   batch_envar.withValue(batch, function(){
+    //     var bound_cb = Meteor.bindEnvironment(method_cb);
+    //     Meteor.call("GetLocationData",loc_id,"batch_6", bound_cb);
+    //   });
+    // });
+    // functions.push(function(batch){
+    //   batch_envar.withValue(batch, function(){
+    //     var bound_cb = Meteor.bindEnvironment(method_cb);
+    //     Meteor.call("GetLocationData",loc_id,"batch_7", bound_cb);
+    //   });
+    // });
 
     if ( typeof params.partner_id != "undefined" ) {
       functions.push(function(batch){
