@@ -39,7 +39,7 @@ Template.market_report.events({
       return {};
     }
 
-    if ( company + 1 == data.biggest_losers[current].top_list_list.length ) {
+    if ( company + 1 == data.biggest_gainers[current].top_list_list.length ) {
       Session.set('market_report_company',0);
     } else {
       Session.set('market_report_company',company + 1);
@@ -54,7 +54,7 @@ Template.market_report.events({
     }
 
     if ( company == 0 ) {
-      Session.set('market_report_company',data.biggest_losers[current].top_list_list.length - 1);
+      Session.set('market_report_company',data.biggest_gainers[current].top_list_list.length - 1);
     } else {
       Session.set('market_report_company',company - 1);
     }
@@ -75,7 +75,7 @@ Template.market_report.helpers({                   //helper class for adding dat
     if(typeof current == 'undefined'){
       return '';
     }
-    data = data.biggest_losers;
+    data = data.biggest_gainers;
     var loc = Session.get('loc_id');
     switch(current){
       case 'NASDAQ':
@@ -120,7 +120,7 @@ Template.market_report.helpers({                   //helper class for adding dat
     if(typeof data == 'undefined'){
       return '';
     }
-    data = data.biggest_losers;
+    data = data.biggest_gainers;
     tileURL = [
       {open_page:'OPEN PAGE',tile_name:'NASDAQ Companies', image:'/exchange/NASDAQ.png',
         url: Router.path('content.toplist', {
@@ -144,7 +144,7 @@ Template.market_report.helpers({                   //helper class for adding dat
         })
       }
     ];
-
+    console.log(tileURL);
     return tileURL;
   },
 
@@ -200,7 +200,7 @@ Template.market_report.helpers({                   //helper class for adding dat
       return {};
     }
     var retArr = {};
-    retArr.top_list_title = data.biggest_losers[current].top_list_title;
+    retArr.top_list_title = data.biggest_gainers[current].top_list_title;
     retArr.exchange_name = current;
     return retArr;
   },
@@ -214,16 +214,17 @@ Template.market_report.helpers({                   //helper class for adding dat
     }
     var retArr = {};
     retArr.counter = company + 1;
-    retArr.company_name = data.biggest_losers[current].top_list_list[company].c_name;
-    retArr.ticker = data.biggest_losers[current].top_list_list[company].c_ticker;
-    retArr.lost_percent = Math.round(data.biggest_losers[current].top_list_list[company].stock_percent*100)/100 + '%';
-    retArr.logo = data.biggest_losers[current].top_list_list[company].c_logo;
+    retArr.company_name = data.biggest_gainers[current].top_list_list[company].c_name;
+    retArr.ticker = data.biggest_gainers[current].top_list_list[company].c_ticker;
+    retArr.percent = Number(data.biggest_gainers[current].top_list_list[company].lcsi_percent_change_since_last).toFixed(2) + '%';
+    retArr.color = data.biggest_gainers[current].top_list_list[company].lcsi_price_last_operator;
+    retArr.logo = data.biggest_gainers[current].top_list_list[company].c_logo;
     retArr.url = Router.path('content.companyprofile',
       {
         partner_id: Router.current().params.partner_id,
         ticker:retArr.ticker,
         name:compUrlName(retArr.company_name),
-        company_id: data.biggest_losers[current].top_list_list[company].c_id
+        company_id: data.biggest_gainers[current].top_list_list[company].c_id
       });
     return retArr;
   },

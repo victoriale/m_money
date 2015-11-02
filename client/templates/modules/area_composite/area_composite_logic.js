@@ -8,12 +8,16 @@ Template.area_composite.helpers({
 
   image: function(){
     var data = Session.get('loc_id');
-    if(isNaN(data)){
-      data = fullstate(data);
-      data = data.replace(/ /g, '_');
+    if(data == 'National'){
       return "background-image: url('/StateImages/Location_"+ data +".jpg');";
     }else{
-      return "background-image: url('/DMA_images/location-"+ data +".jpg');";
+      if(isNaN(data)){
+        data = fullstate(data);
+        data = data.replace(/ /g, '_');
+        return "background-image: url('/StateImages/Location_"+ data +".jpg');";
+      }else{
+        return "background-image: url('/DMA_images/location-"+ data +".jpg');";
+      }
     }
   },
 
