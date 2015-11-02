@@ -15,11 +15,10 @@ Template.lp_head.helpers({
   },
   locationData: function(){
     var data = Session.get('profile_header');
-    var getDate = Session.get('daily_update');
     if(typeof(data) === 'undefined'){
       return false;
     }
-    data['LastUpdate'] = (new Date(getDate['csi_price_last_updated'])).toSNTFormTime();
+    data['lastupdated'] = (new Date(data['data'])).toSNTFormTime();
     return data;
   }
 });
@@ -31,8 +30,7 @@ Template.lp_body.helpers({
     if(typeof(data) === 'undefined'){
       return false;
     }
-    //Removed from api due to slowing down api. Will be in rev1b
-    //data.total_executives_comp = data.total_executives_comp.replace(' Dollars', '');
+    console.log(data);
     return data;
   }
 });
