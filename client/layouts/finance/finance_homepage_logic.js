@@ -40,6 +40,140 @@ function GetSuggest(nowTime) {
        Session.set('SuggestTime',data.time);
        data = data.data;
 
+       // Sort all the data into location, company, executive
+       var results = {
+         company: [],
+         location: [],
+         officer: [],
+         ticker: []
+       };
+       var total_results = 0;
+
+       if ( data.name.func_success == true ) {
+         var name_data = data.name.func_data.search_data;
+         total_results = total_results + name_data.length;
+         for ( var index = 0; index < name_data.length; index++ ) {
+           if ( results[name_data[index].name_type].length < 10 ) {
+             results[name_data[index].name_type][results[name_data[index].name_type].length] = name_data[index];
+           }
+         }
+       }
+
+       if ( data.ticker.func_success == true ) {
+         var ticker_data = data.ticker.func_data.search_data;
+         total_results = total_results + ticker_data.length;
+         var max_index = ticker_data.length;
+         if ( max_index > 10 ) {
+           max_index = 10;
+         }
+         for ( var index = 0; index < max_index; index++ ) {
+           if ( results[ticker_data[index].name_type].length < 10 ) {
+             results[ticker_data[index].name_type][results[ticker_data[index].name_type].length] = ticker_data[index];
+           }
+         }
+       }
+
+       if ( data.location.func_success == true ) {
+         var loc_data = data.location.func_data.search_data;
+         total_results = total_results + loc_data.length;
+         for ( var index = 0; index < loc_data.length; index++ ) {
+           if ( results.location.length < 10 ) {
+             var isNew = true;
+             for ( var i = 0; i < results.location.length; i++ ) {
+               if ( results.location[i].c_hq_state == loc_data[index].c_hq_state ) {
+                 isNew = false;
+               }
+             }
+             if ( isNew && typeof loc_data[index].c_hq_state != "undefined" && typeof fullstate(loc_data[index].c_hq_state) != "undefined" ) {
+               results.location[results.location.length] = loc_data[index];
+             }
+           }
+         }
+       }
+
+       // Create the array of things that will be shown
+       var suggestions = [];
+       // Determine how many of which things to show
+       var priority = [
+         'ticker',
+         'company',
+         'location',
+         'officer'
+       ];
+       var amounts = {
+         ticker: 2,
+         company: 2,
+         location: 2,
+         officer: 2
+       };
+       for ( var index = 0; index < priority.length; index++ ) {
+         if ( results[priority[index]].length < 2 ) {
+           amounts[priority[index]] = results[priority[index]].length;
+         }
+       }
+       function getLength(array){
+         var retNum = 0;
+         for ( var attr in array ) {
+           if ( array.hasOwnProperty(attr) ) {
+             retNum = retNum + array[attr];
+           }
+         }
+         return retNum;
+       }
+       if ( getLength(amounts) < 8 ) {
+         for ( var index = 0; index < priority.length; index++ ) {
+           if ( (8 - getLength(amounts)) > 0 && results[priority[index]].length > amounts[priority[index]] ) {
+             if ( (8 - getLength(amounts)) > (results[priority[index]].length - amounts[priority[index]]) ) {
+               amounts[priority[index]] = amounts[priority[index]] + (results[priority[index]].length - amounts[priority[index]]);
+             } else {
+               amounts[priority[index]] = amounts[priority[index]] + (8 - getLength(amounts));
+             }
+           }
+         }
+       }
+       for ( var index = 0; index < priority.length; index++ ) {
+         var type = priority[index];
+         for ( var i = 0; i < amounts[type]; i++ ) {
+           if ( type == 'ticker' ) {
+             var i_data = {
+               url: Router.pick_path('content.companyprofile',{company_id: results[type][i].c_id, name: compUrlName(results[type][i].c_name), ticker: results[type][i].c_ticker}),
+               string: '<b>' + results[type][i].c_ticker + '</b> - ' + results[type][i].c_name + ' (' + results[type][i].c_exchange + ')'
+             };
+           } else if ( type == 'company' ) {
+             var i_data = {
+               url: Router.pick_path('content.companyprofile',{company_id: results[type][i].c_id, name: compUrlName(results[type][i].c_name), ticker: results[type][i].c_ticker}),
+               string: '<b>' + results[type][i].c_name + '</b> - ' + results[type][i].c_exchange + ':' + results[type][i].c_ticker
+             };
+           } else if ( type == 'location' ) {
+             var i_data = {
+               url: Router.pick_path('content.locationprofile',{loc_id: fullstate(results[type][i].c_hq_state)}),
+               string: '<b>' + fullstate(results[type][i].c_hq_state) + '</b>'
+             };
+           } else if ( type == 'officer' ) {
+             var i_data = {
+               url: Router.pick_path('content.executiveprofile',{ticker: results[type][i].c_ticker, fname: compUrlName(results[type][i].o_first_name), lname: compUrlName(results[type][i].o_last_name), exec_id: results[type][i].o_id}),
+               string: '<b>' + results[type][i].o_first_name + ' ' + results[type][i].o_last_name + '</b> - ' + results[type][i].c_name + ' (' + results[type][i].c_ticker + ')'
+             };
+           }
+           suggestions[suggestions.length] = i_data;
+         }
+       }
+       console.log(suggestions);
+       if ( total_results > 8 ) {
+         suggestions[suggestions.length] = {
+           url: Router.pick_path('content.search',{search_results: $('.fi_mainsearch input')[0].value}),
+           string: 'See The Other <b>' + dNumberToCommaNumber(total_results - 8) + '</b> Results <i class="fa fa-chevron-right" style="color: #337ab7"></i>'
+         };
+       }
+       console.log(results);
+
+       var HTMLString = '<div class="caret-top"></div>';
+       for ( var index = 0; index < suggestions.length; index++ ) {
+         if ( index != 0 ) {
+           HTMLString = HTMLString + '<div class="border-li"></div>';
+         }
+         HTMLString = HTMLString + '<a style="color: #000" href="' + suggestions[index].url + '"><div class="fi_search_recommendations_item">' + suggestions[index].string + '</div></a>';
+       }
 
         //var HTMLString = '<div class="caret-top"></div><i class="fa fa-times fi_search_recommendations_close"></i>';
         var HTMLStringLoc = '';
@@ -59,7 +193,7 @@ function GetSuggest(nowTime) {
              if ( i != 0 ) {
                HTMLStringName = HTMLStringName + '<div class="border-li"></div>';
              }
-               HTMLStringName = HTMLStringName + '<a style="color: #000" href="' + CompanyURL(NameRes[i]['c_ticker'], NameRes[i]['c_name'], NameRes[i]['c_id']) + '"><div class="fi_search_recommendations_item">' + NameRes[i]['c_ticker'] + " - " + NameRes[i]['c_name'] + '<i class="fa fa-angle-right"></i></div></a>';
+               HTMLStringName = HTMLStringName + '<a style="color: #000" href="' + CompanyURL(NameRes[i]['c_ticker'], NameRes[i]['c_name'].replace(/\s+/g, '-'), NameRes[i]['c_id']) + '"><div class="fi_search_recommendations_item">' + NameRes[i]['c_ticker'] + " - " + NameRes[i]['c_name'] + '<i class="fa fa-angle-right"></i></div></a>';
            }
          }
        }
@@ -76,7 +210,7 @@ function GetSuggest(nowTime) {
             }
 
             //this var and for loop makes the word casing corrct
-            var LocCity = LocRes[i]['c_hq_city'];
+            /*var LocCity = LocRes[i]['c_hq_city'];
             var LocNew = [];
             for(var i=0;i<LocCity.length;i++){
               if(i == 0){
@@ -86,7 +220,8 @@ function GetSuggest(nowTime) {
               }
             }
             LocNew = LocNew.join('');
-            HTMLStringLoc = HTMLStringLoc + '<a style="color: #000" href="' + LocationURL(LocNew + "_" + LocRes[i]['c_hq_state']) + '"><div class="fi_search_recommendations_item">' + LocNew + ", " + LocRes[i]['c_hq_state'] + '<i class="fa fa-angle-right"></i></div></a>';
+            */
+            HTMLStringLoc = HTMLStringLoc + '<a style="color: #000" href="' + LocationURL(LocRes[i]['c_hq_city'].replace(/\s+/g, '-') + "_" + LocRes[i]['c_hq_state']) + '"><div class="fi_search_recommendations_item">' + LocRes[i]['c_hq_city'] + ", " + LocRes[i]['c_hq_state'] + '<i class="fa fa-angle-right"></i></div></a>';
           }
          }
        }else{
@@ -112,8 +247,9 @@ function GetSuggest(nowTime) {
          return false;
        }
 
-       $('.fi_search_recommendations')[0].innerHTML = '<div class="caret-top"></div>' /*' <i class="fa fa-times fi_search_recommendations_close"></i>'*/ + HTMLStringName + HTMLStringLoc + HTMLStringTick;
-       $('.fi_search_recommendations').addClass('active');
+      //  $('.fi_search_recommendations')[0].innerHTML = '<div class="caret-top"></div>' /*' <i class="fa fa-times fi_search_recommendations_close"></i>'*/ + HTMLStringTick + HTMLStringName + HTMLStringLoc;
+      $('.fi_search_recommendations').html(HTMLString);
+      $('.fi_search_recommendations').addClass('active');
      });
   }
 }

@@ -56,15 +56,18 @@ Template.latest_news.helpers({
       var image = data.o_pic;
     }else{
       var data = Session.get('loc_id');
-      if(isNaN(data)){
-        data = fullstate(data);
-        data = data.replace(/ /g, '_');
+      if(data == 'National'){
         return "background-image: url('/StateImages/Location_"+ data +".jpg');";
       }else{
-        return "background-image: url('/DMA_images/location-"+ data +".jpg');";
+        if(isNaN(data)){
+          data = fullstate(data);
+          data = data.replace(/ /g, '_');
+          return "background-image: url('/StateImages/Location_"+ data +".jpg');";
+        }else{
+          return "background-image: url('/DMA_images/location-"+ data +".jpg');";
+        }
       }
     }
-    return image;
   },
 
   newsURL: function(){
@@ -137,7 +140,11 @@ Template.latest_news.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
-    return fullstate(data);
+    if(data == 'National'){
+      return data;
+    }else{
+      return fullstate(data);
+    }
   },
   updt_dt: function(){
     var date = new Date();
