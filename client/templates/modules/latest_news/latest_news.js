@@ -198,7 +198,7 @@ Template.latest_news.helpers({
     var data = Session.get('latest_news');
     if(data!=undefined)
     {
-      return timeConverter(data.data[0]['pubDate_ut']);
+      return convert_time_full(data.data[0].pubDate_ut * 1000);
     }
   },
   mntags:function(){
@@ -225,7 +225,7 @@ Template.latest_news.helpers({
       returnArray[j] = {};
       returnArray[j]['url'] = data.data[i]['link'];
       returnArray[j]['fontawesome'] = "fa fa-newspaper-o";
-      returnArray[j]['type'] = "article";
+      returnArray[j]['type'] = "Article";
       if(data.data[i]['tags'] != null){
         tagArray = data.data[i]['tags'].split(", ");
       }
@@ -247,7 +247,7 @@ Template.latest_news.helpers({
       returnArray[j]['image'] = data.data[i]['lead_image'];
       returnArray[j]['title'] = data.data[i]['title'];
       returnArray[j]['pub'] = data.data[i]['publisher'];
-      returnArray[j]['time'] = timeConverter(data.data[i]['pubDate_ut']);
+      returnArray[j]['time'] = convert_time_full(data.data[i]['pubDate_ut'] * 1000);
       returnArray[j]['index'] = i;
       j++;
     }
@@ -267,7 +267,7 @@ Template.latest_news.helpers({
       returnArray[j] = {};
       returnArray[j]['url'] = data.data[i]['link'];
       returnArray[j]['fontawesome'] = "fa fa-newspaper-o";
-      returnArray[j]['type'] = "article";
+      returnArray[j]['type'] = "Article";
       if(data.data[i]['tags'] != null){
         tagArray = data.data[i]['tags'].split(", ");
       }
@@ -289,8 +289,7 @@ Template.latest_news.helpers({
       returnArray[j]['image'] = data.data[i]['lead_image'];
       returnArray[j]['title'] = data.data[i]['title'];
       returnArray[j]['pub'] = data.data[i]['publisher'];
-      returnArray[j]['time'] = timeConverter(data.data[i]['pubDate_ut']);
-      returnArray[j]['index'] = i;
+      returnArray[j]['time'] = convert_time_full(data.data[i]['pubDate_ut'] * 1000);
       j++;
     }
 

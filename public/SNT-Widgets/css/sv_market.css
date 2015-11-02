@@ -1,0 +1,248 @@
+html, body {
+	margin: auto;
+	padding: auto;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	width: 100%;
+	background-color:#fff;
+}
+
+a{
+	text-decoration:none;
+}
+
+.market_body{
+	width:135px;
+	height:474px;
+	border:1px solid #d1d0d0;
+	border-bottom:2px solid #3098ff;
+	border-top:2px solid #3098ff;
+}
+
+.market_header{
+	background: #000 none repeat scroll 0 0;
+    border-top: 3px solid #3098ff;
+    height: 40px;
+    width: 134px;
+}
+
+
+.market_header_text{
+  color: #fff;
+  display: table-cell;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 13px 0;
+  position: relative;
+  text-transform: uppercase;
+  vertical-align: middle;
+  font-family:  Helvetica;
+}
+
+.resize{
+	margin: 2px 0px 0 0;
+	float: left;
+}
+
+.fa-area-chart{
+  float: left;
+  margin: 0 10px 0 0;
+  padding: 0 0 0 10px;
+
+}
+
+.color_blue{
+
+font-family: FontAwesome;
+color: #3098ff;
+font-size: 14px;
+font-weight: 400;
+
+text-align:left;
+
+}
+
+.market_search_layout{
+	width: 133px;
+	height: 55px;
+	background-color: #fff;
+
+}
+.right_side{
+width: 100%;
+height: 100%;
+}
+.market_search_box{
+	border: 2px solid #3098ff;
+	background-color: #ffffff;
+	width: 110px;
+	height:24px;
+	font-weight: bold;
+	color: #000000;
+	font-weight: 400;
+	text-align: left;
+	margin:6px;
+	padding-left:5px;
+}
+
+.left_side{
+	height: 100%;
+	width: 100%;
+}
+
+.market_search_iconbg{
+	height: 27px;
+	width: 26px;
+	text-align: center !important;
+	background-color: #3098ff;
+	float: right;
+	position: relative;
+	margin: -35px 8px 0 0;
+
+}
+
+.market_search_icon{
+	font-weight: 400;
+	text-align: center;
+	color: #ffffff;
+
+}
+
+.market_grey_text{
+	color: #999999;
+	font-size: 10px;
+	font-weight: 400;
+	text-align: center;
+	padding-right: 6px;
+	margin: -5px 0 0 0;
+}
+
+.market_box{
+	width: 133px;
+	height: 75px;
+	background-color: #ffffff;
+	border-bottom: 1px solid #ebebeb;
+	border-top: 1px solid #ebebeb;
+	box-sizing: border-box;
+}
+
+
+.top_text{
+height: 40px;
+width: 133px;
+}
+.sv_click{
+	width: 20px;
+	height:20px;
+}
+.blue_text{
+   color:#3098ff;
+   font-size: 14px;
+  font-weight: 700;
+  padding:18px 0 18px 5px;
+  text-align: left;
+  position: absolute;
+}
+
+.price_black_text{
+	height:14px;
+	min-width:10px;
+	color:#000000;
+	font-size: 14px;
+	font-weight: 300;
+	padding:17px 14px 0 75px;
+	text-align: right;
+	position: absolute;
+	text-transform: uppercase;
+}
+
+.bottom_text1{
+	height: 20px;
+	width: 100%;
+}
+.bottom_text2{
+	height: 20px;
+	width: 100%;
+}
+.bottom_text3{
+	height: 20px;
+	width: 100%;
+}
+.bottom_text4{
+	height: 20px;
+	width: 100%;
+}
+
+.stock_data_def{
+   font-size: 12px;
+  font-weight: 400;
+  padding:0 0 0 5px;
+  text-align: left;
+  position: absolute;
+}
+
+.stock_data{
+   font-size: 12px;
+  font-weight: 400;
+  padding:0 0 0 0;
+  text-align: left;
+  position: relative;
+}
+
+.stock_percentage{
+  font-size: 12px;
+  font-weight: 300;
+  padding:0 0 0 80px;
+  text-align: right;
+  position: absolute;
+  text-transform: uppercase;
+}
+
+.sv150_top_text{
+	font-size:12px;
+	text-align:left;
+	color:#3098ff;
+	font-weight:bold;
+	padding-left:5px;
+	padding-top:5px;
+}
+
+.sv_top_image{
+	width:45px;
+	height:45px;
+	border:1px solid #cccccc;
+	border-radius:100%;
+	margin:0px 5px;
+	float:left;
+	background-position: center center!important;
+	background-size: contain !important;
+	background-repeat: no-repeat;
+}
+.sv_profile_data{
+	width: 70px;
+	height: 55px;
+	float:right;
+	font-size:11px;
+}
+#ny{
+	padding-left: 70px !important;
+}
+.sv-pd-name{
+
+	font-weight:bold;
+	text-align:center;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	color: #000;
+}
+.sv-pd-price{
+
+	text-align:center;
+	font-weight:bold;
+	color: #000;
+}
+.sv-pd-change{
+
+	text-align:center;
+	color:#44b224;
+}

@@ -23,7 +23,7 @@ Related Files:
       <!-- the header box -->
       <div class="art-lst-hdr-head-box">
         <!-- image inside the header box-->
-        <div class="art-lst-hdr-head-image"></div>
+        <div class="art-lst-hdr-head-image" style="background-image: url('{{url}}')"></div>
         <!-- the text inside the header box-->
         <div class="art-lst-hdr-text">
           <!-- the latest update-->
@@ -32,7 +32,7 @@ Related Files:
           </div>
           <!-- location of the article-->
           <div class="art-lst-hdr-text-loc">
-            <i class="fa fa-map-marker"></i> {{header}}
+            <i class="fa fa-map-marker"></i> {{location}}
           </div>
           <!-- the name of the article-->
           <div class="art-lst-hdr-text-name">
@@ -40,7 +40,7 @@ Related Files:
           </div>
           <!-- the author of the article-->
           <div class="art-lst-hdr-text-auth">
-            Covering All News about {{header}}
+            Covering All News about {{name}}
           </div>
         </div>
       </div>
@@ -48,14 +48,15 @@ Related Files:
         <div class="art-lst-hdr-bar-title">
           Today's Top Articles
         </div>
-        <div class="art-lst-hdr-bar-button">
-          <!-- the save option button-->
+        <!--<div class="art-lst-hdr-bar-button">
           <a href="#"><i class="fa fa-heart art-lst-hdr-bar-button-fa"></i><span class="art-lst-hdr-bar-text">Save</span></a>
-        </div>
-        <div class="art-lst-hdr-bar-button">
-          <!-- share option button -->
-          <a href="#"><i class="fa fa-share-alt art-lst-hdr-bar-button-fa"></i><span class="art-lst-hdr-bar-text">Share</span></a>
-        </div>
+        </div>-->
+        <a href="{{shareURL}}" target="_blank">
+          <div class="art-lst-hdr-bar-button">
+            <!-- share option button -->
+            <i class="fa fa-share-alt art-lst-hdr-bar-button-fa"></i><span class="art-lst-hdr-bar-text">Share</span>
+          </div>
+        </a>
       </div>
       {{#with newsCarousel}}
       <div class="art-lst-hdr-main-container">
@@ -96,7 +97,7 @@ Related Files:
             <div class="art-lst-hdr-main-container-view_more-text-ln1">Interested in this article?</div>
             <div class="art-lst-hdr-main-container-view_more-text-ln2">Written On: <i class="art-lst-b">{{dateWritten}}</i></div>
           </div>
-          <a href="{{link}}">
+          <a href="{{link}}" target="_blank">
             <button class="art-lst-hdr-main-container-view_more-button">
               Read Full Article<i class="fa fa-angle-right"></i>
             </button>
@@ -106,11 +107,11 @@ Related Files:
       {{/with}}
     </div>
     <!--End Page header-->
-    <div class="art-lst-sortby">
+    <!--<div class="art-lst-sortby">
       Sort by:
       <span class="art-lst-sortby-text">Most Viewed Articles</span>
       <i class="fa fa-angle-down art-lst-sortby-icon"></i>
-    </div>
+    </div>-->
     <div class="art-lst-whatis">
       <div class="art-lst-whatis-header">
         What is this list?
@@ -124,7 +125,7 @@ Related Files:
       <!-- Company News Body Content -->
       <div class = "nws-bdy-ctnt">
         <!-- Company News Body Content Main Tile -->
-        <a href="{{main_url}}">
+        <a href="{{main_url}}" target="_blank">
         <div class = "nws-bdy-ctnt-main" id="nws-art0">
           <!-- Company News Body Content Main Tile Buttons -->
           <div style="height:35px">
@@ -155,7 +156,7 @@ Related Files:
             <div class = "nws-bdy-ctnt-main-txt-sub">
               <i class="fa fa-newspaper-o"></i>
               <!-- Main Tile Publisher -->
-              <span class = "nws-bdy-ctnt-main-txt-sub-pub">Article Published By:
+              <span class = "nws-bdy-ctnt-main-txt-sub-pub">Article Published:
               <!-- <a href="{{main_pub}}">  -->
                  <span style = "font-family: HN-B"><em>{{main_pub}}</em></span>&nbsp;&nbsp;
               <!-- </a> -->
@@ -190,7 +191,7 @@ Related Files:
           <div class = "nws-bdy-ctnt-sub-left">
             <!-- Body Content Left Sub-Tile Articles -->
             {{#each artlft}}
-            <a href="{{url}}">
+            <a href="{{url}}" target="_blank">
             <div class = "nws-art" id="nws-art{{index}}">
               <!-- Body Content Left Sub-Tile Article Buttons -->
               <div style="height:35px">
@@ -232,7 +233,7 @@ Related Files:
                 <!-- Article Date Published -->
                 <span class = "nws-art-txt-dt">
                   <i class = {{fontawesome}}></i>&nbsp;{{type}}
-                   published {{time}}
+                   Published {{time}}
                 </span>
                 <!-- END Article Date Published -->
               </div>
@@ -248,7 +249,7 @@ Related Files:
           <div class = "nws-bdy-ctnt-sub-right">
             {{#each artrt}}
             <!-- Right Pane Article -->
-            <a href="{{url}}">
+            <a href="{{url}}" target="_blank">
             <div class = "nws-art" id="nws-art{{index}}">
               <!-- Right Pane Article Tags -->
               <div style="height:35px">
@@ -282,7 +283,7 @@ Related Files:
                 </div>
                 <span class = "nws-art-txt-dt">
                   <i class = {{fontawesome}}></i>&nbsp;{{type}}
-                  published {{time}}
+                  Published {{time}}
                 </span>
               </div>
               <!-- END Right Pane Article Text -->

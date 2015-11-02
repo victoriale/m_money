@@ -102,7 +102,11 @@ Template.header_nav.events({
       }
     }
   });
+
 Template.header_nav.helpers({
+  homepage:function(){
+    return Session.get('IsHome');
+  },
   drpdwns: [
     { listname:"Sector", listtype:"Sector Type", listno:"ST", option1: "Sector Type1", option2: "Sector Type2", option3: "Sector Type3", option4: "Sector Type4"},
     { listname:"Industry", listtype:"Industry Type", listno:"IT", option1: "Industry Type1", option2: "Industry Type2", option3: "Industry Type3", option4: "Industry Type4"},

@@ -54,26 +54,26 @@ Associated Files: [area_composite.html,area_composite.less,area_composite.js]
         <!-- Bottom Panel -->
         <div class="area_comp_bottom">
           {{#each companies}}
-          <div class="area_comp_row">
-            <div class="area_comp_row_left {{color}}"></div>
-            <a href="{{sector_url}}">
-              <div class="area_comp_row_image"><i class="fa {{icon}}"></i></div>
-            </a>
-            <div class="area_comp_row_right">
-              <div class="area_comp_row_right_text">
-                <div class="area_comp_row_right_text_1">{{count}}</div>
-                <div class="area_comp_row_right_text_2">{{title}} Companies</div>
+          <a href="{{sector_url}}" style="cursor:pointer">
+            <div class="area_comp_row">
+              <div class="area_comp_row_left {{color}}"></div>
+                <div class="area_comp_row_image"><i class="fa {{icon}}"></i></div>
+              <div class="area_comp_row_right">
+                <div class="area_comp_row_right_text">
+                  <div class="area_comp_row_right_text_1">{{count}}</div>
+                  <div class="area_comp_row_right_text_2">{{title}} Companies</div>
+                </div>
+                <div class="area_comp_row_right_comp">
+                  {{#each comp}}
+                  <a href="{{url}}">
+                    <div class="area_comp_row_right_comp_circle" style="background-image: url({{imageUrl logo}});" index="{{index}}"><div class="hover"></div></div>
+                  </a>
+                  {{/each}}
+                </div>
+                <i class="fa fa-angle-right"></i>
               </div>
-              <div class="area_comp_row_right_comp">
-                {{#each comp}}
-                <a href="{{url}}">
-                  <div class="area_comp_row_right_comp_circle" style="background-image: url({{imageUrl logo}});" index="{{index}}"><div class="hover"></div></div>
-                </a>
-                {{/each}}
-              </div>
-              <i class="fa fa-angle-right"></i>
             </div>
-          </div>
+          </a>
           {{/each}}
         </div>
       </div>
