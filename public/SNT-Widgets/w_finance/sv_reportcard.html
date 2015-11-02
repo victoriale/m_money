@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Report Card Widget</title>
+	<meta charset='utf-8'>
+
+<base href="<?php echo $coreENV['path'];?>" target="_blank">
+<link href="../css/font-awesome.css" media="all" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="../css/sv_reportcard.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="http://code.highcharts.com/stock/highstock.js"></script>
+	<script src="../js/sv_reportcard.js"></script>
+</head>
+<body>
+	<div class="rc_whole_container">
+		<!--top header of widget-->
+		<div class="rc_header">
+			<span class="rc_headline"><i class="fa-check rc_blue"></i> THE SILICON valley 150 report card</span>
+		</div>
+		<!--top header of widget END-->
+		<!--Market mover report-->
+		<!--AD PLACEMENT HERE-->
+		<div class="ad">PRESENTED BY
+			<div class="sv_ad_here">
+			<!--
+			<script><?php echo $coreENV['passfail']['ui']['ads']['marketQuuNu_nowidget_SV150'];?></script>
+			-->
+			</div>
+		</div>
+		<!--AD PLACEMENT HERE END-->
+		<a data-dir="SV150" id="sv_link" href="">
+		<div class="rc_stock_container">
+			<div class="rc_report">
+
+				<span class="rc_exchange" id="sv_link">SV150</span>
+				<span class="rc_price" id="SV"></span>
+			</div>
+			<span class="rc_stock_color">
+					<i class="fa-arrow-circle-o-down"></i>
+					<i class="fa-arrow-circle-o-up"></i>
+				<span class="rc_change" id="svchange"></span>
+				<span class="rc_pct" id="svpct"></span>
+			</span>
+		</div>
+		</a>
+
+		<a data-dir="NASDAQ"  id="nq_link" href="">
+		<div class="rc_stock_container">
+				<div class="rc_report">
+					<span class="rc_exchange">NASDAQ</span>
+					<span class="rc_price" id="nq"></span>
+				</div>
+				<div class="rc_stock_color" id="rc2">
+					<span class="rcfont" id="2">
+						<i class="fa-arrow-circle-o-down"></i>
+					</span>
+					<span class="rc_change" id="nqchange"></span>
+					<span class="rc_pct" id="napct"></span>
+				</div>
+		</div>
+		</a>
+		<a data-dir="AMEX"  id="amex_link" href="">
+		<div class="rc_stock_container">
+			<div class="rc_report">
+				<span class="rc_exchange" id="amex_link" href="">AMEX</span>
+				<span class="rc_price" id="SP"></span>
+			</div>
+			<div class="rc_stock_color" id="rc3">
+				<span class="rcfont" id="3">
+					<i class="fa-arrow-circle-o-down"></i>
+				</span>
+				<span class="rc_change" id="spchange"></span>
+				<span class="rc_pct" id="sppct"></span>
+			</div>
+		</div>
+	</a>
+
+	<a data-dir="NYSE" id="nyse_link" href="">
+		<div class="rc_stock_container">
+			<div class="rc_report">
+				<span class="rc_exchange">NYSE</span>
+				<span class="rc_price" id="ny"></span>
+			</div>
+			<div class="rc_stock_color" id="rc4">
+				<span class="rcfont" id="4">
+					<i class="fa-arrow-circle-o-down"></i>
+				</span>
+				<span class="rc_change" id="nychange"></span>
+				<span class="rc_pct" id="nypct"></span>
+			</div>
+		</div>
+		</a>
+		<!--Market mover report END-->
+		<!--SEARCH BAR area-->
+		<div class="rc_search_area">
+			<div class="rc_search_box">
+				<input name="keyword" class="rc_search_input" type="text" placeholder="Type Company name here e.g. Adobe">
+				</input>
+				<div class="rc_search-button">
+					<button class="rc_pillbtn fa-search"></button>
+				</div>
+			</div>
+			<span class="rc_delay">Quotes delayed 20min.</span>
+		</div>
+		<!--SEARCH BAR area END-->
+		<!--today's gainers for sv150-->
+		<div class="rc_today_container">
+			<div class="rc_sv150_gain">
+				<i class="fa-arrow-circle-o-up green"></i>
+				<a href="http://finance.siliconvalley.com/what-are-all-the-company-profiles/locale/usa/usa-236.htm?marketId=8&order=sp-pct-desc">
+				<span class="rc_today_gain">Today's SV150 Gainers</span><span class="sv_see-all">see all</span>
+				</a>
+			</div>
+
+			<!--today's gainers for sv150 END-->
+			<!--today's gainers for sv150 TOP LIST-->
+			<div class="rc_gain_list1">
+				<a class="rc_profile" id="gain_profile1" href="">
+					<div class="rc_image" id="rc_gain1"></div>
+
+				<div class="rc_company_info">
+					<span class="rc_company_name" id="gain_name1"></span>
+					<span class="rc_company_price" id="gain_price1"></span>
+					<span class="rc_company_change green">
+						<i class="fa-arrow-circle-o-up"></i>
+						<span class="rc_company" id="gain_change1"></span>
+					</span>
+				</div>
+				</a>
+			</div>
+			<div class="rc_gain_list2">
+				<a class="rc_profile" id="gain_profile2" href="">
+					<div class="rc_image" id="rc_gain2"></div>
+
+				<div class="rc_company_info">
+					<span class="rc_company_name" id="gain_name2"></span>
+					<span class="rc_company_price" id="gain_price2"></span>
+					<span class="rc_company_change green">
+						<i class="fa-arrow-circle-o-up"></i>
+						<span class="rc_company" id="gain_change2"></span>
+					</span>
+				</div>
+				</a>
+			</div>
+			<div class="rc_gain_list1">
+				<a class="rc_profile" id="gain_profile3" href="">
+					<div class="rc_image" id="rc_gain3"></div>
+
+				<div class="rc_company_info">
+					<span class="rc_company_name" id="gain_name3"></span>
+					<span class="rc_company_price" id="gain_price3"></span>
+					<span class="rc_company_change green">
+						<i class="fa-arrow-circle-o-up"></i>
+						<span class="rc_company" id="gain_change3"></span>
+					</span>
+				</div>
+				</a>
+			</div>
+			<!--today's gainers for sv150 TOP LIST END-->
+			<!--today's losers for sv150-->
+			<div class="rc_sv150_gain">
+				<i class="fa-arrow-circle-o-down red"></i>
+				<a href="http://finance.siliconvalley.com/what-are-all-the-company-profiles/locale/usa/usa-236.htm?marketId=8&order=sp-pct-asc">
+				<span class="rc_today_gain">Today's SV150 Losers</span><span class="sv_see-all">see all</span>
+				</a>
+			</div>
+			<!--today's losers for sv150 END-->
+			<!--today's losers for sv150 TOP LIST-->
+			<div class="rc_gain_list1">
+				<a class="rc_profile" id="lose_profile1" href="">
+					<div class="rc_image" id="rc_lose1"></div>
+
+				<div class="rc_company_info">
+					<span class="rc_company_name" id="lose_name1"></span>
+					<span class="rc_company_price" id="lose_price1"></span>
+					<span class="rc_company_change red">
+						<i class="fa-arrow-circle-o-down"></i>
+						<span class="rc_company" id="lose_change1"></span>
+					</span>
+				</div>
+				</a>
+			</div>
+			<div class="rc_gain_list2">
+				<a class="rc_profile" id="lose_profile2" href="">
+					<div class="rc_image" id="rc_lose2"></div>
+
+				<div class="rc_company_info">
+					<span class="rc_company_name" id="lose_name2"></span>
+					<span class="rc_company_price" id="lose_price2"></span>
+					<span class="rc_company_change red">
+						<i class="fa-arrow-circle-o-down"></i>
+						<span class="rc_company"id="lose_change2"></span>
+					</span>
+				</div>
+				</a>
+			</div>
+			<div class="rc_gain_list1">
+				<a class="rc_profile" id="lose_profile3" href="">
+					<div class="rc_image" id="rc_lose3"></div>
+
+				<div class="rc_company_info">
+					<span class="rc_company_name" id="lose_name3"></span>
+					<span class="rc_company_price" id="lose_price3"></span>
+					<span class="rc_company_change red">
+						<i class="fa-arrow-circle-o-down"></i>
+						<span class="rc_company"id="lose_change3"></span>
+					</span>
+				</div>
+			</div>
+			</a>
+		</div>
+	<!--WHEN SEARCH IS ENABLE THIS BELOW IS SHOWN-->
+	<!--header area containing title and location-->
+  	<div class="so_header">
+  		<div class="box">
+  		<div class="so_header-icon">
+  			<i class="fa-line-chart header-icon"></i>
+  		</div>
+  		</div>
+  		<div class="so_header-title">
+  			<div class="header-title">STOCK OVERVIEW</div>
+			<div>
+				<!--<span class="header-company_text"></span>
+				<i class="fa fa-angle-double-right title-icon"></i>
+				<span class="header-company_location"></span> !-->
+				<a class="header-company_text" href="">
+					<span class="header-company_text"></span>
+				</a>
+				<i class="fa fa-angle-double-right title-icon"></i>
+				<a class="header-company_location">
+					<span class="header-company_location"></span>
+				</a>
+			</div>
+  		</div>
+		<div class="so_exit">X</div>
+  	</div>
+	<div class="so_widget-wrapper">
+		<!--header area containing title and location END-->
+		<!-- left wrapper container contains finance data -->
+		<div class="so_left-wrapper">
+			<div class="left-wrapper-top_profile">
+				<!--image of logo-->
+				<div class="sowidget_logo-set">
+					<div class="logo-image" id="company">
+						<a class="profile-link" href="" id="company-profile">
+						<div class="view-profile">
+							<div class="view-profile_body">
+								<div class="view-profile_txt1">View</div>
+								<div class="view-profile_txt2">Profile</div>
+								<div><i class="fa-mail-forward"></i></div>
+							</div>
+						</div>
+						</a>
+					</div>
+				</div>
+				<!--image of logo END-->
+				<!--title of company and price data-->
+				<div class="top_profile-text">
+					<div class="tp_company">
+						<div class="tp_company-text">.</div>
+						<span class="tp-click"><i class="fa-user tp-follow"></i>Follow</span>
+						<span class="tp-click"><i class="fa-share-alt tp-share"></i></i>Share</span>
+					</div>
+					<div class="tp_company">
+						<div class="tp_company-price"></div>
+						<span class="tp_company-color">
+							<i class="fa-arrow-up"></i>
+							<i class="fa-arrow-down"></i>
+							<span class="tp_company-change"></span>
+						</span>
+					</div>
+				</div>
+				<!--title of company and price data END-->
+			</div>
+			<!--tabs of dates-->
+			<div class="so_graph-tabs">
+				<div class="sv-tabs" id='Day' data-dir='1D'><span class="tabs-text">1D</span></div>
+				<div class="sv-tabs" data-dir='1W'><span class="tabs-text">1W</span></div>
+				<div class="sv-tabs" data-dir='1M'><span class="tabs-text">1M</span></div>
+				<div class="sv-tabs" data-dir='3M'><span class="tabs-text">3M</span></div>
+				<div class="sv-tabs" data-dir='6M'><span class="tabs-text">6M</span></div>
+				<div class="sv-tabs" data-dir='1Y'><span class="tabs-text">1Y</span></div>
+				<div class="sv-tabs" data-dir='2Y'><span class="tabs-text">2Y</span></div>
+			</div>
+			<!--tabs of dates END-->
+			<!--Area for stock overview GRAPH-->
+			<div id="so_graph"></div>
+			<div class="so_graph_line"></div>
+			<!--Area for stock overview GRAPH END-->
+			<!--bottom left profile that shows stock info-->
+			<div class="left-wrapper-bottom_profile">
+				<div class="stock_icons">
+					<i class="fa-area-chart"></i>
+					<i class="fa-pie-chart"></i>
+					<i class="fa-table"></i>
+					<i class="fa-bar-chart"></i>
+					<i class="fa-calendar-o"></i>
+					<i class="fa-circle-o"></i>
+				</div>
+				<div class="stock_key-names">
+					<a href="" id="marketcap-name"><div class="key-names" >Market Cap:</div>
+					<div class="key-names">PE Ratio:</div></a>
+					<a href="" id="totalshares-name"><div class="key-names">Total Shares:</div>
+					<div class="key-names">Average Volume:</div>
+					<div class="key-names">52 weeks:</div>
+					<a href="" id="open-name"><div class="key-names">Open:</div></a>
+				</div>
+				<div class="stock_key-data">
+					<div class="key-data" id="marketcap"></div>
+					<div class="key-data" id="peratio"></div>
+					<div class="key-data" id="totalshares"></div>
+					<div class="key-data" id="averagevolume"></div>
+					<div class="key-data" id="52weeks"></div>
+					<div class="key-data" id="open"></div>
+				</div>
+			</div>
+			<!--bottom left profile that shows stock info END-->
+		</div>
+		<!-- left wrapper container contains finance data END-->
+	</div>
+	<!--WHEN SEARCH IS ENABLE THIS BELOW IS SHOWNEND-->
+	<!--today's losers for sv150 TOP LIST END-->
+
+
+	</div>
+</body>
+</html>

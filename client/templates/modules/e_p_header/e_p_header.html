@@ -16,10 +16,10 @@
   {{#with execInfo}}
   <div class="p-head">
     <div class="p-head-top">
-      <div class="p-head-top-lastUpdate">LAST UPDATED: {{o_last_updated}}</div>
+      <div class="p-head-top-lastUpdate">LAST UPDATED: {{last_updated}}</div>
       <div class="p-head-top-container">
         <div class="p-head-top-container-location"><i class="fa fa-map-marker"></i>&nbsp; {{c_hq_location}} | WORK FOR: <a href="{{compURL}}"><span class="p-head-bottom-name">{{c_name}}</span></a></div>
-        <div class="p-head-top-container-profile"><span class="p-bold_font">EXECUTIVE</span> PROFILE</div>
+        <div class="p-head-top-container-profile"><span class="p-light_font">EXECUTIVE</span> PROFILE</div>
       </div>
       <div class="p-head-top-name"><span class="p-head-top-name-txt">{{e_name}}</span></div>
     </div>
@@ -36,16 +36,16 @@
 
 <template name="ep_body">
   {{#with compensationInfo}}
-  <div class="p-body" style="border-bottom: 2px solid black;">
+  <div class="p-body">
     <div class="p-body-box">
         <div>Total Compensation</div>
         <div class="value">${{compensation.o_compensation.TotalComp}}</div>
-        <div>{{lastUpdated}}</div>
+        <div></div>
     </div>
     <div class="p-body-box">
         <div>Other Compensation</div>
         <div class="value">${{compensation.o_compensation.AllOtherLT}}</div>
-        <div>{{lastUpdated}}</div>
+        <div></div>
     </div>
     <div class="p-body-box">
         <div>Executive Officer at</div>
@@ -55,7 +55,7 @@
     <div class="p-body-box" style="border-right: 0px">
         <div>{{c_ticker}} Salary</div>
         <div class="value">${{compensation.o_compensation.Salary}}</div>
-        <div>{{lastUpdated}}</div>
+        <div></div>
     </div>
   </div>
   {{/with}}

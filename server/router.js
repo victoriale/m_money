@@ -7,6 +7,42 @@ var ToCommaNumber = function(Number) {
   return split.join('.');
 }
 
+function getListID(exchange, location) {
+  var retArr = {loc_id: location};
+  retArr.l_name = 'Top-companies-with-stock-percent-gain';
+  retArr.list_id = 5233;
+  if ( typeof exchange == "undefined" ) {
+    return retArr;
+  }
+  exchange = exchange.toLowerCase();
+  var ids = {
+    'nasdaq': 5191,
+    'nyse': 5205,
+    'amex': 5219
+  };
+  var name = {
+    'nasdaq': 'Top-companies-on-NASDAQ-with-stock-percent-gain',
+    'nyse': 'Top-companies-on-NYSE-with-stock-percent-gain',
+    'amex': 'Top-companies-on-AMEX-with-stock-percent-gain'
+  };
+  if ( typeof ids[exchange] != "undefined" ) {
+    retArr.l_name = name[exchange];
+    retArr.list_id = ids[exchange];
+  }
+  return retArr;
+}
+
+// Used as async callback function
+var method_cb = function(error, data) {
+  var batch = batch_envar.get();
+  if ( error ) {
+    // console.log("Batch Error:", error);
+    batch.done({});
+    return false;
+  }
+  batch.done(data);
+}
+
 function author(num) {
   var authors = [
     'Kevin Owens',
@@ -100,6 +136,17 @@ var seoPicker = Picker.filter(function(req, res) {
   return false;
 });
 
+// Robots.txt
+seoPicker.route('/robots.txt',function(params, req, res){
+  res.end('User-agent: *\nAllow: /');
+});
+
+// Favicon.ico
+seoPicker.route('/favicon.ico',function(params, req, res){
+  res.writeHead(404);
+  res.end('Not Found');
+})
+
 // Company Profile
 seoPicker.route('/:ticker/:name/company/:company_id',company_profile);
 seoPicker.route('/:partner_id/:name/:ticker/c/:company_id',company_profile);
@@ -125,6 +172,9 @@ function company_profile(params, req, res){
       var data = res_arr;
       data.profile_header.c_hq_city = data.profile_header.c_hq_city.replace(/(.)(.*)/,function(a,b,c){ return b.toUpperCase() + c.toLowerCase(); });
       data.profile_header.comp_name = data.profile_header.c_name + ' (' + data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ')';
+      data.profile_header.comp_name2 = data.profile_header.c_name + ' (<a href="' + Router.pick_path('content.toplist',getListID(data.profile_header.c_exchange, compUrlName(fullstate(data.profile_header.c_hq_state))), info.params) + '">' + data.profile_header.c_exchange + '</a>:' + data.profile_header.c_ticker + ')';
+      var ticker_link = data.profile_header.c_exchange + ':' + data.profile_header.c_ticker;
+      var ticker_link2 = '<a href="' + Router.pick_path('content.toplist',getListID(data.profile_header.c_exchange, compUrlName(fullstate(data.profile_header.c_hq_state))), info.params) + '">' + data.profile_header.c_exchange + '</a>:' + data.profile_header.c_ticker;
 
       // AI parse:
       if ( typeof data.ai == "object" ) {
@@ -143,21 +193,24 @@ function company_profile(params, req, res){
       // Earnings
       var earnings = data.earnings;
       var earnings_report_data = [];
+      if ( typeof earnings == "string" ) {
+        earnings = [];
+      }
       for ( var m_index = 0; m_index < earnings.length; m_index++ ) {
         var c_data = earnings[m_index];
         earnings_report_data[m_index] = {
           title: data.profile_header.comp_name + ' ' + c_data.e_report_title
         };
         var localdata = [
-          'The ' + c_data.e_report_title + ' was filed on ' + c_data.e_filing_date + ' to ' + data.profile_header.c_exchange + '. This is an ' + c_data.e_report_type.toLowerCase() + ' report. This report is for fiscal year ' + c_data.e_fiscal_year + '.'
+          'The ' + c_data.e_report_title + ' was filed on ' + c_data.e_filing_date + ' to ' + data.profile_header.c_exchange + '. This is an ' + c_data.e_report_type + ' report. This report is for fiscal year ' + c_data.e_fiscal_year + '.'
         ];
         for ( var index = 0; index < c_data.e_report_data.length; index++ ) {
-          localdata[localdata.length] = data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' - ' + c_data.e_report_data[index].coa_title + ' (' + c_data.e_report_data[index].coa_code + '): $' + ToCommaNumber(c_data.e_report_data[index].coa_data * 1000000);
+          localdata[localdata.length] = ticker_link + ' - ' + c_data.e_report_data[index].coa_title + ' (' + c_data.e_report_data[index].coa_code + '): $' + ToCommaNumber(c_data.e_report_data[index].coa_data * 1000000);
         }
         earnings_report_data[m_index].content = {line: localdata};
       }
       // Executives
-      var executives = data.whos_who.officers;
+      var executives = data.whos_who.officers || [];
       var exec_data = [];
       for ( var index = 0; index < executives.length; index++ ) {
         var e_data = executives[index];
@@ -185,7 +238,7 @@ function company_profile(params, req, res){
       if ( typeof data.news != "undefined" ) {
         for ( var index = 0; index < data.news.length; index++ ) {
           var n_data = {
-            title: data.profile_header.c_name + ' (' + data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ') ' + (new Date(parseInt(data.news[index].pubDate_ut)*1000)).toSNTFormTime() + ': <a href="' + data.news[index].link + '">' + data.news[index].title + '</a>',
+            title: data.profile_header.c_name + ' (' + ticker_link + ') ' + (new Date(parseInt(data.news[index].pubDate_ut)*1000)).toSNTFormTime() + ': <a href="' + data.news[index].link + '">' + data.news[index].title + '</a>',
             content: {
               line: [
                 data.news[index].description,
@@ -204,12 +257,12 @@ function company_profile(params, req, res){
       var location = '';
       if ( typeof data.profile_header.c_hq_state != "undefined" ) {
         if ( typeof fullstate(data.profile_header.c_hq_state) != "undefined" ) {
-          location = data.profile_header.comp_name + ' headquarters are located in ' + data.bio_location.c_street_addr + ' ' + data.profile_header.c_hq_city + ', <a href="' + Router.pick_path('content.locationprofile',{partner_id: info.params.partner_id, loc_id: fullstate(data.profile_header.c_hq_state)}, info.params) + '">' + data.profile_header.c_hq_state + '</a> ' + data.bio_location.c_zip;
+          location = data.profile_header.comp_name2 + ' headquarters are located in ' + data.bio_location.c_street_addr + ' ' + data.profile_header.c_hq_city + ', <a href="' + Router.pick_path('content.locationprofile',{partner_id: info.params.partner_id, loc_id: fullstate(data.profile_header.c_hq_state)}, info.params) + '">' + data.profile_header.c_hq_state + '</a> ' + data.bio_location.c_zip;
         } else {
           location = data.profile_header.comp_name + ' headquarters are located in ' + data.bio_location.c_street_addr + ' ' + data.profile_header.c_hq_city + ', <a href="' + Router.pick_path('content.locationprofile',{partner_id: info.params.partner_id, loc_id: fullstate(data.profile_header.c_hq_state)}, info.params) + '">' + data.profile_header.c_hq_state + '</a> ' + data.bio_location.c_zip;
         }
       } else {
-        location = location = data.profile_header.comp_name + ' headquarters are located in ' + data.bio_location.c_street_addr + ' ' + data.profile_header.c_hq_city;
+        location = data.profile_header.comp_name2 + ' headquarters are located in ' + data.bio_location.c_street_addr + ' ' + data.profile_header.c_hq_city;
       }
 
       // Save all the parts into different objects
@@ -221,7 +274,7 @@ function company_profile(params, req, res){
           data.ai,
           '',
           location,
-          data.profile_header.comp_name + ' is in the <a href="' + Router.pick_path('content.sector',{sector_id: data.profile_header.c_sector.replace(/ /g,'-'), loc_id: data.profile_header.c_hq_state}, info.params) + '">' + data.profile_header.c_sector.toLowerCase() + '</a> sector.',
+          data.profile_header.comp_name2 + ' is in the <a href="' + Router.pick_path('content.sector',{sector_id: compUrlName(data.profile_header.c_sector), loc_id: data.profile_header.c_hq_state}, info.params) + '">' + data.profile_header.c_sector.toLowerCase() + '</a> sector.',
           '',
           'Thomson Reuters Summary:',
           data.bio_location.c_desc
@@ -232,14 +285,14 @@ function company_profile(params, req, res){
         content: {
           line: [
             'Last Updated: ' + (new Date(data.daily_update.csi_price_last_updated)).toSNTFormTime(),
-            data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' Share Price: $' + ToCommaNumber(data.daily_update.csi_price),
-            data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' Change: $' + data.daily_update.csi_price_change_since_last + ' (' + data.daily_update.csi_percent_change_since_last + '%)',
-            data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' Opening Price: $' + ToCommaNumber(data.daily_update.csi_opening_price),
-            data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' Closing Price: $' + ToCommaNumber(data.daily_update.csi_closing_price),
-            data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' Total Shares: ' + ToCommaNumber(data.daily_update.csi_total_shares),
-            data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' Market Cap: ' + ToCommaNumber(data.daily_update.csi_market_cap),
-            data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' PE Ratio: ' + data.daily_update.csi_pe_ratio,
-            data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ' Trading Volume: ' + ToCommaNumber(data.daily_update.csi_trading_vol)
+            ticker_link2 + ' Share Price: $' + ToCommaNumber(data.daily_update.csi_price),
+            ticker_link + ' <a href="' + Router.pick_path('content.toplist',getListID(undefined, data.profile_header.c_hq_state), info.params) + '">Change</a>: $' + data.daily_update.csi_price_change_since_last + ' (' + data.daily_update.csi_percent_change_since_last + '%)',
+            ticker_link + ' Opening Price: $' + ToCommaNumber(data.daily_update.csi_opening_price),
+            ticker_link + ' Closing Price: $' + ToCommaNumber(data.daily_update.csi_closing_price),
+            ticker_link + ' Total Shares: ' + ToCommaNumber(data.daily_update.csi_total_shares),
+            ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-market-cap', list_id: '5222', loc_id: data.profile_header.c_hq_state}) + '">Market Cap</a>: ' + ToCommaNumber(data.daily_update.csi_market_cap),
+            ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-PE-ratio', list_id: '5223', loc_id: data.profile_header.c_hq_state}) + '">PE Ratio</a>: ' + data.daily_update.csi_pe_ratio,
+            ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-volume', list_id: '5226', loc_id: data.profile_header.c_hq_state}) + '">Trading Volume</a>: ' + ToCommaNumber(data.daily_update.csi_trading_vol)
           ]
         }
       };
@@ -255,21 +308,21 @@ function company_profile(params, req, res){
       var featList = {};
       if ( featured_lists.length != 0 ) {
         var featList = {
-          title: 'Featured Lists of ' + data.profile_header.comp_name,
+          title: 'Featured Lists of ' + data.profile_header.comp_name2,
           h3: featured_lists
         };
       }
       var earnings = {};
       if ( earnings_report_data.length != 0 ) {
         var earnings = {
-          title: 'Earnings Reports for ' + data.profile_header.comp_name,
+          title: 'Earnings Reports for ' + data.profile_header.comp_name2,
           h3: earnings_report_data
         };
       }
       var ran_facts = {};
-      if ( data.did_you_know.facts.length != 0 ) {
+      if ( typeof data.did_you_know == "object" && data.did_you_know.facts.length != 0 ) {
         var ran_facts = {
-          title: 'Random Facts About ' + data.profile_header.comp_name,
+          title: 'Random Facts About ' + data.profile_header.comp_name2,
           content: {
             line: data.did_you_know.facts
           }
@@ -307,19 +360,19 @@ function company_profile(params, req, res){
         head_data.url = 'http://www.myinvestkit.com' + Router.pick_path('content.companyprofile', {partner_id: info.params.partner_id, company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker},info.params);
         todayAt.title = '<a href="' + Router.pick_path('content.finoverview',{partner_id: info.params.partner_id, company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker}, info.params) + '">' + data.profile_header.comp_name + '\'s Daily Update</a>';
         whosWho.title = '<a href="' + Router.pick_path('content.boardcommittee',{partner_id: info.params.partner_id, ticker: data.profile_header.c_ticker, name: compUrlName(data.profile_header.c_name), company_id: data.profile_header.c_id}, info.params) + '">Meet the Executives For ' + data.profile_header.comp_name + '</a>';
-        featList.title = data.profile_header.comp_name + '\'s Featured Lists';
-        earnings.title = data.profile_header.comp_name + '\'s Earnings Reports';
-        ran_facts.title = data.profile_header.comp_name + '\' Random Facts';
+        featList.title = data.profile_header.comp_name2 + '\'s Featured Lists';
+        earnings.title = data.profile_header.comp_name2 + '\'s Earnings Reports';
+        ran_facts.title = data.profile_header.comp_name2 + '\' Random Facts';
         var h2Data = [todayAt, featList, ran_facts, whosWho, innews, earnings];
         var h1 = {
-          title: 'Everything You Need To Know About ' + data.profile_header.comp_name,
+          title: 'Everything You Need To Know About ' + data.profile_header.comp_name2,
           content: h1content,
           h2: h2Data
         };
       } else {
         var h2Data = [todayAt, whosWho, featList, earnings, ran_facts, innews];
         var h1 = {
-          title: 'An Investor\'s Guide To ' + data.profile_header.comp_name,
+          title: 'An Investor\'s Guide To ' + data.profile_header.comp_name2,
           content: h1content,
           h2: h2Data
         };
@@ -352,15 +405,6 @@ function company_profile(params, req, res){
     });
 
     var functions = [];
-    var method_cb = function(error, data) {
-      var batch = batch_envar.get();
-      if ( error ) {
-        console.log("Batch Error:", error);
-        batch.done({});
-        return false;
-      }
-      batch.done(data);
-    }
 
     functions.push(function(batch){
       batch_envar.withValue(batch, function(){
@@ -486,16 +530,19 @@ function executive_profile(params, req, res){
           break;
         }
         var l_data = {};
-        l_data.title = profile_header.o_full_name + ' at <a href="' + Router.path('content.companyprofile',{company_id: c_data[index].c_id, ticker: c_data[index].c_ticker, name: compUrlName(c_data[index].c_name)}, info.params) + '">' + c_data[index].c_name + '</a> For ' + (new Date(c_data[index].o_period_end_date)).getFullYear();
+        l_data.title = profile_header.o_full_name + ' at <a href="' + Router.pick_path('content.companyprofile',{company_id: c_data[index].c_id, ticker: c_data[index].c_ticker, name: compUrlName(c_data[index].c_name)}, info.params) + '">' + c_data[index].c_name + '</a> For ' + (new Date(c_data[index].o_period_end_date)).getFullYear();
         l_data.content = {line: []};
         if ( c_data[index].o_compensation != "" ) {
           for ( var attr in c_data[index].o_compensation ) {
             if ( c_data[index].o_compensation.hasOwnProperty(attr) ) {
               if ( typeof trans_arr[attr] != "undefined" ) {
-                l_data.content.line[l_data.content.line.length] = profile_header.o_full_name + ' at <a href="' + Router.path('content.companyprofile',{company_id: c_data[index].c_id, ticker: c_data[index].c_ticker, name: compUrlName(c_data[index].c_name)}, info.params) + '">' + c_data[index].c_name + '</a> ' + (new Date(c_data[index].o_period_end_date)).getFullYear() + ' ' + trans_arr[attr] + ': $' + ToCommaNumber(c_data[index].o_compensation[attr]);
+                l_data.content.line[l_data.content.line.length] = profile_header.o_full_name + ' at <a href="' + Router.pick_path('content.companyprofile',{company_id: c_data[index].c_id, ticker: c_data[index].c_ticker, name: compUrlName(c_data[index].c_name)}, info.params) + '">' + c_data[index].c_name + '</a> ' + (new Date(c_data[index].o_period_end_date)).getFullYear() + ' ' + trans_arr[attr] + ': $' + ToCommaNumber(c_data[index].o_compensation[attr]);
               }
             }
           }
+        }
+        if ( l_data.content.line.length == 0 ) {
+          l_data.content.line[l_data.content.line.length] = 'No Compensation Information Found';
         }
         if ( l_data.content.line.length > 0 ) {
           compensation.h3[compensation.h3.length] = l_data;
@@ -526,7 +573,7 @@ function executive_profile(params, req, res){
       var other_execs = [];
       for ( var index = 0; index < data.whos_who.length; index++ ) {
         var e_data = data.whos_who[index];
-        other_execs[other_execs.length] = '<b>' + e_data.o_first_name + ' ' + e_data.o_middle_initial + ' ' + e_data.o_last_name + '</b>: ' + e_data.o_current_title.long_title;
+        other_execs[other_execs.length] = profile_header.c_name_orig + '\'s <a href="' + Router.pick_path('content.executiveprofile',{fname: e_data.o_first_name, lname: e_data.o_last_name, ticker: e_data.c_ticker, exec_id: e_data.o_id}, info.params) + '">' + e_data.o_first_name + ' ' + e_data.o_middle_initial + ' ' + e_data.o_last_name + '</a>: ' + e_data.o_current_title.long_title;
       }
 
       var published = (new Date()).toSNTForm();
@@ -560,7 +607,7 @@ function executive_profile(params, req, res){
       if ( other_execs.length != 0 ) {
         var other_exec = {
           title: 'Other Executives at ' + profile_header.c_name,
-          content: {line: other_execs}
+          content: {ul: other_execs}
         };
       }
 
@@ -595,7 +642,6 @@ function executive_profile(params, req, res){
         head_data.title = 'Everything You Need To Know About ' + profile_header.c_name_orig + '\'s ' + profile_header.o_full_name + ' | ' + data.results.name + ' Finance';
         head_data.description = 'Compensation details, insider activity and other information about ' + profile_header.c_name_orig + '\'s executive ' + profile_header.o_full_name + '.';
         head_data.url = 'http://www.myinvestkit.com' + Router.pick_path('content.executiveprofile',{partner_id: info.params.partner_id, exec_id: profile_header.o_id, fname: profile_header.o_first_name, lname: profile_header.o_last_name, ticker: profile_header.c_ticker}, info.params);
-        comp.title = 'Compensation For ' + profile_header.o_full_name + ' at ' + profile_header.c_name;
         rivals.title = 'Other Executives Who Went To College With ' + profile_header.o_full_name;
         wrk_hist.title = 'Other Places ' + profile_header.o_full_name + ' Has Worked';
         other_exec.title = profile_header.c_name + '\'s Other Executives';
@@ -641,15 +687,6 @@ function executive_profile(params, req, res){
     });
 
     var functions = [];
-    var method_cb = function(error, data) {
-      var batch = batch_envar.get();
-      if ( error ) {
-        console.log("Batch Error:", error);
-        batch.done({});
-        return false;
-      }
-      batch.done(data);
-    }
 
     functions.push(function(batch){
       batch_envar.withValue(batch, function(){
@@ -753,7 +790,7 @@ function location_profile(params, req, res){
         var t_data = data.market_movers[index];
         var items = [];
         for ( var i = 0; i < t_data.data.top_list_list.length; i++ ) {
-          items.push('<a href="' + Router.pick_path('content.companyprofile',{comapny_id: t_data.data.top_list_list[i].c_id, ticker: t_data.data.top_list_list[i].c_ticker, name: t_data.data.top_list_list[i].c_name}) + '">' + t_data.data.top_list_list[i].c_name + ' (' + t_data.data.top_list_list[i].c_exchange + ':' + t_data.data.top_list_list[i].c_ticker + ')</a> as of ' + (new Date(t_data.data.top_list_list[i].csi_price_last_updated)).toSNTFormTime());
+          items.push('<a href="' + Router.pick_path('content.companyprofile',{company_id: t_data.data.top_list_list[i].c_id, ticker: t_data.data.top_list_list[i].c_ticker, name: t_data.data.top_list_list[i].c_name}) + '">' + t_data.data.top_list_list[i].c_name + ' (' + t_data.data.top_list_list[i].c_exchange + ':' + t_data.data.top_list_list[i].c_ticker + ')</a> as of ' + (new Date(t_data.data.top_list_list[i].csi_price_last_updated)).toSNTFormTime());
         }
         var l_data = {
           title: '<a href="' + Router.pick_path('content.toplist',{l_name: compUrlName(t_data.data.top_list_info.top_list_title), list_id: t_data.data.top_list_info.top_list_id, loc_id: data.profile_header.location}, info.params) + '">' + t_data.data.top_list_info.top_list_title + '</a>',
@@ -773,10 +810,10 @@ function location_profile(params, req, res){
           'Page Published on ' + published,
           'Page Updated on ' + updated,
           '',
-          data.profile_header.location + ' is home to ' + data.profile_header.total_companies + ' companies with a total market cap of $' + data.profile_header.total_market_cap + '. ' + data.profile_header.location + ' is also home to ' + data.profile_header.total_executives + ' executives.',
+          data.profile_header.location + ' is home to <a href="' + Router.pick_path('content.toplist',getListID(undefined,data.profile_header.location), info.params) + '">' + data.profile_header.total_companies + ' companies</a> with a total market cap of $' + data.profile_header.total_market_cap + '. ' + data.profile_header.location + ' is also home to ' + data.profile_header.total_executives + ' executives.',
           data.profile_header.location + ' Current Aggragate Price: $' + ToCommaNumber(data.location_daily_update.composite_summary.current_price),
           data.profile_header.location + ' Previous Close: $' + ToCommaNumber(data.location_daily_update.composite_summary.previous_close),
-          data.profile_header.location + ' Percent Change: ' + data.location_daily_update.composite_summary.percent_change + '%',
+          data.profile_header.location + ' <a href="' + Router.pick_path('content.toplist',getListID(undefined, data.profile_header.location), info.params) + '">Percent Change</a>: ' + data.location_daily_update.composite_summary.percent_change + '%',
           data.profile_header.location + ' Price Change: $' + ToCommaNumber(data.location_daily_update.composite_summary.price_change),
           data.profile_header.location + ' Today\'s High: $' + ToCommaNumber(data.location_daily_update.composite_summary.todays_high),
           data.profile_header.location + ' Today\'s Low: $' + ToCommaNumber(data.location_daily_update.composite_summary.todays_low),
@@ -812,7 +849,7 @@ function location_profile(params, req, res){
       };
 
       if ( typeof data.results != "undefined" ) {
-        h1content.line[0] = 'Written By: ' + author(info.params.loc_id.length + 1); // CHANGE TO DIFF AUTHOR WHEN CONST
+        h1content.line[0] = 'Written By: ' + author(info.params.loc_id.length + 1);
         head_data.siteName = data.results.name + ' Finance';
         head_data.title = 'Everything You Need To Know About Public Companies in ' + data.profile_header.location + ' | ' + data.results.name + ' Finance';
         head_data.description = 'Find out everything you need to know about publicly traded companies in ' + data.profile_header.location + ': Financial data, SEC documents, news, executive information and more.';
@@ -862,15 +899,6 @@ function location_profile(params, req, res){
     });
 
     var functions = [];
-    var method_cb = function(error, data) {
-      var batch = batch_envar.get();
-      if ( error ) {
-        console.log("Batch Error:", error);
-        batch.done({});
-        return false;
-      }
-      batch.done(data);
-    }
 
     functions.push(function(batch){
       batch_envar.withValue(batch, function(){
@@ -896,24 +924,24 @@ function location_profile(params, req, res){
         Meteor.call("GetLocationData",loc_id,"batch_4", bound_cb);
       });
     });
-    functions.push(function(batch){
-      batch_envar.withValue(batch, function(){
-        var bound_cb = Meteor.bindEnvironment(method_cb);
-        Meteor.call("GetLocationData",loc_id,"batch_5", bound_cb);
-      });
-    });
-    functions.push(function(batch){
-      batch_envar.withValue(batch, function(){
-        var bound_cb = Meteor.bindEnvironment(method_cb);
-        Meteor.call("GetLocationData",loc_id,"batch_6", bound_cb);
-      });
-    });
-    functions.push(function(batch){
-      batch_envar.withValue(batch, function(){
-        var bound_cb = Meteor.bindEnvironment(method_cb);
-        Meteor.call("GetLocationData",loc_id,"batch_7", bound_cb);
-      });
-    });
+    // functions.push(function(batch){
+    //   batch_envar.withValue(batch, function(){
+    //     var bound_cb = Meteor.bindEnvironment(method_cb);
+    //     Meteor.call("GetLocationData",loc_id,"batch_5", bound_cb);
+    //   });
+    // });
+    // functions.push(function(batch){
+    //   batch_envar.withValue(batch, function(){
+    //     var bound_cb = Meteor.bindEnvironment(method_cb);
+    //     Meteor.call("GetLocationData",loc_id,"batch_6", bound_cb);
+    //   });
+    // });
+    // functions.push(function(batch){
+    //   batch_envar.withValue(batch, function(){
+    //     var bound_cb = Meteor.bindEnvironment(method_cb);
+    //     Meteor.call("GetLocationData",loc_id,"batch_7", bound_cb);
+    //   });
+    // });
 
     if ( typeof params.partner_id != "undefined" ) {
       functions.push(function(batch){
@@ -931,11 +959,15 @@ function location_profile(params, req, res){
 }
 
 // List Page
-seoPicker.route('/:loc_id?/:l_name/:list_id/list',list_page);
+seoPicker.route('/:l_name/:list_id/list/:loc_id?',list_page);
 seoPicker.route('/:partner_id/:l_name/:loc_id?/:list_id/list',list_page);
 function list_page(params, req, res){
   console.log('***List Page SSR***');
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
+
+  if ( typeof params.loc_id != "undefined" ) {
+    params.loc_id = params.loc_id.replace(/-/g,' ');
+  }
 
   var loc_id = params.loc_id;
   if ( typeof params.loc_id != "undefined" && typeof fullstate(params.loc_id) != "undefined" ) {
@@ -972,14 +1004,28 @@ function list_page(params, req, res){
       var l_info = [];
       for ( var index = 0; index < data.top_list_gen.top_list_list.length; index++ ) {
         var cdata = data.top_list_gen.top_list_list[index];
-        l_info.push((index + 1) + ': <a href="' + Router.pick_path('content.companyprofile',{partner_id: info.params.partner_id, company_id: cdata.c_id, ticker: cdata.c_ticker, name: compUrlName(cdata.c_name)}, info.params) + '">' + cdata.c_name + ' (' + cdata.c_exchange + ':' + cdata.c_ticker + ')</a> as of ' + (new Date(cdata.latest_date)).toSNTFormTime());
+        var line = (index + 1) + ': <a href="' + Router.pick_path('content.companyprofile',{partner_id: info.params.partner_id, company_id: cdata.c_id, ticker: cdata.c_ticker, name: compUrlName(cdata.c_name)}, info.params) + '">' + cdata.c_name + ' (' + cdata.c_exchange + ':' + cdata.c_ticker + ')</a>: ' + cdata.c_name + ' stock is ';
+        if ( cdata.csi_price_last_operator == 0 ) {
+          line = line + 'down ';
+        } else {
+          line = line + 'up ';
+        }
+        line = line + ToCommaNumber(cdata.csi_percent_change_since_last) + '% or $' + ToCommaNumber(cdata.csi_price_change_since_last) + ' to $' + ToCommaNumber(cdata.csi_price);
+        line = line + ' as of ' + (new Date(cdata.latest_date)).toSNTFormTime();
+        l_info.push(line);
       }
 
       var head_data = { // Data to put into the head of the document (meta tags/title)
         description: data.top_list_gen.top_list_info.top_list_title,
         title: data.top_list_gen.top_list_info.top_list_title + ' | InvestKit.com',
-        url: 'www.google.com'
+        url: 'http://www.investkit.com' + Router.pick_path('content.toplist', {l_name: compUrlName(data.top_list_gen.top_list_info.top_list_title), list_id: data.top_list_gen.top_list_info.top_list_id, loc_id: compUrlName(info.params.loc_id)}, info.params)
       };
+
+      if ( typeof data.results != "undefined" ) {
+        head_data.siteName = data.results.name + ' Finance';
+        head_data.title = data.top_list_gen.top_list_info.top_list_title + ' | ' + data.results.name + ' Finance';
+        head_data.url = 'http://www.investkit.com' + Router.pick_path('content.toplist', {l_name: compUrlName(data.top_list_gen.top_list_info.top_list_title), list_id: data.top_list_gen.top_list_info.top_list_id, loc_id: compUrlName(info.params.loc_id)}, info.params);
+      }
 
       var page_data = {
         head_data: head_data,
@@ -1011,15 +1057,6 @@ function list_page(params, req, res){
     });
 
     var functions = [];
-    var method_cb = function(error, data) {
-      var batch = batch_envar.get();
-      if ( error ) {
-        console.log("Batch Error:", error);
-        batch.done({});
-        return false;
-      }
-      batch.done(data);
-    }
 
     functions.push(function(batch){
       batch_envar.withValue(batch, function(){
@@ -1137,15 +1174,6 @@ function exec_list(params, req, res){
     });
 
     var functions = [];
-    var method_cb = function(error, data) {
-      var batch = batch_envar.get();
-      if ( error ) {
-        console.log("Batch Error:", error);
-        batch.done({});
-        return false;
-      }
-      batch.done(data);
-    }
 
     functions.push(function(batch){
       batch_envar.withValue(batch, function(){
@@ -1189,7 +1217,7 @@ function sector_page(params, req, res) {
     loc_id = abbrstate(params.loc_id.toLowerCase());
   }
 
-  params.sector_id = params.sector_id.replace(/_/g,'/').replace(/-/g,' ');
+  params.sector_id = params.sector_id.replace(/_/g,'%5C%2F').replace(/-/g,' ');
 
   // Get the data
   info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){
@@ -1216,7 +1244,7 @@ function sector_page(params, req, res) {
 
       // Make the company list
       var c_list = [];
-      if ( typeof data.sector_companies == "array" ) {
+      if ( typeof data.sector_companies.companies == "array" || typeof data.sector_companies.companies == "object" ) {
         for ( var index = 0; index < data.sector_companies.companies.length; index++ ) {
           c_list.push('<a href="' + Router.pick_path('content.companyprofile',{name: compUrlName(data.sector_companies.companies[index].c_name), ticker: data.sector_companies.companies[index].c_ticker, company_id: data.sector_companies.companies[index].c_id}, info.params) + '">' + data.sector_companies.companies[index].c_name + ' (' + data.sector_companies.companies[index].c_exchange + ':' + data.sector_companies.companies[index].c_ticker + ')');
         }
@@ -1237,7 +1265,7 @@ function sector_page(params, req, res) {
       var page_data = {
         head_data: head_data,
         h1: {
-          title: data.sector_companies.sector + ' Companies in ' + info.params.loc_id,
+          title: data.sector_companies.sector + ' Companies in <a href="' + Router.pick_path('content.locationprofile',{loc_id: info.params.loc_id}, info.params) + '">' + info.params.loc_id + '</a>',
           content: {
             ul: c_list
           }
@@ -1266,15 +1294,6 @@ function sector_page(params, req, res) {
     });
 
     var functions = [];
-    var method_cb = function(error, data) {
-      var batch = batch_envar.get();
-      if ( error ) {
-        console.log("Batch Error:", error);
-        batch.done({});
-        return false;
-      }
-      batch.done(data);
-    }
 
     functions.push(function(batch){
       batch_envar.withValue(batch, function(){
@@ -1333,7 +1352,7 @@ function cmp_news(params, req, res) {
       if ( typeof data.news != "undefined" ) {
         for ( var index = 0; index < data.news.length; index++ ) {
           var n_data = {
-            title: '<a href="' + Router.pick_path('content.company_profile',{company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker}, info.params) + '">' + data.profile_header.c_name + ' (' + data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ')</a> ' + (new Date(parseInt(data.news[index].pubDate_ut)*1000)).toSNTFormTime() + ': <a href="' + data.news[index].link + '">' + data.news[index].title + '</a>',
+            title: '<a href="' + Router.pick_path('content.companyprofile',{company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker}, info.params) + '">' + data.profile_header.c_name + ' (' + data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ')</a> ' + (new Date(parseInt(data.news[index].pubDate_ut)*1000)).toSNTFormTime() + ': <a href="' + data.news[index].link + '">' + data.news[index].title + '</a>',
             content: {
               line: [
                 data.news[index].description,
@@ -1360,7 +1379,7 @@ function cmp_news(params, req, res) {
       var page_data = {
         head_data: head_data,
         h1: {
-          title: 'News About <a href="' + Router.pick_path('content.company_profile',{company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker}, info.params) + '">' + data.profile_header.c_name + ' (' + data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ')</a>',
+          title: 'News About <a href="' + Router.pick_path('content.companyprofile',{company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker}, info.params) + '">' + data.profile_header.c_name + ' (' + data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ')</a>',
           h2: news_list
         }
       };
@@ -1387,15 +1406,6 @@ function cmp_news(params, req, res) {
     });
 
     var functions = [];
-    var method_cb = function(error, data) {
-      var batch = batch_envar.get();
-      if ( error ) {
-        console.log("Batch Error:", error);
-        batch.done({});
-        return false;
-      }
-      batch.done(data);
-    }
 
     functions.push(function(batch){
       batch_envar.withValue(batch, function(){
@@ -1494,16 +1504,18 @@ function exec_comp(params, req, res){
           loc_data.title = '<a href="' + Router.pick_path('content.executiveprofile', {fname: profile_header.o_first_name, lname: profile_header.o_last_name, exec_id: profile_header.o_id, ticker: profile_header.c_ticker}, info.params) + '">' + profile_header.o_full_name + '</a>\'s Compensation For ' + (new Date(c_data[index].o_period_end_date)).getFullYear();
         }
         var l_data = {};
-        l_data.title = profile_header.o_full_name + ' at <a href="' + Router.path('content.companyprofile',{company_id: c_data[index].c_id, ticker: c_data[index].c_ticker, name: compUrlName(c_data[index].c_name)}, info.params) + '">' + c_data[index].c_name + '</a> in ' + (new Date(c_data[index].o_period_end_date)).getFullYear();
+        l_data.title = profile_header.o_full_name + ' at <a href="' + Router.pick_path('content.companyprofile',{company_id: c_data[index].c_id, ticker: c_data[index].c_ticker, name: compUrlName(c_data[index].c_name)}, info.params) + '">' + c_data[index].c_name + '</a> in ' + (new Date(c_data[index].o_period_end_date)).getFullYear();
         l_data.content = {line: []};
         if ( c_data[index].o_compensation != "" ) {
           for ( var attr in c_data[index].o_compensation ) {
             if ( c_data[index].o_compensation.hasOwnProperty(attr) ) {
               if ( typeof trans_arr[attr] != "undefined" ) {
-                l_data.content.line[l_data.content.line.length] = profile_header.o_full_name + ' at <a href="' + Router.path('content.companyprofile',{company_id: c_data[index].c_id, ticker: c_data[index].c_ticker, name: compUrlName(c_data[index].c_name)}, info.params) + '">' + c_data[index].c_name + '</a> ' + trans_arr[attr] + ': $' + ToCommaNumber(c_data[index].o_compensation[attr]);
+                l_data.content.line[l_data.content.line.length] = profile_header.o_full_name + ' at <a href="' + Router.pick_path('content.companyprofile',{company_id: c_data[index].c_id, ticker: c_data[index].c_ticker, name: compUrlName(c_data[index].c_name)}, info.params) + '">' + c_data[index].c_name + '</a> ' + trans_arr[attr] + ': $' + ToCommaNumber(c_data[index].o_compensation[attr]);
               }
             }
           }
+        } else {
+          l_data.content.line[l_data.content.line.length] = 'No Compensation Information Found';
         }
         if ( c_data[index].c_name != null && l_data.content.line.length > 0 ) {
           loc_data.h3[loc_data.h3.length] = l_data;
@@ -1553,13 +1565,13 @@ function exec_comp(params, req, res){
         head_data.description = 'Compensation details about ' + profile_header.c_name_orig;
         head_data.url = 'http://www.myinvestkit.com' + Router.pick_path('content.compensation',{partner_id: info.params.partner_id, exec_id: profile_header.o_id, fname: profile_header.o_first_name, lname: profile_header.o_last_name, ticker: profile_header.c_ticker}, info.params);
         var h1 = {
-          title: 'Everything You Need To Know About ' + profile_header.c_name + '\'s ' + profile_header.o_full_name,
+          title: 'Everything You Need To Know About ' + profile_header.c_name + '\'s Compensation',
           content: h1content,
           h2: compensation
         };
       } else {
         var h1 = {
-          title: 'An Investors Guide To ' + profile_header.o_full_name + ' From ' + profile_header.c_name,
+          title: 'An Investors Guide To ' + profile_header.o_full_name + '\'s Compensation',
           content: h1content,
           h2: compensation
         };
@@ -1592,15 +1604,6 @@ function exec_comp(params, req, res){
     });
 
     var functions = [];
-    var method_cb = function(error, data) {
-      var batch = batch_envar.get();
-      if ( error ) {
-        console.log("Batch Error:", error);
-        batch.done({});
-        return false;
-      }
-      batch.done(data);
-    }
 
     functions.push(function(batch){
       batch_envar.withValue(batch, function(){
@@ -1697,7 +1700,7 @@ function fin_ovw(params, req, res) {
         l_line = l_line + 'In ' + c_name + '\'s most recent trading day, ' + c_name + ' hit a high of $' + ToCommaNumber(cdata.csi_high) + ' and a low of $' + ToCommaNumber(cdata.csi_low) + '. ';
       }
       if ( areDefined(cdata,['avg_volume','csi_total_shares','csi_market_cap']) ) {
-        l_line = l_line + 'There are ' + ToCommaNumber(cdata.csi_total_shares) + ' shares of ' + c_name + ', while the trading volume averages ' + ToCommaNumber(Math.round(cdata.avg_volume)) + ' shares. The total market cap of ' + c_name + ' is $' + ToCommaNumber(cdata.csi_market_cap) + '. ';
+        l_line = l_line + 'There are ' + ToCommaNumber(cdata.csi_total_shares) + ' shares of ' + c_name + ', while the <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-volume', list_id: '5226', loc_id: data.fin_overview.company_data.c_hq_state}, info.params) + '">trading volume</a> averages ' + ToCommaNumber(Math.round(cdata.avg_volume)) + ' shares. The <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-market-cap', list_id: '5222', loc_id: data.fin_overview.company_data.c_hq_state}, info.params) + '">total market cap</a> of ' + c_name + ' is $' + ToCommaNumber(cdata.csi_market_cap) + '. ';
       }
       line[line.length] = l_line;
       line[line.length] = '';
@@ -1750,15 +1753,6 @@ function fin_ovw(params, req, res) {
     });
 
     var functions = [];
-    var method_cb = function(error, data) {
-      var batch = batch_envar.get();
-      if ( error ) {
-        console.log("Batch Error:", error);
-        batch.done({});
-        return false;
-      }
-      batch.done(data);
-    }
 
     functions.push(function(batch){
       batch_envar.withValue(batch, function(){
@@ -2148,15 +2142,6 @@ seoPicker.route('/:partner_id',function(params, req, res){
     });
 
     var functions = [];
-    var method_cb = function(error, data) {
-      var batch = batch_envar.get();
-      if ( error ) {
-        console.log("Batch Error:", error);
-        batch.done({});
-        return false;
-      }
-      batch.done(data);
-    }
 
     functions.push(function(batch){
       batch_envar.withValue(batch, function(){

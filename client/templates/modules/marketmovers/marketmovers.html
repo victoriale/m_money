@@ -7,21 +7,26 @@ Associated Files: marketmovers.html, marketmovers.js and list_of_lists.less
 <template name="marketmovers">
   {{#with checkList}}
   <div class="module-listoflists">
-    <div class="list_header"><span class='list_header-line'></span>Top Companies Moving The Market
+    <div class="list_header"><span class='list_header-line'></span>Top Companies In {{headerInfo.fullstate}} Moving The Market
     </div>
     {{#each listsData}}
     <div class="list_ol" style="background-color:{{index_color}}">
       <div class="list_ol-top">
         {{#with data.top}}
         <a href="{{url}}">
-          <div class="list_ol-top-img1" style="background-image:url('{{imageUrl c_logo}}')"></div>
+          <div class="list_ol-top-img1" style="background-image:url('{{imageUrl c_logo}}')">
+            <div class="hover">
+              <div class="hover-txt1">View</div>
+              <div class="hover-txt2">Profile</div>
+            </div>
+          </div>
         </a>
         {{/with}}
         <div class="list_ol-top-content">
           <div class="list_ol-top-content-textbox">
             <div class="list_ol-top-content-textbox-txt1">
               <i class="fa fa-map-marker" style="color:#3098ff"></i>
-              United States
+              <a href="{{headerInfo.loc_url}}">{{headerInfo.fullstate}}</a>
             </div>
             <div class="list_ol-top-content-textbox-txt2">
               {{data.top_list_info.top_list_title}}
@@ -30,7 +35,9 @@ Associated Files: marketmovers.html, marketmovers.js and list_of_lists.less
           <div class="list_ol-top-content-compbox">
             {{#each data.top_list_list}}
             <a href="{{url}}">
-              <div class="list_ol-top-content-compbox-subimages" style="background-image:url('{{imageUrl c_logo}}')"></div>
+              <div class="list_ol-top-content-compbox-subimages" style="background-image:url('{{imageUrl c_logo}}')">
+                <div class="hover"></div>
+              </div>
             </a>
             {{/each}}
           </div>
@@ -43,8 +50,8 @@ Associated Files: marketmovers.html, marketmovers.js and list_of_lists.less
         </div>
       </div>
       <div class="list_ol-bottom">
-        <!--<a href=""><div class="list_ol-bottom-share"><i class="fa fa-heart"></i> Save</div></a>-->
-        <a href="{{shareUrl}}"><div class="list_ol-bottom-share"><i class="fa fa-share-alt"></i> Share</div></a>
+        <!--<a href=""><div class="list_ol-bottom-share"><i class="fa fa-heart"></i> Save</div></a>
+        <a href="{{shareUrl}}"><div class="list_ol-bottom-share"><i class="fa fa-share-alt"></i> Share</div></a>-->
         <!--<a href=""><div class="list_ol-bottom-feedback"><i class="fa fa-flag"></i> Feedback</div></a>-->
       </div>
     </div>

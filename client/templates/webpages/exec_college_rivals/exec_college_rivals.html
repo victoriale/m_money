@@ -23,30 +23,33 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
   <!--gave the dimensions for the module with total height and width !-->
   <div class = "exr_riva-n_m">
     <!--dimensions for the circle container as ('cir-d') !-->
-    <div class="exr_riva-cir_d">
-    <!-- dimensions for the circle as ('circ')!-->
-    <div class="exr_riva-circ">
-      <!-- defines container for the smaller blue circle('sc_d') !-->
-      <!-- <div class= "exr_riva-sc_d">
-      <div class="exr_riva-sc_d exr_riva-sc">
-      <i class="exr_riva-bfo fa fa-reply"></i>
+
+      <div class="exr_riva-cir_d">
+      <!-- dimensions for the circle as ('circ')!-->
+      <div class="exr_riva-circ" style="background-image:url({{imageUrl HeadImg}})">
+        <!-- defines container for the smaller blue circle('sc_d') !-->
+        <!-- <div class= "exr_riva-sc_d">
+        <div class="exr_riva-sc_d exr_riva-sc">
+        <i class="exr_riva-bfo fa fa-reply"></i>
+        </div>
+        </div> -->
       </div>
-      </div> -->
-    </div>
-    </div>
+      </div>
+
     <!--defines the container for text box !-->
     <div class="exr_riva-tc">
     <!-- class date has all the font-weight and font specific !-->
     <div class="exr_riva-date">
-      LAST UPDATED: 06/24/2015, 8:00 AM EST
     </div>
     <!--specified font style for location !-->
     <div class="exr_riva-loc_st">
        <i class="fa fa-map-marker"></i>
     <!--specified font style for the state name !-->
-    <span class="exr_riva-loc_st">
-      The United States of America
-    </span>
+    <a href="/National/location">
+      <span class="exr_riva-loc_st">
+        The United States of America
+      </span>
+    </a>
     </div>
     <!-- specified font sytle for the stock disclaimer !-->
     <div class="exr_riva-loc_st exr_riva-disc">
@@ -69,11 +72,11 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
       </div>
       <div class="exr_riva-bar-button">
         <!-- the save option button-->
-        <a href="#"><i class="fa fa-heart"></i><span class="exr_riva-bar-text">Save</span></a>
+        <!--<a href="#"><i class="fa fa-heart"></i><span class="exr_riva-bar-text">Save</span></a>-->
       </div>
       <div class="exr_riva-bar-button">
         <!-- share option button -->
-        <a href="#"><i class="fa fa-share-alt"></i><span class="exr_riva-bar-text">Share</span></a>
+        <!--<a href="#"><i class="fa fa-share-alt"></i><span class="exr_riva-bar-text">Share</span></a>-->
       </div>
     </div>
     <div class="exr_riva-m_c">
@@ -103,11 +106,11 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
 
           <div class="exr_riva-fbt1">
             <!-- the save option button-->
-            <a href="#"><i class="exr_riva-fbt1-font1 fa fa-heart"></i><span class="exr_riva-fbt1-text1">Save</span></a>
+            <!--<a href="#"><i class="exr_riva-fbt1-font1 fa fa-heart"></i><span class="exr_riva-fbt1-text1">Save</span></a>-->
           </div>
           <div class="exr_riva-fbt1 exr_riva-fbt2">
             <!-- share option button -->
-            <a href="#"><i class="exr_riva-fbt1-font1 fa fa-share-alt"></i><span class="exr_riva-fbt1-text1">Share</span></a>
+            <!--<a href="#"><i class="exr_riva-fbt1-font1 fa fa-share-alt"></i><span class="exr_riva-fbt1-text1">Share</span></a>-->
           </div>
 
         <!-- the description about the person-->
@@ -168,28 +171,6 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
     <div class="exr_riva-wrapper">
       <!-- The loop starts here and the each will take each data item from the items on each iteration-->
       {{#each items}}
-      {{#if imghld}}
-      <div class="exr_riva-quotes">
-        <div class="exr_riva-quotes-head">Featured Companies in the United States</div>
-        {{#each quote}}
-        <div class="exr_riva-quotes-image">
-          <div class="exr_riva-gap1"></div>
-          <div class="exr_riva-quotes-image-text">
-            <div class="exr_riva-quotes-image-text-ln1">{{name}}</div>
-              <div class="exr_riva-quotes-image-text-vc">
-            <span class="exr_riva-quotes-image-text-ln1 exr_riva-quotes-image-text-ln4">
-              {{text}}
-            <span class="exr_riva-quotes-image-text-ln1 exr_riva-quotes-image-text-ln3">
-              {{text2}}
-            </span>
-            </span>
-          </div>
-          </div>
-        </div>
-        {{/each}}
-        <div class="exr_riva-quotes-arrow fa fa-angle-right"></div>
-      </div>
-      {{else}}
       <div class="exr_riva-{{getBackgroundStyle}}"><br>
         <!--This is the main (circle) image-->
         <div class="exr_riva-head-circ">
@@ -240,33 +221,38 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
         <!-- This displays the font awesome heart symbol beside the text "save"-->
         <div class="exr_riva-sn">
           <div  class="exr_riva-save">
+            <!--
             <i class="fa fa-heart"></i>
             <span  class="exr_riva-save exr_riva-st">
               Follow
             </span>
+          -->
           </div>
         </div>
 
         <!-- This displays the font awesome share symbol beside the text "share"-->
         <div class="exr_riva-sh">
           <div  class="exr_riva-share">
+            <!--
             <i class="fa fa-share-alt"></i>
             <span  class="exr_riva-share exr_riva-sht">
               Share
             </span>
+          -->
           </div>
         </div>
         <!-- This displays the font awesome flag symbol beside the text "Feedback"-->
         <div class="exr_riva-fe ">
           <div  class="exr_riva-share exr_riva-feedback">
+            <!--
             <i class="fa fa-flag"></i>
             <span  class="exr_riva-share exr_riva-ft">
               Feedback
             </span>
+          -->
           </div>
         </div>
       </div>
-      {{/if}}
       <!--This is the End of each loop -->
       {{/each}}
   <div class="exr_riva-footer">
@@ -294,11 +280,12 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
     </div>
   </div>
 </div>
-  <!--created a container for the fotter  !-->
-<div class="exr_riva-fotter">
-    {{> recommend}}
+<!--created a container for the footer  !-->
+<!--
+<div class="exr_riva-footer">
+  {{> recommend}}
 </div>
-
+-->
   </div>
 </div>
 </template>

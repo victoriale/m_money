@@ -35,15 +35,19 @@
             <div class="exec_body_featured_info_education-location_txt" >{{univ}}{{LOCATION}}</div>
           </div>
           <!--Featured executive images-->
-          <div class="exec_body_featured_info_main-image" style="background-image: url('{{imageUrl pic}}')"></div>
-          <div class="exec_body_featured_info_sub-image"></div>
+          <a href="{{execURL}}">
+            <div class="exec_body_featured_info_main-image" style="background-image: url('{{imageUrl pic}}')"></div>
+          </a>
+          <a href="{{comp_url}}">
+            <div class="exec_body_featured_info_sub-image"></div>
+          </a>
           <!--Featured executive name-->
           <div class="exec_body_featured_info_name">
             <div class="exec_body_featured_info_name_txt"> {{fname}} {{lname}} </div>
           </div>
           <!--Featured executive education info first line-->
           <div class="exec_body_featured_info_education-line1_txt">
-            <div>{{univ}} | Attended: 2002 - 2004</div>
+            <div>{{univ}}</div>
           </div>
           <!--Featured executive education info second line-->
           <div class="exec_body_featured_info_education-line2_txt">
@@ -71,7 +75,7 @@
       <!--List of other execs -->
       <div class="exec_body_list">
         {{#each tt}}
-        <a href="{{ExecURL}}">
+        <a href="{{execurl}}">
           <!--First single exec list item-->
           <div class="exec_body_list_single">
             <!--List item circle image-->
@@ -83,7 +87,7 @@
             </div>
             <!--List item middle line - company and position-->
             <div class="exec_body_list_single_position">
-              <div class="exec_blue exec_body_list_single_position_txt"> {{cnm1}} &nbsp; </div>
+              <a href="{{compurl}}"><div class="exec_blue exec_body_list_single_position_txt"> {{cnm1}} &nbsp; </div></a>
             <div class="exec_blue exec_body_list_single_position_txt1"> - &nbsp; {{longtl1}}</div>
             </div>
             <!--List item bottom line - education-->

@@ -50,16 +50,16 @@ function transformLocationDailyUpdate(){
 
   var highchartsData = [];
   var daily_update = {};
-
   data.composite_history.forEach(function(item, index){
     //Transform date
     var date = moment(item.date).format('X') * 1000;
     //Build point array
-    var point = [date, Number(item.price)]
-    //Push point array to data set
-    highchartsData.push(point);
+    if (!isNaN(Number(item.price)) && !isNaN(date) ){
+			var point = [date, Number(item.price)];
+      //Push point array to data set
+      highchartsData.push(point);
+		}
   })
-
   //GRAPH MUST BE ASC order from [0] - [max] where max is the latest date in unix
   highchartsData.reverse();
   data.highchartsData = highchartsData;
@@ -145,11 +145,12 @@ Template.daily_update.helpers({
       //return {new:"stuff"};
       return '';
     }
-
+    var getheader = Router.current().getParams();
     var currentRoute = Router.current().route.getName();
 
     switch(currentRoute){
       case 'content.locationprofile':
+        data.header = fullstate(getheader.loc_id);
         data.text1 = 'Todays Low';
         data.text2 = 'Todays High';
         data.text3 = 'Previous Close';
@@ -161,6 +162,7 @@ Template.daily_update.helpers({
         data.value4 = data.total_companies;
       break;
       case 'content.companyprofile':
+        data.header = getheader.name.replace(/-/g, ' ');
         data.text1 = 'Market Cap';
         data.text2 = 'PE Ratio';
         data.text3 = 'Total Shares';

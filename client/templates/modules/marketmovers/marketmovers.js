@@ -58,11 +58,16 @@ Template.marketmovers.helpers({
 
   headerInfo: function(){
     var data = Session.get('profile_header');
+    var params = Router.current().getParams();
     if(typeof data == 'undefined'){
       return false;
     }
-
-    return data.location;
+    data.loc_url = Router.pick_path('content.locationprofile',{
+      loc_id:params.loc_id,
+    })
+    data.fullstate = fullstate(params.loc_id);
+    
+    return data;
   },
 
   //Helper to build url for list of list page

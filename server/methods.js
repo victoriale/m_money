@@ -22,9 +22,11 @@ Meteor.methods({
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
+        console.log("ERROR ON ",batchNum);
         future.throw(e);
         return false;
       }
+        console.log("Got Data!", batchNum);
         future.return(data);
     });
 
@@ -43,9 +45,11 @@ Meteor.methods({
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
+        console.log("ERROR ON ",batchNum);
         future.throw(e);
         return false;
       }
+        console.log("Got Data!", batchNum);
         future.return(data);
     });
 
@@ -66,14 +70,25 @@ Meteor.methods({
     }
     console.log(UrlString);
 
-    Meteor.http.get(UrlString, function(error, data){
-      try{
-        data = JSON.parse(data['content']);
-      } catch (e) {
-        future.throw(e);
-        return false;
-      }
-        future.return(data);
+    curloc_id.withValue(batchNum, function(){
+      Meteor.http.get(UrlString, Meteor.bindEnvironment(function(error, data){
+        data.content = data.content.toString().replace(/^[^{]*/,function(a){ return ''; });
+        var batch = curloc_id.get();
+        if ( error ) {
+          console.log('Done - Error (Request)',batch);
+          future.throw(error);
+          return false;
+        }
+        try{
+          data = JSON.parse(data['content']);
+        } catch (e) {
+          console.log('Done - Error (Parse)',batch);
+          future.throw(e);
+          return false;
+        }
+        console.log('Done - Success',batch);
+          future.return(data);
+      }));
     });
 
     this.unblock();
@@ -409,22 +424,22 @@ Meteor.methods({
 
   topListData: function(index ,loc_id){
     var future = new Future();
-    console.log("New featured List Request For",loc_id);
+    console.log("New featured List Request",loc_id);
     console.log("List Index:",index);
 
     //random number to pick random list in list_index that's in database
     var x = Math.floor((Math.random() * 2) + 1);
     //param={list_index} , {location/DMA}
-    if(isNaN(loc_id) || index == null){
-      console.log('widget_list');
-      var UrlString = "http://apifin.investkit.com/call_controller.php?action=top_list&option="+loc_id;
-      console.log(UrlString);
+    console.log('testing:',index);
+    if(index == 'sv150_losers' || index == 'sv150_gainers' || index == 'female_ceo' || index == 'dollar_ceo'){
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=top_list&option="+index;
     }else if(loc_id === null || typeof loc_id == "undefined"){
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=top_list&option=list&param="+index;
     }else{
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=top_list&option=list&param="+index+","+loc_id;
     }
 
+    console.log("CALLIN NEW LIST:",UrlString);
     Meteor.http.get(UrlString, function(error, data){
       try{
         data = JSON.parse(data['content']);
@@ -441,11 +456,17 @@ Meteor.methods({
 
   listOfListLoc:function(loc_id){
     var future = new Future();
-    console.log("New featured List Request For",loc_id);
+    console.log("New featured List Request",loc_id);
 
     //random number to pick random list in list_index that's in database
     //param={list_index} , {location/DMA}
-    var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=list_of_lists&state="+loc_id;
+    if(loc_id == "National" || loc_id == ''){
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=list_of_lists";
+    }else if(isNaN(loc_id)){
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=list_of_lists&state="+loc_id;
+    }else{
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=list_of_lists&dma="+loc_id;
+    }
 
     console.log(UrlString);
 
@@ -508,7 +529,7 @@ Meteor.methods({
   //AI CONTENT METEOR CALL
   GetAIContent2: function(state, city){
     this.unblock();
-    var URL = "http://apifin.synapsys.us/yseop/yseop-location-class.php?state=" + state;
+    var URL = "http://apifin.synpays.us/yseop/yseop-location-class.php?state=" + state;
     var loc_id = state;
     if(typeof city != 'undefined' && city != null){
       URL += "&city="+ city;
@@ -552,7 +573,7 @@ Meteor.methods({
   },
 
   GetPartnerHeader: function(partner_id) {
-    var URLString = "http://apireal.investkit.com/listhuv/?action=get_partner_data&domain=" + partner_id;
+    var URLString = "http://apireal.synapsys.us/listhuv/?action=get_partner_data&domain=" + partner_id;
     var future = new Future();
     Meteor.http.get(URLString,function(error,data){
       if ( error ) {
@@ -655,9 +676,4 @@ Meteor.methods({
     return future.wait();
   }
 
-});
-
-Meteor.startup(function(){
-  robots.addLine('User-agent: *');
-  robots.addLine('Disallow: /');
 });

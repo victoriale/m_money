@@ -1,0 +1,132 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+
+<title>National Widget</title>
+<meta charset='utf-8'>
+<!--ATTENTION css/fontawesome.css is being called locally the cdn link site was not working-->
+<link href="../css/font-awesome.css" media="all" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../css/national_widget.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="http://code.highcharts.com/stock/highstock.js"></script>
+<script type="text/javascript" src="../js/national_widget.js"></script>
+
+</head>
+<body>
+  <div class="n_w_container">
+    <!--Wrapper that contains code of all national_widget components-->
+    <div class="national_widget">
+      <!--top of widget wrapper-->
+      <div class="mwwidget_mtabs">
+  			<span class="mtabs" data-dir="NASDAQ" style="background-color:#fff;border-bottom:0"><span class="underline">NASDAQ</span></span>
+  			<span class="mtabs" data-dir="AMEX"><span class="underline">AMEX</span></span>
+  			<span class="mtabs" data-dir="NYSE"><span class="underline">NYSE</span></span>
+  			<span class="mtabs" data-dir="find">
+  			<i class="fa-search"></i>
+  			<span class="underline">FIND</span></span>
+  		</div>
+        <!--Calls for the data and data graph of national widget-->
+      <div class="national_widget_wrapper">
+        <div class="top-profile">
+  				<div class="mw_info">
+  					<span class="price"></span>
+  					<span class="change"></span>
+  				</div>
+  				<div id="stockchart">
+  				</div>
+  			</div>
+        <div class="national_widget-title">
+          <span id="title_text">TODAY'S NASDAQ MARKET MOVERS</span>
+        </div>
+        <!--<div class="national_widget-location">
+          <i class="national_widget-location-icon"></i>
+          <span class="national_widget-location-text">{{location}}</span>
+        </div>-->
+        <!--top of widget wrapper END-->
+        <!-- middle of widget wrapper-->
+        <div class="national_widget-content">
+          <a class="nwprofile-link" target="_blank">
+            <div class="national_widget-content-image">
+              <div class="national_widget-content-hover">
+                <div class="national_widget-content-hover-text1">VIEW</div>
+                <div class="national_widget-content-hover-text2">PROFILE</div>
+              </div>
+            </div>
+          </a>
+          <div class="national_widget-content-textarea">
+            <a class="nwprofile-link" href=''><div class="national_widget-content-textarea-t1"></div></a>
+            <a class="nwlink" href=""><div class="national_widget-content-textarea-t2">Find Out Why?</div></a>
+          </div>
+          <!--Button on the right of middle wrapper-->
+          <div class="national_widget-content-buttonright" data-dir="next"><i class="fa fa-angle-right"></i></div>
+          <div class="national_widget-content-buttonleft" data-dir="prev"><i class="fa fa-angle-left"></i></div>
+        <!--Button on the right of middle wrapper END-->
+        </div>
+        <!-- middle of widget wrapper END-->
+        <!--bottom of widget wrapper-->
+        <a class ="nwlink" href="http://www.investkit.com/Top-companies-on-NASDAQ-with-stock-percent-loss/5420/list">
+          <div class="national_widget-listbutton">
+            <button class="national_widget-listbutton-button">
+              <div class="national_widget-listbutton-icon fa-line-chart"></div>
+              <div class="national_widget-listbutton-text">
+                <span class="national_widget-listbutton-t1">View the list</span>
+                <i class="fa fa-angle-right"></i>
+              </div>
+            </button>
+          </div>
+        </a>
+        <!--bottom of widget wrapper END-->
+        <!-- published by  NEEDed for legal purposes-->
+        <div class="presented_by">Presented By</div>
+      </div>
+      <div class="searchtab">
+  			<div class="search-container">
+  				<div class="search-title">
+  				Search for a Company
+  				</div>
+  				<form method='get' target='_blank' class="input-pill" action="/search">
+  					<input name="keyword" class="search-input" type="text" placeholder="e.g. Whole Foods">
+  					</input>
+  					<div class="search-button">
+  						<button class="input-pill_btn fa-search"></button>
+  					</div>
+  				</form>
+  				<div class="search-text">Search over <b>30k public companies</b>, all their executives and see in-depth information of what they are up to and what the people are saying.
+  				</div>
+  				<div class="search-border"></div>
+
+  				<div class="fa-fire gap">
+  					<span class="search-trending">Trending Searches</span>
+  				</div>
+          <table>
+      				<ol class="trending">
+                <td>
+        					<li class="trending">
+        						<a href="">Facebook,Inc.</a>
+        						<i class="fa-angle-double-right green"></i>
+        					</li>
+        					<li class="trending">
+        						<a href="">Tesla Motors,Inc.</a>
+        						<i class="fa-angle-double-right green"></i>
+        					</li>
+                </td>
+                <td>
+        					<li class="trending">
+        						<a href="">Apple Inc.</a>
+        						<i class="fa-angle-double-right green"></i>
+        					</li>
+                </td>
+    				  </ol>
+          </table>
+  			</div>
+  		</div>
+      <!--Wrapper that contains code of all national_widget components END-->
+      <!--ad stack code goes here-->
+      <div class="ad_location" id="ad_location0"></div>
+      <div class="ad_location" id="ad_location1"></div>
+      <!--ad stack code goes here END-->
+    </div>
+  </div>
+</body>
+</html>

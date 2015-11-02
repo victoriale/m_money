@@ -28,9 +28,9 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
      height: 50px;
      float: left;
    }
-   //font style for the fontawesome
+   //font style for the HN
    &-mailrep{
-     font-family: FontAwesome;
+     font-family: HN;
      color:  #ffffff ;
      font-size: 30px;/* Approximation due to font substitution */
      font-weight: 400;
@@ -152,7 +152,8 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
   {
     background-color:  #ffffff;
     width: 680px;
-    height: 2043px;
+    max-height: 2043px;
+    height: auto;
   }
   /*defined the height and width for the container for circle (circ_d) */
   &-cir_d{
@@ -169,6 +170,9 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
     width:100px;
     height: 100px;
     background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-size: cover !important;
+    background-position: center center !important;
     border-radius: 50%;
     border: 2px solid #cccccc;
   }
@@ -184,7 +188,7 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
   }
   /* defines the font details for the reply icon in smaller blue circle*/
   &-bfo{
-    font-family: FontAwesome;
+    font-family: HN;
     color:  #ffffff;
     font-size: 15px;
     font-weight: 400;
@@ -332,7 +336,7 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
       margin-left: 10px;
     }
     &-font1{
-      font-family: FontAwesome;
+      font-family: HN;
       color:  #f2f2f2;
       font-size: 14px;
       font-weight: 400;
@@ -487,7 +491,7 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
         color:  #44b224;
         }
       &-it4{
-        font-family: FontAwesome;
+        font-family: HN;
         color:  #44b224;;
         font-size: 16px;
         font-weight: 400;
@@ -655,7 +659,7 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
   }
   /*icon font fot the 'x' */
   &-x{
-    font-family: FontAwesome;
+    font-family: HN;
     color:  #000000;
     font-size: 10px;
     font-weight: 400;
@@ -767,7 +771,7 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
           width: 66px;
           }
         &-fn{
-          font-family: FontAwesome;
+          font-family: HN;
           color:  #ffffff;
           font-size: 14px;
           font-weight: 400;
@@ -872,14 +876,14 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
   }
   &-follws1
   {
-    font-family: FontAwesome;
+    font-family: HN;
     color:  #ca1010;
     font-size: 14px;
     text-align: left;
   }
   &-follws2
   {
-    font-family: FontAwesome;
+    font-family: HN;
     color:  #44b224;
     font-size: 14px;/* Approximation due to font substitution */
     text-align: left;
@@ -915,7 +919,7 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
 
   &-rttxg
   {
-    font-family: FontAwesome;
+    font-family: HN;
     color:  #44b224;
     font-size: 12px;
     font-weight: 400;
@@ -1053,7 +1057,7 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
     width:680px;
     height:45px;
     &-icon{
-      font-family: FontAwesome;
+      font-family: HN;
       color: #000000;
       font-size: 17.98px;
       font-weight: 400;
@@ -1264,7 +1268,7 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
   }
   //font syle for the quetion mark
   &-qt{
-    font-family: FontAwesome;
+    font-family: HN;
     color:  #f86f1d;
     font-size: 14px;
     font-weight: 400;
@@ -1348,7 +1352,7 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
     top: -5px;
   }
   /* container for the fotter('ft') */
-  &-fotter{
+  &-footer{
     width: 680px;
     height: 276px;
     position: relative;

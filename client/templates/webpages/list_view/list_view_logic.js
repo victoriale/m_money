@@ -16,34 +16,54 @@ Template.list_view.onRendered(function () {
 
 var backgroundStyle="tilewhite";
 Template.list_view.helpers({
+  image: function(){
+    var params = Router.current().getParams();
+    var data = params.loc_id;
+    if(isNaN(data)){
+      data = fullstate(data);
+      data = data.replace(/ /g, '_');
+      return "background-image: url('/StateImages/Location_"+ data +".jpg');";
+    }else{
+      return "background-image: url('/DMA_images/location-"+ data +".jpg');";
+    }
+  },
+
   toplist:function(){
-    var listdata = Session.get('top_list_gen');
+    var params = Router.current().getParams();
+    if(params.list_id == 'sv150_gainers' || params.list_id == 'sv150_losers'){
+      var listdata = Session.get('sv150_list');
+      listdata['top_list_list'] = listdata['sv150_list_data'];
+      listdata['top_list_info'] = {};
+      if(params.list_id == 'sv150_gainers'){
+        listdata['top_list_info']['top_list_title'] = "Top SV150 List Gainers";
+      }else{
+        listdata['top_list_info']['top_list_title'] = "Top SV150 List Losers";
+      }
+    }else{
+      var listdata = Session.get('top_list_gen');
+    }
     if(typeof listdata =='undefined'){
       return '';
     }
-
     $.map(listdata.top_list_list, function(data,index){
       if(index % 2 == 0){
         data['background'] = 'tilewhite';
       }else{
         data['background'] = 'tilegrey';
       }
-      console.log(data);
-      data['locUrl'] = Router.path('content.locationprofile',{
+      data['locUrl'] = Router.pick_path('content.locationprofile',{
         loc_id:data.c_hq_state,
       })
       data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
       data['rank'] = index+1;
-      data['url'] = Router.path('content.companyprofile',{
+      data['url'] = Router.pick_path('content.companyprofile',{
         ticker: data.c_ticker,
         name: compUrlName(data.c_name),
         company_id: data.c_id
       });
-
-      data.price = commaSeparateNumber_decimal(Number(data.csi_price).toFixed(2));
-      data.price_change = commaSeparateNumber_decimal(Number(data.csi_price_change_since_last).toFixed(2));
-      data.percent_change = commaSeparateNumber_decimal(Number(data.csi_percent_change_since_last).toFixed(2));
-
+      data.price = commaSeparateNumber_decimal(Number(data.lcsi_price).toFixed(2));
+      data.price_change = commaSeparateNumber_decimal(Number(data.lcsi_price_change_since_last).toFixed(2));
+      data.percent_change = commaSeparateNumber_decimal(Number(data.lcsi_percent_change_since_last).toFixed(2));
       //data from list can come in 6 different ways these values will catch and give results back
       for(objName in data){
         if(objName === 'stock_percent'){
@@ -70,22 +90,36 @@ Template.list_view.helpers({
           data['data_name'] = "Earnings Per Share";
           data['data_value'] = Number(data['eps']).toFixed(2);
         }
-      }
-    })
+      }//END OF FOR LOOP
+    })//END OF MAP function
+
     return listdata;
   },
 
   carouselList:function(){
     var count = Session.get("lv_count");
-    var listdata = Session.get('top_list_gen');
+    var params = Router.current().getParams();
+    if(params.list_id == 'sv150_gainers' || params.list_id == 'sv150_losers'){
+      var listdata = Session.get('sv150_list');
+      listdata['top_list_list'] = listdata['sv150_list_data'];
+      listdata['top_list_info'] = {};
+      if(params.list_id == 'sv150_gainers'){
+        listdata['top_list_info']['top_list_title'] = "Top SV150 List Gainers";
+      }else{
+        listdata['top_list_info']['top_list_title'] = "Top SV150 List Losers";
+      }
+    }else{
+      var listdata = Session.get('top_list_gen');
+    }
     if(typeof listdata =='undefined'){
       return '';
     }
+    Session.set('top_list_gen', listdata);
     $.map(listdata.top_list_list, function(data,index){
 
       data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
       data['rank'] = index+1;
-      data['url'] = Router.path('content.companyprofile',{
+      data['url'] = Router.pick_path('content.companyprofile',{
         ticker: data.c_ticker,
         name: compUrlName(data.c_name),
         company_id: data.c_id
@@ -121,7 +155,6 @@ Template.list_view.helpers({
     })
     return listdata.top_list_list[count];
   },
-
 
   //This function is called everytime "each" loop runs, it returns the respective class which is suppose to use on each iteration
   getBackgroundStyle: function() {

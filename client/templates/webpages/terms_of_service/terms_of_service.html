@@ -5,7 +5,7 @@ Description:conatct us webpage
 Associated Files: terms_of_service.html, terms_of_service_logic.js, about_us_page.less
 -->
 <template name="terms_of_service">
-  <div class="abus">
+  <div class="tos">
     <a href="{{back_url}}">
       <div class="abus-bkbx">
         <div class="abus-bkbx-bx"><i class="fa fa-reply"></i></div>
@@ -16,7 +16,7 @@ Associated Files: terms_of_service.html, terms_of_service_logic.js, about_us_pag
     <div class="abus-about">
         <div class="abus-about-image" style="background-image: url('{{image_url}}');"></div>
       <div class="abus-about-head">
-        <div class="abus-about-head-update">LAST UPDATED:{{Update}}</div>
+        <div class="abus-about-head-update"></div>
         <div class="abus-about-head-country"><i class="fa fa-map-marker"></i> &nbsp;{{Country}}</div>
         <H1>{{Title}}</H1>
         <H2>{{Statement}}</H2>
@@ -24,10 +24,7 @@ Associated Files: terms_of_service.html, terms_of_service_logic.js, about_us_pag
     </div>
     <div class="abus-kit">
       <div class="abus-kit-left">{{About}}</div>
-      <div class="abus-kit-right">
-        <a href="#"><i class="fa fa-heart"></i><span>Save</span></a>
-        <a href="#"><i class="fa fa-share-alt"></i><span class="abt_us-bar-text">Share</span></a>
-      </div>
+      <div class="abus-kit-right"></div>
     </div>
 
     <div class="abus-cnt">
@@ -49,7 +46,6 @@ Associated Files: terms_of_service.html, terms_of_service_logic.js, about_us_pag
       </div>
 
       <div class="abus-cnt-article">
-        <h7><i class="fa fa-calendar"></i> Dated June 24,2015</h7>
         <ol style="font-weight: bold;font-family: HN;">
           <li><b>The Agreement</b><br /><br />
             <p>By using the InvestKit site, user agrees to be bound by the Terms of Use (the "TOU"). If a user does not agree to the terms and conditions contained in the TOU and InvestKit's Privacy Policy, the user may not access or otherwise use the Site or any information contained therein.</p>
@@ -171,25 +167,5 @@ Associated Files: terms_of_service.html, terms_of_service_logic.js, about_us_pag
       </div>
 
     </div>
-
-    <div class="abus-invhead">Because you like <b>InvestKit</b>, we recommend: <b>The InvestKit Magazine</b></div>
-
-    <div class="abus-rdr">
-      <div class="abus-rdr-container">
-        <div class="abus-rdr-container-icon"></div>
-        <div class="abus-rdr-container-dr">Digital Reader</div>
-        <div class="abus-rdr-container-explore">Explore InvestKit</div>
-        <div class="abus-rdr-container-line"></div>
-        <a href="{{profile_ulr}}">
-          <div class="abus-rdr-container-circle"><i class="fa fa-angle-right"></i></div>
-        </a>
-        <div class="abus-rdr-container-left">{{Profile}}</div>
-        <div class="abus-rdr-container-text">Get an in–depth, visual look at today’s stock price,
-the compeition, executive compensation
-and much more.
-        </div>
-      </div>
-    </div>
-
   </div>
 </template>

@@ -1,0 +1,224 @@
+@import url(http://fonts.googleapis.com/css?family=Cabin:400,500,700);
+
+html, body { // Default vals across the board
+  margin-top: auto;
+  font-family: HN;
+  width: 100%;
+  height: auto;
+  background-color: @white;
+}
+  * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  }
+  @font-face{
+    font-family: HN;
+    src: url('public/fonts/HelveticaNeue.otf');
+  }
+
+  @font-face{
+    font-family: HN-B;
+    src: url('public/fonts/HelveticaNeue-Bold.otf');
+  }
+
+  @font-face{
+    font-family: HN-L;
+    src: url('public/fonts/HelveticaNeue-Light.otf');
+  }
+
+  .divorce-content-image,
+  .divorce-listbutton-icon{
+  background-repeat:no-repeat;
+  background-position:center center!important
+  }
+  .divorce_container{
+  width:300px;
+  height:auto;
+  overflow:hidden;
+  margin:0 auto;
+  z-index:20}
+  .ad_location{
+  width:300px;
+  height:250px;
+  opacity:0
+  }
+  .presented_by{
+  text-align:left;
+  color:#999;
+  font-size:10px;
+  padding:0 5px
+  }
+  .divorce{
+  width:100%;
+  height:250px;
+  background-color:#fff;
+  border-top:5px solid #666
+  }
+  .divorce:hover{
+  border-top:5px solid #44b224
+  }
+  .divorce-title{
+  font-family:Cabin;
+  font-size:24px;
+  font-weight:700;
+  text-align:center;
+  color:#000;
+  width:90%;
+  margin: 10px auto 0;
+  line-height: 1em;
+  }
+  .divorce-title #title_text{font-family:Cabin!important}
+  .divorce-location{
+  height:15px;
+  font-size:14px;
+  font-weight: bold;
+  display:table;
+  line-height: 1.5em;
+  margin-left:-5px;
+  }
+  .divorce-location-icon{
+  width:11px;
+  height:11px;
+  float:left;
+  color:#44b224;
+  background-image:url(public/re_icon_map_marker_sm.png);
+  background-repeat:no-repeat;
+  background-size:contain;
+  margin-top:4px
+  }
+  .divorce-location-text{
+  color:#000;
+  float:left;
+  font-size:14px;
+  padding-left:5px
+  }
+  .divorce-content{width:100%;
+  height:100px;
+  margin-top:5px;
+  }
+  .divorce-content-image{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  float:left;
+  box-shadow:0px 0px 0px 2px #ccc inset;
+  margin:0 15px;
+  background-size:cover}
+
+  .divorce-content-hover{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  float:left;
+  opacity:0;
+  color:#fff;
+  background-color:rgba(73,176,73,.75);
+  padding-top:25px
+  }
+  .divorce-content-hover-text1{
+  font-size:23px;
+  font-family:Cabin;
+  line-height:22px;
+  text-align:center
+  }
+  .divorce-content-hover-text2{
+  font-size:23px;
+  line-height:22px;
+  text-align:center;
+  font-weight:700
+  }
+  .divorce-content :hover{
+  opacity:1
+  }
+  .divorce-content-textarea{
+  height:auto;
+  width:100px;
+  float:left;
+  vertical-align:middle;
+  text-align:left;
+  position:relative;
+  top:25%;
+  }
+  .divorce-content-textarea-t1{
+  color:#4B4B4B;
+  font-size:28px;
+  height:35px;
+  font-weight:700
+  }
+  .divorce-content-textarea-t2{
+  color:#000;
+  font-size:12px;
+  line-height:1em
+  }
+  .divorce-content-button{
+  width:49px;
+  height:49px;
+  border:2px solid #000;
+  border-radius:50%;
+  color:#000;
+  font-size:35px;
+  margin-right:5px;
+  float:right;
+  font-weight:700;
+  position:relative;
+  top:25%;
+  line-height:44px;
+  text-align:center;
+  cursor:pointer
+  }
+  .divorce-content-button:hover{
+  color:#fff;
+  background-color:#000
+  }
+  .divorce-total{
+    color:#000;
+    font-size:12px;
+    height:20px;
+    margin:5px 0;
+    text-align: center;
+    line-height: 2em;
+  }
+  .divorce-total-price{
+    color:#000;
+    font-size:1em;
+    font-weight: bold;
+    font-family: HN-B;
+  }
+  .divorce-listbutton{
+  height:35px;
+  width:180px;
+  margin:5px auto;
+  box-sizing:border-box;
+  border-radius:5px
+  }
+  .divorce-listbutton-button{
+  width:100%;
+  height:100%;
+  border-radius:5px;
+  border:none;
+  padding:5px 10px;
+  background-color:#44b224
+  }
+  .divorce-listbutton-button:hover{
+  background-color:#000;
+  border-radius:5px
+  }
+  .divorce-listbutton-icon{
+  width:25px;
+  height:25px;
+  border-radius:50%;
+  background-image:url(public/joyfulhome_house_clear.png);
+  background-size:20px 20px;
+  background-color:#000;
+  float:left
+  }
+  .divorce-listbutton-text{
+  float:left;
+  font-size:15px;
+  color:#fff;
+  padding-left:20px;
+  line-height:24px}
+  .divorce-listbutton-t1{
+  padding-right:5px
+  }

@@ -14,12 +14,32 @@ Template.co_fin_overview.onCreated(function(){
 
     //If data does exist reformat data
     if(typeof data !== 'undefined'){
+      Meteor.call('GetAIContent', data.company_data.c_id, function(err, data){
+        if(err){
+          console.log("error Call", err);
+          return false;
+        }else{
+          var aiContent = createGenericString(false, data);
+          Session.set('AI_daily_update',aiContent);
+        }
+      })
+
       reformatFinancialOverviewData();
     }
   })
 })
 
 Template.co_fin_overview.helpers({
+  //Helper to get ai Content
+  AIcontent: function(){
+    var data = Session.get('AI_daily_update');
+
+    if(typeof data === 'undefined'){
+      return '';
+    }
+
+    return data;
+  },
   //Helper to determine chart
   getGraphObject: function(){
     var data = Session.get('new_fin_overview');
@@ -161,7 +181,6 @@ Template.co_fin_overview.helpers({
       return '#';
     }
 
-
     var company = compUrlName(data.company_data.c_name);
     var ticker = data.company_data.c_ticker;
 
@@ -218,12 +237,16 @@ Template.co_fin_overview.helpers({
     company_data.csi_price_change_since_last = commaSeparateNumber_decimal(Math.round(Number(company_data.csi_price_change_since_last) * 100) / 100);
     company_data.csi_percent_change_since_last = commaSeparateNumber_decimal(Math.round(Number(company_data.csi_percent_change_since_last) * 100) / 100);
     company_data.csi_market_cap = nFormatter(Number(company_data.csi_market_cap));
+    company_data.csi_earnings_per_share = Math.round(company_data.csi_earnings_per_share * 100) / 100;
 
     company_data.csi_pe_ratio = (Number(company_data.csi_pe_ratio)).toFixed(2);
 
     //Transform dates
     company_data.csi_price_last_updated = moment(company_data.csi_price_last_updated).tz('America/New_York').format('dddd MM/DD/YYYY hh:mm A') + ' EST';
     company_data.c_tr_last_updated = moment(company_data.c_tr_last_updated).tz('America/New_York').format('MM/DD/YYYY');
+
+    company_data.share_company_url =  "https://www.facebook.com/sharer/sharer.php?u=" + Router.path('content.companyprofile', {company_id: company_data.c_id, name: company_data.c_name, ticker: company_data.c_ticker});
+    company_data.share_company_fin_overview_url = "https://www.facebook.com/sharer/sharer.php?u=" + Router.path('content.finoverview', {company_id: company_data.c_id, name: company_data.c_name, ticker: company_data.c_ticker});
 
     //Determine icon to be displayed
     if(company_data.csi_price_change_since_last > 0){
@@ -247,8 +270,6 @@ Template.co_fin_overview.helpers({
     }else{
       company_data.location = '';
     }
-
-
 
     return company_data;
   }

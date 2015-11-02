@@ -14,7 +14,7 @@ button {
   // shouldn't be used on it's own (included in module-[1-5])
   .top_bottom_border; // Adds blue top and bottom border
   width: 680px;
-  margin: 10px;
+  margin: 20px;
   background-color: @white;
   position: relative;
   overflow: hidden;
@@ -241,11 +241,18 @@ e.g.
 }
 .module-4 {
   .module;
-  height: 690px;
+  max-height: 690px;
+  height: auto;
 }
 .module-5 {
   .module;
   height: 725px;
+}
+
+//Custom module height for rev1 find a company module (commented out fields)
+.module-0 {
+  .module;
+  height: 445px;
 }
 
 /**********************************************

@@ -1,0 +1,76 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+
+<title>Real Estate Widget List</title>
+
+<meta charset='utf-8'>
+<!--ATTENTION css/fontawesome.css is being called locally the cdn link site was not working-->
+<link href="../css/font-awesome.css" media="all" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../css/crime_rate.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="../js/crime_rate.js"></script>
+<base href="http://www.myhousekit.com/" target="_blank">
+</head>
+<body>
+  <div class="crime_container">
+    <!--Wrapper that contains code of all crime_rate components-->
+    <div class="crime_rate">
+      <!--top of widget wrapper-->
+      <div class="crime_rate-title">
+        <span id="title_text">Cities with the Highest Crime Rates</span>
+      </div>
+      <!--top of widget wrapper END-->
+      <!-- middle of widget wrapper-->
+      <div class="crime_rate-content">
+        <a class="crime_rate-listbutton-link" href="" target="_blank">
+          <div class="crime_rate-content-image" style="background-image:url('//public/crime_rate_stock/Mosaic_Grid.png')">
+            <div class="crime_rate-content-hover">
+              <div class="crime_rate-content-hover-text1">VIEW</div>
+              <div class="crime_rate-content-hover-text2">LIST</div>
+            </div>
+          </div>
+        </a>
+        <div class="crime_rate-content-textarea">
+          <div class="crime_rate-content-textarea-t1">
+            <img src="css/public/Icon_Theft.png" style="position:relative; top:3px;color:#fff">
+            <span>893</span>
+          </div>
+          <div class="crime_rate-location">
+            <i class="crime_rate-location-icon"></i>
+            <a id="location_link"><span class="crime_rate-location-text">Chicago, IL</span></a>
+          </div>
+        </div>
+        <!--Button on the right of middle wrapper-->
+        <div class="crime_rate-content-button"><i class="fa fa-angle-right"></i></div>
+        <!--Button on the right of middle wrapper END-->
+      </div>
+      <div class="crime_rate-total">Total Crimes in 2015:
+        <span class="crime_rate-total-price"> 893 Reports</span>
+      </div>
+      <!-- middle of widget wrapper END-->
+      <!--bottom of widget wrapper-->
+      <a class="crime_rate-listbutton-link" href="" target="_blank">
+        <div class="crime_rate-listbutton">
+          <button class="crime_rate-listbutton-button">
+            <div class="crime_rate-listbutton-icon"></div>
+            <div class="crime_rate-listbutton-text">
+              <span class="crime_rate-listbutton-t1">View the List</span>
+              <i class="fa fa-angle-right"></i>
+            </div>
+          </button>
+        </div>
+      </a>
+      <!--bottom of widget wrapper END-->
+      <!-- published by  NEEDed for legal purposes-->
+      <div class="presented_by">Presented By</div>
+    </div>
+    <!--Wrapper that contains code of all crime_rate components END-->
+    <!--ad stack code goes here-->
+    <div class="ad_location" id="ad_location0"></div>
+    <div class="ad_location" id="ad_location1"></div>
+    <!--ad stack code goes here END-->
+  </div>
+</body>
+</html>

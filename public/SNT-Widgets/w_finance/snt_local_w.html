@@ -1,0 +1,61 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+
+<title>Finance Graph Widget</title>
+
+<meta charset='utf-8'>
+<!--ATTENTION css/fontawesome.css is being called locally the cdn link site was not working-->
+<link href="../css/font-awesome.css" media="all" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../css/snt_local_w.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="http://code.highcharts.com/stock/highstock.js"></script>
+<script type="text/javascript" src="../js/snt_local_w.js"></script>
+
+</head>
+<body>
+  <!--container of widget-->
+  <div class="snt_local_w">
+    <!--wrapper of just widget-->
+    <div class="fgw">
+      <!--top text-->
+      <div class="fgw-logo"></div>
+      <div class="fgw-text">
+        <div class="fgw-t1">Today's Market Movers</div>
+        <div class="fgw-t2">
+          <span class="fgw-t2-title"></span>
+          <i class="fa fa-angle-right swc-space"></i> <i class="fa fa-map-marker swc-space" id="swc-blue"></i>
+          <a class='fgw-loc-link' href=""><span class="fgw-t2-loc"></span></a>
+        </div>
+      </div><!--top text END-->
+        <!--image && button-->
+      <div class="fgw-middle">
+        <a class="fgw-link" href="">
+        <div class="fgw-image"></div>
+        </a>
+        <div class="fgw-content">
+          <div class="fgw-content1"></div>
+          <div class="fgw-content2">Stock Pct</div>
+          <a class="fgw-href"  href="#">
+            <span class="fgw-list-link">SEE THE LIST <i class="fa fa-mail-forward swc-space"></i></span>
+          </a>
+        </div>
+
+        <button class="fgw-leftnav" data-dir="prev"><i class="fa fa-angle-left"></i></button>
+        <button class="fgw-rightnav" data-dir="next"><i class="fa fa-angle-right"></i></button>
+      </div><!--image && button END-->
+      <!--bottom text-->
+      <div id="fgw-graph">
+
+      </div>
+      <div class="fgw-presentedby">
+        PRESENTED BY
+      </div>
+      <!--bottom text END-->
+    </div><!--wrapper END-->
+    <!--AD Placement-->
+    <div class="ad_location">HI MY NAME IS ADS!!!</div>
+  </div>
+</body>
+</html>

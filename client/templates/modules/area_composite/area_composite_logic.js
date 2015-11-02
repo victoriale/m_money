@@ -6,9 +6,20 @@ Associated Files: [area_composite.html,area_composite.less,area_composite.js]
 
 Template.area_composite.helpers({
 
+  image: function(){
+    var data = Session.get('loc_id');
+    if(isNaN(data)){
+      data = fullstate(data);
+      data = data.replace(/ /g, '_');
+      return "background-image: url('/StateImages/Location_"+ data +".jpg');";
+    }else{
+      return "background-image: url('/DMA_images/location-"+ data +".jpg');";
+    }
+  },
 
   module_info: function() {
     var data = Session.get('companies_by_sector');
+    var params = Router.current().getParams();
     if ( typeof data == "undefined" ) {
       return false;
     }
@@ -84,7 +95,7 @@ Template.area_composite.helpers({
       }
       for ( var subind = 0; subind < limit; subind++ ) {
         loc_arr[subind] = {
-          url: Router.path('content.companyprofile',
+          url: Router.pick_path('content.companyprofile',
           {
             partner_id: Router.current().params.partner_id,
             ticker: data[cmp_arr[index].title][subind].c_ticker,
@@ -96,7 +107,11 @@ Template.area_composite.helpers({
         }
       }
       cmp_arr[index].comp = loc_arr;
-      cmp_arr[index].image = images[cmp_arr[index].title];
+      cmp_arr[index].icon = images[cmp_arr[index].title];
+      cmp_arr[index].sector_url = Router.pick_path('content.sector',{
+        loc_id: params.loc_id,
+        sector_id:cmp_arr[index].title
+      })
     }
     RetArr.companies = cmp_arr;
 
@@ -160,7 +175,7 @@ Template.area_composite.helpers({
         tiles[index] = {
           name: sect_arr[index].title + ' Sector',
           fnt: images[sect_arr[index].title],
-          url: Router.path('content.sector',{
+          url: Router.pick_path('content.sector',{
             loc_id:Session.get('loc_id'),
             sector_id: sect_arr[index].title
           })
