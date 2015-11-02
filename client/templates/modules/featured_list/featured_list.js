@@ -17,7 +17,11 @@ Template.featured_list.onRendered( function() {
 Template.featured_list.events({
   'click .fl_block_leftbutton': function(){
     var counter = Session.get("fl_counter");
-    var list = Session.get('featured_lists')['featured_list_data'];
+    if(Session.get('IsLocation')){
+      var list = Session.get('featured_lists')[0]['top_list_list'];
+    }else{
+      var list = Session.get('featured_lists')['featured_list_data'];
+    }
     if(counter > 0){
       counter--;
       Session.set("fl_counter",counter);
@@ -30,7 +34,11 @@ Template.featured_list.events({
   },
   'click .fl_block_rightbutton': function(){
     var counter = Session.get("fl_counter");
-    var list = Session.get('featured_lists')['featured_list_data'];
+    if(Session.get('IsLocation')){
+      var list = Session.get('featured_lists')[0]['top_list_list'];
+    }else{
+      var list = Session.get('featured_lists')['featured_list_data'];
+    }
     if(counter < list.length - 1)
     {
       counter++;
@@ -50,6 +58,9 @@ Template.featured_list.helpers (
       var data = Session.get('featured_lists');
       if(typeof data == 'undefined'){
         return '';
+      }
+      if(Session.get('IsExec')){
+        return false;
       }
       return true;
     },
@@ -85,6 +96,15 @@ Template.featured_list.helpers (
       //console.log(newData);
 
       $.map(newData, function(data ,index){
+        data['comp_url'] = Router.pick_path('content.companyprofile',{
+          ticker:data.c_ticker,
+          name:compUrlName(data.c_name),
+          company_id: data.c_id
+        })
+        data['loc_url'] = Router.pick_path('content.locationprofile',{
+          loc_id:data.c_hq_state,
+          city:compUrlName(data.c_hq_city)
+        })
         for(objName in data){
           if(objName === 'stock_percent'){
             data['data_name'] = "Stock Percent";
@@ -156,30 +176,30 @@ Template.featured_list.helpers (
       //Helper to build url for list of list page
         if(Session.get('IsCompany')){
           var title = header.c_ticker;
-          var url = Router.path('content.listoflist', {
+          var url = Router.pick_path('content.listoflist', {
             ticker:params.ticker,
             name:params.name,
             company_id: data.list_rankings[0].c_id
           });
-          var url2 = Router.path('content.listoflistloc', {
+          var url2 = Router.pick_path('content.listoflistloc', {
             loc_id:header.c_hq_state
           });
         }
         if(Session.get('IsExec')){
           var title = header.c_ticker;
-          var url = Router.path('content.listoflist', {
+          var url = Router.pick_path('content.listoflist', {
             loc_id:header.c_hq_state
           });
-          var url2 = Router.path('content.listoflistloc', {
+          var url2 = Router.pick_path('content.listoflistloc', {
             loc_id:header.c_hq_state
           });
         }
         if(Session.get('IsLocation')){
           var title = fullstate(params.loc_id);
-          var url = Router.path('content.listoflistloc', {
+          var url = Router.pick_path('content.listoflistloc', {
             loc_id:params.loc_id
           });
-          var url2 = Router.path('content.listoflistloc', {
+          var url2 = Router.pick_path('content.listoflistloc', {
             loc_id:params.loc_id
           });
         }
@@ -218,8 +238,16 @@ Template.featured_list.helpers (
       if(typeof data === 'undefined'){
         return '';
       }
-
-      var linkData = data[count].top_list_info;
-      return Router.path('content.toplist', {loc_id: linkData.top_list_location[0], l_name: compUrlName(linkData.top_list_title), list_id: linkData.top_list_id});
+      if(Session.get('IsLocation')){
+        var linkData = data[count].top_list_info;
+      return Router.pick_path('content.toplist', {
+        loc_id: linkData.top_list_location[0],
+        l_name: compUrlName(linkData.top_list_title),
+        list_id: linkData.top_list_id});
+      }else{
+        return Router.pick_path('content.toplist', {
+          l_name: compUrlName(data.featured_list_title),
+          list_id: data.featured_list_id});
+      }
     },
   });

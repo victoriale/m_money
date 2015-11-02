@@ -52,7 +52,7 @@ Template.faqs_finance.events({
       $(".faqs_module-faqtext").css('font-family','HN-L');
       $(".faqs_module-faqtext").css('padding-top','20px');
       $(".faqs_module-close").css('display','none');
-      $('.faqs_module-layout').delay(150).height('325');
+      $('.faqs_module-layout').delay(150).height('265');
       $('.faqs_module-tile').delay(150).height('55');
       target='';
     }
@@ -64,7 +64,7 @@ Template.faqs_finance.events({
       $(".fa-angle-down").css('display','inline-block');
       $(".faqs_module-faqtext").css('font-family','HN-L');
       $(".faqs_module-close").css('display','none');
-      $('.faqs_module-layout').delay(150).height('325');
+      $('.faqs_module-layout').delay(150).height('265');
       $('.faqs_module-tile').delay(150).height('55');
       $(e.currentTarget).css({'background-color':'#f2f2f2','border-left-color':'#3098ff'});
       $(e.currentTarget).children('.faqs_module-subtext').slideToggle({duration: 250, progress: function(){

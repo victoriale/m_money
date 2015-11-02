@@ -37,7 +37,7 @@ Associated Files: featured_list.html, featured_list.js
             <span class="fl_fa_loc">
               <i class="fa fa-map-marker"></i>
             </span>
-            {{c_hq_state}}, {{c_hq_city}}
+            <a href="{{loc_url}}">{{c_hq_state}}, {{c_hq_city}}</a>
           </div>
         </div>
           <!--container containing circle for image, icon and position-->
@@ -58,12 +58,16 @@ Associated Files: featured_list.html, featured_list.js
 
         <div class="fl_cr">
           <!--image in the circle-->
+          <a href="{{comp_url}}">
             <div class="fl_block_pic" style="background-image:url('{{imageUrl c_logo}}')">
-              <!--passfail icon-->
-              <!-- <div class="fl_block_pass-fail "></div> -->
+              <div class="hover">
+                <div class="hover-txt1" style="font-size:28px;">View</div>
+                <div class="hover-txt2" style="font-size:26px">Profile</div>
+              </div>
               <!--circle for position number-->
               <div class = "fl_block_pic_counter">#{{counter}}</div>
             </div>
+          </a>
         </div>
 
           <br><br><br>

@@ -4,19 +4,22 @@
 **** Associated Files: l-p_header.html, l-p_header.less, l-p_header_logic.js
 */
 
-var Company_Name = "San Francisco, CA";
-
 Template.l_p_header.helpers({
 })
 
 Template.lp_head.helpers({
-  Name         : Company_Name,
+  National:function(){
+    return Router.pick_path('content.locationprofile',{
+      loc_id: 'National'
+    });
+  },
   locationData: function(){
     var data = Session.get('profile_header');
-
+    var getDate = Session.get('daily_update');
     if(typeof(data) === 'undefined'){
       return false;
     }
+    data['LastUpdate'] = (new Date(getDate['csi_price_last_updated'])).toSNTFormTime();
     return data;
   }
 });

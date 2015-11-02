@@ -31,7 +31,6 @@ Associated Files: [area_composite.html,area_composite.less,area_composite.js]
 
           <!--First column of Top left Panel list-->
           {{#each sectors}}
-          <a href="">
             <div class="ar_comp-sectbrkdnlist">
               <div class="ar_comp-itemidentifier ar_comp-{{color}}">
               </div>
@@ -39,7 +38,6 @@ Associated Files: [area_composite.html,area_composite.less,area_composite.js]
               <i class="ar_comp-fa-angle-right-align fa fa-angle-right"></i>
               <span class="ar_comp-contentrighttext">{{percentage}}%</span>
             </div>
-          </a>
           {{/each}}
           <!--First column of Top left Panel list ends-->
         </div>
@@ -58,7 +56,9 @@ Associated Files: [area_composite.html,area_composite.less,area_composite.js]
           {{#each companies}}
           <div class="area_comp_row">
             <div class="area_comp_row_left {{color}}"></div>
-            <div class="area_comp_row_image"><i class="fa {{icon}}"></i></div>
+            <a href="{{sector_url}}">
+              <div class="area_comp_row_image"><i class="fa {{icon}}"></i></div>
+            </a>
             <div class="area_comp_row_right">
               <div class="area_comp_row_right_text">
                 <div class="area_comp_row_right_text_1">{{count}}</div>
