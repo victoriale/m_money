@@ -11,29 +11,34 @@
     </a>
     {{> search_module}}
     <!--menu options-->
+    {{#with searchLength}}
     <nav class="search_tab-menu">
       <ul class="search_tab-menu-active">
-        <li class="search_tab-menu-active-list current-list"><i class="fa fa-circle"></i> Executive(13)</li>
-        <li class="search_tab-menu-active-list"><i class="fa fa-circle"></i> Company(0)</li>
-        <li class="search_tab-menu-active-list"><i class="fa fa-circle"></i> Location(3)</li>
+        <li class="search_tab-menu-active-list current-list" id="executive"><i class="fa fa-circle"></i> Executive({{execLength}})</li>
+        <li class="search_tab-menu-active-list" id="company"><i class="fa fa-circle"></i> Company({{compLength}})</li>
+        <li class="search_tab-menu-active-list" id="location"><i class="fa fa-circle"></i> Location({{locLength}})</li>
       </ul>
     </nav>
+    {{/with}}
     <!--below tabs where results are to be displayed-->
-    {{Results}}
     <div class="search_results">
-      <div class="search_results-showing">Showing 38 results of 112</div>
+      <div class="search_results-showing">Showing {{currentResult}} results of {{totalResults}}</div>
+      {{#each Results}}
       <!--RESULTS FROM API BELOW-->
       <div class="search_results-info">
         <div class="search_results-info-h1">
-          Mark Zuckerberg's Profile
+          {{txt1}}
         </div>
-        <div class="search_results-info-link">
-          https://www.inveskit.com/MarkZuckerberg/Profile
-        </div>
+        <a href="{{txt2}}">
+          <div class="search_results-info-link">
+            {{txt2}}
+          </div>
+        </a>
         <div class="search_results-info-desc">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
         </div>
       </div>
+      {{/each}}
       <!--below tabs where results are to be displayed END-->
     </div>
   </div>

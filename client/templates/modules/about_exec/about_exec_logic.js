@@ -19,7 +19,6 @@ Template.about_exec.onRendered(function(){
     //push all data returned into a list array to be used for the module
     RivalArray.push(data['officer']);
     $.map(data.rivals, function(data, index){
-      console.log(data);
       data['exec_url'] = Router.pick_path('content.executiveprofile',{
         fname:data.o_first_name,
         lname:data.o_last_name,
@@ -247,6 +246,7 @@ Template.about_exec.helpers({
   tt: function(){
     var counter = Session.get("count");
     var data1 = Session.get("about_exec");
+    console.log(data1);
     var returnArray = [];
     var j = counter + 1;
     //var arr = " ";
