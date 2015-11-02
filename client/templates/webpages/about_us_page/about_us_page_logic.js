@@ -25,19 +25,19 @@ Template.about_us_page.helpers({
   items: [
    { totals:"Total U.S. Public Companies",
      numbers:"9,278",
-     image:"Icon_Companies.png"
+     image:"/Icon_Companies.png"
    }, {
      totals:"Total U.S. Executives",
     numbers:"101,200",
-      image:"Icon_Executives.png"
+      image:"/Icon_Executives.png"
    }, {
      totals:"Total U.S. Brokerage Firms",
     numbers:"5,006",
-      image:"Icon_Brokerage_Firms.png"
+      image:"/Icon_Brokerage_Firms.png"
    }, {
      totals:"Total U.S. Financial Advisors",
     numbers:"460,120",
-      image:"Icon_Financial_Advisors.png"
+      image:"/Icon_Financial_Advisors.png"
    }
   ],
   back_url: function(){
