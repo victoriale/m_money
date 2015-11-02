@@ -21,42 +21,7 @@ Template.cp_body.onCreated(function(){
     var data = Session.get('daily_update');
     //date comparison
     if(typeof data != 'undefined'){
-      //grab date
-      var apiDate = data['csi_price_last_updated'].split(' ')[0];
-
-      //grab time
-      curTime = data['csi_price_last_updated'].split(' ')[1];
-      curTime = (Number(curTime.split(':')[0]) % 12) - 5;
-      var today = [new Date().getFullYear(),new Date().getMonth()+1,new Date().getDate()];
-      //year month day
-      apiDate = apiDate.split('-');
-      var year = today[0] - Number(apiDate[0]);
-      var month = today[1] - Number(apiDate[1]);
-      var day = today[2] - Number(apiDate[2]);
-
-      if(typeof lastUpdated == 'undefined'){
-        //global scope
-        lastUpdated = "test";
-        if(day > 0){
-          if(day == 1){
-            lastUpdated = "Yesterday";
-          }else{
-            lastUpdated = day+" Days ago";
-          }
-        }else{
-          if((curTime) > 0){
-            lastUpdated = "Few Hours Ago";
-          }else{
-            lastUpdated = "Few Mins Ago";
-          }
-        }
-        if(month > 0){
-          lastUpdated = month+" Months ago";
-        }
-        if(year > 0){
-          lastUpdated = year+" Months ago";
-        }
-      }//end nested if
+      lastUpdated = (new Date(data['csi_price_last_updated'])).toSNTFormTime();
     }
   })
 })
@@ -65,9 +30,12 @@ Template.cp_body.onCreated(function(){
 Template.cp_head.helpers({
   topInfo: function(){
     var data = Session.get('profile_header');
+    var getDate = Session.get('daily_update');
     if(typeof data == 'undefined'){
       return '';
     }
+    console.log(data);
+    data['c_tr_last_updated'] = (new Date(getDate['csi_price_last_updated'])).toSNTFormTime();
     return data;
   },
   text: function(){

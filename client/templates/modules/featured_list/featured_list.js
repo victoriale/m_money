@@ -59,6 +59,9 @@ Template.featured_list.helpers (
       if(typeof data == 'undefined'){
         return '';
       }
+      if(Session.get('IsExec')){
+        return false;
+      }
       return true;
     },
     featuredData: function(){
@@ -173,30 +176,30 @@ Template.featured_list.helpers (
       //Helper to build url for list of list page
         if(Session.get('IsCompany')){
           var title = header.c_ticker;
-          var url = Router.path('content.listoflist', {
+          var url = Router.pick_path('content.listoflist', {
             ticker:params.ticker,
             name:params.name,
             company_id: data.list_rankings[0].c_id
           });
-          var url2 = Router.path('content.listoflistloc', {
+          var url2 = Router.pick_path('content.listoflistloc', {
             loc_id:header.c_hq_state
           });
         }
         if(Session.get('IsExec')){
           var title = header.c_ticker;
-          var url = Router.path('content.listoflist', {
+          var url = Router.pick_path('content.listoflist', {
             loc_id:header.c_hq_state
           });
-          var url2 = Router.path('content.listoflistloc', {
+          var url2 = Router.pick_path('content.listoflistloc', {
             loc_id:header.c_hq_state
           });
         }
         if(Session.get('IsLocation')){
           var title = fullstate(params.loc_id);
-          var url = Router.path('content.listoflistloc', {
+          var url = Router.pick_path('content.listoflistloc', {
             loc_id:params.loc_id
           });
-          var url2 = Router.path('content.listoflistloc', {
+          var url2 = Router.pick_path('content.listoflistloc', {
             loc_id:params.loc_id
           });
         }
@@ -235,8 +238,16 @@ Template.featured_list.helpers (
       if(typeof data === 'undefined'){
         return '';
       }
-
-      var linkData = data[count].top_list_info;
-      return Router.path('content.toplist', {loc_id: linkData.top_list_location[0], l_name: compUrlName(linkData.top_list_title), list_id: linkData.top_list_id});
+      if(Session.get('IsLocation')){
+        var linkData = data[count].top_list_info;
+      return Router.pick_path('content.toplist', {
+        loc_id: linkData.top_list_location[0],
+        l_name: compUrlName(linkData.top_list_title),
+        list_id: linkData.top_list_id});
+      }else{
+        return Router.pick_path('content.toplist', {
+          l_name: compUrlName(data.featured_list_title),
+          list_id: data.featured_list_id});
+      }
     },
   });
