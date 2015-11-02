@@ -19,6 +19,18 @@ Template.about_exec.onRendered(function(){
     //push all data returned into a list array to be used for the module
     RivalArray.push(data['officer']);
     $.map(data.rivals, function(data, index){
+      console.log(data);
+      data['exec_url'] = Router.pick_path('content.executiveprofile',{
+        fname:data.o_first_name,
+        lname:data.o_last_name,
+        ticker:data.c_ticker,
+        exec_id:data.o_id
+      });
+      data['comp_url'] = Router.pick_path('content.companyprofile',{
+        ticker:data.c_ticker,
+        name:compUrlName(data.c_name),
+        company_id:data.c_id
+      });
       data['e_id'] = index;
       RivalArray.push(data);
     });
@@ -46,7 +58,6 @@ Template.about_exec.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
-    console.log(data);
     $.map(data, function(val, i){
       val.url = Router.path('content.executiveprofile',{
         lname: val.o_last_name,
@@ -286,6 +297,7 @@ Template.about_exec.helpers({
       }
       j++;
     }
+    console.log(returnArray);
     return returnArray;
   },
   //This is used to return to the excutive id and the path to the router that links to the new page.
