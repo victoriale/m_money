@@ -15,13 +15,10 @@ Template.lp_head.helpers({
   },
   locationData: function(){
     var data = Session.get('profile_header');
-    var getDate = Session.get('daily_update');
     if(typeof(data) === 'undefined'){
       return false;
     }
-    console.log(getDate);
-    data['LastUpdate'] = (new Date(getDate['lcsi_price_last_updated'])).toSNTFormTime();
-    console.log(data['LastUpdate']);
+    data['lastupdated'] = (new Date(data['data'])).toSNTFormTime();
     return data;
   }
 });
@@ -33,7 +30,6 @@ Template.lp_body.helpers({
     if(typeof(data) === 'undefined'){
       return false;
     }
-    console.log(data);
     return data;
   }
 });
