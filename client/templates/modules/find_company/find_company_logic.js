@@ -3,6 +3,10 @@ Author: William Klausmeyer
 Location Module: Find Company
 */
 
+Template.find_company.onCreated(function(){
+  Session.set('SuggestTime',0);
+})
+
 // Returns the dollar value of the position on the slider for the Market Cap Slider
 function capSlider(position) {
   // Handle both extremes
@@ -288,6 +292,39 @@ function moveBallShare(ball, left) {
   $(slider).find('.slider_avg').html('$' + avg + ' Average');
 }
 
+function suggestFilter(arr) {
+  var f = []
+  return arr.filter(function(n) {
+    return f.indexOf(n.c_hq_city) == -1 && f.push(n.c_hq_city);
+  })
+}
+
+function suggest(nowTime){
+  var searchString = $('.find_cmp_sb_bar > input')[0].value;
+  if(searchString === ''){
+    return false;
+  }
+  Meteor.call('GetSuggestion', encodeURIComponent(searchString), nowTime, function(err, result){
+    //console.log('err, result', err, result);
+    if(err){
+      //Error code
+      //console.log('Suggestion Error', error);
+      return false;
+    }
+
+    if(Session.get('SuggestTime') > result.time){
+      return false;
+    }
+
+    Session.set('SuggestTime', result.time);
+    var result = result.data;
+    //console.log('LATEST RESULT', result);
+    var uniqueArr = suggestFilter(result.location.func_data.search_data);
+    Session.set('find_company_suggestions', uniqueArr);
+  })
+
+}
+
 Template.find_company.events({
   'mousedown #ModShare .slider_ball': function(event) {
     if ( !$(event.target).hasClass('slider_ball') ) {
@@ -335,7 +372,13 @@ Template.find_company.events({
       });
     }, 1);
   },
-  'click .dropdown .dropdown_item': function(event) {
+  'click .dropdown .dropdown_item': function(event, t) {
+
+    //Exit function if part of search dropdown (Clean up)
+    if(t.$(event.currentTarget).hasClass('sb-item')){
+      return false;
+    }
+
     var name = $(event.target)[0].innerHTML;
     var parentTarg = $(event.target).closest('.find_cmp_dd_menu')[0];
     $(parentTarg).find('.find_cmp_dd_menu_txt').each(function(){
@@ -344,10 +387,121 @@ Template.find_company.events({
     $(parentTarg).find('.dropdown_item.active').removeClass('active');
     $(event.target).addClass('active');
     Session.set($(parentTarg)[0].id,name);
+  },
+  //Event to submit search form
+  'click .find_cmp_find': function(e, t){
+    var ModLocation = Session.get('ModLocation');
+
+    if(typeof ModLocation === 'undefined'){
+      ModLocation = t.$('.find_cmp_sb_bar > input').val();
+    }else{
+      ModLocation = ModLocation.c_dma_code;
+    }
+
+    var obj = {
+      exchange: Session.get('ModExchange'),
+      sector: Session.get('ModSector'),
+      industry: Session.get('ModIndustry'),
+      key_metric: Session.get('ModMetrics'),
+      location: ModLocation
+    }
+
+    //console.log('submit object', obj);
+
+    var params = '';
+
+    for(key in obj){
+      if(typeof obj[key] !== 'undefined'){
+        params += '&' + key + '=' + obj[key];
+      }
+    }//Close for
+
+    console.log('THE PARAMS', params);
+
+  },
+  //Event to find suggested results
+  'keyup .find_cmp_sb_bar > input': function(e, t){
+    var input = t.$('.find_cmp_sb_bar > input').val();
+
+    if(input === ''){
+      Session.set('find_company_suggestions', undefined);
+      return false;
+    }
+
+    if ( typeof StartTime == "undefined" ) {
+      StartTime = 0;
+    }
+    var d = new Date();
+    d = d.getTime();
+    curTime = d;
+    if ( d - StartTime < 250 ) {
+      setTimeout(function(curTime){suggest(curTime);},250,curTime);
+      return "";
+    }
+    StartTime = d;
+    suggest(curTime);
+
+    /*Meteor.http.get('http://apifin.investkit.com/call_controller.php?action=search&option=location&param=' + input + '&wild=1', function(err, result){
+      //console.log('Keyup result', result);
+      if(err){
+        //Error code
+      }else{
+        //Success code
+        var array = result.data.location.search_data;
+        //Get unique cities
+        var flags = [], output = [], l = array.length, i;
+        for( i=0; i<l; i++) {
+            if( flags[array[i].c_hq_city]) continue;
+            flags[array[i].c_hq_city] = true;
+            output.push(array[i].c_hq_city);
+        }
+
+        Session.set('find_company_suggestions', result.data.location.search_data);
+      }
+    });*/
+  },
+  //Event to display suggested results dropdown
+  'focus .find_cmp_sb_bar > input': function(e, t){
+    Session.set('find_company_focus', true);
+  },
+  'click .find_cmp_sb .dropdown .dropdown_item': function(e, t){
+    t.$('.find_cmp_sb_bar > input').val(this.c_hq_city + ", " + this.c_hq_state);
+
+    Session.set('ModLocation', this);
+    Session.set('find_company_focus', false);
+  },
+  //Event to clear search
+  'click .find_cmp_clear': function(e, t){
+    var data = Session.get('find_company');
+
+    delete Session.keys.ModExchange;
+    delete Session.keys.ModSector;
+    delete Session.keys.ModIndustry;
+    delete Session.keys.ModMetrics;
+    delete Session.keys.ModLocation;
+    delete Session.keys.find_company_suggestions;
+    t.$('.find_cmp_sb_bar > input').val('');
+    t.$('#ModExchange > .find_cmp_dd_menu_txt').html(data.exchanges[0]);
+    t.$('#ModSector > .find_cmp_dd_menu_txt').html('All Sectors');
+    t.$('#ModIndustry > .find_cmp_dd_menu_txt').html('All Industry');
+    t.$('#ModMetrics > .find_cmp_dd_menu_txt').html(data.key_metrics[0].toTitleCase());
+
   }
 });
 
 Template.find_company.helpers({
+  search_style: function(){
+    var data = Session.get('find_company_suggestions');
+    var isFocus = Session.get('find_company_focus');
+
+    if(typeof data === 'undefined' || isFocus === false || typeof isFocus === 'undefined'){
+      return '';
+    }
+
+    return 'display: block; opacity: 1';
+
+  },
+
   range: function() {
     return {
       ranges: [
@@ -407,5 +561,17 @@ Template.find_company.helpers({
       RetArr[RetArr.length] = data.key_metrics[index].toTitleCase();
     }
     return {default: def, metrics: RetArr};
+  },
+
+  suggest: function(){
+    var data = Session.get('find_company_suggestions');
+
+    if ( typeof data === 'undefined' ){
+      return false;
+    }
+    //Return only max of 5 results
+    var returnArr = data.slice(0, 5);
+
+    return returnArr;
   }
 });
