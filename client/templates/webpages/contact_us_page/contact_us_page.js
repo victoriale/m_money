@@ -6,7 +6,6 @@ Associated Files: contact_us_page.html, contact_us_page.js, contact_us.less, abo
 */
 Template.contact_us_page.helpers({
   Title:"Contact Us",
-  About:"[Profile]'s [Page Name]",
   Profile: function(){
     if(Session.get('IsCompany')) {
        return Session.get("profile_header").c_name;
@@ -19,7 +18,6 @@ Template.contact_us_page.helpers({
   },
   Country: "The United States",
   Statement: "Help us help you faster",
-  Update: "06/24/2015,8:00 AM EST",
   back_url: function(){
     if(Session.get('IsCompany')) {
        return "/company/"+ Session.get("profile_header").c_ticker;

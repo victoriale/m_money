@@ -21,9 +21,8 @@ Template.about_exec.onRendered(function(){
     $.map(data.rivals, function(data, index){
       data['e_id'] = index;
       RivalArray.push(data);
+      Session.set('about_exec', RivalArray);
     });
-    //console.log("RIVAL ARRAY DONE!",RivalArray);
-    Session.set('about_exec', RivalArray);
   });
 
 });
@@ -46,7 +45,6 @@ Template.about_exec.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
-    console.log(data);
     $.map(data, function(val, i){
       val.url = Router.path('content.executiveprofile',{
         lname: val.o_last_name,
@@ -230,7 +228,7 @@ Template.about_exec.helpers({
       return name;
     },
 
-  title:"COLEGE RIVALS",
+  title:"COLLEGE RIVALS",
   //status:"N/A",
 //each function to call n the tiles below
   tt: function(){
@@ -255,6 +253,17 @@ Template.about_exec.helpers({
       var longtl = data1[j]['long_title'];
       var urlid = data1[j]['o_id'];
       var img = data1[j]['o_pic'];
+      data1[j]['exec_url'] = Router.pick_path('content.executiveprofile',{
+        fname:data1[j].o_first_name,
+        lname:data1[j].o_last_name,
+        ticker:data1[j].c_ticker,
+        exec_id:data1[j].o_id
+      });
+      data1[j]['comp_url'] = Router.pick_path('content.companyprofile',{
+        ticker:data1[j].c_ticker,
+        name:compUrlName(data1[j].c_name),
+        company_id:data1[j].c_id
+      });
     //  var abb = abbr();
       if(j < data1.length)
       {
@@ -265,6 +274,8 @@ Template.about_exec.helpers({
         var arr = " ";
         returnArray[i]['degr1'] = degr;
         returnArray[i]['img'] = img;
+        returnArray[i]['execurl'] = data1[i]['exec_url'];
+        returnArray[i]['compurl'] = data1[i]['comp_url'];
         //returnArray[i]['abbr1']=  abb;
         if(degr)
         {
