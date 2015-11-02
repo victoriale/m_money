@@ -24,7 +24,7 @@ Associated Files: project_history.html, project_history.js
               <i class="fa fa-angle-down proj_hist-list-sort-box-blue"></i>
             </span>
           </div>
-          <div class="proj_hist-list-panel" style="height:555px;">
+          <div class="proj_hist-list-panel">
             {{#each projList}}
               {{#if this}}<!--checks validity of array element-->
                 <div class="proj_hist-list-tile-{{#if isEven @index}}white{{else}}grey{{/if}}"><!--isEven is used to alternate between background colors-->
@@ -34,7 +34,7 @@ Associated Files: project_history.html, project_history.js
                     <span class="proj_hist-profile-image" style="background-image: url('{{imageUrl c_logo}}')"></span>
                     </a>
                   </span>
-
+<!--
                   <span class="proj_hist-resp-btns">
                     <span class="proj_hist-resp-btns-btn">
                       <i class="fa proj_hist-resp-btns-icon fa-heart"></i>
@@ -49,6 +49,7 @@ Associated Files: project_history.html, project_history.js
                       <span class="proj_hist-resp-btns-text">Feedback</span>
                     </span>
                   </span>
+-->
                   <!--/Project Picture & Response Buttons-->
 
                   <!--Project Information-->

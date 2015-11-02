@@ -230,7 +230,7 @@ Template.about_exec.helpers({
       return name;
     },
 
-  title:"COLEGE RIVALS",
+  title:"COLLEGE RIVALS",
   //status:"N/A",
 //each function to call n the tiles below
   tt: function(){

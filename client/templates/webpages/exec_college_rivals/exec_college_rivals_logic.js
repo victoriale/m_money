@@ -19,8 +19,10 @@ Template.exec_college_rivals.helpers({
   //Helper to navigate back to executive profile
   backToExec: function(){
     var params = Router.current().getParams();
-
     return Router.path('content.executiveprofile', {
+      fname: params.fname,
+      lname: params.lname,
+      ticker: params.ticker,
       exec_id: params.exec_id
     })
   },
@@ -62,12 +64,16 @@ Template.exec_college_rivals.helpers({
   },
   MainExecUrl: function(){
     var data = Session.get('college_rivals');
+    console.log(data);
     if(typeof data === 'undefined'){
       return '';
     }
     return Router.path('content.executiveprofile',{
       partner_id: '',
-      exec_id: data['rivals'][0]['o_id']
+      exec_id: data['rivals'][0]['o_id'],
+      fname: data['rivals'][0]['o_first_name'],
+      lname: data['rivals'][0]['o_last_name'],
+      ticker: data['rivals'][0]['c_ticker']
     });
   },
 
@@ -100,10 +106,15 @@ Template.exec_college_rivals.helpers({
       returnArray[j]['grp'] = rival['c_name'];
       returnArray[j]['pic'] = rival['o_pic'];
       returnArray[j]['compurl'] = Router.path('content.companyprofile',{
+        ticker: rival['c_ticker'],
+        name: rival['c_name'],
         partner_id: '',
         company_id: rival['c_id']
       });
       returnArray[j]['execurl'] = Router.path('content.executiveprofile',{
+        fname: rival['o_first_name'],
+        lname: rival['o_last_name'],
+        ticker: rival['c_ticker'],
         partner_id: '',
         exec_id: rival['o_id']
       });
