@@ -249,7 +249,6 @@
 
           returnArr.push({
             text1: item.o_first_name + ' ' + item.o_last_name,
-            text2: 'Executive',
             text3: item.c_name,
             url1: url1,
             url3: url3,
@@ -271,7 +270,6 @@
 
           returnArr.push({
             text1: item.c_name,
-            text2: 'Company',
             text3: item.c_ticker,
             url1: url1,
             url3: url1,
@@ -287,8 +285,7 @@
         case 'location':
 
           returnArr.push({
-            text1: item.location_name,
-            text2: 'DMA: ' + item.dma_region_id
+            text1: item.location_name
           })
         break;
       }//Close switch
