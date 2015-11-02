@@ -33,6 +33,10 @@ Template.co_competitor.helpers({
     newData['csi_percent_change_since_last'] = Number(newData['csi_percent_change_since_last']).toFixed(2);
     newData['url'] = Router.path('content.companyprofile', {company_id: company_id, name: company, ticker: ticker});
 
+
+    newData.share_company_url =  "https://www.facebook.com/sharer/sharer.php?u=" + Router.path('content.companyprofile', {company_id: company_id, name: company, ticker: ticker});
+    newData.share_company_competitor_url = "https://www.facebook.com/sharer/sharer.php?u=" + Router.path('content.competitor', {company_id: company_id, name: company, ticker: ticker});
+
     return newData;
   },
 
@@ -48,6 +52,8 @@ Template.co_competitor.helpers({
       data['csi_price_change_since_last'] = Number(data['csi_price_change_since_last']).toFixed(2);
       data['csi_price'] = Number(data['csi_price']).toFixed(2);
       data['csi_percent_change_since_last'] = Number(data['csi_percent_change_since_last']).toFixed(2);
+
+      data.share_url = "https://www.facebook.com/sharer/sharer.php?u=" + Router.path('content.companyprofile', {company_id: data.c_id, name: compUrlName(data.c_name), ticker: data.c_ticker});
 
       var company = compUrlName(data.c_name);
       var ticker = data.c_ticker;

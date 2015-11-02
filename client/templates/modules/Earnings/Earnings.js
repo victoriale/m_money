@@ -36,7 +36,13 @@ Template.Earnings.helpers({ //helper for the template earnings  is created to pr
       var fiscYear = data[i]['e_fiscal_year'];
       if(i<data.length-1)
       {
-        array[i]['company'] = company['c_name'];
+        if(Session.get('IsCompany')){
+          array[i]['company'] = company['c_name'];
+          array[i]['image'] = company['c_logo'];
+        }else{
+          array[i]['company'] = data[i]['c_name'];
+          array[i]['image'] = data[i]['c_logo'];
+        }
         array[i]['description'] = data[i]['e_report_title'];
         array[i]['month'] = calendarMonths[parseInt(month-1)];
         array[i]['day'] = day;

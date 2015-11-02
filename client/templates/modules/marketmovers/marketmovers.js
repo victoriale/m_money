@@ -61,7 +61,7 @@ Template.marketmovers.helpers({
     if(typeof data == 'undefined'){
       return false;
     }
-
+    
     return data.location;
   },
 
