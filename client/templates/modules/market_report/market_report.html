@@ -90,7 +90,7 @@
         {{#with market_info}}
         <div class="mreport-tb1">
           <span><i class="fa fa-map-marker mreport-fam"></i>&nbsp;<span class="mreport-l1">National Market</span></span><br>
-          <span class="mreport-l2">Today's {{exchange_name}} Losers</span><br>
+          <span class="mreport-l2">Today's {{exchange_name}} Gainers</span><br>
           <span class="mreport-l3">{{top_list_title}}</span>
         </div>
         {{/with}}
@@ -128,7 +128,7 @@
         <!--***************textbox 3 starts here ****************************-->
         <div class="mreport-tb3">
           <span class="mreport-w1tb3">{{company_name}}
-            <i class="fa fa-angle-right mreport-fatb3"></i><span class="mreport-w2tb3">{{lost_percent}}</span>
+            <i class="fa fa-angle-right mreport-fatb3"></i><span class="mreport-w2tb3" style="color: {{changeColor color}}">{{percent}}</span>
           </span>
         </div>
         {{/with}}
