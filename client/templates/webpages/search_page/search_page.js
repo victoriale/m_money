@@ -5,6 +5,7 @@ Template.search_page.onCreated(function(){
 Template.search_page.onRendered(function(){
   this.autorun(function(){
     var searchParams = Router.current().getParams();
+    searchParams = searchParams.replace(/-/g, ' ');
     //console.log(searchParams.search_results);
     Meteor.call("GetSuggestion", searchParams.search_results, Number(Session.get('time')),  function(error, data){
       if(error){

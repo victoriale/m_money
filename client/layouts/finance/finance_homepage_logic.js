@@ -59,7 +59,7 @@ function GetSuggest(nowTime) {
              if ( i != 0 ) {
                HTMLStringName = HTMLStringName + '<div class="border-li"></div>';
              }
-               HTMLStringName = HTMLStringName + '<a style="color: #000" href="' + CompanyURL(NameRes[i]['c_ticker'], NameRes[i]['c_name'], NameRes[i]['c_id']) + '"><div class="fi_search_recommendations_item">' + NameRes[i]['c_ticker'] + " - " + NameRes[i]['c_name'] + '<i class="fa fa-angle-right"></i></div></a>';
+               HTMLStringName = HTMLStringName + '<a style="color: #000" href="' + CompanyURL(NameRes[i]['c_ticker'], NameRes[i]['c_name'].replace(/\s+/g, '-'), NameRes[i]['c_id']) + '"><div class="fi_search_recommendations_item">' + NameRes[i]['c_ticker'] + " - " + NameRes[i]['c_name'] + '<i class="fa fa-angle-right"></i></div></a>';
            }
          }
        }
@@ -76,7 +76,7 @@ function GetSuggest(nowTime) {
             }
 
             //this var and for loop makes the word casing corrct
-            var LocCity = LocRes[i]['c_hq_city'];
+            /*var LocCity = LocRes[i]['c_hq_city'];
             var LocNew = [];
             for(var i=0;i<LocCity.length;i++){
               if(i == 0){
@@ -86,7 +86,8 @@ function GetSuggest(nowTime) {
               }
             }
             LocNew = LocNew.join('');
-            HTMLStringLoc = HTMLStringLoc + '<a style="color: #000" href="' + LocationURL(LocNew + "_" + LocRes[i]['c_hq_state']) + '"><div class="fi_search_recommendations_item">' + LocNew + ", " + LocRes[i]['c_hq_state'] + '<i class="fa fa-angle-right"></i></div></a>';
+            */
+            HTMLStringLoc = HTMLStringLoc + '<a style="color: #000" href="' + LocationURL(LocRes[i]['c_hq_city'].replace(/\s+/g, '-') + "_" + LocRes[i]['c_hq_state']) + '"><div class="fi_search_recommendations_item">' + LocRes[i]['c_hq_city'] + ", " + LocRes[i]['c_hq_state'] + '<i class="fa fa-angle-right"></i></div></a>';
           }
          }
        }else{
