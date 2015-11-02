@@ -169,8 +169,8 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                                 <i class="cfo-l cfo-btm-data-list-i-l">
                                     Day Change $-%
                                 </i>
-                                <span class="cfo-btm-data-list-i-r" style="color: {{change_color}}">
-                                    <i class="fa {{icon}}"></i> {{csi_price_change_since_last}} <i class="cfo-black">|</i> {{csi_percent_change_since_last}}%
+                                <span class="cfo-btm-data-list-i-r" style="color: {{changeColor csi_price_last_operator}}">
+                                    <i class="fa {{changeIcon csi_price_last_operator}}"></i> {{csi_price_change_since_last}} <i class="cfo-black">|</i> {{csi_percent_change_since_last}}%
                                 </span>
                             </div>
                             <div class="cfo-btm-data-list-i-b">
@@ -201,15 +201,16 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                             </div>
                             <!--<div class="cfo-btm-data-list-e">
                                 <div class="cfo-btm-data-list-e-title cfo-l">
-                                    <i class="cfo-b">Learn why </i>{{c_name}} is <span style="color: {{change_color}}"><i class="fa {{icon}}"></i> {{csi_percent_change_since_last}}%</span> today:
+                                    <i class="cfo-b">Learn why </i>{{c_name}} is <span style="color: {{changeColor csi_price_last_operator}}"><i class="fa {{changeIcon csi_price_last_operator}}"></i> {{csi_percent_change_since_last}}%</span> today:
                                 </div>
                                 <div class="cfo-pr cfo-btm-data-list-e-circle" style="background-image: url('{{imageUrl c_logo}}')">
                                 </div>
-                                <div class="cfo-pr cfo-btm-data-list-e-txt">
-                                    {{c_name}} ({{c_ticker}}) stock is currently priced
+                                <div class="cfo-pr cfo-btm-data-list-e-txt">-->
+                                    <!--{{c_name}} ({{c_ticker}}) stock is currently priced
                                     at ${{csi_price}} per share. Yesterday, <i class="cfo-blue">3 articles</i>
                                     were written about {{c_ticker}}: 100% are positive.
-                                    <i class="cfo-blue">Click here</i> to read more about {{c_name}} in the news.
+                                    <i class="cfo-blue">Click here</i> to read more about {{c_name}} in the news.-->
+                                    <!--{{AIcontent}}
                                 </div>
                             </div>-->
                         </div>
