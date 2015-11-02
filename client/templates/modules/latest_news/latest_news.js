@@ -50,13 +50,20 @@ Template.latest_news.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
-
     if(Session.get('IsCompany')){
       var image = data.c_logo;
     }else if(Session.get('IsExec')){
       var image = data.o_pic;
+    }else{
+      var data = Session.get('loc_id');
+      if(isNaN(data)){
+        data = fullstate(data);
+        data = data.replace(/ /g, '_');
+        return "background-image: url('/StateImages/Location_"+ data +".jpg');";
+      }else{
+        return "background-image: url('/DMA_images/location-"+ data +".jpg');";
+      }
     }
-
     return image;
   },
 

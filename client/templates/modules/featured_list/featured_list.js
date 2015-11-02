@@ -17,7 +17,11 @@ Template.featured_list.onRendered( function() {
 Template.featured_list.events({
   'click .fl_block_leftbutton': function(){
     var counter = Session.get("fl_counter");
-    var list = Session.get('featured_lists')['featured_list_data'];
+    if(Session.get('IsLocation')){
+      var list = Session.get('featured_lists')[0]['top_list_list'];
+    }else{
+      var list = Session.get('featured_lists')['featured_list_data'];
+    }
     if(counter > 0){
       counter--;
       Session.set("fl_counter",counter);
@@ -30,7 +34,11 @@ Template.featured_list.events({
   },
   'click .fl_block_rightbutton': function(){
     var counter = Session.get("fl_counter");
-    var list = Session.get('featured_lists')['featured_list_data'];
+    if(Session.get('IsLocation')){
+      var list = Session.get('featured_lists')[0]['top_list_list'];
+    }else{
+      var list = Session.get('featured_lists')['featured_list_data'];
+    }
     if(counter < list.length - 1)
     {
       counter++;
@@ -85,6 +93,15 @@ Template.featured_list.helpers (
       //console.log(newData);
 
       $.map(newData, function(data ,index){
+        data['comp_url'] = Router.pick_path('content.companyprofile',{
+          ticker:data.c_ticker,
+          name:compUrlName(data.c_name),
+          company_id: data.c_id
+        })
+        data['loc_url'] = Router.pick_path('content.locationprofile',{
+          loc_id:data.c_hq_state,
+          city:compUrlName(data.c_hq_city)
+        })
         for(objName in data){
           if(objName === 'stock_percent'){
             data['data_name'] = "Stock Percent";
