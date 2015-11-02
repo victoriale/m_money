@@ -30,7 +30,6 @@ Template.lp_body.helpers({
     if(typeof(data) === 'undefined'){
       return false;
     }
-    console.log(data);
     return data;
   }
 });
