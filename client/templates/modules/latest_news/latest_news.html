@@ -87,7 +87,7 @@ Associated Files: latest_news.less, latest_news_logic.js
       <!-- Company News Body Content -->
       <div class = "nws-bdy-ctnt">
         <!-- Company News Body Content Main Tile -->
-        <a href="{{main_url}}">
+        <a href="{{main_url}}" target="_blank">
         <div class = "nws-bdy-ctnt-main" id="nws-art0">
           <!-- Company News Body Content Main Tile Buttons -->
           <div style="height:35px">
@@ -118,12 +118,12 @@ Associated Files: latest_news.less, latest_news_logic.js
             <div class = "nws-bdy-ctnt-main-txt-sub">
               <i class="fa fa-newspaper-o"></i>
               <!-- Main Tile Publisher -->
-              <span class = "nws-bdy-ctnt-main-txt-sub-pub">Article Published By:
+              <span class = "nws-bdy-ctnt-main-txt-sub-pub">Article Published:
               <!-- <a href="{{main_pub}}">  -->
                  <span style = "font-family: HN-B"><em>{{main_pub}}</em></span>&nbsp;&nbsp;
               <!-- </a> -->
 
-                <i class="fa fa-angle-right"></i>
+                <!--<i class="fa fa-angle-right"></i>-->
               </span>
               <!-- END Main Tile Publisher -->
               <!-- Main Tile Author -->
@@ -140,7 +140,7 @@ Associated Files: latest_news.less, latest_news_logic.js
           </div>
           <!-- END Company News Body Content Main Tile Text -->
           <!-- Company News Body Content Main Tile Image Placeholder -->
-          <div class = "nws-bdy-ctnt-main-plchldr" style="background-image:url({{main_image}})"></div>
+          <div class = "nws-bdy-ctnt-main-plchldr" style="background-image:url({{newsImage main_image}})"></div>
           <!-- Company News Body Content Main Tile Image Placeholder -->
         </div>
       </a>
@@ -153,7 +153,7 @@ Associated Files: latest_news.less, latest_news_logic.js
           <div class = "nws-bdy-ctnt-sub-left">
             <!-- Body Content Left Sub-Tile Articles -->
             {{#each artlft}}
-            <a href="{{url}}">
+            <a href="{{url}}" target="_blank">
             <div class = "nws-art" id="nws-art{{index}}">
               <!-- Body Content Left Sub-Tile Article Buttons -->
               <div style="height:35px">
@@ -178,7 +178,7 @@ Associated Files: latest_news.less, latest_news_logic.js
               </div>
               <!-- END Body Content Left Sub-Tile Article Buttons -->
               <!-- Body Content Left Sub-Tile Article Image Placeholder -->
-              <div class = "nws-art-plchldr" style="background-image:url({{image}})"></div>
+              <div class = "nws-art-plchldr" style="background-image:url({{newsImage image}})"></div>
               <!-- END Body Content Left Sub-Tile Article Image Placeholder -->
 
 
@@ -211,7 +211,7 @@ Associated Files: latest_news.less, latest_news_logic.js
           <div class = "nws-bdy-ctnt-sub-right">
             {{#each artrt}}
             <!-- Right Pane Article -->
-            <a href="{{url}}">
+            <a href="{{url}}" target="_blank">
             <div class = "nws-art" id="nws-art{{index}}">
               <!-- Right Pane Article Tags -->
               <div style="height:35px">
@@ -235,7 +235,7 @@ Associated Files: latest_news.less, latest_news_logic.js
               </div>
               <!-- END Right Pane Article Tags -->
               <!-- Right Pane Article Image Placeholder -->
-              <div class = "nws-art-plchldr" style="background-image:url({{image}})"></div>
+              <div class = "nws-art-plchldr" style="background-image:url({{newsImage image}})"></div>
               <!-- END Right Pane Article Image Placeholder -->
               <!-- Right Pane Article Text -->
               <div class = "nws-art-txt">
@@ -245,7 +245,7 @@ Associated Files: latest_news.less, latest_news_logic.js
                 </div>
                 <span class = "nws-art-txt-dt">
                   <i class = {{fontawesome}}></i>&nbsp;{{type}}
-                  published {{time}}
+                  Published {{time}}
                 </span>
               </div>
               <!-- END Right Pane Article Text -->

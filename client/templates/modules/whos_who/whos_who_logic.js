@@ -109,7 +109,7 @@ Template.whos_who.helpers({
     }
     if(Session.get('IsCompany')){
       who = who['officers'];
-      var url = Router.path('content.executiveprofile',{
+      var url = Router.pick_path('content.executiveprofile',{
         lname:who[index].o_last_name,
         fname:who[index].o_first_name,
         ticker:who[index].c_ticker,
@@ -118,7 +118,7 @@ Template.whos_who.helpers({
     }
 
     if(Session.get('IsExec')){
-      var url = Router.path('content.executiveprofile',{
+      var url = Router.pick_path('content.executiveprofile',{
         lname:who[index].o_last_name,
         fname:who[index].o_first_name,
         ticker:who[index].c_ticker,
@@ -169,7 +169,7 @@ Template.whos_who.helpers({
         var ticker = who[j]['c_ticker'];
         var mname = who[j]['o_middle_initial'];
         var title = who[j]['o_titles'][0];
-        var url = Router.path('content.executiveprofile',{
+        var url = Router.pick_path('content.executiveprofile',{
           lname:lname,
           fname:fname,
           ticker:ticker,
@@ -200,7 +200,7 @@ Template.whos_who.helpers({
         var ticker = who[j]['c_ticker'];
         var mname = who[j]['o_middle_initial'];
         var title = who[j]['o_current_title']['titles'][0]['title'];
-        var url = Router.path('content.executiveprofile',{
+        var url = Router.pick_path('content.executiveprofile',{
           lname:lname,
           fname:fname,
           ticker:ticker,
@@ -239,7 +239,7 @@ Template.whos_who.helpers({
 function foundersURL(c_id){
   var params = Router.current().getParams();
 
-  return Router.path('content.boardcommittee',{
+  return Router.pick_path('content.boardcommittee',{
     ticker:params.ticker,
     name:params.name,
     company_id: c_id

@@ -1,0 +1,57 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+
+<title>CEOs Who Make $1 Salary</title>
+
+<meta charset='utf-8'>
+<!--ATTENTION css/fontawesome.css is being called locally the cdn link site was not working-->
+<link href="../css/font-awesome.css" media="all" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../css/ceo_dollar_salary.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="../js/ceo_dollar_salary.js"></script>
+</head>
+<body>
+  <!--container of widget-->
+  <div class="ceo_dollar_salary">
+    <!--wrapper of just widget-->
+    <div class="cds">
+      <!--top text-->
+      <div class="cds-logo"></div>
+      <div class="cds-text">
+        <div class="cds-t1">CEOs Who Make $1 Salary</div>
+        <div class="cds-t2">
+          <span class="cds-t2-title"></span>
+        </div>
+      </div><!--top text END-->
+        <!--image && button-->
+      <div class="cds-middle">
+        <a id="exec-link" href="">
+          <div class="cds-image"></div>
+        </a>
+        <button class="cds-leftnav" data-dir='prev'><i class="fa fa-angle-left"></i></button>
+        <button class="cds-rightnav" data-dir='next'><i class="fa fa-angle-right"></i></button>
+      </div><!--image && button END-->
+      <!--bottom text-->
+      <div class="cds-content">
+        <div class="cds-content1">Last First Name</div><!--name of ceo-->
+        <div class="cds-content2">
+          <span class="cds-content2-comp">Total Compensation: $</span><span id="paid"></span>
+        </div>
+      </div>
+      <div class="cds-list">
+        <a class="cds-href" href="#">
+          <span class="cds-list-link">SEE THE LIST <i class="fa fa-mail-forward swc-space"></i></span>
+        </a>
+      </div>
+      <div class="cds-presentedby">
+        PRESENTED BY
+      </div>
+      <!--bottom text END-->
+    </div><!--wrapper END-->
+    <!--AD Placement-->
+    <div class="ad_location"></div>
+  </div>
+</body>
+</html>

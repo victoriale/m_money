@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<title>local widget</title>
+
+<meta charset='utf-8'>
+<base href="<?php echo $coreENV['path'];?>" target="_blank">
+<link href="../css/font-awesome.css" media="all" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="http://code.highcharts.com/stock/highstock.js"></script>
+
+<script type="text/javascript">
+var CUR_OFFSET = 0;
+var comp_name = '';
+//function to create a sliding animation and color change
+$(function () {
+
+	//checks if on latimes if so replace Title of movers.
+		var windowURL = document.referrer;
+		var latimes = document.referrer.split('/')[2];
+		if (latimes == 'www.latimes.com'){
+			$('.heading').html('<i class="fa-area-chart"></i>  California Movers');
+		}
+		else{
+			$('.heading').html('<i class="fa-area-chart"></i>  Local Market Movers');
+		}
+	//hides left button initially
+	$('.hide').hide();
+
+	// when clicked will change offset and data shown
+	$('.btn-click').hover(function() {
+		$(this).attr('src', $(this).attr('src').replace(/Black/, 'Hover'));
+	}, function() {
+		$(this).attr('src', $(this).attr('src').replace(/Hover/, 'Black'));
+	});
+
+	$('.btn-click').on('click', function() {
+		if ($(this).data('dir') === 'next') {
+			paint_center_piece(++CUR_OFFSET);
+		}
+		else {
+			if (CUR_OFFSET > 0) {
+				paint_center_piece(--CUR_OFFSET);
+			}
+		}
+			if ($(this).data('dir') === 'prev' && CUR_OFFSET == 0)
+				$('.hide').hide();
+			else
+				$('.hide').show();
+	});
+
+	paint_center_piece(CUR_OFFSET);
+});
+
+function paint_center_piece(offset) {
+
+	$.post('http://quu.nu/services/', {
+		service: "passfail",
+		action:  "batchService",
+		data: '[{"service":"passfail","data":{"service":"profiles.card.get","params":["public"],"filters":{"id":"<?php echo $coreENV['passfail']['ui']['locationId'];?>","type":"location","price-low":"1.00"},"limits":{"count":'+(offset+1)+',"offset":'+offset+'},"flags":[],"options":{"order":"sv-desc"}}}]'
+
+	}, function(result) {
+		//service called time to set div classes to given results
+		$('.company-name').html(result[0][0].shortName);
+		$('.company-id').html(result[0][0].quoteId);
+		$('.company-location').html(result[0][0].location);
+		$('.company-name').html(result[0][0].shortName);
+		$('.logo-image').css('background','url(http:'+result[0][0].image+') no-repeat');
+		comp_name = result[0][0].symbol;
+		// link to profile URL
+		$(".profile-link").attr("href", result[0][0].profileUrl);
+
+		//function to create precise rounding.
+
+		var num = result[0][0].volume;
+
+		$('.shares').html(nFormatter(num));//sends decimal converted number
+
+		// this is going to pull data for chart
+		$.post('http://quu.nu/services/', {
+				service: "passfail",
+				action:  "batchService",
+				data: '[{"service":"passfail","data":{"service":"financials.chart.getStockData","params":[{"range":"1","dataType":"company","series":[{"name":"'+result[0][0].shortName+'","source":"company","dataType":"stock","value":"'+result[0][0].id+'"}]}]}}]'
+			}, function(result_json) {
+
+				// the following is the result of service call.
+				// use the data to create highcharts
+				var series = result_json[0].series[0];
+				newDataArray = [];
+				$.each(series.data, function(i, val) {
+					xyMerge = [val.x * 1000, parseFloat(val.y)];
+					newDataArray.push(xyMerge);
+				});
+				console.log(newDataArray);
+				//renders data gathered into a simple chart
+			    $('#stockchart').highcharts({
+			        title : {
+			            text : null
+			        },
+					xAxis:{
+						title: {
+							text:''
+						},
+						type: 'datetime',
+						tickPixelInterval: 50,
+						labels:{
+							style:{
+								fontSize:'8px'
+							}
+						}
+					},
+					yAxis:{
+						opposite:true,
+						title: {
+							text:''
+						},
+						allowDecimals: true,
+						labels: {
+							formatter: function() {
+								return '$' +this.value;
+							}
+						},
+					},
+					credits: {
+						enabled: false
+					},
+	        series : [{
+							showInLegend: false,
+	            name : comp_name,
+	            data : newDataArray
+	        }]
+		    });
+		}, 'json');
+	}, 'json');
+}
+
+function nFormatter(num) {
+	if (num >= 1000000000) {
+		return (num / 1000000000).toFixed(1).replace(/\.0$/, '') + ' B';
+	}
+	if (num >= 1000000) {
+		return (num / 1000000).toFixed(1).replace(/\.0$/, '') + ' M';
+	}
+	if (num >= 1000) {
+		return (num / 1000).toFixed(1).replace(/\.0$/, '') + ' K';
+	}
+
+	return num;
+}
+</script>
+
+<style type="text/css">
+
+html, body {
+	margin: auto;
+	padding: auto;
+	font-family: arial;
+	overflow:hidden;
+	width: 100%;
+}
+
+.container{
+	position:relative;
+	height: 500px;
+}
+.widget-wrapper {
+	width: 300px;
+	margin:0 auto;
+	padding-top:100px;
+}
+
+.top-grey-bar {
+	background-color: #676767;
+	height: 3px;
+}
+
+.inner-wrapper {
+	position: relative;
+	display: table;
+	height:250px;
+	width: 300px;
+}
+
+.inner-center {
+	display: table-cell;
+	width: 240px;
+}
+
+.inner-left, .inner-right {
+	display: table-cell;
+	width: 30px;
+	cursor: pointer;
+	position: relative;
+}
+
+.heading {
+	font-size: 18px;
+	color: #676767;
+	font-weight: bold;
+	text-align: left;
+	font-family: Belizio,Georgia,serif;
+	margin-top:4px;
+	margin-left:10px;
+}
+
+.company-info {
+	margin:auto;
+	width:100%;
+	margin-top: 2px;
+}
+
+.company-name {
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+	font-family: Georgia, serif;
+	margin-bottom:2px;
+}
+
+.location-profile{
+	text-align:center;
+	font-size: 12px;
+	margin-bottom: 2px;
+}
+
+.company-logo-set {
+	display: table;
+	width: 100%;
+	margin-top:2px;
+}
+
+.company-logo {
+	display: table-cell;
+	width: 50%;
+}
+
+.logo-image {
+	background: '';
+	background-size: contain!important;
+	width: 100px;
+	height: 100px;
+	margin: auto;
+	border: 3px solid #cccccc;
+	border-radius: 70px;
+	background-position: center center!important;
+}
+
+.profile-link{
+	text-decoration:none;
+}
+
+.view-profile{
+	position:relative;
+	top:0;
+	left:0;
+	width:100px;
+	background: rgba(48,152,255,.75);
+	border-radius:100%;
+	padding:.6em;
+	opacity:0;
+	transition: .2s opacity;
+	box-sizing:border-box;
+}
+
+.view-profile_body {
+	vertical-align: middle;
+	background: #3098FF;
+	border: solid 1px #FFF;
+	color: #fff;
+	font-weight: lighter;
+	text-align: center;
+	text-transform: uppercase;
+	padding-top: .7em;
+	border-radius: 100%;
+	width: 80px;
+	height: 69px;
+	}
+
+.view-profile_txt1 {
+	font-size: .7em;
+}
+
+.view-profile_txt2 {
+	font-size: .7em;
+	font-weight: 700;
+}
+
+.view-profile:hover{
+	opacity:1;
+}
+
+.company-logo-data {
+	display: table-cell;
+	vertical-align: middle;
+	width: 50%;
+	font-weight:bold;
+}
+
+.shares{
+	color:#44b244;
+	font-size:18px;
+	font-weight:bold;
+	font-family: Belizio,Georgia,serif;
+	margin-bottom:2px;
+}
+
+.shares-trade{
+	font-family: Georgia, serif;
+	font-size: 14px;
+	font-weight:bold;
+	margin-bottom:5px;
+}
+
+.company-list{
+	text-transform:uppercase;
+	font-size:10px;
+	font-weight:light;
+	color:#000;
+
+}
+
+.link{
+	text-decoration:none;
+	color:#000;
+}
+
+.link:hover{
+	color:#3098ff;
+}
+
+#stockchart {
+	margin: 0 auto;
+	width:100%;
+	height: 80px;
+}
+
+.btn-click{
+	height: 60px;
+	width: 30px;
+	position: absolute;
+	top: 100px;
+	left: 0;
+}
+
+.triangle{
+	width: 0;
+	height: 0;
+	border-width:20px 0 20px 20px;
+	border-color: #E6E6E6 #E6E6E6 #E6E6E6 #FFF;
+	content: '';
+	display: block;
+	position: relative;
+	margin-top: -28px;
+	right: 4px;
+	z-index:-1;
+}
+
+.bottom-grey-bar {
+	height: 250px;
+	background-color: #cccccc;
+}
+.presented-by{
+	font-size: 12px;
+	color:#cccccc;
+}
+.blue{
+	color:#3098ff;
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+<div class="widget-wrapper">
+	<div class="top-grey-bar"></div>
+	<div class="inner-wrapper">
+		<div class="inner-left company-link-left">
+			<img class="btn-click hide" src="<?php echo $coreENV['cssDir'];?>latimes-standalone/Arrow_Left_Black.png" data-dir="prev">
+		</div>
+
+		<div class="inner-center">
+			<div class="heading"><i class="fa-area-chart"></i>  Local Market Movers</div>
+
+			<div class="company-info">
+				<div class="company-name"></div>
+				<div class="location-profile">
+				<span class="company-id"></span>
+				<span>|</span>
+				<i class="fa-map-marker blue"></i>
+				<span class="company-location"></span>
+				</div>
+				<div class="company-logo-set">
+					<div class="company-logo">
+						<div class="logo-image">
+						<a class='profile-link' href="">
+						<div class="view-profile">
+						<div class="view-profile_body">
+							<div class="view-profile_txt1">View</div>
+							<div class="view-profile_txt2">Profile</div>
+							<div><i class="fa fa-mail-forward"></i></div>
+						</div>
+						</div>
+						</a>
+						</div>
+					</div>
+					<div class="company-logo-data">
+						<div class="shares"></div>
+						<div class="shares-trade">Shares Traded</div>
+							<div class="company-list">
+							<a class="link" href="<?php echo $coreENV['path'];?>list-companies?id=<?php echo $coreENV['passfail']['ui']['locationId'];?>&type=location&price-low=1.00&order=sv-desc">See The List
+							<i class="fa-mail-forward"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="stockchart"></div>
+			<span class="presented-by">
+				PRESENTED BY
+			</span>
+		</div>
+		<div class="inner-right company-link-right">
+			<img class="btn-click" src="<?php echo $coreENV['cssDir'];?>latimes-standalone/Arrow_Right_Black.png" data-dir="next">
+		</div>
+	</div>
+	<div class="bottom-grey-bar"></div>
+</div>
+
+</div>
+</body>
+</html>

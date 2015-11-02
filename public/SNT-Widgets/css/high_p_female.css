@@ -1,0 +1,260 @@
+@import url(http://fonts.googleapis.com/css?family=Cabin:400,500,700);
+
+html, body {
+  margin: 0 !important;
+  font-family: HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Helvetica,sans-serif;
+  width: 100%;
+  height: auto;
+  background-color: @white;
+}
+div{
+  font-family: HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Helvetica,sans-serif;
+}
+  * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  }
+  a{
+    text-decoration: none;
+  }
+  .high_p_female-content-image,
+  .high_p_female-listbutton-icon{
+  background-repeat:no-repeat;
+  background-position:center center!important
+  }
+  .f_w_container{
+  width:300px;
+  height:600px;
+  overflow:hidden;
+  margin:0 auto;
+  z-index:20;
+  border-bottom: 3px solid #000;
+  padding-top: 97px;
+}
+.f_w_container:hover{
+border-bottom:3px solid #3098ff;
+}
+  .ad_location{
+  width:300px;
+  height:250px;
+  opacity:0
+  }
+  .presented_by{
+  text-align:left;
+  color:#999;
+  font-size:10px;
+  padding:0 5px
+  }
+  .high_p_female{
+  width:100%;
+  height:250px;
+  background-color:#fff;
+  border-top:3px solid #666
+  }
+  .high_p_female:hover{
+  border-top:3px solid #3098ff
+  }
+  .high_p_female-title{
+  font-size:24px;
+  font-weight:700;
+  text-align:center;
+  color:#000;
+  width:70%;
+  margin:4px auto 0;
+  line-height: 1em;
+  }
+  .high_p_female-title #title_text{
+    font-family:Cabin!important;
+    font-weight: 700;
+  }
+  .high_p_female-location{
+  height:15px;
+  font-size:14px;
+  display:table;
+  margin:0 auto
+  }
+  .high_p_female-location-icon{
+  width:10px;
+  height:10px;
+  float:left;
+  color:#3098ff;
+  background-image:url(public/re_icon_map_marker_sm.png);
+  background-repeat:no-repeat;
+  background-size:contain;
+  margin-top:5px
+  }
+  .high_p_female-location-text{
+  color:#000;
+  float:left;
+  font-size:14px;
+  padding-left:5px
+  }
+  .high_p_female-content{width:100%;
+  height:100px;
+  margin-top:10px;
+  }
+  .high_p_female-content-image{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  float:left;
+  border:2px solid #ccc;
+  margin:0 10px;
+  background-size:contain;
+  background-position: center center !important;
+  background-repeat: no-repeat;
+  position:relative;
+  }
+  .high_p_female-content-subimage{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  float:left;
+  border:1px solid #ccc;
+  margin:0 10px;
+  background-color: #fff;
+  background-size:contain;
+  background-position: center center !important;
+  background-repeat: no-repeat;
+  position:absolute;
+  bottom:-2px;
+  right:-12px;
+  }
+  .high_p_female-content-hover{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  float:left;
+  opacity:0;
+  color:#fff;
+  background-color:rgba(48,152,255,.75);
+  padding-top:15px
+  }
+  .high_p_female-content-hover-text1{
+  font-size:23px;
+  line-height:1em;
+  text-align:center
+  }
+  .high_p_female-content-hover-text2{
+  font-size:20px;
+  line-height:1em;
+  text-align:center;
+  font-weight:700
+  }
+  .high_p_female-content :hover{
+  opacity:1
+  }
+  .high_p_female-content-textarea{
+  height:50px;
+  width:130px;
+  float:left;
+  vertical-align:middle;
+  text-align:left;
+  position:relative;
+  top:40%}
+  .high_p_female-content-textarea-t1{
+  color:#000;
+  font-size:14px;
+  font-weight:700;
+  width:100%;
+  line-height: 1.3em;
+  }
+  .high_p_female-content-textarea-t2{
+  color:#3098ff;
+  font-size:14px;
+  line-height:1em;
+  width:100%;
+  }
+  .high_p_female-content-buttonright{
+  width:40px;
+  height:40px;
+  border:2px solid #000;
+  border-radius:50%;
+  color:#000;
+  font-size:30px;
+  margin-right:5px;
+  float:right;
+  font-weight:700;
+  position:relative;
+  top:10%;
+  line-height:1.2em;
+  text-align:center;
+  cursor:pointer
+  }
+  .high_p_female-content-buttonright:hover{
+  color:#fff;
+  background-color:#000
+  }
+  .high_p_female-content-buttonleft{
+  width:40px;
+  height:40px;
+  border:2px solid #000;
+  border-radius:50%;
+  color:#000;
+  font-size:30px;
+  margin-right:5px;
+  float:right;
+  font-weight:700;
+  position:relative;
+  top:15%;
+  line-height:1.2em;
+  text-align:center;
+  cursor:pointer
+  }
+  .high_p_female-content-buttonleft:hover{
+  color:#fff;
+  background-color:#000
+  }
+  .high_p_female-total{
+    color:#000;
+    font-size:14px;
+    height:20px;
+    margin:5px 0;
+    text-align: center;
+  }
+  .high_p_female-total-price{
+    color:#000;
+    font-size:1em;
+    font-weight: bold;
+  }
+  .high_p_female-listbutton{
+  height:35px;
+  width:180px;
+  margin:5px auto 3px;
+  box-sizing:border-box;
+  border-radius:5px
+  }
+  .high_p_female-listbutton-button{
+  width:100%;
+  height:100%;
+  border-radius:5px;
+  border:none;
+  padding:5px 10px;
+  background-color:#3098ff
+  }
+  .high_p_female-listbutton-button:hover{
+  background-color:#000;
+  border-radius:5px
+  }
+  .high_p_female-listbutton-icon{
+  width:25px;
+  height:25px;
+  border-radius:50%;
+  //background-image:url(public/joyfulhome_house_clear.png);
+  background-size:20px 20px;
+  background-color:#000;
+  float:left;
+  color:#fff;
+  line-height: 25px;
+  font-size: 10px;
+  }
+  .high_p_female-listbutton-text{
+  float:left;
+  font-size:15px;
+  color:#fff;
+  padding-left:20px;
+  line-height:24px}
+  .high_p_female-listbutton-t1{
+  padding-right:5px
+  }

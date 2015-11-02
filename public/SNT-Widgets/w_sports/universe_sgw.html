@@ -1,0 +1,61 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+
+<title>Sports Graph Widget</title>
+
+<meta charset='utf-8'>
+<!--ATTENTION css/fontawesome.css is being called locally the cdn link site was not working-->
+<link href="../css/font-awesome.css" media="all" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../css/universe_sgw.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="http://code.highcharts.com/stock/highstock.js"></script>
+<script type="text/javascript" src="../js/universe_sgw.js"></script>
+
+<base href="http://www.touchdownloyal.com/" target="_blank">
+
+</head>
+<body>
+  <!--container of widget-->
+  <div class="universe_sgw">
+    <!--wrapper of just widget-->
+    <div class="sgw">
+      <!--top text-->
+      <div class="sgw-logo"></div>
+      <div class="sgw-text">
+        <div class="sgw-t1">Players with Fewest Drops</div>
+        <div class="sgw-t2">
+          <span class="sgw-t2-title">Alshon Jeffery, #17 </span>
+          <i class="fa fa-angle-right swc-space"></i> <i class="fa fa-map-marker swc-space" id="swc-blue"></i>
+          <span class="sgw-t2-loc">Chicago Bears</span>
+        </div>
+      </div><!--top text END-->
+        <!--image && button-->
+      <div class="sgw-middle">
+        <div class="sgw-image">tehe</div>
+        <div class="sgw-content">
+          <div class="sgw-content1">DataPoint</div>
+          <div class="sgw-content2">List Identifier</div>
+          <a class="sgw-href"  href="#">
+            <span class="sgw-list-link">SEE THE LIST <i class="fa fa-mail-forward swc-space"></i></span>
+          </a>
+        </div>
+
+        <button class="sgw-leftnav"><i class="fa fa-angle-left"></i></button>
+        <button class="sgw-rightnav"><i class="fa fa-angle-right"></i></button>
+      </div><!--image && button END-->
+      <!--bottom text-->
+      <div id="sgw-graph">
+
+      </div>
+      <div class="sgw-presentedby">
+        PRESENTED BY
+      </div>
+      <!--bottom text END-->
+    </div><!--wrapper END-->
+    <!--AD Placement-->
+    <div class="ad_location">HI MY NAME IS ADS!!!</div>
+  </div>
+</body>
+</html>

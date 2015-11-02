@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>SV_MARKET_WIDGET</title>
+  <meta charset='utf-8'>
+  <base href="<?php echo $coreENV['path'];?>" target="_blank">
+  <link href="../css/font-awesome.css" media="all" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="../css/sv_market.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="../js/sv_market.js"></script>
+</head>
+
+<body>
+  <div class="market_body">
+   <div class="market_header">
+    <span class="market_header_text">
+      <span class="resize">
+      <i class="fa fa-area-chart color_blue"></i>
+      </span>
+      markets
+    </span>
+   </div>
+   <div class="market_search_layout">
+  <span class="right_side">
+     <input type= " Find Stocks" class="market_search_box" name="search" placeholder="e.g. Apple" >
+    <span class="left_side">
+
+<button class="market_search_iconbg" target="_blank">
+        <i class="fa fa-search market_search_icon"></i>
+    </button>
+   </span>
+</span>
+<div id="results"></div>
+     <div class="market_grey_text">
+    Quotes delayed 20 min.
+   </div>
+
+   </div>
+<a data-dir="SV150" href="http://www.investkit.com/Sv150-top-gainers/sv150_gainers/list">
+   <div class="market_box">
+    <div class= "top_text">
+    <div class= "blue_text" id="SVtxt">
+      SV150
+    </div>
+    <div class= "price_black_text" id="SV">
+    </div>
+   </div>
+   <div id= "bottom_text1">
+    <div class= "stock_data_def">
+    <i class="fa fa-arrow-circle-o-down m1"></i>
+    <span class= "stock_data" id="SVchange"></span>
+    </div>
+    <div class= "stock_percentage" id="SVcent">
+    </div>
+   </div>
+   </div>
+</a>
+  <a class="sv_top_profile">
+   <div class="market_box">
+  <div class="sv150_top_text">Top SV150 Mover</div>
+
+    <div class="sv_top_image"></div>
+
+  <div class="sv_profile_data">
+    <div class="sv-pd-name"></div>
+    <div class="sv-pd-price"></div>
+    <div class="sv-pd-change"></div>
+  </div>
+   </div>
+ </a>
+  <a data-dir="nasdaq" href="" id="Nqtxt">
+   <div class="market_box">
+    <div class= "top_text">
+    <div class= "blue_text" >
+      NASDAQ
+    </div>
+    <div class= "price_black_text" id="nq">
+    </div>
+   </div>
+   <div id= "bottom_text2">
+    <div class= "stock_data_def"  >
+    <i class="fa fa-arrow-circle-o-down m2"></i>
+  <span class= "stock_data" id="Nqchange"></span>
+    </div>
+    <div class= "stock_percentage" id="Nqcent">
+    </div>
+   </div>
+   </div>
+  </a>
+<a data-dir="AMEX" href="" id="SPtxt">
+   <div class="market_box">
+    <div class= "top_text">
+    <div class= "blue_text" >
+      AMEX
+    </div>
+
+    <div class= "price_black_text" id="SP">
+    </div>
+   </div>
+   <div id= "bottom_text3">
+    <div class= "stock_data_def">
+    <i class="fa fa-arrow-circle-o-down m3"></i>
+    <span class= "stock_data" id="SPchange"></span>
+    </div>
+    <div class= "stock_percentage" id="SPcent">
+    </div>
+   </div>
+   </div>
+</a>
+<a data-dir="nyse" href=""  id="Nytxt">
+   <div class="market_box">
+    <div class= "top_text">
+    <div class= "blue_text">
+      NYSE
+    </div>
+
+    <div class= "price_black_text" id="ny">
+    </div>
+   </div>
+   <div id= "bottom_text4">
+    <div class= "stock_data_def">
+    <i class="fa fa-arrow-circle-o-down m4"></i>
+    <span class= "stock_data" id="Nychange"></span>
+    </div>
+    <div class= "stock_percentage" id="Nycent">
+    </div>
+   </div>
+   </div>
+</a>
+</div>
+</body>
+</html>

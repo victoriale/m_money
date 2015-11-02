@@ -121,14 +121,17 @@
           {{/if}}
         </td>
         <td style="padding-left: 23vw;">
+          {{#if homepage}}
+          {{else}}
           <div class="layout_nav-search">
             <div class="search_icon fa fa-search"></div>
             <input type="text" name="keyword" class="layout_nav-search_input" placeholder="Search for any company, location, or executive">
-          <!-- <ul class="fi_search_recommendations"> -->
+            <ul class="header_search_recommendations">
               <div class="caret-top"></div>
               <!-- <i class="fa fa-times fi_search_recommendations_close"></i> -->
-            <!--</ul> -->
+            </ul>
           </div>
+          {{/if}}
         </td>
         <td style="float:right;min-width:200px;max-width:1600px;">
           <a class="share-link">

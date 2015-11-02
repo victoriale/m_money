@@ -21,33 +21,8 @@ Template.ep_head.onCreated(function(){
     //date comparison
     if(typeof data != 'undefined'){
       //grab date
-      var apiDate = data['o_last_updated'].split(' ')[0];
-      var today = [new Date().getFullYear(),new Date().getMonth()+1,new Date().getDate()];
-      //year month day
-      apiDate = apiDate.split('-');
-      var year = today[0] - Number(apiDate[0]);
-      var month = today[1] - Number(apiDate[1]);
-      var day = today[2] - Number(apiDate[2]);
-
-      if(typeof lastUpdated == 'undefined'){
-        //global scope
-        lastUpdated = "test";
-        if(day > 0){
-          if(day == 1){
-            lastUpdated = "Yesterday";
-          }else{
-            lastUpdated = day+" Days ago";
-          }
-        }else{
-          lastUpdated = "Today";
-        }
-        if(month > 0){
-          lastUpdated = month+" Months ago";
-        }
-        if(year > 0){
-          lastUpdated = year+" Months ago";
-        }
-      }//end nested if
+      data['last_updated'] = (new Date(data['o_last_updated'])).toSNTFormTime();
+      lastUpdated = data['o_last_updated'];
     }
   })
 });
