@@ -77,26 +77,39 @@ Template.article_news_page.events({
       Session.set("anpCount", counter);
     }
   },
+  //Event close tooltip
+  'click .art-lst-whatis-header-x': function(e, t){
+    t.$('.art-lst-whatis').hide();
+  }
 })
 
 Template.article_news_page.helpers({
   headerinfo: function(){
     var params = Router.current().getParams();
-    var data = {};
+    var data = Session.get('profile_header');
+    var returnObj = {};
 
-    if(typeof params.loc_id != 'undefined'){
-      data.header = fullstate(params.loc_id);
-      console.log(data);
+    if(typeof params.company_id !== 'undefined'){
+      returnObj.location = data.c_hq_city + ', ' + data.c_hq_state;
+      returnObj.name = data.c_name;
+      returnObj.url = 'http://apifin2.synapsys.us/images/' + data.c_logo;
+    }else if(typeof params.fname !== 'undefined'){
+
+    }else if(typeof params.loc_id !== 'undefined'){
+      returnObj.location = data.location;
+      returnObj.name = data.location;
+      returnObj.url = '/StateImages/Location_' + data.location +'.jpg';
     }
-    if(typeof params.comp_id != 'undefined'){
-      data.header = params.name.replace(/-/g, ' ');
-      console.log(data);
+
+    return returnObj;
+  },
+  shareURL: function(){
+    var news = Session.get('article_news_page');
+    var count = Session.get('anpCount');
+
+    if(typeof news != 'undefined'){
+      return "https://www.facebook.com/sharer/sharer.php?u=" + news.data[count].link;
     }
-    if(typeof params.fname != 'undefined'){
-      data.header = params.fname + ' ' + params.lname;
-      console.log(data);
-    }
-    return data;
   },
   newsCarousel: function(){
     var news = Session.get('article_news_page');
@@ -162,11 +175,6 @@ Template.article_news_page.helpers({
   updt_dt: function(){
     return "05/24/2015, 12:36PM EDT";
   },
-
-  location: function(){
-    return "The United States of America";
-  },
-
   main_title: function(){
     var data = Session.get('article_news_page');
     if(data!=undefined){
@@ -216,7 +224,8 @@ Template.article_news_page.helpers({
     var data = Session.get('article_news_page');
     if(data!=undefined)
     {
-      return timeConverter(data.data[0]['pubDate_ut']);
+
+      return convert_time_full(data.data[0]['pubDate_ut'] * 1000);
     }
   },
   mntags:function(){
@@ -243,7 +252,7 @@ Template.article_news_page.helpers({
       returnArray[j] = {};
       returnArray[j]['url'] = data.data[i]['link'];
       returnArray[j]['fontawesome'] = "fa fa-newspaper-o";
-      returnArray[j]['type'] = "article";
+      returnArray[j]['type'] = "Article";
       if(data.data[i]['tags'] != null){
         tagArray = data.data[i]['tags'].split(", ");
       }
@@ -265,7 +274,7 @@ Template.article_news_page.helpers({
       returnArray[j]['image'] = data.data[i]['lead_image'];
       returnArray[j]['title'] = data.data[i]['title'];
       returnArray[j]['pub'] = data.data[i]['publisher'];
-      returnArray[j]['time'] = timeConverter(data.data[i]['pubDate_ut']);
+      returnArray[j]['time'] = convert_time_full(data.data[i]['pubDate_ut'] * 1000);
       returnArray[j]['index'] = i;
       j++;
     }
@@ -285,7 +294,7 @@ Template.article_news_page.helpers({
       returnArray[j] = {};
       returnArray[j]['url'] = data.data[i]['link'];
       returnArray[j]['fontawesome'] = "fa fa-newspaper-o";
-      returnArray[j]['type'] = "article";
+      returnArray[j]['type'] = "Article";
       if(data.data[i]['tags'] != null){
         tagArray = data.data[i]['tags'].split(", ");
       }
@@ -307,7 +316,7 @@ Template.article_news_page.helpers({
       returnArray[j]['image'] = data.data[i]['lead_image'];
       returnArray[j]['title'] = data.data[i]['title'];
       returnArray[j]['pub'] = data.data[i]['publisher'];
-      returnArray[j]['time'] = timeConverter(data.data[i]['pubDate_ut']);
+      returnArray[j]['time'] = convert_time_full(data.data[i]['pubDate_ut'] * 1000);
       returnArray[j]['index'] = i;
       j++;
     }
