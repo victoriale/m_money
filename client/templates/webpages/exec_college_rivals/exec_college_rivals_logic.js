@@ -60,11 +60,11 @@ Template.exec_college_rivals.helpers({
     if(typeof data === 'undefined'){
       return '';
     }
-    return data['rivals'][0]['o_pic'];
+    return data['officer']['o_pic'];
   },
+
   MainExecUrl: function(){
     var data = Session.get('college_rivals');
-    console.log(data);
     if(typeof data === 'undefined'){
       return '';
     }
