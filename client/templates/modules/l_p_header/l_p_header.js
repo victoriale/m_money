@@ -18,7 +18,7 @@ Template.lp_head.helpers({
     if(typeof(data) === 'undefined'){
       return false;
     }
-    data['lastupdated'] = (new Date(data['lastupdated'])).toSNTFormTime();
+    data['last_updated'] = (new Date(data['last_updated'])).toSNTFormTime();
     return data;
   }
 });
