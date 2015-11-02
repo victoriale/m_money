@@ -19,22 +19,10 @@ Template.about_exec.onRendered(function(){
     //push all data returned into a list array to be used for the module
     RivalArray.push(data['officer']);
     $.map(data.rivals, function(data, index){
-      data['exec_url'] = Router.pick_path('content.executiveprofile',{
-        fname:data.o_first_name,
-        lname:data.o_last_name,
-        ticker:data.c_ticker,
-        exec_id:data.o_id
-      });
-      data['comp_url'] = Router.pick_path('content.companyprofile',{
-        ticker:data.c_ticker,
-        name:compUrlName(data.c_name),
-        company_id:data.c_id
-      });
       data['e_id'] = index;
       RivalArray.push(data);
+      Session.set('about_exec', RivalArray);
     });
-    //console.log("RIVAL ARRAY DONE!",RivalArray);
-    Session.set('about_exec', RivalArray);
   });
 
 });
@@ -246,7 +234,6 @@ Template.about_exec.helpers({
   tt: function(){
     var counter = Session.get("count");
     var data1 = Session.get("about_exec");
-    console.log(data1);
     var returnArray = [];
     var j = counter + 1;
     //var arr = " ";
@@ -266,6 +253,17 @@ Template.about_exec.helpers({
       var longtl = data1[j]['long_title'];
       var urlid = data1[j]['o_id'];
       var img = data1[j]['o_pic'];
+      data1[j]['exec_url'] = Router.pick_path('content.executiveprofile',{
+        fname:data1[j].o_first_name,
+        lname:data1[j].o_last_name,
+        ticker:data1[j].c_ticker,
+        exec_id:data1[j].o_id
+      });
+      data1[j]['comp_url'] = Router.pick_path('content.companyprofile',{
+        ticker:data1[j].c_ticker,
+        name:compUrlName(data1[j].c_name),
+        company_id:data1[j].c_id
+      });
     //  var abb = abbr();
       if(j < data1.length)
       {
@@ -276,6 +274,8 @@ Template.about_exec.helpers({
         var arr = " ";
         returnArray[i]['degr1'] = degr;
         returnArray[i]['img'] = img;
+        returnArray[i]['execurl'] = data1[i]['exec_url'];
+        returnArray[i]['compurl'] = data1[i]['comp_url'];
         //returnArray[i]['abbr1']=  abb;
         if(degr)
         {
@@ -297,7 +297,6 @@ Template.about_exec.helpers({
       }
       j++;
     }
-    console.log(returnArray);
     return returnArray;
   },
   //This is used to return to the excutive id and the path to the router that links to the new page.

@@ -75,7 +75,7 @@
       <!--List of other execs -->
       <div class="exec_body_list">
         {{#each tt}}
-        <a href="{{ExecURL}}">
+        <a href="{{execurl}}">
           <!--First single exec list item-->
           <div class="exec_body_list_single">
             <!--List item circle image-->
@@ -87,7 +87,7 @@
             </div>
             <!--List item middle line - company and position-->
             <div class="exec_body_list_single_position">
-              <div class="exec_blue exec_body_list_single_position_txt"> {{cnm1}} &nbsp; </div>
+              <a href="{{compurl}}"><div class="exec_blue exec_body_list_single_position_txt"> {{cnm1}} &nbsp; </div></a>
             <div class="exec_blue exec_body_list_single_position_txt1"> - &nbsp; {{longtl1}}</div>
             </div>
             <!--List item bottom line - education-->
