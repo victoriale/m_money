@@ -14,12 +14,32 @@ Template.co_fin_overview.onCreated(function(){
 
     //If data does exist reformat data
     if(typeof data !== 'undefined'){
+      Meteor.call('GetAIContent', data.company_data.c_id, function(err, data){
+        if(err){
+          console.log("error Call", err);
+          return false;
+        }else{
+          var aiContent = createGenericString(false, data);
+          Session.set('AI_daily_update',aiContent);
+        }
+      })
+
       reformatFinancialOverviewData();
     }
   })
 })
 
 Template.co_fin_overview.helpers({
+  //Helper to get ai Content
+  AIcontent: function(){
+    var data = Session.get('AI_daily_update');
+
+    if(typeof data === 'undefined'){
+      return '';
+    }
+
+    return data;
+  },
   //Helper to determine chart
   getGraphObject: function(){
     var data = Session.get('new_fin_overview');

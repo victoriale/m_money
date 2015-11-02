@@ -58,7 +58,7 @@ Associated Files: [area_composite.html,area_composite.less,area_composite.js]
           {{#each companies}}
           <div class="area_comp_row">
             <div class="area_comp_row_left {{color}}"></div>
-            <div class="area_comp_row_image"><i class="fa {{image}}"></i></div>
+            <div class="area_comp_row_image"><i class="fa {{icon}}"></i></div>
             <div class="area_comp_row_right">
               <div class="area_comp_row_right_text">
                 <div class="area_comp_row_right_text_1">{{count}}</div>
@@ -67,7 +67,7 @@ Associated Files: [area_composite.html,area_composite.less,area_composite.js]
               <div class="area_comp_row_right_comp">
                 {{#each comp}}
                 <a href="{{url}}">
-                  <div class="area_comp_row_right_comp_circle" style="background-image: url({{imageUrl logo}});" index="{{index}}"></div>
+                  <div class="area_comp_row_right_comp_circle" style="background-image: url({{imageUrl logo}});" index="{{index}}"><div class="hover"></div></div>
                 </a>
                 {{/each}}
               </div>

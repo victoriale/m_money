@@ -145,11 +145,12 @@ Template.daily_update.helpers({
       //return {new:"stuff"};
       return '';
     }
-
+    var getheader = Router.current().getParams();
     var currentRoute = Router.current().route.getName();
 
     switch(currentRoute){
       case 'content.locationprofile':
+        data.header = fullstate(getheader.loc_id);
         data.text1 = 'Todays Low';
         data.text2 = 'Todays High';
         data.text3 = 'Previous Close';
@@ -161,6 +162,7 @@ Template.daily_update.helpers({
         data.value4 = data.total_companies;
       break;
       case 'content.companyprofile':
+        data.header = getheader.name.replace(/-/g, ' ');
         data.text1 = 'Market Cap';
         data.text2 = 'PE Ratio';
         data.text3 = 'Total Shares';

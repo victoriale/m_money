@@ -11,11 +11,14 @@
 
  Template.happening_today.onRendered( function() {
    this.autorun(function(){
+     var params = Router.current().getParams();
      var city = Session.get('bio_location');
-     //var url = "http://api.synapsys.us/news/?action=get_finance_whats_happening&city=San Francisco";
+     //var url = "http://api.synapsys.us/news/?action=get_finance_whats_happening&ticker=CSCO";
      if(typeof city != 'undefined'){
-       var url = "http://api.synapsys.us/news/?action=get_finance_whats_happening&city="+ city.c_hq_city;
+       var url = "http://api.synapsys.us/news/?action=get_finance_whats_happening&ticker="+ params.ticker;
+       console.log(url);
        Meteor.http.get(url ,function(err, data){
+         console.log(data);
          if(err){
            console.log('CALL ERROR', err);
            return false;
