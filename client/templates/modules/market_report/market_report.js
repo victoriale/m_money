@@ -213,6 +213,7 @@ Template.market_report.helpers({                   //helper class for adding dat
       return {};
     }
     var retArr = {};
+    console.log(data);
     retArr.counter = company + 1;
     retArr.company_name = data.biggest_losers[current].top_list_list[company].c_name;
     retArr.ticker = data.biggest_losers[current].top_list_list[company].c_ticker;
