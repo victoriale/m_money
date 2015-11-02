@@ -7,7 +7,7 @@ Associated Files: marketmovers.html, marketmovers.js and list_of_lists.less
 <template name="marketmovers">
   {{#with checkList}}
   <div class="module-listoflists">
-    <div class="list_header"><span class='list_header-line'></span>Top Companies Moving The Market
+    <div class="list_header"><span class='list_header-line'></span>Top Companies In {{headerInfo.fullstate}} Moving The Market
     </div>
     {{#each listsData}}
     <div class="list_ol" style="background-color:{{index_color}}">
@@ -26,7 +26,7 @@ Associated Files: marketmovers.html, marketmovers.js and list_of_lists.less
           <div class="list_ol-top-content-textbox">
             <div class="list_ol-top-content-textbox-txt1">
               <i class="fa fa-map-marker" style="color:#3098ff"></i>
-              United States
+              <a href="{{headerInfo.loc_url}}">{{headerInfo.fullstate}}</a>
             </div>
             <div class="list_ol-top-content-textbox-txt2">
               {{data.top_list_info.top_list_title}}
