@@ -1,0 +1,7 @@
+Create webpage based upon attached design. Styling only, no data - HTML & CSS.
+
+http://adobe.ly/1fcbJ9U
+
+Please name the completed page schedules_page. We would like this completed and returned by Friday, August 28th end of day.
+
+PLEASE NOTE!! This is not a real estate assignment. As such, a new repository will be used. Please pull from https://github.com/passit/gen2-NFL_LOYAL.git and put all work into /client/templates/webpages.

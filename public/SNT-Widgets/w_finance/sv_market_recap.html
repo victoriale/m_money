@@ -1,0 +1,127 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+
+<title>Market Recap Widget</title>
+
+<meta charset='utf-8'>
+<link href="../css/font-awesome.css" media="all" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../css/sv_market_recap.css">
+<!--ATTENTION css/fontawesome.css is being called locally the cdn link site was not working-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="http://code.highcharts.com/stock/highstock.js"></script>
+<script src="../js/sv_market_recap.js"></script>
+
+</head>
+<body>
+<div class="sv_mr_container">
+	<div class="top-blue-bar"></div>
+	<div class="mrwidget_wrapper">
+		<div class="mrwidget_header">
+			<i class="fa-map-marker blue"></i>
+			<span class="headline">MARKET MOVERS</span>
+		</div>
+		<div class="mrwidget_mtabs">
+			<span class="mtabs" data-dir="SV150" style="background-color:#fff;border-bottom:0"><span class="underline">SV150</span></span>
+			<span class="mtabs" data-dir="NASDAQ"><span class="underline">NASDAQ</span></span>
+			<span class="mtabs" data-dir="NYSE"><span class="underline">NYSE</span></span>
+			<span class="mtabs" data-dir="find">
+			<i class="fa-search"></i>
+			<span class="underline">FIND</span></span>
+		</div>
+		<div class="stock-container">
+			<div class="top-profile">
+				<div class="mr_info">
+					<span class="price"></span>
+					<span class="change"></span>
+				</div>
+				<div id="sv_stockchart">
+				</div>
+			</div>
+			<div class="top-container">
+				<div class="mrwidget_title">
+					<div class="title">TODAY'S SV150 MARKET MOVERS</div>
+				</div>
+				<div class="top-grey-underline"></div>
+				<div class="mrwidget_logo-set">
+					<div class="logo-image">
+						<a class="profile-link" href="">
+							<div class="view-profile">
+								<div class="view-profile_body">
+									<div class="view-profile_txt1">View</div>
+									<div class="view-profile_txt2">Profile</div>
+									<div><i class="fa fa-mail-forward"></i></div>
+								</div>
+							</div>
+						</a>
+						<span class="mrwidget_icon"></span>
+						<span class="mrwidget_counter"></span>
+					</div>
+				</div>
+				<div class="bottom-profile">
+					<div class="info">
+						<span class="name"></span>
+						<i class="fa-angle-right"></i>
+						<a class="link" href="">
+							<i class="why">Find Out Why?</i>
+						</a>
+
+					</div>
+				</div>
+
+				<div class="mrwidget_button">
+					<a class="link" href="">
+						<div class="bottom-button-info">
+							<span class="mrwidget_see-list">SEE THE WHOLE LIST</span>
+							<div class="open-ellipse"><i class="fa-mail-forward"></i></div>
+						</div>
+					</a>
+				</div>
+				<div class="bottom-grey-underline">
+					<span class="presented-by">PRESENTED BY</span>
+				</div>
+				<div class="mrwidget_left-button" data-dir="prev"><i class="fa-angle-left right-arrow"></i></div>
+				<div class="mrwidget_right-button" data-dir="next"><i class="fa-angle-right left-arrow "></i></div>
+			</div>
+		</div>
+		<div class="searchtab">
+			<div class="search-container">
+				<div class="search-title">
+				Search for a Company
+				</div>
+				<form method='get' target='_blank' class="input-pill" action="/search">
+					<input name="keyword" class="search-input" type="text" placeholder="e.g. Google or Apple">
+					</input>
+					<div class="search-button">
+						<button class="input-pill_btn fa-search"></button>
+					</div>
+				</form>
+				<div class="search-text">Search over <b>30k public companies</b>, all their executives and see in-depth information of what they are up to and what the people are saying.
+				</div>
+				<div class="search-border"></div>
+				<div class="fa-fire gap">
+					<span class="search-trending">Trending Searches</span>
+				</div>
+				<ol class="trending">
+					<li>
+						<a href="">Facebook,Inc.</a>
+						<i class="fa-angle-double-right green"></i>
+					</li>
+					<li>
+						<a href="">Tesla Motors,Inc.</a>
+						<i class="fa-angle-double-right green"></i>
+					</li>
+					<li>
+						<a href="">Apple Inc.</a>
+						<i class="fa-angle-double-right green"></i>
+					</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+	<div class="ad-location"></div>
+	<div class="bottom-blue-bar"></div>
+</div>
+</body>
+</html>

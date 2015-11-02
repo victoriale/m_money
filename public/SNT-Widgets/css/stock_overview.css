@@ -1,0 +1,530 @@
+html, body {
+	margin: auto;
+	padding: auto;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	width: 100%;
+	background-color:#fff;
+}
+
+a{
+	text-decoration:none;
+}
+.sv_company-link{
+	color:#fff;
+}
+
+/* contains the whole widget including ads */
+.stock-overview_container{
+	width:640px;
+	height:500px;
+	border: 1px solid #cccccc;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	box-sizing:content-box;
+}
+.so_widget-wrapper{
+	width:100%;
+	height:450px;
+	border-bottom: 2px solid #3098ff;
+}
+/* Header with location info */
+.so_header{
+	height:50px;
+	width:100%;
+	background-color:#000;
+	border-top:3px solid #3098ff;
+}
+
+.box{
+	width:50px;
+	height:50px;
+	float:left;
+}
+
+.so_header-icon{
+	height:30px;
+	width:30px;
+	margin: 10px 10px 10px 15px;
+	background-color:#3098ff;
+	border-radius:50%;
+	color:#fff;
+}
+
+.header-icon{
+	font-size:15px;
+	position:relative;
+	top:25%;
+	left:20%;
+	float:left;
+}
+
+.so_header-title{
+	font-size:12px;
+	text-align:left;
+	margin:7px 7px 0 7px;
+	float:left;
+	color:#fff;
+}
+
+.header-title{
+	font-size: 18px;
+}
+
+.title-icon{
+	color:#3098ff;
+	font-size:12px;
+}
+
+.header-company_text{
+	cursor:pointer;
+}
+/*
+ with location info END*/
+
+/* Top left wrapper that contains Image and company data*/
+
+.so_left-wrapper{
+	width:320px;
+	height:445px;
+	float:left;
+	background-color:#fbfbfb;
+	border-right:1px solid #cccccc;
+	clear:both;
+}
+
+.left-wrapper-top_profile{
+	width:100%;
+	height:145px;
+}
+
+/* Image within wrapper to show hover view profile*/
+.sowidget_logo-set{
+	position:relative;
+	float:left;
+	padding-left:10px;
+	margin:10px;
+}
+
+.logo-image{
+	box-sizing:border-box;
+}
+
+.profile-link{
+	text-decoration:none;
+}
+
+.logo-image{
+	background-image:'';
+	background-color:#fff;
+	background-size: contain!important;
+	background-repeat: no-repeat;
+	width: 125px;
+	height: 125px;
+	margin:auto;
+	border: 2px solid #e1e1e1;
+	border-radius:70px;
+	background-position: center center!important;
+	color:#e1e1e1;
+}
+
+.view-profile{
+	position:relative;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background: rgba(48,152,255,.75);
+	border-radius:100%;
+	padding:1em;
+	opacity:0;
+	transition: .2s opacity;
+	box-sizing:border-box;
+}
+
+.sowidget_icon{
+	background-size: contain !important;
+	background-position: center center !important;
+	background-repeat: no-repeat !important;
+	text-align: center;
+	border-radius: 100%;
+	line-height: 2em;
+	font-size: 16px;
+	bottom: 40px;
+	left: 65px;
+	position: relative;
+	color: #FFF;
+	box-shadow: 0px 0px 0px 1px #e1e1e1;
+	background-color: #fff;
+	display: block;
+	height: 40px;
+	width: 40px;
+}
+
+.soicon-link{
+	width:40px;
+	height:40px;
+}
+
+.view-profile_body {
+	vertical-align: middle;
+	background: #3098FF;
+	border: solid 1px #FFF;
+	color: #fff;
+	text-align: center;
+	text-transform: uppercase;
+	border-radius: 100%;
+	height:4.8em;
+	width:5.5em;
+	padding-top: 12px;
+	}
+
+.view-profile_txt1 {
+	font-size: 16px;
+	margin-bottom:3px;
+}
+
+.view-profile_txt2 {
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom:5px
+}
+
+.view-profile:hover{
+	opacity:1;
+}
+/* Image within wrapper to show hover view profile END*/
+
+/* top left company profile text*/
+.top_profile-text{
+	width:50%;
+	height:92px;
+	float:left;
+	margin-top: 30px;
+	margin-bottom:22px;
+}
+
+.tp_company{
+	height:46px;
+	margin-bottom:10px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+
+.tp_company-text{
+	width:100%;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	font-size: 24px;
+	cursor:pointer;
+	color:#000;
+}
+.tp-click{
+	color: #797979;
+	font-size:12px;
+	cursor: pointer;
+}
+.tp-follow{
+	padding-right:5px;
+}
+.tp-share{
+	padding-right:5px;
+}
+
+.tp_company-price{
+	font-size:18px;
+	font-weight:bold;
+}
+.tp_company-color{
+	color:#36ad29;
+}
+.tp_company-change{
+	font-size:14px;
+	font-weight:bold;
+}
+/* top left company profile text END*/
+
+/* tab area for stock overview graph*/
+.so_graph-tabs{
+	width:100%;
+	height:30px;
+	background-color:#ebebeb;
+	position:relative;
+	z-index:10;
+}
+
+.tabs{
+	float:left;
+	width:14.25%;
+	height:100%;
+	text-align:center;
+	border-top:3px solid #ebebeb;
+	cursor:pointer;
+	position:relative;
+	z-index:10;
+}
+
+.tabs-text{
+	position:relative;
+	top:15%;
+	font-size:14px;
+}
+
+.tabs:hover{
+	border-top:3px solid #309fff;
+	background-color:#fbfbfb;
+	font-weight:bold;
+}
+
+/* tab area for stock overview graph END */
+/* stock overview graph */
+#so_graph{
+	width:100%;
+	height:130px;
+	overflow:hidden;
+	position:relative;
+	bottom:15px;
+	z-index:4;
+	margin: 0 auto;
+}
+
+.so_graph_line{
+	margin:0 auto;
+	width: 93.65%;
+	border-bottom:1px solid #cccccc;
+	position:relative;
+	bottom:13px;
+}
+
+/* stock overview graph END */
+/* bottom left profile that shows stock info */
+.left-wrapper-bottom_profile{
+	width:100%;
+	height:160px;
+	position:relative;
+	bottom:22px;
+}
+
+.stock_icons{
+	width:15px;
+	margin: 10px 0 5px 21px;
+	font-size:12px;
+	line-height:24px;
+	float:left;
+}
+
+.stock_key-names{
+
+	height:132px;
+	margin:10px 0 5px 9px;
+	line-height:24px;
+	float:left;
+}
+
+.key-names{
+	height:24px;
+	min-width:20px;
+	font-size:12px;
+	text-align:left;
+	color: #000;
+}
+
+.stock_key-data{
+	float:right;
+	line-height:24px;
+	margin:10px 21px 0 0;
+	font-weight:bold;
+}
+
+.key-data{
+	height:24px;
+	min-width:20px;
+	font-size:12px;
+	text-align:right;
+	color:#000;
+}
+/* bottom left profile that shows stock info END */
+/* Top left wrapper that contains Image and company data END*/
+
+/* right wrapper container contains finance data for executives */
+/* ALL this code is for that little grey right carrot with border */
+.so_right-wrapper{
+	width:317px;
+	height:445px;
+	float:right;
+	position:relative;
+	right: 2px;
+}
+
+.carrot_right {
+	position: relative;
+	background: #fbfbfb;
+	float:left;
+	right:2px;
+}
+.carrot_right:after, .carrot_right:before {
+	left: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.carrot_right:after {
+	border-left-color: #fbfbfb;
+	border-width: 17px;
+	margin-top: 28px;
+}
+.carrot_right:before {
+	border-color: rgba(0, 0, 0, 0);
+	border-left-color: #cccccc;
+	border-width: 18px;
+	margin-top: 27px;
+}
+/* ALL this code is for that little grey right carrot with border END */
+/* information on all executives of the company being displayed */
+.executive-wrapper{
+	width:100%;
+	height: 175px;
+}
+
+.executive-text{
+	font-size:18px;
+	margin: 0 0 13px 25px;
+	padding-top:22px;
+	font-weight:bold;
+}
+
+.executive-list{
+	color:#3098ff;
+	font-size:12px;
+	text-align:right;
+}
+/* right wrapper container contains finance data for executives END */
+/* Image and name of executive of company */
+.executive_list{
+	width:100%;
+	height:120px;
+	text-align:center;
+	padding:0 11px;
+	box-sizing:border-box;
+}
+
+.executive_info{
+	width:75px;
+	height:100%;
+	float:left;
+	padding-left:19px;
+}
+
+.exec_logo-set{
+	width:100%;
+	height:75px;
+	position:relative;
+	float:left;
+}
+
+.exec_logo-image{
+	box-sizing:border-box;
+}
+
+.exec_profile-link{
+	text-decoration:none;
+}
+
+.exec_logo-image{
+	background-image:'';
+	background-color:#fff;
+	background-size: contain !important;
+	background-repeat: no-repeat;
+	width: 75px;
+	height: 75px;
+	margin:auto;
+	border: 1px solid #e1e1e1;
+	border-radius:70px;
+	background-position: center center!important;
+	color:#e1e1e1;
+}
+
+.exec_profile{
+	position:relative;
+	top:0;
+	left:0;
+	height:100%;
+	background: rgba(48,152,255,.75);
+	border-radius:100%;
+	padding:1em;
+	opacity:0;
+	transition: .2s opacity;
+	box-sizing:border-box;
+}
+
+.exec_profile_body {
+	vertical-align: middle;
+	background: #3098FF;
+	border: solid 1px #FFF;
+	color: #fff;
+	text-align: center;
+	text-transform: uppercase;
+	border-radius: 100%;
+	height:2.9em;
+	width:3.3em;
+	padding-top: 7px;
+	position:relative;
+	bottom:7px;
+	right:7px;
+	}
+
+.exec_profile_txt1 {
+	font-size: 10px;
+	margin-bottom:3px;
+}
+
+.exec_profile_txt2 {
+	font-size: 10px;
+	font-weight: bold;
+	margin-bottom:5px
+}
+
+.exec_profile:hover{
+	opacity:1;
+}
+
+.pic{
+	position:relative;
+	bottom:7px;
+	font-size:10px;
+}
+
+.exec-name{
+	float:left;
+	width:100%;
+	height:24px;
+	margin-top:9px;
+	font-size:12px;
+	text-align:center;
+}
+/* Image and name of executive of company END*/
+/* information on all executives of the company being displayed END*/
+
+/*PRESENTED BY must have on any advertisement*/
+#presented-by{
+	font-size:10px;
+	color:#d6d6d6;
+	text-align:left;
+	padding-left:8px;
+}
+
+/*AD LOCATION*/
+.ad-location{
+	width:300px;
+	height: 250px ;
+	margin:2px 9px 9px 9px;
+	box-sizing:border-box;
+}
+
+/* contains the whole widget including ads END*/

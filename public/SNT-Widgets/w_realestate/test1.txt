@@ -1,0 +1,12 @@
+file:///C:/Users/Larry/Desktop/WORK/GitHub/JoyfulHome-LIVE/private/Widgets/w_realestate/re_w_standard.html?%7B"dom"%3A"oaoa.com"%2C"loc"%3A%7B"loc_id"%3A%7B"value"%3A"ODESSA-TX"%2C"city"%3A"ODESSA"%2C"state"%3A"TX"%7D%2C"loc"%3A%7B"city"%3A%5B%7B"city"%3A"Odessa"%2C"state"%3A"TX"%7D%2C%7B"city"%3A"Midland"%2C"state"%3A"TX"%7D%5D%2C"zipcode"%3A%5B79760%2C79761%2C79762%2C79763%2C79764%2C79765%2C79766%2C79768%2C79769%2C79701%2C79703%2C79705%2C79707%2C79710%2C79712%2C79702%2C79704%2C79706%2C79708%2C79711%5D%7D%2C"loc_name"%3A"Odessa-Midland+Area"%7D%2C"c_id"%3A"100819905"%2C"remn"%3A"false"%7D
+
+
+file:///C:/Users/Larry/Desktop/WORK/GitHub/JoyfulHome-LIVE/private/Widgets/w_realestate/re_w_standard.html?%7B"dom"%3A"oaoa.com"%2C"loc"%3A%7B"loc_id"%3A%7B"value"%3A"ODESSA-TX"%2C"city"%3A"ODESSA"%2C"state"%3A"TX"%7D%2C"loc"%3A%7B"city"%3A%5B%7B"city"%3A"Odessa"%2C"state"%3A"TX"%7D%2C%7B"city"%3A"Midland"%2C"state"%3A"TX"%7D%5D%2C"zipcode"%3A%5B79760%2C79761%2C79762%2C79763%2C79764%2C79765%2C79766%2C79768%2C79769%2C79701%2C79703%2C79705%2C79707%2C79710%2C79712%2C79702%2C79704%2C79706%2C79708%2C79711%5D%7D%2C"loc_name"%3A"Odessa-Midland+Area"%7D%2C"c_id"%3A"100819905"%2C"remn"%3A"true"%7D
+
+file:///C:/Users/Larry/Desktop/WORK/GitHub/JoyfulHome-LIVE/private/Widgets/w_realestate/re_w_standard.html?%7B%22dom%22%3A%22sfgate.com%22%2C%22loc%22%3A%7B%22loc_id%22%3A%7B%22value%22%3A%22-null%22%2C%22city%22%3A%22%22%2C%22state%22%3Anull%7D%2C%22loc%22%3A%7B%22city%22%3A%5B%5D%2C%22zipcode%22%3A%5B%5D%7D%2C%22loc_name%22%3A%22%22%7D%2C%22c_id%22%3A%22%22%2C%22remn%22%3A%22true%22%7D
+
+//TEST EMBED PUT ON ANY REMNANT SITE
+q1 = document.body;
+q2 = document.createElement('script');
+q2.src = "http://content.synapsys.us/embeds/realestate/standard/remnant.js";
+q1.appendChild(q2);

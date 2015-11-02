@@ -1,0 +1,573 @@
+html, body {
+	margin: auto;
+	padding: auto;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	width: 100%;
+	background-color:#fff;
+}
+
+a{
+	text-decoration:none;
+	color: #000;
+}
+a:visited{
+	color:#ffffff !important;
+}
+
+.rc_whole_container{
+	width: 480px;
+	height: 910px;
+	overflow: hidden;
+	border-left: 1px solid #ebebeb;
+	border-right: 1px solid #ebebeb;
+	border-bottom: 2px solid #3098ff;
+	box-sizing:border-box;
+}
+/*top header of widget*/
+.rc_header{
+	border-top: 3px solid #3098ff;
+	background-color:  #000000;
+	width: 480px;
+	height: 40px
+}
+
+.rc_today_gain{
+	color: #000;
+}
+.rc_headline{
+	padding-left: 10px;
+	font-size: 14px;
+	font-weight:  700;
+	text-transform:uppercase;
+	color:#ffffff;
+	top:25%;
+	position:relative;
+}
+
+.rc_blue{
+	color:#3098ff;
+}
+/*top header of widget END*/
+/*Market mover report*/
+.rc_stock_container{
+	font-size:14px;
+	width:160px;
+	height:67px;
+	border-bottom:1px solid #cccccc;
+	box-sizing:border-box;
+}
+.rc_report{
+	padding-top:15px;
+	margin: 0 0 9px 20px;
+}
+.rc_exchange{
+	color:#3098ff;
+	font-weight:bold;
+	display:inline-block;
+	width:75px;
+}
+.rc_price{
+	text-align:left;
+	color: #000;
+}
+.rc_stock_color{
+	color:#ca1010;
+	font-size:12px;
+	margin: 9px 0 10px 20px;
+}
+.rc_change{
+	display:inline-block;
+	width:60px;
+}
+/*Market mover report END*/
+/*Search Bar area*/
+.rc_search_area{
+	width:100%;
+	height:67px;
+	background-color:#fafafa;
+	border-bottom:1px solid #cccccc;
+}
+.rc_search_box{
+	height:30px;
+	width:95%;
+	display:table;
+	border: 3px solid #cccccc;
+	margin: 5px auto;
+	position:relative;
+	top:11px;
+}
+
+.rc_search_input{
+	display:table-cell;
+	width:100%;
+	border:none;
+	height:100%;
+	padding:0 0 0 5px;
+	margin:0;
+	vertical-align:middle;
+	outline:none;
+	box-sizing:border-box;
+}
+
+.rc_search-button{
+	width:30px;
+	height:100%;
+	font-size:12px;
+	line-height:2em;
+	font-family:sans-serif;
+	display:table-cell;
+	background-color:#3098ff;
+	cursor:pointer;
+	text-align:center;
+}
+
+.rc_pillbtn{
+	border: none;
+	background: none;
+	color: #ffffff;
+	vertical-align:middle;
+	text-align:center;
+	position:relative;
+	cursor:pointer;
+}
+
+.rc_delay{
+	float:right;
+	color:#999999;
+	font-size:10px;
+	position:relative;
+	top:11px;
+	padding-right:10px;
+}
+/*Search Bar area END*/
+/*today's gainers for sv150*/
+.rc_today_container{
+	width:100%;
+	height:525px;
+	display:block;
+}
+.rc_sv150_gain{
+	width:100%;
+	font-size:18px;
+	padding:18px 0 18px 21px;
+	box-sizing:border-box;
+	border-bottom:1px solid #cccccc;
+	background-color:#fff;
+}
+.sv_see-all{
+	font-size:14px;
+	color:#3098ff;
+	padding-left:10px;
+}
+
+.green{
+	color:#44b244;
+}
+.red{
+	color:#ca1010;
+}
+/*today's gainers for sv150 END*/
+/*today's gainers for sv150 TOP LIST*/
+.rc_gain_list1{
+	width:480px;
+	height:69px;
+	background-color:#fafafa;
+	border-left:5px solid #ebebeb;
+	border-bottom:1px solid #cccccc;
+	box-sizing:border-box;
+}
+.rc_gain_list2{
+	width:480px;
+	height:69px;
+	background-color:#fff;
+	border-left:5px solid #ebebeb;
+	border-bottom:1px solid #cccccc;
+	box-sizing:border-box;
+}
+.rc_image{
+	margin:9px 15px;
+	width:50px;
+	height:50px;
+	border:1px solid #ebebeb;
+	border-radius:100%;
+	display:inline-block;
+	background-image: '';
+	background-size: contain!important;
+	background-position: center center!important;
+}
+.rc_company_info{
+	display:inline-block;
+	padding: 27px 0;
+	position:relative;
+	bottom:45%;
+}
+.rc_company_name{
+	display:inline-block;
+	width:129px;
+	padding-left:3px;
+	font-size:14px;
+	color:#3098ff;
+	font-weight:bold;
+}
+.rc_company_price{
+	display:inline-block;
+	width: 120px;
+	text-align:left;
+	font-size:14px;
+	color: #000;
+}
+.rc_company_change{
+	display:inline-block;
+	font-weight:bold;
+	text-align:left;
+	font-size:14px;
+}
+/*today's gainers for sv150 TOP LIST END*/
+
+/*Ad place here*/
+.ad{
+	float:right;
+	position:relative;
+	font-size:10px;
+	color:#cccccc;
+}
+.sv_ad_here{
+	width:300px;
+	height:250px;
+}
+/*Ad place here END*/
+
+
+/***************************** SEARCH AREA will appear here*************************/
+
+/* Header with location info */
+.so_widget-wrapper{
+	width:100%;
+	height:475px;
+	border-bottom: 2px solid #3098ff;
+	display:none;
+	overflow:hidden;
+	text-overflow:hidden;
+	box-sizing:content-box;
+}
+.so_header{
+	height:50px;
+	width:100%;
+	background-color:#000;
+	display:none;
+}
+.box{
+	width:50px;
+	height:50px;
+	float:left;
+}
+
+.so_header-icon{
+	height:30px;
+	width:30px;
+	margin: 10px 10px 10px 15px;
+	background-color:#3098ff;
+	border-radius:50%;
+	color:#fff;
+}
+
+.header-icon{
+	font-size:15px;
+	position:relative;
+	top:25%;
+	left:20%;
+	float:left;
+}
+
+.so_header-title{
+	font-size:12px;
+	text-align:left;
+	margin:7px 7px 0 7px;
+	float:left;
+	color:#fff;
+}
+
+.header-title{
+	font-size: 18px;
+}
+
+.title-icon{
+	color:#3098ff;
+	font-size:12px;
+}
+
+.so_exit{
+	float:right;
+	width:30px;
+	height:30px;
+	font-size:24px;
+	text-align:center;
+	border:1px solid #fff;
+	color:#fff;
+	position:relative;
+	top:15%;
+	margin-right: 10px;
+	cursor:pointer;
+	line-height:30px;
+}
+/* Header with location info END*/
+
+/* Top left wrapper that contains Image and company data*/
+
+.so_left-wrapper{
+	width:100%;
+	height:470px;
+	float:left;
+	background-color:#fbfbfb;
+	border-right:1px solid #cccccc;
+	clear:both;
+}
+
+.left-wrapper-top_profile{
+	width:100%;
+	height:145px;
+}
+
+/* Image within wrapper to show hover view profile*/
+.sowidget_logo-set{
+	position:relative;
+	float:left;
+	padding-left:10px;
+	margin:10px;
+}
+
+.logo-image{
+	box-sizing:border-box;
+}
+
+.profile-link{
+	text-decoration:none;
+}
+
+.logo-image{
+	background-image:'';
+	background-color:#fff;
+	background-size: contain!important;
+	background-repeat: no-repeat;
+	width: 125px;
+	height: 125px;
+	margin:auto;
+	border: 2px solid #e1e1e1;
+	border-radius:70px;
+	background-position: center center!important;
+	color:#e1e1e1;
+}
+
+.view-profile{
+	position:relative;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background: rgba(48,152,255,.75);
+	border-radius:100%;
+	padding:1em;
+	opacity:0;
+	transition: .2s opacity;
+	box-sizing:border-box;
+}
+
+.sowidget_icon{
+	background-size: contain !important;
+	background-position: center center !important;
+	background-repeat: no-repeat !important;
+	text-align: center;
+	border-radius: 100%;
+	line-height: 2em;
+	font-size: 16px;
+	bottom: 40px;
+	left: 65px;
+	position: relative;
+	color: #FFF;
+	box-shadow: 0px 0px 0px 1px #e1e1e1;
+	background-color: #fff;
+	display: block;
+	height: 40px;
+	width: 40px;
+}
+
+.soicon-link{
+	width:40px;
+	height:40px;
+}
+
+.view-profile_body {
+	vertical-align: middle;
+	background: #3098FF;
+	border: solid 1px #FFF;
+	color: #fff;
+	text-align: center;
+	text-transform: uppercase;
+	border-radius: 100%;
+	height:90px;
+	width:90px;
+	font-size:16px;
+	}
+
+.view-profile_txt1 {
+	font-size: 16px;
+	margin-bottom:3px;
+	padding-top:10px;
+}
+
+.view-profile_txt2 {
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom:5px
+}
+
+.view-profile:hover{
+	opacity:1;
+}
+/* Image within wrapper to show hover view profile END*/
+
+/* top left company profile text*/
+.top_profile-text{
+	width:300px;
+	height:92px;
+	float:left;
+	margin-top: 30px;
+	margin-bottom:22px;
+}
+
+.tp_company{
+	height:46px;
+	margin-bottom:10px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+
+.tp_company-text{
+	width:100%;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	font-size: 24px;
+}
+.tp-click{
+	color: #797979;
+	font-size:12px;
+	cursor: pointer;
+}
+.tp-follow{
+	padding-right:5px;
+}
+.tp-share{
+	padding-right:5px;
+}
+
+.tp_company-price{
+	font-size:18px;
+	font-weight:bold;
+}
+.tp_company-color{
+	color:#36ad29;
+}
+.tp_company-change{
+	font-size:14px;
+	font-weight:bold;
+}
+/* top left company profile text END*/
+
+/* tab area for stock overview graph*/
+.so_graph-tabs{
+	width:100%;
+	height:30px;
+	background-color:#ebebeb;
+	position:relative;
+	z-index:10;
+}
+
+.sv-tabs{
+	float:left;
+	width:14.25%;
+	height:100%;
+	text-align:center;
+	border-top:3px solid #ebebeb;
+	cursor:pointer;
+	position:relative;
+	z-index:10;
+}
+
+.tabs-text{
+	position:relative;
+	top:15%;
+	font-size:14px;
+}
+
+.tabs:hover{
+	border-top:3px solid #309fff;
+	background-color:#fbfbfb;
+	font-weight:bold;
+}
+
+/* tab area for stock overview graph END */
+/* stock overview graph */
+#so_graph{
+	width:100%;
+	height:130px;
+	overflow:hidden;
+	position:relative;
+	z-index:4;
+	background-color:#fff;
+}
+
+.so_graph_line{
+	margin:0 auto;
+	width: 93.65%;
+	border-bottom:1px solid #cccccc;
+}
+
+/* stock overview graph END */
+/* bottom left profile that shows stock info */
+.left-wrapper-bottom_profile{
+	width:100%;
+	height:160px;
+}
+
+.stock_icons{
+	width:15px;
+	margin: 10px 0 5px 21px;
+	font-size:12px;
+	line-height:24px;
+	float:left;
+}
+
+.stock_key-names{
+
+	height:132px;
+	margin:10px 0 5px 9px;
+	line-height:24px;
+	float:left;
+}
+
+.key-names{
+	height:24px;
+	min-width:20px;
+	font-size:12px;
+	text-align:left;
+	color: #000;
+}
+
+.stock_key-data{
+	float:right;
+	line-height:24px;
+	margin:10px 21px 0 0;
+	font-weight:bold;
+}
+
+.key-data{
+	height:24px;
+	min-width:20px;
+	font-size:12px;
+	text-align:right;
+	color:#000;
+}
+/* bottom left profile that shows stock info END */
+/* Top left wrapper that contains Image and company data END*/

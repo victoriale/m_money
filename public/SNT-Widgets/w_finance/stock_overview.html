@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<title>SV_Company_Widget</title>
+
+<meta charset='utf-8'>
+<base href="<?php echo $coreENV['path'];?>" target="_blank">
+<link href="../css/font-awesome.css" media="all" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../css/stock_overview.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="http://code.highcharts.com/stock/highstock.js"></script>
+<script src="../js/stock_overview.js"></script>
+</head>
+
+<body>
+  <div class="stock-overview_container">
+
+    <!--header area containing title and location-->
+  	<div class="so_header">
+  		<div class="box">
+  		<div class="so_header-icon">
+  			<i class="fa-line-chart header-icon"></i>
+  		</div>
+  		</div>
+  		<div class="so_header-title">
+  			<div class="header-title">STOCK OVERVIEW</div>
+			<div>
+				<a class="sv_company-link">
+					<span class="header-company_text"></span>
+				</a>
+				<i class="fa fa-angle-double-right title-icon"></i>
+					<span class="header-company_location"></span>
+			</div>
+  		</div>
+  	</div>
+	<div class="so_widget-wrapper">
+		<!--header area containing title and location END-->
+		<!-- left wrapper container contains finance data -->
+		<div class="so_left-wrapper">
+			<div class="left-wrapper-top_profile">
+				<!--image of logo-->
+				<div class="sowidget_logo-set">
+					<div class="logo-image" id="company">
+						<a class="profile-link" href="" id="company-profile">
+  						<div class="view-profile">
+  							<div class="view-profile_body">
+  								<div class="view-profile_txt1">View</div>
+  								<div class="view-profile_txt2">Profile</div>
+  								<div><i class="fa-mail-forward"></i></div>
+  							</div>
+  						</div>
+						  </a>
+					  </div>
+				</div>
+				<!--image of logo END-->
+				<!--title of company and price data-->
+				<div class="top_profile-text">
+					<div class="tp_company">
+						<a class="sv_company-link">
+						<div class="tp_company-text"></div>
+						</a>
+						<span class="tp-click"><i class="fa-user tp-follow"></i>Follow</span>
+						<span class="tp-click"><i class="fa-share-alt tp-share"></i></i>Share</span>
+					</div>
+					<div class="tp_company">
+						<div class="tp_company-price"></div>
+						<span class="tp_company-color">
+							<i class="fa-arrow-up"></i>
+							<i class="fa-arrow-down"></i>
+							<span class="tp_company-change"></span>
+						</span>
+					</div>
+				</div>
+				<!--title of company and price data END-->
+			</div>
+			<!--tabs of dates-->
+			<div class="so_graph-tabs">
+				<div class="tabs" id='Day' data-dir='1D'><span class="tabs-text">1D</span></div>
+				<div class="tabs" data-dir='1W'><span class="tabs-text">1W</span></div>
+				<div class="tabs" data-dir='1M'><span class="tabs-text">1M</span></div>
+				<div class="tabs" data-dir='3M'><span class="tabs-text">3M</span></div>
+				<div class="tabs" data-dir='6M'><span class="tabs-text">6M</span></div>
+				<div class="tabs" data-dir='1Y'><span class="tabs-text">1Y</span></div>
+				<div class="tabs" data-dir='2Y'><span class="tabs-text">2Y</span></div>
+			</div>
+			<!--tabs of dates END-->
+			<!--Area for stock overview GRAPH-->
+			<div id="so_graph"></div>
+			<div class="so_graph_line"></div>
+			<!--Area for stock overview GRAPH END-->
+			<!--bottom left profile that shows stock info-->
+			<a class="sv_financial_link">
+			<div class="left-wrapper-bottom_profile">
+				<div class="stock_icons">
+					<i class="fa-area-chart"></i>
+					<i class="fa-pie-chart"></i>
+					<i class="fa-table"></i>
+					<i class="fa-bar-chart"></i>
+					<i class="fa-calendar-o"></i>
+					<i class="fa-circle-o"></i>
+				</div>
+
+				<div class="stock_key-names">
+					<a href="" id="marketcap-name"><div class="key-names">Market Cap:</div>
+					<div class="key-names">PE Ratio:</div></a>
+					<a href="" id="totalshares-name"><div class="key-names">Total Shares:</div>
+					<div class="key-names">Average Volume:</div>
+					<div class="key-names">52 weeks:</div>
+					<a href="" id="open-name"><div class="key-names">Open:</div></a>
+				</div>
+
+				<div class="stock_key-data">
+					<div class="key-data" id="marketcap"></div>
+					<div class="key-data" id="peratio"></div>
+					<div class="key-data" id="totalshares"></div>
+					<div class="key-data" id="averagevolume"></div>
+					<div class="key-data" id="52weeks"></div>
+					<div class="key-data" id="open"></div>
+				</div>
+			</div>
+			</a>
+			<!--bottom left profile that shows stock info END-->
+		</div>
+		<!-- left wrapper container contains finance data END-->
+		<!-- right wrapper container contains finance data -->
+		<div class="so_right-wrapper">
+			<div class="carrot_right"></div>
+			<!-- right wrapper container executives of company -->
+			<div class="executive-wrapper">
+				<div class="executive-text">Meet The Executives
+					<a class="executive-list" href="">See All
+						<i class="fa-share"></i>
+					</a>
+				</div>
+				<!--executive info of the company shown-->
+				<div class="executive_list">
+					<div class="executive_info">
+						<div class="exec_logo-set">
+							<div class="exec_logo-image" id="eimage1">
+								<a class="exec_profile-link" href="" id="eprof1">
+								<div class="exec_profile">
+									<div class="exec_profile_body">
+										<div class="exec_profile_txt1">View</div>
+										<div class="exec_profile_txt2">Profile</div>
+										<div><i class="fa-mail-forward pic"></i></div>
+									</div>
+								</div>
+								</a>
+							</div>
+						</div>
+						<div class="exec-name" id="ename1"></div>
+					</div>
+					<div class="executive_info">
+						<div class="exec_logo-set">
+							<div class="exec_logo-image" id="eimage2">
+								<a class="exec_profile-link" href="" id="eprof2">
+								<div class="exec_profile">
+									<div class="exec_profile_body">
+										<div class="exec_profile_txt1">View</div>
+										<div class="exec_profile_txt2">Profile</div>
+										<div><i class="fa-mail-forward pic"></i></div>
+									</div>
+								</div>
+								</a>
+							</div>
+						</div>
+						<div class="exec-name" id="ename2"></div>
+					</div>
+					<div class="executive_info">
+						<div class="exec_logo-set">
+							<div class="exec_logo-image" id="eimage3">
+								<a class="exec_profile-link" href="" id="eprof3">
+								<div class="exec_profile">
+									<div class="exec_profile_body">
+										<div class="exec_profile_txt1">View</div>
+										<div class="exec_profile_txt2">Profile</div>
+										<div><i class="fa-mail-forward pic"></i></div>
+									</div>
+								</div>
+								</a>
+							</div>
+						</div>
+						<div class="exec-name" id="ename3"></div>
+					</div>
+				</div>
+				<!--executive info of the company shown END-->
+			</div>
+			<!-- right wrapper container executives of company END -->
+			<!-- PRESENTED BY VERY IMPORTANT!! -->
+			<div id="presented-by">PRESENTED BY</div>
+			<!-- PRESENTED BY VERY IMPORTANT!! END -->
+			<!-- AD LOCATION -->
+			<div class="ad-location">
+        <!--
+					<script><?php echo $coreENV['passfail']['ui']['ads']['marketQuuNu_nowidget_SV150'];?></script>
+			  -->
+      </div>
+			<!-- AD LOCATION END-->
+		</div>
+		<!-- right wrapper container contains finance data END-->
+	</div>
+  </div>
+</body>
+</html>

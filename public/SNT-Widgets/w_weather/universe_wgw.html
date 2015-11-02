@@ -1,0 +1,60 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+
+<title>Weather Graph Widget</title>
+
+<meta charset='utf-8'>
+<!--ATTENTION css/fontawesome.css is being called locally the cdn link site was not working-->
+<link href="../css/font-awesome.css" media="all" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../css/universe_wgw.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="http://code.highcharts.com/stock/highstock.js"></script>
+<script type="text/javascript" src="../js/universe_wgw.js"></script>
+
+<base href="http://www.touchdownloyal.com/" target="_blank">
+
+</head>
+<body>
+  <!--container of widget-->
+  <div class="universe_wgw">
+    <!--wrapper of just widget-->
+    <div class="wgw">
+      <!--top text-->
+      <div class="wgw-logo"></div>
+      <div class="wgw-text">
+        <div class="wgw-t1">24 Charcter Max Title Here</div>
+        <div class="wgw-t2">
+          <i class="fa fa-map-marker swc-space" id="swc-blue"></i>
+          <span class="wgw-t2-loc">In the {Location} area</span>
+        </div>
+      </div><!--top text END-->
+        <!--image && button-->
+      <div class="wgw-middle">
+        <div class="wgw-image">tehe</div>
+        <div class="wgw-content">
+          <div class="wgw-content1">DataPoint</div>
+          <div class="wgw-content2">List Identifier</div>
+          <a class="wgw-href"  href="#">
+            <span class="wgw-list-link">SEE THE LIST <i class="fa fa-mail-forward swc-space"></i></span>
+          </a>
+        </div>
+
+        <button class="wgw-leftnav"><i class="fa fa-angle-left"></i></button>
+        <button class="wgw-rightnav"><i class="fa fa-angle-right"></i></button>
+      </div><!--image && button END-->
+      <!--bottom text-->
+      <div id="wgw-graph">
+
+      </div>
+      <div class="wgw-presentedby">
+        PRESENTED BY
+      </div>
+      <!--bottom text END-->
+    </div><!--wrapper END-->
+    <!--AD Placement-->
+    <div class="ad_location">HI MY NAME IS ADS!!!</div>
+  </div>
+</body>
+</html>
