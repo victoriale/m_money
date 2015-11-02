@@ -106,7 +106,8 @@ Template.area_composite.helpers({
         }
       }
       cmp_arr[index].comp = loc_arr;
-      cmp_arr[index].image = images[cmp_arr[index].title];
+      cmp_arr[index].icon = images[cmp_arr[index].title];
+      console.log(cmp_arr);
     }
     RetArr.companies = cmp_arr;
 
