@@ -3,6 +3,47 @@
 ** Description: .js file for header_nav
 ** Associated Files: header_nav.html, header_nav.less, header_nav_logic.js
 */
+
+function GetSuggest(nowTime) {
+  var searchString = $('.layout_nav-search_input')[0].value;
+  if ( searchString == "" ) {
+    $('.header_search_recommendations').removeClass('active');
+  } else {
+    Meteor.call('GetSuggestion',encodeURIComponent(searchString),nowTime,function(error, data){
+      if ( error ) {
+        console.log('Suggestion Error',error);
+        return false;
+      }
+
+      if ( Session.get('SuggestTime') > data.time ) {
+        return false;
+      }
+
+      Session.set('SuggestTime',data.time);
+      data = data.data;
+
+      var suggestions = sortSuggestions(data, $('.layout_nav-search_input')[0].value);
+
+      var HTMLString = '<div class="caret-top"></div>';
+      for ( var index = 0; index < suggestions.length; index++ ) {
+        if ( index != 0 ) {
+          HTMLString = HTMLString + '<div class="border-li"></div>';
+        }
+        HTMLString = HTMLString + '<a style="color: #000" href="' + suggestions[index].url + '"><div class="header_search_recommendations_item">' + suggestions[index].string + '</div></a>';
+      }
+
+      if ( data['name']['func_success'] == false && data['location']['func_success'] == false && data['ticker']['func_success'] == false) {
+        $('.header_search_recommendations').removeClass('active');
+        return false;
+      }
+
+      //  $('.fi_search_recommendations')[0].innerHTML = '<div class="caret-top"></div>' /*' <i class="fa fa-times fi_search_recommendations_close"></i>'*/ + HTMLStringTick + HTMLStringName + HTMLStringLoc;
+      $('.header_search_recommendations').html(HTMLString);
+      $('.header_search_recommendations').addClass('active');
+    });
+  }
+}
+
 /* On render Function for header file, this function will hide allthe drop downs and will change the background color of Research button*/
 Template.header_nav.onRendered(function () {
 $(".pgheader-nav_divtp_Resrch").css("background-color","#ffffff");
@@ -95,11 +136,26 @@ Template.header_nav.events({
     },
     /* this function envokes client/layouts/finance/finance_search.js */
     'keyup .layout_nav-search_input': function(event){
+      if ( $('.layout_nav-search_input')[0].value == '' || $('.layout_nav-search_input')[0].value == undefined ) {
+
+      }
       if( event.which === 13){
         event.preventDefault();
         Finance_Search($('.layout_nav-search_input')[0].value);
         return "";
       }
+      if ( typeof StartTime == "undefined" ) {
+        StartTime = 0;
+      }
+      var d = new Date();
+      d = d.getTime();
+      curTime = d;
+      if ( d - StartTime < 250 ) {
+        setTimeout(function(curTime){GetSuggest(curTime);},250,curTime);
+        return "";
+      }
+      StartTime = d;
+      GetSuggest(curTime);
     }
   });
 
