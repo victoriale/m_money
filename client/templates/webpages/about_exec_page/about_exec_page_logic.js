@@ -12,8 +12,13 @@ Template.about_exec_page.helpers({
   //Helper to navigate back to executive profile
   backToExec: function(){
     var params = Router.current().getParams();
-
-    return Router.path('content.executiveprofile', {
+    console.log(Router.pick_path('content.executiveprofile', {
+      lname:params.lname,
+      fname:params.fname,
+      ticker:params.ticker,
+      exec_id: params.exec_id
+    }));
+    return Router.pick_path('content.executiveprofile', {
       lname:params.lname,
       fname:params.fname,
       ticker:params.ticker,

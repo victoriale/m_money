@@ -40,6 +40,19 @@ var counter = Session.get('count');
 
 //
 Template.about_exec.helpers({
+  execComp:function(){
+    var data = Session.get('about_exec');
+    var counter = Session.get('count');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    data[counter]['comp_url'] = Router.pick_path('content.companyprofile',{
+      ticker:data[counter].c_ticker,
+      name:compUrlName(data[counter].c_name),
+      company_id:data[counter].c_id
+    });
+    return data[counter]['comp_url'];
+  },
   rivalInfo: function(){
     var data = Session.get('about_exec');
     if(typeof data == 'undefined'){
@@ -68,6 +81,12 @@ Template.about_exec.helpers({
       })
     })
     return data[counter].main_url;
+  },
+
+  compImage:function(){
+    var data = Session.get('about_exec');
+    var counter = Session.get('count');
+    return data[counter].c_logo;
   },
   //link to Education History page
   EHTileURL: function(){
@@ -189,57 +208,57 @@ Template.about_exec.helpers({
     return degree;
   },
   //  Graduated Status below the image circle
-    status: function() {
-      var data = Session.get('about_exec');
-      var index = Session.get("count");
-      var degree = data[index]['education_data'][0]['Degree'];
-      if(!degree)
-      {
-          return 'N/A';
-      }
-      var arrayofstrings=degree.split(" ");
-      if (arrayofstrings[0]==="Masters")
-      // if(degree.contains("Masters"))
-      {
-        //status="Yes";
-        return 'Yes';
-      }
-      var status="N/A";
-      return status;
-    },
-    abbr: function() {
-      var data = Session.get('about_exec');
-      var index = Session.get("count");
-      var arr="";
-      var degree = data[index]['education_data'][0]['Degree'];
-      var arrayofstrings=degree.split(" ");
-      for(var k=0; k<arrayofstrings.length; k++)
-      {
-        arr = arr + arrayofstrings[k].substring(1,0);
-      }
-      var res = arr.replace(/o/g, "");
-      return res;
-    },
+  status: function() {
+    var data = Session.get('about_exec');
+    var index = Session.get("count");
+    var degree = data[index]['education_data'][0]['Degree'];
+    if(!degree)
+    {
+        return 'N/A';
+    }
+    var arrayofstrings=degree.split(" ");
+    if (arrayofstrings[0]==="Masters")
+    // if(degree.contains("Masters"))
+    {
+      //status="Yes";
+      return 'Yes';
+    }
+    var status="N/A";
+    return status;
+  },
+  abbr: function() {
+    var data = Session.get('about_exec');
+    var index = Session.get("count");
+    var arr="";
+    var degree = data[index]['education_data'][0]['Degree'];
+    var arrayofstrings=degree.split(" ");
+    for(var k=0; k<arrayofstrings.length; k++)
+    {
+      arr = arr + arrayofstrings[k].substring(1,0);
+    }
+    var res = arr.replace(/o/g, "");
+    return res;
+  },
 
-    //data on headers
-    first_name: function() {
-      var data = Session.get('profile_header');
-      if(typeof data == "undefined")
-      {
-        return '';
-      }
-      var name = data['o_first_name'];
-      return name;
-    },
-    last_name: function() {
-      var data = Session.get('profile_header');
-      if(typeof data == "undefined")
-      {
-        return '';
-      }
-      var name = data['o_last_name'];
-      return name;
-    },
+  //data on headers
+  first_name: function() {
+    var data = Session.get('profile_header');
+    if(typeof data == "undefined")
+    {
+      return '';
+    }
+    var name = data['o_first_name'];
+    return name;
+  },
+  last_name: function() {
+    var data = Session.get('profile_header');
+    if(typeof data == "undefined")
+    {
+      return '';
+    }
+    var name = data['o_last_name'];
+    return name;
+  },
 
   title:"COLLEGE RIVALS",
   //status:"N/A",

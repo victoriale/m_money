@@ -62,7 +62,7 @@
     <div class="p-body-box" style="border-right: 0px; width:52%">
         <div>Stock Price & Change Percentage</div>
         {{#with stockInfo}}
-        <div class="value"><span class="p-bold_font">${{csi_price}}</span>  <span style="color: {{changeColor csi_price_last_operator}}">{{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%)</span></div>
+        <div class="value"><span class="p-bold_font">${{csi_price}}</span>  <span style="color: {{changeColor csi_price_last_operator}}"><i class="fa {{changeIcon csi_price_last_operator}}"></i>{{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%)</span></div>
         <div class="last-updated">as of {{lastUpdated}}</div>
         {{/with}}
     </div>
