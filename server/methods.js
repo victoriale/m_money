@@ -634,8 +634,7 @@ Meteor.methods({
 
   listOfListData: function(company_id){
     var future = new Future();
-
-    var UrlString = 'http://apifin.investkit.com/call_controller.php?action=company_profile&option=batch_3&param=' + company_id + '&limit=1,100';
+      var UrlString = 'http://apifin.investkit.com/call_controller.php?action=company_profile&option=indie&call=list_of_lists&param=' + company_id;
     console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){

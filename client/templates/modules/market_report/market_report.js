@@ -144,7 +144,6 @@ Template.market_report.helpers({                   //helper class for adding dat
         })
       }
     ];
-    console.log(tileURL);
     return tileURL;
   },
 

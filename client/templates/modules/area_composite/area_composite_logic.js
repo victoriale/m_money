@@ -24,12 +24,13 @@ Template.area_composite.helpers({
   module_info: function() {
     var data = Session.get('companies_by_sector');
     var params = Router.current().getParams();
+    var title = Session.get('profile_header');
     if ( typeof data == "undefined" ) {
       return false;
     }
     var RetArr = {};
     // Titles and Info
-    RetArr.title = "Companies Sorted By Sectors";
+    RetArr.title = "Companies Sorted By "+title.location+" Sectors";
     RetArr.subtitle = "Area Composite";
 
     // Graph information

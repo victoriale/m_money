@@ -36,10 +36,17 @@
           </div>
           <!--Featured executive images-->
           <a href="{{execURL}}">
-            <div class="exec_body_featured_info_main-image" style="background-image: url('{{imageUrl pic}}')"></div>
+            <div class="exec_body_featured_info_main-image" style="background-image: url('{{imageUrl pic}}')">
+              <div class="hover">
+                <div class="hover-txt1">View</div>
+                <div class="hover-txt2">Profile</div>
+              </div>
+            </div>
           </a>
-          <a href="{{comp_url}}">
-            <div class="exec_body_featured_info_sub-image"></div>
+          <a href="{{execComp}}">
+            <div class="exec_body_featured_info_sub-image" style="background-image:url('{{imageUrl compImage}}')">
+              <div class="hover"></div>
+            </div>
           </a>
           <!--Featured executive name-->
           <div class="exec_body_featured_info_name">
@@ -79,7 +86,9 @@
           <!--First single exec list item-->
           <div class="exec_body_list_single">
             <!--List item circle image-->
-            <div class="exec_body_list_single_image" style="background-image: url('{{imageUrl img}}')"></div>
+            <div class="exec_body_list_single_image" style="background-image: url('{{imageUrl img}}')">
+              <div class="hover"></div>
+            </div>
             <!--List item top line - name-->
             <!-- <a href="http://localhost:3000/executive/{{exec_id}}"> -->
             <div class="exec_body_list_single_name">
@@ -125,7 +134,7 @@
         <a class="module-tile-link" href="{{EHTileURL}}">
           <div class="module-tile-hover">
             <div class="module-tile-name">
-              <i class="fa fa-calculator"></i>Edu. History
+              <i class="fa fa-graduation-cap"></i>Edu. History
             </div>
             <div class="module-tile-info"></div>
             <button class="module-tile-button links_backcolor ">OPEN PAGE <i class="fa fa-graduation-cap"></i></button>

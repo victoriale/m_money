@@ -15,9 +15,7 @@ Associated Files: project_history.html, project_history.js
     </div>
     <div class="module-wrapper">
       <!--Begin Panel-->
-      <div class="proj_hist-panel">
         <div class="proj_hist-content-panel">
-
           <div class="proj_hist-list-panel">
             {{#each projList}}
               {{#if this}}<!--checks validity of array element-->
@@ -28,24 +26,6 @@ Associated Files: project_history.html, project_history.js
                     <span class="proj_hist-profile-image" style="background-image: url('{{imageUrl c_logo}}')"></span>
                     </a>
                   </span>
-<!--
-                  <span class="proj_hist-resp-btns">
-                    <span class="proj_hist-resp-btns-btn">
-                      <i class="fa proj_hist-resp-btns-icon fa-heart"></i>
-                      <span class="proj_hist-resp-btns-text">Save</span>
-                    </span>
-                    <span class="proj_hist-resp-btns-share proj_hist-resp-btns-btn">
-                      <i class="fa proj_hist-resp-btns-icon fa-share-alt"></i>
-                      <span class="proj_hist-resp-btns-text">Share</span>
-                    </span>
-                    <span class="proj_hist-resp-btns-feedback proj_hist-resp-btns-btn">
-                      <i class="fa proj_hist-resp-btns-icon fa-flag"></i>
-                      <span class="proj_hist-resp-btns-text">Feedback</span>
-                    </span>
-                  </span>
--->
-                  <!--/Project Picture & Response Buttons-->
-
                   <!--Project Information-->
                   <span class="proj_hist-tile-info">
                     <div>
@@ -77,24 +57,7 @@ Associated Files: project_history.html, project_history.js
               {{/if}}
             {{/each}}
           </div>
-          <!--Project Footer
-          <div class="proj_hist-content-panel-footer">
-            <div class="proj_hist-va project_hiview-allory-view-all-font">
-              <div class="proj_hist-va-text">VIEW ALL</div>
-              <div class="proj_hist-va-pos"><img src="/infinite-icon.png"></div>
-            </div>
-            <div class="proj_hist-navigation">
-              <i class="fa fa-angle-left proj_hist-content-panel-footer-icon proj_hist-page-selector-left-arrow"></i>
-              {{#each setPages}}
-                {{#if @index}}<div class='proj_hist-page-selector proj_hist-page-selector-font'>{{this}}</div>{{/if}}
-                {{#unless @index}}<div class='proj_hist-page-selector proj_hist-page-selector-selected proj_hist-page-selector-selected-font'>{{this}}</div>{{/unless}}
-              {{/each}}
-              <i class="fa fa-angle-right proj_hist-content-panel-footer-icon proj_hist-page-selector-right-arrow"></i>
-            </div>
-          </div>
-          /Project footer-->
         </div>
-      </div>
       <!--End Panel-->
     </div>
   </div>
