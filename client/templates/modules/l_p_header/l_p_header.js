@@ -42,7 +42,6 @@ Template.lp_head.helpers({
       if(isNaN(data)){
         data = fullstate(data);
         data = data.replace(/ /g, '_');
-        console.log(data);
         return "background-image: url('/StateImages/Location_"+ data +".jpg');";
       }else{
         return "background-image: url('/DMA_images/location-"+ data +".jpg');";

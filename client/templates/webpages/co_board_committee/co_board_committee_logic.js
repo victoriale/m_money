@@ -15,6 +15,13 @@ Template.co_board_committee.onRendered(function(){
 
 var backgroundStyle="tilewhite";
 Template.co_board_committee.helpers({
+  image: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return data.c_logo;
+  },
 //gave names for dyamic access {{getheadername}}
   getheadername1: function(){
     var data = Session.get('profile_header');
@@ -36,6 +43,7 @@ Template.co_board_committee.helpers({
 
   officerList: function(){
     var list = Session.get('officers');
+    var image = Session.get('profile_header');
     if(typeof list == 'undefined'){
       return '';
     }
@@ -52,7 +60,13 @@ Template.co_board_committee.helpers({
           data['compen'] = dNumberToCommaNumber(data['compensation'].TotalComp);
         }
       }
-      data['url'] = Router.path('content.executiveprofile',{
+      data['image'] = image.c_logo;
+
+      data['comp_url'] = Router.pick_path('content.locationprofile',{
+        loc_id: image.c_hq_state,
+        city: image.c_hq_city
+      });
+      data['url'] = Router.pick_path('content.executiveprofile',{
         fname:data.o_first_name,
         lname:data.o_last_name,
         ticker:Router.current().getParams().ticker,
@@ -65,12 +79,15 @@ Template.co_board_committee.helpers({
   officer: function(){
     var list = Session.get('officers');
     var count = Session.get('board_count');
+    var image = Session.get('profile_header');
     if(typeof list == 'undefined'){
       return '';
     }
+    list[count]['image'] = image.c_logo;
     list[count]['o_last_updated'] = list[count]['o_last_updated'].split(' ')[0];
     list[count]['o_last_updated'] = list[count]['o_last_updated'].replace(/-/g, '/');
-    list[count]['url'] = Router.path('content.executiveprofile',{
+
+    list[count]['url'] = Router.pick_path('content.executiveprofile',{
       fname:list[count].o_first_name,
       lname:list[count].o_last_name,
       ticker:Router.current().getParams().ticker,

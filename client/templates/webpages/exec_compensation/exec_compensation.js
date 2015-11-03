@@ -58,31 +58,32 @@ Template.exec_compensation.helpers({
   backToExec: function(){
     var params = Router.current().getParams();
 
-    return Router.path('content.executiveprofile', {exec_id: params.exec_id});
+    return Router.pick_path('content.executiveprofile', {
+      fname:params.fname,
+      lname:params.lname,
+      ticker:params.ticker,
+      exec_id: params.exec_id
+    });
   },
   //Helper to display total compensation
   totalCompensation: function(){
     var chosen = Session.get('compensation_year_chosen');
     var data = Session.get('new_compensation');
-
     //If dependencies are undefined exit helper
     if(typeof(chosen) === 'undefined' || typeof(data) === 'undefined'){
       return false;
     }
-
     return dNumberToCommaNumber(data.comp_array[chosen].TotalComp);
-
   },
+
   //Helper to display year chosen
   yearChosen: function(){
     var chosen = Session.get('compensation_year_chosen');
-
     return typeof(chosen) !== 'undefined' ? chosen : false;
   },
   //Helper to display all years for dropdown
   years: function(){
     var data = Session.get('new_compensation');
-
     return typeof(data) !== 'undefined' && typeof(data.select_year) !== 'undefined' ? data.select_year : false;
   },
   //Helper to get info for executive header
@@ -103,7 +104,7 @@ Template.exec_compensation.helpers({
     var date = new Date(officerData.o_last_updated);
 
     officerData.lastUpdated = (date.getMonth() + 1) + '/' + (date.getDay() + 1) + '/' + (date.getFullYear());
-
+    console.log(officerData);
     return officerData;
   },
   //Helper to draw graph

@@ -68,7 +68,11 @@ Template.Earnings.helpers({ //helper for the template earnings  is created to pr
       }
       return 'What\'s Happening With ' + company['c_name'] + '\'s Earnings?';
     } else {
-      return 'What\'s Happening With The Area\'s Earnings?';
+      var company = Session.get("profile_header");
+      if(typeof company == 'undefined'){
+        return '';
+      }
+      return 'What\'s Happening With '+company.location+' Earnings?';
     }
   },
 
@@ -78,21 +82,7 @@ Template.Earnings.helpers({ //helper for the template earnings  is created to pr
       return '';
     }
     return Router.path('content.earningsPR');
-    /*
-    var data = Session.get('profile_header');
-    if(typeof data =='undefined'){
-      return '';
-    }
-    if(Session.get('IsCompany')){
-      return Router.path('content.earningsPR',{
-        comp_id: data.c_id
-      });
-    }else{
-      return Router.path('content.earningsPR',{
-        comp_id: data.c_id
-      });
-    }
-    */
+
   },
 
 });
