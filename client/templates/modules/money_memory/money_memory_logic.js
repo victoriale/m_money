@@ -197,15 +197,15 @@ Template.money_memory.helpers({
     //Determine rise or fall of investment and percent change
     if(data.roi >= 0){
       data.colorIndicator = '#44b224'
-      data.earn_lose = 'gained';
+      data.earn_lose = 'earned';
     }else if(data.roi < 0){
       data.colorIndicator = '#ca1010'
       data.earn_lose = 'lost';
     }
     if(data.percent_change >= 0){
-      data.chng = 'risen';
+      data.chng = 'Gain';
     }else{
-      data.chng = 'fallen';
+      data.chng = 'pct loss';
     }
 
     //Transform values for display
@@ -213,8 +213,9 @@ Template.money_memory.helpers({
     data['sntfurthest'] =(new Date( data['furthest_close_date'])).toSNTForm();
     data['most_recent_close_date'] = data['most_recent_close_date'].replace(/-/g,'/');
     data['sntrecent'] =(new Date( data['most_recent_close_date'])).toSNTForm();
-    data['investment_total'] = data['investment_total'].toFixed(2);
-    data['percent_change'] = data['percent_change'].toFixed(2);
+    data['investment_total'] = Number(data['investment_total']).toFixed(2);
+    data['percent_change'] = Number(data['percent_change']).toFixed(2);
+
     //Set roi value to positive for display (You could have lost $10 instead of You could have lost $-10)
     data['roi'] = Math.abs(data['roi'])
 
@@ -224,7 +225,7 @@ Template.money_memory.helpers({
     }else{
       data['roi'] = data['roi'] >= 0 ? nFormatter(Number(data['roi'])) : nFormatter_neg(Number(data['roi']));
     }
-
+    console.log(data);
     return data;
   },
   //Helper to get graph data
