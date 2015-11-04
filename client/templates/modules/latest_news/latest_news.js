@@ -102,12 +102,9 @@ Template.latest_news.helpers({
 
   isData: function(){
     var data = Session.get('latest_news');
+    var data2 = Session.get('profile_header');
 
-    if(typeof data == 'undefined'){
-      return false;
-    }else if(data.data === null){
-      return false;
-    }else if(data.data.length == 0){
+    if(typeof data == 'undefined' || typeof data2 == 'undefined' || data.data == null || data.data.length == 0 ){
       return false;
     }
     return true;
@@ -136,6 +133,9 @@ Template.latest_news.helpers({
     return data['o_first_name'] + " " + data['o_last_name'];
   },
   loc: function(){
+    if ( typeof Session.get('profile_header').location != "undefined" ) {
+      return Session.get('profile_header').location;
+    }
     var data = Session.get('loc_id');
     if(typeof data == 'undefined'){
       return '';

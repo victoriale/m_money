@@ -1,6 +1,6 @@
 Template.marketmovers.onRendered(function(){
 
-    
+
 });
 
 Template.marketmovers.helpers({
@@ -62,8 +62,13 @@ Template.marketmovers.helpers({
     data.loc_url = Router.pick_path('content.locationprofile',{
       loc_id:params.loc_id,
     })
-    data.fullstate = fullstate(params.loc_id);
+    if ( typeof params.loc_id == "undefined" ) {
+      data.fullstate = Session.get('profile_header').location;
+    } else {
+      data.fullstate = fullstate(params.loc_id);
+    }
 
+    console.log(data);
     return data;
   },
 

@@ -25,7 +25,7 @@ Template.area_breakdown.helpers({
   },
 
   location: function(){
-    var loc = Session.get('loc_id');
+    var loc = Session.get('profile_header').location;
     if(typeof loc == 'undefined'){
       return false;
     }
@@ -33,7 +33,7 @@ Template.area_breakdown.helpers({
   },
 
   statURL: function(){
-    var loc = Session.get('loc_id');
+    var loc = Session.get('profile_header').location;
     if(typeof loc == 'undefined'){
       return false;
     }
