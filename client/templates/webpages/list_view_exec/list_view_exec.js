@@ -87,7 +87,13 @@ Template.list_view_exec.helpers({
       return '';
     }
     $.map(listdata.list_data, function(data,index){
-
+      if(typeof data['TotalComp'] == 'undefined' || data['TotalComp'] == ''){
+        data['objname'] = 'Salary';
+        data['TotalComp'] = 1;
+      }else{
+        data['objname'] = 'Compensation';
+        data['TotalComp'] = dNumberToCommaNumber(data['TotalComp']);
+      }
       data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
       data['rank'] = index+1;
       data['url'] = Router.pick_path('content.companyprofile',{
