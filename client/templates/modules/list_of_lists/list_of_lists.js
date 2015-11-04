@@ -58,7 +58,7 @@ Template.list_of_lists.helpers({
       }else{
         data['index_color'] = '#ffffff';
       }
-      data.tle_ranking = data.tle_ranking+1;
+      data.tle_ranking = data.tle_ranking;
       //Define array to map through
       var subData = data.top_list_list[0].list_of_lists_data;
 
