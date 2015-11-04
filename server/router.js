@@ -503,6 +503,11 @@ function executive_profile(params, req, res){
       // Section specific data
       // Rivals
       var rival_data = [];
+      if ( typeof data.college_rivals != "object" ) {
+        data.college_rivals = {
+          rivals: []
+        };
+      }
       for ( var index = 0; index < data.college_rivals.rivals.length; index++ ) {
         var localData = data.college_rivals.rivals[index];
         if ( localData != null ) {
