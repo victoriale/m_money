@@ -138,7 +138,7 @@ var seoPicker = Picker.filter(function(req, res) {
 
 // Robots.txt
 seoPicker.route('/robots.txt',function(params, req, res){
-  res.end('User-agent: *\nAllow: /');
+  res.end('User-agent: *\nDisallow: /');
 });
 
 // Favicon.ico
@@ -503,6 +503,11 @@ function executive_profile(params, req, res){
       // Section specific data
       // Rivals
       var rival_data = [];
+      if ( typeof data.college_rivals != "object" ) {
+        data.college_rivals = {
+          rivals: []
+        };
+      }
       for ( var index = 0; index < data.college_rivals.rivals.length; index++ ) {
         var localData = data.college_rivals.rivals[index];
         if ( localData != null ) {

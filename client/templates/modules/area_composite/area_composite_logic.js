@@ -60,7 +60,7 @@ Template.area_composite.helpers({
     var sect_arr = [];
     var cmp_arr = [];
     var colors = ['redidt','yellowidt','purpleidt'];
-    var other = {count: 0, title: 'Other', percentage: 0, color: 'blueidt'};
+    var other = {count: 0, title: 'Other', percentage: 0, color: 'blueidt', other: true};
     for ( var index = 0; index < sect_arr_uns.length; index++ ) {
       if ( sect_arr_uns[index].position > 2 ) {
         if ( typeof sect_arr_uns[index].count != "undefined" ) {
@@ -70,6 +70,7 @@ Template.area_composite.helpers({
       } else {
         sect_arr_uns[index].percentage = Math.round(sect_arr_uns[index].percentage);
         sect_arr_uns[index].color = colors[sect_arr_uns[index].position];
+        sect_arr_uns[index].url = Router.pick_path('content.sector',{loc_id: params.loc_id, sector_id: compUrlName(sect_arr_uns[index].title)});
         sect_arr[sect_arr_uns[index].position] = sect_arr_uns[index];
       }
       if ( sect_arr_uns[index].position < 4 ) {
@@ -115,7 +116,7 @@ Template.area_composite.helpers({
       cmp_arr[index].icon = images[cmp_arr[index].title];
       cmp_arr[index].sector_url = Router.pick_path('content.sector',{
         loc_id: params.loc_id,
-        sector_id:cmp_arr[index].title
+        sector_id: compUrlName(cmp_arr[index].title)
       })
     }
     RetArr.companies = cmp_arr;

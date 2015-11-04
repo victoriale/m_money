@@ -159,6 +159,19 @@ Template.daily_update.helpers({
       content['content'] = data;
       return content;
   },
+  loc_info: function(){
+    var data = Session.get('profile_header');
+    if ( typeof data == "undefined" || typeof data.location == "undefined" ) {
+      return false;
+    }
+    console.log('********************************************');
+    var ret = {
+      bg_img: '/StateImages/Location_' + data.location + '.jpg',
+      location: data.location
+    };
+    console.log(ret);
+    return ret;
+  },
 
   lastUpdated: function(){
     var data = Session.get('daily_update');
@@ -180,14 +193,17 @@ Template.daily_update.helpers({
     switch(currentRoute){
       case 'content.partnerhome':
         var pheader = Session.get('profile_header');
-        data.header = pheader.location;
+        data.header = 'How is the ' + pheader.location + ' Composite Doing Today?';
+        data.subheader = 'Daily Update: ' + pheader.location + ' Composite';
       case 'content.locationprofile':
       case 'partner.locationprofile':
         if ( typeof data.header == "undefined" ) {
           if(getheader.loc_id == 'National' || getheader.loc_id == '' || typeof getheader.loc_id == 'undefined'){
-            data.header = 'United States';
+            data.header = 'How is the United States Composite Doing Today?'
+            data.subheader = 'Daily Update: United States Composite';
           }else{
-            data.header = fullstate(getheader.loc_id);
+            data.header = 'How is the ' + fullstate(getheader.loc_id) + ' Composite Doing Today?';
+            data.subheader = 'Daily Update: ' + fullstate(getheader.loc_id) + ' Composite';
           }
         }
         data.text1 = 'Todays Low';
@@ -202,7 +218,8 @@ Template.daily_update.helpers({
       break;
       case 'content.companyprofile':
       case 'partner.companyprofile':
-        data.header = getheader.name.replace(/-/g, ' ');
+        data.header = 'How Well is ' + getheader.name.replace(/-/g, ' ') + ' Doing Today';
+        data.subheader = getheader.name.replace(/-/g, ' ') + ' Daily Update';
         data.text1 = 'Market Cap';
         data.text2 = 'PE Ratio';
         data.text3 = 'Total Shares';
