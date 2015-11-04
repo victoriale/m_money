@@ -32,8 +32,14 @@ Template.co_competitor.helpers({
     newData['csi_price'] = Number(newData['csi_price']).toFixed(2);
     newData['csi_percent_change_since_last'] = Number(newData['csi_percent_change_since_last']).toFixed(2);
     newData['url'] = Router.pick_path('content.companyprofile', {company_id: company_id, name: company, ticker: ticker});
-
-
+    newData['locurl'] = Router.pick_path('content.locationprofile',{
+      loc_id:newData.c_hq_state,
+      city: compUrlName(newData.c_hq_city)
+    });
+    newData['secturl'] = Router.pick_path('content.sector',{
+      loc_id:newData.c_hq_state,
+      sector_id: compUrlName(newData.c_sector)
+    });
     newData.share_company_url =  "https://www.facebook.com/sharer/sharer.php?u=" + Router.pick_path('content.companyprofile', {company_id: company_id, name: company, ticker: ticker});
     newData.share_company_competitor_url = "https://www.facebook.com/sharer/sharer.php?u=" + Router.pick_path('content.competitor', {company_id: company_id, name: company, ticker: ticker});
 
@@ -52,13 +58,20 @@ Template.co_competitor.helpers({
       data['csi_price_change_since_last'] = Number(data['csi_price_change_since_last']).toFixed(2);
       data['csi_price'] = Number(data['csi_price']).toFixed(2);
       data['csi_percent_change_since_last'] = Number(data['csi_percent_change_since_last']).toFixed(2);
-
+      data['csi_price_last_updated'] = (new Date(data['csi_price_last_updated'])).toSNTForm();
       data.share_url = "https://www.facebook.com/sharer/sharer.php?u=" + Router.pick_path('content.companyprofile', {company_id: data.c_id, name: compUrlName(data.c_name), ticker: data.c_ticker});
 
       var company = compUrlName(data.c_name);
       var ticker = data.c_ticker;
       var company_id = data.c_id;
-
+      data['locurl'] = Router.pick_path('content.locationprofile',{
+        loc_id:data.c_hq_state,
+        city: compUrlName(data.c_hq_city)
+      });
+      data['secturl'] = Router.pick_path('content.sector',{
+        loc_id:data.c_hq_state,
+        sector_id: compUrlName(data.c_sector)
+      });
       data['url'] = Router.pick_path('content.companyprofile', {company_id: company_id, name: company, ticker: ticker});
       data['rank'] = index+1;
       data['compare_to'] = compare.c_ticker;

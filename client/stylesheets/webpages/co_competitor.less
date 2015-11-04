@@ -227,7 +227,9 @@ Associated Files: co_competitor_logic.js and co_competitor_page.html
       background-color:  #ffffff;
       width: 75px;
       height: 75px;
-      background-image: url("");
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
     }
     //the sub-conatainer
     &-cr {
@@ -314,6 +316,7 @@ Associated Files: co_competitor_logic.js and co_competitor_page.html
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        width:400px;
       }
       &-it3{
         color:  #44b224;
@@ -843,6 +846,8 @@ Associated Files: co_competitor_logic.js and co_competitor_page.html
     color:  #000000;
     font-size: 18px;
     text-align: center;
+    position: absolute;
+    top: 0;
   }
   &-counter2
   {
@@ -851,18 +856,18 @@ Associated Files: co_competitor_logic.js and co_competitor_page.html
     border-radius: 100%;
     border-width: 1px;
     display:block;
-    font-family: HN;
     color:  #000000;
-    font-size: 18px;
-    text-align: center;
     border-color:  #acacac;
     border-style: solid;
     background-color:  #ffffff;
     width: 48px;
     height: 48px;
-    margin-left: 70%;
-    margin-top: 26%;
-
+    position: absolute;
+    bottom: 0;
+    right:0;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
   }
   //This style is used to create the content panel header and footer and the respective font inside it
   &-footer {
