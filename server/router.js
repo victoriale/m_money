@@ -138,7 +138,7 @@ var seoPicker = Picker.filter(function(req, res) {
 
 // Robots.txt
 seoPicker.route('/robots.txt',function(params, req, res){
-  res.end('User-agent: *\nAllow: /');
+  res.end('User-agent: *\nDisallow: /');
 });
 
 // Favicon.ico
