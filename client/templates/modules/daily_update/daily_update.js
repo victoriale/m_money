@@ -106,6 +106,25 @@ Template.daily_update.helpers({
     return data.c_logo;
   },
 
+  isLoc:function(){
+    return Session.get('IsLocation');
+  },
+
+  imageLoc: function(){
+    var data = Session.get('loc_id');
+    if(data == 'National'){
+      return "background-image: url('/StateImages/Location_"+ data +".jpg');";
+    }else{
+      if(isNaN(data)){
+        data = fullstate(data);
+        data = data.replace(/ /g, '_');
+        return "background-image: url('/StateImages/Location_"+ data +".jpg');";
+      }else{
+        return "background-image: url('/DMA_images/location-"+ data +".jpg');";
+      }
+    }
+  },
+
   buttons: function(){
     var buttons = [
       {data:"1D"},
@@ -123,9 +142,14 @@ Template.daily_update.helpers({
   },
   aiInfo: function(){
       var data = Session.get('AI_daily_update');
+      var header = Session.get('profile_header');
       var content = {};
       if(typeof data == 'undefined' || data == false){
-        return '';
+        if(Session.get('IsLocation')){
+          return "Did you know "+data.location+" has "+data.total_companies+" companies, gathering a total market cap of "+data.total_market_cap+" Dollars. "+data.location+" is also home to "+data.total_executives+" total executives.."
+        }else{
+          return '';
+        }
       }
       content['content'] = data;
       return content;
@@ -150,7 +174,11 @@ Template.daily_update.helpers({
 
     switch(currentRoute){
       case 'content.locationprofile':
-        data.header = fullstate(getheader.loc_id);
+        if(getheader.loc_id == 'National' || getheader.loc_id == '' || typeof getheader.loc_id == 'undefined'){
+          data.header = 'United States';
+        }else{
+          data.header = fullstate(getheader.loc_id);
+        }
         data.text1 = 'Todays Low';
         data.text2 = 'Todays High';
         data.text3 = 'Previous Close';

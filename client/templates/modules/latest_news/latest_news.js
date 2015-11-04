@@ -141,7 +141,7 @@ Template.latest_news.helpers({
       return '';
     }
     if(data == 'National'){
-      return data;
+      return 'United States';
     }else{
       return fullstate(data);
     }

@@ -289,6 +289,16 @@ Template.finance_homepage.onRendered(function(){
 
 Template.finance_homepage.helpers({
 
+  TopCompanies: function(){
+    //return list for top companies in the US currently hardcoded
+    var national_list = 'Top companies in the United States with the highest percentage gain in stock price';
+    national_list = compUrlName(national_list);
+    var comp_list = Router.pick_path('content.toplist',{
+      l_name: national_list,
+      list_id: 6960,
+    })
+    return comp_list;
+  },
 
   Cities: function() {
     var state = homestates();

@@ -1,10 +1,7 @@
-/*
-Name: Venkatesh
-Created:7/21/2015
-Description: Top lists Facebook
-Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists.less
-*/
-//This variable is set as white as our first background is grey, the program checks whether its white and changes it to grey.
+Template.marketmovers.onRendered(function(){
+
+    
+});
 
 Template.marketmovers.helpers({
 
@@ -66,7 +63,7 @@ Template.marketmovers.helpers({
       loc_id:params.loc_id,
     })
     data.fullstate = fullstate(params.loc_id);
-    
+
     return data;
   },
 
@@ -78,9 +75,5 @@ Template.marketmovers.helpers({
       loc_id:params.loc_id
     });
   },
-
-});
-//This handles the events on button clicks of 1,2,3 and 200
-Template.marketmovers.events({
 
 });

@@ -17,6 +17,7 @@ Template.market_report.onCreated(function(){
 
 Template.market_report.onRendered( function() {
   Session.set("how_are_markets");
+
 });
 
 Template.market_report.events({
@@ -66,6 +67,16 @@ Template.market_report.helpers({                   //helper class for adding dat
   title: "How Are The Markets Doing Today?",
   subtitle: "Market Report",
 
+  title: function(){
+    var header = Session.get('profile_header');
+    var params = Router.current().getParams();
+    // if(params.loc_id == 'National' || params.loc_id == '' || typeof params.loc_id == 'undefined'){
+    //   return "How Are The National Markets Doing Today?";
+    // }else{
+    //   return "How Are The "+ header.location +" Markets Doing Today?";
+    // }
+    return "How Are The National Markets Doing Today?";
+  },
   mrURL: function(){
     var data = Session.get('market_report');
     if(typeof data == 'undefined'){
