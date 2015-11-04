@@ -19,7 +19,6 @@ $(function(){
 	})//END OF FUNCTION
 //data call to gather info on exchange prices
 	$.get('http://apifin.synapsys.us/call_controller.php?action=widget&option=sv150_markets_slim', function(data){
-				console.log(data);
 				//sets a number to allow different ID's to be called since data calls are different
 				data_result = data.sv150_markets_slim;
 				data_exchange = data_result.exchange_stock_data;

@@ -58,7 +58,7 @@ button:focus {
   overflow: hidden;
   width:300px;
   height:auto;
-  margin: 100px auto 0 auto;
+  margin: 0 auto 0 auto;
 }
 
 .new_fe_ceo:hover{
@@ -80,7 +80,7 @@ button:focus {
   width:25px;
   height:25px;
   background-color: #39abff;
-  background-image: url("public/FIN_Widget_Icon.png");
+  background-image: url("/icons/Investkit_logo.png");
   background-position: center center !important;
   background-repeat: no-repeat;
   border-radius: 50%;
@@ -130,8 +130,9 @@ button:focus {
   margin:5px auto;
   border-radius: 50%;
   box-shadow: 0 0 0 3px #cccccc;
-
-  /*remove below cause its funny*/
+  background-size: contain !important;
+  background-position: center center !important;
+  background-repeat: no-repeat;
   text-align: center;
   line-height: 100px;
 }
@@ -234,4 +235,16 @@ button:focus {
 
 .swc-space{
   margin:0 2px;
+}
+.fcw-t2-title{
+  color: #000;
+}
+.fcw-t2-title:hover{
+  color:#39abff;
+}
+.fcw-loc{
+  color: #000;
+}
+.fcw-loc:hover{
+  color:#39abff;
 }
