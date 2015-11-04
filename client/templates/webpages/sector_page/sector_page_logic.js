@@ -27,18 +27,32 @@ Template.sector_page.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
+
+      var image = Session.get('loc_id');
+      if(image == 'National' || image == '' || typeof image == 'undefined'){
+        data['image'] = "background-image: url('/StateImages/Location_"+ image +".jpg');";
+      }else{
+        if(isNaN(data)){
+          image = fullstate(image);
+          image = image.replace(/ /g, '_');
+          data['image'] = "background-image: url('/StateImages/Location_"+ image +".jpg');";
+        }else{
+          data['image'] = "background-image: url('/DMA_images/location-"+ image +".jpg');";
+        }
+      }
+
     $.map(data.companies, function(data,index){
       if(index % 2 == 0){
         data['background'] = 'tilewhite';
       }else{
         data['background'] = 'tilegrey';
       }
-      data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
+      data['newDate'] = (new Date(data.lcsi_price_last_updated)).toSNTForm();
       data['rank'] = index+1;
       data['url'] = Router.pick_path('content.companyprofile',{
         company_id: data.c_id
       });
-      data['csi_price'] = Number(data['csi_price']).toFixed(2);
+      data['lcsi_price'] = Number(data['lcsi_price']).toFixed(2);
       data['csi_price_change_since_last'] = Number(data['csi_price_change_since_last']).toFixed(2);
       data['csi_percent_change_since_last'] = Number(data['csi_percent_change_since_last']).toFixed(2);
     });
@@ -59,15 +73,20 @@ Template.sector_page.helpers({
       }else{
         data['background'] = 'tilegrey';
       }
-      data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
+      data['newDate'] = (new Date(data.lcsi_price_last_updated)).toSNTForm();
       data['rank'] = index+1;
       data['url'] = Router.pick_path('content.companyprofile',{
         company_id: data.c_id
       });
-      data['csi_price'] = Number(data['csi_price']).toFixed(2);
+      data['lcsi_price'] = Number(data['lcsi_price']).toFixed(2);
       data['csi_price_change_since_last'] = Number(data['csi_price_change_since_last']).toFixed(2);
       data['csi_percent_change_since_last'] = Number(data['csi_percent_change_since_last']).toFixed(2);
+      data['locurl'] = Router.pick_path('locationprofile',{
+        loc_id: data.c_hq_state,
+        city: data.c_hq_city
+      });
     });
+
     data['location'] = fullstate(Session.get('loc_id'));
     return data['companies'][count];
   },
