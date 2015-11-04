@@ -1,12 +1,12 @@
 Template.about_us.helpers({
   aboutus:function(){
-    return Router.path('content.aboutus');
+    return Router.pick_path('content.aboutus');
   },
   contactus:function(){
-    return Router.path('content.contactus');
+    return Router.pick_path('content.contactus');
   },
   disclaimer:function(){
-    return Router.path('content.disclaimer');
+    return Router.pick_path('content.disclaimer');
   },
 
 })

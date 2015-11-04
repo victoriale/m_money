@@ -10,7 +10,7 @@ Template.about_company.helpers({
     if(typeof params == 'undefined'){
       return '#';
     }
-    var url = Router.path('content.abouthq', {
+    var url = Router.pick_path('content.abouthq', {
       ticker:params.ticker,
       name:params.name,
       company_id: params.company_id

@@ -32,14 +32,14 @@ Template.list_of_lists.helpers({
     var params = Router.current().getParams();
     var header = Session.get('profile_header');
     if(Session.get('IsCompany')){
-      return Router.path('content.listoflist', {
+      return Router.pick_path('content.listoflist', {
         ticker:params.ticker,
         name:params.name,
         company_id: data.list_rankings[0].c_id
       });
     }
     if(Session.get('IsExec')){
-      return Router.path('content.listoflist', {
+      return Router.pick_path('content.listoflist', {
         ticker:params.ticker,
         name:compUrlName(header.c_name),
         company_id: header.c_id
@@ -64,7 +64,7 @@ Template.list_of_lists.helpers({
 
       //Build url for sub circle images
       subData.map(function(item, index){
-        item.imageURL = Router.path('content.companyprofile', {
+        item.imageURL = Router.pick_path('content.companyprofile', {
           ticker:item.c_ticker,
           name:compUrlName(item.c_name),
           company_id: item.c_id
@@ -73,7 +73,7 @@ Template.list_of_lists.helpers({
         return item;
       })
 
-      data.url = Router.path('content.toplist', {
+      data.url = Router.pick_path('content.toplist', {
         l_name:compUrlName(data.top_list_list[0].list_of_lists_title),
         list_id: data.tli_id
       });

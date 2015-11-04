@@ -37,7 +37,7 @@ Template.area_breakdown.helpers({
     if(typeof loc == 'undefined'){
       return false;
     }
-    return Router.path('content.statistics',{loc_id:loc});
+    return Router.pick_path('content.statistics',{loc_id:loc});
   },
 });
 
@@ -63,7 +63,7 @@ Template.breakdown_map.onRendered(function(){
      );
 
      for(var i = 0; i < data.length; i++){
-       var URL = Router.path('content.companyprofile',{
+       var URL = Router.pick_path('content.companyprofile',{
          ticker:data[i]['c_ticker'],
          name:compUrlName(data[i]['c_name']),
          company_id:data[i]['c_id'],

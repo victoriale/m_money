@@ -81,7 +81,7 @@ Template.Earnings.helpers({ //helper for the template earnings  is created to pr
     if(typeof data =='undefined'){
       return '';
     }
-    return Router.path('content.earningsPR');
+    return Router.pick_path('content.earningsPR');
 
   },
 
@@ -107,5 +107,5 @@ var calendarMonths = [
 ]
 
 function ComingSoon(){
-  return Router.path('content.comingsoon');
+  return Router.pick_path('content.comingsoon');
 }

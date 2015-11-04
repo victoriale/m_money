@@ -50,7 +50,7 @@ Template.cp_head.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
-    return Router.path('content.locationprofile',{
+    return Router.pick_path('content.locationprofile',{
       loc_id:data.c_hq_state,
     });
   },

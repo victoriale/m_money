@@ -46,7 +46,7 @@ Template.ep_head.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
-    return Router.path('content.companyprofile', {company_id: data.c_id, name: compUrlName(data.c_name), ticker: data.c_ticker});
+    return Router.pick_path('content.companyprofile', {company_id: data.c_id, name: compUrlName(data.c_name), ticker: data.c_ticker});
   },
 });
 

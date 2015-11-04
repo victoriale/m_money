@@ -6,17 +6,17 @@ Template.market_bar.onCreated(function(){
       return false;
     }
     data = data['biggest_gainers'];
-    var nasdaq = Router.path('content.toplist', {
+    var nasdaq = Router.pick_path('content.toplist', {
       loc_id: data.NASDAQ.top_list_info.top_list_location,
       l_name: compUrlName(data.NASDAQ.top_list_info.top_list_title),
       list_id: data.NASDAQ.top_list_info.top_list_id
     });
-    var nyse = Router.path('content.toplist', {
+    var nyse = Router.pick_path('content.toplist', {
       loc_id: data.NYSE.top_list_info.top_list_location,
       l_name: compUrlName(data.NYSE.top_list_info.top_list_title),
       list_id: data.NYSE.top_list_info.top_list_id
     });
-    var amex = Router.path('content.toplist', {
+    var amex = Router.pick_path('content.toplist', {
       loc_id: data.AMEX.top_list_info.top_list_location,
       l_name: compUrlName(data.AMEX.top_list_info.top_list_title),
       list_id: data.AMEX.top_list_info.top_list_id

@@ -120,7 +120,7 @@ Template.money_memory.helpers({
   linkToMM: function(){
     var params = Router.current().getParams();
 
-    return Router.path('content.moneymemory', {
+    return Router.pick_path('content.moneymemory', {
       ticker:params.ticker,
       name:params.name,
       company_id: params.company_id
@@ -130,7 +130,7 @@ Template.money_memory.helpers({
   linkToCompetitors: function(){
     var params = Router.current().getParams();
 
-    return Router.path('content.competitor', {
+    return Router.pick_path('content.competitor', {
       ticker:params.ticker,
       name:params.name,
       company_id: params.company_id
@@ -140,7 +140,7 @@ Template.money_memory.helpers({
   linkToFinOverview: function(){
     var params = Router.current().getParams();
 
-    return Router.path('content.finoverview', {
+    return Router.pick_path('content.finoverview', {
       ticker:params.ticker,
       name:params.name,
       company_id: params.company_id

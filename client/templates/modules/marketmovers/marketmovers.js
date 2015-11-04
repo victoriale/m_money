@@ -18,7 +18,7 @@ Template.marketmovers.helpers({
       }
       //create URL before shifting array
       $.map(data.data['top_list_list'], function(data, index){
-        data['url'] = Router.path('content.companyprofile',{
+        data['url'] = Router.pick_path('content.companyprofile',{
           ticker: data.c_ticker,
           name:compUrlName(data.c_name),
           company_id: data.c_id
@@ -31,7 +31,7 @@ Template.marketmovers.helpers({
       var loc_param = data.data.top_list_info.top_list_location[0];
       var list_param = data.data.top_list_info.top_list_id;
       var list_name = compUrlName(data.data.top_list_info.top_list_title);
-      data.data['list_url'] = Router.path('content.toplist',{
+      data.data['list_url'] = Router.pick_path('content.toplist',{
         loc_id:loc_param,
         l_name:list_name,
         list_id:list_param
@@ -71,7 +71,7 @@ Template.marketmovers.helpers({
   toListOfList: function(){
     var data = Session.get('list_of_lists');
     var params = Router.current().getParams();
-    return Router.path('content.listoflistloc', {
+    return Router.pick_path('content.listoflistloc', {
       loc_id:params.loc_id
     });
   },

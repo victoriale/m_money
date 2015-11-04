@@ -32,7 +32,7 @@ Template.live_update.helpers({
     return data;
   },
   WholeListURL: function(){
-    /*return router.path for live update webpage*/
+    /*return Router.pick_path for live update webpage*/
   },
 
 });

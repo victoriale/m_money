@@ -25,7 +25,7 @@ Template.list_of_list_loc_page.helpers({
       }
       //create URL before shifting array
       $.map(data['top_list_list'], function(data, index){
-        data['url'] = Router.path('content.companyprofile',{
+        data['url'] = Router.pick_path('content.companyprofile',{
           ticker:data.c_ticker,
           name:compUrlName(data.c_name),
           company_id: data.c_id
@@ -36,7 +36,7 @@ Template.list_of_list_loc_page.helpers({
       var id_param = data.top_list_info.top_list_id;
       var loc_param = data.top_list_info.top_list_location[0];
       var list_name = data.top_list_info.top_list_title;
-      data['list_url'] = Router.path('content.toplist',{
+      data['list_url'] = Router.pick_path('content.toplist',{
         loc_id:loc_param,
         l_name:compUrlName(list_name),
         list_id:id_param
