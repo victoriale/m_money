@@ -42,25 +42,26 @@
 <template name="lp_body">
   {{#with locationData}}
   <div class="p-body">
-    <div class="p-body-box" style="width:140px;">
+    <div class="p-body-box" style="width:220px;">
+      <a href="">
         <div>Total Companies</div>
         <div class="value">{{total_companies}}</div>
         <div>&nbsp;</div>
+      </a>
     </div>
-    <div class="p-body-box" style="width:190px;">
+    <div class="p-body-box" style="width:250px;">
+      <a href="">
         <div>Total Market Cap</div>
         <div class="value">{{total_market_cap}}</div>
         <div>&nbsp;</div>
+      </a>
     </div>
-    <div class="p-body-box" style="width:160px;">
+    <div class="p-body-box" style="border-right: 0px; width:200px;">
+      <a href="">
         <div>Total Executives</div>
         <div class="value">{{total_executives}}</div>
         <div>&nbsp;</div>
-    </div>
-    <div class="p-body-box" style="border-right: 0px;width:190px;">
-        <div>Total Exec. Compensation</div>
-        <div class="value">N/A</div>
-        <div>&nbsp;</div>
+      </a>
     </div>
   </div>
   {{/with}}
