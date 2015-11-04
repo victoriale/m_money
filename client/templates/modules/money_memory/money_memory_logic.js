@@ -225,7 +225,6 @@ Template.money_memory.helpers({
     }else{
       data['roi'] = data['roi'] >= 0 ? nFormatter(Number(data['roi'])) : nFormatter_neg(Number(data['roi']));
     }
-    console.log(data);
     return data;
   },
   //Helper to get graph data
