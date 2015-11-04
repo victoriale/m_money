@@ -42,14 +42,14 @@
       </div>
       {{#if resultExists}}
         {{#with mmInfo}}
-          <!--"You could have earned..."-->
+          <!--"You could have earned..."
           <div class="mon-mem_body_potential">
-            <span>You could have {{earn_lose}}:  </span>
+            <span>You could have {{earn_lose}}:I</span>
             <span class="mon-mem_body_potential_amount" style = "color: {{colorIndicator}}">${{roi}}</span>
-          </div>
+          </div>-->
           <!--Stock price history-->
-          <div class="mon-mem_body_history">
-            <span>The stock price has {{chng}} ({{percent_change}}%) from {{furthest_close_date}} to {{most_recent_close_date}}</span>
+          <div class="mon-mem_body_history" style="{{changeColor investment_total}}">
+            <span>If you purchased <b>${{user_initial_investment}} worth of {{ticker}} shares</b> on {{sntrecent}}, and sold them, {{sntfurthest}} you could of {{earn_lose}} <span style="color:{{changeColor percent_change}}">${{roi}}</span> with a <span style="color:{{changeColor percent_change}}">{{percent_change}}%</span> {{chng}}. You currently have a total of <b>${{investment_total}}</b>. </span>
           </div>
         {{/with}}
       {{else}}

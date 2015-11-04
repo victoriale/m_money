@@ -195,7 +195,7 @@ Template.featured_list.helpers (
           });
         }
         if(Session.get('IsLocation')){
-          var title = fullstate(params.loc_id);
+          var title = Session.get('profile_header').location;
           var url = Router.pick_path('content.listoflistloc', {
             loc_id:params.loc_id
           });

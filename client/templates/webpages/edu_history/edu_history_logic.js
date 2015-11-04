@@ -20,7 +20,7 @@ Template.edu_history.helpers({
     if(typeof params == 'undefined'){
       return '#';
     }
-    return Router.path('content.executiveprofile',{
+    return Router.pick_path('content.executiveprofile',{
       exec_id: params.exec_id,
     });
   },

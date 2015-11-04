@@ -92,7 +92,7 @@ Template.about_exec.helpers({
   EHTileURL: function(){
     var params = Router.current().getParams();
     if(typeof params != 'undefined'){
-        return Router.path('content.collegerivals',{
+        return Router.pick_path('content.collegerivals',{
           lname:params.lname,
           fname:params.fname,
           ticker:params.ticker,
@@ -105,7 +105,7 @@ Template.about_exec.helpers({
   BioTileURL: function(){
     var params = Router.current().getParams();
     if(typeof params != 'undefined'){
-        return Router.path('content.aboutexec',{
+        return Router.pick_path('content.aboutexec',{
           lname:params.lname,
           fname:params.fname,
           ticker:params.ticker,
@@ -118,7 +118,7 @@ Template.about_exec.helpers({
   FAQTileURL: function(){
     var params = Router.current().getParams();
     if(typeof params != 'undefined'){
-        return Router.path('content.aboutexec',{
+        return Router.pick_path('content.aboutexec',{
           lname:params.lname,
           fname:params.fname,
           ticker:params.ticker,
@@ -130,7 +130,7 @@ Template.about_exec.helpers({
   CollegeRivals: function(){
     var params = Router.current().getParams();
     if(typeof params != 'undefined'){
-        return Router.path('content.collegerivals',{
+        return Router.pick_path('content.collegerivals',{
           lname:params.lname,
           fname:params.fname,
           ticker:params.ticker,

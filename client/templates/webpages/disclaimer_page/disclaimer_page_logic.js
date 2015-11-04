@@ -70,11 +70,11 @@ Template.disclaimer_page.helpers({
 })
 
 /*
-Router.path('content.disclaimer');
-Router.path('content.contactus');
-Router.path('content.aboutus');
-Router.path('content.copyright');
-Router.path('content.privacypolicy');
-Router.path('content.stockdisclaimer');
-Router.path('content.termsofservice');
+Router.pick_path('content.disclaimer');
+Router.pick_path('content.contactus');
+Router.pick_path('content.aboutus');
+Router.pick_path('content.copyright');
+Router.pick_path('content.privacypolicy');
+Router.pick_path('content.stockdisclaimer');
+Router.pick_path('content.termsofservice');
 */

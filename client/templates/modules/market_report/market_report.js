@@ -17,6 +17,7 @@ Template.market_report.onCreated(function(){
 
 Template.market_report.onRendered( function() {
   Session.set("how_are_markets");
+
 });
 
 Template.market_report.events({
@@ -66,6 +67,16 @@ Template.market_report.helpers({                   //helper class for adding dat
   title: "How Are The Markets Doing Today?",
   subtitle: "Market Report",
 
+  title: function(){
+    var header = Session.get('profile_header');
+    var params = Router.current().getParams();
+    // if(params.loc_id == 'National' || params.loc_id == '' || typeof params.loc_id == 'undefined'){
+    //   return "How Are The National Markets Doing Today?";
+    // }else{
+    //   return "How Are The "+ header.location +" Markets Doing Today?";
+    // }
+    return "How Are The National Markets Doing Today?";
+  },
   mrURL: function(){
     var data = Session.get('market_report');
     if(typeof data == 'undefined'){
@@ -79,28 +90,28 @@ Template.market_report.helpers({                   //helper class for adding dat
     var loc = Session.get('loc_id');
     switch(current){
       case 'NASDAQ':
-        var URL = Router.path('content.toplist', {
+        var URL = Router.pick_path('content.toplist', {
           loc_id: data.NASDAQ.top_list_info.top_list_location,
           l_name: compUrlName(data.NASDAQ.top_list_info.top_list_title),
           list_id: data.NASDAQ.top_list_info.top_list_id
         });
       break;
       case 'NYSE':
-        var URL = Router.path('content.toplist', {
+        var URL = Router.pick_path('content.toplist', {
           loc_id: data.NYSE.top_list_info.top_list_location,
           l_name: compUrlName(data.NYSE.top_list_info.top_list_title),
           list_id: data.NYSE.top_list_info.top_list_id
         });
       break;
       case 'AMEX':
-        var URL = Router.path('content.toplist', {
+        var URL = Router.pick_path('content.toplist', {
           loc_id: data.AMEX.top_list_info.top_list_location,
           l_name: compUrlName(data.AMEX.top_list_info.top_list_title),
           list_id: data.AMEX.top_list_info.top_list_id
         });
       break;
       default:
-        var URL = Router.path('content.toplist', {
+        var URL = Router.pick_path('content.toplist', {
           loc_id: data.NASDAQ.top_list_info.top_list_location,
           l_name: compUrlName(data.NASDAQ.top_list_info.top_list_title),
           list_id: data.NASDAQ.top_list_info.top_list_id
@@ -123,21 +134,21 @@ Template.market_report.helpers({                   //helper class for adding dat
     data = data.biggest_gainers;
     tileURL = [
       {open_page:'OPEN PAGE',tile_name:'NASDAQ Companies', image:'/exchange/NASDAQ.png',
-        url: Router.path('content.toplist', {
+        url: Router.pick_path('content.toplist', {
           loc_id: data.NASDAQ.top_list_info.top_list_location,
           l_name: compUrlName(data.NASDAQ.top_list_info.top_list_title),
           list_id: data.NASDAQ.top_list_info.top_list_id
         })
       },
       {open_page:'OPEN PAGE',tile_name:'NYSE Companies', image:'/exchange/NYSE.png',
-        url: Router.path('content.toplist', {
+        url: Router.pick_path('content.toplist', {
           loc_id: data.NYSE.top_list_info.top_list_location,
           l_name: compUrlName(data.NYSE.top_list_info.top_list_title),
           list_id: data.NYSE.top_list_info.top_list_id
         })
       },
       {open_page:'OPEN PAGE',tile_name:'AMEX Companies', image:'/exchange/AMEX.png',
-        url: Router.path('content.toplist', {
+        url: Router.pick_path('content.toplist', {
           loc_id: data.AMEX.top_list_info.top_list_location,
           l_name: compUrlName(data.AMEX.top_list_info.top_list_title),
           list_id: data.AMEX.top_list_info.top_list_id
@@ -218,7 +229,7 @@ Template.market_report.helpers({                   //helper class for adding dat
     retArr.percent = Number(data.biggest_gainers[current].top_list_list[company].lcsi_percent_change_since_last).toFixed(2) + '%';
     retArr.color = data.biggest_gainers[current].top_list_list[company].lcsi_price_last_operator;
     retArr.logo = data.biggest_gainers[current].top_list_list[company].c_logo;
-    retArr.url = Router.path('content.companyprofile',
+    retArr.url = Router.pick_path('content.companyprofile',
       {
         partner_id: Router.current().params.partner_id,
         ticker:retArr.ticker,

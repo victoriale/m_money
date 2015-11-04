@@ -36,7 +36,7 @@ Template.c_hq_page.helpers({
       /*{
         title: 'InvestKit ID',
         line:[
-          {text: Router.path('content.companyprofile', {company_id: company.c_id}), isLink: true}
+          {text: Router.pick_path('content.companyprofile', {company_id: company.c_id}), isLink: true}
         ]
       },*/
     ];
@@ -49,7 +49,7 @@ Template.c_hq_page.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
-    data['url'] = Router.path('content.companyprofile',{
+    data['url'] = Router.pick_path('content.companyprofile',{
       name: compUrlName(data.c_name),
       ticker: data.c_ticker,
       company_id: data.c_id

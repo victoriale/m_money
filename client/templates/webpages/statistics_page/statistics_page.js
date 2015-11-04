@@ -16,7 +16,7 @@ Template.statistics_page.helpers(
       },
 
       back_url: function(){
-        return Router.path('content.locationprofile',{
+        return Router.pick_path('content.locationprofile',{
           loc_id: Session.get('loc_id')
         });
       },

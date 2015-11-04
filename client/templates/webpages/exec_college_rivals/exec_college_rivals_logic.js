@@ -19,7 +19,7 @@ Template.exec_college_rivals.helpers({
   //Helper to navigate back to executive profile
   backToExec: function(){
     var params = Router.current().getParams();
-    return Router.path('content.executiveprofile', {
+    return Router.pick_path('content.executiveprofile', {
       fname: params.fname,
       lname: params.lname,
       ticker: params.ticker,
@@ -68,7 +68,7 @@ Template.exec_college_rivals.helpers({
     if(typeof data === 'undefined'){
       return '';
     }
-    return Router.path('content.executiveprofile',{
+    return Router.pick_path('content.executiveprofile',{
       partner_id: '',
       exec_id: data['rivals'][0]['o_id'],
       fname: data['rivals'][0]['o_first_name'],
@@ -105,13 +105,13 @@ Template.exec_college_rivals.helpers({
       returnArray[j]['degree'] = rival['education_data'][0]['Degree'];
       returnArray[j]['grp'] = rival['c_name'];
       returnArray[j]['pic'] = rival['o_pic'];
-      returnArray[j]['compurl'] = Router.path('content.companyprofile',{
+      returnArray[j]['compurl'] = Router.pick_path('content.companyprofile',{
         ticker: rival['c_ticker'],
         name: rival['c_name'],
         partner_id: '',
         company_id: rival['c_id']
       });
-      returnArray[j]['execurl'] = Router.path('content.executiveprofile',{
+      returnArray[j]['execurl'] = Router.pick_path('content.executiveprofile',{
         fname: rival['o_first_name'],
         lname: rival['o_last_name'],
         ticker: rival['c_ticker'],

@@ -184,7 +184,7 @@ Template.co_fin_overview.helpers({
     var company = compUrlName(data.company_data.c_name);
     var ticker = data.company_data.c_ticker;
 
-    return Router.path('content.companyprofile', {company_id: params.company_id, name: company, ticker: ticker});
+    return Router.pick_path('content.companyprofile', {company_id: params.company_id, name: company, ticker: ticker});
   },
   //Helper to get company data
   companyData: function(){
@@ -245,8 +245,8 @@ Template.co_fin_overview.helpers({
     company_data.csi_price_last_updated = moment(company_data.csi_price_last_updated).tz('America/New_York').format('dddd MM/DD/YYYY hh:mm A') + ' EST';
     company_data.c_tr_last_updated = moment(company_data.c_tr_last_updated).tz('America/New_York').format('MM/DD/YYYY');
 
-    company_data.share_company_url =  "https://www.facebook.com/sharer/sharer.php?u=" + Router.path('content.companyprofile', {company_id: company_data.c_id, name: company_data.c_name, ticker: company_data.c_ticker});
-    company_data.share_company_fin_overview_url = "https://www.facebook.com/sharer/sharer.php?u=" + Router.path('content.finoverview', {company_id: company_data.c_id, name: company_data.c_name, ticker: company_data.c_ticker});
+    company_data.share_company_url =  "https://www.facebook.com/sharer/sharer.php?u=" + Router.pick_path('content.companyprofile', {company_id: company_data.c_id, name: company_data.c_name, ticker: company_data.c_ticker});
+    company_data.share_company_fin_overview_url = "https://www.facebook.com/sharer/sharer.php?u=" + Router.pick_path('content.finoverview', {company_id: company_data.c_id, name: company_data.c_name, ticker: company_data.c_ticker});
 
     //Determine icon to be displayed
     if(company_data.csi_price_change_since_last > 0){

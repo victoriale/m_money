@@ -36,7 +36,7 @@ Template.list_view_exec.helpers({
 
       data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
       data['rank'] = index+1;
-      data['url'] = Router.path('content.executiveprofile',{
+      data['url'] = Router.pick_path('content.executiveprofile',{
         fname:data.o_first_name,
         lname:data.o_last_name,
         ticker: data.c_ticker,
@@ -90,7 +90,7 @@ Template.list_view_exec.helpers({
 
       data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
       data['rank'] = index+1;
-      data['url'] = Router.path('content.companyprofile',{
+      data['url'] = Router.pick_path('content.companyprofile',{
         ticker: data.c_ticker,
         name: compUrlName(data.c_name),
         company_id: data.c_id

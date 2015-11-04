@@ -85,7 +85,7 @@ Template.workhistory_page.helpers({
     if(typeof params =='undefined'){
       return '';
     }
-    return Router.path('content.executiveprofile',{
+    return Router.pick_path('content.executiveprofile',{
       lname:params.lname,
       fname:params.fname,
       ticker:params.ticker,
@@ -155,7 +155,7 @@ Template.workhistory_page.helpers({
         returnArray[i]['execPic'] = exec['o_pic'];
 
         $.map(company.connections, function(data, i){
-          data['execUrl'] = Router.path('content.executiveprofile',{
+          data['execUrl'] = Router.pick_path('content.executiveprofile',{
             lname:data.o_last_name,
             fname:data.o_first_name,
             ticker:'undefined',
@@ -224,7 +224,7 @@ Template.workhistory_page.helpers({
       }
 
       $.map(data, function(val, i){
-        val.listUrl = Router.path('content.boardcommitee',{
+        val.listUrl = Router.pick_path('content.boardcommitee',{
           ticker:val.c_ticker,
           name:compUrlName(val.c_name),
           company_id:val.c_id
