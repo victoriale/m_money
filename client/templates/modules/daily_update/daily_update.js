@@ -147,9 +147,11 @@ Template.daily_update.helpers({
       }
       var header = Session.get('profile_header');
       var content = {};
-      if(typeof header == 'undefined' || header == false){
+      if(typeof data == 'undefined' || data == false){
+      console.log(Session.get('IsLocation'));
         if(Session.get('IsLocation')){
-          data = "Did you know "+header.location+" has "+header.total_companies+" companies, gathering a total market cap of "+header.total_market_cap+" Dollars. "+header.location+" is also home to "+header.total_executives+" total executives.."
+          content['content'] = "Did you know "+header.location+" has "+header.total_companies+" companies, gathering a total market cap of "+header.total_market_cap+" Dollars. "+header.location+" is also home to "+header.total_executives+" total executives.";
+          return content;
         }else{
           return false;
         }
