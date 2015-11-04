@@ -62,7 +62,6 @@ Template.market_bar.helpers({
         break;
       }
     })
-     console.log(data);
     return data.displayData;
 
   },

@@ -67,8 +67,6 @@ Template.marketmovers.helpers({
     } else {
       data.fullstate = fullstate(params.loc_id);
     }
-
-    console.log(data);
     return data;
   },
 
