@@ -153,11 +153,17 @@ Associated Files: list_view_logic.js and list_view.less
         <div class="list_vw-{{background}}"><br>
           <!--This is the main (circle) image-->
           <div class="list_vw-head-circ">
-            <div class="list_vw-head-image" style="background:url('{{imageUrl c_logo}}')">
-              <!-- Here displays the counter number which is a result of each loop-->
-              <span class="list_vw-counter">#{{rank}}</span>
-              <span class="list_vw-counter2" style="background-image:url('{{exchange c_exchange}}')"></span>
-            </div>
+            <a href="{{url}}">
+              <div class="list_vw-head-image" style="background:url('{{imageUrl c_logo}}')">
+                <div class="hover">
+                  <div class="hover-txt1">View</div>
+                  <div class="hover-txt2">Profile</div>
+                </div>
+                <!-- Here displays the counter number which is a result of each loop-->
+                <span class="list_vw-counter">#{{rank}}</span>
+                <span class="list_vw-counter2" style="background-image:url('{{exchange c_exchange}}')"></span>
+              </div>
+            </a>
           </div>
           <!--Location title -->
           <div class="list_vw-sp">

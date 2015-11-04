@@ -36,7 +36,7 @@ Template.lp_body.helpers({
 Template.lp_head.helpers({
   image: function(){
     var data = Session.get('loc_id');
-    if(data == 'National'){
+    if(data == 'National' || data == '' || typeof data == 'undefined'){
       return "background-image: url('/StateImages/Location_"+ data +".jpg');";
     }else{
       if(isNaN(data)){

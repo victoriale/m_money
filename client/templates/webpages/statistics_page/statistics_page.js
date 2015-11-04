@@ -45,21 +45,25 @@ Template.statistics_page.helpers(
           [ //stats on left
             {
               value: nFormatter2(data.market_cap),
-              label: "Total Market Cap"
+              label: "Total Market Cap",
+              font: 'fa-money'
             },
             {
               value: nFormatter2(data.average_market_cap), //the bold text on top
-              label: "Average Market Cap" //the text on bottom
+              label: "Average Market Cap", //the text on bottom
+              font: 'fa-dollar '
             },
           ];
           data['overviewStatsR'] = [ //stats on right
             {
               value: data.officer_count,
-              label: "Officer Count"
+              label: "Officer Count",
+              font: 'fa-suitcase '
             },
             {
               value: data.total_companies,
-              label: "Total Companies"
+              label: "Total Companies",
+              font: 'fa-bank'
             }
           ];
 
