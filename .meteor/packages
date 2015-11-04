@@ -16,6 +16,8 @@ maazalik:highcharts
 jquery
 meteorhacks:ssr
 meteorhacks:picker
+meteorhacks:kadira
+meteorhacks:kadira-profiler
 
 ian:accounts-ui-bootstrap-3
 gadicohen:robots-txt
