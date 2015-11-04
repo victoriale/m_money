@@ -34,7 +34,6 @@ Template.cp_head.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
-    console.log(data);
     data['c_tr_last_updated'] = (new Date(getDate['csi_price_last_updated'])).toSNTFormTime();
     return data;
   },

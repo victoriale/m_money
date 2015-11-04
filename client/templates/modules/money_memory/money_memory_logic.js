@@ -111,6 +111,10 @@ Template.mm_end_date.onRendered(function(){
 
 Template.money_memory.helpers({
   //Helper to determine if result exists (Fix for if no stock data for time range). If results DNE, show error message
+  ticker: function(){
+    var params = Router.current().getParams();
+    return params.ticker;
+  },
   resultExists: function(){
     var data = Session.get('money_memory');
 
@@ -203,9 +207,12 @@ Template.money_memory.helpers({
     }else{
       data.chng = 'fallen';
     }
+
     //Transform values for display
     data['furthest_close_date'] = data['furthest_close_date'].replace(/-/g,'/');
+    data['sntfurthest'] =(new Date( data['furthest_close_date'])).toSNTForm();
     data['most_recent_close_date'] = data['most_recent_close_date'].replace(/-/g,'/');
+    data['sntrecent'] =(new Date( data['most_recent_close_date'])).toSNTForm();
     data['investment_total'] = data['investment_total'].toFixed(2);
     data['percent_change'] = data['percent_change'].toFixed(2);
     //Set roi value to positive for display (You could have lost $10 instead of You could have lost $-10)
