@@ -269,8 +269,7 @@ Template.finance_homepage.onCreated(function() {
        obj = obj.split(', ');
        var state = [obj[obj.length-1]];
      }
-     Session.set('home_state',state);
-     //console.log(state);
+     Session.set('home_state',state[0]);
    });
 });
 
