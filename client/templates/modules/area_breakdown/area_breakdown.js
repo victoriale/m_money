@@ -34,10 +34,11 @@ Template.area_breakdown.helpers({
 
   statURL: function(){
     var loc = Session.get('profile_header').location;
+    var params = Router.current().getParams();
     if(typeof loc == 'undefined'){
       return false;
     }
-    return Router.pick_path('content.statistics',{loc_id:loc});
+    return Router.pick_path('content.statistics',{loc_id:params.loc_id});
   },
 });
 

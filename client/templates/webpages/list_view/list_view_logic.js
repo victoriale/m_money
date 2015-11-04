@@ -55,19 +55,37 @@ Template.list_view.helpers({
       }else{
         data['background'] = 'tilegrey';
       }
-      data['locUrl'] = Router.pick_path('content.locationprofile',{
-        loc_id:data.c_hq_state,
-      })
-      data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
+
+      if(typeof data.c_hq_state =='undefined'){
+        data.c_hq_state = 'United';
+        data.c_hq_city = 'States';
+        data['locUrl'] = Router.pick_path('content.locationprofile',{
+          loc_id:'National',
+        });
+      }else{
+        data['locUrl'] = Router.pick_path('content.locationprofile',{
+          loc_id:data.c_hq_state,
+        });
+      }
+
+
       data['rank'] = index+1;
       data['url'] = Router.pick_path('content.companyprofile',{
         ticker: data.c_ticker,
         name: compUrlName(data.c_name),
         company_id: data.c_id
       });
-      data.price = commaSeparateNumber_decimal(Number(data.lcsi_price).toFixed(2));
-      data.price_change = commaSeparateNumber_decimal(Number(data.lcsi_price_change_since_last).toFixed(2));
-      data.percent_change = commaSeparateNumber_decimal(Number(data.lcsi_percent_change_since_last).toFixed(2));
+      if(params.list_id == 'sv150_gainers' || params.list_id == 'sv150_losers'){
+        data['newDate'] = (new Date(data.csi_price_last_updated)).toSNTForm();
+        data.price = commaSeparateNumber_decimal(Number(data.csi_price).toFixed(2));
+        data.price_change = commaSeparateNumber_decimal(Number(data.csi_price_change_since_last).toFixed(2));
+        data.percent_change = commaSeparateNumber_decimal(Number(data.csi_percent_change_since_last).toFixed(2));
+      }else{
+        data['newDate'] = (new Date(data.lcsi_price_last_updated)).toSNTForm();
+        data.price = commaSeparateNumber_decimal(Number(data.lcsi_price).toFixed(2));
+        data.price_change = commaSeparateNumber_decimal(Number(data.lcsi_price_change_since_last).toFixed(2));
+        data.percent_change = commaSeparateNumber_decimal(Number(data.lcsi_percent_change_since_last).toFixed(2));
+      }
       //data from list can come in 6 different ways these values will catch and give results back
       for(objName in data){
         if(objName === 'stock_percent'){

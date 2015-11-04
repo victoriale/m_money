@@ -32,8 +32,9 @@ Associated Files: co_competitor_logic.js and co_competitor.less
           LAST UPDATED: {{c_tr_last_updated}}
         </div>
         <div class="co_comp-header-container-text-location">
-          <i class="fa fa-map-marker"></i>
-          {{c_hq_city}}, {{c_hq_state}}
+          <a href="{{locurl}}">
+            <i class="fa fa-map-marker"></i>
+            {{c_hq_city}}, {{c_hq_state}}</a>
         </div>
         <div class="co_comp-header-container-text-name">
           The Biggest Competitors<br>
@@ -68,7 +69,7 @@ Associated Files: co_competitor_logic.js and co_competitor.less
       <div class="co_comp-m_c-image-wr">
         <div class="co_comp-m_c-image" style="background-image: url('{{imageUrl c_logo}}')">
           <div class="co_comp-m_c-sma_ct">
-          <div class="co_comp-m_c-sma_cr">
+          <div class="co_comp-m_c-sma_cr" style="background-image:url('{{exchange c_exchange}}')">
 
           </div>
         </div>
@@ -157,21 +158,31 @@ Associated Files: co_competitor_logic.js and co_competitor.less
       {{#each companyList}}
       <div class="co_comp-{{getBackgroundStyle}}"><br>
         <!--This is the main (circle) image-->
-        <div class="co_comp-head-circ">
-          <div class="co_comp-head-image" style="background-image:url('{{imageUrl c_logo}}')">
-            <!-- Here displays the counter number which is a result of each loop-->
-            <span class="co_comp-counter">#{{rank}}</span>
-            <span class="co_comp-counter2"></span>
+        <a href="{{url}}">
+          <div class="co_comp-head-circ">
+            <div class="co_comp-head-image" style="background-image:url('{{imageUrl c_logo}}')">
+              <!-- Here displays the counter number which is a result of each loop-->
+              <div class="hover">
+                <div class="hover-txt1">
+                  View
+                </div>
+                <div class="hover-txt2">
+                  Profile
+                </div>
+              </div>
+              <span class="co_comp-counter">#{{rank}}</span>
+              <span class="co_comp-counter2" style="background-image:url('{{exchange c_exchange}}')"></span>
+            </div>
           </div>
-        </div>
+        </a>
         <!--Location title -->
         <div class="co_comp-sp">
           <div  class="co_comp-space">
             <!-- This displays the font awesome map sybmol infornt of the united states-->
             <i class="fa fa-map-marker"></i>
             <span  class="co_comp-space co_comp-space2">
-              {{c_hq_city}} {{c_hq_state}}<span class="co_comp-space co_comp-space2"><i class="fa fa-angle-double-right"></i> </span>
-              <span class="co_comp-space co_comp-space2"> {{c_sector}}:{{c_ticker}} </span>
+              <a href="{{locurl}}">{{c_hq_city}} {{c_hq_state}}</a><span class="co_comp-space co_comp-space2"><i class="fa fa-angle-double-right"></i> </span>
+              <a href="{{secturl}}"><span class="co_comp-space co_comp-space2"> {{c_sector}}:{{c_ticker}} </span></a>
             </span>
             <!-- Here displays the description which come from the each loop-->
             <div class="co_comp-adjust">{{ c_name }}</div>
@@ -196,7 +207,7 @@ Associated Files: co_competitor_logic.js and co_competitor.less
           <span class="co_comp-follw1"> ${{csi_price}}</span>
             <span class="co_comp-follw1 co_comp-follwg" style="color:{{changeColor csi_price_change_since_last}}"><i class="fa {{changeIcon csi_price_change_since_last}}" style="color:{{changeColor csi_price_change_since_last}}"> </i> {{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%)</span>
           </div>
-          <div class="co_comp-rttxg"> <i class="{{changeIcon compared_percent}}" style="color:{{changeColor compared_percent}}"> </i> <span class="co_comp-rttx2" style="color:{{changeColor compared_percent}}">{{compared_percent}}% </span> <span class="co_comp-follws">compared to {{compare_to}}</span></div>
+          <div class="co_comp-rttxg"><span class="co_comp-follws">{{csi_price_last_updated}}</span></div>
         </div>
         <!-- This displays the font awesome heart symbol beside the text "save"-->
         <!--<div class="co_comp-sn">
