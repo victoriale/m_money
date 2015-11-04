@@ -22,7 +22,7 @@ Associated Files: list_view_logic.js and list_view.less
       <div class="list_vw_header">
         <div class="list_vw-cir_d"  >
           <!-- dimensions for the circle as ('circ')!-->
-          <div class="list_vw-circ" style="background-image:url('{{exchange c_exchange}}')">
+          <div class="list_vw-circ" style="background-image:url('/StateImages/Location_National.jpg')">
 
             <!-- defines container for the smaller blue circle('sc_d') !-->
             <div class= "list_vw-sc_d"></div>
@@ -53,14 +53,7 @@ Associated Files: list_view_logic.js and list_view.less
         <div class="list_vw-bar-title">
           Today's Most Traded Companies
         </div>
-        <div class="list_vw-bar-button">
-          <!-- the save option button-->
-          <a href="#"><i class="fa fa-heart"></i><span class="list_vw-bar-text">Save</span></a>
-        </div>
-        <div class="list_vw-bar-button">
-          <!-- share option button -->
-          <a href="#"><i class="fa fa-share-alt"></i><span class="list_vw-bar-text">Share</span></a>
-        </div>
+
       </div>
       {{#with carouselList}}
       <div class="list_vw-m_c">
@@ -97,7 +90,7 @@ Associated Files: list_view_logic.js and list_view.less
           <!-- the description about the person-->
           <li class="list_vw-m_c-dp">
             <div class="list_vw-m_c-dp-dpct">
-            {{o_first_name}} {{o_last_name}} at {{c_name}} ({{c_exchange}}: {{c_ticker}}) with a $1 Salary.
+            {{o_first_name}} {{o_last_name}} at {{c_name}} ({{c_exchange}}: {{c_ticker}}) with a ${{TotalComp}} Compensation.
               <span class="list_vw-m_c-dp-itl">{{data_value}}</span>
             </div>
             <!-- <div class="list_vw-m_c-dp-itl list_vw-m_c-dp-it2">{{c_name}}
@@ -133,6 +126,25 @@ Associated Files: list_view_logic.js and list_view.less
           </div>
         </div> !-->
         <!-- contianer for the complete 'what is this list' class name is wl!-->
+        <div class="list_vw-wl">
+          <!-- container for the 'what is this list' class name is wl2!-->
+          <div class="list_vw-wlc">
+            <!-- font style for the 'what is this list'!-->
+            <div class="list_vw-wlf">
+              What is this list?
+              <span class="list_vw-x">
+               <i class="fa fa-times"></i>
+              </span>
+            </div>
+          </div>
+          <!--container for the text inside the 'what is this list' as wltxt!-->
+          <div class="list_vw-wltxt">
+            <!--font style for the text !-->
+            <div class="list_vw-wltxtf">
+              This is a list featuring the {{list_title}}.
+            </div>
+          </div>
+        </div>
       </div>
       <div class="list_vw-wrapper">
       {{#each list_data}}
@@ -177,38 +189,9 @@ Associated Files: list_view_logic.js and list_view.less
             </a>
           </div>
           <div class="list_vw-rtct">
-            <div class="list_vw-rttx1"> Salary</div>
-            <div class="list_vw-rttx2"> $1</div>
+            <div class="list_vw-rttx1"> {{objname}}</div>
+            <div class="list_vw-rttx2"> ${{TotalComp}}</div>
             <div class="list_vw-rttx3"> {{newDate}} </div>
-          </div>
-          <!-- This displays the font awesome heart symbol beside the text "save"-->
-          <div class="list_vw-sn">
-            <div  class="list_vw-save">
-              <i class="fa fa-heart"></i>
-              <span  class="list_vw-save list_vw-st">
-                Follow
-              </span>
-            </div>
-          </div>
-
-          <!-- This displays the font awesome share symbol beside the text "share"-->
-          <div class="list_vw-sh">
-            <div  class="list_vw-share">
-              <i class="fa fa-share-alt"></i>
-              <span  class="list_vw-share list_vw-sht">
-                Share
-              </span>
-            </div>
-          </div>
-          <!-- container with all font style as specified !-->
-          <!-- This displays the font awesome flag symbol beside the text "Feedback"-->
-          <div class="list_vw-fe ">
-            <div  class="list_vw-share list_vw-feedback">
-              <i class="fa fa-flag"></i>
-              <span  class="list_vw-share list_vw-ft">
-                Feedback
-              </span>
-            </div>
           </div>
         </div>
         <!--This is the End of each loop -->
