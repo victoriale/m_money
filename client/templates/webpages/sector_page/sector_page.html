@@ -24,7 +24,7 @@ Associated Files: sector_page_logic.js and sector_page.less
       <div class="list_vw_header">
         <div class="list_vw-cir_d">
           <!-- dimensions for the circle as ('circ')!-->
-          <div class="list_vw-circ">
+          <div class="list_vw-circ" style="{{image}}">
             <!-- defines container for the smaller blue circle('sc_d') !-->
             <div class= "list_vw-sc_d"></div>
           </div>
@@ -33,15 +33,17 @@ Associated Files: sector_page_logic.js and sector_page.less
         <div class="list_vw-tc">
           <!-- class date has all the font-weight and font specific !-->
           <div class="list_vw-date">
-            LAST UPDATED: 06/24/2015, 8:00 AM EST
+            LAST UPDATED: {{companies.newDate}}
           </div>
           <!--specified font style for location !-->
           <div class="list_vw-loc_st">
-            <i class="fa fa-map-marker"></i>
-            <!--specified font style for the state name !-->
-            <span class="list_vw-loc_st">
-              United States
-            </span>
+            <a href="/National/location">
+              <i class="fa fa-map-marker"></i>
+              <!--specified font style for the state name !-->
+              <span class="list_vw-loc_st">
+                United States
+              </span>
+          </a>
           </div>
           <!-- specified font sytle for the stock disclaimer !-->
           <div class="list_vw-loc_st list_vw-disc">
@@ -56,14 +58,6 @@ Associated Files: sector_page_logic.js and sector_page.less
       <div class="list_vw-bar">
         <div class="list_vw-bar-title">
           {{sector}} Companies
-        </div>
-        <div class="list_vw-bar-button">
-          <!-- the save option button-->
-          <a href="#"><i class="fa fa-heart"></i><span class="list_vw-bar-text">Save</span></a>
-        </div>
-        <div class="list_vw-bar-button">
-          <!-- share option button -->
-          <a href="#"><i class="fa fa-share-alt"></i><span class="list_vw-bar-text">Share</span></a>
         </div>
       </div>
       {{#with sectorList}}
@@ -87,16 +81,6 @@ Associated Files: sector_page_logic.js and sector_page.less
           <li class="list_vw-m_c-title">
             <div class="list_vw-m_c-title-image"><i class="fa fa-building-o"></i></div>{{c_name}}
           </li>
-            <!--the follow('fbt') and share  !-->
-
-            <div class="list_vw-fbt1">
-              <!-- the save option button-->
-              <a href="#"><i class="list_vw-fbt1-font1 fa fa-heart"></i><span class="list_vw-fbt1-text1">Save</span></a>
-            </div>
-            <div class="list_vw-fbt1 list_vw-fbt2">
-              <!-- share option button -->
-              <a href="#"><i class="list_vw-fbt1-font1 fa fa-share-alt"></i><span class="list_vw-fbt1-text1">Share</span></a>
-            </div>
 
           <!-- the description about the person-->
           <li class="list_vw-m_c-dp">
@@ -106,7 +90,7 @@ Associated Files: sector_page_logic.js and sector_page.less
             </div>
             <div class="list_vw-m_c-dp-itl list_vw-m_c-dp-it2">{{c_name}}
               <span class="list_vw-m_c-dp-itl list_vw-m_c-dp-dpct">is currently priced at: <br></span>
-              <span class="list_vw-m_c-dp-itl">${{csi_price}} </span>
+              <span class="list_vw-m_c-dp-itl">${{lcsi_price}} </span>
               <span class="list_vw-m_c-dp-itl list_vw-m_c-dp-it4"> <i class="fa {{changeIcon csi_price_change_since_last}}" style="color:{{changeColor csi_price_change_since_last}}"></i></span>
               <span class="list_vw-m_c-dp-itl list_vw-m_c-dp-it5" style="color:{{changeColor csi_price_change_since_last}}">{{csi_price_change_since_last}}({{csi_percent_change_since_last}}%) </span>
             </div>
@@ -172,13 +156,15 @@ Associated Files: sector_page_logic.js and sector_page.less
         <div class="list_vw-sp">
           <div  class="list_vw-space">
             <!-- This displays the font awesome map sybmol infornt of the united states-->
-            <i class="fa fa-map-marker"></i>
-            <span  class="list_vw-space list_vw-space2">
-              {{c_hq_state}}, {{c_hq_city}}
-            </span>
+            <a href="{{locurl}}">
+              <i class="fa fa-map-marker"></i>
+              <span  class="list_vw-space list_vw-space2">
+                {{c_hq_state}}, {{c_hq_city}}
+              </span>
+            </a>
             <!-- Here displays the description which come from the each loop-->
             <div class="list_vw-adjust">{{ c_name }}</div>
-            <div class="list_vw-follw1">${{csi_price}}
+            <div class="list_vw-follw1">${{lcsi_price}}
               <span class="list_vw-follws1">  <i class="fa {{changeIcon csi_price_change_since_last}}" style="color:{{changeColor csi_price_change_since_last}}"></i> </span>
               <span class="list_vw-follw3" style="color:{{changeColor csi_price_change_since_last}}">{{csi_price_change_since_last}}({{csi_percent_change_since_last}}%) </span>
             </div>
@@ -202,32 +188,24 @@ Associated Files: sector_page_logic.js and sector_page.less
           <div class="list_vw-rttx3"> {{newDate}} </div>
         </div>
         <!-- This displays the font awesome heart symbol beside the text "save"-->
+
         <div class="list_vw-sn">
           <div  class="list_vw-save">
-            <i class="fa fa-heart"></i>
-            <span  class="list_vw-save list_vw-st">
-              Follow
-            </span>
+
           </div>
         </div>
 
         <!-- This displays the font awesome share symbol beside the text "share"-->
         <div class="list_vw-sh">
           <div  class="list_vw-share">
-            <i class="fa fa-share-alt"></i>
-            <span  class="list_vw-share list_vw-sht">
-              Share
-            </span>
+
           </div>
         </div>
         <!-- container with all font style as specified !-->
         <!-- This displays the font awesome flag symbol beside the text "Feedback"-->
         <div class="list_vw-fe ">
           <div  class="list_vw-share list_vw-feedback">
-            <i class="fa fa-flag"></i>
-            <span  class="list_vw-share list_vw-ft">
-              Feedback
-            </span>
+
           </div>
         </div>
       </div>

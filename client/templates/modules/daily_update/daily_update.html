@@ -14,7 +14,7 @@ Associated Files: [daily_update.less][daily_update_logic.js]
       <!--Header line!-->
       <span class="module-header-line">
       </span>
-      <span class="module-header-title">How Well is {{header}} Doing Today
+      <span class="module-header-title">{{header}}
       </span>
     </div>
     <div class="module-wrapper" style="height:auto">
@@ -28,8 +28,7 @@ Associated Files: [daily_update.less][daily_update_logic.js]
             </div>
             <!--Image Banner!-->
             <div class="all_daily_update_modules-banner">
-              <div class= "all_daily_update_modules-text1">{{header}} Daily Update
-              </div>
+              <div class= "all_daily_update_modules-text1">{{subheader}}</div>
             </div>
           </div>
         </div>
@@ -129,6 +128,27 @@ Associated Files: [daily_update.less][daily_update_logic.js]
               <!--Profile Feeds !-->
               <div class="all_daily_update_modules-profile-text">
                 {{content}}</div>
+                <!--Profile Feeds Continue reading Link!
+                <div class="all_daily_update_modules-profile-text-blue">Continue Reading Story
+                </div>
+                -->
+              </div>
+            </div>
+            {{/with}}
+            {{#with loc_info}}
+            <div class="all_daily_update_modules-wrapper-main-bottom">
+              <div class="all_daily_update_modules-wrapper-bottom-left">
+                <!--Profile Feeds image!-->
+                <div class=" all_daily_update_modules-wrapper-image-circle" style="background-image:url('{{bg_img}}')"></div>
+              </div>
+              <!--Profile Feeds image text box!-->
+              <div class=" all_daily_update_modules-Profile-image-Text-Box">
+                <!--Profile Feeds !-->
+                <div class="all_daily_update_modules-profile-text" style="margin-top: 10px;">
+                  <i class="fa fa-circle" style="color: #3098ff"></i>
+                  <span style="font-weight: bold;">What is the {{location}} composite?</span>
+                  <div style="font-size: 12px; line-height: 18px; margin-top: 10px">Usually, a composite index has a large number of factors which are averaged together to form a product representative of an overall market or sector. For example, a Composite Index is a market capitalization-weighted grouping of stocks listed in this location’s market. These indexes are useful tools for measuring and tracking price level changes to an entire stock market or sector.</div>
+                </div>
                 <!--Profile Feeds Continue reading Link!
                 <div class="all_daily_update_modules-profile-text-blue">Continue Reading Story
                 </div>
