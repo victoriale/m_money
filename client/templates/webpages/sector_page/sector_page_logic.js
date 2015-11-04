@@ -17,7 +17,7 @@ $(".sect_pg-page-selector1").css("background-color","#3098ff");
 var backgroundStyle="tilewhite";
 Template.sector_page.helpers({
   back_url: function(){
-    return Router.path('content.locationprofile',{
+    return Router.pick_path('content.locationprofile',{
       loc_id: Session.get('loc_id')
     });
   },
@@ -35,7 +35,7 @@ Template.sector_page.helpers({
       }
       data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
       data['rank'] = index+1;
-      data['url'] = Router.path('content.companyprofile',{
+      data['url'] = Router.pick_path('content.companyprofile',{
         company_id: data.c_id
       });
       data['csi_price'] = Number(data['csi_price']).toFixed(2);
@@ -61,7 +61,7 @@ Template.sector_page.helpers({
       }
       data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
       data['rank'] = index+1;
-      data['url'] = Router.path('content.companyprofile',{
+      data['url'] = Router.pick_path('content.companyprofile',{
         company_id: data.c_id
       });
       data['csi_price'] = Number(data['csi_price']).toFixed(2);

@@ -31,11 +31,11 @@ Template.co_competitor.helpers({
     newData['csi_price_change_since_last'] = Number(newData['csi_price_change_since_last']).toFixed(2);
     newData['csi_price'] = Number(newData['csi_price']).toFixed(2);
     newData['csi_percent_change_since_last'] = Number(newData['csi_percent_change_since_last']).toFixed(2);
-    newData['url'] = Router.path('content.companyprofile', {company_id: company_id, name: company, ticker: ticker});
+    newData['url'] = Router.pick_path('content.companyprofile', {company_id: company_id, name: company, ticker: ticker});
 
 
-    newData.share_company_url =  "https://www.facebook.com/sharer/sharer.php?u=" + Router.path('content.companyprofile', {company_id: company_id, name: company, ticker: ticker});
-    newData.share_company_competitor_url = "https://www.facebook.com/sharer/sharer.php?u=" + Router.path('content.competitor', {company_id: company_id, name: company, ticker: ticker});
+    newData.share_company_url =  "https://www.facebook.com/sharer/sharer.php?u=" + Router.pick_path('content.companyprofile', {company_id: company_id, name: company, ticker: ticker});
+    newData.share_company_competitor_url = "https://www.facebook.com/sharer/sharer.php?u=" + Router.pick_path('content.competitor', {company_id: company_id, name: company, ticker: ticker});
 
     return newData;
   },
@@ -53,13 +53,13 @@ Template.co_competitor.helpers({
       data['csi_price'] = Number(data['csi_price']).toFixed(2);
       data['csi_percent_change_since_last'] = Number(data['csi_percent_change_since_last']).toFixed(2);
 
-      data.share_url = "https://www.facebook.com/sharer/sharer.php?u=" + Router.path('content.companyprofile', {company_id: data.c_id, name: compUrlName(data.c_name), ticker: data.c_ticker});
+      data.share_url = "https://www.facebook.com/sharer/sharer.php?u=" + Router.pick_path('content.companyprofile', {company_id: data.c_id, name: compUrlName(data.c_name), ticker: data.c_ticker});
 
       var company = compUrlName(data.c_name);
       var ticker = data.c_ticker;
       var company_id = data.c_id;
 
-      data['url'] = Router.path('content.companyprofile', {company_id: company_id, name: company, ticker: ticker});
+      data['url'] = Router.pick_path('content.companyprofile', {company_id: company_id, name: company, ticker: ticker});
       data['rank'] = index+1;
       data['compare_to'] = compare.c_ticker;
       data['compared_percent'] = (((data['csi_price'] - compare['csi_price'])/compare['csi_price'])* 100).toFixed(2);

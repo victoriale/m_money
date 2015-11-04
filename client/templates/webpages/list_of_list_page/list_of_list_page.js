@@ -27,7 +27,7 @@ Template.list_of_list_page.helpers({
       var subData = data.top_list_list[0].list_of_lists_data;
       var params = Router.current().getParams();
 
-      data.compURL =  Router.path('content.companyprofile', {
+      data.compURL =  Router.pick_path('content.companyprofile', {
         ticker:params.ticker,
         name:params.name,
         company_id: data.c_id
@@ -35,7 +35,7 @@ Template.list_of_list_page.helpers({
 
       //Build url for sub circle images
       subData.map(function(item, index){
-        item.imageURL = Router.path('content.companyprofile', {
+        item.imageURL = Router.pick_path('content.companyprofile', {
           ticker:params.ticker,
           name:params.name,
           company_id: item.c_id
@@ -45,7 +45,7 @@ Template.list_of_list_page.helpers({
       })
       console.log(data);
       var title = compUrlName(data.top_list_list[0].list_of_lists_title);
-      data.url = Router.path('content.toplist', {
+      data.url = Router.pick_path('content.toplist', {
         l_name:title,
         list_id: data.tli_id
       });

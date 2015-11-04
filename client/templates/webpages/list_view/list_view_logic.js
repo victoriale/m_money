@@ -19,12 +19,16 @@ Template.list_view.helpers({
   image: function(){
     var params = Router.current().getParams();
     var data = params.loc_id;
-    if(isNaN(data)){
-      data = fullstate(data);
-      data = data.replace(/ /g, '_');
-      return "background-image: url('/StateImages/Location_"+ data +".jpg');";
+    if(data == 'National' || data == '' || typeof data == 'undefined'){
+      return "background-image: url('/StateImages/Location_National.jpg');";
     }else{
-      return "background-image: url('/DMA_images/location-"+ data +".jpg');";
+      if(isNaN(data)){
+        data = fullstate(data);
+        data = data.replace(/ /g, '_');
+        return "background-image: url('/StateImages/Location_"+ data +".jpg');";
+      }else{
+        return "background-image: url('/DMA_images/location-"+ data +".jpg');";
+      }
     }
   },
 

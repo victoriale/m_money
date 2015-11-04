@@ -40,7 +40,7 @@ if(Meteor.isClient){
     },
 
     commentsurl: function(){
-      return Router.path('content.disqus');
+      return Router.pick_path('content.disqus');
     },
   });
   //Event Handlers

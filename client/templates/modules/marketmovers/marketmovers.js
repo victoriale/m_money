@@ -1,10 +1,7 @@
-/*
-Name: Venkatesh
-Created:7/21/2015
-Description: Top lists Facebook
-Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists.less
-*/
-//This variable is set as white as our first background is grey, the program checks whether its white and changes it to grey.
+Template.marketmovers.onRendered(function(){
+
+
+});
 
 Template.marketmovers.helpers({
 
@@ -21,7 +18,7 @@ Template.marketmovers.helpers({
       }
       //create URL before shifting array
       $.map(data.data['top_list_list'], function(data, index){
-        data['url'] = Router.path('content.companyprofile',{
+        data['url'] = Router.pick_path('content.companyprofile',{
           ticker: data.c_ticker,
           name:compUrlName(data.c_name),
           company_id: data.c_id
@@ -34,7 +31,7 @@ Template.marketmovers.helpers({
       var loc_param = data.data.top_list_info.top_list_location[0];
       var list_param = data.data.top_list_info.top_list_id;
       var list_name = compUrlName(data.data.top_list_info.top_list_title);
-      data.data['list_url'] = Router.path('content.toplist',{
+      data.data['list_url'] = Router.pick_path('content.toplist',{
         loc_id:loc_param,
         l_name:list_name,
         list_id:list_param
@@ -65,8 +62,13 @@ Template.marketmovers.helpers({
     data.loc_url = Router.pick_path('content.locationprofile',{
       loc_id:params.loc_id,
     })
-    data.fullstate = fullstate(params.loc_id);
-    
+    if ( typeof params.loc_id == "undefined" ) {
+      data.fullstate = Session.get('profile_header').location;
+    } else {
+      data.fullstate = fullstate(params.loc_id);
+    }
+
+    console.log(data);
     return data;
   },
 
@@ -74,13 +76,9 @@ Template.marketmovers.helpers({
   toListOfList: function(){
     var data = Session.get('list_of_lists');
     var params = Router.current().getParams();
-    return Router.path('content.listoflistloc', {
+    return Router.pick_path('content.listoflistloc', {
       loc_id:params.loc_id
     });
   },
-
-});
-//This handles the events on button clicks of 1,2,3 and 200
-Template.marketmovers.events({
 
 });

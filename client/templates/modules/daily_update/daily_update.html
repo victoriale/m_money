@@ -106,8 +106,14 @@ Associated Files: [daily_update.less][daily_update_logic.js]
           <div class="all_daily_update_modules-wrapper-main-bottom">
             <div class="all_daily_update_modules-wrapper-bottom-left">
               <!--Profile Feeds image!-->
-              <div class=" all_daily_update_modules-wrapper-image-circle" style="background-image:url('{{imageUrl image}}')">
-              </div>
+              {{#if isLoc}}
+                <div class=" all_daily_update_modules-wrapper-image-circle" style="{{imageLoc}}">
+                </div>
+              {{else}}
+                <div class=" all_daily_update_modules-wrapper-image-circle" style="background-image:url('{{imageUrl image}}')">
+                </div>
+              {{/if}}
+
             </div>
             <!--Profile Feeds image text box!-->
             <div class=" all_daily_update_modules-Profile-image-Text-Box">

@@ -106,6 +106,25 @@ Template.daily_update.helpers({
     return data.c_logo;
   },
 
+  isLoc:function(){
+    return Session.get('IsLocation');
+  },
+
+  imageLoc: function(){
+    var data = Session.get('loc_id');
+    if(data == 'National'){
+      return "background-image: url('/StateImages/Location_"+ data +".jpg');";
+    }else{
+      if(isNaN(data)){
+        data = fullstate(data);
+        data = data.replace(/ /g, '_');
+        return "background-image: url('/StateImages/Location_"+ data +".jpg');";
+      }else{
+        return "background-image: url('/DMA_images/location-"+ data +".jpg');";
+      }
+    }
+  },
+
   buttons: function(){
     var buttons = [
       {data:"1D"},
@@ -123,9 +142,19 @@ Template.daily_update.helpers({
   },
   aiInfo: function(){
       var data = Session.get('AI_daily_update');
+      if ( !data ) {
+        return false;
+      }
+      var header = Session.get('profile_header');
       var content = {};
       if(typeof data == 'undefined' || data == false){
-        return '';
+      console.log(Session.get('IsLocation'));
+        if(Session.get('IsLocation')){
+          content['content'] = "Did you know "+header.location+" has "+header.total_companies+" companies, gathering a total market cap of "+header.total_market_cap+" Dollars. "+header.location+" is also home to "+header.total_executives+" total executives.";
+          return content;
+        }else{
+          return false;
+        }
       }
       content['content'] = data;
       return content;
@@ -149,8 +178,18 @@ Template.daily_update.helpers({
     var currentRoute = Router.current().route.getName();
 
     switch(currentRoute){
+      case 'content.partnerhome':
+        var pheader = Session.get('profile_header');
+        data.header = pheader.location;
       case 'content.locationprofile':
-        data.header = fullstate(getheader.loc_id);
+      case 'partner.locationprofile':
+        if ( typeof data.header == "undefined" ) {
+          if(getheader.loc_id == 'National' || getheader.loc_id == '' || typeof getheader.loc_id == 'undefined'){
+            data.header = 'United States';
+          }else{
+            data.header = fullstate(getheader.loc_id);
+          }
+        }
         data.text1 = 'Todays Low';
         data.text2 = 'Todays High';
         data.text3 = 'Previous Close';
@@ -162,6 +201,7 @@ Template.daily_update.helpers({
         data.value4 = data.total_companies;
       break;
       case 'content.companyprofile':
+      case 'partner.companyprofile':
         data.header = getheader.name.replace(/-/g, ' ');
         data.text1 = 'Market Cap';
         data.text2 = 'PE Ratio';

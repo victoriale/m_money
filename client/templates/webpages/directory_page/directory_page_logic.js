@@ -111,9 +111,9 @@
        sortButtons.map(function(item, index){
          //If the button does not equal # or Newly Added (Newly added not available right now and blank is the same as #)
          if(item.disp !== '#'){
-           var path = Router.path('content.finance.directory', {pageNum: 1, type: params.type}, {query: 'sort=' + item.disp});
+           var path = Router.pick_path('content.finance.directory', {pageNum: 1, type: params.type}, {query: 'sort=' + item.disp});
          }else{
-           var path = Router.path('content.finance.directory', {pageNum: 1, type: params.type});
+           var path = Router.pick_path('content.finance.directory', {pageNum: 1, type: params.type});
          }
          //Set button path
          item.path = path;
@@ -186,9 +186,9 @@
      sortButtons.map(function(item, index){
        //If the button does not equal # or Newly Added (Newly added not available right now and blank is the same as #)
        if(item.disp !== '#'){
-         var path = Router.path('content.finance.directory', {pageNum: 1, type: params.type}, {query: 'state=' + item.val});
+         var path = Router.pick_path('content.finance.directory', {pageNum: 1, type: params.type}, {query: 'state=' + item.val});
        }else{
-         var path = Router.path('content.finance.directory', {pageNum: 1, type: params.type});
+         var path = Router.pick_path('content.finance.directory', {pageNum: 1, type: params.type});
        }
        //Set button path
        item.path = path;
@@ -226,11 +226,11 @@
           var years = new Date().getFullYear() - item.o_current_title.start_year;
           var years = years === 1 ? years + ' year' : years + ' years';
 
-          var url1 = Router.path('content.executiveprofile', {lname: item.o_last_name, fname: item.o_first_name, exec_id: item.o_id, ticker: null});
-          var url3 = Router.path('content.companyprofile', {company_id: item.c_id, name: compUrlName(item.c_name), ticker: item.c_ticker});
+          var url1 = Router.pick_path('content.executiveprofile', {lname: item.o_last_name, fname: item.o_first_name, exec_id: item.o_id, ticker: null});
+          var url3 = Router.pick_path('content.companyprofile', {company_id: item.c_id, name: compUrlName(item.c_name), ticker: item.c_ticker});
 
           if(item.c_hq_state !== ''){
-            var url4 = Router.path('content.locationprofile', {loc_id: toTitleCase(item.c_hq_state), city: item.c_hq_city});
+            var url4 = Router.pick_path('content.locationprofile', {loc_id: toTitleCase(item.c_hq_state), city: item.c_hq_city});
           }else{
             var url4 = '';
           }
@@ -264,9 +264,9 @@
           var name = FullNameSplit(item.c_ceo_name);
 
 
-          var url1 = Router.path('content.companyprofile', {company_id: item.c_id, name: compUrlName(item.c_name), ticker: item.c_ticker});
-          var url4 = Router.path('content.locationprofile', {loc_id: item.c_hq_state, city: item.c_hq_city});
-          var url7 = Router.path('content.executiveprofile', {lname: name.lname, fname: name.fname, exec_id: item.c_ceo_id, ticker: item.c_ticker});
+          var url1 = Router.pick_path('content.companyprofile', {company_id: item.c_id, name: compUrlName(item.c_name), ticker: item.c_ticker});
+          var url4 = Router.pick_path('content.locationprofile', {loc_id: item.c_hq_state, city: item.c_hq_city});
+          var url7 = Router.pick_path('content.executiveprofile', {lname: name.lname, fname: name.fname, exec_id: item.c_ceo_id, ticker: item.c_ticker});
 
           returnArr.push({
             text1: item.c_name,
@@ -354,17 +354,17 @@
      if(pageNum === 1){
        var prev = '';
      }else if(pageNum !== 1 && typeof query !== 'undefined'){
-       var prev = Router.path('content.finance.directory', {pageNum: pageNum - 1, type: params.type}, {query: query});
+       var prev = Router.pick_path('content.finance.directory', {pageNum: pageNum - 1, type: params.type}, {query: query});
      }else{
-        var prev = Router.path('content.finance.directory', {pageNum: pageNum - 1, type: params.type});
+        var prev = Router.pick_path('content.finance.directory', {pageNum: pageNum - 1, type: params.type});
      }
 
      if(pageNum * 25 >= total){
        var next = '';
      }else if(typeof query !== 'undefined'){
-       var next = Router.path('content.finance.directory', {pageNum: pageNum + 1, type: params.type}, {query: query});
+       var next = Router.pick_path('content.finance.directory', {pageNum: pageNum + 1, type: params.type}, {query: query});
      }else{
-       var next = Router.path('content.finance.directory', {pageNum: pageNum + 1, type: params.type});
+       var next = Router.pick_path('content.finance.directory', {pageNum: pageNum + 1, type: params.type});
     }
 
      return{

@@ -17,11 +17,13 @@ files:[market_bar.js, market_bar.less]
         <div class="mrk-br-line">
         </div>
         <!-- the details class-->
-        <div class="mrk-br-details">
-          <div class="mrk-br-name">{{name}}</div>
-          <div class="mrk-br-value">{{close_value}}</div>
-          <div class="mrk-br-high" style="color: {{changeColor change_value_number}}">{{change_value}} ({{percent}})</div>
-        </div>
+        <a href="{{listlink}}">
+          <div class="mrk-br-details">
+            <div class="mrk-br-name">{{name}}</div>
+            <div class="mrk-br-value">{{close_value}}</div>
+            <div class="mrk-br-high" style="color: {{changeColor change_value_number}}">{{change_value}} ({{percent}})</div>
+          </div>
+        </a>
         <!-- the class properties to call the graph-->
         <div class="mrk-br-graph">
           <!-- to class the grpah values from js-->

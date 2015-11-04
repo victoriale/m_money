@@ -187,7 +187,7 @@ Template.project_history.helpers (
 
       $.map(data,function(val,i){
         $.map(val.connections,function(value, index){
-          value.url = Router.path('content.executiveprofile',{
+          value.url = Router.pick_path('content.executiveprofile',{
             lname:value.o_last_name,
             fname:value.o_first_name,
             ticker:'undefined',
@@ -222,13 +222,13 @@ Template.project_history.helpers (
       var data = Session.get('ListPage');
       var params = Router.current().getParams();
       $.map(data, function(val, i){
-        val.url = Router.path('content.companyprofile',{
+        val.url = Router.pick_path('content.companyprofile',{
           ticker:val.c_ticker,
           name:compUrlName(val.c_name),
           company_id:val.c_id,
         });
 
-        val.workurl = Router.path('content.workhistory',{
+        val.workurl = Router.pick_path('content.workhistory',{
           lname:params.lname,
           fname:params.fname,
           ticker:val.c_ticker,
@@ -243,7 +243,7 @@ Template.project_history.helpers (
       var params = Router.current().getParams();
 
       $.map(data, function(val, i){
-        val.url = Router.path('content.workhistory',{
+        val.url = Router.pick_path('content.workhistory',{
           lname:val.o_last_name,
           fname:val.o_first_name,
           ticker:val.c_ticker,

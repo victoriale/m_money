@@ -25,7 +25,7 @@ Template.list_of_lists_loc.helpers({
       }
       //create URL before shifting array
       $.map(data['top_list_list'], function(data, index){
-        data['url'] = Router.path('content.companyprofile',{
+        data['url'] = Router.pick_path('content.companyprofile',{
           company_id: data.c_id
         });
       })
@@ -34,7 +34,7 @@ Template.list_of_lists_loc.helpers({
       var id_param = data.top_list_params.length;
       var loc_param = data.top_list_params[0];
       var list_param = data.top_list_params[id_param-1];
-      data['list_url'] = Router.path('content.toplist',{
+      data['list_url'] = Router.pick_path('content.toplist',{
         loc_id:loc_param,
         list_id:list_param
       });

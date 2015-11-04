@@ -218,7 +218,7 @@ Template.compensation.helpers({
   compURL: function(){
     var params = Router.current().getParams();
 
-    return Router.path('content.compensation', {
+    return Router.pick_path('content.compensation', {
       lname:params.lname,
       fname:params.fname,
       ticker:params.ticker,

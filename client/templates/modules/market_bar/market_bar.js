@@ -1,20 +1,41 @@
-//Name :[Ramakrishna Vaibhav Kasibhatla]
-//  Date: 7/24/2015
-//files:[market_bar.js, market_bar.less]
 
-//!!!!!!!!!!!!!!!!!!!!!! Plug in market value change when available !!!!!!!!!!!!!!!!!!!!!!
+Template.market_bar.onCreated(function(){
+  this.autorun(function(){
+    var data = Session.get('market_report');
+    if(typeof data =='undefined'){
+      return false;
+    }
+    data = data['biggest_gainers'];
+    var nasdaq = Router.pick_path('content.toplist', {
+      loc_id: data.NASDAQ.top_list_info.top_list_location,
+      l_name: compUrlName(data.NASDAQ.top_list_info.top_list_title),
+      list_id: data.NASDAQ.top_list_info.top_list_id
+    });
+    var nyse = Router.pick_path('content.toplist', {
+      loc_id: data.NYSE.top_list_info.top_list_location,
+      l_name: compUrlName(data.NYSE.top_list_info.top_list_title),
+      list_id: data.NYSE.top_list_info.top_list_id
+    });
+    var amex = Router.pick_path('content.toplist', {
+      loc_id: data.AMEX.top_list_info.top_list_location,
+      l_name: compUrlName(data.AMEX.top_list_info.top_list_title),
+      list_id: data.AMEX.top_list_info.top_list_id
+    });
+    Session.set('nyse-list',nyse);
+    Session.set('nasdaq-list',nasdaq);
+    Session.set('amex-list',amex);
+  })
+})
 
 Template.market_bar.helpers({
   //Helper to determine if data exists and display date
   marketData: function(){
     var data = Session.get('new_market_report');
-
     //If data does not exists exit helper
     if(typeof(data) === 'undefined'){
       return '';
     }
     data.lastUpdated = moment(data.lastUpdated).tz('America/New_York').format('dddd, MMM DD, YYYY');
-
     return data;
   },
   //Helper to get data for market bar
@@ -25,7 +46,23 @@ Template.market_bar.helpers({
     if(typeof(data) === 'undefined'){
       return '';
     }
+    $.map(data.displayData, function(data, index){
+      switch(data.name){
+        case 'NASDAQ':
+        data.listlink = Session.get('nasdaq-list');
+        break;
+        case 'NYSE':
+        data.listlink = Session.get('nyse-list');
+        break;
+        case 'AMEX':
+        data.listlink = Session.get('amex-list');
+        break;
+        default:
 
+        break;
+      }
+    })
+     console.log(data);
     return data.displayData;
 
   },
