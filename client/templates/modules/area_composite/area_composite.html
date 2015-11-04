@@ -31,13 +31,15 @@ Associated Files: [area_composite.html,area_composite.less,area_composite.js]
 
           <!--First column of Top left Panel list-->
           {{#each sectors}}
-            <div class="ar_comp-sectbrkdnlist">
+            <a href="{{url}}"><div class="ar_comp-sectbrkdnlist">
               <div class="ar_comp-itemidentifier ar_comp-{{color}}">
               </div>
               <span class="ar_comp-sectbrkdncontent">{{title}}</span>
+              {{#unless other}}
               <i class="ar_comp-fa-angle-right-align fa fa-angle-right"></i>
+              {{/unless}}
               <span class="ar_comp-contentrighttext">{{percentage}}%</span>
-            </div>
+            </div></a>
           {{/each}}
           <!--First column of Top left Panel list ends-->
         </div>
