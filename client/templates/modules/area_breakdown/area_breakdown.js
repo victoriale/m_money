@@ -50,10 +50,37 @@ Template.breakdown_map.onRendered(function(){
       return '';
     }
 
+    var results = {
+      best: 2000
+    };
+    for ( var o = 0; o < data.length; o++ ) {
+      var xdiff = 0;
+      var ydiff = 0;
+      var x = parseFloat(data[o].c_latitude);
+      var y = parseFloat(data[o].c_longitude);
+      for ( var s = 0; s < data.length; s++ ) {
+        xdiff = xdiff + Math.abs(x - parseFloat(data[s].c_latitude));
+        ydiff = ydiff + Math.abs(y - parseFloat(data[s].c_longitude));
+      }
+
+      xdiff = xdiff / data.length;
+      ydiff = ydiff / data.length;
+
+
+      if ( (ydiff + xdiff) < results.best ) {
+        results.best = ydiff + xdiff;
+        results.index = o;
+      }
+
+      data[o].xdiff = xdiff;
+      data[o].ydiff = ydiff;
+    }
+    var center = data[results.index];
+
      // Map
      var mapOptions = {
        zoom: 10,
-       center: new google.maps.LatLng(data[0].c_latitude, data[0].c_longitude),
+       center: new google.maps.LatLng(center.c_latitude, center.c_longitude),
        mapTypeId: google.maps.MapTypeId.HYBRID
      };
 
