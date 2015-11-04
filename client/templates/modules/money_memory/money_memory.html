@@ -48,8 +48,8 @@
             <span class="mon-mem_body_potential_amount" style = "color: {{colorIndicator}}">${{roi}}</span>
           </div>-->
           <!--Stock price history-->
-          <div class="mon-mem_body_history">
-            <span>If you purchased <b>${{user_initial_investment}} worth of {{ticker}} shares</b> on {{sntrecent}}, and sold them, {{sntfurthest}} you could of earned <span style="color={{changeColor investment_total}}">${{investment_total}}</span> with a <span style="color={{changeColor investment_total}}">{{percent_change}}%</span></span>
+          <div class="mon-mem_body_history" style="{{changeColor investment_total}}">
+            <span>If you purchased <b>${{user_initial_investment}} worth of {{ticker}} shares</b> on {{sntrecent}}, and sold them, {{sntfurthest}} you could of {{earn_lose}} <span style="color:{{changeColor percent_change}}">${{roi}}</span> with a <span style="color:{{changeColor percent_change}}">{{percent_change}}%</span> {{chng}}. You currently have a total of <b>${{investment_total}}</b>. </span>
           </div>
         {{/with}}
       {{else}}
