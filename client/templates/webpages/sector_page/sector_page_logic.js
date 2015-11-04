@@ -38,7 +38,7 @@ Template.sector_page.helpers({
       data['url'] = Router.pick_path('content.companyprofile',{
         company_id: data.c_id
       });
-      data['csi_price'] = Number(data['csi_price']).toFixed(2);
+      data['lcsi_price'] = Number(data['lcsi_price']).toFixed(2);
       data['csi_price_change_since_last'] = Number(data['csi_price_change_since_last']).toFixed(2);
       data['csi_percent_change_since_last'] = Number(data['csi_percent_change_since_last']).toFixed(2);
     });
@@ -64,7 +64,7 @@ Template.sector_page.helpers({
       data['url'] = Router.pick_path('content.companyprofile',{
         company_id: data.c_id
       });
-      data['csi_price'] = Number(data['csi_price']).toFixed(2);
+      data['lcsi_price'] = Number(data['lcsi_price']).toFixed(2);
       data['csi_price_change_since_last'] = Number(data['csi_price_change_since_last']).toFixed(2);
       data['csi_percent_change_since_last'] = Number(data['csi_percent_change_since_last']).toFixed(2);
     });

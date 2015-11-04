@@ -91,11 +91,11 @@ Associated Files: sector_page_logic.js and sector_page.less
 
             <div class="list_vw-fbt1">
               <!-- the save option button-->
-              <a href="#"><i class="list_vw-fbt1-font1 fa fa-heart"></i><span class="list_vw-fbt1-text1">Save</span></a>
+              <!--<a href="#"><i class="list_vw-fbt1-font1 fa fa-heart"></i><span class="list_vw-fbt1-text1">Save</span></a>-->
             </div>
             <div class="list_vw-fbt1 list_vw-fbt2">
               <!-- share option button -->
-              <a href="#"><i class="list_vw-fbt1-font1 fa fa-share-alt"></i><span class="list_vw-fbt1-text1">Share</span></a>
+              <!--<a href="#"><i class="list_vw-fbt1-font1 fa fa-share-alt"></i><span class="list_vw-fbt1-text1">Share</span></a>-->
             </div>
 
           <!-- the description about the person-->
@@ -106,7 +106,7 @@ Associated Files: sector_page_logic.js and sector_page.less
             </div>
             <div class="list_vw-m_c-dp-itl list_vw-m_c-dp-it2">{{c_name}}
               <span class="list_vw-m_c-dp-itl list_vw-m_c-dp-dpct">is currently priced at: <br></span>
-              <span class="list_vw-m_c-dp-itl">${{csi_price}} </span>
+              <span class="list_vw-m_c-dp-itl">${{lcsi_price}} </span>
               <span class="list_vw-m_c-dp-itl list_vw-m_c-dp-it4"> <i class="fa {{changeIcon csi_price_change_since_last}}" style="color:{{changeColor csi_price_change_since_last}}"></i></span>
               <span class="list_vw-m_c-dp-itl list_vw-m_c-dp-it5" style="color:{{changeColor csi_price_change_since_last}}">{{csi_price_change_since_last}}({{csi_percent_change_since_last}}%) </span>
             </div>
@@ -178,7 +178,7 @@ Associated Files: sector_page_logic.js and sector_page.less
             </span>
             <!-- Here displays the description which come from the each loop-->
             <div class="list_vw-adjust">{{ c_name }}</div>
-            <div class="list_vw-follw1">${{csi_price}}
+            <div class="list_vw-follw1">${{lcsi_price}}
               <span class="list_vw-follws1">  <i class="fa {{changeIcon csi_price_change_since_last}}" style="color:{{changeColor csi_price_change_since_last}}"></i> </span>
               <span class="list_vw-follw3" style="color:{{changeColor csi_price_change_since_last}}">{{csi_price_change_since_last}}({{csi_percent_change_since_last}}%) </span>
             </div>
@@ -202,22 +202,23 @@ Associated Files: sector_page_logic.js and sector_page.less
           <div class="list_vw-rttx3"> {{newDate}} </div>
         </div>
         <!-- This displays the font awesome heart symbol beside the text "save"-->
+
         <div class="list_vw-sn">
           <div  class="list_vw-save">
-            <i class="fa fa-heart"></i>
+            <!--<i class="fa fa-heart"></i>
             <span  class="list_vw-save list_vw-st">
               Follow
-            </span>
+            </span>-->
           </div>
         </div>
 
         <!-- This displays the font awesome share symbol beside the text "share"-->
         <div class="list_vw-sh">
           <div  class="list_vw-share">
-            <i class="fa fa-share-alt"></i>
+            <!--<i class="fa fa-share-alt"></i>
             <span  class="list_vw-share list_vw-sht">
               Share
-            </span>
+            </span>-->
           </div>
         </div>
         <!-- container with all font style as specified !-->
