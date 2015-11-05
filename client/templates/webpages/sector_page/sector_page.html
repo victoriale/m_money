@@ -63,18 +63,24 @@ Associated Files: sector_page_logic.js and sector_page.less
       {{#with sectorList}}
       <div class="list_vw-m_c">
         <!-- the module.less file navigation buttons-->
-        <button class='list_vw-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
-        <button class='list_vw-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+        <button class='list_vw-lefthov' style="position:absolute;"><i class="fa fa-angle-left fa-2x" ></i></button>
+        <button class='list_vw-righthov' style="position:absolute;"><i class="fa fa-angle-right fa-2x"></i></button>
         <!-- end of the module.less navigation button -->
         <!-- wrapper class-->
-        <div class="list_vw-m_c-image-wr">
-          <div class="list_vw-m_c-image" style="background-image:url('{{imageUrl c_logo}}')">
-            <div class="list_vw-m_c-sma_ct">
-            <div class="list_vw-m_c-sma_cr" style="background-image:url('{{exchange c_exchange}}')">
+        <a href="{{url}}">
+          <div class="list_vw-m_c-image-wr">
+            <div class="list_vw-m_c-image" style="background-image:url('{{imageUrl c_logo}}')">
+              <div class="hover" style="line-height:3em;">
+                <div class="hover-txt1">View</div>
+                <div class="hover-txt2">Profile</div>
+              </div>
+              <div class="list_vw-m_c-sma_ct">
+              <div class="list_vw-m_c-sma_cr" style="background-image:url('{{exchange c_exchange}}')">
+              </div>
+            </div>
             </div>
           </div>
-          </div>
-        </div>
+        </a>
         <!-- the main container -->
         <ul class="list_vw-m_c-cr">
           <!-- the image in blue circle-->
