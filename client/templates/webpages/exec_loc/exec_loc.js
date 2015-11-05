@@ -1,9 +1,3 @@
-/*
-Author: jyothyswaroop
-Created: 07/30/2015
-Description: followers page
-Associated Files: list_view.less and exec_loc.html
-*/
 
 Template.exec_loc.onCreated(function(){
   Session.set('lv_count', 0);
@@ -16,31 +10,55 @@ Template.exec_loc.onRendered(function () {
 
 var backgroundStyle="tilewhite";
 Template.exec_loc.helpers({
-  toplist:function(){
+  back_url: function(){
     var params = Router.current().getParams();
-    if(params.list_id == 'dollar_ceo'){
-      var listdata = Session.get('dollar_ceo');
-    }
-    if(params.list_id == 'female_ceo'){
-      var listdata = Session.get('female_ceo');
-    }
-    if(typeof listdata =='undefined'){
+    return Router.pick_path('content.locationprofile', {
+      loc_id: params.loc_id
+    });
+  },
+  location: function(){
+    var data = Session.get('executives_page');
+    if(typeof data == 'undefined'){
       return '';
     }
+    var loc = fullstate(data[0].c_hq_state);
+    return loc;
+  },
+  stateImage: function(){
+    var params = Router.current().getParams();
+    var data = params.loc_id;
+    console.log(data);
+    if(data == 'National' || data == '' || typeof data == 'undefined'){
+      return "url('/StateImages/Location_"+data+".jpg');";
+    }else{
+      if(isNaN(data)){
+        data = fullstate(data).replace(/ /g, '_');
+        return "url('/StateImages/Location_"+data+".jpg');";
+      }else{
+        return "url('/DMA_images/location-"+data+".jpg');";
+      }
+    }
+  },
+  toplist:function(){
+    var params = Router.current().getParams();
+    var listdata = {}
+    var newData = Session.get('executives_page');
+    listdata.list_data = newData;
+    listdata['newDate'] = CurrentDate();
     $.map(listdata.list_data, function(data,index){
       if(index % 2 == 0){
         data['background'] = 'tilewhite';
       }else{
         data['background'] = 'tilegrey';
       }
-      if(typeof data['TotalComp'] == 'undefined' || data['TotalComp'] == ''){
+      if(typeof data['lcsi_market_cap'] == 'undefined' || data['lcsi_market_cap'] == ''){
         data['objname'] = 'Salary';
-        data['TotalComp'] = 1;
+        data['lcsi_market_cap'] = 1;
       }else{
         data['objname'] = 'Compensation';
-        data['TotalComp'] = dNumberToCommaNumber(data['TotalComp']);
+        data['lcsi_market_cap'] = nFormatter2(data['lcsi_market_cap']);
       }
-      data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
+      data['newDate'] = CurrentDate();
       data['rank'] = index+1;
       data['url'] = Router.pick_path('content.executiveprofile',{
         fname:data.o_first_name,
@@ -48,7 +66,11 @@ Template.exec_loc.helpers({
         ticker: data.c_ticker,
         exec_id: data.o_id
       });
-
+      data['compurl'] = Router.pick_path('content.companyprofile',{
+        ticker: data.c_ticker,
+        name: compUrlName(data.c_name),
+        company_id: data.c_id
+      });
       //data from list can come in 6 different ways these values will catch and give results back
       for(objName in data){
         if(objName === 'stock_percent'){
@@ -79,39 +101,34 @@ Template.exec_loc.helpers({
     })
     return listdata;
   },
-
   carouselList:function(){
     var count = Session.get("lv_count");
     var params = Router.current().getParams();
-    if(params.list_id == 'dollar_ceo'){
-      var listdata = Session.get('dollar_ceo');
-    }
-    if(params.list_id == 'female_ceo'){
-      var listdata = Session.get('female_ceo');
-    }
+    var listdata = {};
+    var newData = Session.get('executives_page');
+    var newData = listdata.list_data;
     if(typeof listdata =='undefined'){
       return '';
     }
-    $.map(listdata.list_data, function(data,index){
-      if(typeof data['TotalComp'] == 'undefined' || data['TotalComp'] == ''){
+    $.map(newData, function(data,index){
+      if(typeof data['lcsi_market_cap'] == 'undefined' || data['lcsi_market_cap'] == ''){
         data['objname'] = 'Salary';
-        data['TotalComp'] = 1;
+        data['lcsi_market_cap'] = 1;
       }else{
         data['objname'] = 'Compensation';
-        data['TotalComp'] = dNumberToCommaNumber(data['TotalComp']);
+        data['lcsi_market_cap'] = nFormatter2(data['lcsi_market_cap']);
       }
-      data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
+      data['newDate'] = CurrentDate();
       data['rank'] = index+1;
-      data['url'] = Router.pick_path('content.companyprofile',{
+      data['url'] = Router.pick_path('content.executiveprofile',{
+        fname:data.o_first_name,
+        lname:data.o_last_name,
         ticker: data.c_ticker,
-        name: compUrlName(data.c_name),
-        company_id: data.c_id
+        exec_id: data.o_id
       });
     })
     return listdata.list_data[count];
   },
-
-
   //This function is called everytime "each" loop runs, it returns the respective class which is suppose to use on each iteration
   getBackgroundStyle: function() {
 
@@ -134,8 +151,12 @@ Template.exec_loc.events({
     //t.$('.list_vw-wl').hide();
   },
   'click .list_vw-lefthov': function(){
+
     var counter = Session.get("lv_count");
-    var list = Session.get('top_list_gen')['top_list_list'];
+    var params = Router.current().getParams();
+    if(params.list_id == 'executives_page'){
+      var list = Session.get('executives_page');
+    }
     if(counter > 0){
       counter--;
       Session.set("lv_count",counter);
@@ -148,7 +169,10 @@ Template.exec_loc.events({
   },
   'click .list_vw-righthov': function(){
     var counter = Session.get("lv_count");
-    var list = Session.get('top_list_gen')['top_list_list'];
+    var params = Router.current().getParams();
+    if(params.list_id == 'executives_page'){
+      var list = Session.get('executives_page');
+    }
     if(counter < list.length - 1)
     {
       counter++;
