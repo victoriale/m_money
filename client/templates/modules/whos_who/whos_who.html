@@ -2,6 +2,92 @@
 Created: [07/17/2015]
 Description: [Finance : Who's Who Page Module]-->
 
+<template name="new_whos_who">
+  <div class="whos_who">
+    <div class="module-header">
+      <span class="module-header-line"></span><span class="module-header-title">{TITLE HERE}</span>
+    </div>
+    <!--Top Carousel-->
+    <div class="ww_top">
+      <div class="ww_top-image">
+        <div class="ww_top-image-counter">#1</div>
+        <div class="ww_top-image-subimage"></div>
+      </div>
+      <div class="ww_top-content">
+        <div class="ww_top-content-title">
+          <i class="fa fa-circle" style="color:#3098ff"></i>
+          FACEBOOK EXECUTIVES
+        </div>
+        <div class="ww_top-content-desc">
+          <b>Mark Zuckerberg</b> is the Chief Executive Officer for <b>Facebook, Inc.</b>
+        </div>
+        <div class="ww_top-content-date">
+          Last Updated: {date}
+        </div>
+      </div>
+      <div class="ww_top-button">
+        <i class="fa fa-angle-right"></i>
+      </div>
+    </div>
+    <!--Top Carousel END-->
+    <!--TAGS-->
+    <div class="ww_tags">
+      <div class="ww_tags-1">EXECUTIVE</div>
+      <div class="ww_tags-2">COMPANY</div>
+      <div class="ww_tags-3">POSITION</div>
+    </div>
+    <!--TAGS END-->
+    <!--List-->
+    <div class="ww_list">
+      <div class="ww_list-items">
+        <div class="ww_list-items-content1">
+          <div class="ww_list-items-index">1.</div>
+          <div class="ww_list-items-image"></div>
+          <div class="ww_list-items-item1">Sheryl Sandberg</div>
+        </div>
+        <div class="ww_list-items-content2">
+          <div class="ww_list-items-item2">Facebook, Inc.</div>
+        </div>
+        <div class="ww_list-items-content3">
+          <div class="ww_list-items-item3">Chief Opperating Officer & Chief of the Board</div>
+        </div>
+      </div>
+      <!--mod footer -->
+      <div class="module-footer" >
+        <a href="{{WholeListURL}}"><button class="module-footer-button-2">
+          <div class="module-footer-button-logo"></div>
+          <div class="module-footer-button-text"><span style="padding-right:10px">See The List</span><i class="fa fa-angle-right"></i></div>
+        </button></a>
+      </div>
+      <!--mod footer END -->
+    </div>
+    <!--List END-->
+  </div>
+</template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--template begins-->
 <template name="whos_who">
   {{#with checkdata}}

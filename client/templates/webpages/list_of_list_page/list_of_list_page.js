@@ -1,5 +1,14 @@
 
 Template.list_of_list_page.helpers({
+  goBack:function(){
+    var params = Router.current().getParams();
+
+    return Router.pick_path('content.companyprofile', {
+      name:params.name,
+      ticker:params.ticker,
+      company_id:params.company_id
+    });
+  },
   //Helper to determine list of list title
   title: function(){
     var data = Session.get('list_of_lists');
@@ -22,7 +31,9 @@ Template.list_of_list_page.helpers({
       }else{
         data['index_color'] = '#ffffff';
       }
-
+      data.top_list_list[0].locurl = Router.pick_path('content.locationprofile',{
+        loc_id:'National',
+      });
       //Define array to map through
       var subData = data.top_list_list[0].list_of_lists_data;
       var params = Router.current().getParams();
@@ -40,10 +51,8 @@ Template.list_of_list_page.helpers({
           name:params.name,
           company_id: item.c_id
         });
-
         return item;
       })
-      console.log(data);
       var title = compUrlName(data.top_list_list[0].list_of_lists_title);
       data.url = Router.pick_path('content.toplist', {
         l_name:title,
@@ -52,7 +61,6 @@ Template.list_of_list_page.helpers({
 
       data.shareURL = "https://www.facebook.com/sharer/sharer.php?u="+ data.url;
     })
-
     return list.list_rankings;
   },
 
