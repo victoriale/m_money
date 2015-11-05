@@ -14,7 +14,12 @@ Associated Files: list_of_list_loc_page.html, list_of_list_loc_page.js and list_
       <div class="list_ol-top">
         {{#with top}}
         <a href="{{url}}">
-          <div class="list_ol-top-img1" style="background-image:url('{{imageUrl c_logo}}')"></div>
+          <div class="list_ol-top-img1" style="background-image:url('{{imageUrl c_logo}}')">
+            <div class="hover">
+              <div class="hover-txt1">View</div>
+              <div class="hover-txt2">Profile</div>
+            </div>
+          </div>
         </a>
         {{/with}}
         <div class="list_ol-top-content">
@@ -32,7 +37,9 @@ Associated Files: list_of_list_loc_page.html, list_of_list_loc_page.js and list_
           <div class="list_ol-top-content-compbox">
             {{#each top_list_list}}
             <a href="{{url}}">
-              <div class="list_ol-top-content-compbox-subimages" style="background-image:url('{{imageUrl c_logo}}')"></div>
+              <div class="list_ol-top-content-compbox-subimages" style="background-image:url('{{imageUrl c_logo}}')">
+                <div class="hover"></div>
+              </div>
             </a>
             {{/each}}
           </div>

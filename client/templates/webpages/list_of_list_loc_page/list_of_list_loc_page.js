@@ -51,7 +51,9 @@ Template.list_of_list_loc_page.helpers({
         l_name:compUrlName(list_name),
         list_id:id_param
       });
-
+      data['locurl'] = Router.pick_path('content.locationprofile',{
+        loc_id:data.c_hq_state,
+      });
       //move first listed item to a seperate object to go into big circle
       data['top'] = data.top_list_list[0];
       data['top_list_list'].shift();
@@ -69,7 +71,7 @@ Template.list_of_list_loc_page.helpers({
 
   headerInfo: function(){
     var params = Router.current().getParams();
-    return fullstate(params.loc_id);;
+    return fullstate(params.loc_id);
   },
 });
 //This handles the events on button clicks of 1,2,3 and 200

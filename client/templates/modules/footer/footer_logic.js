@@ -28,5 +28,18 @@ Template.footer.helpers({
       return false;
     }
     return true;
-  }
+  },
+
+  trendinglist: function(){
+    return globalUrl('listoflists');
+  },
+  gain: function(){
+    return globalUrl('gain');
+  },
+  loss: function(){
+    return globalUrl('loss');
+  },
+  national: function(){
+    return globalUrl('National');
+  },
 });
