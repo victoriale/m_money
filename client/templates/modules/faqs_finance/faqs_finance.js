@@ -23,7 +23,7 @@ Template.faqs_finance.helpers ({
         newAnswer += ", " + faq1[i]['o_first_name'] + " " + faq1[i]['o_last_name'];
       }
     }
-    //get answer for faq[1]
+    //get answer for faq[4]
     var faq4 = data[4].answer;
     var newAnswer1 = faq1[0].o_first_name + " " + faq1[0].o_first_name;
     if(typeof faq4 != 'undefined'){

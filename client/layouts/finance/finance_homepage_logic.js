@@ -287,7 +287,9 @@ Template.finance_homepage.onRendered(function(){
 });
 
 Template.finance_homepage.helpers({
-
+  topList:function(){
+    return globalUrl('National');
+  },
   TopCompanies: function(){
     //return list for top companies in the US currently hardcoded
     var national_list = 'Top companies in the United States with the highest percentage gain in stock price';
