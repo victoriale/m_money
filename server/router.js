@@ -1133,7 +1133,7 @@ function list_page(params, req, res){
         console.log("SSRSTAT|\"List Page\",\"" + info.params.list_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch(e) {
-        console.log("SSRSTAT|\"List Page - Error\",\"" + info.params.list_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
+        console.log("SSRSTAT|\"List Page - Error\",\"" + info.params.list_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
         RenderError(res);
       }
     });
@@ -1166,7 +1166,6 @@ function list_page(params, req, res){
 seoPicker.route('/:ticker/:name/executives/:company_id',exec_list);
 seoPicker.route('/:partner_id/:name/:ticker/execs/:company_id',exec_list);
 function exec_list(params, req, res){
-  console.log('***Company Executives SSR***');
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
   // Get the data
@@ -1252,9 +1251,10 @@ function exec_list(params, req, res){
 
         // Log how long it took to render the page
         var endTime = (new Date()).getTime();
-        console.log("SSRSTAT|\"Company Executives\",\"" + info.params.company_id + "\"," + (Math.round((endTime - info.startTime)/10)/100) + "," + endTime + "|");
+        console.log("SSRSTAT|\"Company Executives\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch (e) {
+        console.log("SSRSTAT|\"Company Executives - Error\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
         RenderError(res);
       }
     });
@@ -1293,7 +1293,6 @@ function exec_list(params, req, res){
 seoPicker.route('/:loc_id/sector/:sector_id',sector_page);
 seoPicker.route('/:partner_id/sector/:loc_id/:sector_id',sector_page);
 function sector_page(params, req, res) {
-  console.log('***Sector Page SSR***');
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
   var loc_id = params.loc_id;
@@ -1376,9 +1375,10 @@ function sector_page(params, req, res) {
 
         // Log how long it took to render the page
         var endTime = (new Date()).getTime();
-        console.log("SSRSTAT|\"Sector Page\",\"" + info.params.sector_id + "\"," + (Math.round((endTime - info.startTime)/10)/100) + "," + endTime + "|");
+        console.log("SSRSTAT|\"Sector Page\",\"" + info.params.sector_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch(e) {
+        console.log("SSRSTAT|\"Sector Page - Error\",\"" + info.params.sector_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
         RenderError(res);
       }
     });
@@ -1411,7 +1411,6 @@ function sector_page(params, req, res) {
 seoPicker.route('/:ticker/:name/news/:company_id',cmp_news);
 seoPicker.route('/:partner_id/:name/:ticker/n/:company_id',cmp_news);
 function cmp_news(params, req, res) {
-  console.log('***Sector Page SSR***');
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
   // Get the data
@@ -1492,9 +1491,11 @@ function cmp_news(params, req, res) {
 
         // Log how long it took to render the page
         var endTime = (new Date()).getTime();
-        console.log("SSRSTAT|\"Company News Page\",\"" + info.params.company_id + "\"," + (Math.round((endTime - info.startTime)/10)/100) + "," + endTime + "|");
+        console.log("SSRSTAT|\"Company News Page\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch(e) {
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"Company News Page - Error\",\"" + info.params.company_id + "\",," + endTime + ",\"" + info.params.partner_id + "\"|");
         RenderError(res);
       }
     });
@@ -1540,7 +1541,6 @@ function cmp_news(params, req, res) {
 seoPicker.route('/:lname-:fname/:ticker/compensation/:exec_id',exec_comp);
 seoPicker.route('/:partner_id/:ticker/:lname-:fname/comp/:exec_id',exec_comp);
 function exec_comp(params, req, res){
-  console.log('***Executive Compensation SSR***');
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
   // Get the data
@@ -1694,9 +1694,11 @@ function exec_comp(params, req, res){
 
         // Log how long it took to render the page
         var endTime = (new Date()).getTime();
-        console.log("SSRSTAT|\"Executive Compensation\",\"" + info.params.exec_id + "\"," + (Math.round((endTime - info.startTime)/10)/100) + "," + endTime + "|");
+        console.log("SSRSTAT|\"Executive Compensation\",\"" + info.params.exec_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch(e) {
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"Executive Compensation - Error\",\"" + info.params.exec_id + "\",," + endTime + ",\"" + info.params.partner_id + "\"|");
         RenderError(res);
       }
     });
@@ -1729,7 +1731,6 @@ function exec_comp(params, req, res){
 seoPicker.route('/:ticker/:name/financial-overview/:company_id',fin_ovw);
 seoPicker.route('/:partner_id/:name/:ticker/fin-view/:company_id',fin_ovw);
 function fin_ovw(params, req, res) {
-  console.log('***Financial Overview SSR***');
   var startTime = (new Date()).getTime();
 
   info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){
@@ -1847,9 +1848,11 @@ function fin_ovw(params, req, res) {
 
         // Log how long it took to render the page
         var endTime = (new Date()).getTime();
-        console.log("SSRSTAT|\"Financial Overview\",\"" + info.params.company_id + "\"," + (Math.round((endTime - info.startTime)/10)/100) + "," + endTime + "|");
+        console.log("SSRSTAT|\"Financial Overview\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch(e) {
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"Financial Overview - Error\",\"" + info.params.company_id + "\",," + endTime + ",\"" + info.params.partner_id + "\"|");
         RenderError(res);
       }
     });
@@ -1927,7 +1930,7 @@ function disclaimer(params, req, res) {
 
   // Log how long it took to render the page
   var endTime = (new Date()).getTime();
-  console.log("SSRSTAT|\"Disclaimer\",," + (Math.round((endTime - info.startTime)/10)/100) + "," + endTime + "|");
+  console.log("SSRSTAT|\"Disclaimer\",," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
   return false;
 }
 
@@ -1963,7 +1966,7 @@ function copyright(params, req, res) {
 
   // Log how long it took to render the page
   var endTime = (new Date()).getTime();
-  console.log("SSRSTAT|\"Copyright Page\",," + (Math.round((endTime - info.startTime)/10)/100) + "," + endTime + "|");
+  console.log("SSRSTAT|\"Copyright Page\",," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
   return false;
 }
 
@@ -1999,7 +2002,7 @@ function privacypolicy(params, req, res) {
 
   // Log how long it took to render the page
   var endTime = (new Date()).getTime();
-  console.log("SSRSTAT|\"Privacy Policy Page\",," + (Math.round((endTime - info.startTime)/10)/100) + "," + endTime + "|");
+  console.log("SSRSTAT|\"Privacy Policy Page\",," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
   return false;
 }
 
@@ -2035,7 +2038,7 @@ function stockdisclaimer(params, req, res) {
 
   // Log how long it took to render the page
   var endTime = (new Date()).getTime();
-  console.log("SSRSTAT|\"Stock Disclaimer\",," + (Math.round((endTime - info.startTime)/10)/100) + "," + endTime + "|");
+  console.log("SSRSTAT|\"Stock Disclaimer\",," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
   return false;
 }
 
@@ -2071,14 +2074,13 @@ function termsofservice(params, req, res) {
 
   // Log how long it took to render the page
   var endTime = (new Date()).getTime();
-  console.log("SSRSTAT|\"Terms Of Service\",," + (Math.round((endTime - info.startTime)/10)/100) + "," + endTime + "|");
+  console.log("SSRSTAT|\"Terms Of Service\",," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
   return false;
 }
 //**********************END STATIC PAGES**********************
 
 // Partner Home Page
 seoPicker.route('/:partner_id',function(params, req, res){
-  console.log('***Partner Home Page SSR***');
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
   // Get the data
@@ -2244,9 +2246,11 @@ seoPicker.route('/:partner_id',function(params, req, res){
 
         // Log how long it took to render the page
         var endTime = (new Date()).getTime();
-        console.log("SSRSTAT|\"Location Profile\",\"" + info.params.loc_id + "\"," + (Math.round((endTime - info.startTime)/10)/100) + "," + endTime + "|");
+        console.log("SSRSTAT|\"Partner Profile\",\"" + info.params.partner_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch(e) {
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"Partner Profile - Error\",\"" + info.params.partner_id + "\",," + endTime + ",\"" + info.params.partner_id + "\"|");
         RenderError(res);
       }
     });
@@ -2294,11 +2298,12 @@ seoPicker.route('/:partner_id',function(params, req, res){
 // Home Page
 seoPicker.route('/',function(params, req, res){
   if ( /myinvestkit/.test(req.headers.host) ) {
+    var endTime = (new Date()).getTime();
+    console.log("SSRSTAT|\"Home Page - MyInvestKit\",,," + endTime + ",|");
     res.writeHead(404);
     res.end('404 Error: Page Not Found');
     return false;
   }
-  console.log('***Home Page SSR***');
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
   var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','District of Columbia','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Lousiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Ontario','Oregon','Pennsylvania','Peurto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
@@ -2342,6 +2347,6 @@ seoPicker.route('/',function(params, req, res){
 
   // Log how long it took to render the page
   var endTime = (new Date()).getTime();
-  console.log("SSRSTAT|\"Home Page\",," + (Math.round((endTime - startTime)/10)/100) + "," + endTime + "|");
+  console.log("SSRSTAT|\"Home Page\",," + (endTime - startTime) + "," + endTime + ",|");
   return false;
 });
