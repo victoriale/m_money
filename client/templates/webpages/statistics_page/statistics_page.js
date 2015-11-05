@@ -141,7 +141,8 @@ Template.statistics_page.helpers(
               {
                 name:key,
                 y: Number(sectors[key].percentage * 100).toFixed(1),
-                color:colors[count]
+                color:colors[count],
+                sectUrl: Router.pick_path('content.sector', {sector_id: compUrlName(key), loc_id: fullstate(Router.current().params.loc_id)})
               }
             );
             count++;

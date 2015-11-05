@@ -458,11 +458,11 @@ Meteor.methods({
     }
 
     if(sector != null && typeof sector != 'undefined' && sector != ''){
-      UrlString +="&param="+sector;
+      UrlString +="&param="+encodeURIComponent(sector);
     }
     UrlString += "&page=1&per_page=1000";
     //console.log(UrlString);
-    Meteor.http.get(UrlString, (function(error, data){
+    Meteor.http.get(UrlString, (function(startTime, sector, loc_id, error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
