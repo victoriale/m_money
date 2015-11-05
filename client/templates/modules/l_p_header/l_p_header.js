@@ -48,5 +48,20 @@ Template.lp_head.helpers({
       }
     }
   },
+});
+Template.lp_body.helpers({
+  execUrl: function(c_loc){
+    var params = Router.current().getParams();
+    return Router.pick_path('content.executivelocation',{
+      loc_id: params.loc_id
+    })
+  },
+
+  marketUrl: function(c_loc){
+    var params = Router.current().getParams();
+    return Router.pick_path('content.totalmarketcap',{
+      loc_id: params.loc_id
+    })
+  }
 
 });
