@@ -254,16 +254,29 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
             &-txtbox //stat-mid-mid-txtbox
             {
                 border-left: 2px solid @grey-2;
-                height: 101px;
+                height: 115px;
                 width: 361px;
                 left: 255px;
                 top: 98px;
                 padding-left: 19px;
                 font-size: 16px;
                 line-height: 22px;
-                overflow: hidden;
+                overflow-y: scroll;
                 text-align: left;
+                &::-webkit-scrollbar {
+                  width: 12px;
+                  margin-left: 5px;
+                }
 
+                &::-webkit-scrollbar-track {
+                  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                  border-radius: 10px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                  border-radius: 10px;
+                  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+                }
                 &-txt //stat-mid-mid-txtbox-txt
                 {
                     top: -4px;
@@ -359,7 +372,7 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                 color: #333333;
                 font-size: 12px;
                 padding: 0px 10px;
-
+                text-align: left;
                 &-x //stat-btm-what-top-x
                 {
                     float: right;
@@ -375,6 +388,7 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                 margin-top: 14px;
                 margin-left: 20px;
                 line-height: 16px;
+                text-align: left;
             }
         }
 

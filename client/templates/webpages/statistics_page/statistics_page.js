@@ -28,7 +28,9 @@ Template.statistics_page.helpers(
           }
           var loc = Session.get('loc_id');
           data['fullName'] = fullstate(loc);
-
+          data['global_url'] = Router.pick_path('content.locationprofile',{
+            loc_id: 'National',
+          });
           data['market_cap'] = dNumberToCommaNumber(data.aggregates['market_cap']);
           data['average_market_cap'] = dNumberToCommaNumber(data.aggregates['average_market_cap']);
 
