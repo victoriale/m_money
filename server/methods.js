@@ -9,24 +9,24 @@ Meteor.methods({
 
   GetProfileData: function(profile, batchNum, state, city){
     var future = new Future();
-    console.log("New Company Request",company_id,batchNum);
+    // console.log("New Company Request",company_id,batchNum);
 
     var UrlString = "http://apifin.investkit.com/call_controller.php?action="+profile+"&option="+batchNum+"&param="+state;
 
     if(typeof city != 'undefined' && city != null){
       UrlString += ","+city;
     }
-    console.log(UrlString);
+    // console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
-        console.log("ERROR ON ",batchNum);
+        // console.log("ERROR ON ",batchNum);
         future.throw(e);
         return false;
       }
-        console.log("Got Data!", batchNum);
+        // console.log("Got Data!", batchNum);
         future.return(data);
     });
 
@@ -36,20 +36,20 @@ Meteor.methods({
 
   GetCompanyData: function(company_id, batchNum) {
     var future = new Future();
-    console.log("New Company Request",company_id,batchNum);
+    // console.log("New Company Request",company_id,batchNum);
 
     var UrlString = "http://apifin.investkit.com/call_controller.php?action=company_profile&option="+batchNum+"&param="+company_id;
-    console.log(UrlString);
+    // console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
-        console.log("ERROR ON ",batchNum);
+        // console.log("ERROR ON ",batchNum);
         future.throw(e);
         return false;
       }
-        console.log("Got Data!", batchNum);
+        // console.log("Got Data!", batchNum);
         future.return(data);
     });
 
@@ -59,34 +59,34 @@ Meteor.methods({
 
   GetLocationData: function(loc_id, batchNum) {
     var future = new Future();
-    console.log("New Company Request",loc_id,batchNum);
+    // console.log("New Company Request",loc_id,batchNum);
     if(loc_id === 'National'){
-      console.log('national call');
+      // console.log('national call');
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_profile&option="+batchNum;
     }else if(isNaN(loc_id)){
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_profile&option="+batchNum+"&state="+loc_id;
     }else{
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_profile&option="+batchNum+"&dma="+loc_id;
     }
-    console.log(UrlString);
+    // console.log(UrlString);
 
     curloc_id.withValue(batchNum, function(){
       Meteor.http.get(UrlString, Meteor.bindEnvironment(function(error, data){
         data.content = data.content.toString().replace(/^[^{]*/,function(a){ return ''; });
         var batch = curloc_id.get();
         if ( error ) {
-          console.log('Done - Error (Request)',batch);
+          // console.log('Done - Error (Request)',batch);
           future.throw(error);
           return false;
         }
         try{
           data = JSON.parse(data['content']);
         } catch (e) {
-          console.log('Done - Error (Parse)',batch);
+          // console.log('Done - Error (Parse)',batch);
           future.throw(e);
           return false;
         }
-        console.log('Done - Success',batch);
+        // console.log('Done - Success',batch);
           future.return(data);
       }));
     });
@@ -97,10 +97,10 @@ Meteor.methods({
 
   GetExecData: function(exec_id, batchNum) {
     var future = new Future();
-    console.log("New Executive Request",exec_id,batchNum);
+    // console.log("New Executive Request",exec_id,batchNum);
 
     var UrlString = "http://apifin.investkit.com/call_controller.php?action=executive_profile&option="+batchNum+"&param="+exec_id;
-    console.log(UrlString);
+    // console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){
       data.content = data.content.toString().replace(/^[^{]*/,function(a){ return ''; });
@@ -119,10 +119,10 @@ Meteor.methods({
 
   CompWebPageData: function(comp_id, option){
     var future = new Future();
-    console.log("New company Request",comp_id);
+    // console.log("New company Request",comp_id);
 
     var UrlString =   "http://apifin.investkit.com/call_controller.php?action=company_page&option=" + option + "&param=" + comp_id;
-    console.log(UrlString);
+    // console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){
       try{
@@ -140,10 +140,10 @@ Meteor.methods({
 
   ExecWebpageData: function(exec_id, option) {
     var future = new Future();
-    console.log("New CollegeRivals Request",exec_id,option);
+    // console.log("New CollegeRivals Request",exec_id,option);
 
     var UrlString = "http://apifin.investkit.com/call_controller.php?action=executive_page&option="+ option +"&param=" + exec_id;
-    console.log(UrlString);
+    // console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){
       try{
@@ -161,10 +161,10 @@ Meteor.methods({
 
   WhosWhoIndie: function(comp_id, page) {
     var future = new Future();
-    console.log("New Executive Request",comp_id);
+    // console.log("New Executive Request",comp_id);
 
     var UrlString =   "http://apifin.investkit.com/call_controller.php?action="+page+"&option=about&param=" + comp_id;
-    console.log(UrlString);
+    // console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){
       try{
@@ -182,10 +182,10 @@ Meteor.methods({
 
   CompIndie: function(comp_id, call) {
     var future = new Future();
-    console.log("New Executive Request",comp_id);
+    // console.log("New Executive Request",comp_id);
 
     var UrlString =   "http://apifin.investkit.com/call_controller.php?action=company_profile&option=indie&call="+call+"&param=" + comp_id;
-    console.log(UrlString);
+    // console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){
       try{
@@ -203,10 +203,10 @@ Meteor.methods({
 
   ExecIndie: function(comp_id, call) {
     var future = new Future();
-    console.log("New Executive Request",comp_id);
+    // console.log("New Executive Request",comp_id);
 
     var UrlString =   "http://apifin.investkit.com/call_controller.php?action=executive_profile&option=indie&call="+call+"&param=" + comp_id;
-    console.log(UrlString);
+    // console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){
       try{
@@ -273,7 +273,7 @@ Meteor.methods({
           future.return({success: true, data: retData});
           return false;
         } catch(e) { // Error handling (usually parsing)
-          console.log('Exception',e);
+          // console.log('Exception',e);
           future.throw(499,e);
           return false;
         }
@@ -287,10 +287,10 @@ Meteor.methods({
 
   GetMoneyMemoryData: function(company_id, initial_investment, start_date, end_date){
     var future = new Future();
-    console.log("Money Memory Request",company_id, initial_investment, start_date, end_date);
+    // console.log("Money Memory Request",company_id, initial_investment, start_date, end_date);
 
     var UrlString = "http://apifin.investkit.com/call_controller.php?action=company_profile&option=indie&call=money_memory&param=" + company_id + "&mmem=" + initial_investment + "," + end_date + "," + start_date;
-    console.log(UrlString);
+    // console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){
       try{
@@ -308,11 +308,11 @@ Meteor.methods({
 
   CompEarningsIndie: function(comp_id){
     var future = new Future();
-    console.log("New Executive Request",comp_id);
+    // console.log("New Executive Request",comp_id);
 
     //var UrlString =   "http://apifin.investkit.com/call_controller.php?action=company_profile&option=indie&call=earnings&param=FB";
     var UrlString =   "http://apifin.investkit.com/call_controller.php?action=company_profile&option=indie&call=earnings&param=" + comp_id;
-    console.log(UrlString);
+    // console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){
       try{
@@ -330,12 +330,12 @@ Meteor.methods({
 
   statisticsData: function(loc_id){
     var future = new Future();
-    console.log("New Statistics Data",loc_id);
+    // console.log("New Statistics Data",loc_id);
 
     //random number to pick random list in list_index that's in database
     //param={list_index} , {location/DMA}
     var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=statistics&state="+ loc_id
-    console.log(UrlString);
+    // console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){
       try{
@@ -353,12 +353,12 @@ Meteor.methods({
 
   sectorData: function(loc_id, sector){
     var future = new Future();
-    console.log("New Sector Data",loc_id);
+    // console.log("New Sector Data",loc_id);
 
     //random number to pick random list in list_index that's in database
     //param={list_index} , {location/DMA}
     var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=sector_companies&state="+ loc_id+"&param="+sector;
-    console.log(UrlString);
+    // console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){
       try{
@@ -376,13 +376,13 @@ Meteor.methods({
 
   featuredData: function(loc_id){
     var future = new Future();
-    console.log("New featured List Request",loc_id);
+    // console.log("New featured List Request",loc_id);
 
     //random number to pick random list in list_index that's in database
     var x = Math.floor((Math.random() * 2) + 1);
     //param={list_index} , {location/DMA}
     var UrlString = "http://apifin.investkit.com/call_controller.php?action=top_list&option=list&param="+ x +","+ loc_id
-    console.log(UrlString);
+    // console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){
       try{
@@ -400,13 +400,13 @@ Meteor.methods({
 
   listData: function(id){
     var future = new Future();
-    console.log("New featured List Request",id);
+    // console.log("New featured List Request",id);
 
     //random number to pick random list in list_index that's in database
     var x = Math.floor((Math.random() * 2) + 1);
     //param={list_index} , {location/DMA}
     var UrlString = "http://apifin.investkit.com/call_controller.php?action=company_profile&option=batch_3&param="+id+"&limit=1,3";
-    console.log(UrlString);
+    // console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){
       try{
@@ -424,13 +424,13 @@ Meteor.methods({
 
   topListData: function(index ,loc_id){
     var future = new Future();
-    console.log("New featured List Request",loc_id);
-    console.log("List Index:",index);
+    // console.log("New featured List Request",loc_id);
+    // console.log("List Index:",index);
 
     //random number to pick random list in list_index that's in database
     var x = Math.floor((Math.random() * 2) + 1);
     //param={list_index} , {location/DMA}
-    console.log('testing:',index);
+    // console.log('testing:',index);
     if(index == 'sv150_losers' || index == 'sv150_gainers' || index == 'female_ceo' || index == 'dollar_ceo'){
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=top_list&option="+index;
     }else if(loc_id === null || typeof loc_id == "undefined"){
@@ -439,7 +439,7 @@ Meteor.methods({
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=top_list&option=list&param="+index+","+loc_id;
     }
 
-    console.log("CALLIN NEW LIST:",UrlString);
+    // console.log("CALLIN NEW LIST:",UrlString);
     Meteor.http.get(UrlString, function(error, data){
       try{
         data = JSON.parse(data['content']);
@@ -456,7 +456,7 @@ Meteor.methods({
 
   listOfListLoc:function(loc_id){
     var future = new Future();
-    console.log("New featured List Request",loc_id);
+    // console.log("New featured List Request",loc_id);
 
     //random number to pick random list in list_index that's in database
     //param={list_index} , {location/DMA}
@@ -468,7 +468,7 @@ Meteor.methods({
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=list_of_lists&dma="+loc_id;
     }
 
-    console.log(UrlString);
+    // console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){
       try{
@@ -488,14 +488,14 @@ Meteor.methods({
   GetAIContent: function(comp_id){
     this.unblock();
     var URL = "http://apifin.investkit.com/yseop/yseop-company-class.php?id=" + comp_id;
-    console.log(URL);
+    // console.log(URL);
     var future = new Future();
     curTime.withValue((new Date()).getTime(),function(){
       curcomp_id.withValue(comp_id,function(){
         var callback1 = Meteor.bindEnvironment(function(error, data){
           if ( error ) {
             future.return(error.content);
-            console.log("error");
+            // console.log("error");
             return false;
           }
           var URL = "http://72.52.250.160:8080/yseop-manager/direct/passfail-training/dialog.do";
@@ -510,7 +510,7 @@ Meteor.methods({
                   console.log("SNTAI|\"" + curcomp_id.get() + "\",\"" + (new Date()).getTime() + "\",\"" + firstTime.get() + "\",\"" + (Math.round(((new Date()).getTime() - curTime.get())/100)/10) + "\",\"ERROR\"|");
                   return false;
                 }
-                console.log("SNTMAG|\"" + curcomp_id.get() + "\",\"" + (new Date()).getTime() + "\",\"" + firstTime.get() + "\",\"" + (Math.round(((new Date()).getTime() - curTime.get())/100)/10) + "\",\"SUCCESS\"|");
+                console.log("SNTAI|\"" + curcomp_id.get() + "\",\"" + (new Date()).getTime() + "\",\"" + firstTime.get() + "\",\"" + (Math.round(((new Date()).getTime() - curTime.get())/100)/10) + "\",\"SUCCESS\"|");
                 future.return(data.content);
               });
               Meteor.http.post(URL,{
@@ -541,7 +541,7 @@ Meteor.methods({
         var callback1 = Meteor.bindEnvironment(function(error, data){
           if ( error ) {
             future.return(error.content);
-            console.log("error");
+            // console.log("error");
             return false;
           }
           var URL = "http://72.52.250.160:8080/yseop-manager/direct/passfail-training/dialog.do";
@@ -556,7 +556,7 @@ Meteor.methods({
                   console.log("SNTAI|\"" + curloc_id.get() + "\",\"" + (new Date()).getTime() + "\",\"" + firstTime.get() + "\",\"" + (Math.round(((new Date()).getTime() - curTime.get())/100)/10) + "\",\"ERROR\"|");
                   return false;
                 }
-                console.log("SNTMAG|\"" + curloc_id.get() + "\",\"" + (new Date()).getTime() + "\",\"" + firstTime.get() + "\",\"" + (Math.round(((new Date()).getTime() - curTime.get())/100)/10) + "\",\"SUCCESS\"|");
+                console.log("SNTAI|\"" + curloc_id.get() + "\",\"" + (new Date()).getTime() + "\",\"" + firstTime.get() + "\",\"" + (Math.round(((new Date()).getTime() - curTime.get())/100)/10) + "\",\"SUCCESS\"|");
                 future.return(data.content);
               });
               Meteor.http.post(URL,{
@@ -577,7 +577,7 @@ Meteor.methods({
     var future = new Future();
     Meteor.http.get(URLString,function(error,data){
       if ( error ) {
-        console.log(error);
+        // console.log(error);
         future.return(error);
       }
       future.return(data);
@@ -588,10 +588,10 @@ Meteor.methods({
 
   GetPartnerProfile: function(partner_id, batch) {
     var future = new Future();
-    console.log("New Partner Request",partner_id,batch);
+    // console.log("New Partner Request",partner_id,batch);
 
     var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_profile&option="+batch+"&partner_domain="+partner_id;
-    console.log(UrlString);
+    // console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){
       try{
@@ -635,7 +635,7 @@ Meteor.methods({
   listOfListData: function(company_id){
     var future = new Future();
       var UrlString = 'http://apifin.investkit.com/call_controller.php?action=company_profile&option=indie&call=list_of_lists&param=' + company_id + "&limit=1,10";
-    console.log(UrlString);
+    // console.log(UrlString);
 
     Meteor.http.get(UrlString, function(error, data){
       try{
@@ -659,13 +659,13 @@ Meteor.methods({
       var URLString = 'http://apifin.investkit.com/call_controller.php?action=global_page&option=directory&page=' + pageNum + '&type=' + type + query;
     }
 
-    console.log('Directory URL', URLString);
+    // console.log('Directory URL', URLString);
 
     var future = new Future();
     Meteor.http.get(URLString, function(error, data){
       //Error Code
       if( error ){
-        console.log(error);
+        // console.log(error);
         future.return(error);
       }
       //Success Code
