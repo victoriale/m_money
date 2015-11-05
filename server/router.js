@@ -78,7 +78,7 @@ var async_mult = function(functions, callback) {
     if ( this._isDone == false ) {
       results = results || this._results;
       this._isDone = true;
-      callback(results);
+      callback(results, this._remaining);
     }
   };
   this._timeout = 1000;
@@ -150,7 +150,7 @@ var batch_envar = new Meteor.EnvironmentVariable;
 
 // Filter out bot requests
 var seoPicker = Picker.filter(function(req, res) {
-  // return true;
+  return true;
   if ( /bot/.test(req.headers['user-agent']) || /Webmaster/.test(req.headers['user-agent']) || /Bing/.test(req.headers['user-agent']) || /externalhit/.test(req.headers['user-agent']) ) {
     return true;
   }
@@ -160,6 +160,14 @@ var seoPicker = Picker.filter(function(req, res) {
 // Robots.txt
 seoPicker.route('/robots.txt',function(params, req, res){
   res.end('User-agent: *\nDisallow: /');
+  return false;
+
+  // Code for when the robots are allowed in
+  if ( /myinvestkit/.test(req.headers.host) ) {
+    res.end('User-agent: *\nDisallow: /$\nAllow: /');
+  } else {
+    res.end('User-agent: *\nAllow: /');
+  }
 });
 
 // Favicon.ico
@@ -2097,8 +2105,10 @@ seoPicker.route('/:partner_id',function(params, req, res){
         }
 
         // Section specific data
+        data.location_daily_update = typeof data.location_daily_update == "undefined" ? {composite_summary: {}} : typeof data.location_daily_update.composite_summary == "undefined" ? {composite_summary: {}} : data.location_daily_update;
         // Companies by Sector
         var cmp_sector = [];
+        data.companies_by_sector = data.companies_by_sector || {};
         for ( var attr in data.companies_by_sector ) {
           if ( data.companies_by_sector.hasOwnProperty(attr) && attr != "total_company_count" ) {
             var ldata = {};
@@ -2114,6 +2124,7 @@ seoPicker.route('/:partner_id',function(params, req, res){
         }
         // Earnings Reports
         var earnings = [];
+        data.earnings = data.earnings || [];
         for ( var index = 0; index < data.earnings.length; index++ ) {
           var ldata = {};
           var cdata = data.earnings[index];
@@ -2123,6 +2134,7 @@ seoPicker.route('/:partner_id',function(params, req, res){
         }
         // Lists
         var lists = [];
+        data.market_movers = data.market_movers || [];
         for ( var index = 0; index < data.market_movers.length; index++ ) {
           var t_data = data.market_movers[index];
           var items = [];
@@ -2280,6 +2292,11 @@ seoPicker.route('/:partner_id',function(params, req, res){
 
 // Home Page
 seoPicker.route('/',function(params, req, res){
+  if ( /myinvestkit/.test(req.headers.host) ) {
+    res.writeHead(404);
+    res.end('404 Error: Page Not Found');
+    return false;
+  }
   console.log('***Home Page SSR***');
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 

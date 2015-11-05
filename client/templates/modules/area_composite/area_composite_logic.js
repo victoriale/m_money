@@ -30,7 +30,7 @@ Template.area_composite.helpers({
     }
     var RetArr = {};
     // Titles and Info
-    RetArr.title = "Companies Sorted By "+title.location+" Sectors";
+    RetArr.title = "Public Companies Sorted By "+title.location+" Sectors";
     RetArr.subtitle = "Area Composite";
 
     // Graph information

@@ -1,7 +1,7 @@
 <template name="list_of_list_page">
   {{#with checkList}}
   <div class="module-listoflists">
-    <div class="list_header"><span class='list_header-line'></span>Top Lists That Feature {{title}}
+    <div class="list_header"><span class='list_header-line'></span>Top Lists That Feature <a href="{{goBack}}">{{title}}</a>
     </div>
     {{#each listsData}}
       <div class="list_ol" style="background-color:{{index_color}}">
@@ -15,10 +15,12 @@
             {{#each top_list_list}}
             <div class="list_ol-top-content-textbox">
               <div class="list_ol-top-content-textbox-txt1">
-                <i class="fa fa-map-marker" style="color:#3098ff"></i>
-                United States
+                <a href="{{locurl}}">
+                  <i class="fa fa-map-marker" style="color:#3098ff"></i>
+                  United States
+                </a>
               </div>
-              <div class="list_ol-top-content-textbox-txt2">
+              <div class="list_ol-top-content-textbox-txt2 line-clamp line-clamp-2" title="{{list_of_lists_title}}">
                   {{list_of_lists_title}}
               </div>
             </div>

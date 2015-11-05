@@ -8,11 +8,11 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
 <template name="co_board_committee">
 <!--Defined a class name globally for height and width !-->
 <div class= "co_commi">
-  <a href="" onclick="history.go(-1)">
+  <a href="{{backToComp}}">
     <div class="abus-bkbx">
       <div class="abus-bkbx-bx"><i class="fa fa-reply"></i></div>
       <div class="abus-bkbx-tgl"></div>
-      <div class="abus-bkbx-txt" style="text-align:left">Go Back</div>
+      <div class="abus-bkbx-txt" style="text-align:left">Go Back to {{backProfile}} Profile</div>
     </div>
   </a>
   <!--gave the dimensions for the module with total height and width !-->
@@ -134,11 +134,17 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
       <div class="co_commi-{{getBackgroundStyle}}"><br>
         <!--This is the main (circle) image-->
         <div class="co_commi-head-circ">
-          <div class="co_commi-head-image"  style="background-image:url('{{imageUrl o_pic}}')">
-            <!-- Here displays the counter number which is a result of each loop-->
-            <span class="co_commi-counter">#{{o_rank}}</span>
-            <span class="co_commi-counter2" style="background-image:url('{{imageUrl image}}')"></span>
-          </div>
+          <a href="{{url}}">
+            <div class="co_commi-head-image"  style="background-image:url('{{imageUrl o_pic}}')">
+              <div class="hover">
+                <div class="hover-txt1">View</div>
+                <div class="hover-txt2">Profile</div>
+              </div>
+              <!-- Here displays the counter number which is a result of each loop-->
+              <span class="co_commi-counter">#{{o_rank}}</span>
+              <span class="co_commi-counter2" style="background-image:url('{{imageUrl image}}')"></span>
+            </div>
+          </a>
         </div>
         <!--Location title -->
         <div class="co_commi-sp">

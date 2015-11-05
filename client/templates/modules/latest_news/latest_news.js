@@ -148,7 +148,9 @@ Template.latest_news.helpers({
   },
   updt_dt: function(){
     var date = new Date();
-    return "05/24/2015, 12:36PM EDT";
+    var nowDate = (date.getMonth()+1) + '/' + date.getDate() + '/' + date.getFullYear();
+    nowDate = (new Date(nowDate)).toSNTForm();
+    return nowDate;
   },
 
   location: function(){

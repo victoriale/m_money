@@ -103,26 +103,26 @@ Template.daily_update.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
-    return data.c_logo;
+    if(Session.get('IsLocation')){
+      var data = Session.get('loc_id');
+      if(data == 'National' || data == '' || typeof data == 'undefined'){
+        return '/StateImages/Location_'+ data +'.jpg';
+      }else{
+        if(isNaN(data)){
+          data = fullstate(data);
+          data = data.replace(/ /g, '_');
+          return '/StateImages/Location_'+ data +'.jpg';
+        }else{
+          return '/DMA_images/location-'+ data +'.jpg';
+        }
+      }
+    }else{
+      return data.c_logo;
+    }
   },
 
   isLoc:function(){
     return Session.get('IsLocation');
-  },
-
-  imageLoc: function(){
-    var data = Session.get('loc_id');
-    if(data == 'National'  || data == '' || typeof data == 'undefined'){
-      return "background-image: url('/StateImages/Location_"+ data +".jpg');";
-    }else{
-      if(isNaN(data)){
-        data = fullstate(data);
-        data = data.replace(/ /g, '_');
-        return "background-image: url('/StateImages/Location_"+ data +".jpg');";
-      }else{
-        return "background-image: url('/DMA_images/location-"+ data +".jpg');";
-      }
-    }
   },
 
   buttons: function(){
@@ -148,7 +148,6 @@ Template.daily_update.helpers({
       var header = Session.get('profile_header');
       var content = {};
       if(typeof data == 'undefined' || data == false){
-      console.log(Session.get('IsLocation'));
         if(Session.get('IsLocation')){
           content['content'] = "Did you know "+header.location+" has "+header.total_companies+" companies, gathering a total market cap of "+header.total_market_cap+" Dollars. "+header.location+" is also home to "+header.total_executives+" total executives.";
           return content;
@@ -164,12 +163,9 @@ Template.daily_update.helpers({
     if ( typeof data == "undefined" || typeof data.location == "undefined" ) {
       return false;
     }
-    console.log('********************************************');
     var ret = {
-      bg_img: '/StateImages/Location_' + data.location + '.jpg',
       location: data.location
     };
-    console.log(ret);
     return ret;
   },
 
@@ -209,7 +205,7 @@ Template.daily_update.helpers({
         data.text1 = 'Todays Low';
         data.text2 = 'Todays High';
         data.text3 = 'Previous Close';
-        data.text4 = 'Total Companies';
+        data.text4 = 'Total Public Companies';
 
         data.value1 = data.todays_low;
         data.value2 = data.todays_high;

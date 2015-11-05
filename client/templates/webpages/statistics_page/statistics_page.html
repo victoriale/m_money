@@ -12,7 +12,7 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
             <div class="abus-bkbx">
               <div class="abus-bkbx-bx"><i class="fa fa-reply"></i></div>
               <div class="abus-bkbx-tgl"></div>
-              <div class="abus-bkbx-txt">GO Back</div>
+              <div class="abus-bkbx-txt">Go Back to {{fullName}} Profile</div>
             </div>
           </a>
             <div class="stat-pr stat-top"> <!--container for white background area at top-->
@@ -21,10 +21,12 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                 <i class="stat-pa stat-n stat-top-txt1">
 
                 </i>
-                <i class="stat-pa stat-n stat-top-txt2">
-                    <i class="fa fa-map-marker"></i>
-                    United States
-                </i>
+                <a href="{{global_url}}">
+                  <i class="stat-pa stat-n stat-top-txt2">
+                      <i class="fa fa-map-marker"></i>
+                      United States
+                  </i>
+                </a>
                 <i class="stat-pa stat-b stat-top-txt3">
                     Statistics
                 </i>
@@ -34,22 +36,14 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
             </div>
             <div class="stat-pr stat-mid"> <!--the black-grey-black section in the middle-ish-->
                 <div class="stat-pa stat-mid-top"> <!--the black header of the middle-->
-                    <div class="stat-b stat-mid-top-txt1"> <!--the left part of the header-->
-                      <div class="stat-mid-top-txt1-static">
-                          Statistics For
-                      </div>
-                      <div class="stat-mid-top-txt1-name stat-cap">
-                          {{fullName}}
-                      </div>
+                  <div class="stat-b stat-mid-top-txt1"> <!--the left part of the header-->
+                    <div class="stat-mid-top-txt1-static">
+                        Statistics For
                     </div>
-                    <div class="stat-l stat-mid-top-txt2"> <!--the first right part of the header-->
-                        <i class="fa fa-heart"></i>
-                        Save
+                    <div class="stat-mid-top-txt1-name stat-cap">
+                        {{fullName}}
                     </div>
-                    <div class="stat-l stat-mid-top-txt2"> <!--the second right part of the header-->
-                        <i class="fa fa-share-alt"></i>
-                        Share
-                    </div>
+                  </div>
                 </div>
 
                 <div class="stat-pa stat-mid-mid"> <!--the grey section in the middle-->
@@ -61,14 +55,6 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                     </div>
                     <i class="stat-pa stat-b stat-mid-mid-txt1">
                         {{fullName}}
-                    </i>
-                    <i class="stat-pa stat-l stat-mid-mid-txt2">
-                        <i class="fa fa-heart"></i>
-                        Save
-                    </i>
-                    <i class="stat-pa stat-l stat-mid-mid-txt3">
-                        <i class="fa fa-share-alt"></i>
-                        Share
                     </i>
                     <div class="stat-pa stat-l stat-mid-mid-txtbox"> <!--the part of the middle-middle that has the important and long text-->
                         <i class="stat-l stat-mid-mid-txtbox-txt">
@@ -86,7 +72,7 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                         Discover more information about this location?
                     </div>
                     <div class="stat-pa stat-l stat-mid-btm-txt2">
-                        Profile Last Updated On: <i class="stat-b">10/20/2015</i>
+                      <!--MISSING DATE currently replaced with full name-->{{fullName}}
                     </div>
                     <a href="{{back_url}}">
                       <div class="stat-pa stat-mid-btm-btn">
@@ -111,8 +97,7 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                         Statistical Overview <i class="stat-l">for the {{fullName}}:</i>
                     </div>
                     <div class="stat-pr stat-btm-data-date">
-                        <i class="fa fa-calendar"></i>
-                        Last Updated 10/26/2015
+                      <!--MISSING DATE-->
                     </div>
                     {{#with statOverview}}
                     <div class="stat-btm-data-text">

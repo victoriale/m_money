@@ -5,6 +5,255 @@ Description: [Finance : Who's Who Page Module] */
 @import (reference)"../global_vars.less";       // Importing less file for basic attributes and layouts
 @import (reference)"../modules.less";
 
+
+.whos_who{
+  width:680px;
+  height:auto;
+  max-height: 695px;
+  margin:20px;
+  overflow: hidden;
+  background: @white;
+
+  .ww_top{
+    width:100%;
+    height:250px;
+    background-color: @grey-4;
+    position: relative;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url('/whos_who_frame.jpg');
+    &-image{
+      width:150px;
+      height:150px;
+      border-radius: 50%;
+      box-shadow: 0 0px 0px 10px rgba(0, 0, 0, .5);
+      margin: 40px 27px 60px 49px;
+      float:left;
+      position:relative;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-color: @white;
+      &-counter{
+        position: absolute;
+        bottom:0;
+        left:0;
+        width:45px;
+        height:45px;
+        border-radius: 50%;
+        background-color: @black;
+        font-size: 16px;
+        text-align:center;
+        line-height: 45px;
+        font-family: HN-B;
+        color:@white;
+      }
+      &-subimage{
+        position: absolute;
+        bottom:0;
+        right:0;
+        width:45px;
+        height:45px;
+        border-radius: 50%;
+        background-color: @white;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        border:1px solid @grey-3;
+      }
+    }//end &-image
+
+    &-content{
+      width: ~"calc(100% - 230px)";
+      height: 100%;
+      padding-top: 45px;
+      float:left;
+      &-title{
+        text-align: left;
+        font-size: 12px;
+        line-height:32px;
+        color:@white;
+        margin-bottom: 5px;
+      }
+      &-desc{
+        width:320px;
+        height:auto;
+        font-size: 18px;
+        font-family: HN;
+        line-height: 1.2em;
+        padding-bottom:10px;
+        text-align: left;
+        color:@white;
+      }
+      &-date{
+        width:320px;
+        font-size: 14px;
+        font-family: HN;
+        text-align: left;
+        color:@white;
+      }
+    }//end &-content
+    &-button{
+      width:65px;
+      height:65px;
+      border-radius: 50%;
+      border:2px solid @white;
+      position: absolute;
+      right:20px;
+      top:30%;
+      color:@white;
+      line-height: 60px;
+      font-size: 36px;
+      &:hover{
+        border:2px solid @blue;
+        color:@blue;
+        cursor: pointer;
+      }
+    }
+  }//end &-top
+  .ww_tags{
+    width:100%;
+    height:30px;
+    margin:10px 0px;
+    padding:0px 7.5px;
+    background-color: @white;
+    &-1{
+      margin:0 2.5px;
+      border:1px solid #cacaca;
+      height:100%;
+      width:250px;
+      color:@black;
+      float: left;
+      text-align: center;
+      font-family: HN-L;
+      line-height: 30px;
+    }
+    &-2{
+      margin:0 2.5px;
+      border:1px solid #cacaca;
+      height:100%;
+      width:140px;
+      color:@black;
+      float: left;
+      text-align: center;
+      font-family: HN-L;
+      line-height: 30px;
+    }
+    &-3{
+      margin:0 2.5px;
+      border:1px solid #cacaca;
+      height:100%;
+      width:260px;
+      color:@black;
+      float: left;
+      text-align: center;
+      font-family: HN-L;
+      line-height: 30px;
+    }
+  }//end ww_tags
+  .ww_list{
+    width:100%;
+    height:auto;
+    background-color: @white;
+    position: relative;
+    &-items{
+      width: ~"calc(100% - 20px)";
+      height:70px;
+      margin: 0 10px;
+      background-color: @grey-1;
+      &-index{
+        float:left;
+        margin-left:10px;
+        line-height: 70px;
+      }
+      &-content1{
+        height:100%;
+        width: 250px;
+        margin-right:5px;
+        float:left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      &-content2{
+        height:100%;
+        width: 140px;
+        margin-right:5px;
+        float:left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      &-content3{
+        height:100%;
+        width: 255px;
+        margin-right:5px;
+        float:left;
+        display: table;
+      }
+      &-image{
+        width:45px;
+        height:45px;
+        border-radius: 50%;
+        background-color: @white;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        border:1px solid @grey-3;
+        float:left;
+        margin:15px;
+      }
+      &-item1{
+        float:left;
+        line-height: 70px;
+        font-family: HN-B;
+        font-size: 14px;
+      }
+      &-item2{
+        line-height: 70px;
+        color:@blue;
+        font-size: 14px;
+      }
+      &-item3{
+        text-align: left;
+        font-size: 14px;
+        padding-left:5px;
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }// &-items END
+  }//.ww_list END
+}//end whos_who
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .module-who{
                     // Class contains the basic widget layout //
   &-layout{

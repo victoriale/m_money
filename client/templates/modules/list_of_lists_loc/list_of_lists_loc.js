@@ -11,7 +11,13 @@ Template.list_of_lists_loc.onCreated(function () {
 });
 
 Template.list_of_lists_loc.helpers({
+  goBack:function(){
+    var params = Router.current().getParams();
 
+    return Router.pick_path('content.locationprofile', {
+      loc_id:params.loc_id,
+    });
+  },
   listsData: function(){
     var list = Session.get('list_of_lists');
     if(typeof list =='undefined'){
@@ -38,7 +44,9 @@ Template.list_of_lists_loc.helpers({
         loc_id:loc_param,
         list_id:list_param
       });
-
+      data['locurl'] = Router.pick_path('content.locationprofile',{
+        loc_id:data.c_hq_state,
+      });
       //move first listed item to a seperate object to go into big circle
       data['top'] = data.top_list_list[0];
       data['top_list_list'].shift();

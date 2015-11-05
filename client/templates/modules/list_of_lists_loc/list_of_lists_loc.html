@@ -7,7 +7,7 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists.l
 <template name="list_of_lists_loc">
   {{#with checkList}}
   <div class="module-listoflists">
-    <div class="list_header"><span class='list_header-line'></span>Top Lists That Feature {{headerInfo}}
+    <div class="list_header"><span class='list_header-line'></span>Top Lists That Feature <a href="{{goBack}}">{{headerInfo}}</a>
     </div>
     {{#each listsData}}
     <div class="list_ol" style="background-color:{{index_color}}">
@@ -20,10 +20,12 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists.l
         <div class="list_ol-top-content">
           <div class="list_ol-top-content-textbox">
             <div class="list_ol-top-content-textbox-txt1">
-              <i class="fa fa-map-marker" style="color:#3098ff"></i>
-              United States
+              <a href="{{locurl}}">
+                <i class="fa fa-map-marker" style="color:#3098ff"></i>
+                United States
+              </a>
             </div>
-            <div class="list_ol-top-content-textbox-txt2">
+            <div class="list_ol-top-content-textbox-txt2 line-clamp line-clamp-2" title="{{top_list_title}}">
               {{top_list_title}}
             </div>
           </div>
