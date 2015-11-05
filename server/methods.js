@@ -443,27 +443,32 @@ Meteor.methods({
 
   sectorData: function(loc_id, sector){
     var future = new Future();
-    var startTime = (new Date()).getTime();
-    // console.log("New Sector Data",loc_id);
 
     //random number to pick random list in list_index that's in database
-    //param={list_index} , {location/DMA}
-    var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=sector_companies&state="+ loc_id+"&param="+sector;
-    // console.log(UrlString);
+    //console.log(loc_id, sector);
+    if(loc_id === 'National'){
+      // console.log('national call');
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=sector_companies";
+    }else if(isNaN(loc_id)){
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=sector_companies&state="+ loc_id;
+    }else{
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=sector_companies&dma="+ loc_id;
+    }
 
-    Meteor.http.get(UrlString, (function(startTime, sector, loc_id, error, data){
+    if(sector != null && typeof sector != 'undefined' && sector != ''){
+      UrlString +="&param="+sector;
+    }
+    UrlString += "&page=1&per_page=1000";
+    //console.log(UrlString);
+    Meteor.http.get(UrlString, function(error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);
-        var endTime = (new Date()).getTime();
-        console.log('METHODSTAT|"sectorData - Error","' + sector + '","' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
         return false;
       }
-      future.return(data);
-      var endTime = (new Date()).getTime();
-      console.log('METHODSTAT|"sectorData","' + sector + '","' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
-    }).bind(undefined, startTime, sector, loc_id));
+        future.return(data);
+    });
 
     this.unblock();
     return future.wait();
