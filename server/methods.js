@@ -108,7 +108,7 @@ Meteor.methods({
     // console.log(UrlString);
 
     curloc_id.withValue(batchNum, function(){
-      Meteor.http.get(UrlString, Meteor.bindEnvironment((function(error, data){
+      Meteor.http.get(UrlString, Meteor.bindEnvironment((function(startTime,batchNum,loc_id,error, data){
         data.content = data.content.toString().replace(/^[^{]*/,function(a){ return ''; });
         var batch = curloc_id.get();
         try{
@@ -443,6 +443,8 @@ Meteor.methods({
 
   sectorData: function(loc_id, sector){
     var future = new Future();
+    var startTime = (new Date()).getTime();
+    // console.log("New Sector Data",loc_id);
 
     //random number to pick random list in list_index that's in database
     //console.log(loc_id, sector);
@@ -460,15 +462,19 @@ Meteor.methods({
     }
     UrlString += "&page=1&per_page=1000";
     //console.log(UrlString);
-    Meteor.http.get(UrlString, function(error, data){
+    Meteor.http.get(UrlString, (function(error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"sectorData - Error","' + sector + '","' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
         return false;
       }
-        future.return(data);
-    });
+      future.return(data);
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"sectorData","' + sector + '","' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+    }).bind(undefined, startTime, sector, loc_id));
 
     this.unblock();
     return future.wait();

@@ -33,6 +33,7 @@ Template.lp_body.helpers({
     return data;
   }
 });
+
 Template.lp_head.helpers({
   image: function(){
     var data = Session.get('loc_id');
@@ -48,6 +49,7 @@ Template.lp_head.helpers({
       }
     }
   },
+
 });
 Template.lp_body.helpers({
   execUrl: function(){
