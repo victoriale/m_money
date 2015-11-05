@@ -2,31 +2,20 @@
 Author: jyothyswaroop
 Created: 07/30/2015
 Description: followers page
-Associated Files: list_view.less and list_view_exec.html
+Associated Files: list_view.less and exec_loc.html
 */
 
-Template.list_view_exec.onCreated(function(){
+Template.exec_loc.onCreated(function(){
   Session.set('lv_count', 0);
 })
 
 //renders the data when page loads
-Template.list_view_exec.onRendered(function () {
+Template.exec_loc.onRendered(function () {
   $(".list_vw-page-selector1").css("background-color","#3098ff");
 });
 
 var backgroundStyle="tilewhite";
-Template.list_view_exec.helpers({
-  back_url: function(){
-    var url = Router.current().getParams();
-    if(url.loc_id === '' || typeof url.loc_id == 'undefined' || url.loc_id == null){
-      return Router.pick_path('content.locationprofile',{
-        loc_id: 'National',
-      });
-    }
-    return Router.pick_path('content.locationprofile',{
-      loc_id: url.loc_id,
-    });
-  },
+Template.exec_loc.helpers({
   toplist:function(){
     var params = Router.current().getParams();
     if(params.list_id == 'dollar_ceo'){
@@ -38,7 +27,6 @@ Template.list_view_exec.helpers({
     if(typeof listdata =='undefined'){
       return '';
     }
-    listdata['newDate'] = CurrentDate();
     $.map(listdata.list_data, function(data,index){
       if(index % 2 == 0){
         data['background'] = 'tilewhite';
@@ -52,7 +40,7 @@ Template.list_view_exec.helpers({
         data['objname'] = 'Compensation';
         data['TotalComp'] = dNumberToCommaNumber(data['TotalComp']);
       }
-      data['newDate'] = CurrentDate();
+      data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
       data['rank'] = index+1;
       data['url'] = Router.pick_path('content.executiveprofile',{
         fname:data.o_first_name,
@@ -60,11 +48,7 @@ Template.list_view_exec.helpers({
         ticker: data.c_ticker,
         exec_id: data.o_id
       });
-      data['compurl'] = Router.pick_path('content.companyprofile',{
-        ticker: data.c_ticker,
-        name: compUrlName(data.c_name),
-        company_id: data.c_id
-      });
+
       //data from list can come in 6 different ways these values will catch and give results back
       for(objName in data){
         if(objName === 'stock_percent'){
@@ -108,7 +92,6 @@ Template.list_view_exec.helpers({
     if(typeof listdata =='undefined'){
       return '';
     }
-
     $.map(listdata.list_data, function(data,index){
       if(typeof data['TotalComp'] == 'undefined' || data['TotalComp'] == ''){
         data['objname'] = 'Salary';
@@ -117,15 +100,9 @@ Template.list_view_exec.helpers({
         data['objname'] = 'Compensation';
         data['TotalComp'] = dNumberToCommaNumber(data['TotalComp']);
       }
-      data['newDate'] = CurrentDate();
+      data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
       data['rank'] = index+1;
-      data['url'] = Router.pick_path('content.executiveprofile',{
-        fname:data.o_first_name,
-        lname:data.o_last_name,
-        ticker: data.c_ticker,
-        exec_id: data.o_id
-      });
-      data['compurl'] = Router.pick_path('content.companyprofile',{
+      data['url'] = Router.pick_path('content.companyprofile',{
         ticker: data.c_ticker,
         name: compUrlName(data.c_name),
         company_id: data.c_id
@@ -150,22 +127,15 @@ Template.list_view_exec.helpers({
 
 });
 //This handles the events on button clicks of 1,2,3 and 200
-Template.list_view_exec.events({
+Template.exec_loc.events({
   //Event to close tooltip
   'click .list_vw-x': function(e, t){
     //Currently disabled: Styling needs to be fixed to handle this event
     //t.$('.list_vw-wl').hide();
   },
   'click .list_vw-lefthov': function(){
-
     var counter = Session.get("lv_count");
-    var params = Router.current().getParams();
-    if(params.list_id == 'dollar_ceo'){
-      var list = Session.get('dollar_ceo')['list_data'];
-    }
-    if(params.list_id == 'female_ceo'){
-      var list = Session.get('female_ceo')['list_data'];
-    }
+    var list = Session.get('top_list_gen')['top_list_list'];
     if(counter > 0){
       counter--;
       Session.set("lv_count",counter);
@@ -178,13 +148,7 @@ Template.list_view_exec.events({
   },
   'click .list_vw-righthov': function(){
     var counter = Session.get("lv_count");
-    var params = Router.current().getParams();
-    if(params.list_id == 'dollar_ceo'){
-      var list = Session.get('dollar_ceo')['list_data'];
-    }
-    if(params.list_id == 'female_ceo'){
-      var list = Session.get('female_ceo')['list_data'];
-    }
+    var list = Session.get('top_list_gen')['top_list_list'];
     if(counter < list.length - 1)
     {
       counter++;

@@ -5,8 +5,7 @@ Description: followers page
 Associated Files: list_view_logic.js and list_view.less
 -->
 <!--Gave a template name stock_disclaimer_page !-->
-<template name="list_view_exec">
-  {{#with toplist}}
+<template name="exec_loc">
   <!--Defined a class name globally for height and width !-->
   <div class= "list_vw">
     <!--gave the dimensions for the module with total height and width !-->
@@ -15,7 +14,7 @@ Associated Files: list_view_logic.js and list_view.less
         <div class="abus-bkbx">
           <div class="abus-bkbx-bx"><i class="fa fa-reply"></i></div>
           <div class="abus-bkbx-tgl"></div>
-          <div class="abus-bkbx-txt">Go Back to {{back_url}} Profile</div>
+          <div class="abus-bkbx-txt">Go Back To {{exchange c_loc}} Page</div>
         </div>
       </a>
       <!--dimensions for the circle container as ('cir-d') !-->
@@ -32,17 +31,15 @@ Associated Files: list_view_logic.js and list_view.less
         <div class="list_vw-tc">
           <!-- class date has all the font-weight and font specific !-->
           <div class="list_vw-date">
-            Last Updated: {{newDate}}
+            LAST UPDATED: 06/24/2015, 8:00 AM EST
           </div>
           <!--specified font style for location !-->
           <div class="list_vw-loc_st">
-            <a href="/National/location">
-              <i class="fa fa-map-marker"></i>
-              <!--specified font style for the state name !-->
-              <span class="list_vw-loc_st">
-                United States
-              </span>
-            </a>
+            <i class="fa fa-map-marker"></i>
+            <!--specified font style for the state name !-->
+            <span class="list_vw-loc_st">
+              United States
+            </span>
           </div>
           <!-- specified font sytle for the stock disclaimer !-->
           <div class="list_vw-loc_st list_vw-disc">
@@ -53,7 +50,7 @@ Associated Files: list_view_logic.js and list_view.less
       </div>
       <div class="list_vw-bar">
         <div class="list_vw-bar-title">
-          Today's Most Traded Companies
+          Top 3 Executives From Top 20 Companies
         </div>
 
       </div>
@@ -65,20 +62,12 @@ Associated Files: list_view_logic.js and list_view.less
         <!-- end of the module.less navigation button -->
         <!-- wrapper class-->
         <div class="list_vw-m_c-image-wr">
-          <a href="{{url}}">
-            <div class="list_vw-m_c-image" style="background-image:url('{{imageUrl o_pic}}')">
-              <div class="hover" style="line-height:3em;text-align:center;">
-                <div class="hover-txt1">View</div>
-                <div class="hover-txt2">Profile</div>
-              </div>
-              <div class="list_vw-m_c-sma_ct">
-                <a href="{{compurl}}">
-                  <div class="list_vw-m_c-sma_cr" style="background-image:url('{{imageUrl c_logo}}')">
-                  </div>
-                </a>
-              </div>
+          <div class="list_vw-m_c-image" style="background-image:url('{{imageUrl c_logo}}')">
+            <div class="list_vw-m_c-sma_ct">
+            <div class="list_vw-m_c-sma_cr" style="background-image:url('{{exchange c_exchange}}')">
             </div>
-          </a>
+          </div>
+          </div>
         </div>
         <!-- the main container -->
         <ul class="list_vw-m_c-cr">
@@ -162,26 +151,18 @@ Associated Files: list_view_logic.js and list_view.less
         <div class="list_vw-{{background}}"><br>
           <!--This is the main (circle) image-->
           <div class="list_vw-head-circ">
-            <a href="{{url}}">
-              <div class="list_vw-head-image" style="background:url('{{imageUrl o_pic}}')">
-                <div class="hover">
-                  <div class="hover-txt1">View</div>
-                  <div class="hover-txt2">Profile</div>
-                </div>
-                <!-- Here displays the counter number which is a result of each loop-->
-                <span class="list_vw-counter">#{{rank}}</span>
-                <a href="{{compurl}}">
-                  <span class="list_vw-counter2" style="background-image:url('{{imageUrl c_logo}}')"></span>
-                </a>
-              </div>
-            </a>
+            <div class="list_vw-head-image" style="background:url('{{imageUrl c_logo}}')">
+              <!-- Here displays the counter number which is a result of each loop-->
+              <span class="list_vw-counter">#{{rank}}</span>
+              <span class="list_vw-counter2" style="background-image:url('{{exchange c_exchange}}')"></span>
+            </div>
           </div>
           <!--Location title -->
           <div class="list_vw-sp">
             <div  class="list_vw-space">
               <!-- This displays the font awesome map sybmol infornt of the united states-->
               <i class="fa fa-map-marker"></i>
-              <a href="{{compurl}}">
+              <a href="{{locUrl}}">
                 <span  class="list_vw-space list_vw-space2">
                   {{c_name}}
                 </span>
@@ -221,5 +202,4 @@ Associated Files: list_view_logic.js and list_view.less
       </div>
     </div>
   </div>
-  {{/with}}
 </template>
