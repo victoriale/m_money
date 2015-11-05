@@ -9,6 +9,7 @@ Meteor.methods({
 
   GetProfileData: function(profile, batchNum, state, city){
     var future = new Future();
+    var startTime = (new Date()).getTime();
     // console.log("New Company Request",company_id,batchNum);
 
     var UrlString = "http://apifin.investkit.com/call_controller.php?action="+profile+"&option="+batchNum+"&param="+state;
@@ -18,17 +19,19 @@ Meteor.methods({
     }
     // console.log(UrlString);
 
-    Meteor.http.get(UrlString, function(error, data){
+    Meteor.http.get(UrlString, (function(startTime, batchNum, state, error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
-        // console.log("ERROR ON ",batchNum);
         future.throw(e);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"GetProfileData - Error","' + batchNum + '","' + state + '",' + (endTime - startTime) + ',' + endTime + '|');
         return false;
       }
-        // console.log("Got Data!", batchNum);
-        future.return(data);
-    });
+      future.return(data);
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"GetProfileData","' + batchNum + '","' + state + '",' + (endTime - startTime) + ',' + endTime + '|');
+    }).bind(undefined,startTime,batchNum,state));
 
     this.unblock();
     return future.wait();
@@ -36,56 +39,63 @@ Meteor.methods({
 
   GetCompanyData: function(company_id, batchNum) {
     var future = new Future();
+    var startTime = (new Date()).getTime();
     // console.log("New Company Request",company_id,batchNum);
 
     var UrlString = "http://apifin.investkit.com/call_controller.php?action=company_profile&option="+batchNum+"&param="+company_id;
     // console.log(UrlString);
 
-    Meteor.http.get(UrlString, function(error, data){
+    Meteor.http.get(UrlString, (function(startTime, batchNum, company_id, error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
-        // console.log("ERROR ON ",batchNum);
         future.throw(e);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"GetCompanyData - Error","' + batchNum + '","' + company_id + '",' + (endTime - startTime) + ',' + endTime + '|');
         return false;
       }
-        // console.log("Got Data!", batchNum);
-        future.return(data);
-    });
+      future.return(data);
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"GetCompanyData","' + batchNum + '","' + company_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+    }).bind(undefined, startTime, batchNum, company_id));
 
     this.unblock();
     return future.wait();
   },
   GetLocationPage: function(loc_id, option) {
     var future = new Future();
-    console.log("New Location Request",loc_id);
+    var startTime = (new Date()).getTime();
+    // console.log("New Location Request",loc_id);
     if(loc_id === 'National'){
-      console.log('national call');
+      // console.log('national call');
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option="+option;
     }else if(isNaN(loc_id)){
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option="+option+"&state="+loc_id;
     }else{
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option="+option+"&dma="+loc_id;
     }
-    console.log(UrlString);
+    // console.log(UrlString);
 
-    Meteor.http.get(UrlString, function(error, data){
+    Meteor.http.get(UrlString, (function(startTime, option, loc_id, error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
-        console.log("ERROR ON ",option);
         future.throw(e);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"GetLocationPage - Error","' + option + '","' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
         return false;
       }
-        console.log("Got Data!", option);
-        future.return(data);
-    });
+      future.return(data);
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"GetLocationPage","' + option + '","' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+    }).bind(undefined,startTime,option,loc_id));
 
     this.unblock();
     return future.wait();
   },
   GetLocationData: function(loc_id, batchNum) {
     var future = new Future();
+    var startTime = (new Date()).getTime();
     // console.log("New Company Request",loc_id,batchNum);
     if(loc_id === 'National'){
       // console.log('national call');
@@ -98,24 +108,21 @@ Meteor.methods({
     // console.log(UrlString);
 
     curloc_id.withValue(batchNum, function(){
-      Meteor.http.get(UrlString, Meteor.bindEnvironment(function(error, data){
+      Meteor.http.get(UrlString, Meteor.bindEnvironment((function(error, data){
         data.content = data.content.toString().replace(/^[^{]*/,function(a){ return ''; });
         var batch = curloc_id.get();
-        if ( error ) {
-          // console.log('Done - Error (Request)',batch);
-          future.throw(error);
-          return false;
-        }
         try{
           data = JSON.parse(data['content']);
         } catch (e) {
-          // console.log('Done - Error (Parse)',batch);
           future.throw(e);
+          var endTime = (new Date()).getTime();
+          console.log('METHODSTAT|"GetLocationData - Error","' + batchNum + '","' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
           return false;
         }
-        // console.log('Done - Success',batch);
-          future.return(data);
-      }));
+        future.return(data);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"GetLocationData","' + batchNum + '","' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+      }).bind(undefined,startTime,batchNum,loc_id)));
     });
 
     this.unblock();
@@ -124,21 +131,26 @@ Meteor.methods({
 
   GetExecData: function(exec_id, batchNum) {
     var future = new Future();
+    var startTime = (new Date()).getTime();
     // console.log("New Executive Request",exec_id,batchNum);
 
     var UrlString = "http://apifin.investkit.com/call_controller.php?action=executive_profile&option="+batchNum+"&param="+exec_id;
     // console.log(UrlString);
 
-    Meteor.http.get(UrlString, function(error, data){
+    Meteor.http.get(UrlString, (function(startTime,batchNum,exec_id, error, data){
       data.content = data.content.toString().replace(/^[^{]*/,function(a){ return ''; });
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"GetExecData - Error","' + batchNum + '","' + exec_id + '",' + (endTime - startTime) + ',' + endTime + '|');
         return false;
       }
-        future.return(data);
-    });
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"GetExecData","' + batchNum + '","' + exec_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+      future.return(data);
+    }).bind(undefined,startTime,batchNum,exec_id));
 
     this.unblock();
     return future.wait();
@@ -146,20 +158,25 @@ Meteor.methods({
 
   CompWebPageData: function(comp_id, option){
     var future = new Future();
+    var startTime = (new Date()).getTime();
     // console.log("New company Request",comp_id);
 
     var UrlString =   "http://apifin.investkit.com/call_controller.php?action=company_page&option=" + option + "&param=" + comp_id;
     // console.log(UrlString);
 
-    Meteor.http.get(UrlString, function(error, data){
+    Meteor.http.get(UrlString, (function(startTime, option, comp_id, error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"CompWebPageData - Error","' + option + '","' + comp_id + '",' + (endTime - startTime) + ',' + endTime + '|');
         return false;
       }
-        future.return(data);
-    });
+      future.return(data);
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"CompWebPageData","' + option + '","' + comp_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+    }).bind(undefined, startTime, option, comp_id));
 
     this.unblock();
     return future.wait();
@@ -167,20 +184,25 @@ Meteor.methods({
 
   ExecWebpageData: function(exec_id, option) {
     var future = new Future();
+    var startTime = (new Date()).getTime();
     // console.log("New CollegeRivals Request",exec_id,option);
 
     var UrlString = "http://apifin.investkit.com/call_controller.php?action=executive_page&option="+ option +"&param=" + exec_id;
     // console.log(UrlString);
 
-    Meteor.http.get(UrlString, function(error, data){
+    Meteor.http.get(UrlString, (function(startTime, option, exec_id, error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"ExecWebpageData - Error","' + option + '","' + exec_id + '",' + (endTime - startTime) + ',' + endTime + '|');
         return false;
       }
-        future.return(data);
-    });
+      future.return(data);
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"ExecWebpageData","' + option + '","' + exec_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+    }).bind(undefined, startTime, option, exec_id));
 
     this.unblock();
     return future.wait();
@@ -188,20 +210,25 @@ Meteor.methods({
 
   WhosWhoIndie: function(comp_id, page) {
     var future = new Future();
+    var startTime = (new Date()).getTime();
     // console.log("New Executive Request",comp_id);
 
     var UrlString =   "http://apifin.investkit.com/call_controller.php?action="+page+"&option=about&param=" + comp_id;
     // console.log(UrlString);
 
-    Meteor.http.get(UrlString, function(error, data){
+    Meteor.http.get(UrlString, (function(startTime, page, comp_id, error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"WhosWhoIndie - Error","' + page + '","' + comp_id + '",' + (endTime - startTime) + ',' + endTime + '|');
         return false;
       }
-        future.return(data);
-    });
+      future.return(data);
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"WhosWhoIndie","' + page + '","' + comp_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+    }).bind(undefined, startTime, page, comp_id));
 
     this.unblock();
     return future.wait();
@@ -209,41 +236,51 @@ Meteor.methods({
 
   CompIndie: function(comp_id, call) {
     var future = new Future();
+    var startTime = (new Date()).getTime();
     // console.log("New Executive Request",comp_id);
 
     var UrlString =   "http://apifin.investkit.com/call_controller.php?action=company_profile&option=indie&call="+call+"&param=" + comp_id;
     // console.log(UrlString);
 
-    Meteor.http.get(UrlString, function(error, data){
+    Meteor.http.get(UrlString, (function(startTime, call, comp_id, error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"CompIndie - Error","' + call + '","' + comp_id + '",' + (endTime - startTime) + ',' + endTime + '|');
         return false;
       }
-        future.return(data);
-    });
+      future.return(data);
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"CompIndie","' + call + '","' + comp_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+    }).bind(undefined, startTime, call, comp_id));
 
     this.unblock();
     return future.wait();
   },
 
-  ExecIndie: function(comp_id, call) {
+  ExecIndie: function(exec_id, call) {
     var future = new Future();
+    var startTime = (new Date()).getTime();
     // console.log("New Executive Request",comp_id);
 
-    var UrlString =   "http://apifin.investkit.com/call_controller.php?action=executive_profile&option=indie&call="+call+"&param=" + comp_id;
+    var UrlString =   "http://apifin.investkit.com/call_controller.php?action=executive_profile&option=indie&call="+call+"&param=" + exec_id;
     // console.log(UrlString);
 
-    Meteor.http.get(UrlString, function(error, data){
+    Meteor.http.get(UrlString, (function(startTime, call, exec_id, error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"ExecIndie - Error","' + call + '","' + exec_id + '",' + (endTime - startTime) + ',' + endTime + '|');
         return false;
       }
-        future.return(data);
-    });
+      future.return(data);
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"ExecIndie","' + call + '","' + exec_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+    }).bind(undefined, startTime, call, exec_id));
 
     this.unblock();
     return future.wait();
@@ -253,13 +290,16 @@ Meteor.methods({
     // Housekeeping
     this.unblock();
     var future = new Future();
+    var startTime = (new Date()).getTime();
 
     var UrlString = "http://apifin.investkit.com/call_controller.php?action=company_profile&option=indie&call=earnings&param=" + comp_id; // Create URL string
 
     report_name_env.withValue(report_name,function(){ // Save report name
-      var callback = Meteor.bindEnvironment(function(error, data){ // Provide report name to callback
+      var callback = Meteor.bindEnvironment((function(error, data){ // Provide report name to callback
         if ( error ) { // Error handling
           future.throw(500,error);
+          var endTime = (new Date()).getTime();
+          console.log('METHODSTAT|"EarningsReport - HTTP Error","' + report_name + '","' + comp_id + '",' + (endTime - startTime) + ',' + endTime + '|');
           return false;
         }
         try {
@@ -283,6 +323,8 @@ Meteor.methods({
           }
           if ( match == "" ) {
             future.return({success: false, message: 'Invalid Earnings Report'});
+            var endTime = (new Date()).getTime();
+            console.log('METHODSTAT|"EarningsReport - Invalid","' + report_name + '","' + comp_id + '",' + (endTime - startTime) + ',' + endTime + '|');
             return false;
           }
           data = JSON.parse(data['content']);
@@ -294,17 +336,23 @@ Meteor.methods({
           }
           if ( retData.length == 0 ) {
             future.return({success: false, message: 'Earnings Report Not Found'});
+            var endTime = (new Date()).getTime();
+            console.log('METHODSTAT|"EarningsReport - No Data","' + report_name + '","' + comp_id + '",' + (endTime - startTime) + ',' + endTime + '|');
             return false;
           }
 
           future.return({success: true, data: retData});
+          var endTime = (new Date()).getTime();
+          console.log('METHODSTAT|"EarningsReport","' + report_name + '","' + comp_id + '",' + (endTime - startTime) + ',' + endTime + '|');
           return false;
         } catch(e) { // Error handling (usually parsing)
           // console.log('Exception',e);
           future.throw(499,e);
+          var endTime = (new Date()).getTime();
+          console.log('METHODSTAT|"EarningsReport - Error","' + report_name + '","' + comp_id + '",' + (endTime - startTime) + ',' + endTime + '|');
           return false;
         }
-      });
+      }).bind(undefined, startTime, report_name, comp_id));
 
       Meteor.http.get(UrlString,callback);
     });
@@ -314,20 +362,25 @@ Meteor.methods({
 
   GetMoneyMemoryData: function(company_id, initial_investment, start_date, end_date){
     var future = new Future();
+    var startTime = (new Date()).getTime();
     // console.log("Money Memory Request",company_id, initial_investment, start_date, end_date);
 
     var UrlString = "http://apifin.investkit.com/call_controller.php?action=company_profile&option=indie&call=money_memory&param=" + company_id + "&mmem=" + initial_investment + "," + end_date + "," + start_date;
     // console.log(UrlString);
 
-    Meteor.http.get(UrlString, function(error, data){
+    Meteor.http.get(UrlString, (function(startTime, company_id, error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"GetMoneyMemoryData - Error",,"' + company_id + '",' + (endTime - startTime) + ',' + endTime + '|');
         return false;
       }
-        future.return(data);
-    })
+      future.return(data);
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"GetMoneyMemoryData",,"' + company_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+    }).bind(undefined, startTime, company_id))
 
     this.unblock();
     return future.wait();
@@ -335,21 +388,26 @@ Meteor.methods({
 
   CompEarningsIndie: function(comp_id){
     var future = new Future();
+    var startTime = (new Date()).getTime();
     // console.log("New Executive Request",comp_id);
 
     //var UrlString =   "http://apifin.investkit.com/call_controller.php?action=company_profile&option=indie&call=earnings&param=FB";
     var UrlString =   "http://apifin.investkit.com/call_controller.php?action=company_profile&option=indie&call=earnings&param=" + comp_id;
     // console.log(UrlString);
 
-    Meteor.http.get(UrlString, function(error, data){
+    Meteor.http.get(UrlString, (function(startTime, comp_id, error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"CompEarningsIndie - Error",,"' + comp_id + '",' + (endTime - startTime) + ',' + endTime + '|');
         return false;
       }
-        future.return(data);
-    });
+      future.return(data);
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"CompEarningsIndie",,"' + comp_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+    }).bind(undefined, startTime, comp_id));
 
     this.unblock();
     return future.wait();
@@ -357,6 +415,7 @@ Meteor.methods({
 
   statisticsData: function(loc_id){
     var future = new Future();
+    var startTime = (new Date()).getTime();
     // console.log("New Statistics Data",loc_id);
 
     //random number to pick random list in list_index that's in database
@@ -364,15 +423,19 @@ Meteor.methods({
     var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=statistics&state="+ loc_id
     // console.log(UrlString);
 
-    Meteor.http.get(UrlString, function(error, data){
+    Meteor.http.get(UrlString, (function(startTime, loc_id, error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"statisticsData - Error",,"' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
         return false;
       }
-        future.return(data);
-    });
+      future.return(data);
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"statisticsData",,"' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+    }).bind(undefined, startTime, loc_id));
 
     this.unblock();
     return future.wait();
@@ -380,6 +443,7 @@ Meteor.methods({
 
   sectorData: function(loc_id, sector){
     var future = new Future();
+    var startTime = (new Date()).getTime();
     // console.log("New Sector Data",loc_id);
 
     //random number to pick random list in list_index that's in database
@@ -387,15 +451,19 @@ Meteor.methods({
     var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=sector_companies&state="+ loc_id+"&param="+sector;
     // console.log(UrlString);
 
-    Meteor.http.get(UrlString, function(error, data){
+    Meteor.http.get(UrlString, (function(startTime, sector, loc_id, error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"sectorData - Error","' + sector + '","' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
         return false;
       }
-        future.return(data);
-    });
+      future.return(data);
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"sectorData","' + sector + '","' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+    }).bind(undefined, startTime, sector, loc_id));
 
     this.unblock();
     return future.wait();
@@ -403,6 +471,7 @@ Meteor.methods({
 
   featuredData: function(loc_id){
     var future = new Future();
+    var startTime = (new Date()).getTime();
     // console.log("New featured List Request",loc_id);
 
     //random number to pick random list in list_index that's in database
@@ -411,15 +480,19 @@ Meteor.methods({
     var UrlString = "http://apifin.investkit.com/call_controller.php?action=top_list&option=list&param="+ x +","+ loc_id
     // console.log(UrlString);
 
-    Meteor.http.get(UrlString, function(error, data){
+    Meteor.http.get(UrlString, (function(startTime, loc_id, error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"featuredData - Error",,"' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
         return false;
       }
-        future.return(data);
-    });
+      future.return(data);
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"featuredData",,"' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+    }).bind(undefined, startTime, loc_id));
 
     this.unblock();
     return future.wait();
@@ -427,6 +500,7 @@ Meteor.methods({
 
   listData: function(id){
     var future = new Future();
+    var startTime = (new Date()).getTime();
     // console.log("New featured List Request",id);
 
     //random number to pick random list in list_index that's in database
@@ -435,15 +509,19 @@ Meteor.methods({
     var UrlString = "http://apifin.investkit.com/call_controller.php?action=company_profile&option=batch_3&param="+id+"&limit=1,3";
     // console.log(UrlString);
 
-    Meteor.http.get(UrlString, function(error, data){
+    Meteor.http.get(UrlString, (function(startTime, id, error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"listData - Error",,"' + id + '",' + (endTime - startTime) + ',' + endTime + '|');
         return false;
       }
-        future.return(data);
-    });
+      future.return(data);
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"listData",,"' + id + '",' + (endTime - startTime) + ',' + endTime + '|');
+    }).bind(undefined, startTime, id));
 
     this.unblock();
     return future.wait();
@@ -451,6 +529,7 @@ Meteor.methods({
 
   topListData: function(index ,loc_id){
     var future = new Future();
+    var startTime = (new Date()).getTime();
     // console.log("New featured List Request",loc_id);
     // console.log("List Index:",index);
 
@@ -467,15 +546,19 @@ Meteor.methods({
     }
 
     // console.log("CALLIN NEW LIST:",UrlString);
-    Meteor.http.get(UrlString, function(error, data){
+    Meteor.http.get(UrlString, (function(startTime, index, loc_id, error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"topListData - Error","' + index + '","' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
         return false;
       }
-        future.return(data);
-    });
+      future.return(data);
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"topListData","' + index + '","' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+    }).bind(undefined, startTime, index, loc_id));
 
     this.unblock();
     return future.wait();
@@ -483,6 +566,7 @@ Meteor.methods({
 
   listOfListLoc:function(loc_id){
     var future = new Future();
+    var startTime = (new Date()).getTime();
     // console.log("New featured List Request",loc_id);
 
     //random number to pick random list in list_index that's in database
@@ -497,15 +581,19 @@ Meteor.methods({
 
     // console.log(UrlString);
 
-    Meteor.http.get(UrlString, function(error, data){
+    Meteor.http.get(UrlString, (function(startTime, loc_id, error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"listOfListLoc - Error",,"' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
         return false;
       }
-        future.return(data);
-    });
+      future.return(data);
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"listOfListLoc",,"' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+    }).bind(undefined, startTime, loc_id));
 
     this.unblock();
     return future.wait();
@@ -600,59 +688,77 @@ Meteor.methods({
   },
 
   GetPartnerHeader: function(partner_id) {
+    var startTime = (new Date()).getTime();
     var URLString = "http://apireal.synapsys.us/listhuv/?action=get_partner_data&domain=" + partner_id;
     var future = new Future();
-    Meteor.http.get(URLString,function(error,data){
+    Meteor.http.get(URLString,(function(startTime, partner_id, error,data){
       if ( error ) {
-        // console.log(error);
         future.return(error);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"GetPartnerHeader",,"' + partner_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+        return false;
       }
       future.return(data);
-    });
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"GetPartnerHeader",,"' + partner_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+    }).bind(undefined, startTime, partner_id));
     this.unblock();
     return future.wait();
   },
 
   GetPartnerProfile: function(partner_id, batch) {
     var future = new Future();
+    var startTime = (new Date()).getTime();
     // console.log("New Partner Request",partner_id,batch);
 
     var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_profile&option="+batch+"&partner_domain="+partner_id;
     // console.log(UrlString);
 
-    Meteor.http.get(UrlString, function(error, data){
+    Meteor.http.get(UrlString, (function(startTime, batch, partner_id, error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"GetPartnerProfile - Error","' + batch + '","' + partner_id + '",' + (endTime - startTime) + ',' + endTime + '|');
         return false;
       }
       future.return(data);
-    });
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"GetPartnerProfile","' + batch + '","' + partner_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+    }).bind(undefined, startTime, batch, partner_id));
 
     this.unblock();
     return future.wait();
   },
 
   GetSuggestion: function(searchString,currentTime){
+    var startTime = (new Date()).getTime();
     var stringURL = 'http://apifin.investkit.com/call_controller.php?action=search&option=batch&wild=true&param=' + searchString;
     var future = new Future();
     curTime.withValue(currentTime,function(){
-      var boundFunction = Meteor.bindEnvironment(function(error, data){
+      var boundFunction = Meteor.bindEnvironment((function(startTime, searchString, error, data){
         if ( error ) {
+          var endTime = (new Date()).getTime();
+          console.log('METHODSTAT|"GetSuggestion - HTTP Error",,"' + searchString + '",' + (endTime - startTime) + ',' + endTime + '|');
           future.throw(error);
+          return false;
         }
 
         try {
           data = JSON.parse(data['content']);
         } catch(e) {
           future.throw(e);
+          var endTime = (new Date()).getTime();
+          console.log('METHODSTAT|"GetSuggestion - Parse Error",,"' + searchString + '",' + (endTime - startTime) + ',' + endTime + '|');
           return false;
         }
         var nowTime = curTime.get();
 
         future.return({data: data, time: nowTime});
-      });
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"GetSuggestion",,"' + searchString + '",' + (endTime - startTime) + ',' + endTime + '|');
+      }).bind(undefined, startTime, encodeURIComponent(searchString)));
       Meteor.http.get(stringURL,boundFunction);
     });
     this.unblock();
@@ -661,18 +767,23 @@ Meteor.methods({
 
   listOfListData: function(company_id){
     var future = new Future();
-      var UrlString = 'http://apifin.investkit.com/call_controller.php?action=company_profile&option=indie&call=list_of_lists&param=' + company_id + "&limit=1,10";
+    var startTime = (new Date()).getTime();
+    var UrlString = 'http://apifin.investkit.com/call_controller.php?action=company_profile&option=indie&call=list_of_lists&param=' + company_id + "&limit=1,10";
     // console.log(UrlString);
 
-    Meteor.http.get(UrlString, function(error, data){
+    Meteor.http.get(UrlString, (function(startTime, company_id, error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"listOfListData - Error",,"' + company_id + '",' + (endTime - startTime) + ',' + endTime + '|');
         return false;
       }
-        future.return(data);
-    });
+      future.return(data);
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"listOfListData",,"' + company_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+    }).bind(undefined, startTime, company_id));
 
     this.unblock();
     return future.wait();
@@ -680,6 +791,7 @@ Meteor.methods({
 
 
   GetDirectoryData: function(pageNum, type, query){
+    var startTime = (new Date()).getTime();
     if(query === null){
       var URLString = 'http://apifin.investkit.com/call_controller.php?action=global_page&option=directory&page=' + pageNum + '&type=' + type;
     }else{
@@ -689,15 +801,19 @@ Meteor.methods({
     // console.log('Directory URL', URLString);
 
     var future = new Future();
-    Meteor.http.get(URLString, function(error, data){
+    Meteor.http.get(URLString, (function(startTime, type, pageNum, error, data){
       //Error Code
       if( error ){
-        // console.log(error);
         future.return(error);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"GetDirectoryData - Error","' + pageNum + '","' + type + '",' + (endTime - startTime) + ',' + endTime + '|');
+        return false;
       }
       //Success Code
       future.return(data.data);
-    });
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"GetDirectoryData","' + pageNum + '","' + type + '",' + (endTime - startTime) + ',' + endTime + '|');
+    }).bind(undefined, startTime, type, pageNum));
     this.unblock();
     return future.wait();
   }
