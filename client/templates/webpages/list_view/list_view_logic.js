@@ -16,6 +16,25 @@ Template.list_view.onRendered(function () {
 
 var backgroundStyle="tilewhite";
 Template.list_view.helpers({
+  back_url: function(){
+    var url = Router.current().getParams();
+    if(url.loc_id === '' || typeof url.loc_id == 'undefined' || url.loc_id == null){
+      return Router.pick_path('content.locationprofile',{
+        loc_id: 'National',
+      });
+    }
+    return Router.pick_path('content.locationprofile',{
+      loc_id: url.loc_id,
+    });
+  },
+
+  backProfile: function(){
+    var url = Router.current().getParams();
+    if(url.loc_id === '' || typeof url.loc_id == 'undefined' || url.loc_id == null){
+      return 'National'
+    }
+    return fullstate(url.loc_id);
+  },
   image: function(){
     var params = Router.current().getParams();
     var data = params.loc_id;

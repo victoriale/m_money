@@ -21,6 +21,14 @@ Template.dyk.helpers({
     return info.facts;
   },
 
+  dykCheck: function(){
+    var info = Session.get('did_you_know');
+    if(typeof info == 'undefined' || typeof info.facts == 'undefined'){
+      return '';
+    }
+    return info;
+  },
+
   fact:[
     {
       isLeft: true,
