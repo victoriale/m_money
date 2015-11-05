@@ -205,7 +205,7 @@ Template.daily_update.helpers({
         data.text1 = 'Todays Low';
         data.text2 = 'Todays High';
         data.text3 = 'Previous Close';
-        data.text4 = 'Total Companies';
+        data.text4 = 'Total Public Companies';
 
         data.value1 = data.todays_low;
         data.value2 = data.todays_high;
