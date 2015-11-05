@@ -22,6 +22,13 @@ Template.sector_page.helpers({
     });
   },
 
+  backProfile:function(){
+    var params = Router.current().getParams();
+    var loc = fullstate(params.loc_id);
+    loc = loc.replace(/-/g, ' ');
+    return loc;
+  },
+
   sectorData:function(){
     var data = Session.get('sector_companies');
     if(typeof data == 'undefined'){
@@ -40,7 +47,7 @@ Template.sector_page.helpers({
           data['image'] = "background-image: url('/DMA_images/location-"+ image +".jpg');";
         }
       }
-
+      data['headerDate'] = (new Date(data.companies[0].lcsi_price_last_updated)).toSNTForm();
     $.map(data.companies, function(data,index){
       if(index % 2 == 0){
         data['background'] = 'tilewhite';
@@ -51,6 +58,10 @@ Template.sector_page.helpers({
       data['rank'] = index+1;
       data['url'] = Router.pick_path('content.companyprofile',{
         company_id: data.c_id
+      });
+      data['locurl'] = Router.pick_path('content.locationprofile',{
+        loc_id: data.c_hq_state,
+        city: data.c_hq_city
       });
       data['lcsi_price'] = Number(data['lcsi_price']).toFixed(2);
       data['csi_price_change_since_last'] = Number(data['csi_price_change_since_last']).toFixed(2);

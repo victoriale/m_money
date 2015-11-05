@@ -270,7 +270,10 @@ Template.co_fin_overview.helpers({
     }else{
       company_data.location = '';
     }
-
+    company_data.locurl = Router.pick_path('content.locationprofile',{
+      loc_id:company_data.c_hq_state,
+      city:company_data.c_hq_city,
+    })
     return company_data;
   }
 });
