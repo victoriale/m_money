@@ -150,7 +150,7 @@ var batch_envar = new Meteor.EnvironmentVariable;
 
 // Filter out bot requests
 var seoPicker = Picker.filter(function(req, res) {
-  return true;
+  // return true;
   if ( /bot/.test(req.headers['user-agent']) || /Webmaster/.test(req.headers['user-agent']) || /Bing/.test(req.headers['user-agent']) || /externalhit/.test(req.headers['user-agent']) ) {
     return true;
   }
@@ -180,7 +180,6 @@ seoPicker.route('/favicon.ico',function(params, req, res){
 seoPicker.route('/:ticker/:name/company/:company_id',company_profile);
 seoPicker.route('/:partner_id/:name/:ticker/c/:company_id',company_profile);
 function company_profile(params, req, res){
-  console.log('***Company Profile SSR***');
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
   // Get the data
@@ -200,6 +199,7 @@ function company_profile(params, req, res){
       var data = res_arr;
 
       if ( typeof data.profile_header == "undefined" ) {
+        console.log("SSRSTAT|\"Company Profile - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
         RenderTimeoutError(res);
         return false;
       }
@@ -438,10 +438,10 @@ function company_profile(params, req, res){
 
         // Log how long it took to render the page
         var endTime = (new Date()).getTime();
-        console.log("SSRSTAT|\"Company Profile\",\"" + info.params.company_id + "\"," + (Math.round((endTime - info.startTime)/10)/100) + "," + endTime + "|");
+        console.log("SSRSTAT|\"Company Profile\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch(e) {
-        console.log(e);
+        console.log("SSRSTAT|\"Company Profile - Error\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
         RenderError(res);
       }
     });
@@ -508,7 +508,6 @@ function company_profile(params, req, res){
 seoPicker.route('/:name/:ticker/executive/:exec_id',executive_profile);
 seoPicker.route('/:partner_id/:ticker/:name/e/:exec_id',executive_profile);
 function executive_profile(params, req, res){
-  console.log('***Executive Profile SSR***');
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
   // Get the data
@@ -529,6 +528,7 @@ function executive_profile(params, req, res){
       var data = res_arr;
 
       if ( typeof data.profile_header == "undefined" ) {
+        console.log("SSRSTAT|\"Executive Profile - Timeout\",\"" + info.params.exec_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
         RenderTimeoutError(res);
         return false;
       }
@@ -737,10 +737,10 @@ function executive_profile(params, req, res){
 
         // Log how long it took to render the page
         var endTime = (new Date()).getTime();
-        console.log("SSRSTAT|\"Executive Profile\",\"" + info.params.exec_id + "\"," + (Math.round((endTime - info.startTime)/10)/100) + "," + endTime + "|");
+        console.log("SSRSTAT|\"Executive Profile\",\"" + info.params.exec_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch(e) {
-        console.log(e);
+        console.log("SSRSTAT|\"Executive Profile - Error\",\"" + info.params.exec_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
         RenderError(res);
       }
     });
@@ -785,7 +785,6 @@ function executive_profile(params, req, res){
 seoPicker.route('/:loc_id/:city?/location',location_profile);
 seoPicker.route('/:partner_id/:city?/:loc_id/loc',location_profile);
 function location_profile(params, req, res){
-  console.log('***Location Profile SSR***');
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
   var loc_id = params.loc_id;
@@ -813,6 +812,7 @@ function location_profile(params, req, res){
       var data = res_arr;
 
       if ( typeof data.profile_header == "undefined" ) {
+        console.log("SSRSTAT|\"Location Profile - Timeout\",\"" + info.params.loc_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
         RenderTimeoutError(res);
         return false;
       }
@@ -968,9 +968,10 @@ function location_profile(params, req, res){
 
         // Log how long it took to render the page
         var endTime = (new Date()).getTime();
-        console.log("SSRSTAT|\"Location Profile\",\"" + info.params.loc_id + "\"," + (Math.round((endTime - info.startTime)/10)/100) + "," + endTime + "|");
+        console.log("SSRSTAT|\"Location Profile\",\"" + info.params.loc_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch(e) {
+        console.log("SSRSTAT|\"Location Profile - Error\",\"" + info.params.loc_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
         RenderError(res);
       }
     });
@@ -1039,7 +1040,6 @@ function location_profile(params, req, res){
 seoPicker.route('/:l_name/:list_id/list/:loc_id?',list_page);
 seoPicker.route('/:partner_id/:l_name/:loc_id?/:list_id/list',list_page);
 function list_page(params, req, res){
-  console.log('***List Page SSR***');
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
   if ( typeof params.loc_id != "undefined" ) {
@@ -1130,9 +1130,10 @@ function list_page(params, req, res){
 
         // Log how long it took to render the page
         var endTime = (new Date()).getTime();
-        console.log("SSRSTAT|\"List Page\",\"" + info.params.exec_id + "\"," + (Math.round((endTime - info.startTime)/10)/100) + "," + endTime + "|");
+        console.log("SSRSTAT|\"List Page\",\"" + info.params.list_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch(e) {
+        console.log("SSRSTAT|\"List Page - Error\",\"" + info.params.list_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         RenderError(res);
       }
     });
