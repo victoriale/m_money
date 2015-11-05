@@ -15,6 +15,24 @@ Template.co_board_committee.onRendered(function(){
 
 var backgroundStyle="tilewhite";
 Template.co_board_committee.helpers({
+  //Helper to return to company profile page
+  backToComp: function(){
+    var params = Router.current().getParams();
+
+    return Router.pick_path('content.companyprofile', {
+      company_id: params.company_id,
+      name: params.name,
+      ticker: params.ticker
+    });
+  },
+
+  backProfile: function(){
+    var params = Router.current().getParams();
+    var company = params.name;
+    company = company.replace(/-/g, ' ');
+    return company;
+  },
+
   image: function(){
     var data = Session.get('profile_header');
     if(typeof data == 'undefined'){
@@ -28,7 +46,6 @@ Template.co_board_committee.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
-
     return data.c_name;
   },
 
@@ -48,8 +65,7 @@ Template.co_board_committee.helpers({
       return '';
     }
     $.map(list,function(data, index){
-      data['o_last_updated'] = data['o_last_updated'].split(' ')[0];
-      data['o_last_updated'] = data['o_last_updated'].replace(/-/g, '/');
+      data['o_last_updated'] = (new Date(data['o_last_updated'])).toSNTForm();
 
       if(typeof data['compensation'] == 'undefined'){
         data['compensation'] = {};
@@ -84,8 +100,7 @@ Template.co_board_committee.helpers({
       return '';
     }
     list[count]['image'] = image.c_logo;
-    list[count]['o_last_updated'] = list[count]['o_last_updated'].split(' ')[0];
-    list[count]['o_last_updated'] = list[count]['o_last_updated'].replace(/-/g, '/');
+    list[count]['o_last_updated'] = (new Date(list[count]['o_last_updated'])).toSNTForm();
 
     list[count]['url'] = Router.pick_path('content.executiveprofile',{
       fname:list[count].o_first_name,

@@ -18,7 +18,7 @@ Associated Files: sector_page_logic.js and sector_page.less
         <div class="abus-bkbx">
           <div class="abus-bkbx-bx"><i class="fa fa-reply"></i></div>
           <div class="abus-bkbx-tgl"></div>
-          <div class="abus-bkbx-txt">Go Back</div>
+          <div class="abus-bkbx-txt">Go Back to {{backProfile}} Profile</div>
         </div>
       </a>
       <div class="list_vw_header">
@@ -33,7 +33,7 @@ Associated Files: sector_page_logic.js and sector_page.less
         <div class="list_vw-tc">
           <!-- class date has all the font-weight and font specific !-->
           <div class="list_vw-date">
-            LAST UPDATED: {{companies.newDate}}
+            Last Updated: {{headerDate}}
           </div>
           <!--specified font style for location !-->
           <div class="list_vw-loc_st">
@@ -92,7 +92,7 @@ Associated Files: sector_page_logic.js and sector_page.less
               <span class="list_vw-m_c-dp-itl list_vw-m_c-dp-dpct">is currently priced at: <br></span>
               <span class="list_vw-m_c-dp-itl">${{lcsi_price}} </span>
               <span class="list_vw-m_c-dp-itl list_vw-m_c-dp-it4"> <i class="fa {{changeIcon csi_price_change_since_last}}" style="color:{{changeColor csi_price_change_since_last}}"></i></span>
-              <span class="list_vw-m_c-dp-itl list_vw-m_c-dp-it5" style="color:{{changeColor csi_price_change_since_last}}">{{csi_price_change_since_last}}({{csi_percent_change_since_last}}%) </span>
+              <span class="list_vw-m_c-dp-itl list_vw-m_c-dp-it5" style="color:{{changeColor csi_price_change_since_last}}">{{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%) </span>
             </div>
           </li>
         </ul>
@@ -146,21 +146,29 @@ Associated Files: sector_page_logic.js and sector_page.less
       <div class="list_vw-{{background}}"><br>
         <!--This is the main (circle) image-->
         <div class="list_vw-head-circ">
-          <div class="list_vw-head-image" style="background:url('{{imageUrl c_logo}}')">
-            <!-- Here displays the counter number which is a result of each loop-->
-            <span class="list_vw-counter">#{{rank}}</span>
-            <span class="list_vw-counter2" style="background-image:url('{{exchange c_exchange}}')"></span>
-          </div>
+          <a href="{{url}}">
+            <div class="list_vw-head-image" style="background:url('{{imageUrl c_logo}}')">
+              <div class="hover">
+                <div class="hover-txt1">View</div>
+                <div class="hover-txt2">Profile</div>
+              </div>
+              <!-- Here displays the counter number which is a result of each loop-->
+              <span class="list_vw-counter">#{{rank}}</span>
+              <span class="list_vw-counter2" style="background-image:url('{{exchange c_exchange}}')"></span>
+            </div>
+          </a>
         </div>
         <!--Location title -->
         <div class="list_vw-sp">
           <div  class="list_vw-space">
             <!-- This displays the font awesome map sybmol infornt of the united states-->
             <a href="{{locurl}}">
-              <i class="fa fa-map-marker"></i>
-              <span  class="list_vw-space list_vw-space2">
-                {{c_hq_state}}, {{c_hq_city}}
-              </span>
+              <a href="{{locurl}}">
+                <i class="fa fa-map-marker"></i>
+                <span  class="list_vw-space list_vw-space2">
+                  {{c_hq_state}}, {{c_hq_city}}
+                </span>
+              </a>
             </a>
             <!-- Here displays the description which come from the each loop-->
             <div class="list_vw-adjust">{{ c_name }}</div>

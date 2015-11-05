@@ -23,3 +23,100 @@
   .button;
   font-size: 1.2em;
 }
+
+.module-footer {
+  // wrapper for the module footer
+  text-align: center;
+  height: 35px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background: -webkit-linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  background: -moz-linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(0deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  // *************************** BUTTON FOR BOTTOM OF module **************************************
+  /*
+  <div class="module-footer" >
+    <!-- can be removed if not in template -->
+    <a href="{{WholeListURL}}"><button class="module-footer-button-2" id="homesforsale_wholelist">
+      <div class="module-footer-button-logo"></div>
+      <div class="module-footer-button-text"><span style="padding-right:10px">See The List</span><i class="fa fa-angle-right"></i></div>
+    </button></a>
+    <!-- END -->
+  </div>
+  */
+  &-button {
+    &-1{
+      margin: 0 auto;
+      vertical-align: bottom;
+      text-align: center;
+      background-color: @blue;
+      width: 225px;
+      height: 35px;
+      position: relative;
+      z-index: 5;
+      border-radius: 5px 5px 0 0;
+      border-style: none;
+      color:@white;
+      font-size:14px;
+      &:hover{
+        background-color: @grey-5;
+      }
+    }
+    &-2{
+      margin: 0 auto;
+      vertical-align: bottom;
+      text-align: center;
+      background-color: @blue;
+      width: 180px;
+      height: 35px;
+      position: relative;
+      z-index: 5;
+      border-radius: 5px 5px 0 0;
+      border-style: none;
+      color:@white;
+      font-size:15px;
+      font-family: HN-B;
+      &:hover{
+        background-color: @grey-5;
+      }
+    }
+    &-3{
+      margin: 0 auto;
+      vertical-align: bottom;
+      text-align: center;
+      background-color: @blue;
+      width: 225px;
+      height: 35px;
+      position: relative;
+      z-index: 5;
+      border-radius: 5px 5px 0 0;
+      border-style: none;
+      color:@white;
+      font-size:14px;
+      &:hover{
+        background-color: @grey-5;
+      }
+    }
+    &-logo{
+      width:25px;
+      height:25px;
+      background-image: @button-icon;
+      background-size: contain !important;
+      background-position: center center !important;
+      background-repeat: no-repeat;
+      position: absolute;
+      margin:4px 4px 4px 0;
+    }
+    &-text{
+      position: relative;
+      font-size: 15px;
+      left:8%;
+      color:@white;
+      padding: 6px 0;
+    }
+  }
+}
+  // *************************** END BUTTON FOR BOTTOM OF module **************************************

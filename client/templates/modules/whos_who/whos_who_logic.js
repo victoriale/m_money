@@ -1,10 +1,24 @@
 /* Author: [jyothyswaroop]
 Created: [10/6/2015]
 Description: [Finance : Whos_Who_logic.js Page Module] */
+
+Template.new_whos_who.onCreated(function(){
+  var counter = 0;
+  Session.set("whos_count",counter);
+})
+
+
+
+
+
+
+
+
+
+
 Template.whos_who.onCreated(function(){
   var counter = 0;
   Session.set("whos_count",counter);
-
   /*
   */
 })

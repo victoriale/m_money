@@ -11,6 +11,13 @@ Template.list_of_list_loc_page.onCreated(function () {
 });
 
 Template.list_of_list_loc_page.helpers({
+  goBack:function(){
+    var params = Router.current().getParams();
+
+    return Router.pick_path('content.locationprofile', {
+      loc_id:params.loc_id,
+    });
+  },
 
   listsData: function(){
     var list = Session.get('list_of_lists');
@@ -23,6 +30,9 @@ Template.list_of_list_loc_page.helpers({
       }else{
         data['index_color'] = '#ffffff';
       }
+      data.locurl = Router.pick_path('content.locationprofile',{
+        loc_id:'National',
+      });
       //create URL before shifting array
       $.map(data['top_list_list'], function(data, index){
         data['url'] = Router.pick_path('content.companyprofile',{
