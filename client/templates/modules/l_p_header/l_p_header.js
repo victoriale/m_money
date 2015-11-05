@@ -55,7 +55,7 @@ Template.lp_body.helpers({
     return Router.pick_path('content.executivelocation',{
       loc_id: params.loc_id
     })
-  }
+  },
 
   marketUrl: function(c_loc){
     var params = Router.current().getParams();
