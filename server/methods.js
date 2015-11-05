@@ -108,7 +108,7 @@ Meteor.methods({
     // console.log(UrlString);
 
     curloc_id.withValue(batchNum, function(){
-      Meteor.http.get(UrlString, Meteor.bindEnvironment((function(error, data){
+      Meteor.http.get(UrlString, Meteor.bindEnvironment((function(startTime,batchNum,loc_id,error, data){
         data.content = data.content.toString().replace(/^[^{]*/,function(a){ return ''; });
         var batch = curloc_id.get();
         try{
@@ -447,11 +447,22 @@ Meteor.methods({
     // console.log("New Sector Data",loc_id);
 
     //random number to pick random list in list_index that's in database
-    //param={list_index} , {location/DMA}
-    var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=sector_companies&state="+ loc_id+"&param="+sector;
-    // console.log(UrlString);
+    //console.log(loc_id, sector);
+    if(loc_id === 'National'){
+      // console.log('national call');
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=sector_companies";
+    }else if(isNaN(loc_id)){
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=sector_companies&state="+ loc_id;
+    }else{
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=sector_companies&dma="+ loc_id;
+    }
 
-    Meteor.http.get(UrlString, (function(startTime, sector, loc_id, error, data){
+    if(sector != null && typeof sector != 'undefined' && sector != ''){
+      UrlString +="&param="+sector;
+    }
+    UrlString += "&page=1&per_page=1000";
+    //console.log(UrlString);
+    Meteor.http.get(UrlString, (function(error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {

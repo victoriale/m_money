@@ -33,6 +33,7 @@ Template.lp_body.helpers({
     return data;
   }
 });
+
 Template.lp_head.helpers({
   image: function(){
     var data = Session.get('loc_id');
@@ -48,20 +49,21 @@ Template.lp_head.helpers({
       }
     }
   },
+
 });
 Template.lp_body.helpers({
-  execUrl: function(c_loc){
+  execUrl: function(){
     var params = Router.current().getParams();
     return Router.pick_path('content.executivelocation',{
       loc_id: params.loc_id
     })
   },
 
-  marketUrl: function(c_loc){
+  compUrl: function(){
     var params = Router.current().getParams();
-    return Router.pick_path('content.totalmarketcap',{
+    return Router.pick_path('content.sector',{
       loc_id: params.loc_id
     })
-  }
+  },
 
 });

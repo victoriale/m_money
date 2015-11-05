@@ -57,6 +57,8 @@ Template.sector_page.helpers({
       data['newDate'] = (new Date(data.lcsi_price_last_updated)).toSNTForm();
       data['rank'] = index+1;
       data['url'] = Router.pick_path('content.companyprofile',{
+        ticker:data.c_ticker,
+        name:compUrlName(data.c_name),
         company_id: data.c_id
       });
       data['locurl'] = Router.pick_path('content.locationprofile',{
@@ -87,6 +89,8 @@ Template.sector_page.helpers({
       data['newDate'] = (new Date(data.lcsi_price_last_updated)).toSNTForm();
       data['rank'] = index+1;
       data['url'] = Router.pick_path('content.companyprofile',{
+        ticker:data.c_ticker,
+        name:compUrlName(data.c_name),
         company_id: data.c_id
       });
       data['lcsi_price'] = Number(data['lcsi_price']).toFixed(2);
