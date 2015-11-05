@@ -242,8 +242,8 @@ Template.co_fin_overview.helpers({
     company_data.csi_pe_ratio = (Number(company_data.csi_pe_ratio)).toFixed(2);
 
     //Transform dates
-    company_data.csi_price_last_updated = moment(company_data.csi_price_last_updated).tz('America/New_York').format('dddd MM/DD/YYYY hh:mm A') + ' EST';
-    company_data.c_tr_last_updated = moment(company_data.c_tr_last_updated).tz('America/New_York').format('MM/DD/YYYY');
+    company_data.csi_price_last_updated = (new Date(company_data.csi_price_last_updated)).toSNTFormTime();
+    company_data.c_tr_last_updated = (new Date(company_data.c_tr_last_updated)).toSNTForm();
 
     company_data.share_company_url =  "https://www.facebook.com/sharer/sharer.php?u=" + Router.pick_path('content.companyprofile', {company_id: company_data.c_id, name: company_data.c_name, ticker: company_data.c_ticker});
     company_data.share_company_fin_overview_url = "https://www.facebook.com/sharer/sharer.php?u=" + Router.pick_path('content.finoverview', {company_id: company_data.c_id, name: company_data.c_name, ticker: company_data.c_ticker});
@@ -295,11 +295,12 @@ function reformatFinancialOverviewData(){
     //Transform date
     var date = moment(item.sh_date).format('X') * 1000;
     //Build point array
-    var point = [date, Number(item.sh_close)]
-    //Push point array to data set
-    highchartsData.push(point);
+    if(!isNaN(date)){
+      var point = [date, Number(item.sh_close)]
+      //Push point array to data set
+      highchartsData.push(point);
+    }
   })
-
   data.highchartsData = highchartsData;
 
   Session.set('new_fin_overview', data);
