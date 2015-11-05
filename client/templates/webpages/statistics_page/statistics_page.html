@@ -156,7 +156,7 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                     </div>
                     <div class="stat-btm-data-graph-lst"> <!--functions as sort of a key to the graph on its right-->
                       {{#each getGraphTable}}
-                        <div class="stat-btm-data-graph-lst-itm{{getGrey}} stat-pr">
+                        <a href="{{sectUrl}}"><div class="stat-btm-data-graph-lst-itm{{getGrey}} stat-pr">
                           <div style="width:5px;height:100%;background-color:{{color}}"></div>
                           <div class="stat-btm-data-graph-lst-s stat-pa">
                             {{name}} <!--corresponds to sector name-->
@@ -164,7 +164,7 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                           <div class="stat-btm-data-graph-lst-n stat-pa stat-b">
                             {{y}}% <!--corresponds to net percent-->
                           </div>
-                        </div>
+                        </div></a>
                       {{/each}}
                     </div>
                     <div class="stat-btm-data-graph-grad stat-pa"></div> <!--a gradient that adds a fading effect to the list above-->
