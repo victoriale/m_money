@@ -15,7 +15,7 @@ Associated Files: list_view_logic.js and list_view.less
         <div class="abus-bkbx">
           <div class="abus-bkbx-bx"><i class="fa fa-reply"></i></div>
           <div class="abus-bkbx-tgl"></div>
-          <div class="abus-bkbx-txt">Go Back</div>
+          <div class="abus-bkbx-txt">Go Back to {{back_url}} Profile</div>
         </div>
       </a>
       <!--dimensions for the circle container as ('cir-d') !-->
@@ -32,15 +32,17 @@ Associated Files: list_view_logic.js and list_view.less
         <div class="list_vw-tc">
           <!-- class date has all the font-weight and font specific !-->
           <div class="list_vw-date">
-            LAST UPDATED: 06/24/2015, 8:00 AM EST
+            Last Updated: {{newDate}}
           </div>
           <!--specified font style for location !-->
           <div class="list_vw-loc_st">
-            <i class="fa fa-map-marker"></i>
-            <!--specified font style for the state name !-->
-            <span class="list_vw-loc_st">
-              United States
-            </span>
+            <a href="/National/location">
+              <i class="fa fa-map-marker"></i>
+              <!--specified font style for the state name !-->
+              <span class="list_vw-loc_st">
+                United States
+              </span>
+            </a>
           </div>
           <!-- specified font sytle for the stock disclaimer !-->
           <div class="list_vw-loc_st list_vw-disc">
@@ -63,12 +65,20 @@ Associated Files: list_view_logic.js and list_view.less
         <!-- end of the module.less navigation button -->
         <!-- wrapper class-->
         <div class="list_vw-m_c-image-wr">
-          <div class="list_vw-m_c-image" style="background-image:url('{{imageUrl c_logo}}')">
-            <div class="list_vw-m_c-sma_ct">
-            <div class="list_vw-m_c-sma_cr" style="background-image:url('{{exchange c_exchange}}')">
+          <a href="{{url}}">
+            <div class="list_vw-m_c-image" style="background-image:url('{{imageUrl o_pic}}')">
+              <div class="hover" style="line-height:3em;text-align:center;">
+                <div class="hover-txt1">View</div>
+                <div class="hover-txt2">Profile</div>
+              </div>
+              <div class="list_vw-m_c-sma_ct">
+                <a href="{{compurl}}">
+                  <div class="list_vw-m_c-sma_cr" style="background-image:url('{{imageUrl c_logo}}')">
+                  </div>
+                </a>
+              </div>
             </div>
-          </div>
-          </div>
+          </a>
         </div>
         <!-- the main container -->
         <ul class="list_vw-m_c-cr">
@@ -160,7 +170,9 @@ Associated Files: list_view_logic.js and list_view.less
                 </div>
                 <!-- Here displays the counter number which is a result of each loop-->
                 <span class="list_vw-counter">#{{rank}}</span>
-                <span class="list_vw-counter2" style="background-image:url('{{imageUrl c_exchange}}')"></span>
+                <a href="{{compurl}}">
+                  <span class="list_vw-counter2" style="background-image:url('{{imageUrl c_logo}}')"></span>
+                </a>
               </div>
             </a>
           </div>
@@ -169,7 +181,7 @@ Associated Files: list_view_logic.js and list_view.less
             <div  class="list_vw-space">
               <!-- This displays the font awesome map sybmol infornt of the united states-->
               <i class="fa fa-map-marker"></i>
-              <a href="{{locUrl}}">
+              <a href="{{compurl}}">
                 <span  class="list_vw-space list_vw-space2">
                   {{c_name}}
                 </span>
