@@ -56,7 +56,34 @@ Meteor.methods({
     this.unblock();
     return future.wait();
   },
+  GetLocationPage: function(loc_id, option) {
+    var future = new Future();
+    console.log("New Location Request",loc_id);
+    if(loc_id === 'National'){
+      console.log('national call');
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option="+option;
+    }else if(isNaN(loc_id)){
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option="+option+"&state="+loc_id;
+    }else{
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option="+option+"&dma="+loc_id;
+    }
+    console.log(UrlString);
 
+    Meteor.http.get(UrlString, function(error, data){
+      try{
+        data = JSON.parse(data['content']);
+      } catch (e) {
+        console.log("ERROR ON ",option);
+        future.throw(e);
+        return false;
+      }
+        console.log("Got Data!", option);
+        future.return(data);
+    });
+
+    this.unblock();
+    return future.wait();
+  },
   GetLocationData: function(loc_id, batchNum) {
     var future = new Future();
     // console.log("New Company Request",loc_id,batchNum);
