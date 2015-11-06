@@ -8,676 +8,582 @@ Associated Files: exec_stock_hold.html, exec_stock_hold.less, exec_stock_hold.js
 @import (reference)"../global_vars.less";
 @import (reference)"../modules.less";
 
-.esh
-{
-    &-pr //esh-pr
-    {
-        position: relative;
-    }
-    &-pa //esh-pa
-    {
-        position: absolute;
-    }
+.exsh { //Begin .exsh
+  position: relative;
+  margin: 20px;
+  width: 680px;
+  height: 100;
+  text-align: left;
+  background-color: @white;
 
-    &-b //esh-b: bold text
-    {
-        font-style: normal;
-        font-family: HN-B;
-    }
+  &-txtck { // .exsh-txtck
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  } // .exsh-txtck
 
-    &-n //esh-n: normal text
-    {
-        font-style: normal;
+  &-cA { // .exsh-cA
+    width: 680px;
+    height: 50px;
+    background-color:  #000000;
+    background-image: url("/header_texture.png");
+    &-cl { // .exsh-cA-cl
+      width: 76px;
+      height: 50px;
+      float: left;
+      &-bx { // .exsh-cA-cl-bx
+        width: 60px;
+        height: 50px;
+        padding-top: 11px;
+        padding-left: 15px;
+        background-color: @blue;
+        float:left;
+        .fa { // .exsh-cA-cl-bx .fa
+          font-size: 30px;
+          color:@white;
+        } // .exsh-cA-cl-bx .fa
+      } // .exsh-cA-cl-bx
+      &-tgl { // .exsh-cA-cl-tgl
+        width: 0;
+        height: 0;
+        border-top: 25px solid transparent;
+        border-left: 15px solid @blue;
+        border-bottom: 25px solid transparent;
+        float:left;
+      } // .exsh-cA-cl-tgl
+    } // .exsh-cA-cl
+    &-cr { // .exsh-cA-cr
+      margin-top: 15px;
+      margin-left:15px;
+      width: 565px;
+      height: 21px;
+      float:left;
+      font-family: HN-L;
+      color:@white;
+      font-size: 19px;
+      line-height: 19px;
+      b { // .exsh-cA-cr b
         font-family: HN;
-    }
+      } // .exsh-cA-cr b
+    } // .exsh-cA-cr
+  } // .exsh-cA
 
-    &-l //esh-n: light text
-    {
-        font-style: normal;
+  &-cB { // .exsh-cB
+    width: 680px;
+    height: 130px;
+    padding: 15px;
+    &-cl { // .exsh-cB-cl
+      width: 100px;
+      height: 100px;
+      background-color: white;
+      float:left;
+      &-img { // .exsh-cB-cl-img
+        border-radius: 50%;
+        border-width: 2px;
+        border-color:  #cccccc;
+        border-style: solid;
+        background-color:  #ffffff;
+        width: 100px;
+        height: 100px;
+        background-size: cover !important;
+        background-position: center center !important;
+      } // .exsh-cB-cl-img
+    } // .exsh-cB-cl
+    &-cr { // .exsh-cB-cr
+      float:left;
+      width: 550px;
+      height: 100px;
+      padding-left: 15px;
+      margin: 0px;
+      &-ct { // .exsh-cB-cr-ct
+        width: 100%;
+        height: 26px;
         font-family: HN-L;
-    }
+        color:  #838383;
+        font-size: 10px;
+        line-height: 10px;
+        text-transform: uppercase;
+      }  // .exsh-cB-cr-ct
+      &-cb { // .exsh-cB-cr-cb
+        margin: 0px;
+        width: 100%;
+        height: 40px;
+        h3 { // .exsh-cB-cr-cb h3
+          margin: 0px;
+          color:  #000000;
+          font-size: 12px;
+          font-family: HN;
+          max-width: 500px;
+        }  // .exsh-cB-cr-cb h3
+        h1 { // .exsh-cB-cr-cb h1
+          margin: 0px;
+          color:  #000000;
+          font-size: 27px;
+          font-family: HN-B;
+          line-height: 27px;
+          margin-top: 0px;
+          max-width: 500px;
+        } // .exsh-cB-cr-cb h1
+        h2 {  // .exsh-cB-cr-cb h2
+          margin: 0px;
+          color:  #000000;
+          font-size: 27px;
+          font-family: HN;
+          max-width: 500px;
+        }  // .exsh-cB-cr-cb h2
+      } // .exsh-cB-cr-cb
+    } // .exsh-cB-cr
+  } // .exsh-cB
 
-    &-grn //esh-grn: grn
-    {
-        color: @green;
-        font-style: normal;
-        font-family: HN-B;
-    }
-
-    &-blue //esh-blue
-    {
-        font-style: normal;
-        color: @blue;
-        font-family: HN-B;
-    }
-
-    &-black //esh-black
-    {
-        font-family: HN-B;
-        color: @black;
-        font-style: normal;
-    }
-
-    &-i //esh-i
-    {
-        font-style: italic;
-    }
-
-    &-page //esh-page
-    {
-        width: 680px;
-        height: auto;
-        background-color: @white;
-        color: @black;
-    }
-
-    &-top //esh-top
-    {
-        width: 680px;
-        height: 140px;
-
-        &-circle //esh-circle
-        {
-            border-radius: 50%;
-            border: 2px solid @grey-2;
-            width: 100px;
-            height: 100px;
-            top: 20px;
-            left: 20px;
-
-            &-btn //esh-circle-btn
-            {
-                border-radius: 50%;
-                width: 35px;
-                height: 35px;
-                background-color: @blue;
-                left: -8px;
-                color: @white;
-                text-align: center;
-                padding-top: 7px;
-            }
-        }
-
-        &-txt1 //esh-top-txt1
-        {
-            font-size: 10px;
-            color: #959595;
-            left: 128px;
-            top: 16px;
-        }
-
-        &-txt2 //esh-top-txt2
-        {
-            font-size: 12px;
-            left: 128px;
-            top: 43px;
-        }
-
-        &-txt3 //esh-top-txt3
-        {
-            font-size: 22px;
-            left: 128px;
-            top: 59px;
-        }
-
-        &-txt4 //esh-top-txt4
-        {
-            font-size: 22px;
-            left: 128px;
-            top: 87px;
-        }
-    }
-
-    &-mid //esh-mid: the section that goes black-grey-black
-    {
-        width: 680px;
-        height: 360px;
-        background-image: @dark-linen;
+  &-cC { // .exsh-cC
+    width: 680px;
+    height: 360px;
+    background-image: @dark-linen;
+    color: @white;
+    &-ct { // .exsh-cC-ct
+      background-color:  #000000;
+      width: 680px;
+      height: 35px;
+      &-cl { // .exsh-cC-ct-cl
+        height:35px;
         color: @white;
+        font-size: 16px;
+        text-align: left;
+        position: relative;
+        float: left;
+        padding: 6px;
+        padding-left: 15px;
+        padding-right: 20px;
+        border-right: 1px solid #363636;
+        max-width: 480px;
+      } // .exsh-cC-ct-cl
+      &-cr { // .exsh-cC-ct-cr
+        float: left;
+        height:35px;
+        max-width: 200px;
+        a { // .exsh-cC-ct-cr a
+          color: @white;
+          border: none;
+          text-align: center;
+          float: left;
+          line-height: 35px;
+          height:35px;
+          width:85px;
+          margin-right: 8px;
+          font-family: HN-L;
+          left: 28px;
+          cursor: pointer;
+          .fa{  // .exsh-cC-ct-cr a .fa
+            margin-right: 10px;
+            color: @white;
+          }  // .exsh-cC-ct-cr a .fa
+        }  // .exsh-cC-ct-cr a
+      }  // .exsh-cC-ct-cr
+    } // .exsh-cC-ct
+    &-cm { // .exsh-cC-cm
+      width: 680px;
+      height: 249px;
+      &-cl { // .exsh-cC-cm-cl
+        float:left;
+        padding-top: 84px;
+        width:40px;
+        height: 249px;
+        &-btn { // .exsh-cC-cm-cl-btn
+          cursor: pointer;
+          background-color: @black;
+          width: 40px;
+          height: 80px;
+          border: solid 1px @black;
+          margin: 0;
+          z-index: 5; // makes sure the button is on top of the content
+          padding: 0; // when a button needed to keep fa in correct spot
 
-        &-top //esh-mid-top
-        {
-            background-color: @black;
-            height: 35px;
-            width: 680px;
+          font-size: 30px;
+          text-align: left;
+          color: @white;
 
-            &-txt1 //esh-mid-top-txt1
-            {
-              font-size: 16px;
-              border-right: 1px solid #363636;
-              padding: 5px 14px;
+          border-radius: ~"100%/50%";
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          &:hover {  // .exsh-cC-cm-cl-btn:hover
+            background-color: @blue;
+            border-color: @blue;
+          } // .exsh-cC-cm-cl-btn:hover
+
+          &:active { // .exsh-cC-cm-cl-btn:active
+            background-color: @grey-4;
+            border-color: @blue;
+          }  // .exsh-cC-cm-cl-btn:active
+
+          .fa { // .exsh-cC-cm-cl-btn .fa
+            float: left;
+            position: relative;
+            left: 2.5px;
+            top: ~"calc(50% - 15px)";
+            margin-left: 10px;
+            text-shadow: -3px 0 #404040, 0 3px #404040, 3px 0 #404040, 0 -3px #404040, 1.5px 1.5px #404040, 1.5px -1.5px #404040;
+          } // .exsh-cC-cm-cl-btn .fa
+        } // .exsh-cC-cm-cl-btn
+      } // .exsh-cC-cm-cl
+      &-cm { // .exsh-cC-cm-cm
+        float:left;
+        width:600px;
+        height: 180px;
+        margin-top:34px;
+        &-cl { // .exsh-cC-cm-cm-cl
+          float:left;
+          width:195px;
+          height:180px;
+          padding-left: 15px;
+          &-img { // .exsh-cC-cm-cm-cl-img
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 3px solid @grey-2;
+            background-color: @white;
+            background-size: cover !important;
+            background-position: center center !important;
+          } // .exsh-cC-cm-cm-cl-img
+        } // .exsh-cC-cm-cm-cl
+        &-cm { // .exsh-cC-cm-cm-cm
+          float:left;
+          width:40px;
+          height:180px;
+          &-icon { // .exsh-cC-cm-cm-cm-icon
+            border-radius: 50%;
+            background-color: @blue;
+            width: 40px;
+            height: 40px;
+            padding-top: 7px;
+            padding-left: 2px;
+            color:@white;
+            font-size: 20px;
+            text-align: center;
+          } // .exsh-cC-cm-cm-cm-icon
+          &-line { // .exsh-cC-cm-cm-cm-line
+            margin-top: 26px;
+            margin-left: 20px;
+            width: 2px;
+            height: 101px;
+            background-color: @white;
+          } // .exsh-cC-cm-cm-cm-line
+        } // .exsh-cC-cm-cm-cm
+        &-cr { // .exsh-cC-cm-cm-cr
+          float:left;
+          width:365px;
+          height:173px;
+          overflow:hidden;
+          &-ct { // .exsh-cC-cm-cm-cr-ct
+            padding-left: 16px;
+            &-ct {  // .exsh-cC-cm-cm-cr-ct-ct
+              font-size: 22px;
               max-width: 400px;
-              height: 35px;
-              float: left;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              white-space: nowrap;
-            }
 
-            &-txt2 //esh-mid-top-txt2
-            {
-                margin: 0px 15px;
-                width: 56px;
+            } // .exsh-cC-cm-cm-cr-ct-ct
+            &-cb { // .exsh-cC-cm-cm-cr-ct-cb
+              font-size: 14px;
+              a {  // .exsh-cC-cm-cm-cr-ct-cb a
+                color: @white;
+                text-align: left;
                 float: left;
-                padding-top: 7px;
-                font-size: 14px;
-            }
-        }
+                width:85px;
+                margin-right: 8px;
+                font-family: HN-L;
+                cursor: pointer;
+                .fa{ // .exsh-cC-cm-cm-cr-ct-cb a .fa
+                  margin-right: 10px;
+                  color: @white;
+                } // .exsh-cC-cm-cm-cr-ct-cb a .fa
+              } // .exsh-cC-cm-cm-cr-ct-cb a
+            } // .exsh-cC-cm-cm-cr-ct-cb
+          } // .exsh-cC-cm-cm-cr-ct
+          &-cb { // .exsh-cC-cm-cm-cr-cb
+            padding-top:12px;
+            clear: left;
+            font-size: 16px;
+            line-height: 18px;
+            font-family: HN-L;
+          } // .exsh-cC-cm-cm-cr-cb
+        } // .exsh-cC-cm-cm-cr
+      } // .exsh-cC-cm-cm
+      &-cr { // .exsh-cC-cm-cr
+        float:right;
+        padding-top: 84px;
+        width:40px;
+        height: 249px;
+        &-btn { // .exsh-cC-cm-cr-btn
+          cursor: pointer;
+          background-color: @black;
+          width: 40px;
+          height: 80px;
+          border: solid 1px @black;
+          margin: 0;
+          z-index: 5; // makes sure the button is on top of the content
+          padding: 0; // when a button needed to keep fa in correct spot
 
-        &-mid //esh-mid-mid: the grey section
-        {
-            top: 35px;
-            width: 680px;
-            height: 249px;
+          font-size: 30px;
+          text-align: left;
+          color: @white;
 
-            &-l //esh-mid-mid-l
-            {
-                margin-left: 15px !important;
-            }
+          border-radius: ~"100%/50%";
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
 
-            &-r //esh-mid-mid-r
-            {
-                margin-right: 15px !important;
-            }
+          &:hover { // .exsh-cC-cm-cr-btn:hover
+            background-color: @blue;
+            border-color: @blue;
+          } // .exsh-cC-cm-cr-btn:hover
 
-            &-circle //esh-mid-mid-circle
-            {
-                border-radius: 50%;
-                width: 180px;
-                height: 180px;
-                border: 3px solid @grey-2;
-                background-color: @white;
-                left: 55px;
-                top: 34px;
-            }
+          &:active { // .exsh-cC-cm-cr-btn:active
+            background-color: @grey-4;
+            border-color: @blue;
+          } // .exsh-cC-cm-cr-btn:active
 
-            &-building //esh-mid-mid-building
-            {
-                border-radius: 50%;
-                background-color: @blue;
-                width: 40px;
-                height: 40px;
-                left: 235px;
-                top: 32px;
-                padding-top: 10px;
-                padding-left: 13px;
-            }
+          .fa { // .exsh-cC-cm-cr-btn .fa
+            position: relative;
+            left: 2.5px;
+            top: ~"calc(50% - 15px)";
+            float: right;
+            margin-right: 10px;
+            left: -2.5px;
+            text-shadow: -3px 0 #404040, 0 3px #404040, 3px 0 #404040, 0 -3px #404040, -1.5px 1.5px #404040, -1.5px -1.5px #404040;
+          } // .exsh-cC-cm-cr-btn .fa
+        } // .exsh-cC-cm-cr-btn
+      } // .exsh-cC-cm-cr
+    } // .exsh-cC-cm
+    &-cb { // .exsh-cC-cb
+      height: 76px;
+      width: 680px;
+      background-color:  rgba(0, 0, 0, 0.75);
+      padding-top: 18px;
+      padding-left: 20px;
+      overflow: hidden;
+      &-cl { // .exsh-cC-cb-cl
+        float: left;
+        h1 { // .exsh-cC-cb-cl h1
+          margin:0px;
+          font-size: 17px;
+          line-height: 20px;
+          max-width: 450px;
+          margin-bottom: 5px;
+        } // .exsh-cC-cb-cl h1
+        h2 { // .exsh-cC-cb-cl h2
+          margin: 0px;
+          font-size: 14px;
+        } // .exsh-cC-cb-cl h2
+      } // .exsh-cC-cb-cl
+      &-cr { // .exsh-cC-cb-cr
+        float: right;
+        margin-right: 10px;
+        margin-top: 5px;
+        &-btn { // .exsh-cC-cm-cr-btn
+          background-color: @blue;
+          border-radius: 5px;
+          width: 180px;
+          height: 35px;
+          font-size: 14px;
+          text-align: center;
+          padding-top: 7px;
+          cursor: pointer;
+          color:@white;
+        }  // .exsh-cC-cb-cr-btn
+      }  // .exsh-cC-cb-cr
+    } // .exsh-cC-cb
+  } // .exsh-cC
+  &-cD { // .exsh-cD
+    width:650px;
+    height: 48px;
+    margin-left: 15px;
+    margin-right: 15px;
+    border-bottom: 1px solid @grey-2;
+    &-cl { // .exsh-cD-cl
+      float:left;
+      width:400px;
+      padding-top: 15px;
+      font-size: 18px;
+      max-width: 400px;
 
-            &-txt1 //esh-mid-mid-txt1
-            {
-                font-size: 22px;
-                top: 30px;
-                left: 291px;
-                width: 380px;
-                height: 31px;
-                overflow: hidden;
-            }
+    } // .exsh-cD-cl
+    &-cr { // .exsh-cD-cr
+      float:right;
+      width:250px;
+      padding-top: 22px;
+      font-size: 12px;
+      color: #959595;
+      text-align: right;
+        max-width: 250px;
+    } // .exsh-cD-cr
+  } // .exsh-cD
+  &-cE { // .exsh-cE
+    width:680px;
+    height: 275px;
+    border-bottom: 1px solid  #cccccc;
+    &-ct { // .exsh-cE-ct
+      margin-left: 15px;
+      margin-right: 15px;
+      height:224px;
+      margin-top: 25px;
+    } // .exsh-cE-ct
+    &-cb { // .exsh-cE-cb
+      height:50px;
+      background-color: #f2f2f2;
+      padding-top: 8px;
+      padding-left: 48px;
+      &-btn { // .exsh-cE-cb-btn
+        background-color: #dadada;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+        color: #272727;
+        margin-right: 19px;
+        float: left;
+        text-align: center;
+        padding-top: 7px;
+        cursor: pointer;
 
-            &-txt2 //esh-mid-mid-txt2
-            {
-                font-size: 14px;
-                top: 58px;
-                left: 291px;
-                color: #f2f2f2;
-            }
-
-            &-txt3 //esh-mid-mid-txt3
-            {
-                font-size: 14px;
-                top: 58px;
-                left: 385px;
-                color: #f2f2f2;
-            }
-
-            &-txtbox //esh-mid-mid-txtbox
-            {
-                border-left: 2px solid @grey-2;
-                height: 101px;
-                width: 361px;
-                left: 255px;
-                top: 98px;
-                padding-left: 19px;
-                font-size: 16px;
-                line-height: 19px;
-                overflow: hidden;
-
-                &-txt //esh-mid-mid-txtbox-txt
-                {
-                    top: -4px;
-                    font-style: normal;
-                }
-
-                &-btm1 //esh-mid-mid-txt-txtbox-btm1
-                {
-                    top: -4px;
-                    line-height: 30px;
-                    font-style: normal;
-                }
-
-                &-btm2 //esh-mid-mid-txt-txtbox-btm2
-                {
-                    top: -9px;
-                    font-style: normal;
-                }
-            }
-        }
-
-        &-btm //esh-mid-btm: the bottom black section of the middle
-        {
-            top: 284px;
-            height: 76px;
-            width: 680px;
-            background-color: @black;
-
-            &-txt1 //esh-mid-btm-txt1
-            {
-                left: 20px;
-                top: 14px;
-                font-size: 18px;
-            }
-
-            &-txt2 //esh-mid-btm-txt2
-            {
-                left: 20px;
-                top: 44px;
-                font-size: 14px;
-            }
-
-            &-btn //esh-mid-btm-btn
-            {
-                left: 490px;
-                top: 21px;
-                background-color: @blue;
-                border-radius: 5px;
-                width: 180px;
-                height: 35px;
-                font-size: 14px;
-                text-align: center;
-                padding-top: 7px;
-            }
-        }
-    }
-
-    &-btm //esh-btm: where all the data is
-    {
-        width: 680px;
-        padding: 10px 15px 0px 15px;
-
-        &-txt1 //esh-btm-txt1
-        {
-            font-size: 12px;
-            height: 12px;
-            line-height: 12px;
-
-            &-blue //esh-btm-txt1-blue
-            {
-                color: @blue;
-            }
-        }
-
-        &-what //esh-btm-what: box that says "what is this page?"
-        {
-            width: 650px;
-            height: 81px;
-            background-color: #fafafa;
-            border: 1px solid #ebebeb;
+        &-a { // .exsh-cE-cb-btn-a
+          background-color: @blue;
+          color: @white;
+        } // .exsh-cE-cb-btn-a
+      } // .exsh-cE-cb-btn
+    } // .exsh-cE-cb
+  } // .exsh-cE
+  &-cF { // .exsh-cF
+    &-ctnr1 { // .exsh-cF-ctnr1
+      height:108px;
+      border-bottom: 1px solid #cccccc;
+    } // .exsh-cF-ctnr1
+    &-ctnr2 { // .exsh-cF-ctnr2
+      height:201px;
+      background-color: #f2f2f2;
+      border-bottom: 1px solid #cccccc;
+    } // .exsh-cF-ctnr2
+    &-ci { // .exsh-cF-ci
+      width:340px;
+      float:left;
+      padding-left: 15px;
+      margin-top:12px;
+      padding-right:20px;
+      padding-bottom: 7px;
+      &-ct { // .exsh-cF-ci-ct
+        height:48px;
+        &-crl { // .exsh-cF-ci-ct-crl
+          float: left;
+          border-radius: 50%;
+          background-color:  #3098ff;
+          width: 35px;
+          height: 35px;
+          .fa { // .exsh-cF-ci-ct-crl .fa
+            padding-top: 11px;
+            padding-left:14px;
+            color:@white;
+            font-size: 15px;
+          } // .exsh-cF-ci-ct-crl .fa
+        } // .exsh-cF-ci-ct-crl
+        &-txt { // .exsh-cF-ci-ct-txt
+          float: left;
+          margin-top: 8px;
+          margin-left: 10px;
+          color:  #000000;
+          font-size: 16px;
+          font-family: HN-B;
+          max-width:250px;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        } // .exsh-cF-ci-ct-txt
+      } // .exsh-cF-ci-ct
+      &-cb { // .exsh-cF-ci-cb
+        height:auto;
+        &-item { // .exsh-cF-ci-cb-item
+          padding-top: 7px;
+          height:30px;
+          margin-left: 10px;
+          &-title { // .exsh-cF-ci-cb-item-title
             font-size: 14px;
-            margin-top: 15px;
+            float:left;
+            font-family: HN-L;
+            max-width:150px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+          } // .exsh-cF-ci-cb-item-title
+          &-value { // .exsh-cF-ci-cb-item-value
+            font-size: 14px;
+            font-family: HN-B;
+            float:right;
+            max-width:100px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+          }  // .exsh-cF-ci-cb-item-value
+        }  // .exsh-cF-ci-cb-item
+        &-own { // .exsh-cF-ci-cb-own
+          &-title {  // .exsh-cF-ci-cb-own-title
+            font-size: 12px;
+            font-style: italic;
+            margin-top:5px;
+            margin-left:10px;
+            border-top: 1px solid #cccccc;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            max-width: 300px;
 
-            &-top //esh-btm-what-top
-            {
-                width: 100%;
-                height: 20px;
-                background-color: #ebebeb;
-                color: #333333;
-                font-size: 12px;
-                padding: 0px 10px;
+            color: rgba(0, 0, 0, 0.45);
+          } // .exsh-cF-ci-cb-own-title
+          &-graph { // .exsh-cF-ci-cb-own-graph
+            font-style: normal;
+            border-radius: 5px;
+            background-color:  #cccccc;
+            width: 310px;
+            height: 35px;
+            right: 30px;
+            &-bar { // .exsh-cF-ci-cb-own-graph-bar
+              border-radius: 5px;
+              background-color:  #ff4040;
+              width: 310px;
+              height: 35px;
+            } // .exsh-cF-ci-cb-own-graph-bar
+          } // .exsh-cF-ci-cb-own-graph
+          &-lbl { // .exsh-cF-ci-cb-own-lbl
+            font-style: normal;
+            font-size: 12px;
+            float: right;
+            line-height: 36px;
+            margin-right: 20px;
+            color: @white;
+          } // .exsh-cF-ci-cb-own-lbl
+          &-cntr { // .exsh-cF-ci-cb-own-cntr
+            font-family: HN-B;
+            color:  #000000;
+            font-size: 10px;
+            margin-top:6px;
+            &-cl { // .exsh-cF-ci-cb-own-cntr-cl
+              float:left;
+              margin-left:40px;
+            } // .exsh-cF-ci-cb-own-cntr-cl
+            &-cr {  // .exsh-cF-ci-cb-own-cntr-cr
+              float:right;
+              margin-right:40px;
+            } // .exsh-cF-ci-cb-own-cntr-cr
+          } // .exsh-cF-ci-cb-own-cntr
+        } // .exsh-cF-ci-cb-own
+        &-underline { // .exsh-cF-ci-cb-underline
+   //       margin-left: 10px;
+          border-bottom: 1px solid #cccccc;
+        } // .exsh-cF-ci-cb-underline
+        &-nounderline { // .exsh-cF-ci-cb-nounderline
+  //        margin-left: 10px;
+        } // .exsh-cF-ci-cb-nounderline
 
-                &-x //esh-btm-what-top-x
-                {
-                    float: right;
-                    top: 3px;
-                }
-            }
-
-            &-txt //esh-btm-what-txt
-            {
-                width: 610px;
-                height: 31px;
-                margin-top: 14px;
-                margin-left: 20px;
-                line-height: 16px;
-            }
-        }
-
-        &-data //esh-btm-data
-        {
-            width: 680px;
-            height: auto;
-            left: -15px;
-            margin-top: 13px;
-
-            &-title //esh-btm-data-title
-            {
-                width: 650px;
-                height: 28px;
-                font-size: 18px;
-                left: 15px;
-                border-bottom: 1px solid @grey-2;
-            }
-
-            &-date //esh-btm-data-date
-            {
-                color: #959595;
-                font-size: 12px;
-                left: 15px;
-                top: 5px;
-            }
-
-            &-graph //esh-btm-data-graph
-            {
-                left: 15px;
-                width: 650px;
-                margin-top: 5px;
-                height: 221px;
-            }
-
-            &-period //esh-btm-data-period
-            {
-                width: 100%;
-                height: 50px;
-                background-color: #f2f2f2;
-                padding: 0px 37px;
-                top: 1px;
-
-                &-btn //esh-btm-data-period-btn
-                {
-                    background-color: #dadada;
-                    border-radius: 50%;
-                    width: 35px;
-                    height: 35px;
-                    font-size: 14px;
-                    color: #272727;
-                    margin: 8px 10px;
-                    float: left;
-                    text-align: center;
-                    padding-top: 7px;
-                    cursor: pointer;
-
-                    &-a //esh-btm-data-period-btn-a
-                    {
-                        background-color: @blue;
-                        color: @white;
-                    }
-                }
-            }
-
-            &-list //esh-btm-data-list
-            {
-                width: 680px;
-                height: 206px;
-            }
-
-            &-list-l //esh-btm-data-list-l
-            {
-                width: 325px;
-                height: 185px;
-                float:left;
-                left: 15px;
-                top: 10px;
-                border-right: 1px dashed @grey-2;
-            }
-
-            &-list-r //esh-btm-data-list-r
-            {
-                width: 325px;
-                height: 185px;
-                right: 0px;
-                top: 10px;
-                float:right;
-            }
-
-            &-list-i //esh-btm-data-list-i
-            {
-                width: 310px;
-                height: 20px;
-                border-bottom: 1px solid #404040;
-                font-size: 14px;
-                padding-bottom: 30px;
-                margin-bottom: 5px;
-
-                &-l //esh-btm-data-list-i-l
-                {
-                    float: left;
-                    width: 50%;
-                    text-align: left;
-                    overflow: hidden;
-                    height: 20px;
-                }
-
-                &-r //esh-btm-data-list-i-r
-                {
-                    float: right;
-                    width: 50%;
-                    text-align: right;
-                    overflow: hidden;
-                    height: 20px;
-                }
-
-                &-b //esh-btm-data-list-i-b
-                {
-                    width: 310px;
-                    height: 20px;
-                    font-size: 14px;
-                    padding-bottom: 30px;
-                }
-            }
-
-            &-list-e //esh-btm-data-list-e
-            {
-                width: 310px;
-                height: 89px;
-
-                &-title //esh-btm-data-list-e-title
-                {
-                    font-size: 14px;
-                    max-width: 300px;
-                    overflow: hidden;
-                    height: 17px;
-                }
-
-                &-circle //esh-btm-data-list-e-circle
-                {
-                    border: 2px solid @grey-2;
-                    width: 50px;
-                    height: 50px;
-                    border-radius: 50%;
-                    float: left;
-                    top: 5px;
-                }
-
-                &-txt //esh-btm-data-list-e-txt
-                {
-                    float: right;
-                    width: 250px;
-                    height: 90px;
-                    font-size: 12px;
-                    top: 5px;
-                    overflow: hidden;
-                }
-            }
-
-            &-tile //esh-btm-data-tile
-            {
-                width: 680px;
-                height: auto;
-                padding: 10px 15px;
-                border-top: 1px solid #c2c2c2;
-                clear: both;
-
-                &:after
-                {
-                    clear: both;
-                    content: "";
-                    display: table;
-                }
-
-                &-grey //esh-btm-data-tile-grey
-                {
-                    width: 680px;
-                    height: auto;
-                    padding: 10px 15px;
-                    background-color: #f2f2f2;
-                    border-top: 1px solid #c2c2c2;
-                    clear: both;
-
-                    &:after
-                    {
-                        clear: both;
-                        content: "";
-                        display: table;
-                    }
-                }
-
-                &-title //esh-btm-data-tile-title
-                {
-                    font-size: 16px;
-                    left: 44px;
-                    top: 6px;
-                }
-
-                &-l //esh-btm-data-tile-l
-                {
-                    width: 325px;
-                    padding-top: 55px;
-                    border-right: 1px dashed rgb(215,215,215);
-                    float: left;
-                    padding-bottom: 10px;
-                }
-
-                &-r //esh-btm-data-tile-r
-                {
-                    width: 325px;
-                    padding-top: 55px;
-                    left: 15px;
-                    float: left;
-                    padding-bottom: 10px;
-                }
-
-                &-circle //esh-btm-data-tile-circle
-                {
-                    border-radius: 50%;
-                    background-color: @blue;
-                    color: @white;
-                    width: 35px;
-                    height: 35px;
-                    float: left;
-                    font-size: 16px;
-                    padding-top: 5px;
-                    padding-left: 13px;
-                    top: 0px;
-                    left: 0px;
-                }
-
-                &-stat //esh-btm-data-tile-stat
-                {
-                    width: 291px;
-                    height: 20px;
-                    font-size: 14px;
-                    margin-left: 9px;
-
-                    &-u //esh-btm-data-tile-stat-u
-                    {
-                        width: 291px;
-                        height: 25px;
-                        font-size: 14px;
-                        border-bottom: 1px solid #bfbfbf;
-                        margin-left: 9px;
-                        margin-bottom: 5px;
-                    }
-
-                    &-l //esh-btm-data-tile-stat-l
-                    {
-                        float: left;
-                        width: 50%;
-                        height: 20px;
-                        overflow: hidden;
-                    }
-
-                    &-r //esh-btm-data-tile-stat-r
-                    {
-                        float: right;
-                        width: 50%;
-                        height: 20px;
-                        overflow: hidden;
-                        text-align: right;
-                    }
-                }
-
-                &-graph //esh-btm-data-tile-graph
-                {
-                    background-color: #cccccc;
-                    width: 310px;
-                    height: 36px;
-                    border-radius: 5px;
-
-                    &-txt1 //esh-btm-data-tile-graph-txt1
-                    {
-                        color: rgba(0, 0, 0, 0.45);
-                        font-style: italic;
-                        font-family: HN;
-                        font-size: 12px;
-                        margin-top: 3px;
-                        margin-bottom: 5px;
-                        padding-left: 8px;
-                    }
-
-                    &-txt2 //esh-btm-data-tile-graph-txt2
-                    {
-                        font-size: 12px;
-                        float: right;
-                        line-height: 36px;
-                        margin-right: 20px;
-                    }
-
-                    &-txt3 //esh-btm-data-tile-graph-txt3
-                    {
-                        font-size: 12px;
-                        float: right;
-                        line-height: 36px;
-                        margin-right: 20px;
-                        color: @white;
-                    }
-
-                    &-txt4 //esh-btm-data-tile-graph-txt4
-                    {
-                        font-size: 10px;
-                        float: left;
-                        margin-left: 40px;
-                    }
-
-                    &-txt5 //esh-btm-data-tile-graph-txt5
-                    {
-                        font-size: 10px;
-                        float: right;
-                        margin-right: 40px;
-                    }
-
-                    &-u //esh-btm-data-tile-graph-u
-                    {
-                        width: 310px;
-                        height: 16px;
-                        padding-top: 3px;
-                    }
-
-                    &-bar //esh-btm-data-tile-graph-bar
-                    {
-                        border-radius: 5px;
-                        height: 36px;
-                        background-color: #ff4040;
-                    }
-                }
-            }
-        }
-    }
-}
+      } // .exsh-cF-ci-cb
+    } // .exsh-cF-ci
+    &-dash {  // .exsh-cF-dash
+      border-left: 1px dashed #b8b8b8;
+    } // .exsh-cF-dash
+    &-dotted {  // .exsh-cF-dotted
+      border-left: 1px dotted #b8b8b8;
+    } // .exsh-cF-dotted
+  } // .exsh-cF
+} // End .exsh
