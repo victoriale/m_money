@@ -1,6 +1,5 @@
 Template.marketmovers.onRendered(function(){
 
-
 });
 
 Template.marketmovers.helpers({
@@ -16,6 +15,7 @@ Template.marketmovers.helpers({
       }else{
         data.data['index_color'] = '#ffffff';
       }
+
       //create URL before shifting array
       $.map(data.data['top_list_list'], function(data, index){
         data['url'] = Router.pick_path('content.companyprofile',{
@@ -64,9 +64,12 @@ Template.marketmovers.helpers({
     })
     if ( typeof params.loc_id == "undefined" ) {
       data.fullstate = Session.get('profile_header').location;
-    } else {
+    } else if(params.loc_id == "National"){
+      data.fullstate = "United States";
+    }else{
       data.fullstate = fullstate(params.loc_id);
     }
+    console.log(data);
     return data;
   },
 
