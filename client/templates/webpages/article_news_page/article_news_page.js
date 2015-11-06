@@ -84,6 +84,20 @@ Template.article_news_page.events({
 })
 
 Template.article_news_page.helpers({
+  stateImage: function(){
+    var data = Router.current().getParams().loc_id;
+    if(data == 'National' || data == '' || typeof data == 'undefined'){
+      return "background-image: url('/StateImages/Location_"+ data +".jpg');";
+    }else{
+      if(isNaN(data)){
+        data = fullstate(data);
+        data = data.replace(/ /g, '_');
+        return "background-image: url('/StateImages/Location_"+ data +".jpg');";
+      }else{
+        return "background-image: url('/DMA_images/location-"+ data +".jpg');";
+      }
+    }
+  },
   headerinfo: function(){
     var params = Router.current().getParams();
     var data = Session.get('profile_header');
