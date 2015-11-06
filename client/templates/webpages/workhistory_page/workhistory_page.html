@@ -75,14 +75,6 @@
               <i class="fa fa-briefcase"></i>
             </div>
             <div class="wrkh-p_lnfrmwrk_lncon_conid_lnvln"></div></div>
-
-          <button class="wrkh-p-lefthov arw">
-            <i class="fa fa-angle-left fa-2x"></i>
-          </button>
-          <button class="wrkh-p-righthov arw">
-            <i class="fa fa-angle-right fa-2x"></i>
-          </button>
-
       </div>
       <!--end of content part of linen framework-->
       <!-- start of footer part of linen framework-->
@@ -92,8 +84,10 @@
           <div class="wrkh-p_lnfrmwrk_lnbtm_infobr_infobtm1">Profile Last Updated On:</div>
           <div class="wrkh-p_lnfrmwrk_lnbtm_infobr_infobtm2">{{getdate}}</div>
         </div>
-        <div class="wrkh-p_lnfrmwrk_lnbtm_blubtn">View Website<span style="margin-left:6px">
-        <i class="fa fa-angle-right"></i></span></div>
+        <a href='{{getExecUrl}}'>
+          <div class="wrkh-p_lnfrmwrk_lnbtm_blubtn">View Profile<span style="margin-left:6px">
+          <i class="fa fa-angle-right"></i></span></div>
+        </a>
       </div>
       <!--end of footer part of linen framework-->
     </div>
@@ -153,10 +147,7 @@
     </div>
       {{/each}}
     </div>
-
-    <div class="wrkh-p_srchpanel">
-      <!--{{> recommend}}-->
-    </div>
+    {{> search_module}}
   </div>
 
 </template>

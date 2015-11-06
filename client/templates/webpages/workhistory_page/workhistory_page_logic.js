@@ -30,6 +30,11 @@ Template.workhistory_page.onCreated( function() {
             name:compUrlName(compList['company_data'].c_name),
             company_id:compList['company_data'].c_id
           });
+          comp['execurl'] = Router.pick_path('content.executiveprofile',{
+            ticker:compList['company_data'].c_ticker,
+            name:compUrlName(compList['company_data'].c_name),
+            company_id:compList['company_data'].c_id
+          });
           comp['location'] = compList['company_data'].c_hq_city + ", " + compList['company_data'].c_hq_state;
           comp['c_name'] = compList['company_data'].c_name;
           comp['c_ticker'] = compList['company_data'].c_ticker;
@@ -38,7 +43,7 @@ Template.workhistory_page.onCreated( function() {
           comp['exec_nearest_pos'] = compList['officer_positions'][0];
           comp['connections'] = compList['connections'];
           comp['o_id'] = data['officer_data'].o_id;
-          comp['c_last_updated'] = (new Date(compList['company_data'].c_tr_last_updated)).toSNTForm;
+          comp['c_last_updated'] = (new Date(compList['company_data'].c_tr_last_updated)).toSNTForm();
           comp['c_desc'] = compList['company_data'].c_desc;
           projArray.push(comp);
         }
@@ -148,6 +153,16 @@ Template.workhistory_page.helpers({
     getPic:function(){
       var data = Session.get('work_history');
       var url = data['officer_data']['o_pic'];
+      return url;
+    },
+    getExecUrl:function(){
+      var params = Router.current().getParams();
+      var url = Router.pick_path('content.executiveprofile',{
+        fname:params.fname,
+        lname:params.lname,
+        ticker:params.ticker,
+        exec_id:params.exec_id
+      });
       return url;
     },
 //     listings: [
