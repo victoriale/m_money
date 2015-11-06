@@ -14,6 +14,7 @@ http
 iron:router
 maazalik:highcharts
 jquery
+meteorhacks:cluster
 meteorhacks:ssr
 meteorhacks:picker
 meteorhacks:kadira
