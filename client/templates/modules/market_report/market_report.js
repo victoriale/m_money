@@ -198,7 +198,8 @@ Template.market_report.helpers({                   //helper class for adding dat
       stock_price_percent: percent_change + '%',
       arrow_class: arrow_class,
       color_class: color_class,
-      image: '/exchange/' + current + '.png'
+      image: '/exchange/' + current + '.png',
+      exchurl: globalUrl(current)
       };
     return dataReturn;
   },

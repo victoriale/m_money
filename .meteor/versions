@@ -53,6 +53,7 @@ logging@1.0.8
 maazalik:highcharts@0.4.0
 meteor@1.1.10
 meteor-base@1.0.1
+meteorhacks:cluster@1.6.9
 meteorhacks:kadira@2.25.0
 meteorhacks:kadira-binary-deps@1.4.0
 meteorhacks:kadira-profiler@1.2.1
