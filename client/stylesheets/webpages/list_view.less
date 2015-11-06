@@ -205,9 +205,9 @@ Associated Files: list_view_logic.js and list_view_page.html
       height: 100%;
       border: none;
       border-radius: 50%;
-      background-size: cover !important;
-      background-position: center center !important;
-      background-image: url("");
+      background-size: contain;
+      background-position: center center;
+      background-repeat: no-repeat;
       //the wrapper to wrap up the container height and width
       &-wr {
         width: 180px;
@@ -550,60 +550,6 @@ Associated Files: list_view_logic.js and list_view_page.html
       overflow: hidden;
     }
 
-    &-image{
-      background-color:  #f2f2f2;
-      background: -webkit-linear-gradient(90deg, rgba(21, 21, 21, 0.5) 0%, rgba(21, 21, 21, 0) 100%);
-      background: -moz-linear-gradient(90deg, rgba(21, 21, 21, 0.5) 0%, rgba(21, 21, 21, 0) 100%);
-      background: -o-linear-gradient(90deg, rgba(21, 21, 21, 0.5) 0%, rgba(21, 21, 21, 0) 100%);
-      background: -ms-linear-gradient(90deg, rgba(21, 21, 21, 0.5) 0%, rgba(21, 21, 21, 0) 100%);
-      background: linear-gradient(0deg, rgba(21, 21, 21, 0.5) 0%, rgba(21, 21, 21, 0) 100%);
-      /* Layer contains multiple layer styles that cannot be represented in CSS. Use the color picker or extract the layer as an image. */
-      width: 170px;
-      height: 185px;
-      float: left;
-      position: relative;
-      left: -2px;
-
-      &-text{
-        width: 150px;
-        height: 50px;
-        position: absolute;
-        bottom: 10px;
-        left: 10px;
-        color: @white;
-
-        &-ln1{
-          font-family: HN-B;
-          color:  #ffffff;
-          font-size: 14px;
-          line-height: 18px;
-          text-align: left;
-          overflow: hidden;
-          white-space: nowrap;
-        }
-
-        &-ln3{
-          font-family: HN-L;
-          }
-
-        &-ln4{
-          display: inline-block;
-          position: relative;
-          top: 5px;
-        }
-        &-fn{
-          font-family: HN;
-          color:  #ffffff;
-          font-size: 14px;
-          font-weight: 400;
-          text-align: left;
-          position: relative;
-          top: -4px;
-          padding: 0px 5px 0px 5px;
-        }
-
-      }
-    }
     &-arrow{
       position: absolute;
       right: 10px;
@@ -1091,6 +1037,9 @@ Associated Files: list_view_logic.js and list_view_page.html
     float: left;
     top:0px;
     left:20px;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
   }
   //This style is used to hold the main image of the template of diameter 125px
   &-head-image{
@@ -1103,9 +1052,9 @@ Associated Files: list_view_logic.js and list_view_page.html
     border-color: #acacac;
     border-style: solid;
     background-color: #ffffff;
-    background-repeat: no-repeat;
-    background-position: center center;
     background-size: contain !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
     position: relative;
   }
   //This style is used to hold the first small images of diameter 45px;

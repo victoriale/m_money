@@ -105,12 +105,13 @@ Template.exec_loc.helpers({
     var params = Router.current().getParams();
     var listdata = {};
     var newData = Session.get('executives_page');
-    var newData = listdata.list_data;
-    if(typeof listdata =='undefined'){
+    console.log(newData);
+    listdata.list_data = newData;
+    if(typeof newData =='undefined'){
       return '';
     }
-    console.log(newData);
-    $.map(newData, function(data,index){
+    console.log(listdata);
+    $.map(listdata.list_data, function(data,index){
       if(typeof data['lcsi_market_cap'] == 'undefined' || data['lcsi_market_cap'] == ''){
         data['objname'] = 'Salary';
         data['lcsi_market_cap'] = 1;

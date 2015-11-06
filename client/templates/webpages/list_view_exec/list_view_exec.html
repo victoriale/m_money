@@ -171,7 +171,9 @@ Associated Files: list_view_logic.js and list_view.less
                 <!-- Here displays the counter number which is a result of each loop-->
                 <span class="list_vw-counter">#{{rank}}</span>
                 <a href="{{compurl}}">
-                  <span class="list_vw-counter2" style="background-image:url('{{imageUrl c_logo}}')"></span>
+                  <span class="list_vw-counter2" style="background-image:url('{{imageUrl c_logo}}')">
+                    <div class="hover"></div>
+                  </span>
                 </a>
               </div>
             </a>
@@ -187,7 +189,9 @@ Associated Files: list_view_logic.js and list_view.less
                 </span>
               </a>
               <!-- Here displays the description which come from the each loop-->
-              <div class="list_vw-adjust">{{o_first_name}} {{o_last_name}}</div>
+              <a href="{{url}}">
+                <div class="list_vw-adjust">{{o_first_name}} {{o_last_name}}</div>
+              </a>
               <div class="list_vw-follw1">
                 <!--<span class="list_vw-follws1" style="color: {{changeColor csi_price_last_operator}}">  <i class="fa {{changeIcon csi_price_last_operator}}"></i> </span>
                 <span class="list_vw-follw3" style="color: {{changeColor csi_price_last_operator}}"></span>-->

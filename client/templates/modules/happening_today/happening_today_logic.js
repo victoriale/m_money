@@ -65,7 +65,7 @@ Template.happening_today.helpers({
     return data.c_name;
   },
 
-  exchange: function(){
+  c_exchange: function(){
     var data = Session.get('profile_header');
     if(typeof data == 'undefined'){
       return '';
