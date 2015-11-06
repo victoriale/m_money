@@ -9,7 +9,7 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
 <!--Defined a class name globally for height and width !-->
 <div class= "co_commi">
   <a href="{{backToComp}}">
-    <div class="abus-bkbx">
+    <div class="abus-bkbx" style="margin: 5px 0 0 5px;">
       <div class="abus-bkbx-bx"><i class="fa fa-reply"></i></div>
       <div class="abus-bkbx-tgl"></div>
       <div class="abus-bkbx-txt" style="text-align:left">Go Back to {{backProfile}} Profile</div>
@@ -62,13 +62,21 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
       <!-- end of the module.less navigation button -->
       <!-- wrapper class-->
       <div class="co_commi-m_c-image-wr">
-        <div class="co_commi-m_c-image" style="background-image:url('{{imageUrl o_pic}}')">
-          <div class="co_commi-m_c-sma_ct">
-          <div class="co_commi-m_c-sma_cr" style="background-image:url('{{imageUrl image}}')">
-
+        <a href="{{url}}">
+          <div class="co_commi-m_c-image" style="background-image:url('{{imageUrl o_pic}}')">
+            <div class="hover">
+              <div class="hover-txt1"></div>
+              <div class="hover-txt2"></div>
+            </div>
+            <a href="{{backToComp}}">
+            <div class="co_commi-m_c-sma_ct">
+                <div class="co_commi-m_c-sma_cr" style="background-image:url('{{imageUrl image}}')">
+                <div class="hover"></div>
+              </div>
+            </div>
+          </a>
           </div>
-        </div>
-        </div>
+        </a>
       </div>
       <!-- the main container -->
       <ul class="co_commi-m_c-cr">
@@ -142,7 +150,9 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
               </div>
               <!-- Here displays the counter number which is a result of each loop-->
               <span class="co_commi-counter">#{{o_rank}}</span>
-              <span class="co_commi-counter2" style="background-image:url('{{imageUrl image}}')"></span>
+              <a href="{{backToComp}}">
+                <span class="co_commi-counter2" style="background-image:url('{{imageUrl image}}')"><div class="hover"></div></span>
+              </a>
             </div>
           </a>
         </div>
@@ -157,7 +167,7 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
               </span>
             </a>
             <!-- Here displays the description which come from the each loop-->
-            <div class="co_commi-adjust">{{o_first_name}} {{o_last_name}}</div>
+            <a href="{{url}}"><div class="co_commi-adjust">{{o_first_name}} {{o_last_name}}</div></a>
             <div class="co_commi-follw3">{{o_current_title.long_title}} </div>
           </div>
         </div>

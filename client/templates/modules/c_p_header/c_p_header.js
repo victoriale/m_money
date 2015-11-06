@@ -116,7 +116,7 @@ Template.c_p_graph.helpers({
 
     //If data does not exists exit helper
     if(typeof data === 'undefined'){
-      return ''
+      return '';
     }
 
     //Get dependencies to find date range
