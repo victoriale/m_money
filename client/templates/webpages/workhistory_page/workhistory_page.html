@@ -37,7 +37,7 @@
           <!--date part-->
         <div class="wrkh-p_pghead_pgloc_lstdate">Last Updated: {{getdtime}}</div>
           <!--location part-->
-        <div class="wrkh-p_pghead_pgloc_headloc"><i class="fa fa-map-marker faicons-mark"></i> {{getlocNm}}</div>
+        <div class="wrkh-p_pghead_pgloc_headloc"><a href="{{getlocurl}}"><i class="fa fa-map-marker faicons-mark"></i> {{getlocNm}}</a></div>
         <!-- work and project details-->
         <div class="wrkh-p_pghead_pgloc_wrkNm">{{getWrkdetails}}</div>
         <!-- Name-->
@@ -69,7 +69,7 @@
             <p class="wrkh-p_lnfrmwrk_lncon_carousel_lntxt_p">{{getDesc}}</p>
           </div></div>
           <div class="wrkh-p_lnfrmwrk_lncon_lnimg" style="background-image:url({{imageUrl getPic}})"></div>
-          <div class="wrkh-p_lnfrmwrk_lncon_lnimg_lnsimg"></div>
+          <!--<div class="wrkh-p_lnfrmwrk_lncon_lnimg_lnsimg"></div>-->
           <div class="wrkh-p_lnfrmwrk_lncon_conid">
             <div class="wrkh-p_lnfrmwrk_lncon_conid_lncir">
               <i class="fa fa-briefcase"></i>

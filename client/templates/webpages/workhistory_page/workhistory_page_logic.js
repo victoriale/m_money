@@ -30,7 +30,6 @@ Template.workhistory_page.onCreated( function() {
             name:compUrlName(compList['company_data'].c_name),
             company_id:compList['company_data'].c_id
           });
-          console.log(comp);
           comp['location'] = compList['company_data'].c_hq_city + ", " + compList['company_data'].c_hq_state;
           comp['c_name'] = compList['company_data'].c_name;
           comp['c_ticker'] = compList['company_data'].c_ticker;
@@ -112,11 +111,18 @@ Template.workhistory_page.helpers({
     var data = Session.get('work_history');
     var date = data['officer_data']['o_last_updated'];
     return date;
-  },getlocNm:function(){
+  },
+  getlocNm:function(){
     var data = Session.get('new_work_history');
     var currentComp = data[data.length - 1];
     return currentComp['location'];
-  },getWrkdetails:function(){
+  },
+  getlocurl:function(){
+    var data = Session.get('new_work_history');
+    var currentComp = data[data.length - 1];
+    return currentComp['locurl'];
+  },
+  getWrkdetails:function(){
       var wrk="Work & Project History";
       return wrk;
     },getName:function(){
@@ -227,7 +233,6 @@ Template.workhistory_page.helpers({
         returnArray[i]['numofmonths'] = timeString;
       }
 
-      console.log(returnArray);
       return returnArray;
     },
 
