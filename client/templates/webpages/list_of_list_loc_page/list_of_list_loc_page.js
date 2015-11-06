@@ -31,15 +31,13 @@ Template.list_of_list_loc_page.helpers({
       }else{
         data['index_color'] = '#ffffff';
       }
-      if(params.loc_id == 'National'){
-        data.locurl = Router.pick_path('content.locationprofile',{
-          loc_id:'National',
-        });
-      }else{
-        data.locurl = Router.pick_path('content.locationprofile',{
-          loc_id:params.loc_id,
-        });
-      }
+      data.locurl = Router.pick_path('content.locationprofile',{
+        loc_id:params.loc_id,
+      });
+      console.log(data);
+      console.log(Router.pick_path('content.locationprofile',{
+        loc_id:params.loc_id,
+      }));
       //create URL before shifting array
       $.map(data['top_list_list'], function(data, index){
         data['url'] = Router.pick_path('content.companyprofile',{
@@ -58,13 +56,11 @@ Template.list_of_list_loc_page.helpers({
         l_name:compUrlName(list_name),
         list_id:id_param
       });
-      data['locurl'] = Router.pick_path('content.locationprofile',{
-        loc_id:data.c_hq_state,
-      });
       //move first listed item to a seperate object to go into big circle
       data['top'] = data.top_list_list[0];
       data['top_list_list'].shift();
     })
+    console.log(list);
     return list;
   },
 
