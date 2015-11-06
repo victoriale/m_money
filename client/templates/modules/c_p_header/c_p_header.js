@@ -54,6 +54,7 @@ Template.cp_head.helpers({
       city:data.c_hq_city
     });
   },
+
 });
 
 Template.cp_body.helpers({
