@@ -92,12 +92,12 @@ Template.about_exec.helpers({
   EHTileURL: function(){
     var params = Router.current().getParams();
     if(typeof params != 'undefined'){
-        return Router.pick_path('content.collegerivals',{
-          lname:params.lname,
-          fname:params.fname,
-          ticker:params.ticker,
-          exec_id: params.exec_id,
-        });
+      return Router.pick_path('content.workhistory',{
+        lname:params.lname,
+        fname:params.fname,
+        ticker:params.ticker,
+        exec_id: params.exec_id,
+      });
     }
   },
 

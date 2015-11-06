@@ -21,6 +21,7 @@ Template.project_history.onCreated( function() {
           var compList = companies[id];
           var comp = {};
           comp['location'] = compList['company_data'].c_hq_city + ", " + compList['company_data'].c_hq_state;
+          comp['locurl'] = Router.pick_path('content.locationprofile',{loc_id:compList['company_data'].c_hq_state,city:compList['company_data'].c_hq_city})
           comp['c_name'] = compList['company_data'].c_name;
           comp['c_ticker'] = compList['company_data'].c_ticker;
           comp['c_id'] = compList['company_data'].c_id;

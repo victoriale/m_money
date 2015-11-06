@@ -115,13 +115,13 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                                 {{label}}
                               </div>
                               <div class="stat-btm-data-stat-arrow stat-pa">
-                                <i class="fa fa-angle-right"></i>
                               </div>
                             </div>
                           {{/each}}
                         </div>
                         <div class="stat-btm-data-stat-r"> <!--holds the right tiles-->
                           {{#each overviewStatsR}} <!--for each right tile-->
+                          <a href="{{url}}">
                             <div class="stat-btm-data-stat-box stat-pr">
                               <div class="stat-btm-data-stat-bar"></div>
                               <div class="stat-btm-data-stat-fa">
@@ -137,6 +137,7 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                                 <i class="fa fa-angle-right"></i>
                               </div>
                             </div>
+                          </a>
                           {{/each}}
                         </div>
                     </div>

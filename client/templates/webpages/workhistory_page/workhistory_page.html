@@ -59,9 +59,6 @@
         <span class="wrkh-p_lnfrmwrk_lntop_lntildiv_lntilnam">{{getWrkdetails}}</span>
       </span>
       <!--  <span class="wrkh-p_lnfrmwrk_lntop_lntildiv_vline"></span>-->
-      
-        <span class="wrkh-p_lnfrmwrk_lntop_lnshare"><i class="fa fa-share-alt" style="margin-right:8px"></i> Share</span>
-        <span class="wrkh-p_lnfrmwrk_lntop_lnsave"><i class="fa fa-heart" style="margin-right:8px" ></i> Save</span>
       </div>
       <!--end of header part of linen framework-->
       <!--content part of the linen framework-->
@@ -104,8 +101,7 @@
     <!-- start of sort by most recent section-->
     <div class="wrkh-p_srtbr">
       <div class="wrkh-p_srtbr_srt">
-        <div class="wrkh-p_srtbr_srt_srtby">Sort by:</div>
-        <div class="wrkh-p_srtbr_srt_mstrec">Most Recent <i class="fa fa-angle-down arwd"></i></div>
+
       </div>
       <!--content part in srtby most recent-->
       <div class="wrkh-p_srtbr_srtcon">
@@ -121,7 +117,9 @@
     {{#each listings}}
       <div class="wrkh-p_lstcon_lsttile_{{getBackgroundStyle}}">
       <div class="wrkh-p_lstcon_txtlft">
-        <div class="wrkh-p_lstcon_txtlft_place"><i class="fa fa-map-marker faicons-mark"></i> &nbsp;{{location}}</div>
+        <a href="{{locurl}}">
+          <div class="wrkh-p_lstcon_txtlft_place"><i class="fa fa-map-marker faicons-mark"></i> &nbsp;{{location}}</div>
+        </a>
         <div class="wrkh-p_lstcon_txtlft_wrkNM">{{wrkNam}}</div>
         <div class="wrkh-p_lstcon_txtlft_posdur">
           <div class="wrkh-p_lstcon_txtlft_posdur_positiontxt">{{position}}</div>
@@ -129,21 +127,28 @@
           <div class="wrkh-p_lstcon_txtlft_posdur_numofmnts">{{numofmonths}}</div>
         </div>
       </div>
-      <div class="wrkh-p_lstcon_imgs" style="background-image:url({{imageUrl execPic}})"></div>
+      <a href="{{compurl}}"><div class="wrkh-p_lstcon_imgs" style="background-image:url({{imageUrl c_logo}})">
+        <div class="hover">
+          <div class="hover-txt1">View</div>
+          <div class="hover-txt2">Profile</div>
+        </div>
+      </div></a>
       <div class="wrkh-p_lstcon_Listvw">
         {{#each connection}}
         <a href="{{execUrl}}">
           <div class="wrkh-p_lstcon_Listvw_lstcir" style="background-image:url({{imageUrl execPic}})"></div>
         </a>
         {{/each}}
-        <a href="{{listUrl}}">
+        <a href="{{boardurl}}">
           <div class="wrkh-p_lstcon_morebtn">View All Connections<span style="margin-left:6px"><i class="fa fa-angle-right"></i></span></div>
         </a>
       </div>
       <div class="wrkh-p_lstcon_sav-shr">
+        <!--
         <div class="wrkh-p_lstcon_sav-shr_sav"><i class="fa fa-heart" style="margin-right: 8px"></i> Save</div>
         <div class="wrkh-p_lstcon_sav-shr_shr"> <i class="fa fa-share-alt" style="margin-right: 8px"></i> Share</div>
         <div class="wrkh-p_lstcon_sav-shr_fb"><i class="fa fa-flag" style="margin-right: 8px"></i> Feedback</div>
+        -->
       </div>
     </div>
       {{/each}}

@@ -70,8 +70,10 @@ Associated Files: list_view_logic.js and list_view.less
         <div class="list_vw-m_c-image-wr">
           <div class="list_vw-m_c-image" style="background-image:url('{{imageUrl c_logo}}')">
             <div class="list_vw-m_c-sma_ct">
-            <div class="list_vw-m_c-sma_cr" style="background-image:url('{{exchange c_exchange}}')">
-            </div>
+              <a href="{{exchurl}}">
+                <div class="list_vw-m_c-sma_cr" style="background-image:url('{{exchange c_exchange}}')">
+                <div class="hover"></div></div>
+              </a>
           </div>
           </div>
         </div>
@@ -161,7 +163,9 @@ Associated Files: list_view_logic.js and list_view.less
                 </div>
                 <!-- Here displays the counter number which is a result of each loop-->
                 <span class="list_vw-counter">#{{rank}}</span>
-                <span class="list_vw-counter2" style="background-image:url('{{exchange c_exchange}}')"></span>
+                <a href="{{exchurl}}">
+                  <span class="list_vw-counter2" style="background-image:url('{{exchange c_exchange}}')"><div class="hover"></div></span>
+                </a>
               </div>
             </a>
           </div>
