@@ -27,6 +27,16 @@ Template.list_view_exec.helpers({
       loc_id: url.loc_id,
     });
   },
+
+  backProfile: function(){
+    var url = Router.current().getParams();
+    console.log(url.loc_id);
+    if(url.loc_id === '' || typeof url.loc_id == 'undefined' || url.loc_id == null){
+      return 'National'
+    }
+    return fullstate(url.loc_id);
+  },
+
   toplist:function(){
     var params = Router.current().getParams();
     if(params.list_id == 'dollar_ceo'){

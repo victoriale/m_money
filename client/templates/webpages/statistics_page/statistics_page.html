@@ -115,13 +115,13 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                                 {{label}}
                               </div>
                               <div class="stat-btm-data-stat-arrow stat-pa">
-                                <i class="fa fa-angle-right"></i>
                               </div>
                             </div>
                           {{/each}}
                         </div>
                         <div class="stat-btm-data-stat-r"> <!--holds the right tiles-->
                           {{#each overviewStatsR}} <!--for each right tile-->
+                          <a href="{{url}}">
                             <div class="stat-btm-data-stat-box stat-pr">
                               <div class="stat-btm-data-stat-bar"></div>
                               <div class="stat-btm-data-stat-fa">
@@ -137,6 +137,7 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                                 <i class="fa fa-angle-right"></i>
                               </div>
                             </div>
+                          </a>
                           {{/each}}
                         </div>
                     </div>
@@ -156,7 +157,7 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                     </div>
                     <div class="stat-btm-data-graph-lst"> <!--functions as sort of a key to the graph on its right-->
                       {{#each getGraphTable}}
-                        <div class="stat-btm-data-graph-lst-itm{{getGrey}} stat-pr">
+                        <a href="{{sectUrl}}"><div class="stat-btm-data-graph-lst-itm{{getGrey}} stat-pr">
                           <div style="width:5px;height:100%;background-color:{{color}}"></div>
                           <div class="stat-btm-data-graph-lst-s stat-pa">
                             {{name}} <!--corresponds to sector name-->
@@ -164,7 +165,7 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                           <div class="stat-btm-data-graph-lst-n stat-pa stat-b">
                             {{y}}% <!--corresponds to net percent-->
                           </div>
-                        </div>
+                        </div></a>
                       {{/each}}
                     </div>
                     <div class="stat-btm-data-graph-grad stat-pa"></div> <!--a gradient that adds a fading effect to the list above-->

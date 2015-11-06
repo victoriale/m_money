@@ -94,6 +94,7 @@ Template.list_view.helpers({
         name: compUrlName(data.c_name),
         company_id: data.c_id
       });
+      data['exchurl'] = globalUrl(data.c_exchange);
       if(params.list_id == 'sv150_gainers' || params.list_id == 'sv150_losers'){
         data['newDate'] = (new Date(data.csi_price_last_updated)).toSNTForm();
         data.price = commaSeparateNumber_decimal(Number(data.csi_price).toFixed(2));
@@ -165,7 +166,7 @@ Template.list_view.helpers({
         name: compUrlName(data.c_name),
         company_id: data.c_id
       });
-
+      data['exchurl'] = globalUrl(data.c_exchange);
       //data from list can come in 6 different ways these values will catch and give results back
       for(objName in data){
         if(objName === 'stock_percent'){

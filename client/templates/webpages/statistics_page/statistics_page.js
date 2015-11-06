@@ -9,6 +9,7 @@ statGreyTile = true; //used to determine whether a list item is grey or not
 
 Template.statistics_page.helpers(
     {
+
       image: function(){
         var data = Session.get('loc_id');
         var state = fullstate(data).replace(/ /g, '_');
@@ -42,7 +43,7 @@ Template.statistics_page.helpers(
         if(typeof data == 'undefined'){
           return '';
         }
-
+        var params = Router.current().getParams();
         data['overviewStatsL'] =
           [ //stats on left
             {
@@ -60,12 +61,18 @@ Template.statistics_page.helpers(
             {
               value: data.officer_count,
               label: "Officer Count",
-              font: 'fa-suitcase '
+              font: 'fa-suitcase ',
+              url: Router.pick_path('content.executivelocation',{
+                loc_id: params.loc_id,
+              })
             },
             {
               value: data.total_companies,
               label: "Total Companies",
-              font: 'fa-bank'
+              font: 'fa-bank',
+              url:Router.pick_path('content.sector',{
+                loc_id: params.loc_id,
+              })
             }
           ];
 
@@ -141,7 +148,8 @@ Template.statistics_page.helpers(
               {
                 name:key,
                 y: Number(sectors[key].percentage * 100).toFixed(1),
-                color:colors[count]
+                color:colors[count],
+                sectUrl: Router.pick_path('content.sector', {sector_id: compUrlName(key), loc_id: fullstate(Router.current().params.loc_id)})
               }
             );
             count++;

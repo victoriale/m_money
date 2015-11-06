@@ -1,23 +1,183 @@
+
 Template.annual_EBS.onCreated(function(){
-  Meteor.http.get('http://apifin.synapsys.us/call_controller.php?action=company_page&option=balance_sheet&param=3330',
-    function(error, data) {
-        Session.set("annual_EBS",data);
+  var id = Session.get("profile_header").c_id;
+  Meteor.http.get('http://apifin.investkit.com/call_controller.php?action=company_page&option=balance_sheet&param=' + id,
+    function(error, data){
+    Session.set("annual_EBS",data);
+    annualEBSgraph();
+    var chart = $('#annualEBSgraph').highcharts();
+    var axisMax = chart.yAxis[0].max;
+    chart.series[2].update({
+      tooltip:{
+        pointFormatter: function() {
+          return "Debt to Assets: " + (this.y / (axisMax / 100)).toFixed(2) + "%";
+        }
+      }
+    });
+    for(var i = 0; i<chart.series[2].data.length; i++){
+      chart.series[2].data[i].y *= axisMax;
+      chart.series[2].data[i].update();
     }
-  );
+  });
 })
 
-Template.annual_EBS.onRendered(function() {
-  annualEBSgraph();
-});
+
+function graphDebtData() {
+  var data = Session.get('annual_EBS');
+  var target = data.data.balance_sheet.balance_sheet_data["Total Debt"];
+  var out = [];
+  out[0] = parseFloat(target["2011"]);
+  out[1] = parseFloat(target["2012"]);
+  out[2] = parseFloat(target["2013"]);
+  out[3] = parseFloat(target["2014"]);
+  out[4] = parseFloat(target["2015"]);
+  return out;
+}
+
+function graphAssetData() {
+  var data = Session.get('annual_EBS');
+  var target = data.data.balance_sheet.balance_sheet_data["Total Assets"];
+  var out = [];
+  out[0] = parseFloat(target["2011"]);
+  out[1] = parseFloat(target["2012"]);
+  out[2] = parseFloat(target["2013"]);
+  out[3] = parseFloat(target["2014"]);
+  out[4] = parseFloat(target["2015"]);
+  return out;
+}
+
+function graphNetProfitMarginData() {
+  var data = Session.get('annual_EBS');
+  var debt = graphDebtData();
+  var assets = graphAssetData();
+  var out = [];
+  out[0] = debt[0] / assets[0];
+  out[1] = debt[1] / assets[1];
+  out[2] = debt[2] / assets[2];
+  out[3] = debt[3] / assets[3];
+  out[4] = debt[4] / assets[4];
+  return out;
+}
+
+function annualEBSgraph(){
+  var deb = graphDebtData();
+  var assets = graphAssetData();
+  var margin = graphNetProfitMarginData();
+ $('#annualEBSgraph').highcharts({
+   credits: {
+     enabled: false
+   },
+   exporting: {
+     enabled: false
+   },
+   title: {
+     text: ''
+   },
+   xAxis: {
+     categories: ['2011', '2012', '2013', '2014', '2015']
+   },
+
+   yAxis: {
+     tickInterval: 1000,
+     title: "In Millions of USD"
+   },
+
+
+   series: [{
+     type: 'column',
+     name: 'Net assets',
+     data: assets,
+     showInLegend: false,
+     color: '#434348 '
+   }, {
+     type: 'column',
+     name: 'debt',
+     data: deb,
+     showInLegend: false,
+     color: '#3098FF '
+   }, {
+     type: 'spline',
+     tooltip:{
+      pointFormatter: function() {
+        return "Profit Margins: " + (this.y).toFixed(2) + "%";
+      }
+     },
+     name: 'Profit Margin',
+     data: margin,
+     showInLegend: false,
+     marker: {
+       lineWidth: 2,
+       lineColor: '#F8A354 ',
+       fillColor: 'white'
+     },
+     color: '#F8A354 ',
+
+   }]
+ });
+}
+
 
 Template.annual_EBS.helpers({
-  company: "Facebook, Inc",
-  upd: "10/24/2014, 12:36PM EDT",
-  loc: "The United States Of America",
-  year: "2014",
-  money1: "0",
-  money2: "12.46 Million",
-  money3: "0",
+  // company: "Facebook, Inc",
+  // upd: "10/24/2014, 12:36PM EDT",
+  // loc: "The United States Of America",
+  // year: "2014",
+  // money1: "0",
+  // money2: "12.46 Million",
+  // money3: "0",
+
+  company: function(){
+    var data = Session.get('annual_EBS');
+    return data['data']['balance_sheet']['company_info']['c_name'];
+  },
+  updated: function(){
+    var data = Session.get('annual_EBS');
+    return data['data']['balance_sheet']['company_info']['c_tr_last_updated'];
+  },
+  location: function(){
+    var data = Session.get('annual_EBS');
+    var city = data['data']['balance_sheet']['company_info']['c_hq_city'];
+    city = city.replace(/\w\S*/g, function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+    var state = data['data']['balance_sheet']['company_info']['c_hq_state'];
+    return city + ", " + state;
+  },
+
+  selectYear: function() {
+    return "2015";
+  },
+
+  totaldbt: function() {
+    var data = Session.get('annual_EBS');
+    var income = parseInt(data.data.balance_sheet.balance_sheet_data["Total Debt"]["2015"]);
+    if(income > 1000)
+    {
+      income /= 1000;
+      return "$" + income.toFixed(2) + " Billion";
+    }
+    return "$" + income + " Million";
+  },
+
+  totalasets: function() {
+    var data = Session.get('annual_EBS');
+    var income = parseInt(data.data.balance_sheet.balance_sheet_data["Total Assets"]["2015"]);
+    if(income > 1000)
+    {
+      income /= 1000;
+      return "$" + income.toFixed(2) + " Billion";
+    }
+    return "$" + income + " Million";
+  },
+
+  perce: function() {
+    var data = Session.get('annual_EBS');
+    var income = parseFloat(data.data.balance_sheet.balance_sheet_data["Total Debt"]["2015"]);
+    var rev = parseFloat(data.data.balance_sheet.balance_sheet_data["Total Assets"]["2015"]);
+    var out = (income / rev) * 100;
+
+    return out.toFixed(2) + "%";
+  },
 
   data: function(){
     var data = Session.get('annual_EBS');
@@ -110,50 +270,3 @@ Template.annual_EBS.helpers({
     return returnArray;
   }
 });
-
-function annualEBSgraph() {
-  $('#annualEBSgraph').highcharts({
-    credits: {
-      enabled: false
-    },
-    exporting: {
-      enabled: false
-    },
-    title: {
-      text: ''
-    },
-    xAxis: {
-      categories: ['2010', '2011', '2012', '2013', '2014']
-    },
-
-    yAxis: {
-      tickInterval: 2.5
-    },
-
-    series: [{
-      type: 'column',
-      name: 'Debt',
-      data: [2.4, 2.6, 5, 7.3, 5.9],
-      showInLegend: false,
-      color: '#434348'
-    }, {
-      type: 'column',
-      name: 'Assets',
-      data: [4.2, 2.6, 2.6, 8.5, 3.1],
-      showInLegend: false,
-      color: '#3098FF'
-    }, {
-      type: 'spline',
-      name: 'Average',
-      data: [3, 2.67, 3, 6.33, 3.33],
-      showInLegend: false,
-      marker: {
-        lineWidth: 2,
-        lineColor: '#F8A354',
-        fillColor: 'white'
-      },
-      color: '#F8A354',
-
-    }]
-  });
-}

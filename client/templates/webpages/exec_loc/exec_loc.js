@@ -27,7 +27,6 @@ Template.exec_loc.helpers({
   stateImage: function(){
     var params = Router.current().getParams();
     var data = params.loc_id;
-    console.log(data);
     if(data == 'National' || data == '' || typeof data == 'undefined'){
       return "url('/StateImages/Location_"+data+".jpg');";
     }else{
@@ -106,11 +105,13 @@ Template.exec_loc.helpers({
     var params = Router.current().getParams();
     var listdata = {};
     var newData = Session.get('executives_page');
-    var newData = listdata.list_data;
-    if(typeof listdata =='undefined'){
+    console.log(newData);
+    listdata.list_data = newData;
+    if(typeof newData =='undefined'){
       return '';
     }
-    $.map(newData, function(data,index){
+    console.log(listdata);
+    $.map(listdata.list_data, function(data,index){
       if(typeof data['lcsi_market_cap'] == 'undefined' || data['lcsi_market_cap'] == ''){
         data['objname'] = 'Salary';
         data['lcsi_market_cap'] = 1;
@@ -127,6 +128,7 @@ Template.exec_loc.helpers({
         exec_id: data.o_id
       });
     })
+    console.log(listdata);
     return listdata.list_data[count];
   },
   //This function is called everytime "each" loop runs, it returns the respective class which is suppose to use on each iteration

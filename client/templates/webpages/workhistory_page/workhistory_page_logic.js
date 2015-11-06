@@ -16,14 +16,34 @@ Template.workhistory_page.onCreated( function() {
         for (id in companies){
           var compList = companies[id];
           var comp = {};
+          comp['locurl'] = Router.pick_path('content.locationprofile',{
+            loc_id:compUrlName(compList['company_data'].c_hq_state),
+            city:compUrlName(compList['company_data'].c_hq_city)
+          });
+          comp['boardurl'] = Router.pick_path('content.boardcommittee',{
+            ticker:compList['company_data'].c_ticker,
+            name:compUrlName(compList['company_data'].c_name),
+            company_id:compList['company_data'].c_id
+          });
+          comp['compurl'] = Router.pick_path('content.companyprofile',{
+            ticker:compList['company_data'].c_ticker,
+            name:compUrlName(compList['company_data'].c_name),
+            company_id:compList['company_data'].c_id
+          });
+          comp['execurl'] = Router.pick_path('content.executiveprofile',{
+            ticker:compList['company_data'].c_ticker,
+            name:compUrlName(compList['company_data'].c_name),
+            company_id:compList['company_data'].c_id
+          });
           comp['location'] = compList['company_data'].c_hq_city + ", " + compList['company_data'].c_hq_state;
           comp['c_name'] = compList['company_data'].c_name;
           comp['c_ticker'] = compList['company_data'].c_ticker;
           comp['c_id'] = compList['company_data'].c_id;
+          comp['c_logo'] = compList['company_data'].c_logo;
           comp['exec_nearest_pos'] = compList['officer_positions'][0];
           comp['connections'] = compList['connections'];
           comp['o_id'] = data['officer_data'].o_id;
-          comp['c_last_updated'] = compList['company_data'].c_tr_last_updated;
+          comp['c_last_updated'] = (new Date(compList['company_data'].c_tr_last_updated)).toSNTForm();
           comp['c_desc'] = compList['company_data'].c_desc;
           projArray.push(comp);
         }
@@ -96,11 +116,18 @@ Template.workhistory_page.helpers({
     var data = Session.get('work_history');
     var date = data['officer_data']['o_last_updated'];
     return date;
-  },getlocNm:function(){
+  },
+  getlocNm:function(){
     var data = Session.get('new_work_history');
     var currentComp = data[data.length - 1];
     return currentComp['location'];
-  },getWrkdetails:function(){
+  },
+  getlocurl:function(){
+    var data = Session.get('new_work_history');
+    var currentComp = data[data.length - 1];
+    return currentComp['locurl'];
+  },
+  getWrkdetails:function(){
       var wrk="Work & Project History";
       return wrk;
     },getName:function(){
@@ -128,6 +155,16 @@ Template.workhistory_page.helpers({
       var url = data['officer_data']['o_pic'];
       return url;
     },
+    getExecUrl:function(){
+      var params = Router.current().getParams();
+      var url = Router.pick_path('content.executiveprofile',{
+        fname:params.fname,
+        lname:params.lname,
+        ticker:params.ticker,
+        exec_id:params.exec_id
+      });
+      return url;
+    },
 //     listings: [
 //     {  listno:"1", location: "Palo Alto, CA", wrkNam: "Internet.Org", position: "Founder", strdate: "August 2013",enddate:"present",  numofmonths: "1 year & 9 months"},
 //     {  listno:"2", location: "Melno Park, CA", wrkNam: "Facebook, Inc.", position: "Cheif Executive Officer", strdate: "Febraury 2001",enddate:" present",  numofmonths: "12 year & 1 month"},
@@ -147,28 +184,16 @@ Template.workhistory_page.helpers({
 
       for(i = 0; i < data.length; i++){
         returnArray[i] = {};
-        var company = data[data.length - (i+1)];
+        var company = data[i];
         returnArray[i]['listno'] = i;
         returnArray[i]['location'] = company['location'];
+        returnArray[i]['locurl'] = company['locurl'];
+        returnArray[i]['compurl'] = company['compurl'];
+        returnArray[i]['boardurl'] = company['boardurl'];
+        returnArray[i]['c_logo'] = company['c_logo'];
         returnArray[i]['wrkNam'] = company['c_name'];
         returnArray[i]['position'] = company['exec_nearest_pos']['Title'];
         returnArray[i]['execPic'] = exec['o_pic'];
-
-        $.map(company.connections, function(data, i){
-          data['execUrl'] = Router.pick_path('content.executiveprofile',{
-            lname:data.o_last_name,
-            fname:data.o_first_name,
-            ticker:'undefined',
-            exec_id:data.o_id,
-          });
-        })
-
-        //Array of connection pictures
-        returnArray[i]['connection'] = [];
-        for(j = 0; j < company['connections'].length; j++){
-          returnArray[i]['connection'][j] = company['connections'][j]['o_pic'];
-
-        }
 
         //Start and end dates
         returnArray[i]['strdate'] = month[company['exec_nearest_pos']['start_month'] - 1] + " " + company['exec_nearest_pos']['start_year'];
@@ -223,13 +248,6 @@ Template.workhistory_page.helpers({
         returnArray[i]['numofmonths'] = timeString;
       }
 
-      $.map(data, function(val, i){
-        val.listUrl = Router.pick_path('content.boardcommitee',{
-          ticker:val.c_ticker,
-          name:compUrlName(val.c_name),
-          company_id:val.c_id
-        })
-      })
       return returnArray;
     },
 

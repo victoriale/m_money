@@ -447,7 +447,7 @@ Meteor.methods({
     // console.log("New Sector Data",loc_id);
 
     //random number to pick random list in list_index that's in database
-    //console.log(loc_id, sector);
+    console.log(loc_id, sector);
     if(loc_id === 'National'){
       // console.log('national call');
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=sector_companies";
@@ -458,11 +458,11 @@ Meteor.methods({
     }
 
     if(sector != null && typeof sector != 'undefined' && sector != ''){
-      UrlString +="&param="+sector;
+      UrlString +="&param="+encodeURIComponent(sector);
     }
-    UrlString += "&page=1&per_page=1000";
-    //console.log(UrlString);
-    Meteor.http.get(UrlString, (function(error, data){
+    UrlString += "&page=1&per_page=100";
+    console.log(UrlString);
+    Meteor.http.get(UrlString, (function(startTime, sector, loc_id, error, data){
       try{
         data = JSON.parse(data['content']);
       } catch (e) {

@@ -21,6 +21,7 @@ Template.list_of_list_loc_page.helpers({
 
   listsData: function(){
     var list = Session.get('list_of_lists');
+    var params = Router.current().getParams();
     if(typeof list =='undefined'){
       return false;
     }
@@ -31,8 +32,12 @@ Template.list_of_list_loc_page.helpers({
         data['index_color'] = '#ffffff';
       }
       data.locurl = Router.pick_path('content.locationprofile',{
-        loc_id:'National',
+        loc_id:params.loc_id,
       });
+      console.log(data);
+      console.log(Router.pick_path('content.locationprofile',{
+        loc_id:params.loc_id,
+      }));
       //create URL before shifting array
       $.map(data['top_list_list'], function(data, index){
         data['url'] = Router.pick_path('content.companyprofile',{
@@ -51,13 +56,11 @@ Template.list_of_list_loc_page.helpers({
         l_name:compUrlName(list_name),
         list_id:id_param
       });
-      data['locurl'] = Router.pick_path('content.locationprofile',{
-        loc_id:data.c_hq_state,
-      });
       //move first listed item to a seperate object to go into big circle
       data['top'] = data.top_list_list[0];
       data['top_list_list'].shift();
     })
+    console.log(list);
     return list;
   },
 
@@ -71,7 +74,11 @@ Template.list_of_list_loc_page.helpers({
 
   headerInfo: function(){
     var params = Router.current().getParams();
-    return fullstate(params.loc_id);
+    if(params.loc_id == "National"){
+      return "United States";
+    }else{
+      return fullstate(params.loc_id);
+    }
   },
 });
 //This handles the events on button clicks of 1,2,3 and 200
