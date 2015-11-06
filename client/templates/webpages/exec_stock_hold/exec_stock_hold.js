@@ -5,75 +5,9 @@ Decription: A page for showing what has happened with a company over a period of
 Associated Files: exec_stock_hold.html, exec_stock_hold.less, exec_stock_hold.js
 */
 
-eshTiles = [ //data for the tiles at the bottom of the page
-    {
-        left: {
-            title: "Share Held",
-            item: [
-                {
-                    text: "Shares",
-                    value: "38 Million"
-                }
-            ],
-        },
-        right: {
-            title: "Market Value",
-            item: [
-                {
-                    text: "Today's Value",
-                    value: "$3.64 Billion"
-                }
-            ],
-        }
-    },
-    {
-        left: {
-            title: "Annual Salary",
-            item: [
-                {
-                    text: "2014",
-                    value: "$1",
-                    itemClass: '-u' //only need this field for underlined items
-                },
-                {
-                    text: "2013",
-                    value: "$1",
-                    itemClass: '-u'
-                },
-                {
-                    text: "2012",
-                    value: "$503,205",
-                    itemClass: '-u'
-                }
-            ],
-            itemClass: '-u' //underlined version
-        },
-        right: {
-            title: "How Much of FB Does He Own?",
-            item: [
-                {
-                    text: "Share Ownership",
-                    value: "28%",
-                    itemClass: '-u'
-                },
-                {
-                    graph: true, //gives the weird bar graph thing
-                    value: "28%" //make sure this is in a percent
-                }
-            ],
-        }
-    }
-];
-
-eshIsGrey = false; //used to determine if the tile at the bottom of the page is grey or white
-
 eshGraphObject = {
-    chart: {
-        type: 'line',
-        events: {
-            redraw: function() {
-            }
-        }
+    chart: { type: 'line',
+        events: { redraw: function() { } }
     },
     title: {
         text: ''
@@ -84,8 +18,9 @@ eshGraphObject = {
     yAxis: {
             title: '',
             labels: {
-                format: '${value:.2f}'
+                format: '<b>${value:.2f}</b>'
             },
+            opposite: true,
             gridLineDashStyle: "Dash"
     },
     xAxis: {
@@ -93,130 +28,104 @@ eshGraphObject = {
         categories: ['8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '<b>NOW</b>'],
         tickLength: 0,
         labels: {
-            format: "{value:%l%p}",
+            format: "<b>{value:%l%p}</b>",
         },
         minTickInterval: 3600000*6
     },
-    series: [{
-        name: 'Facebook, Inc.',
-        type: 'spline',
-        showInLegend: false
-    }]
+    series:
+       [{ name: "facebook", type: 'spline', showInLegend: false}]
+
 };
 
-Template.exec_stock_hold.helpers(
-    {
-        getGraphObject: function()
-        {
-            //retrieve chart data here
-            var url =  "http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?";
-            $.getJSON(url,  function(data) {
-              eshGraphObject.series[0].data = data;
-              //set chart to initial position
-              var ctime = eshGraphObject.series[0].data[eshGraphObject.series[0].data.length-1][0];
-              eshGraphObject.xAxis.min = ctime - 24*3600000;
-              eshGraphObject.xAxis.labels.format = "{value:%l%p}";
-              new Highcharts.Chart(eshGraphObject);
-            });
-            return eshGraphObject;
-        },
-        btns: function()
-        {
-            var btns = [
-                {text: "1D"},
-                {text: "5D"},
-                {text: "10D"},
-                {text: "1M"},
-                {text: "3M"},
-                {text: "6M"},
-                {text: "9M"},
-                {text: "1Y"},
-                {text: "3Y"},
-                {text: "5Y"},
-                {text: "10Y"}
-            ];
-            for(var i = 1; i <= 11; i++)
-            {
-                btns[i-1].num = i;
-            }
-            return btns;
-        },
 
-        isInitial: function(num) //used to automatically select the first button
-        {
-            if(num==1)
-                return " esh-btm-data-period-btn-a";
-            else
-                return "";
-        },
-
-        tiles: function()
-        {
-            for(var i = 0; i < eshTiles.length; i++)
-            {
-                //add number fields so that they can be referenced
-                eshTiles[i].left.num = i+1;
-                eshTiles[i].right.num = i+1;
-            }
-            return eshTiles;
-        },
-
-        getTileColor: function()
-        {
-            if(eshIsGrey)
-            {
-                eshIsGrey = false;
-                return "esh-btm-data-tile-grey";
-            } else {
-                eshIsGrey = true;
-                return "esh-btm-data-tile";
-            }
-        },
-
-        executive: function() //returns object for executive data used throughout the html
-        {
-            var c = {
-                name: "Mark Zuckerberg",
-                company: "Facebook, Inc.",
-                ticker: "FB"
-            };
-            return c;
-        },
-
-        exceptableForLargeBar: function(value) //makes sure it's safe to display the "100%" in the box
-        {
-            if(parseInt(value)<=80)
-                return true;
-            else
-                return false;
-        },
-
-        exceptableForSmallBar: function(value) //makes sure it's safe to display the value in the inner box in the graph
-        {
-            if(parseInt(value)>=20)
-                return true;
-            else
-                return false;
-        }
+Template.exec_stock_hold.helpers({
+  execInf: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
     }
-);
+    data['o_last_updated'] = data['o_last_updated'];
+    data['Name'] = data.o_first_name + " " + data.o_middle_initial + " " + data.o_last_name;
+    data['company']= data.c_name;
+    data['tick']= data.c_ticker;
+    data['o_pic']= data.o_pic;
+    Session.set('profile_header', data);
+    return data;
+  },
 
-Template.exec_stock_hold.onRendered(function(){
-    for(var i = 1; i <= eshTiles.length; i++)
-    {
-        var a = document.getElementById("eshTileL"+i);
-        var b = document.getElementById("eshTileR"+i);
-        if(b.clientHeight>a.clientHeight)
-        {
-            //makes it so the dividing line grows if the tiles do
-            a.style.borderRightStyle = "solid";
-            a.style.height = b.clientHeight + "px";
-        }
+  Title:"Stock Holdings",
+  Profile: function(){
+/*
+if(Session.get('IsCompany')) {
+   return Session.get("profile_header").c_name;
+} else if(Session.get('IsExec')){
+  data = Session.get('profile_header');
+  return data['o_first_name'] + " " + data['o_last_name'];
+} else if(Session.get('IsLocation')){
+  return "San Francisco";
+} */
+    return "[profile]";
+  },
+//  Name:  function(){
+//    return Session.get("profile_header").o_first_name+" "+ Session.get("profile_header").o_last_name;
+//  },
+  Country: "The United States of America",
+  Update: "old 06/24/2015,8:00 AM EST",
+  back_url: function(){
+    return "#";
+  },
+  ownShare: function(){
+    return 28;
+  },
+  value:"3.64 Billion USD",
+  price:"$94.31",
+  updn:"up",
+  color:"#44b224;",
+  change: "+0.22",
+  percent:"+0.23",
+  getGraphObject: function() {
+    //retrieve chart data here
+    var url =  "http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?";
+    $.getJSON(url,  function(data) {
+      eshGraphObject.series[0].data = data;
+      //set chart to initial position
+      var ctime = eshGraphObject.series[0].data[eshGraphObject.series[0].data.length-1][0];
+      eshGraphObject.xAxis.min = ctime - 24*3600000;
+      eshGraphObject.xAxis.labels.format = "<b>{value:%l%p}</b>";
+      new Highcharts.Chart(eshGraphObject);
+    });
+    return eshGraphObject;
+  },
+
+  btns: function() {
+    var btns = [ {text: "1D"}, {text: "5D"}, {text: "10D"}, {text: "1M"},
+                {text: "3M"}, {text: "6M"}, {text: "9M"}, {text: "1Y"},
+                {text: "3Y"}, {text: "5Y"}, {text: "10Y"} ];
+    for (var i = 1; i <= 11; i++) {
+      btns[i-1].num = i;
     }
+    return btns;
+  },
+
+  isInitial: function(num) { //used to automatically select the first button
+    if(num==1) return " exsh-cE-cb-btn-a"; else return "";
+  },
+
 });
 
-eshBtns = function(num)
-{
+Template.exec_stock_hold.onRendered(function(){
+  this.autorun(function(){
+
+    var Stock_o = 28;
+    // This will prevent Share own bar cart label floating outside box
+    if (Stock_o < 22)  {   // 22 is chosen aroximately location item should reside
+      $("#grphlbl").css({"float": "left", "margin-left":"20px" });
+    }
+    eshGraphObject.series[0].name = Session.get('profile_header').c_name;
+  })
+});
+
+eshBtns = function(num) {
     var ctime = eshGraphObject.series[0].data[eshGraphObject.series[0].data.length-1][0]; //the most recent piece of data
     var day = 24*3600000;
     var month = 24*3600000*30;
@@ -227,65 +136,65 @@ eshBtns = function(num)
     case 1:
         eshGraphObject.xAxis.min = ctime - day;
         eshGraphObject.xAxis.minTickInterval = day/4;
-        eshGraphObject.xAxis.labels.format = "{value:%l%p}";
+        eshGraphObject.xAxis.labels.format = "<b>{value:%l%p}</b>";
         break;
     case 2:
         eshGraphObject.xAxis.min = ctime - day*5;
         eshGraphObject.xAxis.minTickInterval = day;
-        eshGraphObject.xAxis.labels.format = "{value:%a %l%p}";
+        eshGraphObject.xAxis.labels.format = "<b>{value:%a %l%p}</b>";
         break;
     case 3:
         eshGraphObject.xAxis.min = ctime - day*10;
         eshGraphObject.xAxis.minTickInterval = day*2;
-        eshGraphObject.xAxis.labels.format = "{value:%b %d}";
+        eshGraphObject.xAxis.labels.format = "<b>{value:%b %d}</b>";
         break;
     case 4:
         eshGraphObject.xAxis.min = ctime - month;
         eshGraphObject.xAxis.minTickInterval = day*5;
-        eshGraphObject.xAxis.labels.format = "{value:%b %d}";
+        eshGraphObject.xAxis.labels.format = "<b>{value:%b %d}</b>";
         break;
     case 5:
         eshGraphObject.xAxis.min = ctime - month*3;
         eshGraphObject.xAxis.minTickInterval = day*15;
-        eshGraphObject.xAxis.labels.format = "{value:%b %d}";
+        eshGraphObject.xAxis.labels.format = "<b>{value:%b %d}</b>";
         break;
     case 6:
         eshGraphObject.xAxis.min = ctime - month*6;
         eshGraphObject.xAxis.minTickInterval = month;
-        eshGraphObject.xAxis.labels.format = "{value:%b %d}";
+        eshGraphObject.xAxis.labels.format = "<b>{value:%b %d}</b>";
         break;
     case 7:
         eshGraphObject.xAxis.min = ctime - month*9;
         eshGraphObject.xAxis.minTickInterval = month;
-        eshGraphObject.xAxis.labels.format = "{value:%b %d}";
+        eshGraphObject.xAxis.labels.format = "<b>{value:%b %d}</b>";
         break;
     case 8:
         eshGraphObject.xAxis.min = ctime - year;
         eshGraphObject.xAxis.minTickInterval = month*2;
-        eshGraphObject.xAxis.labels.format = "{value:%b %d %Y}";
+        eshGraphObject.xAxis.labels.format = "<b>{value:%b %d %Y}</b>";
         break;
     case 9:
         eshGraphObject.xAxis.min = ctime - year*3;
         eshGraphObject.xAxis.minTickInterval = month*6;
-        eshGraphObject.xAxis.labels.format = "{value:%b %d %Y}";
+        eshGraphObject.xAxis.labels.format = "<b>{value:%b %d %Y}</b>";
         break;
     case 10:
         eshGraphObject.xAxis.min = ctime - year*5;
         eshGraphObject.xAxis.minTickInterval = year;
-        eshGraphObject.xAxis.labels.format = "{value:%b %Y}";
+        eshGraphObject.xAxis.labels.format = "<b>{value:%b %Y}</b>";
         break;
     case 11:
         eshGraphObject.xAxis.min = ctime - year*10;
         eshGraphObject.xAxis.minTickInterval = year*2;
-        eshGraphObject.xAxis.labels.format = "{value:%b %Y}";
+        eshGraphObject.xAxis.labels.format = "<b>{value:%b %Y}</b>";
         break;
     }
     new Highcharts.Chart(eshGraphObject);
     for(var i = 1; i <= 11; i++)
     {
         var a = document.getElementById("eshBtn" + i);
-        a.className = "esh-btm-data-period-btn";
+        a.className = "exsh-cE-cb-btn";
         if(i==num)
-            a.className += " esh-btm-data-period-btn-a";
+            a.className += " exsh-cE-cb-btn-a";
     }
 }
