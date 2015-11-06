@@ -543,6 +543,14 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                 width: 320px;
                 height: 68px;
                 margin-bottom: 10px;
+                &:hover{
+                  .stat-btm-data-stat-bar{
+                    border-left: 5px solid @blue;
+                  }
+                  .stat-btm-data-stat-arrow{
+                    color:@blue;
+                  }
+                }
               }
 
               &-bar //stat-btm-data-stat-bar: the dark bar on the left of a tile

@@ -64,11 +64,15 @@ Template.list_of_lists_loc.helpers({
 
   headerInfo: function(){
     var data = Session.get('profile_header');
+    var params = Router.current().getParams();
     if(typeof data == 'undefined'){
       return false;
     }
-
-    return data.location;
+    if(params.loc_id == 'National' || typeof params.loc_id == 'undefined' || params.loc_id == ''){
+      return 'United States';
+    }else{
+      return data.location;
+    }
   },
 });
 //This handles the events on button clicks of 1,2,3 and 200

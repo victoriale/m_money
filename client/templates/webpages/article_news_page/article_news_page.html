@@ -23,7 +23,7 @@ Related Files:
       <!-- the header box -->
       <div class="art-lst-hdr-head-box">
         <!-- image inside the header box-->
-        <div class="art-lst-hdr-head-image" style="background-image: url('{{url}}')"></div>
+        <div class="art-lst-hdr-head-image" style="{{stateImage}}"></div>
         <!-- the text inside the header box-->
         <div class="art-lst-hdr-text">
           <!-- the latest update-->
@@ -53,8 +53,9 @@ Related Files:
         </div>-->
         <a href="{{shareURL}}" target="_blank">
           <div class="art-lst-hdr-bar-button">
-            <!-- share option button -->
+            <!-- share option button
             <i class="fa fa-share-alt art-lst-hdr-bar-button-fa"></i><span class="art-lst-hdr-bar-text">Share</span>
+            -->
           </div>
         </a>
       </div>
@@ -66,7 +67,7 @@ Related Files:
         <!-- end of the module.less navigation button -->
         <!-- wrapper class-->
         <div class="art-lst-hdr-main-container-image-wrapper">
-          <div class="art-lst-hdr-main-container-image" style="background-image:url('{{lead_image}}')"></div>
+          <div class="art-lst-hdr-main-container-image" style="background-image:url('{{imageUrl lead_image}}')"></div>
         </div>
         <!-- the main container -->
 
@@ -178,7 +179,7 @@ Related Files:
           </div>
           <!-- END Company News Body Content Main Tile Text -->
           <!-- Company News Body Content Main Tile Image Placeholder -->
-          <div class = "nws-bdy-ctnt-main-plchldr" style="background-image:url({{main_image}})"></div>
+          <div class = "nws-bdy-ctnt-main-plchldr" style="background-image:url('{{imageUrl main_image}}')"></div>
           <!-- Company News Body Content Main Tile Image Placeholder -->
         </div>
       </a>
@@ -216,7 +217,7 @@ Related Files:
               </div>
               <!-- END Body Content Left Sub-Tile Article Buttons -->
               <!-- Body Content Left Sub-Tile Article Image Placeholder -->
-              <div class = "nws-art-plchldr" style="background-image:url({{image}})"></div>
+              <div class = "nws-art-plchldr" style="background-image:url('{{imageUrl image}}')"></div>
               <!-- END Body Content Left Sub-Tile Article Image Placeholder -->
 
 
@@ -273,7 +274,7 @@ Related Files:
               </div>
               <!-- END Right Pane Article Tags -->
               <!-- Right Pane Article Image Placeholder -->
-              <div class = "nws-art-plchldr" style="background-image:url({{image}})"></div>
+              <div class = "nws-art-plchldr" style="background-image:url({{imageUrl image}})"></div>
               <!-- END Right Pane Article Image Placeholder -->
               <!-- Right Pane Article Text -->
               <div class = "nws-art-txt">

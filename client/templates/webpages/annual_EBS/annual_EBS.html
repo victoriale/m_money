@@ -5,7 +5,7 @@
   <div class = "anebs">
 
     <!-- Header Section -->
-    <a href = "#">
+    <a href = "#" onclick="history.go(-1)">
       <div class = "anebs-hdr">
         <div class = "anebs-hdr-box"><i class = "fa fa-reply"></i></div>
         <div class = "anebs-hdr-tri"></div>
@@ -20,9 +20,9 @@
     <div class = "anebs-ttl">
       <a href = "#"><div class = "anebs-ttl-img"></div></a>
       <div class = "anebs-ttl-txt">
-        <div class = "anebs-ttl-txt-upd">LAST UPDATED: {{upd}}</div>
-        <div class = "anebs-ttl-txt-loc"><i class = "fa fa-map-marker"></i>&nbsp;{{loc}}</div>
-        <div class = "anebs-ttl-txt-ttl">{{year}} Annual Balance Sheet</div>
+        <div class = "anebs-ttl-txt-upd">LAST UPDATED: {{updated}}</div>
+        <div class = "anebs-ttl-txt-loc"><i class = "fa fa-map-marker"></i>&nbsp;{{location}}</div>
+        <div class = "anebs-ttl-txt-ttl">{{selectYear}} Annual Balance Sheet</div>
         <div class = "anebs-ttl-txt-comp">For {{company}}</div>
       </div>
     </div>
@@ -49,22 +49,22 @@
           <div class = "anebs-grph-totals-total-ind">
             <div class = "anebs-grph-totals-total-ind-box" style = "background-color: #434348"></div>
             <div class = "anebs-grph-totals-total-ind-txt">
-              <div class = "anebs-grph-totals-total-ind-txt-top">${{money1}}</div>
+              <div class = "anebs-grph-totals-total-ind-txt-top">${{totaldbt}}</div>
               <div class = "anebs-grph-totals-total-ind-txt-bttm">Total Debt</div>
             </div>
           </div>
           <div class = "anebs-grph-totals-total-ind">
             <div class = "anebs-grph-totals-total-ind-box" style = "background-color: #3098FF"></div>
             <div class = "anebs-grph-totals-total-ind-txt">
-              <div class = "anebs-grph-totals-total-ind-txt-top">${{money2}}</div>
+              <div class = "anebs-grph-totals-total-ind-txt-top">${{totalasets}}</div>
               <div class = "anebs-grph-totals-total-ind-txt-bttm">Total Assets</div>
             </div>
           </div>
           <div class = "anebs-grph-totals-total-ind">
             <div class = "anebs-grph-totals-total-ind-box" style = "background-color: #F8A354"></div>
             <div class = "anebs-grph-totals-total-ind-txt">
-              <div class = "anebs-grph-totals-total-ind-txt-top">{{money3}}%</div>
-              <div class = "anebs-grph-totals-total-ind-txt-bttm">Debt to Assets (%)</div>
+              <div class = "anebs-grph-totals-total-ind-txt-top">{{perce}}</div>
+              <div class = "anebs-grph-totals-total-ind-txt-bttm">Debt to Assets</div>
             </div>
           </div>
         </div>

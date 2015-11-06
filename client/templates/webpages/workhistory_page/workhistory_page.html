@@ -37,7 +37,7 @@
           <!--date part-->
         <div class="wrkh-p_pghead_pgloc_lstdate">Last Updated: {{getdtime}}</div>
           <!--location part-->
-        <div class="wrkh-p_pghead_pgloc_headloc"><i class="fa fa-map-marker faicons-mark"></i> {{getlocNm}}</div>
+        <div class="wrkh-p_pghead_pgloc_headloc"><a href="{{getlocurl}}"><i class="fa fa-map-marker faicons-mark"></i> {{getlocNm}}</a></div>
         <!-- work and project details-->
         <div class="wrkh-p_pghead_pgloc_wrkNm">{{getWrkdetails}}</div>
         <!-- Name-->
@@ -59,9 +59,6 @@
         <span class="wrkh-p_lnfrmwrk_lntop_lntildiv_lntilnam">{{getWrkdetails}}</span>
       </span>
       <!--  <span class="wrkh-p_lnfrmwrk_lntop_lntildiv_vline"></span>-->
-      
-        <span class="wrkh-p_lnfrmwrk_lntop_lnshare"><i class="fa fa-share-alt" style="margin-right:8px"></i> Share</span>
-        <span class="wrkh-p_lnfrmwrk_lntop_lnsave"><i class="fa fa-heart" style="margin-right:8px" ></i> Save</span>
       </div>
       <!--end of header part of linen framework-->
       <!--content part of the linen framework-->
@@ -72,20 +69,12 @@
             <p class="wrkh-p_lnfrmwrk_lncon_carousel_lntxt_p">{{getDesc}}</p>
           </div></div>
           <div class="wrkh-p_lnfrmwrk_lncon_lnimg" style="background-image:url({{imageUrl getPic}})"></div>
-          <div class="wrkh-p_lnfrmwrk_lncon_lnimg_lnsimg"></div>
+          <!--<div class="wrkh-p_lnfrmwrk_lncon_lnimg_lnsimg"></div>-->
           <div class="wrkh-p_lnfrmwrk_lncon_conid">
             <div class="wrkh-p_lnfrmwrk_lncon_conid_lncir">
               <i class="fa fa-briefcase"></i>
             </div>
             <div class="wrkh-p_lnfrmwrk_lncon_conid_lnvln"></div></div>
-
-          <button class="wrkh-p-lefthov arw">
-            <i class="fa fa-angle-left fa-2x"></i>
-          </button>
-          <button class="wrkh-p-righthov arw">
-            <i class="fa fa-angle-right fa-2x"></i>
-          </button>
-
       </div>
       <!--end of content part of linen framework-->
       <!-- start of footer part of linen framework-->
@@ -95,8 +84,10 @@
           <div class="wrkh-p_lnfrmwrk_lnbtm_infobr_infobtm1">Profile Last Updated On:</div>
           <div class="wrkh-p_lnfrmwrk_lnbtm_infobr_infobtm2">{{getdate}}</div>
         </div>
-        <div class="wrkh-p_lnfrmwrk_lnbtm_blubtn">View Website<span style="margin-left:6px">
-        <i class="fa fa-angle-right"></i></span></div>
+        <a href='{{getExecUrl}}'>
+          <div class="wrkh-p_lnfrmwrk_lnbtm_blubtn">View Profile<span style="margin-left:6px">
+          <i class="fa fa-angle-right"></i></span></div>
+        </a>
       </div>
       <!--end of footer part of linen framework-->
     </div>
@@ -104,8 +95,7 @@
     <!-- start of sort by most recent section-->
     <div class="wrkh-p_srtbr">
       <div class="wrkh-p_srtbr_srt">
-        <div class="wrkh-p_srtbr_srt_srtby">Sort by:</div>
-        <div class="wrkh-p_srtbr_srt_mstrec">Most Recent <i class="fa fa-angle-down arwd"></i></div>
+
       </div>
       <!--content part in srtby most recent-->
       <div class="wrkh-p_srtbr_srtcon">
@@ -121,7 +111,9 @@
     {{#each listings}}
       <div class="wrkh-p_lstcon_lsttile_{{getBackgroundStyle}}">
       <div class="wrkh-p_lstcon_txtlft">
-        <div class="wrkh-p_lstcon_txtlft_place"><i class="fa fa-map-marker faicons-mark"></i> &nbsp;{{location}}</div>
+        <a href="{{locurl}}">
+          <div class="wrkh-p_lstcon_txtlft_place"><i class="fa fa-map-marker faicons-mark"></i> &nbsp;{{location}}</div>
+        </a>
         <div class="wrkh-p_lstcon_txtlft_wrkNM">{{wrkNam}}</div>
         <div class="wrkh-p_lstcon_txtlft_posdur">
           <div class="wrkh-p_lstcon_txtlft_posdur_positiontxt">{{position}}</div>
@@ -129,29 +121,33 @@
           <div class="wrkh-p_lstcon_txtlft_posdur_numofmnts">{{numofmonths}}</div>
         </div>
       </div>
-      <div class="wrkh-p_lstcon_imgs" style="background-image:url({{imageUrl execPic}})"></div>
+      <a href="{{compurl}}"><div class="wrkh-p_lstcon_imgs" style="background-image:url({{imageUrl c_logo}})">
+        <div class="hover">
+          <div class="hover-txt1">View</div>
+          <div class="hover-txt2">Profile</div>
+        </div>
+      </div></a>
       <div class="wrkh-p_lstcon_Listvw">
         {{#each connection}}
         <a href="{{execUrl}}">
           <div class="wrkh-p_lstcon_Listvw_lstcir" style="background-image:url({{imageUrl execPic}})"></div>
         </a>
         {{/each}}
-        <a href="{{listUrl}}">
+        <a href="{{boardurl}}">
           <div class="wrkh-p_lstcon_morebtn">View All Connections<span style="margin-left:6px"><i class="fa fa-angle-right"></i></span></div>
         </a>
       </div>
       <div class="wrkh-p_lstcon_sav-shr">
+        <!--
         <div class="wrkh-p_lstcon_sav-shr_sav"><i class="fa fa-heart" style="margin-right: 8px"></i> Save</div>
         <div class="wrkh-p_lstcon_sav-shr_shr"> <i class="fa fa-share-alt" style="margin-right: 8px"></i> Share</div>
         <div class="wrkh-p_lstcon_sav-shr_fb"><i class="fa fa-flag" style="margin-right: 8px"></i> Feedback</div>
+        -->
       </div>
     </div>
       {{/each}}
     </div>
-
-    <div class="wrkh-p_srchpanel">
-      <!--{{> recommend}}-->
-    </div>
+    {{> search_module}}
   </div>
 
 </template>

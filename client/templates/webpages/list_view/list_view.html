@@ -68,12 +68,20 @@ Associated Files: list_view_logic.js and list_view.less
         <!-- end of the module.less navigation button -->
         <!-- wrapper class-->
         <div class="list_vw-m_c-image-wr">
-          <div class="list_vw-m_c-image" style="background-image:url('{{imageUrl c_logo}}')">
-            <div class="list_vw-m_c-sma_ct">
-            <div class="list_vw-m_c-sma_cr" style="background-image:url('{{exchange c_exchange}}')">
+          <a href="{{url}}">
+            <div class="list_vw-m_c-image" style="background-image:url('{{imageUrl c_logo}}')">
+              <div class="hover" style="line-height:3em">
+                <div class="hover-txt1">View</div>
+                <div class="hover-txt2">Profile</div>
+              </div>
+              <div class="list_vw-m_c-sma_ct">
+                <a href="{{exchurl}}">
+                  <div class="list_vw-m_c-sma_cr" style="background-image:url('{{exchange c_exchange}}')">
+                  <div class="hover"></div></div>
+                </a>
+              </div>
             </div>
-          </div>
-          </div>
+          </a>
         </div>
         <!-- the main container -->
         <ul class="list_vw-m_c-cr">
@@ -161,7 +169,9 @@ Associated Files: list_view_logic.js and list_view.less
                 </div>
                 <!-- Here displays the counter number which is a result of each loop-->
                 <span class="list_vw-counter">#{{rank}}</span>
-                <span class="list_vw-counter2" style="background-image:url('{{exchange c_exchange}}')"></span>
+                <a href="{{exchurl}}">
+                  <span class="list_vw-counter2" style="background-image:url('{{exchange c_exchange}}')"><div class="hover"></div></span>
+                </a>
               </div>
             </a>
           </div>
@@ -176,7 +186,9 @@ Associated Files: list_view_logic.js and list_view.less
                 </span>
               </a>
               <!-- Here displays the description which come from the each loop-->
-              <div class="list_vw-adjust" title="{{c_name}}">{{ c_name }}</div>
+              <a href="{{url}}">
+                <div class="list_vw-adjust" title="{{c_name}}">{{ c_name }}</div>
+              </a>
               <div class="list_vw-follw1">${{price}}
                 <span class="list_vw-follws1" style="color: {{changeColor lcsi_price_last_operator}}">  <i class="fa {{changeIcon lcsi_price_last_operator}}"></i> </span>
                 <span class="list_vw-follw3" style="color: {{changeColor lcsi_price_last_operator}}">{{price_change}} ({{percent_change}}%) </span>
