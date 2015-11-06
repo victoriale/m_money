@@ -51,11 +51,13 @@ Template.cp_head.helpers({
     }
     return Router.pick_path('content.locationprofile',{
       loc_id:data.c_hq_state,
+      city:data.c_hq_city
     });
   },
 });
 
 Template.cp_body.helpers({
+
   bodyInfo: function(){
     var data = Session.get('profile_header');
     if(typeof data == 'undefined'){

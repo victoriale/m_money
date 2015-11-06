@@ -33,6 +33,11 @@ Template.ep_head.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
+    console.log(data);
+    data['locurl'] = Router.pick_path('content.locationprofile',{
+      loc_id:data.c_hq_state,
+      city:data.c_hq_city
+    });
     data['o_last_updated'] = data['o_last_updated'].split(' ')[0];
     data['lastUpdated'] = lastUpdated;
     data['c_hq_location'] = data.c_hq_city + ", " + data.c_hq_state;
