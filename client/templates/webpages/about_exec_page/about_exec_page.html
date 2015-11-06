@@ -22,7 +22,7 @@
 
     <!-- Title Section -->
     <div class = "abtex-ttl">
-      <a href = "#"><div class = "abtex-ttl-img"></div></a>
+      <a href = "#"><div class="abtex-ttl-img" style="background-image:url('{{imageUrl pic}}')"></div></a>
       <div class = "abtex-ttl-txt">
         <div class = "abtex-ttl-txt-upd">LAST UPDATED: {{upd}}</div>
         <div class = "abtex-ttl-txt-loc"><i class = "fa fa-map-marker"></i>&nbsp;{{location}}</div>
@@ -41,12 +41,14 @@
           <div class = "abtex-sldr-top-lft-nm">About {{fname}}&nbsp;{{lname}}</div>
         </div>
         <div class = "abtex-sldr-top-rgt">
+          <!--
           <a href = "#">
             <div class = "abtex-sldr-top-rgt-sv"><i class = "fa fa-heart"></i>Save</div>
           </a>
           <a href = "#">
             <div class = "abtex-sldr-top-rgt-shr"><i class = "fa fa-share-alt"></i>Share</div>
           </a>
+        -->
         </div>
       </div>
       <!-- END Top Portion of Slider -->
@@ -59,7 +61,7 @@
         <!-- Images on Left -->
         <a href = "#">
           <div class = "abtex-sldr-mid-img" style="background-image:url({{imageUrl pic}})">
-            <div class = "abtex-sldr-mid-img-sml"></div>
+            <div class = "abtex-sldr-mid-img-sml" style="background-image:url({{imageUrl picLogo}})"></div>
           </div>
         </a>
         <!-- END Images on Left -->
@@ -116,7 +118,7 @@
     <!-- END Description Section -->
 
     <!-- Recommended Section -->
-    {{> recommend}}
+    <!--{{> recommend}}-->
     <!-- END Recommended Section -->
   </div>
 </template>

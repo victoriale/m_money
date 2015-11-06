@@ -100,8 +100,17 @@ Template.about_exec_page.helpers({
       }
       var pic = data['o_pic'];
       return pic;
-      },
-
+    },
+    picLogo: function() {
+      var data = Session.get('college_rivals').officer;
+      console.log(data);
+      if(typeof data == "undefined")
+      {
+        return '';
+      }
+      var pic = data['c_logo'];
+      return pic;
+    },
 //to get and display Location details
   location: "The United States of America",
   //to get and display paragraph data
