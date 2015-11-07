@@ -36,7 +36,9 @@
     <div class="p-head-bottom">
       <div class="p-head-bottom-triangle"></div>
       <div class="p-head-bottom-img" style="background-image: url('{{imageUrl c_logo}}')">
-        <div class="p-head-bottom-img-sml" style="background-image:URL('{{exchange c_exchange}}')"></div>
+        <a href="{{mrURL}}">
+          <div class="p-head-bottom-img-sml" style="background-image:URL('{{exchange c_exchange}}')"></div>
+        </a>
       </div>
       <div class="p-head-bottom-icon"><i class="fa fa-map-marker"></i></div>
       <div class="p-head-bottom-about">Quick info about <span class="p-bold_font">{{c_ticker}}</span></div>
@@ -62,7 +64,7 @@
     <div class="p-body-box" style="border-right: 0px; width:52%">
         <div>Stock Price & Change Percentage</div>
         {{#with stockInfo}}
-        <div class="value"><span class="p-bold_font">${{csi_price}}</span>  <span style="color: {{changeColor csi_price_last_operator}}"><i class="fa {{changeIcon csi_price_last_operator}}"></i>{{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%)</span></div>
+        <div class="value"><span class="p-bold_font">${{csi_price}}</span><span style="color: {{changeColor csi_price_last_operator}}"><i class="fa {{changeIcon csi_price_last_operator}}"></i>{{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%)</span></div>
         <div class="last-updated">as of {{lastUpdated}}</div>
         {{/with}}
     </div>
