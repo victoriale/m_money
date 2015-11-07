@@ -105,8 +105,8 @@ sortSuggestions = function(data, search_string) {
         };
       } else if ( type == 'location' ) {
         var i_data = {
-          url: Router.pick_path('content.locationprofile',{loc_id: fullstate(results[type][i].c_hq_state)}),
-          string: '<b>' + fullstate(results[type][i].c_hq_state) + '</b> <i class="fa fa-chevron-right"></i>'
+          url: Router.pick_path('content.locationprofile',{loc_id: fullstate(results[type][i].c_hq_state), city: results[type][i].c_hq_city}),
+          string: '<b>' + toTitleCase(results[type][i].c_hq_city) + ', ' + fullstate(results[type][i].c_hq_state) + '</b> <i class="fa fa-chevron-right"></i>'
         };
       } else if ( type == 'officer' ) {
         var i_data = {
@@ -254,6 +254,7 @@ Template.finance_homepage.events({
   },
   'focusout .fi_mainsearch-text' : function(){
     $(".fi_mainsearch").removeClass("boxhighlight");
+    $('.header_search_recommendations').removeClass('active');
   }
 });
 
