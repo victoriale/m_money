@@ -165,7 +165,7 @@ Template.header_nav.events({
       $('.header_search_recommendations').removeClass('active');
     },
     'focus .layout_nav-search_input': function(){
-      if($('.layout_nav-search_input')[0].value == '' || $('.layout_nav-search_input')[0].value == ' '){
+      if($('.layout_nav-search_input')[0].value == '' || $('.layout_nav-search_input')[0].value == ' ' || $('.layout_nav-search_input')[0].value == undefined){
         return false;
       }else{
         $('.header_search_recommendations').addClass('active');
