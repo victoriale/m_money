@@ -49,7 +49,7 @@ Template.ep_head.helpers({
         if ( companies[i].c_id != data.c_id ) {
           cmp_data.companies[cmp_data.companies.length] = {
             c_text: companies[i].c_name + ' (' + companies[i].c_name + ')',
-            c_url: Router.pick_path('content.companyprofile',{name: compUrlName(companies[i].c_name), ticker: companies[i].c_ticker, company_id: companies[i].c_id})
+            c_url: Router.pick_path('content.executiveprofile',{fname: data.o_first_name, lname: data.o_last_name, ticker: companies[i].c_ticker, exec_id: companies[i].o_id})
           };
           if ( count > 0 ) {
             cmp_data.companies[cmp_data.companies.length - 1].notFirst = true;
