@@ -33,7 +33,7 @@ Template.copyright_page.helpers({
     }
   },
   profile_ulr:"#",
-  image_url:"/tribune_logo.png"
+  image_url:"/public/tribune_logo.png"
 })
 
 Template.copyright_page.onRendered(function(){

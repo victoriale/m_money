@@ -35,11 +35,11 @@ Template.about_us_page.helpers({
     var items = [
      { totals:"Total U.S. Public Companies",
        numbers:data.total_companies,
-       image:"/Icon_Companies.png"
+       image:"/public/Icon_Companies.png"
      }, {
        totals:"Total U.S. Executives",
       numbers:data.total_executives,
-        image:"/Icon_Executives.png"
+        image:"/public/Icon_Executives.png"
      }
    ];
    return items;
@@ -59,7 +59,7 @@ Template.about_us_page.helpers({
       return "/";
     }
   },
-  image_url:"/tribune_logo.png"
+  image_url:"/public/tribune_logo.png"
 });
 
 Template.about_us_page.onRendered(function(){
