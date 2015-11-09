@@ -18,7 +18,7 @@ Template.directory_list_button.onCreated(function(){
 
         result.list_of_lists.map(function(item, index){
           var linkData = item.top_list_info;
-          item.url = Router.pick_path('content.toplist', {loc_id: linkData.top_list_location[0], l_name: compUrlName(linkData.top_list_title), list_id: linkData.top_list_id});
+          item.url = Router.pick_path('content.toplist', {loc_id: linkData.top_list_location[0], l_name: compUrlName(linkData.top_list_title), list_id: linkData.top_list_id,page_num:1});
 
           return item;
         })

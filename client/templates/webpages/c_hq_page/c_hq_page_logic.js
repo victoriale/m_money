@@ -93,6 +93,6 @@ initializeHQMap = function() {
   var marker = new google.maps.Marker({
     position: {lat:lat, lng:long},
     map: mainmap,
-    icon: '/mapmarker.png'
+    icon: '/public/mapmarker.png'
   });
 }

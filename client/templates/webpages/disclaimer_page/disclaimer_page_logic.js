@@ -66,7 +66,7 @@ Template.disclaimer_page.helpers({
     }
   },
   profile_ulr:"#",
-  image_url:"/tribune_logo.png"
+  image_url:"/public/tribune_logo.png"
 })
 
 /*

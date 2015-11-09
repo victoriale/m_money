@@ -61,7 +61,7 @@ function nFormatter(num) {
 }
 function imageUrl(path){
   if(typeof path == 'undefined' || path == null || path == '' || path == 'null'){
-    return '/no_image.png';
+    return '/public/no_image.png';
   }
   return 'http://images.investkit.com/images/' + path;
 }

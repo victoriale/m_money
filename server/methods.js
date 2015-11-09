@@ -62,7 +62,7 @@ Meteor.methods({
     this.unblock();
     return future.wait();
   },
-  GetLocationPage: function(loc_id, option) {
+  GetLocationPage: function(loc_id, option, page) {
     var future = new Future();
     var startTime = (new Date()).getTime();
     // console.log("New Location Request",loc_id);
@@ -74,7 +74,10 @@ Meteor.methods({
     }else{
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option="+option+"&dma="+loc_id;
     }
-    // console.log(UrlString);
+    if(typeof page != 'undefined' || page != null){
+      UrlString += "&page="+page;
+    }
+    console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, option, loc_id, error, data){
       try{
@@ -135,7 +138,7 @@ Meteor.methods({
     // console.log("New Executive Request",exec_id,batchNum);
 
     var UrlString = "http://apifin.investkit.com/call_controller.php?action=executive_profile&option="+batchNum+"&param="+exec_id;
-    // console.log(UrlString);
+     console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime,batchNum,exec_id, error, data){
       data.content = data.content.toString().replace(/^[^{]*/,function(a){ return ''; });
@@ -538,7 +541,7 @@ Meteor.methods({
     return future.wait();
   },
 
-  topListData: function(index ,loc_id){
+  topListData: function(index ,loc_id, page){
     var future = new Future();
     var startTime = (new Date()).getTime();
     // console.log("New featured List Request",loc_id);
@@ -555,8 +558,10 @@ Meteor.methods({
     }else{
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=top_list&option=list&param="+index+","+loc_id;
     }
-
-    // console.log("CALLIN NEW LIST:",UrlString);
+    if(typeof page != 'undefined' || page != null){
+      UrlString += "&page="+page;
+    }
+    console.log("CALLIN NEW LIST:",UrlString);
     Meteor.http.get(UrlString, (function(startTime, index, loc_id, error, data){
       try{
         data = JSON.parse(data['content']);

@@ -39,10 +39,10 @@
 <template name="finance_layout_home">
   {{{partner_header}}}
   {{> yield "header"}}
-  <div class="directory_page" style="width: 100%; font-size: 2vw; height:auto;">
-
-  </div>
-  {{> header_nav}}
+  <div class="directory_page" style="width: 100%; font-size: 2vw; height:auto;"></div>
+  {{#unless myinvestkit}}
+    {{> header_nav}}
+  {{/unless}}
 
   {{> yield}}
 {{> footer}}

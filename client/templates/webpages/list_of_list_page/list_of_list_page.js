@@ -56,7 +56,8 @@ Template.list_of_list_page.helpers({
       var title = compUrlName(data.top_list_list[0].list_of_lists_title);
       data.url = Router.pick_path('content.toplist', {
         l_name:title,
-        list_id: data.tli_id
+        list_id: data.tli_id,
+        page_num:1
       });
 
       data.shareURL = "https://www.facebook.com/sharer/sharer.php?u="+ data.url;

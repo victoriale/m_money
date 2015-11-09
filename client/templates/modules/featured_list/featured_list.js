@@ -243,11 +243,15 @@ Template.featured_list.helpers (
       return Router.pick_path('content.toplist', {
         loc_id: linkData.top_list_location[0],
         l_name: compUrlName(linkData.top_list_title),
-        list_id: linkData.top_list_id});
+        list_id: linkData.top_list_id,
+        page_num:1
+      });
       }else{
         return Router.pick_path('content.toplist', {
           l_name: compUrlName(data.featured_list_title),
-          list_id: data.featured_list_id});
+          list_id: data.featured_list_id,
+          page_num:1
+        });
       }
     },
   });

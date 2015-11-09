@@ -148,17 +148,13 @@ var minify = Npm.require('html-minifier').minify;
 var info_envar = new Meteor.EnvironmentVariable;
 var batch_envar = new Meteor.EnvironmentVariable;
 
-// Filter out bot requests
-var seoPicker = Picker.filter(function(req, res) {
-  // return true;
-  if ( /bot/.test(req.headers['user-agent']) || /Webmaster/.test(req.headers['user-agent']) || /Bing/.test(req.headers['user-agent']) || /externalhit/.test(req.headers['user-agent']) ) {
-    return true;
-  }
-  return false;
+// Robots.txt filter
+var robotsPicker = Picker.filter(function(req, res) {
+  return true;
 });
 
 // Robots.txt
-seoPicker.route('/robots.txt',function(params, req, res){
+robotsPicker.route('/robots.txt',function(params, req, res){
   res.end('User-agent: *\nDisallow: /');
   return false;
 
@@ -168,6 +164,15 @@ seoPicker.route('/robots.txt',function(params, req, res){
   } else {
     res.end('User-agent: *\nAllow: /');
   }
+});
+
+// Filter out bot requests
+var seoPicker = Picker.filter(function(req, res) {
+  // return true;
+  if ( /bot/.test(req.headers['user-agent']) || /Webmaster/.test(req.headers['user-agent']) || /Bing/.test(req.headers['user-agent']) || /externalhit/.test(req.headers['user-agent']) ) {
+    return true;
+  }
+  return false;
 });
 
 // Favicon.ico
