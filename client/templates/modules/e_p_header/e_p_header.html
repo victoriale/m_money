@@ -18,7 +18,24 @@
     <div class="p-head-top">
       <div class="p-head-top-lastUpdate">LAST UPDATED: {{last_updated}}</div>
       <div class="p-head-top-container">
-        <div class="p-head-top-container-location"><i class="fa fa-map-marker"></i>&nbsp; <a href="{{locurl}}">{{c_hq_location}} </a>| WORK FOR: <a href="{{compURL}}"><span class="p-head-bottom-name">{{c_name}}</span></a></div>
+        <div class="p-head-top-container-location">
+          <i class="fa fa-map-marker"></i>&nbsp;
+          <a href="{{locurl}}">{{c_hq_location}} </a>
+          | WORKS FOR: <a href="{{compURL}}"><span class="p-head-bottom-name">{{c_name}}</span></a>
+          {{#with cmp_data}}
+            <i class="fa fa-chevron-down"></i>
+            <i class="fa fa-chevron-up"></i>
+            <div class="drop">
+              <div class="caret-top"></div>
+              {{#each companies}}
+              {{#if notFirst}}
+              <div class="drop-border"></div>
+              {{/if}}
+              <a href="{{c_url}}"><div class="drop-item">{{c_text}}</div></a>
+              {{/each}}
+            </div>
+          {{/with}}
+        </div>
         <div class="p-head-top-container-profile"><span class="p-light_font">EXECUTIVE</span> PROFILE</div>
       </div>
       <div class="p-head-top-name"><span class="p-head-top-name-txt">{{e_name}}</span></div>

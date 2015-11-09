@@ -43,11 +43,88 @@
         padding-right: 26px;
         // Begin p-head-top-container-location
         &-location {
+          .noclick;
           color: @white;
           font-family: HN-l;
           font-size: 14px;
           color: @white;
           float:left;
+          position: relative;
+
+          &.active {
+            .fa-chevron-up {
+              display: inline-block;
+            }
+            .fa-chevron-down {
+              display: none;
+            }
+
+            .drop {
+              display: block;
+            }
+          }
+
+          .fa {
+            margin-left: 10px;
+            cursor: pointer;
+          }
+
+          .fa-chevron-up {
+            display: none;
+          }
+          .fa-chevron-down {
+            display: inline-block;
+          }
+
+          .drop {
+            background-color: @white;
+            display: none;
+            position: absolute;
+            top: 30px;
+            right: -6px;
+            z-index: 10;
+            border: 1px solid @blue;
+            border-radius: 5px;
+
+            .caret-top {
+              content: '';
+              position: absolute;
+              top: -10px;
+              right: 4px;
+              border-bottom: 10px solid @blue;
+              border-left: 8px solid transparent;
+              border-right: 8px solid transparent;
+
+              &:after {
+                content: '';
+                position: absolute;
+                top: 2px;
+                right: -6px;
+                border-bottom: 8px solid @white;
+                border-left: 6px solid transparent;
+                border-right: 6px solid transparent;
+              }
+            }
+
+            &-border {
+              height: 1px;
+              margin: 0 10px;
+              background-color: @grey-2;
+            }
+
+            &-item {
+              color: @blue;
+              text-align: left;
+              padding: 5px 10px;
+              font-size: 14px;
+              font-family: HN-B;
+
+              &:hover {
+                background-color: @blue;
+                color: @white;
+              }
+            }
+          }
         }// End p-head-top-container-location
         // Begin p-head-top-container-profile
         &-profile {
