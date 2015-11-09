@@ -18,28 +18,36 @@ Template.about_us_page.helpers({
       return "San Francisco";
     }
   },
+  currentDate: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    var date = (new Date(data.last_updated)).toSNTForm();
+    return date;
+  },
+
+  aboutInfo: function(){
+    var data = Session.get('profile_header');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    var items = [
+     { totals:"Total U.S. Public Companies",
+       numbers:data.total_companies,
+       image:"/public/Icon_Companies.png"
+     }, {
+       totals:"Total U.S. Executives",
+      numbers:data.total_executives,
+        image:"/public/Icon_Executives.png"
+     }
+   ];
+   return items;
+  },
   Country: "The United States",
   Statement: "Take a Seat and get to know us better.",
   Update: "06/24/2015,8:00 AM EST",
 
-  items: [
-   { totals:"Total U.S. Public Companies",
-     numbers:"9,278",
-     image:"/Icon_Companies.png"
-   }, {
-     totals:"Total U.S. Executives",
-    numbers:"101,200",
-      image:"/Icon_Executives.png"
-   }, {
-     totals:"Total U.S. Brokerage Firms",
-    numbers:"5,006",
-      image:"/Icon_Brokerage_Firms.png"
-   }, {
-     totals:"Total U.S. Financial Advisors",
-    numbers:"460,120",
-      image:"/Icon_Financial_Advisors.png"
-   }
-  ],
   back_url: function(){
     if(Session.get('IsCompany')) {
        return "/company/"+ Session.get("profile_header").c_ticker;
@@ -51,8 +59,7 @@ Template.about_us_page.helpers({
       return "/";
     }
   },
-  profile_ulr:"#",
-  image_url:"/tribune_logo.png"
+  image_url:"/public/tribune_logo.png"
 });
 
 Template.about_us_page.onRendered(function(){

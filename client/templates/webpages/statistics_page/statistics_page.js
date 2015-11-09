@@ -64,6 +64,7 @@ Template.statistics_page.helpers(
               font: 'fa-suitcase ',
               url: Router.pick_path('content.executivelocation',{
                 loc_id: params.loc_id,
+                page_num:1
               })
             },
             {
@@ -72,6 +73,7 @@ Template.statistics_page.helpers(
               font: 'fa-bank',
               url:Router.pick_path('content.sector',{
                 loc_id: params.loc_id,
+                page_num:1
               })
             }
           ];
@@ -149,7 +151,7 @@ Template.statistics_page.helpers(
                 name:key,
                 y: Number(sectors[key].percentage * 100).toFixed(1),
                 color:colors[count],
-                sectUrl: Router.pick_path('content.sector', {sector_id: compUrlName(key), loc_id: fullstate(Router.current().params.loc_id)})
+                sectUrl: Router.pick_path('content.sector', {sector_id: compUrlName(key), loc_id: fullstate(Router.current().params.loc_id),page_num:1})
               }
             );
             count++;

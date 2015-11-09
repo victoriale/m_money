@@ -54,6 +54,7 @@ Template.cp_head.helpers({
       city:data.c_hq_city
     });
   },
+
 });
 
 Template.cp_body.helpers({
@@ -116,7 +117,7 @@ Template.c_p_graph.helpers({
 
     //If data does not exists exit helper
     if(typeof data === 'undefined'){
-      return ''
+      return '';
     }
 
     //Get dependencies to find date range

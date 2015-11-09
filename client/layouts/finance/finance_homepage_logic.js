@@ -39,16 +39,17 @@ sortSuggestions = function(data, search_string) {
       if ( results.location.length < 10 ) {
         var isNew = true;
         for ( var i = 0; i < results.location.length; i++ ) {
-          if ( results.location[i].c_hq_state == loc_data[index].c_hq_state ) {
+          if ( results.location[i].c_dma_code == loc_data[index].c_dma_code && results.location[i].c_hq_city == loc_data[index].c_hq_city && results.location[i].c_hq_state == loc_data[index].c_hq_state ) {
             isNew = false;
           }
         }
-        if ( isNew && typeof loc_data[index].c_hq_state != "undefined" && typeof fullstate(loc_data[index].c_hq_state) != "undefined" ) {
+        if ( isNew && typeof loc_data[index].c_hq_state != "undefined" && typeof fullstate(loc_data[index].c_hq_state) != "undefined" && loc_data[index].dma_frontend_name != null ) {
           results.location[results.location.length] = loc_data[index];
         }
       }
     }
   }
+  console.log(results);
 
   // Create the array of things that will be shown
   var suggestions = [];
@@ -105,8 +106,8 @@ sortSuggestions = function(data, search_string) {
         };
       } else if ( type == 'location' ) {
         var i_data = {
-          url: Router.pick_path('content.locationprofile',{loc_id: fullstate(results[type][i].c_hq_state)}),
-          string: '<b>' + fullstate(results[type][i].c_hq_state) + '</b> <i class="fa fa-chevron-right"></i>'
+          url: Router.pick_path('content.locationprofile',{loc_id: fullstate(results[type][i].c_hq_state), city: compUrlName(results[type][i].dma_frontend_name), city_id: results[type][i].c_dma_code}),
+          string: '<b>' + toTitleCase(results[type][i].c_hq_city) + ', ' + fullstate(results[type][i].c_hq_state) + '</b> - ' + toTitleCase(results[type][i].dma_frontend_name) + ' <i class="fa fa-chevron-right"></i>'
         };
       } else if ( type == 'officer' ) {
         var i_data = {
@@ -224,7 +225,7 @@ Template.finance_homepage.events({
     $('.fi_search_recommendations').removeClass('active');
     $('.fi_searchbtn').css("background-color", "black");
     $(".fi_mainsearch").addClass("boxhighlight-black");
-     Finance_Search($('.fi_mainsearch input')[0].value);
+    Finance_Search($('.fi_mainsearch input')[0].value);
   },
 
   'click .fi_search_recommendations_close': function() {
@@ -251,10 +252,19 @@ Template.finance_homepage.events({
 
   'focus .fi_mainsearch-text': function(){
     $(".fi_mainsearch").addClass("boxhighlight");
+    if($('.fi_mainsearch input')[0].value == '' || $('.fi_mainsearch input')[0].value == ' ' || $('.fi_mainsearch input')[0].value == undefined){
+      return false;
+    }else{
+      $('.fi_search_recommendations').addClass('active');
+    }
   },
-  'focusout .fi_mainsearch-text' : function(){
-    $(".fi_mainsearch").removeClass("boxhighlight");
+  'click html': function() {
+    $('.fi_search_recommendations').removeClass('active');
   }
+  // 'focusout .fi_mainsearch-text' : function(){
+  //   $(".fi_mainsearch").removeClass("boxhighlight");
+  //   $('.fi_search_recommendations').removeClass('active');
+  // }
 });
 
 Template.finance_homepage.onCreated(function() {
@@ -297,6 +307,7 @@ Template.finance_homepage.helpers({
     var comp_list = Router.pick_path('content.toplist',{
       l_name: national_list,
       list_id: 6960,
+      page_num:1
     })
     return comp_list;
   },

@@ -8,29 +8,17 @@
 
   <div class="qeis">
     <!--Go Back Bar-->
-    <a href="#" onclick="history.go(-1)">
-      <div class="qeis-hdtl">
-       <div class="qeis-hdtl-or">
-         <div class="qeis-hdtl-mailrep" >
-           <i class="qeis-mailrep fa fa-reply"></i>
-         </div>
-         <div class="qeis-hdtl-rta">
-         </div>
-       </div>
-       <!-- for the text contianer!-->
-       <div class="qeis-hdtl-txtctt">
-         <div class="qeis-hdtl-gb">
-           Go Back To
-           <div class="qeis-hdtl-bar-title">
-           <div class="qeis-hdtl-bar-helper">
-             {{company}}'s
-           </div>
-             <div class="qeis-hdtl-bar-side">Profile</div>
-           </div>
-         </div>
-       </div>
-     </div>
-    </a>
+    <div class="qeis-back">
+      <a href = "{{backURL}}">
+        <div class = "qeis-back-hdr">
+          <div class = "qeis-back-hdr-box"><i class = "fa fa-reply"></i></div>
+          <div class = "qeis-back-hdr-tri"></div>
+          <div class = "qeis-back-hdr-txt">
+            Go Back To <span style="font-family:HN-B">{{profile}}'s</span> Profile
+          </div>
+        </div>
+      </a>
+    </div>
     <!--End Go Back Bar-->
 
     <!--Page header-->
@@ -39,8 +27,8 @@
       <div class="qeis-hdr-txt">
         <div class="qeis-hdr-txt-upd">LAST UPDATED: {{updated}}</div>
         <div class="qeis-hdr-txt-loc"><i class="fa fa-map-marker"></i>{{location}}</div>
-        <div class="qeis-hdr-txt-title">2015 Q2 Income Statement</div>
-        <div class="qeis-hdr-txt-for">For {{company}}</div>
+        <div class="qeis-hdr-txt-title">{{title}} Income Statement</div>
+        <div class="qeis-hdr-txt-for">For {{profile}}</div>
       </div>
     </div>
     <!--End Page header-->
@@ -50,14 +38,28 @@
       <div class="qeis-ddn-mnu" style="width:160px" id="qeis-ddn-0">
         Income Statement
         <div class="qeis-ddn-cir"><i class="fa fa-caret-down"></i></div>
+        <div class="qeis-ddn-options">
+          <div class="qeis-ddn-option">Income Statement</div>
+          <div class="qeis-ddn-option">Balance Sheet</div>
+          <div class="qeis-ddn-option">Cash Flow</div>
+        </div>
       </div>
       <div class="qeis-ddn-mnu" style="width:130px" id="qeis-ddn-1">
         Quarterly Data
         <div class="qeis-ddn-cir"><i class="fa fa-caret-down"></i></div>
+        <div class="qeis-ddn-options">
+          <div class="qeis-ddn-option">Quarterly Data</div>
+          <div class="qeis-ddn-option">Annual Data</div>
+        </div>
       </div>
-      <div class="qeis-ddn-mnu" style="width:100px" id="qeis-ddn-2">
-        2015
+      <div class="qeis-ddn-mnu" style="width:130px" id="qeis-ddn-2">
+        {{firstLabel}}
         <div class="qeis-ddn-cir"><i class="fa fa-caret-down"></i></div>
+        <div class="qeis-ddn-options">
+          {{#each label}}
+          <div class="qeis-ddn-option">{{lbl}}</div>
+          {{/each}}
+        </div>
       </div>
     </div>
     <!--End Dropdown menus-->
@@ -67,21 +69,21 @@
       <div class="qeis-lgnd-txt">
         <div class="qeis-lgnd-clr" style="background-color:#434348" id="qeis-clr-0"></div>
         <div style="float:left;margin-right:5px;">
-          <div class="qeis-lgnd-amnt">$4.99 Million</div>
+          <div class="qeis-lgnd-amnt">{{ninc}}</div>
           <div class="qeis-lgnd-lbl">Net Income</div>
         </div>
       </div>
       <div class="qeis-lgnd-txt">
         <div class="qeis-lgnd-clr" style="background-color:#3098ff" id="qeis-clr-1"></div>
         <div style="float:left;margin-right:5px;">
-          <div class="qeis-lgnd-amnt">$12.46 Million</div>
+          <div class="qeis-lgnd-amnt">{{rev}}</div>
           <div class="qeis-lgnd-lbl">Revenue</div>
         </div>
       </div>
       <div class="qeis-lgnd-txt">
         <div class="qeis-lgnd-clr" style="background-color:#f8a354" id="qeis-clr-2"></div>
         <div style="float:left;margin-right:5px;">
-          <div class="qeis-lgnd-amnt">23%</div>
+          <div class="qeis-lgnd-amnt">{{pm}}</div>
           <div class="qeis-lgnd-lbl">Profit Margin (%)</div>
         </div>
       </div>
@@ -103,11 +105,9 @@
       <!--Data labels-->
       <div class="qeis-tbl-lbls">
         <div class="qeis-tbl-lbl" style="width:205px;margin-left:0px;">Key Metric</div>
-        <div class="qeis-tbl-lbl" style="font-family:HN-B">Q2 - 2015</div>
-        <div class="qeis-tbl-lbl">Q1 - 2015</div>
-        <div class="qeis-tbl-lbl">Q4 - 2014</div>
-        <div class="qeis-tbl-lbl">Q3 - 2014</div>
-        <div class="qeis-tbl-lbl" style="margin-right:0px">Q2 - 2014</div>
+        {{#each label}}
+        <div class="qeis-tbl-lbl" style="{{style}}">{{lbl}}</div>
+        {{/each}}
       </div>
 
       <!--Data Row-->

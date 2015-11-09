@@ -115,8 +115,7 @@
           {{/if}}
         </td>
         <td style="padding-left: 23vw;">
-          {{#if homepage}}
-          {{else}}
+          {{#unless homepage}}
           <div class="layout_nav-search">
             <div class="search_icon fa fa-search"></div>
             <input type="text" name="keyword" class="layout_nav-search_input" placeholder="Search for any company, location, or executive">
@@ -124,7 +123,7 @@
               <div class="caret-top"></div>
             </ul>
           </div>
-          {{/if}}
+          {{/unless}}
         </td>
         <td style="float:right;min-width:200px;max-width:1600px;">
           <a class="share-link">

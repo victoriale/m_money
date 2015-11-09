@@ -21,7 +21,46 @@ function ExecSearch() {
   }
   LocationRedirect(location_id);
 }
+function GetSuggest(nowTime) {
+  var searchString = $('.re_mainsearch input')[0].value;
+  if ( searchString == "" ) {
+    $('.discover_recommendations').removeClass('active');
+  } else {
+    Meteor.call('GetSuggestion',encodeURIComponent(searchString),nowTime,function(error, data){
+      if ( error ) {
+        console.log('Suggestion Error',error);
+        return false;
+      }
 
+      if ( Session.get('SuggestTime') > data.time ) {
+        return false;
+      }
+
+      Session.set('SuggestTime',data.time);
+      data = data.data;
+
+      var suggestions = sortSuggestions(data, $('.re_mainsearch input')[0].value);
+
+      var HTMLString = '<div class="caret-top"></div>';
+      for ( var index = 0; index < suggestions.length; index++ ) {
+        if ( index != 0 ) {
+          HTMLString = HTMLString + '<div class="border-li"></div>';
+        }
+        HTMLString = HTMLString + '<a style="color: #000" href="' + suggestions[index].url + '"><div class="discover_recommendations_item">' + suggestions[index].string + '</div></a>';
+      }
+
+      if ( data['name']['func_success'] == false && data['location']['func_success'] == false && data['ticker']['func_success'] == false) {
+        $('.discover_recommendations').removeClass('active');
+        return false;
+      }
+
+      //  $('.fi_search_recommendations')[0].innerHTML = '<div class="caret-top"></div>' /*' <i class="fa fa-times fi_search_recommendations_close"></i>'*/ + HTMLStringTick + HTMLStringName + HTMLStringLoc;
+      $('.discover_recommendations').html(HTMLString);
+      $('.discover_recommendations').addClass('active');
+    });
+  }
+}
+/*
 function GetSuggest() {
   var searchString = $('.re_mainsearch input')[0].value;
   if ( searchString == "" ) {
@@ -52,7 +91,7 @@ function GetSuggest() {
     });
   }
 }
-
+*/
 Template.search_module.events({
   'submit form': function(event) {
     event.preventDefault();
@@ -89,5 +128,17 @@ Template.search_module.events({
   'click .discover_recommendations_close': function() {
     $('.discover_recommendations').removeClass('active');
     return false;
+  },
+  'focus .fi_mainsearch-text': function(){
+    if($('.re_mainsearch-text')[0].value == '' || $('.re_mainsearch-text')[0].value == ' ' || $('.re_mainsearch-text')[0].value == undefined){
+      return false;
+    }else{
+      $(".fi_mainsearch-text").addClass("boxhighlight");
+      $('.discover_recommendations').addClass('active');
+    }
+  },
+  'focusout .fi_mainsearch-text' : function(){
+    $(".fi_mainsearch-text").removeClass("boxhighlight");
+    $('.discover_recommendations').removeClass('active');
   }
 });

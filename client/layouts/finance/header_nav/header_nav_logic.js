@@ -137,11 +137,12 @@ Template.header_nav.events({
     /* this function envokes client/layouts/finance/finance_search.js */
     'keyup .layout_nav-search_input': function(event){
       if ( $('.layout_nav-search_input')[0].value == '' || $('.layout_nav-search_input')[0].value == undefined ) {
-
+        $('.header_search_recommendations').removeClass('active');
       }
       if( event.which === 13){
         event.preventDefault();
         Finance_Search($('.layout_nav-search_input')[0].value);
+        $('.header_search_recommendations').removeClass('active');
         return "";
       }
       if ( typeof StartTime == "undefined" ) {
@@ -156,6 +157,20 @@ Template.header_nav.events({
       }
       StartTime = d;
       GetSuggest(curTime);
+    },
+    'click .header_search_recommendations': function(){
+      $('.header_search_recommendations').removeClass('active');
+    },
+    'click html': function(){
+      console.log('THIS');
+      $('.header_search_recommendations').removeClass('active');
+    },
+    'focus .layout_nav-search_input': function(){
+      if($('.layout_nav-search_input')[0].value == '' || $('.layout_nav-search_input')[0].value == ' ' || $('.layout_nav-search_input')[0].value == undefined){
+        return false;
+      }else{
+        $('.header_search_recommendations').addClass('active');
+      }
     }
   });
 

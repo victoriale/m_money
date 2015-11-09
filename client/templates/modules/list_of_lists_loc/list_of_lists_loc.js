@@ -42,7 +42,8 @@ Template.list_of_lists_loc.helpers({
       var list_param = data.top_list_params[id_param-1];
       data['list_url'] = Router.pick_path('content.toplist',{
         loc_id:loc_param,
-        list_id:list_param
+        list_id:list_param,
+        page_num:1
       });
       data['locurl'] = Router.pick_path('content.locationprofile',{
         loc_id:data.c_hq_state,

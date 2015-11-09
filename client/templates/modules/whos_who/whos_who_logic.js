@@ -7,42 +7,8 @@ Template.new_whos_who.onCreated(function(){
   Session.set("whos_count",counter);
 })
 
-
-
-
-
-
-
-
-
-
-Template.whos_who.onCreated(function(){
-  var counter = 0;
-  Session.set("whos_count",counter);
-  /*
-  */
-})
-var who = Session.get('whos_who');
-var ldt = 0;
-
-Template.whos_who.events({
-  'click .module-who-button-left': function(){
-    var counter = Session.get("whos_count");
-    var who = Session.get('whos_who');
-    if(Session.get('IsCompany')){
-      who = who['officers'];
-    }
-    if(counter > 0){
-      counter--;
-      Session.set("whos_count",counter);
-    }
-    else
-    {
-      counter = who.length-1;
-      Session.set("whos_count", counter);
-    }
-  },
-  'click .module-who-button-right': function(){
+Template.new_whos_who.events({
+  'click .ww_top-button': function(){
     var counter = Session.get("whos_count");
     var who = Session.get('whos_who');
     if(Session.get('IsCompany')){
@@ -61,201 +27,134 @@ Template.whos_who.events({
   },
 })
 
-Template.whos_who.helpers({
-  //USED FOR TILES
-  wtile: function(){
-    var data = Session.get('profile_header');
-    if(typeof data == 'undefined'){
-      return '';
-    }
-    var tilearray = [
-      {name:"Founders",fnt:"fa-rocket", url:foundersURL(data.c_id)},
-      {name:"Executives",fnt:"fa-briefcase", url:foundersURL(data.c_id)},
-      {name:"Board & Committee",fnt:"fa-gavel", url:foundersURL(data.c_id)},
-    ];
-    return tilearray;
-  },
-
-  //functions
-  companyName: function(){
-    var data = Session.get('profile_header');
-    if(typeof data == 'undefined'){
-      return '';
-    }
-    return data.c_name;
-  },
-
-  execImage:function(){
-    var data = Session.get('whos_who');
-    //Check if data and data.officers is defined. If so set who to data.officers, else set to undefined (Force to exit helper)
-    var who = typeof(data) !== 'undefined' && typeof(data.officers) !== 'undefined' ? data['officers'] : undefined;
-    var index = Session.get("whos_count");
-    if(typeof who == 'undefined')
-    {
-      return '';
-    }
-    return who[index]['o_pic'];
-  },
-
-  author_name:function(){
-    var data = Session.get('whos_who');
-    //Check if data and data.officers is defined. If so set who to data.officers, else set to undefined (Force to exit helper)
-    var who = typeof(data) !== 'undefined' && typeof(data.officers) !== 'undefined' ? data['officers'] : undefined;
-    var index = Session.get("whos_count");
-    if(typeof who == 'undefined')
-    {
-      return '';
-    }
-    var fname = who[index]['o_first_name'];
-    var lname = who[index]['o_last_name'];
-    var mname = who[index]['o_middle_initial'];
-
-    return fname +" "+ mname +" "+ lname;
-  },
-
-  execURL:function(){
-    var who = Session.get('whos_who');
-    var index = Session.get("whos_count");
+Template.new_whos_who.helpers({
+  header:function(){
+    var head = Session.get('profile_header');
     var params = Router.current().getParams();
-    if(typeof who == 'undefined')
-    {
+    if(typeof head == 'undefined'){
       return '';
     }
-    if(Session.get('IsCompany')){
-      who = who['officers'];
-      var url = Router.pick_path('content.executiveprofile',{
-        lname:who[index].o_last_name,
-        fname:who[index].o_first_name,
-        ticker:who[index].c_ticker,
-        exec_id:who[index].o_id
-      });
+    if(Session.get('IsLocation')){
+      return fullstate(params.loc_id);
     }
-
-    if(Session.get('IsExec')){
-      var url = Router.pick_path('content.executiveprofile',{
-        lname:who[index].o_last_name,
-        fname:who[index].o_first_name,
-        ticker:who[index].c_ticker,
-        exec_id:who[index].o_id
-      });
-    }
-    return url;
+    return head.c_name;
   },
 
-  titles: function(){
-    var who = Session.get('whos_who');
-    var index = Session.get("whos_count");
-    if(typeof who == "undefined")
-    {
+  curDate: function(){
+      return CurrentDate();
+  },
+
+  ww_data: function(){
+    if(Session.get('IsCompany')){
+      var who = Session.get('whos_who')['officers'];
+    }else{
+      var who = Session.get('whos_who');
+    }
+    if(typeof who == 'undefined'){
       return '';
     }
-    if(Session.get('IsCompany')){
-      var title = who['officers'][index]['o_titles'][0];
-    }
-    if(Session.get('IsExec')){
-      var title = who[index]['o_current_title']['titles'][0]['title'];
-    }
-  return title;
+    var wwArray = [];
+    $.map(who, function(val, i){
+      var newObj = {};
+      if(i % 2 == 0){
+        newObj['background'] = '#f2f2f2';
+      }else{
+        newObj['background'] = '#ffffff';
+      }
+      newObj.rank = i+1;
+      newObj.o_pic = val.o_pic;
+      newObj.first = val.o_first_name;
+      newObj.last = val.o_last_name;
+      newObj.o_url = Router.pick_path('content.executiveprofile',{
+        fname: val.o_first_name,
+        lname: val.o_last_name,
+        ticker: val.c_ticker,
+        exec_id: val.o_id
+      });
+      if(!Session.get('IsCompany')){
+        newObj.compUrl = Router.pick_path('content.companyprofile',{
+          ticker:val.c_ticker,
+          name:compUrlName(val.c_name),
+          company_id:val.c_id,
+        });
+      }
+      newObj.c_logo = val.c_logo;
+      newObj.c_name = val.c_name;
+      if(Session.get('IsCompany')){
+        newObj.title = val.o_titles[0];
+      }else{
+        newObj.title = val.o_current_title.long_title;
+      }
+
+      wwArray.push(newObj);
+    })
+    return wwArray;
   },
 
-  everyech: function(){
-    // ldt++;
+  ww_carousel: function(){
     var counter = Session.get("whos_count");
-    var data = Session.get('profile_header');
-    var who = Session.get("whos_who");
-
-    if(typeof who == 'undefined' || typeof data == 'undefined'){
-      return '';
-    }
-    var returnArray = [];
-    var j = counter + 1;
+    var head = Session.get('profile_header');
     if(Session.get('IsCompany')){
-      var who = who['officers'];
-      for(var i=0;i<who.length-1;i++)
-      {
-        if(j == who.length)
-        {
-          j = 0;
-        }
-        returnArray[i] = {}
-        var fname = who[j]['o_first_name'];
-        var lname = who[j]['o_last_name'];
-        var ticker = who[j]['c_ticker'];
-        var mname = who[j]['o_middle_initial'];
-        var title = who[j]['o_titles'][0];
-        var url = Router.pick_path('content.executiveprofile',{
-          lname:lname,
-          fname:fname,
-          ticker:ticker,
-          exec_id:who[j].o_id
-        });
-
-        if(j < who.length)
-        {
-          returnArray[i]['pnames'] = fname +" "+ mname +" "+ lname;
-          returnArray[i]['ptitle'] = title;
-          returnArray[i]['company'] = data.c_name;
-          returnArray[i]['url'] = url;
-          returnArray[i]['exec_image'] = data.c_logo;
-        }
-        j++;
-      }
+      var who = Session.get('whos_who')['officers'];
+    }else{
+      var who = Session.get('whos_who');
     }
-    if(Session.get('IsExec')){
-      for(var i=0;i<who.length-1;i++)
-      {
-        if(j == who.length)
-        {
-          j = 0;
-        }
-        returnArray[i] = {}
-        var fname = who[j]['o_first_name'];
-        var lname = who[j]['o_last_name'];
-        var ticker = who[j]['c_ticker'];
-        var mname = who[j]['o_middle_initial'];
-        var title = who[j]['o_current_title']['titles'][0]['title'];
-        var url = Router.pick_path('content.executiveprofile',{
-          lname:lname,
-          fname:fname,
-          ticker:ticker,
-          exec_id:who[j].o_id
-        });
-        if(j < who.length)
-        {
-          returnArray[i]['pnames'] = fname +" "+ mname +" "+ lname;
-          returnArray[i]['ptitle'] = title;
-          returnArray[i]['company'] = data.c_name;
-          returnArray[i]['url'] = url;
-          returnArray[i]['exec_image'] = data.c_logo;
-        }
-        j++;
-      }
-    }
-    return returnArray;
-  },
-  connectionsURL: function(){
-    var data = Session.get('profile_header');
-    if(typeof data =='undefined'){
-      return '#'
-    }
-    return foundersURL(data.c_id);
-  },
-
-  checkdata: function(){
-    var data = Session.get('whos_who');
-    if(typeof data == 'undefined'){
+    if(typeof who == 'undefined'){
       return '';
     }
-    return data;
+    var wwArray = [];
+    $.map(who, function(val, i){
+      var newObj = {};
+      if(i % 2 == 0){
+        newObj['background'] = '#f2f2f2';
+      }else{
+        newObj['background'] = '#ffffff';
+      }
+      newObj.rank = i+1;
+      newObj.o_pic = val.o_pic;
+      newObj.first = val.o_first_name;
+      newObj.last = val.o_last_name;
+      newObj.o_url = Router.pick_path('content.executiveprofile',{
+        fname: val.o_first_name,
+        lname: val.o_last_name,
+        ticker: val.c_ticker,
+        exec_id: val.o_id
+      });
+      if(!Session.get('IsCompany')){
+        newObj.compUrl = Router.pick_path('content.companyprofile',{
+          ticker:val.c_ticker,
+          name:compUrlName(val.c_name),
+          company_id:val.c_id,
+        });
+      }
+      newObj.c_logo = val.c_logo;
+      newObj.c_name = val.c_name;
+      if(Session.get('IsCompany')){
+        newObj.title = val.o_titles[0];
+      }else{
+        newObj.title = val.o_current_title.long_title;
+      }
+
+      wwArray.push(newObj);
+    })
+    return wwArray[counter];
   },
-});
 
-function foundersURL(c_id){
-  var params = Router.current().getParams();
+  WholeListUrl:function(){
+    var head = Session.get('profile_header');
+    var params = Router.current().getParams();
+    if(typeof head =='undefined'|| head==''){
+      return '';
+    }
 
-  return Router.pick_path('content.boardcommittee',{
-    ticker:params.ticker,
-    name:params.name,
-    company_id: c_id
-  })
-}
+    return Router.pick_path('content.boardcommittee',{
+      ticker:head.c_ticker,
+      name:compUrlName(head.c_name),
+      company_id:head.c_id
+    });
+  },
+
+  isLoc: function(){
+    return Session.get('IsLocation');
+  },
+})

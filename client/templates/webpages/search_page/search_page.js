@@ -5,9 +5,8 @@ Template.search_page.onCreated(function(){
 Template.search_page.onRendered(function(){
   this.autorun(function(){
     var searchParams = Router.current().getParams();
-    searchParams = searchParams.replace(/-/g, ' ');
     //console.log(searchParams.search_results);
-    Meteor.call("GetSuggestion", searchParams.search_results, Number(Session.get('time')),  function(error, data){
+    Meteor.call("GetSuggestion", searchParams.search_results.replace(/-/g, ' '), Number(Session.get('time')),  function(error, data){
       if(error){
         console.log('Invalid Search Error',error);
         Session.set('IsError',true);
@@ -97,8 +96,8 @@ Template.search_page.helpers({
       var result = {
         txt1: data.c_hq_city + ", " + data.c_hq_state,
         txt2: Router.pick_path('content.locationprofile', {
-          loc_id:data.c_hq_state,
-          city:data.c_hq_city,
+          loc_id:compUrlName(data.c_hq_state),
+          city:compUrlName(data.c_hq_city),
         }),
       }
       newArray3.push(result);

@@ -100,7 +100,7 @@ Template.breakdown_map.onRendered(function(){
        var marker = new google.maps.Marker({
          position: {lat:Number(data[i].c_latitude), lng:Number(data[i].c_longitude)},
          map: mainmap,
-         icon: '/mapmarker.png'
+         icon: '/public/mapmarker.png'
        });
 
        var infowindow = new google.maps.InfoWindow();
