@@ -46,14 +46,14 @@ function GetSuggest(nowTime) {
 
 /* On render Function for header file, this function will hide allthe drop downs and will change the background color of Research button*/
 Template.header_nav.onRendered(function () {
-$(".pgheader-nav_divtp_Resrch").css("background-color","#ffffff");
-$(".pgheader-nav_divbtm_dropdown-meEX").hide();
-$(".pgheader-nav_divbtm_dropdown-meST").hide();
-$(".pgheader-nav_divbtm_dropdown-meIT").hide();
-$(".pgheader-nav_divbtm_dropdown-meKT").hide();
-$(".pgheader-nav_divbtm_dropdown-meDR").hide();
-String_facebook ="https://www.facebook.com/sharer/sharer.php?u="+ URL;
-$(".facebook-link").attr("href", String_facebook);
+  $(".pgheader-nav_divtp_Resrch").css("background-color","#ffffff");
+  $(".pgheader-nav_divbtm_dropdown-meEX").hide();
+  $(".pgheader-nav_divbtm_dropdown-meST").hide();
+  $(".pgheader-nav_divbtm_dropdown-meIT").hide();
+  $(".pgheader-nav_divbtm_dropdown-meKT").hide();
+  $(".pgheader-nav_divbtm_dropdown-meDR").hide();
+  String_facebook ="https://www.facebook.com/sharer/sharer.php?u="+ URL;
+  $(".facebook-link").attr("href", String_facebook);
 });
 /* this is for on click events */
 Template.header_nav.events({
@@ -160,8 +160,9 @@ Template.header_nav.events({
     },
     'click .header_search_recommendations': function(){
       $('.header_search_recommendations').removeClass('active');
+      $('.layout_nav-search_input')[0].value = "";
     },
-    'click html': function(){
+    'click body': function(){
       console.log('THIS');
       $('.header_search_recommendations').removeClass('active');
     },

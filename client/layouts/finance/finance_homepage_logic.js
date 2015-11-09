@@ -273,15 +273,17 @@ Template.finance_homepage.onCreated(function() {
      //console.log(data);
 
      var getLoc = data.data.loc;
+     var state = 'KS';
      for(var obj in getLoc){
        //console.log(obj);
-       obj = obj.split(', ');
-       var state = getLoc[obj].state;
+       if ( getLoc.hasOwnProperty(obj) ) {
+         var state = getLoc[obj].state;
+       }
      }
-     if ( typeof abbrstate(state[0]) != "undefined" ) {
-       state[0] = abbrstate(state[0]);
+     if ( typeof abbrstate(state) != "undefined" ) {
+       state = abbrstate(state);
      }
-     Session.set('home_state',state[0]);
+     Session.set('home_state',state);
    });
 });
 
