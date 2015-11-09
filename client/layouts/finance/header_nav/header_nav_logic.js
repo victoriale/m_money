@@ -159,7 +159,7 @@ Template.header_nav.events({
       GetSuggest(curTime);
     },
     'click .header_search_recommendations': function(){
-      
+      $('.header_search_recommendations').removeClass('active');
     },
     'click body': function(){
       console.log('THIS');
