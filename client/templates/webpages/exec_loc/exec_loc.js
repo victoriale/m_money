@@ -17,7 +17,7 @@ Template.exec_loc.helpers({
     });
   },
   location: function(){
-    var data = Session.get('executives_page');
+    var data = Session.get('all_executives');
     if(typeof data == 'undefined'){
       return '';
     }
@@ -41,7 +41,7 @@ Template.exec_loc.helpers({
   toplist:function(){
     var params = Router.current().getParams();
     var listdata = {}
-    var newData = Session.get('executives_page');
+    var newData = Session.get('all_executives');
     listdata.list_data = newData;
     listdata['newDate'] = CurrentDate();
     $.map(listdata.list_data, function(data,index){
@@ -50,12 +50,12 @@ Template.exec_loc.helpers({
       }else{
         data['background'] = 'tilegrey';
       }
-      if(typeof data['lcsi_market_cap'] == 'undefined' || data['lcsi_market_cap'] == ''){
-        data['objname'] = 'Salary';
-        data['lcsi_market_cap'] = 1;
+      if(typeof data.compensation == 'undefined' || data.compensation == '' || data.compensation == null){
+        data['objname'] = 'Compensation';
+        data['lcsi_market_cap'] = 0;
       }else{
         data['objname'] = 'Compensation';
-        data['lcsi_market_cap'] = nFormatter2(data['lcsi_market_cap']);
+        data['lcsi_market_cap'] = nFormatter2(data.compensation.TotalComp);
       }
       data['newDate'] = CurrentDate();
       data['rank'] = index+1;
@@ -104,20 +104,18 @@ Template.exec_loc.helpers({
     var count = Session.get("lv_count");
     var params = Router.current().getParams();
     var listdata = {};
-    var newData = Session.get('executives_page');
-    console.log(newData);
+    var newData = Session.get('all_executives');
     listdata.list_data = newData;
     if(typeof newData =='undefined'){
       return '';
     }
-    console.log(listdata);
     $.map(listdata.list_data, function(data,index){
-      if(typeof data['lcsi_market_cap'] == 'undefined' || data['lcsi_market_cap'] == ''){
-        data['objname'] = 'Salary';
-        data['lcsi_market_cap'] = 1;
+      if(typeof data.compensation == 'undefined' || data.compensation == '' || data.compensation == null){
+        data['objname'] = 'Compensation';
+        data['lcsi_market_cap'] = 0;
       }else{
         data['objname'] = 'Compensation';
-        data['lcsi_market_cap'] = nFormatter2(data['lcsi_market_cap']);
+        data['lcsi_market_cap'] = nFormatter2(data.compensation.TotalComp);
       }
       data['newDate'] = CurrentDate();
       data['rank'] = index+1;
@@ -128,7 +126,6 @@ Template.exec_loc.helpers({
         exec_id: data.o_id
       });
     })
-    console.log(listdata);
     return listdata.list_data[count];
   },
   //This function is called everytime "each" loop runs, it returns the respective class which is suppose to use on each iteration
@@ -156,8 +153,8 @@ Template.exec_loc.events({
 
     var counter = Session.get("lv_count");
     var params = Router.current().getParams();
-    if(params.list_id == 'executives_page'){
-      var list = Session.get('executives_page');
+    if(params.list_id == 'all_executives'){
+      var list = Session.get('all_executives');
     }
     if(counter > 0){
       counter--;
@@ -172,8 +169,8 @@ Template.exec_loc.events({
   'click .list_vw-righthov': function(){
     var counter = Session.get("lv_count");
     var params = Router.current().getParams();
-    if(params.list_id == 'executives_page'){
-      var list = Session.get('executives_page');
+    if(params.list_id == 'all_executives'){
+      var list = Session.get('all_executives');
     }
     if(counter < list.length - 1)
     {
