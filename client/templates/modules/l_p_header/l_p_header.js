@@ -55,7 +55,8 @@ Template.lp_body.helpers({
   execUrl: function(){
     var params = Router.current().getParams();
     return Router.pick_path('content.executivelocation',{
-      loc_id: params.loc_id
+      loc_id: params.loc_id,
+      page_num:1
     })
   },
 

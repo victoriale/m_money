@@ -64,6 +64,7 @@ Template.statistics_page.helpers(
               font: 'fa-suitcase ',
               url: Router.pick_path('content.executivelocation',{
                 loc_id: params.loc_id,
+                page_num:1
               })
             },
             {
