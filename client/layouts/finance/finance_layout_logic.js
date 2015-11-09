@@ -12,5 +12,11 @@ Template.finance_layout_loading.helpers({
 Template.finance_layout_home.helpers({
   partner_header: function() {
     return Session.get('partner_header_code');
+  },
+  myinvestkit: function() {
+    if ( Router.current().url.match(/myinvestkit/) != null ) {
+      return true;
+    }
+    return false;
   }
 });

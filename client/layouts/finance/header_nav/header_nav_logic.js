@@ -161,7 +161,8 @@ Template.header_nav.events({
     'click .header_search_recommendations': function(){
       $('.header_search_recommendations').removeClass('active');
     },
-    'focusout .layout_nav-search': function(){
+    'click html': function(){
+      console.log('THIS');
       $('.header_search_recommendations').removeClass('active');
     },
     'focus .layout_nav-search_input': function(){
