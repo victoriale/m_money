@@ -250,7 +250,7 @@ Template.finance_homepage.events({
   },
 
   'focus .fi_mainsearch-text': function(){
-    $(".fi_mainsearch").addClass("boxhighlight");  
+    $(".fi_mainsearch").addClass("boxhighlight");
     if($('.fi_mainsearch input')[0].value == '' || $('.fi_mainsearch input')[0].value == ' ' || $('.fi_mainsearch input')[0].value == undefined){
       return false;
     }else{
@@ -303,6 +303,7 @@ Template.finance_homepage.helpers({
     var comp_list = Router.pick_path('content.toplist',{
       l_name: national_list,
       list_id: 6960,
+      page_num:1
     })
     return comp_list;
   },

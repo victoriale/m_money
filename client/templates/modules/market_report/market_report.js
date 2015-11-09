@@ -93,28 +93,32 @@ Template.market_report.helpers({                   //helper class for adding dat
         var URL = Router.pick_path('content.toplist', {
           loc_id: data.NASDAQ.top_list_info.top_list_location,
           l_name: compUrlName(data.NASDAQ.top_list_info.top_list_title),
-          list_id: data.NASDAQ.top_list_info.top_list_id
+          list_id: data.NASDAQ.top_list_info.top_list_id,
+          page_num:1
         });
       break;
       case 'NYSE':
         var URL = Router.pick_path('content.toplist', {
           loc_id: data.NYSE.top_list_info.top_list_location,
           l_name: compUrlName(data.NYSE.top_list_info.top_list_title),
-          list_id: data.NYSE.top_list_info.top_list_id
+          list_id: data.NYSE.top_list_info.top_list_id,
+          page_num:1
         });
       break;
       case 'AMEX':
         var URL = Router.pick_path('content.toplist', {
           loc_id: data.AMEX.top_list_info.top_list_location,
           l_name: compUrlName(data.AMEX.top_list_info.top_list_title),
-          list_id: data.AMEX.top_list_info.top_list_id
+          list_id: data.AMEX.top_list_info.top_list_id,
+          page_num:1
         });
       break;
       default:
         var URL = Router.pick_path('content.toplist', {
           loc_id: data.NASDAQ.top_list_info.top_list_location,
           l_name: compUrlName(data.NASDAQ.top_list_info.top_list_title),
-          list_id: data.NASDAQ.top_list_info.top_list_id
+          list_id: data.NASDAQ.top_list_info.top_list_id,
+          page_num:1
         });
       break;
     }
@@ -137,21 +141,24 @@ Template.market_report.helpers({                   //helper class for adding dat
         url: Router.pick_path('content.toplist', {
           loc_id: data.NASDAQ.top_list_info.top_list_location,
           l_name: compUrlName(data.NASDAQ.top_list_info.top_list_title),
-          list_id: data.NASDAQ.top_list_info.top_list_id
+          list_id: data.NASDAQ.top_list_info.top_list_id,
+          page_num:1
         })
       },
       {open_page:'OPEN PAGE',tile_name:'NYSE Companies', image:'/exchange/NYSE.png',
         url: Router.pick_path('content.toplist', {
           loc_id: data.NYSE.top_list_info.top_list_location,
           l_name: compUrlName(data.NYSE.top_list_info.top_list_title),
-          list_id: data.NYSE.top_list_info.top_list_id
+          list_id: data.NYSE.top_list_info.top_list_id,
+          page_num:1
         })
       },
       {open_page:'OPEN PAGE',tile_name:'AMEX Companies', image:'/exchange/AMEX.png',
         url: Router.pick_path('content.toplist', {
           loc_id: data.AMEX.top_list_info.top_list_location,
           l_name: compUrlName(data.AMEX.top_list_info.top_list_title),
-          list_id: data.AMEX.top_list_info.top_list_id
+          list_id: data.AMEX.top_list_info.top_list_id,
+          page_num:1
         })
       }
     ];

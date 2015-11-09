@@ -9,17 +9,20 @@ Template.market_bar.onCreated(function(){
     var nasdaq = Router.pick_path('content.toplist', {
       loc_id: data.NASDAQ.top_list_info.top_list_location,
       l_name: compUrlName(data.NASDAQ.top_list_info.top_list_title),
-      list_id: data.NASDAQ.top_list_info.top_list_id
+      list_id: data.NASDAQ.top_list_info.top_list_id,
+      page_num:1
     });
     var nyse = Router.pick_path('content.toplist', {
       loc_id: data.NYSE.top_list_info.top_list_location,
       l_name: compUrlName(data.NYSE.top_list_info.top_list_title),
-      list_id: data.NYSE.top_list_info.top_list_id
+      list_id: data.NYSE.top_list_info.top_list_id,
+      page_num:1
     });
     var amex = Router.pick_path('content.toplist', {
       loc_id: data.AMEX.top_list_info.top_list_location,
       l_name: compUrlName(data.AMEX.top_list_info.top_list_title),
-      list_id: data.AMEX.top_list_info.top_list_id
+      list_id: data.AMEX.top_list_info.top_list_id,
+      page_num:1
     });
     Session.set('nyse-list',nyse);
     Session.set('nasdaq-list',nasdaq);

@@ -34,7 +34,8 @@ Template.marketmovers.helpers({
       data.data['list_url'] = Router.pick_path('content.toplist',{
         loc_id:loc_param,
         l_name:list_name,
-        list_id:list_param
+        list_id:list_param,
+        page_num:1
       });
       data.shareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + data.data['list_url'];
       //move first listed item to a seperate object to go into big circle

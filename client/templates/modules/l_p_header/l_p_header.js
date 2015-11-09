@@ -63,7 +63,8 @@ Template.lp_body.helpers({
   compUrl: function(){
     var params = Router.current().getParams();
     return Router.pick_path('content.sector',{
-      loc_id: params.loc_id
+      loc_id: params.loc_id,
+      page_num:1
     })
   },
 

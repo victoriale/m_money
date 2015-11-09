@@ -54,7 +54,8 @@ Template.list_of_list_loc_page.helpers({
       data['list_url'] = Router.pick_path('content.toplist',{
         loc_id:loc_param,
         l_name:compUrlName(list_name),
-        list_id:id_param
+        list_id:id_param,
+        page_num:1
       });
       //move first listed item to a seperate object to go into big circle
       data['top'] = data.top_list_list[0];

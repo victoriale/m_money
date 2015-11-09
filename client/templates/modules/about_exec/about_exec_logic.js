@@ -27,12 +27,6 @@ Template.about_exec.onRendered(function(){
 
 });
 
-Template.whos_who.onCreated(function(){
-  //setting the counter to 0
-  var counter = 0;
-  Session.set("count",counter);
-});
-
 // calling the data object
 var data = Session.get('about_exec');
 var counter = Session.get('count');

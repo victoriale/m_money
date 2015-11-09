@@ -75,7 +75,8 @@ Template.list_of_lists.helpers({
 
       data.url = Router.pick_path('content.toplist', {
         l_name:compUrlName(data.top_list_list[0].list_of_lists_title),
-        list_id: data.tli_id
+        list_id: data.tli_id,
+        page_num:1
       });
     })
     return list.list_rankings;

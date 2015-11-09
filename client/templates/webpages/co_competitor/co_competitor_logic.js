@@ -38,7 +38,8 @@ Template.co_competitor.helpers({
     });
     newData['secturl'] = Router.pick_path('content.sector',{
       loc_id:newData.c_hq_state,
-      sector_id: compUrlName(newData.c_sector)
+      sector_id: compUrlName(newData.c_sector),
+      page_num:1
     });
     newData.share_company_url =  "https://www.facebook.com/sharer/sharer.php?u=" + Router.pick_path('content.companyprofile', {company_id: company_id, name: company, ticker: ticker});
     newData.share_company_competitor_url = "https://www.facebook.com/sharer/sharer.php?u=" + Router.pick_path('content.competitor', {company_id: company_id, name: company, ticker: ticker});
@@ -70,7 +71,8 @@ Template.co_competitor.helpers({
       });
       data['secturl'] = Router.pick_path('content.sector',{
         loc_id:data.c_hq_state,
-        sector_id: compUrlName(data.c_sector)
+        sector_id: compUrlName(data.c_sector),
+        page_num:1
       });
       data['url'] = Router.pick_path('content.companyprofile', {company_id: company_id, name: company, ticker: ticker});
       data['rank'] = index+1;
