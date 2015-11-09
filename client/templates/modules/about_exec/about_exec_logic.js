@@ -5,21 +5,20 @@
 */
 
 Template.about_exec.onRendered(function(){
-
   this.autorun(function(){
     var data = Session.get('college_rivals');
     var exec_id = Session.get('exec_id');
-
+    console.log(data);
     if(typeof exec_id == 'undefined' || typeof data == 'undefined' || typeof data['officer'] == 'undefined'){
       return '';
     }
     var RivalArray = [];
     //set the officer id of the current page
-    data['officer']['e_id'] = exec_id;
+    data['officer']['e_id'] = 0;
     //push all data returned into a list array to be used for the module
     RivalArray.push(data['officer']);
     $.map(data.rivals, function(data, index){
-      data['e_id'] = index;
+      data['e_id'] = index+1;
       RivalArray.push(data);
       Session.set('about_exec', RivalArray);
     });
@@ -32,7 +31,10 @@ var data = Session.get('about_exec');
 var counter = Session.get('count');
 //events to sho wnext rivals on button click
 
-//
+Template.about_exec.onCreated(function(){
+    Session.set('count',0);
+})
+
 Template.about_exec.helpers({
   execComp:function(){
     var data = Session.get('about_exec');

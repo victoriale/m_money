@@ -153,8 +153,4 @@ Template.new_whos_who.helpers({
       company_id:head.c_id
     });
   },
-
-  isLoc: function(){
-    return Session.get('IsLocation');
-  },
 })
