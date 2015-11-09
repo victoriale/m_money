@@ -30,8 +30,12 @@ Template.new_whos_who.events({
 Template.new_whos_who.helpers({
   header:function(){
     var head = Session.get('profile_header');
+    var params = Router.current().getParams();
     if(typeof head == 'undefined'){
       return '';
+    }
+    if(Session.get('IsLocation')){
+      return fullstate(params.loc_id);
     }
     return head.c_name;
   },
@@ -67,6 +71,13 @@ Template.new_whos_who.helpers({
         ticker: val.c_ticker,
         exec_id: val.o_id
       });
+      if(!Session.get('IsCompany')){
+        newObj.compUrl = Router.pick_path('content.companyprofile',{
+          ticker:val.c_ticker,
+          name:compUrlName(val.c_name),
+          company_id:val.c_id,
+        });
+      }
       newObj.c_logo = val.c_logo;
       newObj.c_name = val.c_name;
       if(Session.get('IsCompany')){
@@ -109,6 +120,13 @@ Template.new_whos_who.helpers({
         ticker: val.c_ticker,
         exec_id: val.o_id
       });
+      if(!Session.get('IsCompany')){
+        newObj.compUrl = Router.pick_path('content.companyprofile',{
+          ticker:val.c_ticker,
+          name:compUrlName(val.c_name),
+          company_id:val.c_id,
+        });
+      }
       newObj.c_logo = val.c_logo;
       newObj.c_name = val.c_name;
       if(Session.get('IsCompany')){
@@ -134,5 +152,9 @@ Template.new_whos_who.helpers({
       name:compUrlName(head.c_name),
       company_id:head.c_id
     });
+  },
+
+  isLoc: function(){
+    return Session.get('IsLocation');
   },
 })
