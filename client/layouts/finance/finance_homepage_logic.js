@@ -49,7 +49,6 @@ sortSuggestions = function(data, search_string) {
       }
     }
   }
-  console.log(results);
 
   // Create the array of things that will be shown
   var suggestions = [];
@@ -274,12 +273,17 @@ Template.finance_homepage.onCreated(function() {
      //console.log(data);
 
      var getLoc = data.data.loc;
-     for(obj in getLoc){
+     var state = 'KS';
+     for(var obj in getLoc){
        //console.log(obj);
-       obj = obj.split(', ');
-       var state = [obj[obj.length-1]];
+       if ( getLoc.hasOwnProperty(obj) ) {
+         var state = getLoc[obj].state;
+       }
      }
-     Session.set('home_state',state[0]);
+     if ( typeof abbrstate(state) != "undefined" ) {
+       state = abbrstate(state);
+     }
+     Session.set('home_state',state);
    });
 });
 
@@ -356,7 +360,6 @@ function homestates(){
     'CA',
     'CO',
     'CT',
-    'DC',
     'DE',
     'FL',
     'GA',
