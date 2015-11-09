@@ -49,6 +49,7 @@ Template.cp_head.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
+    console.log(data);
     return Router.pick_path('content.locationprofile',{
       loc_id:data.c_hq_state,
       city:data.c_hq_city
