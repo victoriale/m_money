@@ -41,6 +41,24 @@ Template.ep_head.helpers({
     data['lastUpdated'] = lastUpdated;
     data['c_hq_location'] = data.c_hq_city + ", " + data.c_hq_state;
     data['e_name'] = data.o_first_name + " " + data.o_middle_initial + " " + data.o_last_name;
+    var companies = Session.get('company_profiles');
+    if ( typeof companies != "undefined" && companies.length > 1 ) {
+      var cmp_data = {companies: []};
+      var count = 0;
+      for ( var i = 0; i < companies.length; i++ ) {
+        if ( companies[i].c_id != data.c_id ) {
+          cmp_data.companies[cmp_data.companies.length] = {
+            c_text: companies[i].c_name + ' (' + companies[i].c_name + ')',
+            c_url: Router.pick_path('content.executiveprofile',{fname: data.o_first_name, lname: data.o_last_name, ticker: companies[i].c_ticker, exec_id: companies[i].o_id})
+          };
+          if ( count > 0 ) {
+            cmp_data.companies[cmp_data.companies.length - 1].notFirst = true;
+          }
+          count++;
+        }
+      }
+      data.cmp_data = cmp_data;
+    }
     Session.set('profile_header', data);
     return data;
   },
@@ -80,3 +98,15 @@ Template.ep_rdr.helpers({
   },
 
 });
+
+Template.ep_head.events({
+  'click .p-head-top-container-location .fa-chevron-down': function() {
+    $('.p-head-top-container-location').addClass('active');
+    setTimeout(function () {
+      $('html').bind('click',function(){
+        $('.p-head-top-container-location').removeClass('active');
+        $('html').unbind('click');
+      })
+    }, 0);
+  }
+})

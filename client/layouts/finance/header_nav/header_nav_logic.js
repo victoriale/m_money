@@ -160,7 +160,6 @@ Template.header_nav.events({
     },
     'click .header_search_recommendations': function(){
       $('.header_search_recommendations').removeClass('active');
-      $('.layout_nav-search_input')[0].value = "";
     },
     'click body': function(){
       console.log('THIS');
