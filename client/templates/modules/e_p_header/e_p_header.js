@@ -42,7 +42,7 @@ Template.ep_head.helpers({
     data['c_hq_location'] = data.c_hq_city + ", " + data.c_hq_state;
     data['e_name'] = data.o_first_name + " " + data.o_middle_initial + " " + data.o_last_name;
     var companies = Session.get('company_profiles');
-    if ( typeof companies != "undefined" && companies.length > 1 ) {
+    if ( typeof companies == "object" && companies.length > 1 ) {
       var cmp_data = {companies: []};
       var count = 0;
       for ( var i = 0; i < companies.length; i++ ) {
