@@ -16,6 +16,14 @@ $(".exr_riva-page-selector1").css("background-color","#3098ff");
 
 var backgroundStyle="tilewhite";
 Template.exec_college_rivals.helpers({
+  last_updated: function() {
+    return (new Date()).toSNTForm();
+  },
+  nat_url: function() {
+    return Router.pick_path('content.locationprofile',{
+      loc_id: 'National'
+    });
+  },
   //Helper to navigate back to executive profile
   backToExec: function(){
     var params = Router.current().getParams();
@@ -53,7 +61,8 @@ Template.exec_college_rivals.helpers({
     if(typeof data === 'undefined'){
       return '';
     }
-    return data['rivals'][0]['o_bio'];
+    data = data['rivals'][0];
+    return data.o_first_name + ' ' + data.o_last_name + ' works for <a href="' + Router.pick_path('content.companyprofile',{name: compUrlName(data.c_name), ticker: data.c_ticker, company_id: data.c_id}) + '">' + data.c_name + ' (' + data.c_ticker + ')</a> as ' + data.long_title;
   },
   HeadImg: function(){
     var data = Session.get('college_rivals');
@@ -61,6 +70,14 @@ Template.exec_college_rivals.helpers({
       return '';
     }
     return data['officer']['o_pic'];
+  },
+
+  RivalImg: function(){
+    var data = Session.get('college_rivals');
+    if(typeof data === 'undefined'){
+      return '';
+    }
+    return data['rivals'][0]['o_pic'];
   },
 
   MainExecUrl: function(){
@@ -88,14 +105,8 @@ Template.exec_college_rivals.helpers({
     for(i = 0; i < data['rivals'].length; i++){
       returnArray[i] = {};
       var rival = data['rivals'][i];
-      //After the third iteration, add the Featured Companies, then move to the fourth
-      if(i == 3){
-        returnArray[i]['imghld'] = true;
-        j = i + 1;
-      }
-      else{
-        j = i;
-      }
+
+      j = i;
 
       returnArray[j]['counter_no'] = i + 1;
       returnArray[j]['name'] = rival['o_first_name'] + " " + rival['o_last_name'];
@@ -118,11 +129,6 @@ Template.exec_college_rivals.helpers({
         partner_id: '',
         exec_id: rival['o_id']
       });
-    }
-
-    //if the featured companies haven't been added
-    if(returnArray.length < 4){
-      returnArray[returnArray.length] = {imghld: true};
     }
 
     return returnArray;

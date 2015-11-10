@@ -78,7 +78,6 @@ function pf_center_piece(offset) {
 	$.ajax({
 	 	url: 'http://apifin.investkit.com/call_controller.php?action=top_list&option=female_ceo',
 	  	success: function(data) {
-				console.log(data);
 				$('.high_p_female-content-textarea-t1').html(data[0]['name']);
 				$('.high_p_female-content-textarea-t2').html(data[0]['companyName']);
 				$('.high_p_female-total-price').html("$"+nFormatter(data[0]['totalCompensation']));

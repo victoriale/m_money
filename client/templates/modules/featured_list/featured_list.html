@@ -41,20 +41,22 @@ Associated Files: featured_list.html, featured_list.js
           </div>
         </div>
           <!--container containing circle for image, icon and position-->
-        <div class="fl_ico">
-          <!--left navigation button-->
-          <div class="fl_lf">
-           <button class='fl_block_leftbutton'>
-             <i class="fa fa-angle-left fa-2x" ></i>
-           </button>
-         </div>
-           <!--right navigation button-->
-           <div class="fl_rt">
-           <button class='fl_block_rightbutton'>
-             <i class="fa fa-angle-right fa-2x"></i>
-           </button>
-         </div>
-        </div>
+          {{#if count}}
+            <div class="fl_ico">
+              <!--left navigation button-->
+              <div class="fl_lf">
+               <button class='fl_block_leftbutton'>
+                 <i class="fa fa-angle-left fa-2x" ></i>
+               </button>
+             </div>
+               <!--right navigation button-->
+               <div class="fl_rt">
+               <button class='fl_block_rightbutton'>
+                 <i class="fa fa-angle-right fa-2x"></i>
+               </button>
+             </div>
+            </div>
+          {{/if}}
 
         <div class="fl_cr">
           <!--image in the circle-->
@@ -77,7 +79,7 @@ Associated Files: featured_list.html, featured_list.js
             <!-- <div class="fl_line-1" >CEO: {{company_CEO}} | NASDAQ: {{company_stock}} </div> -->
             <div class="fl_line-1" ></div>
             <div class="fl_line-2">{{data_name}}:
-              <span class="fl_sh">${{data_value}}</span>
+              <span class="fl_sh">{{data_value}}</span>
             </div>
           </div>
           <!--footer for see the whole list button-->

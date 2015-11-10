@@ -45,7 +45,7 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
     <div class="exr_riva-loc_st">
        <i class="fa fa-map-marker"></i>
     <!--specified font style for the state name !-->
-    <a href="/National/location">
+    <a href="{{nat_url}}">
       <span class="exr_riva-loc_st">
         The United States of America
       </span>
@@ -86,12 +86,12 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
       <!-- end of the module.less navigation button -->
       <!-- wrapper class-->
       <div class="exr_riva-m_c-image-wr">
-        <div class="exr_riva-m_c-image" style="background-image:url({{HeadImg}})">
-          <div class="exr_riva-m_c-sma_ct">
+        <div class="exr_riva-m_c-image" style="background-image:url({{imageUrl RivalImg}})">
+          <!-- <div class="exr_riva-m_c-sma_ct">
           <div class="exr_riva-m_c-sma_cr">
 
           </div>
-        </div>
+        </div> -->
         </div>
       </div>
       <!-- the main container -->
@@ -116,7 +116,7 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
         <!-- the description about the person-->
         <li class="exr_riva-m_c-dp">
           <div class="exr_riva-m_c-dp-dpct">
-          {{RivalDesc}}
+          {{{RivalDesc}}}
           </div>
           <!-- <div class="co_comp-m_c-dp-itl co_comp-m_c-dp-it2">
             {{getheadername3}}. <span class="co_comp-m_c-dp-dpct">is currently priced at: <br></span>
@@ -130,7 +130,7 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
         <!-- the details about the comapny-->
         <div class="exr_riva-m_c-view_more-text">
           <div class="exr_riva-m_c-view_more-text-ln1">Want to know more about {{MainRival}}?</div>
-          <div class="exr_riva-m_c-view_more-text-ln2">Profile Last Updated On: <span class="exr_riva-m_c-dp-itl">07/29/2015</span></div>
+          <div class="exr_riva-m_c-view_more-text-ln2">Profile Last Updated On: <span class="exr_riva-m_c-dp-itl">{{last_updated}}</span></div>
         </div>
         <a href="{{MainExecUrl}}"><button class="exr_riva-m_c-view_more-button">
           View Profile <i class="fa fa-angle-right"></i>
@@ -138,15 +138,15 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
       </div>
     </div>
     <!--container for the ct1 to 'sort by' and 'what is this list?'  !-->
-    <div class="exr_riva-ct1">
+    <!-- <div class="exr_riva-ct1"> -->
     <!--container for the sortby !-->
-    <div class="exr_riva-sy">
-      <!-- container for the sortby font !-->
+    <!-- <div class="exr_riva-sy">
+      <!- container for the sortby font !->
       <div class="exr_riva-syf"> Sorted by:
-      <!-- container for the members font !-->
+      <!- container for the members font !->
       <span class="exr_riva-syf exr_riva-sym"> Most Recent Graduation Date <span class="exr_riva-sym exr_riva-angd"> <i class=" fa fa-angle-down"></i> </span> </span>
       </div>
-    </div>
+    </div> -->
     <!-- contianer for the complete 'what is this list' class name is wl!-->
     <!-- <div class="exr_riva-wl">
       container for the 'what is this list' class name is wl2!
@@ -166,20 +166,22 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
       </div>
       </div>
     </div> -->
-    </div>
+    <!-- </div> -->
 
     <div class="exr_riva-wrapper">
       <!-- The loop starts here and the each will take each data item from the items on each iteration-->
       {{#each items}}
       <div class="exr_riva-{{getBackgroundStyle}}"><br>
         <!--This is the main (circle) image-->
-        <div class="exr_riva-head-circ">
-          <div class="exr_riva-head-image" style="background-image:url({{pic}})">
-            <!-- Here displays the counter number which is a result of each loop-->
-            <span class="exr_riva-counter">#{{counter_no}}</span>
-            <span class="exr_riva-counter2"></span>
+        <a href="{{execurl}}">
+          <div class="exr_riva-head-circ">
+            <div class="exr_riva-head-image" style="background-image:url({{imageUrl pic}})">
+              <!-- Here displays the counter number which is a result of each loop-->
+              <span class="exr_riva-counter">#{{counter_no}}</span>
+              <!-- <span class="exr_riva-counter2"></span> -->
+            </div>
           </div>
-        </div>
+        </a>
         <!--Location title -->
         <div class="exr_riva-sp">
           <div  class="exr_riva-space">
@@ -202,17 +204,19 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
           </div>
         </div>
         <!--This displays the blue button which holds the text "View Full List"-->
-        <div class="exr_riva-ctmain">
-          <span class="exr_riva-ctmaintxt">
-              Want more info about this executive?
-          </span>
-          <a href="{{execurl}}"><button class="exr_riva-tile-button">
-            View profile
-            <span style="margin-left:6px"><i class="fa fa-angle-right"></i></span>
-          </button></a>
-        </div>
+        <a href="{{execurl}}">
+          <div class="exr_riva-ctmain">
+            <span class="exr_riva-ctmaintxt">
+                Want more info about this executive?
+            </span>
+            <button class="exr_riva-tile-button">
+              View profile
+              <span style="margin-left:6px"><i class="fa fa-angle-right"></i></span>
+            </button>
+          </div>
+        </a>
         <div class="exr_riva-rtct">
-          <div class="exr_riva-rttx1"> Class of</div>
+          <div class="exr_riva-rttx1">&nbsp;</div>
           <div class="exr_riva-follwt">
           <span class="exr_riva-follw1"> {{college}}</span>
           </div>
@@ -255,37 +259,7 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals.less
       </div>
       <!--This is the End of each loop -->
       {{/each}}
-  <div class="exr_riva-footer">
-    <!-- This is outermost class of the footer which holds the other elements in the footer-->
-    <div class="exr_riva-holder1">
-      <!-- This is the class which holds the font awesome left arrow-->
-      <div class="exr_riva-navigationl">
-        <i class="fa fa-angle-left exr_riva-footer-icon"></i>
-      </div>
-      <!-- Here we write the code for the buttons 1,2,3 and 200-->
-      <button  class="exr_riva-page-selector1 exr_riva-page-selector1-font1">1</button>
-      <button class="exr_riva-page-selector2 exr_riva-page-selector2-font2">2</button>
-      <button  class="exr_riva-page-selector3 exr_riva-page-selector3-font3">3</button>
-      <span  class="exr_riva-dots" >...</span>
-      <button  class="exr_riva-page-selector200 exr_riva-page-selector200-font">200</button>
-      <!-- for navigation !-->
-    <span class="exr_riva-navigationr">
-      <i class="fa fa-angle-right exr_riva-footer-icon"></i>
-    </span>
-      <!-- This is the class which holds the font awesome right arrow-->
     </div>
-    <!-- container for the View all button !-->
-    <div class="exm_tk-navigation2">
-      <button class="exm_tk-view-all exm_tk-view-all-font">VIEW ALL <img style="padding-bottom:4px" src="/public/infinite-icon.png"></button>
-    </div>
-  </div>
-</div>
-<!--created a container for the footer  !-->
-<!--
-<div class="exr_riva-footer">
-  {{> recommend}}
-</div>
--->
   </div>
 </div>
 </template>

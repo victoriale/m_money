@@ -191,10 +191,10 @@ Meteor.methods({
     // console.log("New CollegeRivals Request",exec_id,option);
 
     var UrlString = "http://apifin.investkit.com/call_controller.php?action=executive_page&option="+ option +"&param=" + exec_id;
-    // console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, option, exec_id, error, data){
       try{
+        data.content = data.content.toString().replace(/^[^{]*/,function(a){ return ''; });
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);
@@ -599,6 +599,7 @@ Meteor.methods({
 
     Meteor.http.get(UrlString, (function(startTime, loc_id, error, data){
       try{
+        data.content = data.content.toString().replace(/^[^{]*/,function(a){ return ''; });
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);

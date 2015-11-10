@@ -43,12 +43,12 @@ Template.list_of_list_page.helpers({
         name:params.name,
         company_id: data.c_id
       });
-
       //Build url for sub circle images
       subData.map(function(item, index){
+        console.log(item);
         item.imageURL = Router.pick_path('content.companyprofile', {
-          ticker:params.ticker,
-          name:params.name,
+          ticker:item.c_ticker,
+          name:compUrlName(item.c_name),
           company_id: item.c_id
         });
         return item;

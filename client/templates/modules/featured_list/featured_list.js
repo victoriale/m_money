@@ -105,6 +105,11 @@ Template.featured_list.helpers (
           loc_id:data.c_hq_state,
           city:compUrlName(data.c_hq_city)
         })
+        if ( newData.length > 1 ) {
+          data['count'] = true;
+        } else {
+          data['count'] = false;
+        }
         for(objName in data){
           if(objName === 'stock_percent'){
             data['data_name'] = "Stock Percent";
