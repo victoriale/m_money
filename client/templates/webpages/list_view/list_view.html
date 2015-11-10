@@ -36,28 +36,25 @@ Associated Files: list_view_logic.js and list_view.less
           </div>
           <!--specified font style for location !-->
           <div class="list_vw-loc_st">
-            <a href="/National/location">
-              <i class="fa fa-map-marker"></i>
-              <!--specified font style for the state name !-->
-              <span class="list_vw-loc_st">
-                United States
-              </span>
-            </a>
+            {{#if location_info}}
+              {{#with location_info}}
+              <a href="{{url}}">
+                <i class="fa fa-map-marker"></i>
+                <!--specified font style for the state name !-->
+                <span class="list_vw-loc_st">
+                  {{name}}
+                </span>
+              </a>
+              {{/with}}
+            {{else}}
+              &nbsp;
+            {{/if}}
           </div>
           <!-- specified font sytle for the stock disclaimer !-->
           <div class="list_vw-loc_st list_vw-disc">
           {{top_list_info.top_list_title}}
           </div>
           <!--specified font style for the inveskit finance  !-->
-        </div>
-      </div>
-      <div class="list_vw-bar">
-        <div class="list_vw-bar-title">
-          Today's Most Traded Companies
-        </div>
-        <div class="list_vw-bar-button">
-        </div>
-        <div class="list_vw-bar-button">
         </div>
       </div>
       {{#with carouselList}}

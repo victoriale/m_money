@@ -17,12 +17,17 @@ Template.exec_loc.helpers({
     });
   },
   location: function(){
-    var data = Session.get('all_executives');
-    if(typeof data == 'undefined'){
+    var data = Router.current().params;
+    if(typeof data == 'undefined' || typeof data.loc_id == 'undefined'){
       return '';
     }
-    var loc = fullstate(data[0].c_hq_state);
+    var loc = fullstate(data.loc_id);
     return loc;
+  },
+  loc_url: function(){
+    return Router.pick_path('content.locationprofile',{
+      loc_id: Router.current().params.loc_id
+    });
   },
   stateImage: function(){
     var params = Router.current().getParams();
@@ -113,9 +118,11 @@ Template.exec_loc.helpers({
       if(typeof data.compensation == 'undefined' || data.compensation == '' || data.compensation == null){
         data['objname'] = 'Compensation';
         data['lcsi_market_cap'] = 0;
+        data['TotalComp'] = 0;
       }else{
         data['objname'] = 'Compensation';
         data['lcsi_market_cap'] = nFormatter2(data.compensation.TotalComp);
+        data['TotalComp'] = nFormatter2(data.compensation);
       }
       data['newDate'] = CurrentDate();
       data['rank'] = index+1;

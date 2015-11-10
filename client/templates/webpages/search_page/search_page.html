@@ -25,19 +25,14 @@
       <div class="search_results-showing">Showing {{currentResult}} results of {{totalResults}}</div>
       {{#each Results}}
       <!--RESULTS FROM API BELOW-->
-      <div class="search_results-info">
-        <div class="search_results-info-h1">
-          {{txt1}}
-        </div>
-        <a href="{{txt2}}">
-          <div class="search_results-info-link">
-            {{txt2}}
+      <a href="{{url}}">
+        <div class="search_results-info">
+          <div class="search_results-info-h1">
+            {{{txt1}}}
           </div>
-        </a>
-        <div class="search_results-info-desc">
-
+          <div class="search_results-info-desc"></div>
         </div>
-      </div>
+      </a>
       {{/each}}
       <!--below tabs where results are to be displayed END-->
     </div>

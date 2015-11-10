@@ -98,7 +98,7 @@ Template.compensation.helpers({
     //Seperate values and names into separate arrays
     for(name in compData){
       valArr.push(compData[name]);
-      nameArr.push(name);
+      nameArr.push(compensationTranslate(name));
     }
 
     //console.log('THE ORGANIZED DATA', valArr, nameArr);
@@ -125,19 +125,14 @@ Template.compensation.helpers({
             },
             formatter: function () {
               var ret =this.y;
-              if(ret>1000)
-              {
-                var ret = '',
-                multi,
-                axis = this.series.yAxis,
-                numericSymbols = ['k', 'M', 'G', 'T', 'P', 'E'],
-                i = numericSymbols.length;
-                while (i-- && ret === '') {
-                  multi = Math.pow(1000, i + 1);
-                  if (axis.tickInterval >= multi && numericSymbols[i] !== null) {
-                    ret = Highcharts.numberFormat(this.y / multi, -1) + numericSymbols[i];
-                  }
+              if(ret>1000) {
+                if ( ret > 1000000 ) {
+                  ret = (Math.round(ret/10000)/100) + 'M';
+                } else if ( ret > 1000 ) {
+                  ret = (Math.round(ret/10)/100) + 'K';
                 }
+              } else {
+                ret = (Math.round(ret*100)/100);
               }
               return '$'+ret;
             }
@@ -175,17 +170,17 @@ Template.compensation.helpers({
       }],
       tooltip: {
         formatter: function() {
-          var val = this.y;
-          if (val >= 1000000000) {
-            val = (val / 1000000000).toFixed(1).replace(/\.0$/, '') + 'G';
+          var ret =this.y;
+          if(ret>1000) {
+            if ( ret > 1000000 ) {
+              ret = (Math.round(ret/10000)/100) + 'M';
+            } else if ( ret > 1000 ) {
+              ret = (Math.round(ret/10)/100) + 'K';
+            }
+          } else {
+            ret = (Math.round(ret*100)/100);
           }
-          else if (val >= 1000000) {
-            val = (val / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
-          }
-          else if (val >= 1000) {
-            val = (val / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
-          }
-          return this.x +': $'+ val;
+          return this.x + ': $' + ret;
         },
         style: {
           fontSize: '12px',

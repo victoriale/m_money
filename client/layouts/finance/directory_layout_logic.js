@@ -30,6 +30,12 @@ Template.directory_list_button.onCreated(function(){
 })
 
 Template.directory_list_button.helpers({
+  site_name: function() {
+    if ( Router.current().url.match(/myinvestkit/) != null ) {
+      return 'MYINVESTKIT';
+    }
+    return 'INVESTKIT';
+  },
   trending_list: function(){
     var data = Session.get('investkit_trending_list');
 
