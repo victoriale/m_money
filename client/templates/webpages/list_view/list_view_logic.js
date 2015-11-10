@@ -16,10 +16,31 @@ Template.list_view.onRendered(function () {
 
 var backgroundStyle="tilewhite";
 Template.list_view.helpers({
-  nat_url: function() {
-    return Router.pick_path('content.locationprofile',{
-      loc_id: 'National',
-    });
+  location_info: function() {
+    var data = Session.get('top_list_gen');
+    if ( typeof data == "undefined" ) {
+      return '';
+    }
+
+    if ( data.top_list_info.top_list_location == '' ) {
+      return {
+        url: Router.pick_path('content.locationprofile',{
+          loc_id: 'National',
+        }),
+        name: 'United States'
+      };
+    }
+
+    if ( !isNaN(parseInt(data.top_list_info.top_list_location[0])) ) {
+      return '';
+    }
+
+    return {
+      url: Router.pick_path('content.locationprofile',{
+        loc_id: data.top_list_info.top_list_location[0]
+      }),
+      name: data.top_list_info.top_list_location[0]
+    };
   },
   back_url: function(){
     var url = Router.current().getParams();
