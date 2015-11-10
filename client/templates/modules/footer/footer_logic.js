@@ -42,4 +42,16 @@ Template.footer.helpers({
   national: function(){
     return globalUrl('National');
   },
+  pathPick: function(type, query, pageNum){
+    var params = Router.current().getParams();
+
+    if(typeof params.partner_id !== 'undefined'){
+      query = query !== 'null' ? query : undefined;
+      return Router.path('partner.finance.directory', {type: type, pageNum: pageNum, partner_id: params.partner_id}, {query: query});
+    }else{
+      query = query !== 'null' ? query : undefined;
+      return Router.path('content.finance.directory', {type: type, pageNum: pageNum}, {query: query});
+    }
+
+  }
 });

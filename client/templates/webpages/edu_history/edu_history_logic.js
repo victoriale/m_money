@@ -15,76 +15,70 @@ $(".edu_his-page-selector1").css("background-color","#3098ff");
 
 var backgroundStyle="tilewhite";
 Template.edu_history.helpers({
-  ExecURL: function(){
-    var params = Router.current().getParams();
-    if(typeof params == 'undefined'){
-      return '#';
+  executive: function(){
+    var data = Session.get('college_rivals');
+    if ( typeof data == "undefined" ) {
+      return '';
     }
-    return Router.pick_path('content.executiveprofile',{
-      exec_id: params.exec_id,
+
+    data.ExecURL = Router.pick_path('content.executiveprofile',{
+      exec_id: data.officer.o_id,
+      fname: data.officer.o_first_name,
+      lname: data.officer.o_last_name,
+      ticker: data.officer.c_ticker
     });
+
+    data.rivalsUrl = Router.pick_path('content.collegerivals',{
+      exec_id: data.officer.o_id,
+      fname: data.officer.o_first_name,
+      lname: data.officer.o_last_name,
+      ticker: data.officer.c_ticker
+    });
+
+    data.officer.fullname = data.officer.o_first_name + ' ' + data.officer.o_last_name;
+
+    data.lastupdate = (new Date()).toSNTForm();
+
+    data.officer.College = data.officer.education_data[0].College;
+
+    data.schools = [];
+    edu_data_uq = [];
+    edu_data = data.officer.education_data;
+    for ( var i = 0; i < edu_data.length; i++ ) {
+      var uq = true;
+      for ( var u = 0; u < i; u++ ) {
+        if ( edu_data[i].College == edu_data[u].College && i != u ) {
+          uq = false;
+        }
+      }
+      if ( uq ) {
+        edu_data_uq[edu_data_uq.length] = edu_data[i];
+      }
+    }
+    for ( var i = 0; i < edu_data_uq.length; i++ ) {
+      edu_data_uq[i].rivalsUrl = Router.pick_path('content.collegerivals',{
+        exec_id: data.officer.o_id,
+        fname: data.officer.o_first_name,
+        lname: data.officer.o_last_name,
+        ticker: data.officer.c_ticker
+      });
+      edu_data_uq[i].rivals = data.rivals[edu_data_uq[i].university_tr_id];
+      // edu_data_uq[i].rivals = data.rivals[1405];
+      if ( typeof edu_data_uq[i].rivals == 'array' ) {
+        for ( var u = 0; u < edu_data_uq[i].rivals.length; u++ ) {
+          edu_data_uq[i].rivals[u].url = Router.pick_path('content.executiveprofile',{
+            fname: edu_data_uq[i].rivals[u].o_first_name,
+            lname: edu_data_uq[i].rivals[u].o_last_name,
+            exec_id: edu_data_uq[i].rivals[u].o_id,
+            ticker: edu_data_uq[i].rivals[u].c_ticker
+          });
+        }
+      }
+    }
+    data.colleges = edu_data_uq;
+
+    return data;
   },
-//gave names for dyamic access {{getheadername0}}
-    getheadername0: function(){
-      var name0= "The United States of America";
-      return name0;
-    },
-//gave names for dyamic access {{getheadername0}}
-    getheadername1: function(){
-      var name1= "Education History";
-      return name1;
-    },
-//gave names for dyamic access {{getheadername}}
-    compname: function(){
-      var noof= "Mark Zuckerberg";
-      return noof;
-    },
-//gave names for dyamic access {{getheadername}}
-  getheadername: function(){
-    var name= "Mountain View, CA";
-    return name;
-  },
-  //gave names for dyamic access {{getheadername2}}
-  getheadername2: function(){
-    var name2= "Harvard University";
-    return name2;
-  },
-  date: function(){
-    var date = "11/26/2015";
-    return date;
-  },
-  //gave names for dyamic access {{getheadername2}}
-  personname : function(){
-    var name= "Mark Zuckerberg";
-    return name;
-  },
-  //gave names for dyamic access {{getheadername3}}
-  getheadername3: function(){
-    var name3= "$112.25";
-    return name3;
-  },
-  //gave names for dyamic access {{getheadername4}}
-  getheadername4: function(){
-    var name4= "-0.74 (-0.6%)";
-    return name4;
-  },
-  company: function()
-       {
-           //object that is used throughout the html
-           var c = {
-               formalName: "Apple, Inc.",
-               informalName: "San Francisco",
-               ticker: "FB"
-           };
-           return c;
-       },
-  //This is the list of data the program will return to the html page
-  items: [
-    { repo: "Computer Science", data: "Harvard University", location: "Harvard, MA", year: "Attended: 2002 -2004",cir: "true"},
-    { repo: "Classics", data: "Phillips Exeter Academy", location: "Exerter, NH", year: "Class of 2002", cir: "true" },
-    { repo: "General", data: "Ardsley High School", location: "Ardsley, NY",  year: "Class of 2000"},
-  ],
-  //This function is called everytime "each" loop runs, it returns the respective class which is suppose to use on each iteration
   getBackgroundStyle: function() {
 
     if (backgroundStyle === "tilegrey")
