@@ -29,18 +29,20 @@ Associated Files: exec_compensation.html, exec_compensation.less, exec_compensat
       <i class="excmp-pa excmp-l excmp-top-txt4">for {{o_first_name}} {{o_last_name}}</i>
     </div>
 
-    <div class="excmp-pr excmp-mid"> <!--the black-grey-black section in the middle-ish-->
+    <div class="excmp-pr excmp-mid">
 
-      <div class="excmp-pa excmp-mid-top"> <!--the black header of the middle-->
-        <div class="excmp-b excmp-mid-top-txt1"> <!--the left part of the header-->
+      <div class="excmp-pa excmp-mid-top">
+        <div class="excmp-b excmp-mid-top-txt1">
           {{o_first_name}} {{o_last_name}}'s Compensation
         </div>
-        <div class="excmp-l excmp-mid-top-txt2"> <!--the first right part of the header-->
+      <!--
+        <div class="excmp-l excmp-mid-top-txt2">
           <i class="fa fa-heart"></i>  Save
         </div>
-        <div class="excmp-l excmp-mid-top-txt2"> <!--the second right part of the header-->
+        <div class="excmp-l excmp-mid-top-txt2">
           <i class="fa fa-share-alt"></i>  Share
         </div>
+      -->
       </div>
 
       <div class="excmp-pa excmp-mid-mid"> <!--the grey section in the middle-->
@@ -50,8 +52,10 @@ Associated Files: exec_compensation.html, exec_compensation.less, exec_compensat
           <i class="fa fa-building-o fa-lg"></i>
         </div>
         <i class="excmp-pa excmp-b excmp-mid-mid-txt1">{{o_first_name}} {{o_last_name}}</i>
+        <!--
         <i class="excmp-pa excmp-l excmp-mid-mid-txt2"><i class="fa fa-heart"></i>  Save</i>
         <i class="excmp-pa excmp-l excmp-mid-mid-txt3"><i class="fa fa-share-alt"></i>  Share</i>
+      -->
         <div class="excmp-pa excmp-l excmp-mid-mid-txtbox"> <!--the part of the middle-middle that has the important and long text-->
           <i class="excmp-mid-mid-txtbox-txt">
             {{o_first_name}} {{o_last_name}}, the {{o_current_title.long_title}} of {{company}}, has an <i class="excmp-b">annual salary of ${{salary}}</i> and a total compensation of <i class="excmp-b">${{totalComp}}</i>.

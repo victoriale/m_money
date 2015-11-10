@@ -30,27 +30,27 @@
           </div>
           <!--specified font style for location !-->
           <div class="list_vw-loc_st">
-            <a href="{{loc_url}}">
+            <a href="/National/location">
               <i class="fa fa-map-marker"></i>
               <!--specified font style for the state name !-->
               <span class="list_vw-loc_st">
-                {{location}}
+                {{location}}, United States
               </span>
             </a>
           </div>
           <!-- specified font sytle for the stock disclaimer !-->
           <div class="list_vw-loc_st list_vw-disc">
-          Top Executives of the Top 20 Companies in {{location}}
+          Top Executives of Top 20 Companies in {{location}}
           </div>
           <!--specified font style for the inveskit finance  !-->
         </div>
       </div>
-      <!-- <div class="list_vw-bar">
+      <div class="list_vw-bar">
         <div class="list_vw-bar-title">
           Today's Top Executives
         </div>
 
-      </div> -->
+      </div>
       {{#with carouselList}}
       <div class="list_vw-m_c">
         <!-- the module.less file navigation buttons-->
@@ -80,7 +80,7 @@
         <ul class="list_vw-m_c-cr">
           <!-- the image in blue circle-->
           <li class="list_vw-m_c-title">
-            <div class="list_vw-m_c-title-image"><i class="fa fa-building-o"></i></div>{{o_first_name}} {{o_last_name}}
+            <div class="list_vw-m_c-title-image"><i class="fa fa-building-o"></i></div>{{c_name}}
           </li>
             <!--the follow('fbt') and share  !-->
 
@@ -94,7 +94,7 @@
           <!-- the description about the person-->
           <li class="list_vw-m_c-dp">
             <div class="list_vw-m_c-dp-dpct">
-            {{o_first_name}} {{o_last_name}} at {{c_name}} ({{c_ticker}}) with a ${{TotalComp}} Compensation.
+            {{o_first_name}} {{o_last_name}} at {{c_name}} ({{c_exchange}}: {{c_ticker}}) with a ${{TotalComp}} Compensation.
               <span class="list_vw-m_c-dp-itl">{{data_value}}</span>
             </div>
             <!-- <div class="list_vw-m_c-dp-itl list_vw-m_c-dp-it2">{{c_name}}
