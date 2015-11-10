@@ -37,12 +37,12 @@ Template.ep_head.helpers({
       loc_id:data.c_hq_state,
       city:data.c_hq_city
     });
-    data['o_last_updated'] = data['o_last_updated'].split(' ')[0];
-    data['lastUpdated'] = lastUpdated;
+    data['o_last_updated'] = (new Date(data.o_last_updated)).toSNTForm();
+    data['last_updated'] = lastUpdated;
     data['c_hq_location'] = data.c_hq_city + ", " + data.c_hq_state;
     data['e_name'] = data.o_first_name + " " + data.o_middle_initial + " " + data.o_last_name;
     var companies = Session.get('company_profiles');
-    if ( typeof companies != "undefined" && companies.length > 1 ) {
+    if ( typeof companies == "object" && companies.length > 1 ) {
       var cmp_data = {companies: []};
       var count = 0;
       for ( var i = 0; i < companies.length; i++ ) {

@@ -366,7 +366,6 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
       border-radius: 50%;
       background-size: cover !important;
       background-position: center center !important;
-      background-image: url("");
       //the wrapper to wrap up the container height and width
       &-wr {
         width: 180px;
@@ -390,7 +389,6 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
       position: absolute;
       top: 109px;
       left: 103px;
-      background-image: url("");
     }
     /*small circle */
     &-sma_cr{
@@ -401,7 +399,8 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
       background-color:  #ffffff;
       width: 75px;
       height: 75px;
-      background-image: url("");
+      background-size: cover !important;
+      background-position: center center !important;
     }
     //the sub-conatainer
     &-cr {
@@ -428,6 +427,8 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      background-size: cover !important;
+      background-position: center center !important;
 
       //the image inside the container
       &-image {
@@ -441,6 +442,8 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
         text-align: center;
         padding: auto;
         font-size: 20px;
+        background-size: cover !important;
+        background-position: center center !important;
       }
       &-text{
         font-family: HN;
@@ -474,6 +477,13 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
         text-align: justify;
         overflow: hidden;
         text-overflow: ellipsis;
+
+        a {
+          color: @blue;
+          // &:hover {
+          //   color
+          // }
+        }
       }
       &-itl{
         font-family: HN-B;
@@ -692,6 +702,7 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
   //  height:970px;
     position: relative;
     top: 175px;
+    margin-bottom: 175px;
   }
   &-quotes{
     width: 100%;
@@ -725,6 +736,8 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
       background: -o-linear-gradient(90deg, rgba(21, 21, 21, 0.5) 0%, rgba(21, 21, 21, 0) 100%);
       background: -ms-linear-gradient(90deg, rgba(21, 21, 21, 0.5) 0%, rgba(21, 21, 21, 0) 100%);
       background: linear-gradient(0deg, rgba(21, 21, 21, 0.5) 0%, rgba(21, 21, 21, 0) 100%);
+      background-size: cover !important;
+      background-position: center center !important;
       /* Layer contains multiple layer styles that cannot be represented in CSS. Use the color picker or extract the layer as an image. */
       width: 170px;
       height: 185px;
@@ -1227,6 +1240,11 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
     position: relative;
     top: 75px;
     left: 175px;
+    cursor: pointer;
+
+    &:hover {
+      border-color: @blue;
+    }
   }
   &-ctmaintxt
   {
@@ -1317,6 +1335,8 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
     background-color: #ffffff;
     width: 125px;
     height: 125px;
+    background-size: cover !important;
+    background-position: center center !important;
   }
   //This style is used to hold the first small images of diameter 45px;
   &-tile-image1
@@ -1330,12 +1350,16 @@ Associated Files: exec_college_rivals_logic.js and exec_college_rivals_page.html
     background-color: #ffffff;
     width: 45px;
     height: 45px;
+    background-size: cover !important;
+    background-position: center center !important;
   }
   //This style is used to create the second to fifth small image
   &-tile-image2
   {
     //The remaining images inherit the same properties of the first image
     margin-left: 10px;
+    background-size: cover !important;
+    background-position: center center !important;
   }
   &-tile-bt{
     width:150px;

@@ -16,6 +16,36 @@ Template.list_view.onRendered(function () {
 
 var backgroundStyle="tilewhite";
 Template.list_view.helpers({
+  location_info: function() {
+    var data = Session.get('top_list_gen');
+    if ( typeof data == "undefined" ) {
+      return '';
+    }
+
+    if ( data.top_list_info.top_list_location == '' ) {
+      return {
+        url: Router.pick_path('content.locationprofile',{
+          loc_id: 'National',
+        }),
+        name: 'United States'
+      };
+    }
+
+    if ( !isNaN(parseInt(data.top_list_info.top_list_location[0])) ) {
+      return '';
+    }
+
+    if ( typeof fullstate(data.top_list_info.top_list_location[0]) != "undefined" ) {
+      data.top_list_info.top_list_location[0] = fullstate(data.top_list_info.top_list_location[0]);
+    }
+
+    return {
+      url: Router.pick_path('content.locationprofile',{
+        loc_id: data.top_list_info.top_list_location[0]
+      }),
+      name: data.top_list_info.top_list_location[0]
+    };
+  },
   back_url: function(){
     var url = Router.current().getParams();
     if(url.loc_id === '' || typeof url.loc_id == 'undefined' || url.loc_id == null){

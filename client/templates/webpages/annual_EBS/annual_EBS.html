@@ -18,7 +18,7 @@
 
     <!-- Title Section -->
     <div class = "anebs-ttl">
-      <a href = "#"><div class = "anebs-ttl-img"></div></a>
+      <a href = "#"><div class = "anebs-ttl-img" style="background-image:url('{{imageUrl compImage}}')"></div></a>
       <div class = "anebs-ttl-txt">
         <div class = "anebs-ttl-txt-upd">LAST UPDATED: {{updated}}</div>
         <div class = "anebs-ttl-txt-loc"><i class = "fa fa-map-marker"></i>&nbsp;{{location}}</div>
@@ -49,14 +49,14 @@
           <div class = "anebs-grph-totals-total-ind">
             <div class = "anebs-grph-totals-total-ind-box" style = "background-color: #434348"></div>
             <div class = "anebs-grph-totals-total-ind-txt">
-              <div class = "anebs-grph-totals-total-ind-txt-top">${{totaldbt}}</div>
+              <div class = "anebs-grph-totals-total-ind-txt-top">{{totaldbt}}</div>
               <div class = "anebs-grph-totals-total-ind-txt-bttm">Total Debt</div>
             </div>
           </div>
           <div class = "anebs-grph-totals-total-ind">
             <div class = "anebs-grph-totals-total-ind-box" style = "background-color: #3098FF"></div>
             <div class = "anebs-grph-totals-total-ind-txt">
-              <div class = "anebs-grph-totals-total-ind-txt-top">${{totalasets}}</div>
+              <div class = "anebs-grph-totals-total-ind-txt-top">{{totalasets}}</div>
               <div class = "anebs-grph-totals-total-ind-txt-bttm">Total Assets</div>
             </div>
           </div>

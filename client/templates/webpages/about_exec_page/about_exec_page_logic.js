@@ -93,7 +93,7 @@ Template.about_exec_page.helpers({
         return '';
       }
       data['o_last_updated'] = (new Date(data['o_last_updated'])).toSNTFormTime();
-      data['locurl'] = Router.path('content.locationprofile',{
+      data['locurl'] = Router.pick_path('content.locationprofile',{
         loc_id: data.c_hq_state,
         city:data.c_hq_city
       });

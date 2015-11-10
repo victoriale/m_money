@@ -5,16 +5,20 @@
 */
 
 Template.quarterly_EIS.onCreated(function(){
-  var urlArray = $(location).attr('href').split("/");
-  Meteor.http.get('http://apifin.investkit.com/call_controller.php?action=company_page&option=income_statement&param=' + urlArray[urlArray.length - 1],
-  function(error, data){
-    Session.set("annual_EIS",data);
-  });
-  Meteor.http.get('http://apifin.investkit.com/call_controller.php?action=company_profile&option=indie&call=earnings&param=' + urlArray[3],
+  this.autorun(function(){
+    var urlArray = $(location).attr('href').split("/");
+    Meteor.http.get('http://apifin.investkit.com/call_controller.php?action=company_page&option=income_statement&param=' + urlArray[urlArray.length - 1],
     function(error, data){
-    Session.set("quarterly_EIS",data);
-  });
-  sortEISData();
+      Session.set("annual_EIS",data);
+    });
+    Meteor.http.get('http://apifin.investkit.com/call_controller.php?action=company_profile&option=indie&call=earnings&param=' + urlArray[3],
+      function(error, data){
+      Session.set("quarterly_EIS",data);
+    });
+    sortEISData();
+    quarterlyEISgraph();
+    adjustChart();
+  })
 })
 
 function sortEISData(){
@@ -52,20 +56,27 @@ function sortEISData(){
 Template.quarterly_EIS.onRendered(function(){
   sortEISData();
   quarterlyEISgraph();
-  var chart = $('#quarterlyEISgraph').highcharts();
-  var axisMax = chart.yAxis[0].max;
-  chart.series[2].update({
-    tooltip:{
-      pointFormatter: function() {
-          return "Profit Margin: " + (this.y / (axisMax / 100)).toFixed(2) + "%";
-      }
-    }
-  });
-  for(var i = 0; i<chart.series[2].data.length; i++){
-    chart.series[2].data[i].y *= axisMax;
-    chart.series[2].data[i].update();
-  }
+  adjustChart();
 })
+
+//Resets Orange line to represent percentage
+function adjustChart(){
+  var chart = $('#quarterlyEISgraph').highcharts();
+  if(chart != undefined){
+    var axisMax = chart.yAxis[0].max;
+    chart.series[2].update({
+      tooltip:{
+        pointFormatter: function() {
+            return "Profit Margin: " + (this.y / (axisMax / 100)).toFixed(2) + "%";
+        }
+      }
+    });
+    for(var i = 0; i<chart.series[2].data.length; i++){
+      chart.series[2].data[i].y *= axisMax;
+      chart.series[2].data[i].update();
+    }
+  }
+}
 
 function graphRevData() {
   var data = Session.get('sorted_quarterly_EIS');
