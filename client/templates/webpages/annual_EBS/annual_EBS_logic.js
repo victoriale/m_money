@@ -1,24 +1,30 @@
 
 Template.annual_EBS.onCreated(function(){
-  var id = Session.get("profile_header").c_id;
-  Meteor.http.get('http://apifin.investkit.com/call_controller.php?action=company_page&option=balance_sheet&param=' + id,
-    function(error, data){
-    Session.set("annual_EBS",data);
-    annualEBSgraph();
-    var chart = $('#annualEBSgraph').highcharts();
-    var axisMax = chart.yAxis[0].max;
-    chart.series[2].update({
-      tooltip:{
-        pointFormatter: function() {
-          return "Debt to Assets: " + (this.y / (axisMax / 100)).toFixed(2) + "%";
+  this.autorun(function(){
+    var id = Session.get("profile_header");
+    if(typeof id == 'undefined'){
+      return '';
+    }
+    Meteor.http.get('http://apifin.investkit.com/call_controller.php?action=company_page&option=balance_sheet&param=' + id.c_id,
+      function(error, data){
+        console.log(data);
+      Session.set("annual_EBS",data);
+      annualEBSgraph();
+      var chart = $('#annualEBSgraph').highcharts();
+      var axisMax = chart.yAxis[0].max;
+      chart.series[2].update({
+        tooltip:{
+          pointFormatter: function() {
+            return "Debt to Assets: " + (this.y / (axisMax / 100)).toFixed(2) + "%";
+          }
         }
+      });
+      for(var i = 0; i<chart.series[2].data.length; i++){
+        chart.series[2].data[i].y *= axisMax;
+        chart.series[2].data[i].update();
       }
     });
-    for(var i = 0; i<chart.series[2].data.length; i++){
-      chart.series[2].data[i].y *= axisMax;
-      chart.series[2].data[i].update();
-    }
-  });
+  })
 })
 
 
@@ -125,7 +131,13 @@ Template.annual_EBS.helpers({
   // money1: "0",
   // money2: "12.46 Million",
   // money3: "0",
-
+  compImage: function(){
+    var data = Session.get('profile_header');
+    if(typeof data =='undefined'){
+      return '';
+    }
+    return data.c_logo;
+  },
   company: function(){
     var data = Session.get('annual_EBS');
     return data['data']['balance_sheet']['company_info']['c_name'];
