@@ -35,6 +35,10 @@ Template.list_view.helpers({
       return '';
     }
 
+    if ( typeof fullstate(data.top_list_info.top_list_location[0]) != "undefined" ) {
+      data.top_list_info.top_list_location[0] = fullstate(data.top_list_info.top_list_location[0]);
+    }
+
     return {
       url: Router.pick_path('content.locationprofile',{
         loc_id: data.top_list_info.top_list_location[0]
