@@ -96,7 +96,7 @@ Template.about_exec.helpers({
   EHTileURL: function(){
     var params = Router.current().getParams();
     if(typeof params != 'undefined'){
-      return Router.pick_path('content.workhistory',{
+      return Router.pick_path('content.eduhist',{
         lname:params.lname,
         fname:params.fname,
         ticker:params.ticker,
