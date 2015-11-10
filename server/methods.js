@@ -599,6 +599,7 @@ Meteor.methods({
 
     Meteor.http.get(UrlString, (function(startTime, loc_id, error, data){
       try{
+        data.content = data.content.toString().replace(/^[^{]*/,function(a){ return ''; });
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);
