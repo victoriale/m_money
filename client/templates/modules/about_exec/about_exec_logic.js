@@ -8,7 +8,6 @@ Template.about_exec.onRendered(function(){
   this.autorun(function(){
     var data = Session.get('college_rivals');
     var exec_id = Session.get('exec_id');
-    console.log(data);
     if(typeof exec_id == 'undefined' || typeof data == 'undefined' || typeof data['officer'] == 'undefined'){
       return '';
     }
@@ -49,6 +48,14 @@ Template.about_exec.helpers({
     });
     return data[counter]['comp_url'];
   },
+  com_logo:function(){
+    var data = Session.get('about_exec');
+    var counter = Session.get('count');
+    if(typeof data == 'undefined'){
+      return '';
+    }
+    return "http://cdn.investkit.com/images/"+data[counter].c_ticker.toLowerCase()+'.jpg';
+  },
   rivalInfo: function(){
     var data = Session.get('about_exec');
     if(typeof data == 'undefined'){
@@ -81,6 +88,7 @@ Template.about_exec.helpers({
 
   compImage:function(){
     var data = Session.get('about_exec');
+    console.log(data);
     var counter = Session.get('count');
     return data[counter].c_logo;
   },

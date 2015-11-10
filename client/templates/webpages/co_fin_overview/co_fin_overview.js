@@ -44,7 +44,6 @@ Template.co_fin_overview.helpers({
   getGraphObject: function(){
     var data = Session.get('new_fin_overview');
     var fo_range = Session.get('fo_range');
-
     //If data does not exists exit helper
     if(typeof data === 'undefined'){
       return ''
@@ -53,7 +52,7 @@ Template.co_fin_overview.helpers({
     //Get dependencies to find date range
     var dataLength = data.highchartsData.length;
     var latestDate = moment(data.highchartsData[dataLength - 1][0]);
-
+    data.highchartsData.reverse();
     //Get range value based on option selected
     switch(fo_range){
       case 'cfoBtn0':
