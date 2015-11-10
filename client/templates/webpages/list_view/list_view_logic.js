@@ -16,6 +16,11 @@ Template.list_view.onRendered(function () {
 
 var backgroundStyle="tilewhite";
 Template.list_view.helpers({
+  nat_url: function() {
+    return Router.pick_path('content.locationprofile',{
+      loc_id: 'National',
+    });
+  },
   back_url: function(){
     var url = Router.current().getParams();
     if(url.loc_id === '' || typeof url.loc_id == 'undefined' || url.loc_id == null){
