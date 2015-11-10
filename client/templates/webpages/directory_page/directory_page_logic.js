@@ -111,9 +111,17 @@
        sortButtons.map(function(item, index){
          //If the button does not equal # or Newly Added (Newly added not available right now and blank is the same as #)
          if(item.disp !== '#'){
-           var path = Router.pick_path('content.finance.directory', {pageNum: 1, type: params.type}, {query: 'sort=' + item.disp});
+           if(typeof params.partner_id === 'undefined'){
+             var path = Router.path('content.finance.directory', {pageNum: 1, type: params.type}, {query: 'sort=' + item.disp});
+           }else{
+             var path = Router.path('partner.finance.directory', {pageNum: 1, type: params.type, partner_id: params.partner_id}, {query: 'sort=' + item.disp});
+           }
          }else{
-           var path = Router.pick_path('content.finance.directory', {pageNum: 1, type: params.type});
+           if(typeof params.partner_id === 'undefined'){
+             var path = Router.path('content.finance.directory', {pageNum: 1, type: params.type});
+           }else{
+             var path = Router.path('partner.finance.directory', {pageNum: 1, type: params.type, partner_id: params.partner_id});
+           }
          }
          //Set button path
          item.path = path;
@@ -186,9 +194,17 @@
      sortButtons.map(function(item, index){
        //If the button does not equal # or Newly Added (Newly added not available right now and blank is the same as #)
        if(item.disp !== '#'){
-         var path = Router.pick_path('content.finance.directory', {pageNum: 1, type: params.type}, {query: 'state=' + item.val});
+         if(typeof params.partner_id === 'undefined'){
+           var path = Router.path('content.finance.directory', {pageNum: 1, type: params.type}, {query: 'state=' + item.val});
+         }else{
+           var path = Router.path('partner.finance.directory', {pageNum: 1, type: params.type, partner_id: params.partner_id}, {query: 'state=' + item.val});
+         }
        }else{
-         var path = Router.pick_path('content.finance.directory', {pageNum: 1, type: params.type});
+         if(typeof params.partner_id === 'undefined'){
+           var path = Router.path('content.finance.directory', {pageNum: 1, type: params.type});
+         }else{
+           var path = Router.path('partner.finance.directory', {pageNum: 1, type: params.type, partner_id: params.partner_id});
+         }
        }
        //Set button path
        item.path = path;
@@ -354,17 +370,41 @@
      if(pageNum === 1){
        var prev = '';
      }else if(pageNum !== 1 && typeof query !== 'undefined'){
-       var prev = Router.pick_path('content.finance.directory', {pageNum: pageNum - 1, type: params.type}, {query: query});
+
+       if(typeof params.partner_id === 'undefined'){
+         var prev = Router.path('content.finance.directory', {pageNum: pageNum - 1, type: params.type}, {query: query});
+       }else{
+         var prev = Router.path('partner.finance.directory', {pageNum: pageNum - 1, type: params.type, partner_id: params.partner_id}, {query: query});
+       }
+
      }else{
-        var prev = Router.pick_path('content.finance.directory', {pageNum: pageNum - 1, type: params.type});
+
+        if(typeof params.partner_id === 'undefined'){
+          var prev = Router.path('content.finance.directory', {pageNum: pageNum - 1, type: params.type});
+        }else{
+          var prev = Router.path('partner.finance.directory', {pageNum: pageNum - 1, type: params.type, partner_id: params.partner_id});
+        }
+
      }
 
      if(pageNum * 25 >= total){
        var next = '';
      }else if(typeof query !== 'undefined'){
-       var next = Router.pick_path('content.finance.directory', {pageNum: pageNum + 1, type: params.type}, {query: query});
+
+       if(typeof params.partner_id === 'undefined'){
+         var next = Router.path('content.finance.directory', {pageNum: pageNum + 1, type: params.type}, {query: query});
+       }else{
+         var next = Router.path('partner.finance.directory', {pageNum: pageNum + 1, type: params.type, partner_id: params.partner_id}, {query: query});
+       }
+
      }else{
-       var next = Router.pick_path('content.finance.directory', {pageNum: pageNum + 1, type: params.type});
+
+       if(typeof params.partner_id === 'undefined'){
+         var next = Router.path('content.finance.directory', {pageNum: pageNum + 1, type: params.type});
+       }else{
+         var next = Router.path('partner.finance.directory', {pageNum: pageNum + 1, type: params.type, partner_id: params.partner_id});
+       }
+
     }
 
      return{
