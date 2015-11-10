@@ -1,5 +1,5 @@
 function ExecSearch() {
-  var LocationText = $('.re_mainsearch input')[0].value;
+  var LocationText = $('.re_mainsearch-text')[0].value;
   if ( LocationText.match(/^\d*$/) ) {
     location_id = LocationText;
   } else if ( LocationText.match(/^[^\,]*\,[^\,]*$/) ) {
@@ -22,7 +22,7 @@ function ExecSearch() {
   LocationRedirect(location_id);
 }
 function GetSuggest(nowTime) {
-  var searchString = $('.re_mainsearch input')[0].value;
+  var searchString = $('.re_mainsearch-text')[0].value;
   if ( searchString == "" ) {
     $('.discover_recommendations').removeClass('active');
   } else {
@@ -39,7 +39,7 @@ function GetSuggest(nowTime) {
       Session.set('SuggestTime',data.time);
       data = data.data;
 
-      var suggestions = sortSuggestions(data, $('.re_mainsearch input')[0].value);
+      var suggestions = sortSuggestions(data, $('.re_mainsearch-text')[0].value);
 
       var HTMLString = '<div class="caret-top"></div>';
       for ( var index = 0; index < suggestions.length; index++ ) {
@@ -92,6 +92,10 @@ function GetSuggest() {
   }
 }
 */
+Template.search_module.onRendered(function(){
+  $('.header_search_recommendations').removeClass('active');
+});
+
 Template.search_module.events({
   'submit form': function(event) {
     event.preventDefault();
@@ -121,7 +125,7 @@ Template.search_module.events({
     GetSuggest();
   },
   'click .discover_recommendations_item': function(event) {
-    $('.re_mainsearch input')[0].value = $(event.target)[0].innerHTML;
+    $('.re_mainsearch-text')[0].value = $(event.target)[0].innerHTML;
     $('.discover_recommendations').removeClass('active');
     Finance_Search($('.re_mainsearch-text')[0].value);
   },
@@ -129,7 +133,7 @@ Template.search_module.events({
     $('.discover_recommendations').removeClass('active');
     return false;
   },
-  'focus .fi_mainsearch-text': function(){
+  'click .fi_mainsearch-text': function(){
     if($('.re_mainsearch-text')[0].value == '' || $('.re_mainsearch-text')[0].value == ' ' || $('.re_mainsearch-text')[0].value == undefined){
       return false;
     }else{
@@ -137,8 +141,20 @@ Template.search_module.events({
       $('.discover_recommendations').addClass('active');
     }
   },
-  'focusout .fi_mainsearch-text' : function(){
+  'mouseenter .re_mainsearch': function(){
+    if($('.re_mainsearch-text')[0].value == '' || $('.re_mainsearch-text')[0].value == ' ' || $('.re_mainsearch-text')[0].value == undefined){
+      return false;
+    }else{
+      $(".fi_mainsearch-text").addClass("boxhighlight");
+      $('.discover_recommendations').addClass('active');
+    }
+  },
+  'mouseleave .discover_recommendations': function(){
     $(".fi_mainsearch-text").removeClass("boxhighlight");
     $('.discover_recommendations').removeClass('active');
   }
+  /*'focusout .fi_mainsearch-text' : function(){
+    $(".fi_mainsearch-text").removeClass("boxhighlight");
+    $('.discover_recommendations').removeClass('active');
+  }*/
 });
