@@ -54,41 +54,49 @@ Associated Files: featured_list.html, featured_list.js
 //container for top 100 fl_title_text
 &_ct{
   width: 391px;
-  height:61px;
+  //height:61px;
   float:left;
   position: relative;
   left:32px;
   top:16px;
-  overflow: hidden;
+  //overflow: hidden;
   text-overflow: ellipsis;
 }
 //text for top 100 title
 &_block_text{
   font-family: HN-B;
   font-size: 22px;
-  color:#000;
+  color: #000;
   text-align: center;
+  max-height: 122px;
+  height: auto;
+  overflow: hidden;
   // padding-top:16px;
   // padding-bottom:16px;
+  /*underline for top 100 title
+  &_underline{
+    background-color:  #cccccc;
+    width: 413px;
+    height: 1px;
+    position: relative;
+    top: 91px;
+    left: 20px;
+    //margin-left: 20px;
+  }*/
 }
-//underline for top 100 title
-&_block_underline{
-  background-color:  #cccccc;
-  width: 413px;
-  height: 1px;
-  position: relative;
-  top: 91px;
-  left: 20px;
-  //margin-left: 20px;
-}
+
 &_co{
-  width:455px;
-  height:55px;
+  width: 380px;
+  height: 70px;
   float: left;
   position: relative;
-  //left: 135px;
-  top: 54px;
-  overflow:hidden;
+  top: 30px;
+  overflow: hidden;
+  border-top-width: thin;
+  border-top-color: #acacac;
+  border-top-style: solid;
+  margin-left: 37px;
+  padding-top: 10px;
   }
 //company name
 &_company-name{
@@ -252,7 +260,7 @@ left: 0;
   width: 455px;
   float: left;
   position: relative;
-  top: 121px;
+  top: 85px;
   //left: 282px;
 }
 // for the text in first line

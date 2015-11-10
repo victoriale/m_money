@@ -30,7 +30,6 @@ Template.list_view_exec.helpers({
 
   backProfile: function(){
     var url = Router.current().getParams();
-    console.log(url.loc_id);
     if(url.loc_id === '' || typeof url.loc_id == 'undefined' || url.loc_id == null){
       return 'National'
     }
@@ -48,7 +47,7 @@ Template.list_view_exec.helpers({
     if(typeof listdata =='undefined'){
       return '';
     }
-    listdata['newDate'] = CurrentDate();
+    listdata['newDate'] = (new Date(listdata['list_last_updated'])).toSNTFormTime();
     $.map(listdata.list_data, function(data,index){
       if(index % 2 == 0){
         data['background'] = 'tilewhite';
@@ -62,7 +61,7 @@ Template.list_view_exec.helpers({
         data['objname'] = 'Compensation';
         data['TotalComp'] = dNumberToCommaNumber(data['TotalComp']);
       }
-      data['newDate'] = CurrentDate();
+      data['newDate'] = (new Date(Session.get('female_ceo')['list_last_updated'])).toSNTFormTime();
       data['rank'] = index+1;
       data['url'] = Router.pick_path('content.executiveprofile',{
         fname:data.o_first_name,
@@ -127,7 +126,7 @@ Template.list_view_exec.helpers({
         data['objname'] = 'Compensation';
         data['TotalComp'] = dNumberToCommaNumber(data['TotalComp']);
       }
-      data['newDate'] = CurrentDate();
+      data['newDate'] = (new Date(Session.get('female_ceo')['list_last_updated'])).toSNTFormTime();
       data['rank'] = index+1;
       data['url'] = Router.pick_path('content.executiveprofile',{
         fname:data.o_first_name,

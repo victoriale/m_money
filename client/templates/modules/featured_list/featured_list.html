@@ -25,9 +25,9 @@ Associated Files: featured_list.html, featured_list.js
           </div>
           <!--Top 100 title-->
           <div class ="fl_ct">
-          <div class="fl_block_text">{{featured_list_title}}</div>
+          <div class="fl_block_text">{{featured_list_title}}
+          </div>
         </div>
-          <div class="fl_block_underline"></div>
           <!--company name-->
           {{#with featuredList}}
           <div class="fl_co">
@@ -41,20 +41,22 @@ Associated Files: featured_list.html, featured_list.js
           </div>
         </div>
           <!--container containing circle for image, icon and position-->
-        <div class="fl_ico">
-          <!--left navigation button-->
-          <div class="fl_lf">
-           <button class='fl_block_leftbutton'>
-             <i class="fa fa-angle-left fa-2x" ></i>
-           </button>
-         </div>
-           <!--right navigation button-->
-           <div class="fl_rt">
-           <button class='fl_block_rightbutton'>
-             <i class="fa fa-angle-right fa-2x"></i>
-           </button>
-         </div>
-        </div>
+          {{#if count}}
+            <div class="fl_ico">
+              <!--left navigation button-->
+              <div class="fl_lf">
+               <button class='fl_block_leftbutton'>
+                 <i class="fa fa-angle-left fa-2x" ></i>
+               </button>
+             </div>
+               <!--right navigation button-->
+               <div class="fl_rt">
+               <button class='fl_block_rightbutton'>
+                 <i class="fa fa-angle-right fa-2x"></i>
+               </button>
+             </div>
+            </div>
+          {{/if}}
 
         <div class="fl_cr">
           <!--image in the circle-->

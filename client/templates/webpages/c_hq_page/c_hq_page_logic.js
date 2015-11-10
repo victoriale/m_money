@@ -54,6 +54,14 @@ Template.c_hq_page.helpers({
       ticker: data.c_ticker,
       company_id: data.c_id
     });
+
+    data['thisUrl'] = Router.pick_path('content.abouthq', {
+      name: compUrlName(data.c_name),
+      ticker: data.c_ticker,
+      company_id: data.c_id
+    })
+
+    data.shareUrl= "https://www.facebook.com/sharer/sharer.php?u=" + data.thisUrl;
     return data;
   },
 

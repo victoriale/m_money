@@ -114,7 +114,7 @@ Template.workhistory_page.helpers({
   },
   getdtime:function(){
     var data = Session.get('work_history');
-    var date = data['officer_data']['o_last_updated'];
+    var date = (new Date(data['officer_data']['o_last_updated'])).toSNTFormTime();
     return date;
   },
   getlocNm:function(){

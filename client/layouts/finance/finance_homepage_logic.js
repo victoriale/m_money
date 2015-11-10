@@ -249,7 +249,7 @@ Template.finance_homepage.events({
     $(".fi_mainsearch").removeClass("boxhighlight-black");
   },
 
-  'focus .fi_mainsearch-text': function(){
+  'click .fi_mainsearch-text': function(){
     $(".fi_mainsearch").addClass("boxhighlight");
     if($('.fi_mainsearch input')[0].value == '' || $('.fi_mainsearch input')[0].value == ' ' || $('.fi_mainsearch input')[0].value == undefined){
       return false;
@@ -257,9 +257,20 @@ Template.finance_homepage.events({
       $('.fi_search_recommendations').addClass('active');
     }
   },
-  'click html': function() {
+  'mouseenter .fi_mainsearch': function(){
+    $(".fi_mainsearch").addClass("boxhighlight");
+    if($('.fi_mainsearch input')[0].value == '' || $('.fi_mainsearch input')[0].value == ' ' || $('.fi_mainsearch input')[0].value == undefined){
+      return false;
+    }else{
+      $('.fi_search_recommendations').addClass('active');
+    }
+  },
+  'mouseleave .fi_search_recommendations': function(){
     $('.fi_search_recommendations').removeClass('active');
   }
+  //'click html': function() {
+  //  $('.fi_search_recommendations').removeClass('active');
+  // }
   // 'focusout .fi_mainsearch-text' : function(){
   //   $(".fi_mainsearch").removeClass("boxhighlight");
   //   $('.fi_search_recommendations').removeClass('active');
