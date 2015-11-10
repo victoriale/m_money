@@ -174,7 +174,8 @@ Finance_Search = function(quer){
         Router.go('content.companyprofile', paramObj);
         return false;
       }else if(route == 'none'){
-        Router.go('content.noresults', paramObj);
+        //Router.go('content.noresults', paramObj); //(until no results page works)
+        Router.go('content.search', {partner_id: Session.get('partner_id'), search_results: quer.replace(/\s+/g, '-')});
         return false;
       }
     }
