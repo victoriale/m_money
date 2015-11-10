@@ -34,6 +34,23 @@ Template.sector_page.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
+    if ( data.sector == null ) {
+      data.sector = 'All Companies';
+    } else {
+      data.sector = data.sector + ' Sector';
+    }
+
+    data.location_data = {
+      url: Router.pick_path('content.locationprofile',{
+        loc_id: Router.current().params.loc_id
+      })
+    };
+
+    if ( typeof fullstate(Router.current().params.loc_id) != undefined ) {
+      data.location_data.name = fullstate(Router.current().params.loc_id);
+    } else {
+      data.location_data.name = Router.current().params.loc_id;
+    }
 
       var image = Session.get('loc_id');
       if(image == 'National' || image == '' || typeof image == 'undefined'){

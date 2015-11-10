@@ -37,17 +37,19 @@ Associated Files: sector_page_logic.js and sector_page.less
           </div>
           <!--specified font style for location !-->
           <div class="list_vw-loc_st">
-            <a href="/National/location">
+            {{#with location_data}}
+            <a href="{{url}}">
               <i class="fa fa-map-marker"></i>
               <!--specified font style for the state name !-->
               <span class="list_vw-loc_st">
-                United States
+                {{name}}
               </span>
-          </a>
+            </a>
+            {{/with}}
           </div>
           <!-- specified font sytle for the stock disclaimer !-->
           <div class="list_vw-loc_st list_vw-disc">
-          {{sector}} Sector
+          {{sector}}
           </div>
           <div class="list_vw-loc_st list_vw-fin">
           in {{location}} By Largest Market Cap
@@ -55,16 +57,16 @@ Associated Files: sector_page_logic.js and sector_page.less
           <!--specified font style for the inveskit finance  !-->
         </div>
       </div>
-      <div class="list_vw-bar">
+      <!-- <div class="list_vw-bar">
         <div class="list_vw-bar-title">
           {{sector}} Companies
         </div>
-      </div>
+      </div> -->
       {{#with sectorList}}
       <div class="list_vw-m_c">
         <!-- the module.less file navigation buttons-->
         <button class='list_vw-lefthov' style="position:absolute;"><i class="fa fa-angle-left fa-2x" ></i></button>
-        <button class='list_vw-righthov' style="position:absolute;"><i class="fa fa-angle-right fa-2x"></i></button>
+        <button class='list_vw-righthov' style="position:absolute; right: 0"><i class="fa fa-angle-right fa-2x"></i></button>
         <!-- end of the module.less navigation button -->
         <!-- wrapper class-->
         <a href="{{url}}">
@@ -94,11 +96,9 @@ Associated Files: sector_page_logic.js and sector_page.less
             {{c_name}} ({{c_sector}}: {{c_ticker}}) current market cap is valued at
               <span class="list_vw-m_c-dp-itl">{{csi_market_cap_friendly}}</span>
             </div>
-            <div class="list_vw-m_c-dp-itl list_vw-m_c-dp-it2">{{c_name}}
-              <span class="list_vw-m_c-dp-itl list_vw-m_c-dp-dpct">is currently priced at: <br></span>
-              <span class="list_vw-m_c-dp-itl">${{lcsi_price}} </span>
-              <span class="list_vw-m_c-dp-itl list_vw-m_c-dp-it4"> <i class="fa {{changeIcon csi_price_change_since_last}}" style="color:{{changeColor csi_price_change_since_last}}"></i></span>
-              <span class="list_vw-m_c-dp-itl list_vw-m_c-dp-it5" style="color:{{changeColor csi_price_change_since_last}}">{{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%) </span>
+            <div class="list_vw-m_c-dp-itl list_vw-m_c-dp-it2">{{c_name}} is currently priced at ${{lcsi_price}}
+              <span class="list_vw-m_c-dp-itl list_vw-m_c-dp-it4"><i class="fa {{changeIcon csi_price_change_since_last}}" style="color:{{changeColor csi_price_change_since_last}}"></i></span>
+              <span class="list_vw-m_c-dp-itl list_vw-m_c-dp-it5" style="color:{{changeColor csi_price_change_since_last}}">{{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%)</span>
             </div>
           </li>
         </ul>
