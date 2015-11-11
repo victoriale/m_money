@@ -331,16 +331,18 @@ Template.finance_homepage.helpers({
     var state = homestates();
 
     var randomState = [];
-    for(i = 0; i < 6; i++){
-      var x = Math.floor((Math.random() * 50));
-      randomState[i] = state[x];
-      var curLoc = state.indexOf(Session.get('home_state'));
-      //remove the current home location gotten from removeaddr api
-      if(typeof curLoc != 'undefined'){
-        if (curLoc > -1) {
-          state.splice(curLoc, 1);
-        }
+
+    var curLoc = state.indexOf(Session.get('home_state'));
+    //remove the current home location gotten from removeaddr api
+    if(typeof curLoc != 'undefined'){
+      if (curLoc > -1) {
+        state.splice(curLoc, 1);
       }
+    }
+    
+    for(i = 0; i < 6; i++){
+      var x = Math.floor((Math.random() * state.length));
+      randomState[i] = state[x];
       //remove the random states that were randomized and chosen so that it doesnt pop into the array again
       var index = state.indexOf(state[x]);
       if (index > -1) {
