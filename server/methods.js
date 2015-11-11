@@ -375,20 +375,28 @@ Meteor.methods({
       //If case is normal, determine if dma (number) or state (string) is the parameter
       case 'normal':
         if(isNaN(loc_id)){
-          var param = 'state=' + loc_id;
+          if(loc_id === 'National'){
+            var param = undefined;
+          }else{
+            var param = '&state=' + loc_id;
+          }
         }else{
-          var param = 'dma=' + loc_id;
+          var param = '&dma=' + loc_id;
         }
       break;
       //If case is partner, use param=partner_domain
       case 'partner':
-        var param = 'partner_domain=' + loc_id;
+        var param = '&partner_domain=' + loc_id;
       break;
     }
 
     //console.log('param', param);
+    if(typeof param !== 'undefined'){
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_profile&option=indie&call=one_day_location_daily_update" + param;
+    }else{
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_profile&option=indie&call=one_day_location_daily_update";
+    }
 
-    var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_profile&option=indie&call=one_day_location_daily_update&" + param;
     //console.log('ONE DAY DAILY URL', UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, loc_id, error, data){
