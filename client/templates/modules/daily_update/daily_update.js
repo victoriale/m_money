@@ -5,6 +5,8 @@ Associated Files: [daily_update.less][daily_update.html]*/
 
 Template.daily_update.onCreated(function(){
   this.autorun(function(){
+    var params = Router.current().getParams();
+
     if(Session.get('IsLocation')){
       //Set initial range
       Session.set('d_u_range', '5Y');
@@ -16,6 +18,39 @@ Template.daily_update.onCreated(function(){
         }else{
           var aiContent = createGenericString(false, data);
           Session.set('AI_daily_update',aiContent);
+        }
+      })
+
+      //Determines type of parameters to send back. This allows the method to determine what type of parameters to expect
+      //normal tells the method to expect dma or state
+      //partner tells the method to expect a partner id
+      if(typeof params.partner_id === 'undefined' && typeof params.loc_id !== 'undefined'){
+        var input_param = params.loc_id;
+        var input_type = 'normal';
+      }else if(typeof params.partner_id !== 'undefined' && typeof params.loc_id === 'undefined'){
+        var input_param = params.partner_id;
+        var input_type = 'partner';
+      }else if(typeof params.partner_id !== 'undefined' && typeof params.loc_id !== 'undefined'){
+        var input_param = params.loc_id;
+        var input_type = 'normal';
+      }
+      //Call to get one day data for daily update graph
+      Meteor.call('GetOneDayDailyUpdate', input_param, input_type, function(err, data){
+        if(err){
+          console.log('error Call', err);
+          return false;
+        }else{
+          //console.log('ONE DAY RESULT', data);
+
+          var highchartsData = [];
+
+          data.one_day_location_daily_update.forEach(function(item, index){
+            highchartsData.push([item.sh_date * 1000, Number(item.sh_close)])
+          })
+
+          highchartsData.reverse();
+
+          Session.set('one_day_location_daily_update', highchartsData);
         }
       })
 
@@ -69,7 +104,7 @@ function transformLocationDailyUpdate(){
   daily_update.csi_price = data.composite_summary.current_price;
   daily_update.csi_percent_change_since_last = data.composite_summary.percent_change;
   daily_update.csi_price_change_since_last = data.composite_summary.price_change;
-  daily_update.lastUpdated = moment(data.composite_summary.last_updated).tz('America/New_York').format('dddd MM/DD/YYYY hh:mma') + ' EST';
+  daily_update.lastUpdated = moment(data.composite_summary.last_updated).tz('America/New_York').format('dddd MM/DD/YYYY');
   daily_update.todays_high = data.composite_summary.todays_high;
   daily_update.todays_low = data.composite_summary.todays_low;
   daily_update.previous_close = data.composite_summary.previous_close;
@@ -93,7 +128,9 @@ Template.daily_update.onRendered(function(){
 
 Template.daily_update.events({
   'click .daily_update-buttons-circle': function(e, t){
-    Session.set('d_u_range', e.currentTarget.id);
+    if ( !$(e.currentTarget).hasClass('disabled') ) {
+      Session.set('d_u_range', e.currentTarget.id);
+    }
   },
 })
 
@@ -136,17 +173,21 @@ Template.daily_update.helpers({
   },
 
   buttons: function(){
+    var style = '';
+    if(!Session.get('IsCompany')){
+      style = 'disabled';
+    }
     var buttons = [
       {data:"1D"},
       {data:"5D"},
       {data:"10D"},
       {data:"1M"},
-      {data:"3M"},
-      {data:"6M"},
-      {data:"9M"},
-      {data:"1Y"},
-      {data:"3Y"},
-      {data:"5Y"},
+      {data:"3M", class: style},
+      {data:"6M", class: style},
+      {data:"9M", class: style},
+      {data:"1Y", class: style},
+      {data:"3Y", class: style},
+      {data:"5Y", class: style},
     ];
     return buttons;
   },
@@ -265,39 +306,57 @@ Template.daily_update.helpers({
     //if above is correct the below will work
     switch(d_u_range){
       case '1D':
-        var min = latestDate.subtract(1, 'days').format('X') * 1000;
+        if(Session.get('IsLocation')){
+          var graphData = Session.get('one_day_location_daily_update');
+          var min = graphData[0][0];
+        }
+        if(Session.get('IsCompany')){
+          var graphData = data.highchartsData;
+          var min = latestDate.subtract(1, 'days').format('X') * 1000;
+        }
       break;
       case '5D':
+        var graphData = data.highchartsData;
         var min = latestDate.subtract(5, 'days').format('X') * 1000;
       break;
       case '10D':
+        var graphData = data.highchartsData;
         var min = latestDate.subtract(10, 'days').format('X') * 1000;
       break;
       case '1M':
+        var graphData = data.highchartsData;
         var min = latestDate.subtract(1, 'months').format('X') * 1000;
       break;
       case '3M':
+        var graphData = data.highchartsData;
         var min = latestDate.subtract(3, 'months').format('X') * 1000;
       break;
       case '6M':
+        var graphData = data.highchartsData;
         var min = latestDate.subtract(6, 'months').format('X') * 1000;
       break;
       case '9M':
+        var graphData = data.highchartsData;
         var min = latestDate.subtract(9, 'months').format('X') * 1000;
       break;
       case '1Y':
+        var graphData = data.highchartsData;
         var min = latestDate.subtract(1, 'years').format('X') * 1000;
       break;
       case '3Y':
+        var graphData = data.highchartsData;
         var min = latestDate.subtract(3, 'years').format('X') * 1000;
       break;
       case '5Y':
+        var graphData = data.highchartsData;
         var min = latestDate.subtract(5, 'years').format('X') * 1000;
       break;
       case '10Y':
+        var graphData = data.highchartsData;
         var min = latestDate.subtract(10, 'years').format('X') * 1000;
       break;
       default:
+        var graphData = data.highchartsData;
         var min = latestDate.subtract(5, 'years').format('X') * 1000;
       break;
     }
@@ -307,6 +366,7 @@ Template.daily_update.helpers({
     if(min <= oldestDate){
       min = oldestDate;
     }
+
     var cfoGraphObject = {
       title: {
           text: ''
@@ -372,7 +432,7 @@ Template.daily_update.helpers({
       },
       series: [{
           name: data.c_name,
-          data: data.highchartsData
+          data: graphData
       }]
     }
 
