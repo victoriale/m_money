@@ -39,10 +39,14 @@ Template.cp_head.helpers({
   },
   text: function(){
     var data = Session.get('bio_location');
-    if(typeof data == 'undefined'){
+    var aidata = Session.get('AI_daily_update');
+    if(typeof data == 'undefined' && typeof aidata == "undefined" ){
       return '';
     }
-    return data.c_desc;
+    if ( typeof aidata == "undefined" ) {
+      return data.c_desc;
+    }
+    return aidata;
   },
   locationURL: function(){
     var data = Session.get('profile_header');
