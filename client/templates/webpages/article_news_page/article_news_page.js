@@ -86,13 +86,14 @@ Template.article_news_page.events({
 Template.article_news_page.helpers({
   stateImage: function(){
     var data = Router.current().getParams().loc_id;
+    var datalist= Session.get('profile_header');
+    var state = fullstate(datalist.c_hq_state).replace(/ /g, '_');
     if(data == 'National' || data == '' || typeof data == 'undefined'){
-      return "background-image: url('/StateImages/Location_"+ data +".jpg');";
+      return "background-image: url('/StateImages/Location_"+state+".jpg');";
     }else{
       if(isNaN(data)){
-        data = fullstate(data);
-        data = data.replace(/ /g, '_');
-        return "background-image: url('/StateImages/Location_"+ data +".jpg');";
+        state = fullstate(data).replace(/ /g, '_');
+        return "background-image: url('/StateImages/Location_"+state+".jpg');";
       }else{
         return "background-image: url('/DMA_images/location-"+ data +".jpg');";
       }
@@ -226,7 +227,6 @@ Template.article_news_page.helpers({
   },
   main_image: function(){
     var data = Session.get('article_news_page');
-    console.log(data);
     if(data!=undefined)
     {
       return data.data[0]['lead_image'];
