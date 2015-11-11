@@ -201,12 +201,21 @@ Template.featured_list.helpers (
         }
         if(Session.get('IsLocation')){
           var title = Session.get('profile_header').location;
-          var url = Router.pick_path('content.listoflistloc', {
-            loc_id:params.loc_id
-          });
-          var url2 = Router.pick_path('content.listoflistloc', {
-            loc_id:params.loc_id
-          });
+          if ( Router.current().route.getName() != 'content.partnerhome' ) {
+            var url = Router.pick_path('content.listoflistloc', {
+              loc_id:params.loc_id
+            });
+            var url2 = Router.pick_path('content.listoflistloc', {
+              loc_id:params.loc_id
+            });
+          } else {
+            var url = Router.pick_path('content.listoflistloc', {
+              loc_id: 'default'
+            });
+            var url2 = Router.pick_path('content.listoflistloc', {
+              loc_id: 'default'
+            });
+          }
         }
       var data = [
         {
