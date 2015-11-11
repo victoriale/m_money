@@ -38,6 +38,9 @@ Template.area_breakdown.helpers({
     if(typeof loc == 'undefined'){
       return false;
     }
+    if ( Router.current().route.getName() == 'content.partnerhome' ) {
+      return Router.pick_path('content.statistics',{loc_id: 'default'});
+    }
     return Router.pick_path('content.statistics',{loc_id:params.loc_id});
   },
 });
