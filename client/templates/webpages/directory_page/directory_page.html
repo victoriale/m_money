@@ -62,8 +62,14 @@
                   <a href="{{url4}}">
                     <div class="dir_pg-tp-con-loc">{{path1}} </div>
                   </a>
-                  <div class="dir_pg-tp-con-pos"> <i class="fa fa-angle-right"></i>  {{path2}}</div>
-                  <div class="dir_pg-tp-con-yrs"> <i class="fa fa-angle-right"></i> {{path3}}</div>
+                  <a href="{{url5}}">
+                    <div class="dir_pg-tp-con-pos"> <i class="fa fa-angle-right"></i>  {{path2}}</div>
+                  </a>
+                  {{#if path3}}
+                    <a href="{{url6}}">
+                      <div class="dir_pg-tp-con-yrs"> <i class="fa fa-angle-right"></i> {{path3}}</div>
+                    </a>
+                  {{/if}}
                     <!-- container for Ceo details prints only for every third tile-->
                   {{#if path4}}
                     <a href="{{url7}}">

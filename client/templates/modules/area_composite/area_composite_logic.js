@@ -70,7 +70,11 @@ Template.area_composite.helpers({
       } else {
         sect_arr_uns[index].percentage = Math.round(sect_arr_uns[index].percentage);
         sect_arr_uns[index].color = colors[sect_arr_uns[index].position];
-        sect_arr_uns[index].url = Router.pick_path('content.sector',{loc_id: params.loc_id, sector_id: compUrlName(sect_arr_uns[index].title),page_num:1});
+        if ( Router.current().route.getName() == 'content.partnerhome' ) {
+          sect_arr_uns[index].url = Router.pick_path('content.sector',{loc_id: 'default', sector_id: compUrlName(sect_arr_uns[index].title),page_num:1});
+        } else {
+          sect_arr_uns[index].url = Router.pick_path('content.sector',{loc_id: params.loc_id, sector_id: compUrlName(sect_arr_uns[index].title),page_num:1});
+        }
         sect_arr[sect_arr_uns[index].position] = sect_arr_uns[index];
       }
       if ( sect_arr_uns[index].position < 4 ) {
@@ -119,6 +123,13 @@ Template.area_composite.helpers({
         sector_id: compUrlName(cmp_arr[index].title),
         page_num:1
       })
+      if ( Router.current().route.getName() == 'content.partnerhome' ) {
+        cmp_arr[index].sector_url = Router.pick_path('content.sector',{
+          loc_id: 'default',
+          sector_id: compUrlName(cmp_arr[index].title),
+          page_num:1
+        })
+      }
     }
     RetArr.companies = cmp_arr;
 
@@ -188,6 +199,13 @@ Template.area_composite.helpers({
             page_num:1
           })
         };
+        if ( Router.current().route.getName() == 'content.partnerhome' ) {
+          tiles[index].url = Router.pick_path('content.sector',{
+            loc_id: 'default',
+            sector_id: sect_arr[index].title,
+            page_num:1
+          });
+        }
       }
     }
     //tiles[2] = {name:"All Sectors",fnt:"fa-th"};

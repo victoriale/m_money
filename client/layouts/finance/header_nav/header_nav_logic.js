@@ -40,6 +40,10 @@ function GetSuggest(nowTime) {
       //  $('.fi_search_recommendations')[0].innerHTML = '<div class="caret-top"></div>' /*' <i class="fa fa-times fi_search_recommendations_close"></i>'*/ + HTMLStringTick + HTMLStringName + HTMLStringLoc;
       $('.header_search_recommendations').html(HTMLString);
       $('.header_search_recommendations').addClass('active');
+      $('html').click(function(){
+        $('.header_search_recommendations').removeClass('active');
+        $('html').unbind('click');
+      });
     });
   }
 }
@@ -161,27 +165,27 @@ Template.header_nav.events({
     'click .header_search_recommendations': function(){
       $('.header_search_recommendations').removeClass('active');
     },
-    'click body': function(){
-      console.log('THIS');
-      $('.header_search_recommendations').removeClass('active');
-    },
     'click .layout_nav-search_input': function(){
       if($('.layout_nav-search_input')[0].value == '' || $('.layout_nav-search_input')[0].value == ' ' || $('.layout_nav-search_input')[0].value == undefined){
         return false;
       }else{
         $('.header_search_recommendations').addClass('active');
+        $('html').click(function(){
+          $('.header_search_recommendations').removeClass('active');
+          $('html').unbind('click');
+        });
       }
     },
-    'mouseenter .layout_nav-search': function(){
-      if($('.layout_nav-search_input')[0].value == '' || $('.layout_nav-search_input')[0].value == ' ' || $('.layout_nav-search_input')[0].value == undefined){
-        return false;
-      }else{
-        $('.header_search_recommendations').addClass('active');
-      }
-    },
-    'mouseleave .header_search_recommendations': function(){
-      $('.header_search_recommendations').removeClass('active');
-    }
+    // 'mouseenter .layout_nav-search': function(){
+    //   if($('.layout_nav-search_input')[0].value == '' || $('.layout_nav-search_input')[0].value == ' ' || $('.layout_nav-search_input')[0].value == undefined){
+    //     return false;
+    //   }else{
+    //     $('.header_search_recommendations').addClass('active');
+    //   }
+    // },
+    // 'mouseleave .header_search_recommendations': function(){
+    //   $('.header_search_recommendations').removeClass('active');
+    // }
   });
 
 Template.header_nav.helpers({

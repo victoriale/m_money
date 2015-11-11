@@ -1,24 +1,101 @@
+function get_all_sorted(data) {
+  // Sort all the data into location, company, executive
+  var results = {
+    company: [],
+    location: [],
+    officer: [],
+    ticker: []
+  };
+  var total_results = 0;
+
+  if ( data.name.func_success == true ) {
+    var name_data = data.name.func_data.search_data;
+    total_results = total_results + name_data.length;
+    for ( var index = 0; index < name_data.length; index++ ) {
+      results[name_data[index].name_type][results[name_data[index].name_type].length] = name_data[index];
+    }
+  }
+
+  if ( data.ticker.func_success == true ) {
+    var ticker_data = data.ticker.func_data.search_data;
+    total_results = total_results + ticker_data.length;
+    for ( var index = 0; index < ticker_data.length; index++ ) {
+      results[ticker_data[index].name_type][results[ticker_data[index].name_type].length] = ticker_data[index];
+    }
+  }
+
+  if ( data.location.func_success == true ) {
+    var loc_data = data.location.func_data.search_data;
+    total_results = total_results + loc_data.length;
+    for ( var index = 0; index < loc_data.length; index++ ) {
+      var isNew = true;
+      for ( var i = 0; i < results.location.length; i++ ) {
+        if ( results.location[i].c_dma_code == loc_data[index].c_dma_code && results.location[i].c_hq_city == loc_data[index].c_hq_city && results.location[i].c_hq_state == loc_data[index].c_hq_state ) {
+          isNew = false;
+        }
+      }
+      if ( isNew && typeof loc_data[index].c_hq_state != "undefined" && typeof fullstate(loc_data[index].c_hq_state) != "undefined" && loc_data[index].dma_frontend_name != null ) {
+        results.location[results.location.length] = loc_data[index];
+      }
+    }
+  }
+
+  // Create the array of things that will be shown
+  var suggestions = {
+    company: [],
+    location: [],
+    executive: []
+  };
+  // Determine how many of which things to show
+  var priority = [
+    'ticker',
+    'company',
+    'location',
+    'officer'
+  ];
+  for ( var index = 0; index < priority.length; index++ ) {
+    var type = priority[index];
+    for ( var i = 0; i < results[type].length; i++ ) {
+      if ( type == 'ticker' ) {
+        var i_data = {
+          url: Router.pick_path('content.companyprofile',{company_id: results[type][i].c_id, name: compUrlName(results[type][i].c_name), ticker: results[type][i].c_ticker}),
+          string: '<b>' + results[type][i].c_ticker + '</b> - ' + results[type][i].c_name + ' (' + results[type][i].c_exchange + ')<i class="fa fa-chevron-right"></i>'
+        };
+      } else if ( type == 'company' ) {
+        var i_data = {
+          url: Router.pick_path('content.companyprofile',{company_id: results[type][i].c_id, name: compUrlName(results[type][i].c_name), ticker: results[type][i].c_ticker}),
+          string: '<b>' + results[type][i].c_name + '</b> - ' + results[type][i].c_exchange + ':' + results[type][i].c_ticker + '<i class="fa fa-chevron-right"></i>'
+        };
+      } else if ( type == 'location' ) {
+        var i_data = {
+          url: Router.pick_path('content.locationprofile',{loc_id: fullstate(results[type][i].c_hq_state), city: compUrlName(results[type][i].dma_frontend_name), city_id: results[type][i].c_dma_code}),
+          string: '<b>' + toTitleCase(results[type][i].c_hq_city) + ', ' + fullstate(results[type][i].c_hq_state) + '</b> - ' + toTitleCase(results[type][i].dma_frontend_name) + '<i class="fa fa-chevron-right"></i>'
+        };
+      } else if ( type == 'officer' ) {
+        var i_data = {
+          url: Router.pick_path('content.executiveprofile',{ticker: results[type][i].c_ticker, fname: compUrlName(results[type][i].o_first_name), lname: compUrlName(results[type][i].o_last_name), exec_id: results[type][i].o_id}),
+          string: '<b>' + results[type][i].o_first_name + ' ' + results[type][i].o_last_name + '</b> - ' + results[type][i].c_name + ' (' + results[type][i].c_ticker + ')<i class="fa fa-chevron-right"></i>'
+        };
+      }
+      var type2 = type;
+      if ( type2 == "ticker" ) {
+        type2 = "company";
+      } else if ( type2 == "officer" ) {
+        type2 = "executive";
+      }
+      suggestions[type2][suggestions[type2].length] = i_data;
+    }
+  }
+  return suggestions;
+}
+
 Template.search_page.onCreated(function(){
   Session.set('searchTab', 'executive');
 })
 
 Template.search_page.onRendered(function(){
   var searchParams = Router.current().getParams();
-  console.log(searchParams.search_results);
   $('.header_search_recommendations').removeClass('active');
-  Meteor.call("GetSuggestion", searchParams.search_results.replace(/-/g, ' '), Number(Session.get('time')),  function(error, data){
-    if(error){
-      console.log('Invalid Search Error',error);
-      Session.set('IsError',true);
-      return '';
-    }
-    for ( var module_name in data ) {
-      if ( data.hasOwnProperty(module_name) ) {
-        //console.log(module_name,data[module_name]);
-        Session.set(module_name,data[module_name]);
-      }
-    }
-  });
 })
 
 Template.search_page.events({
@@ -38,71 +115,10 @@ Template.search_page.helpers({
     if(typeof allResults == 'undefined'){
       return '';
     }
-    allResults['NewList'] = {};
-
-    allResults['NewList']['executive'] = [];
-    allResults['NewList']['company'] = [];
-    allResults['NewList']['location'] = [];
-    $.map(allResults['name']['func_data']['search_data'], function(data, index){
-      if(data.name_type == 'officer'){
-        allResults['NewList']['executive'].push(data);
-      }
-      if(data.name_type == 'company'){
-        allResults['NewList']['company'].push(data);
-      }
-      //funtion to push locatio into allResults['NewList']['location']
-    })
-    allResults['NewList']['location'] = allResults.location.func_data.search_data;
-    var newList = allResults['NewList'];
-    newList['totalResults'] = newList.company.length + newList.executive.length + newList.location.length;
-    Session.set('totalResults', newList['totalResults']);
-    var exec = newList.executive;
-    var newArray1 = [];
-    var newArray2 = [];
-    var newArray3 = [];
-    $.map(exec,function(data, index){
-      var result = {
-        url: Router.pick_path('content.executiveprofile', {
-          fname:data.o_first_name,
-          lname:data.o_last_name,
-          ticker:data.c_ticker,
-          exec_id:data.o_id
-        }),
-        txt1: '<b>' + data.o_first_name + " " + data.o_last_name + "</b> Profile At " + data.c_name + ' (' + data.c_ticker + ')',
-      }
-      newArray1.push(result);
-    })
-      newList['executive']['search'] = newArray1;
-
-    var comp = newList.company;
-    $.map(comp,function(data, index){
-      var result = {
-        url: Router.pick_path('content.companyprofile', {
-          name:compUrlName(data.c_name),
-          ticker:data.c_ticker,
-          company_id:data.c_id
-        }),
-        txt1: data.c_name + ' (' + data.c_exchange + ':' + data.c_ticker + ')',
-      };
-      newArray2.push(result);
-    })
-    newList['company']['search'] = newArray2;
-
-    var loc = newList.location;
-    $.map(loc,function(data, index){
-      var result = {
-        url: Router.pick_path('content.locationprofile', {
-          loc_id:compUrlName(data.c_hq_state),
-          city:compUrlName(data.dma_frontend_name),
-          city_id: data.c_dma_code
-        }),
-        txt1: data.dma_frontend_name,
-      }
-      newArray3.push(result);
-    })
-      newList['location']['search'] = newArray3;
-      Session.set('SortedSearch', newList);
-    return allResults['NewList'][resultTab]['search'];
+    var data = get_all_sorted(allResults);
+    Session.set('totalResults', data.company.length + data.executive.length + data.location.length);
+    Session.set('SortedSearch', data);
+    return data[resultTab];
   },
 
   totalResults:function(){
@@ -112,7 +128,7 @@ Template.search_page.helpers({
   currentResult:function(){
     var data = Session.get('SortedSearch');
     var resultTab = Session.get('searchTab');
-    return  data[resultTab].length;
+    return data[resultTab].length;
   },
 
   searchLength:function(){

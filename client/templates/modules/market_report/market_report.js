@@ -208,6 +208,7 @@ Template.market_report.helpers({                   //helper class for adding dat
       image: '/exchange/' + current + '.png',
       exchurl: globalUrl(current)
       };
+    console.log(dataReturn);
     return dataReturn;
   },
 

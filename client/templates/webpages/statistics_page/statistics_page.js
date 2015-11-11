@@ -17,6 +17,9 @@ Template.statistics_page.helpers(
       },
 
       back_url: function(){
+        if ( Router.current().params.partner_id == Router.current().params.loc_id ) {
+          return Router.pick_path('content.partnerhome',{});
+        }
         return Router.pick_path('content.locationprofile',{
           loc_id: Session.get('loc_id')
         });
@@ -29,6 +32,9 @@ Template.statistics_page.helpers(
           }
           var loc = Session.get('loc_id');
           data['fullName'] = fullstate(loc);
+          if ( typeof Session.get('profile_header') != "undefined" ) {
+            data['fullName'] = Session.get('profile_header').location;
+          }
           data['global_url'] = Router.pick_path('content.locationprofile',{
             loc_id: 'National',
           });
@@ -77,6 +83,28 @@ Template.statistics_page.helpers(
               })
             }
           ];
+          if ( Router.current().params.partner_id == Router.current().params.loc_id ) {
+            data['overviewStatsR'] = [ //stats on right
+              {
+                value: data.officer_count,
+                label: "Officer Count",
+                font: 'fa-suitcase ',
+                url: Router.pick_path('content.executivelocation',{
+                  loc_id: 'default',
+                  page_num:1
+                })
+              },
+              {
+                value: data.total_companies,
+                label: "Total Companies",
+                font: 'fa-bank',
+                url:Router.pick_path('content.sector',{
+                  loc_id: 'default',
+                  page_num:1
+                })
+              }
+            ];
+          }
 
           return data;
       },
@@ -154,6 +182,9 @@ Template.statistics_page.helpers(
                 sectUrl: Router.pick_path('content.sector', {sector_id: compUrlName(key), loc_id: fullstate(Router.current().params.loc_id),page_num:1})
               }
             );
+            if ( Router.current().params.partner_id == Router.current().params.loc_id ) {
+              dataArray[dataArray.length - 1].sectUrl = Router.pick_path('content.sector', {sector_id: compUrlName(key), loc_id: 'default',page_num:1})
+            }
             count++;
           }
 
