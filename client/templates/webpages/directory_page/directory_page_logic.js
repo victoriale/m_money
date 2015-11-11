@@ -94,7 +94,7 @@
          {disp: 'L', vln: true},
          {disp: 'M', vln: true},
          {disp: 'N', vln: true},
-         {disp:' O', vln: true},
+         {disp: 'O', vln: true},
          {disp: 'P', vln: true},
          {disp: 'Q', vln: true},
          {disp: 'R', vln: true},
@@ -239,14 +239,15 @@
       switch(item.type){
         case 'officer':
 
-          var years = new Date().getFullYear() - item.o_current_title.start_year;
-          var years = years === 1 ? years + ' year' : years + ' years';
+          //Unused
+          //var years = new Date().getFullYear() - item.o_current_title.start_year;
+          //var years = years === 1 ? years + ' year' : years + ' years';
 
-          var url1 = Router.pick_path('content.executiveprofile', {lname: item.o_last_name, fname: item.o_first_name, exec_id: item.o_id, ticker: null});
+          var url1 = Router.pick_path('content.executiveprofile', {lname: item.o_last_name, fname: item.o_first_name, ticker: item.c_ticker, exec_id: item.o_id, ticker: null});
           var url3 = Router.pick_path('content.companyprofile', {company_id: item.c_id, name: compUrlName(item.c_name), ticker: item.c_ticker});
 
           if(item.c_hq_state !== ''){
-            var url4 = Router.pick_path('content.locationprofile', {loc_id: toTitleCase(item.c_hq_state), city: item.c_hq_city});
+            var url4 = Router.pick_path('content.locationprofile', {loc_id: item.c_hq_state, city: toTitleCase(item.c_hq_city)});
           }else{
             var url4 = '';
           }
@@ -272,17 +273,19 @@
             lastUpdated: item.o_last_updated,
             path1: path1,
             path2: item.o_current_title.long_title,
-            path3: years
+            //path3: years
           })
         break;
         case 'company':
 
           var name = FullNameSplit(item.c_ceo_name);
 
+          var sectorEncode = item.c_sector.replace(/ /g, "-");
 
           var url1 = Router.pick_path('content.companyprofile', {company_id: item.c_id, name: compUrlName(item.c_name), ticker: item.c_ticker});
-          var url4 = Router.pick_path('content.locationprofile', {loc_id: item.c_hq_state, city: item.c_hq_city});
-          var url7 = Router.pick_path('content.executiveprofile', {lname: name.lname, fname: name.fname, exec_id: item.c_ceo_id, ticker: item.c_ticker});
+          var url4 = Router.pick_path('content.locationprofile', {loc_id: item.c_hq_state, city: toTitleCase(item.c_hq_city)});
+          var url5 = Router.pick_path('content.sector', {loc_id: item.c_hq_state, sector_id: sectorEncode, page_num: 1});
+          var url6 = Router.pick_path('content.executiveprofile', {lname: name.lname, fname: name.fname, exec_id: item.c_ceo_id, ticker: item.c_ticker});
 
           returnArr.push({
             text1: item.c_name,
@@ -290,12 +293,12 @@
             url1: url1,
             url3: url1,
             url4: url4,
-            url7: url7,
+            url5: url5,
+            url6: url6,
             lastUpdated: item.c_tr_last_updated,
-            path1: item.c_hq_city + ', ' + item.c_hq_state,
+            path1: toTitleCase(item.c_hq_city) + ', ' + item.c_hq_state,
             path2: item.c_sector,
-            path3: item.c_industry,
-            path4: item.c_ceo_name
+            path3: item.c_ceo_name
           })
         break;
         case 'location':
