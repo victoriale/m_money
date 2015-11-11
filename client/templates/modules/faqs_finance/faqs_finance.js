@@ -44,8 +44,8 @@ Template.faqs_finance.helpers ({
     if(typeof data == 'undefined'){
       return '';
     }
-    if(Session.get('IsLocation')){
-      return Router.current().getParams().loc_id;
+    if(typeof data.location != "undefined" ){
+      return data.location;
     }else{
       return data.c_name;
     }
