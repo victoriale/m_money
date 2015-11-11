@@ -121,9 +121,9 @@ Template.daily_update.helpers({
         if(isNaN(data)){
           data = fullstate(data) || data;
           data = data.replace(/ /g, '_');
-          return "background-image: url('/StateImages/Location_"+ data +".jpg');";
+          return "/StateImages/Location_"+ data +".jpg";
         }else{
-          return "background-image: url('/DMA_images/location-"+ data +".jpg');";
+          return "/DMA_images/location-"+ data +".jpg";
         }
       }
     }else{
