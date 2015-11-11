@@ -54,6 +54,8 @@ Template.breakdown_map.onRendered(function(){
       return '';
     }
 
+    data = data.slice(0,300);
+
     var results = {
       best: 2000
     };
