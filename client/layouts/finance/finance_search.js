@@ -174,7 +174,7 @@ Finance_Search = function(quer){
         Router.go('content.companyprofile', paramObj);
         return false;
       }else if(route == 'none'){
-        Router.go('content.noresults', paramObj);
+        // Router.go('content.noresults', paramObj);
         return false;
       }
     }
