@@ -14,13 +14,15 @@ Associated Files: sector_page_logic.js and sector_page.less
     <!--gave the dimensions for the module with total height and width !-->
     <div class = "list_vw-n_m">
       <!--dimensions for the circle container as ('cir-d') !-->
-      <a href="{{back_url}}">
-        <div class="abus-bkbx">
-          <div class="abus-bkbx-bx"><i class="fa fa-reply"></i></div>
-          <div class="abus-bkbx-tgl"></div>
-          <div class="abus-bkbx-txt">Go Back to {{backProfile}} Profile</div>
-        </div>
-      </a>
+      {{#with location_data}}
+        <a href="{{url}}">
+          <div class="abus-bkbx">
+            <div class="abus-bkbx-bx"><i class="fa fa-reply"></i></div>
+            <div class="abus-bkbx-tgl"></div>
+            <div class="abus-bkbx-txt">Go Back to {{name}} Profile</div>
+          </div>
+        </a>
+      {{/with}}
       <div class="list_vw_header">
         <div class="list_vw-cir_d">
           <!-- dimensions for the circle as ('circ')!-->
@@ -52,7 +54,7 @@ Associated Files: sector_page_logic.js and sector_page.less
           {{sector}}
           </div>
           <div class="list_vw-loc_st list_vw-fin">
-          in {{location}} By Largest Market Cap
+          in {{location_data.name}} By Largest Market Cap
           </div>
           <!--specified font style for the inveskit finance  !-->
         </div>

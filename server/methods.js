@@ -69,8 +69,10 @@ Meteor.methods({
     if(loc_id === 'National'){
       // console.log('national call');
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option="+option;
-    }else if(isNaN(loc_id)){
+    }else if(isNaN(loc_id) && loc_id.indexOf('.') == -1){
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option="+option+"&state="+loc_id;
+    }else if(isNaN(loc_id)){
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option="+option+"&partner_domain="+loc_id;
     }else{
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option="+option+"&dma="+loc_id;
     }
@@ -454,8 +456,10 @@ Meteor.methods({
     if(loc_id === 'National'){
       // console.log('national call');
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=sector_companies";
-    }else if(isNaN(loc_id)){
+    }else if(isNaN(loc_id) && loc_id.indexOf('.') == -1){
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=sector_companies&state="+ loc_id;
+    }else if(isNaN(loc_id)){
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=sector_companies&partner_domain="+ loc_id;
     }else{
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=sector_companies&dma="+ loc_id;
     }
@@ -467,6 +471,7 @@ Meteor.methods({
     console.log(UrlString);
     Meteor.http.get(UrlString, (function(startTime, sector, loc_id, error, data){
       try{
+        data.content = data.content.toString().replace(/^[^{]*/,function(a){ return ''; });
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);

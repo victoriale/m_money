@@ -4,7 +4,7 @@ Template.search_page.onCreated(function(){
 
 Template.search_page.onRendered(function(){
   var searchParams = Router.current().getParams();
-  //console.log(searchParams.search_results);
+  console.log(searchParams.search_results);
   $('.header_search_recommendations').removeClass('active');
   Meteor.call("GetSuggestion", searchParams.search_results.replace(/-/g, ' '), Number(Session.get('time')),  function(error, data){
     if(error){

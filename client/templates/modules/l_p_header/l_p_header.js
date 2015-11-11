@@ -41,7 +41,7 @@ Template.lp_head.helpers({
       return "background-image: url('/StateImages/Location_"+ data +".jpg');";
     }else{
       if(isNaN(data)){
-        data = fullstate(data);
+        data = fullstate(data) || data;
         data = data.replace(/ /g, '_');
         return "background-image: url('/StateImages/Location_"+ data +".jpg');";
       }else{
@@ -53,6 +53,12 @@ Template.lp_head.helpers({
 });
 Template.lp_body.helpers({
   execUrl: function(){
+    if ( Router.current().route.getName() == 'content.partnerhome' ) {
+      return Router.pick_path('content.executivelocation',{
+        loc_id: 'default',
+        page_num: 1
+      });
+    }
     var params = Router.current().getParams();
     return Router.pick_path('content.executivelocation',{
       loc_id: params.loc_id,
@@ -62,6 +68,12 @@ Template.lp_body.helpers({
 
   compUrl: function(){
     var params = Router.current().getParams();
+    if ( Router.current().route.getName() == 'content.partnerhome' ) {
+      return Router.pick_path('content.sector',{
+        loc_id: 'default',
+        page_num: 1
+      });
+    }
     return Router.pick_path('content.sector',{
       loc_id: params.loc_id,
       page_num:1

@@ -36,7 +36,7 @@ Template.exec_loc.helpers({
       return "url('/StateImages/Location_"+data+".jpg');";
     }else{
       if(isNaN(data)){
-        data = fullstate(data).replace(/ /g, '_');
+        data = (fullstate(data) || data).replace(/ /g, '_');
         return "url('/StateImages/Location_"+data+".jpg');";
       }else{
         return "url('/DMA_images/location-"+data+".jpg');";
@@ -49,6 +49,28 @@ Template.exec_loc.helpers({
     var newData = Session.get('all_executives');
     listdata.list_data = newData;
     listdata['newDate'] = CurrentDate();
+    if ( Router.current().params.loc_id == Router.current().params.partner_id ) {
+      listdata.location_data = {
+        url: Router.pick_path('content.partnerhome',{})
+      };
+      if ( typeof Session.get('profile_header') != "undefined" ) {
+        listdata.location_data.name = Session.get('profile_header').location;
+      } else {
+        listdata.location_data.name = '';
+      }
+    } else {
+      listdata.location_data = {
+        url: Router.pick_path('content.locationprofile',{
+          loc_id: Router.current().params.loc_id
+        })
+      };
+
+      if ( typeof fullstate(Router.current().params.loc_id) != undefined ) {
+        listdata.location_data.name = fullstate(Router.current().params.loc_id);
+      } else {
+        listdata.location_data.name = Router.current().params.loc_id;
+      }
+    }
     $.map(listdata.list_data, function(data,index){
       if(index % 2 == 0){
         data['background'] = 'tilewhite';
