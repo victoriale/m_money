@@ -5,29 +5,42 @@
 */
 
 Template.annual_EIS.onCreated(function(){
-  var id = Session.get("profile_header").c_id;
-  Meteor.http.get('http://apifin.synapsys.us/call_controller.php?action=company_page&option=income_statement&param=' + id,
+  this.autorun(function(){
+    var urlArray = $(location).attr('href').split("/");
+    Meteor.http.get('http://apifin.investkit.com/call_controller.php?action=company_page&option=income_statement&param=' + urlArray[urlArray.length - 1],
     function(error, data){
-    Session.set("annual_EIS",data);
+      Session.set("annual_EIS",data);
+    });
     annualEISgraph();
     var chart = $('#annualEISgraph').highcharts();
-    var axisMax = chart.yAxis[0].max;
-    chart.series[2].update({
-      tooltip:{
-        pointFormatter: function() {
-          return "Profit Margin: " + (this.y / (axisMax / 100)).toFixed(2) + "%";
+    if(chart != undefined)
+    {
+      var axisMax = chart.yAxis[0].max;
+      chart.series[2].update({
+        tooltip:{
+          pointFormatter: function() {
+            return "Profit Margin: " + (this.y / (axisMax / 100)).toFixed(2) + "%";
+          }
         }
+      });
+      for(var i = 0; i<chart.series[2].data.length; i++){
+        chart.series[2].data[i].y *= axisMax;
+        chart.series[2].data[i].update();
       }
-    });
-    for(var i = 0; i<chart.series[2].data.length; i++){
-      chart.series[2].data[i].y *= axisMax;
-      chart.series[2].data[i].update();
     }
   });
 })
 
+Template.annual_EIS.onRendered(function() {
+  annualEISgraph();
+});
+
 function graphRevData() {
   var data = Session.get('annual_EIS');
+  if(data == undefined)
+  {
+    return '';
+  }
   var target = data.data.income_statement.income_data["Revenue"];
   var out = [];
   out[0] = parseFloat(target["2011"]);
@@ -40,6 +53,10 @@ function graphRevData() {
 
 function graphIncomeData() {
   var data = Session.get('annual_EIS');
+  if(data == undefined)
+  {
+    return '';
+  }
   var target = data.data.income_statement.income_data["Net Income"];
   var out = [];
   out[0] = parseFloat(target["2011"]);
@@ -52,6 +69,10 @@ function graphIncomeData() {
 
 function graphNetProfitMarginData() {
   var data = Session.get('annual_EIS');
+  if(data == undefined)
+  {
+    return '';
+  }
   var revenue = graphRevData();
   var income = graphIncomeData();
   var out = [];
@@ -67,71 +88,81 @@ function annualEISgraph(){
   var rev = graphRevData();
   var income = graphIncomeData();
   var margin = graphNetProfitMarginData();
- $('#annualEISgraph').highcharts({
-   credits: {
-     enabled: false
-   },
-   exporting: {
-     enabled: false
-   },
-   title: {
-     text: ''
-   },
-   xAxis: {
-     categories: ['2011', '2012', '2013', '2014', '2015']
-   },
+  $('#annualEISgraph').highcharts({
+    credits: {
+      enabled: false
+    },
+    exporting: {
+      enabled: false
+    },
+    title: {
+      text: ''
+    },
+    xAxis: {
+      categories: ['2011', '2012', '2013', '2014', '2015']
+    },
 
-   yAxis: {
-     tickInterval: 1000,
-     title: "In Millions of USD"
-   },
+    yAxis: {
+      tickInterval: 1000,
+      title: "In Millions of USD"
+    },
 
-
-   series: [{
-     type: 'column',
-     name: 'Net Income',
-     data: income,
-     showInLegend: false,
-     color: '#434348 '
-   }, {
-     type: 'column',
-     name: 'Revenue',
-     data: rev,
-     showInLegend: false,
-     color: '#3098FF '
-   }, {
-     type: 'spline',
-     tooltip:{
-      pointFormatter: function() {
-        return "Profit Margins: " + (this.y).toFixed(2) + "%";
-      }
-     },
-     name: 'Profit Margin',
-     data: margin,
-     showInLegend: false,
-     marker: {
-       lineWidth: 2,
-       lineColor: '#F8A354 ',
-       fillColor: 'white'
-     },
-     color: '#F8A354 ',
-
-   }]
- });
+    series: [{
+      type: 'column',
+      name: 'Net Income',
+      data: income,
+      showInLegend: false,
+      color: '#434348 '
+    }, {
+      type: 'column',
+      name: 'Revenue',
+      data: rev,
+      showInLegend: false,
+      color: '#3098FF '
+    }, {
+      type: 'spline',
+      tooltip:{
+        pointFormatter: function() {
+          return "Profit Margins: " + (this.y).toFixed(2) + "%";
+        }
+      },
+      name: 'Profit Margin',
+      data: margin,
+      showInLegend: false,
+      marker: {
+        lineWidth: 2,
+        lineColor: '#F8A354 ',
+        fillColor: 'white'
+      },
+      color: '#F8A354 ',
+    }]
+  });
 }
 
 Template.annual_EIS.helpers({
   //gets the company name
   company: function(){
     var data = Session.get('annual_EIS');
+    if(data == undefined)
+    {
+      return '';
+    }
     return data['data']['income_statement']['company_info']['c_name'];
   },
   updated: function(){
     var data = Session.get('annual_EIS');
+    if(data == undefined)
+    {
+      return '';
+    }
     return data['data']['income_statement']['company_info']['c_tr_last_updated'];
   },
   location: function(){
     var data = Session.get('annual_EIS');
+    if(data == undefined)
+    {
+      return '';
+    }
     var city = data['data']['income_statement']['company_info']['c_hq_city'];
     city = city.replace(/\w\S*/g, function(txt) {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
@@ -140,12 +171,39 @@ Template.annual_EIS.helpers({
     return city + ", " + state;
   },
 
-  selectYear: function() {
-    return "2015";
+  label: function() {
+    var data = Session.get("annual_EIS");
+    if(data == undefined)
+    {
+      return '';
+    }
+    var yrs = data.data.income_statement.income_data["Net Income"];
+    var years = [];
+    yrs2 = Object.keys(yrs);
+    for(var i = 0; i < yrs2.length; i++)
+    {
+      years[i] = yrs2[yrs2.length - i - 1];
+    }
+    return years;
+  },
+
+  firstLabel: function() {
+    var data = Session.get("annual_EIS");
+    if(data == undefined)
+    {
+      return '';
+    }
+    var yrs = data.data.income_statement.income_data["Net Income"];
+    yrs2 = Object.keys(yrs);
+    return yrs2[yrs2.length - 1];
   },
 
   ninc: function() {
     var data = Session.get('annual_EIS');
+    if(data == undefined)
+    {
+      return '';
+    }
     var income = parseInt(data.data.income_statement.income_data["Net Income"]["2015"]);
     if(income > 1000)
     {
@@ -157,6 +215,10 @@ Template.annual_EIS.helpers({
 
   rev: function() {
     var data = Session.get('annual_EIS');
+    if(data == undefined)
+    {
+      return '';
+    }
     var income = parseInt(data.data.income_statement.income_data["Revenue"]["2015"]);
     if(income > 1000)
     {
@@ -168,6 +230,10 @@ Template.annual_EIS.helpers({
 
   pm: function() {
     var data = Session.get('annual_EIS');
+    if(data == undefined)
+    {
+      return '';
+    }
     var income = parseFloat(data.data.income_statement.income_data["Net Income"]["2015"]);
     var rev = parseFloat(data.data.income_statement.income_data["Revenue"]["2015"]);
     var out = (income / rev) * 100;
@@ -177,6 +243,10 @@ Template.annual_EIS.helpers({
 
   data: function(){
     var data = Session.get('annual_EIS');
+    if(data == undefined)
+    {
+      return '';
+    }
     var borderArray = ["d","s","d","s","d","d","d","d","d","d","s","s","d","d","d","s","s","d","d","s","d","d","d","s","d","s","s","d","d","s","d","d","s","s","d","d","d","d","d","d","d","d","d","d","d","d","d","d","d","e"];
     var incomedata = data['data']['income_statement']['income_data'];
     returnArray = [];
@@ -268,14 +338,81 @@ Template.annual_EIS.helpers({
       }
 
       //determine background color
-      if(i%2 == 0){
+      if(i % 2 == 0){
         returnArray[i]['color'] = 'white';
       }
       else{
         returnArray[i]['color'] = 'grey';
       }
     }
-
     return returnArray;
+  },
+});
+
+Template.annual_EIS.events({
+  'click #aneis-ddn-0': function(){
+    //Show dropdown 0
+    if($("#aneis-ddn-0").children(".aneis-ddn-options").css("display") == "none"){
+      $("#aneis-ddn-0").children(".aneis-ddn-options").css("display", "inline");
+      $("#aneis-ddn-0").children(".aneis-ddn-cir").css("background-color", "#3098ff");
+      $("#aneis-ddn-0").children(".aneis-ddn-cir").children(".fa").css("color", "#ffffff");
+
+      //Turn 1 and 2 off
+      $("#aneis-ddn-1").children(".aneis-ddn-options").css("display", "none");
+      $("#aneis-ddn-1").children(".aneis-ddn-cir").css("background-color", "#ffffff");
+      $("#aneis-ddn-1").children(".aneis-ddn-cir").children(".fa").css("color", "#3098ff");
+      $("#aneis-ddn-2").children(".aneis-ddn-options").css("display", "none");
+      $("#aneis-ddn-2").children(".aneis-ddn-cir").css("background-color", "#ffffff");
+      $("#aneis-ddn-2").children(".aneis-ddn-cir").children(".fa").css("color", "#3098ff");
+    }
+    else{
+      $("#aneis-ddn-0").children(".aneis-ddn-options").css("display", "none");
+      $("#aneis-ddn-0").children(".aneis-ddn-cir").css("background-color", "#ffffff");
+      $("#aneis-ddn-0").children(".aneis-ddn-cir").children(".fa").css("color", "#3098ff");
+    }
+  },
+
+  'click #aneis-ddn-1': function(){
+    //Show dropdown 1
+    if($("#aneis-ddn-1").children(".aneis-ddn-options").css("display") == "none"){
+      $("#aneis-ddn-1").children(".aneis-ddn-options").css("display", "inline");
+      $("#aneis-ddn-1").children(".aneis-ddn-cir").css("background-color", "#3098ff");
+      $("#aneis-ddn-1").children(".aneis-ddn-cir").children(".fa").css("color", "#ffffff");
+
+      //Turn 0 and 2 off
+      $("#aneis-ddn-0").children(".aneis-ddn-options").css("display", "none");
+      $("#aneis-ddn-0").children(".aneis-ddn-cir").css("background-color", "#ffffff");
+      $("#aneis-ddn-0").children(".aneis-ddn-cir").children(".fa").css("color", "#3098ff");
+      $("#aneis-ddn-2").children(".aneis-ddn-options").css("display", "none");
+      $("#aneis-ddn-2").children(".aneis-ddn-cir").css("background-color", "#ffffff");
+      $("#aneis-ddn-2").children(".aneis-ddn-cir").children(".fa").css("color", "#3098ff");
+    }
+    else{
+      $("#aneis-ddn-1").children(".aneis-ddn-options").css("display", "none");
+      $("#aneis-ddn-1").children(".aneis-ddn-cir").css("background-color", "#ffffff");
+      $("#aneis-ddn-1").children(".aneis-ddn-cir").children(".fa").css("color", "#3098ff");
+    }
+  },
+
+  'click #aneis-ddn-2': function(){
+    //Show dropdown 2
+    if($("#aneis-ddn-2").children(".aneis-ddn-options").css("display") == "none"){
+      $("#aneis-ddn-2").children(".aneis-ddn-options").css("display", "inline");
+      $("#aneis-ddn-2").children(".aneis-ddn-cir").css("background-color", "#3098ff");
+      $("#aneis-ddn-2").children(".aneis-ddn-cir").children(".fa").css("color", "#ffffff");
+
+      //Turn 0 and 1 off
+      $("#aneis-ddn-0").children(".aneis-ddn-options").css("display", "none");
+      $("#aneis-ddn-0").children(".aneis-ddn-cir").css("background-color", "#ffffff");
+      $("#aneis-ddn-0").children(".aneis-ddn-cir").children(".fa").css("color", "#3098ff");
+      $("#aneis-ddn-1").children(".aneis-ddn-options").css("display", "none");
+      $("#aneis-ddn-1").children(".aneis-ddn-cir").css("background-color", "#ffffff");
+      $("#aneis-ddn-1").children(".aneis-ddn-cir").children(".fa").css("color", "#3098ff");
+    }
+    else{
+      $("#aneis-ddn-2").children(".aneis-ddn-options").css("display", "none");
+      $("#aneis-ddn-2").children(".aneis-ddn-cir").css("background-color", "#ffffff");
+      $("#aneis-ddn-2").children(".aneis-ddn-cir").children(".fa").css("color", "#3098ff");
+    }
   },
 })
