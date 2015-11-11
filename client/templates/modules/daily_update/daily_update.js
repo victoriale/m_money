@@ -128,7 +128,9 @@ Template.daily_update.onRendered(function(){
 
 Template.daily_update.events({
   'click .daily_update-buttons-circle': function(e, t){
-    Session.set('d_u_range', e.currentTarget.id);
+    if ( !$(e.currentTarget).hasClass('disabled') ) {
+      Session.set('d_u_range', e.currentTarget.id);
+    }
   },
 })
 
@@ -171,17 +173,21 @@ Template.daily_update.helpers({
   },
 
   buttons: function(){
+    var style = '';
+    if(!Session.get('IsCompany')){
+      style = 'disabled';
+    }
     var buttons = [
       {data:"1D"},
       {data:"5D"},
       {data:"10D"},
       {data:"1M"},
-      {data:"3M"},
-      {data:"6M"},
-      {data:"9M"},
-      {data:"1Y"},
-      {data:"3Y"},
-      {data:"5Y"},
+      {data:"3M", class: style},
+      {data:"6M", class: style},
+      {data:"9M", class: style},
+      {data:"1Y", class: style},
+      {data:"3Y", class: style},
+      {data:"5Y", class: style},
     ];
     return buttons;
   },
