@@ -77,6 +77,11 @@ Template.marketmovers.helpers({
   toListOfList: function(){
     var data = Session.get('list_of_lists');
     var params = Router.current().getParams();
+    if ( Router.current().route.getName() == 'content.partnerhome' ) {
+      return Router.pick_path('content.listoflistloc', {
+        loc_id: 'default'
+      });
+    }
     return Router.pick_path('content.listoflistloc', {
       loc_id:params.loc_id
     });

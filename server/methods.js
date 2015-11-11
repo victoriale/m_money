@@ -594,8 +594,10 @@ Meteor.methods({
     //param={list_index} , {location/DMA}
     if(loc_id == "National" || loc_id == ''){
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=list_of_lists";
-    }else if(isNaN(loc_id)){
+    }else if(isNaN(loc_id) && loc_id.indexOf('.') == -1){
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=list_of_lists&state="+loc_id;
+    }else if(isNaN(loc_id)){
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=list_of_lists&partner_domain="+loc_id;
     }else{
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=list_of_lists&dma="+loc_id;
     }
