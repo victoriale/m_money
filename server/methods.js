@@ -365,6 +365,50 @@ Meteor.methods({
     return future.wait();
   },
 
+  //Get daily update data for one day
+  GetOneDayDailyUpdate: function(loc_id, type){
+    var future = new Future();
+    var startTime = (new Date()).getTime();
+
+    //Builds the parameters
+    switch(type){
+      //If case is normal, determine if dma (number) or state (string) is the parameter
+      case 'normal':
+        if(isNaN(loc_id)){
+          var param = 'state=' + loc_id;
+        }else{
+          var param = 'dma=' + loc_id;
+        }
+      break;
+      //If case is partner, use param=partner_domain
+      case 'partner':
+        var param = 'partner_domain=' + loc_id;
+      break;
+    }
+
+    //console.log('param', param);
+
+    var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_profile&option=indie&call=one_day_location_daily_update&" + param;
+    //console.log('ONE DAY DAILY URL', UrlString);
+
+    Meteor.http.get(UrlString, (function(startTime, loc_id, error, data){
+      try{
+        data = JSON.parse(data['content']);
+      } catch (e) {
+        future.throw(e);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"OneDayDailyUpdate - Error",,"' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+        return false;
+      }
+      future.return(data);
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"OneDayDailyUpdate",,"' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+    }).bind(undefined, startTime, loc_id))
+
+    this.unblock();
+    return future.wait();
+  },
+
   GetMoneyMemoryData: function(company_id, initial_investment, start_date, end_date){
     var future = new Future();
     var startTime = (new Date()).getTime();
