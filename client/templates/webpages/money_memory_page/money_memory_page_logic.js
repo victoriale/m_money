@@ -96,7 +96,7 @@ Template.money_memory_page.helpers({
   //Helper to determine if result exists (Fix for if no stock data for time range). If results DNE, show error message
   resultExists: function(){
     var data = Session.get('money_memory');
-    
+
     return typeof data === 'undefined' ? false : true;
   },
   //Helper to determine which range button is selected
@@ -308,7 +308,10 @@ Template.money_memory_page.helpers({
       company_data.location = '';
     }
 
-
+    company_data.locurl = Router.pick_path('content.locationprofile',{
+      loc_id:company_data.c_hq_state,
+      city:company_data.c_hq_city,
+    })
 
     return company_data;
   },
