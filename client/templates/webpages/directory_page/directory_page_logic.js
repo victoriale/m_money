@@ -243,7 +243,7 @@
           //var years = new Date().getFullYear() - item.o_current_title.start_year;
           //var years = years === 1 ? years + ' year' : years + ' years';
 
-          var url1 = Router.pick_path('content.executiveprofile', {lname: item.o_last_name, fname: item.o_first_name, ticker: item.c_ticker, exec_id: item.o_id, ticker: null});
+          var url1 = Router.pick_path('content.executiveprofile', {lname: item.o_last_name, fname: item.o_first_name, ticker: item.c_ticker, exec_id: item.o_id});
           var url3 = Router.pick_path('content.companyprofile', {company_id: item.c_id, name: compUrlName(item.c_name), ticker: item.c_ticker});
 
           if(item.c_hq_state !== ''){
