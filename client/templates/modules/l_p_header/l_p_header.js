@@ -36,7 +36,18 @@ Template.lp_body.helpers({
 
 Template.lp_head.helpers({
   image: function(){
+    var params = Router.current().getParams();
     var data = Session.get('loc_id');
+    //if partner domain exists then choose the
+    if(typeof params.loc_id == 'undefined'){
+      var partner_image = Session.get('profile_header');
+      if(partner_image.dma_code == null){
+        return "background-image: url('/StateImages/Location_"+ partner_image['location'] +".jpg');";
+      }else{
+        return "background-image: url('/DMA_images/location-"+ partner_image['dma_code'].split(',')[0] +".jpg');";
+      }
+    }
+    //otherwise take url data to detmine what image to show statewise
     if(data == 'National' || data == '' || typeof data == 'undefined'){
       return "background-image: url('/StateImages/Location_"+ data +".jpg');";
     }else{
