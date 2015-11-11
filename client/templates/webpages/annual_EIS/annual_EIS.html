@@ -50,14 +50,28 @@
       <div class="aneis-ddn-mnu" style="width:160px" id="aneis-ddn-0">
         Income Statement
         <div class="aneis-ddn-cir"><i class="fa fa-caret-down"></i></div>
+        <div class="aneis-ddn-options">
+          <div class="aneis-ddn-option">Income Statement</div>
+          <div class="aneis-ddn-option">Balance Sheet</div>
+          <div class="aneis-ddn-option">Cash Flow</div>
+        </div>
       </div>
       <div class="aneis-ddn-mnu" style="width:130px" id="aneis-ddn-1">
-        Annual Data
+        Quarterly Data
         <div class="aneis-ddn-cir"><i class="fa fa-caret-down"></i></div>
+        <div class="aneis-ddn-options">
+          <div class="aneis-ddn-option">Quarterly Data</div>
+          <div class="aneis-ddn-option">Annual Data</div>
+        </div>
       </div>
-      <div class="aneis-ddn-mnu" style="width:100px" id="aneis-ddn-2">
-        {{selectYear}}
+      <div class="aneis-ddn-mnu" style="width:130px" id="aneis-ddn-2">
+        {{firstLabel}}
         <div class="aneis-ddn-cir"><i class="fa fa-caret-down"></i></div>
+        <div class="aneis-ddn-options">
+          {{#each label}}
+          <div class="aneis-ddn-option">{{this}}</div>
+          {{/each}}
+        </div>
       </div>
     </div>
     <!--End Dropdown menus-->
