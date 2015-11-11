@@ -13,6 +13,9 @@ Template.about_exec.onRendered(function(){
     }
     var RivalArray = [];
     //set the officer id of the current page
+    if ( data.officer == null ) {
+      return false;
+    }
     data['officer']['e_id'] = 0;
     //push all data returned into a list array to be used for the module
     RivalArray.push(data['officer']);
@@ -264,7 +267,7 @@ Template.about_exec.helpers({
     return name;
   },
 
-  title:"COLLEGE RIVALS",
+  title:"Executives That Went to The Same College",
   //status:"N/A",
 //each function to call n the tiles below
   tt: function(){

@@ -89,6 +89,11 @@ Template.latest_news.helpers({
     var params = Router.current().getParams();
 
     if(Session.get('IsLocation')){
+      if ( Router.current().route.getName() == 'content.partnerhome' ) {
+        return Router.pick_path('content.articlenewsloc',{
+          loc_id: 'default'
+        });
+      }
       return Router.pick_path('content.articlenewsloc',{
         loc_id:params.loc_id
       });
