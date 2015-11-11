@@ -451,6 +451,11 @@ Meteor.methods({
     var startTime = (new Date()).getTime();
     // console.log("New Sector Data",loc_id);
 
+    //Special case (Quick Fix to handle the / in this parameter)
+    if(sector === 'Consumer Non Cyclical'){
+      sector = 'Consumer/Non-Cyclical';
+    }
+
     //random number to pick random list in list_index that's in database
     console.log(loc_id, sector);
     if(loc_id === 'National'){

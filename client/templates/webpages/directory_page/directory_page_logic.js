@@ -280,7 +280,7 @@
 
           var name = FullNameSplit(item.c_ceo_name);
 
-          var sectorEncode = item.c_sector.replace(/ /g, "-");
+          var sectorEncode = item.c_sector.replace(/ |\//g, "-");
 
           var url1 = Router.pick_path('content.companyprofile', {company_id: item.c_id, name: compUrlName(item.c_name), ticker: item.c_ticker});
           var url4 = Router.pick_path('content.locationprofile', {loc_id: item.c_hq_state, city: toTitleCase(item.c_hq_city)});
