@@ -104,16 +104,26 @@ Template.daily_update.helpers({
       return '';
     }
     if(Session.get('IsLocation')){
+      var params = Router.current().getParams();
       var data = Session.get('loc_id');
+      //if partner domain exists then choose the
+      if(typeof params.loc_id == 'undefined'){
+        var partner_image = Session.get('profile_header');
+        if(partner_image.dma_code == null){
+          return "/StateImages/Location_"+ partner_image['location'] +".jpg";
+        }else{
+          return "/DMA_images/location-"+ partner_image['dma_code'].split(',')[0] +".jpg";
+        }
+      }
       if(data == 'National' || data == '' || typeof data == 'undefined'){
-        return '/StateImages/Location_'+ data +'.jpg';
+        return "/StateImages/Location_"+ data +".jpg";
       }else{
         if(isNaN(data)){
-          data = fullstate(data);
+          data = fullstate(data) || data;
           data = data.replace(/ /g, '_');
-          return '/StateImages/Location_'+ data +'.jpg';
+          return "background-image: url('/StateImages/Location_"+ data +".jpg');";
         }else{
-          return '/DMA_images/location-'+ data +'.jpg';
+          return "background-image: url('/DMA_images/location-"+ data +".jpg');";
         }
       }
     }else{
