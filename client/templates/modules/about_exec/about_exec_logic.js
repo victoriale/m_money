@@ -54,7 +54,7 @@ Template.about_exec.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
-    return "http://cdn.investkit.com/images/"+data[counter].c_ticker.toLowerCase()+'.jpg';
+    return "http://images.investkit.com/images/images/"+data[counter].c_ticker.toLowerCase()+'.jpg';
   },
   rivalInfo: function(){
     var data = Session.get('about_exec');
