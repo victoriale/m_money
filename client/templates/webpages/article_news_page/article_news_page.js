@@ -226,6 +226,7 @@ Template.article_news_page.helpers({
   },
   main_image: function(){
     var data = Session.get('article_news_page');
+    console.log(data);
     if(data!=undefined)
     {
       return data.data[0]['lead_image'];
