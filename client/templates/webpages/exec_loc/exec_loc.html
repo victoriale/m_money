@@ -6,13 +6,15 @@
   <div class= "list_vw">
     <!--gave the dimensions for the module with total height and width !-->
     <div class = "list_vw-n_m">
-      <a href="{{back_url}}" style="cursor:pointer;">
-        <div class="abus-bkbx">
-          <div class="abus-bkbx-bx"><i class="fa fa-reply"></i></div>
-          <div class="abus-bkbx-tgl"></div>
-          <div class="abus-bkbx-txt">Go Back to {{location}} Profile</div>
-        </div>
-      </a>
+      {{#with location_data}}
+        <a href="{{url}}" style="cursor:pointer;">
+          <div class="abus-bkbx">
+            <div class="abus-bkbx-bx"><i class="fa fa-reply"></i></div>
+            <div class="abus-bkbx-tgl"></div>
+            <div class="abus-bkbx-txt">Go Back to {{name}} Profile</div>
+          </div>
+        </a>
+      {{/with}}
       <!--dimensions for the circle container as ('cir-d') !-->
       <div class="list_vw_header">
         <div class="list_vw-cir_d"  >
@@ -30,17 +32,19 @@
           </div>
           <!--specified font style for location !-->
           <div class="list_vw-loc_st">
-            <a href="/National/location">
-              <i class="fa fa-map-marker"></i>
-              <!--specified font style for the state name !-->
-              <span class="list_vw-loc_st">
-                {{location}}, United States
-              </span>
-            </a>
+            {{#with location_data}}
+              <a href="{{url}}">
+                <i class="fa fa-map-marker"></i>
+                <!--specified font style for the state name !-->
+                <span class="list_vw-loc_st">
+                  {{name}}
+                </span>
+              </a>
+            {{/with}}
           </div>
           <!-- specified font sytle for the stock disclaimer !-->
           <div class="list_vw-loc_st list_vw-disc">
-          Top Executives of Top 20 Companies in {{location}}
+          Top Executives of Top 20 Companies in {{location_data.name}}
           </div>
           <!--specified font style for the inveskit finance  !-->
         </div>

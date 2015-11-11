@@ -17,12 +17,19 @@ $(".sect_pg-page-selector1").css("background-color","#3098ff");
 var backgroundStyle="tilewhite";
 Template.sector_page.helpers({
   back_url: function(){
+    if ( Router.current().params.loc_id == Router.current().params.partner_id ) {
+      return Router.pick_path('content.partnerhome',{});
+    }
     return Router.pick_path('content.locationprofile',{
       loc_id: Session.get('loc_id')
     });
   },
 
   backProfile:function(){
+    var data = Session.get('profile_header');
+    if ( typeof data == "object" && typeof data.location != "undefined" ) {
+      return data.location;
+    }
     var params = Router.current().getParams();
     var loc = fullstate(params.loc_id);
     loc = loc.replace(/-/g, ' ');
@@ -40,16 +47,27 @@ Template.sector_page.helpers({
       data.sector = data.sector + ' Sector';
     }
 
-    data.location_data = {
-      url: Router.pick_path('content.locationprofile',{
-        loc_id: Router.current().params.loc_id
-      })
-    };
-
-    if ( typeof fullstate(Router.current().params.loc_id) != undefined ) {
-      data.location_data.name = fullstate(Router.current().params.loc_id);
+    if ( Router.current().params.loc_id == Router.current().params.partner_id ) {
+      data.location_data = {
+        url: Router.pick_path('content.partnerhome',{})
+      };
+      if ( typeof Session.get('profile_header') != "undefined" ) {
+        data.location_data.name = Session.get('profile_header').location;
+      } else {
+        data.location_data.name = '';
+      }
     } else {
-      data.location_data.name = Router.current().params.loc_id;
+      data.location_data = {
+        url: Router.pick_path('content.locationprofile',{
+          loc_id: Router.current().params.loc_id
+        })
+      };
+
+      if ( typeof fullstate(Router.current().params.loc_id) != undefined ) {
+        data.location_data.name = fullstate(Router.current().params.loc_id);
+      } else {
+        data.location_data.name = Router.current().params.loc_id;
+      }
     }
 
       var image = Session.get('loc_id');
@@ -57,7 +75,7 @@ Template.sector_page.helpers({
         data['image'] = "background-image: url('/StateImages/Location_"+ image +".jpg');";
       }else{
         if(isNaN(data)){
-          image = fullstate(image);
+          image = fullstate(image) || image;
           image = image.replace(/ /g, '_');
           data['image'] = "background-image: url('/StateImages/Location_"+ image +".jpg');";
         }else{
