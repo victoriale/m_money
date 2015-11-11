@@ -61,6 +61,22 @@ Template.c_hq_page.helpers({
       company_id: data.c_id
     })
 
+    //Build location string
+    if(data.c_hq_city !== '' && data.c_hq_state !== ''){
+      data.location = toTitleCase(data.c_hq_city) + ', ' + data.c_hq_state;
+    }else if(data.c_hq_city === '' && data.c_hq_state !== ''){
+      data.location = data.c_hq_state;
+    }else if(data.c_hq_city !== '' && data.c_hq_state === ''){
+      data.location = toTitleCase(data.c_hq_city);
+    }else{
+      data.location = '';
+    }
+
+    data.locurl = Router.pick_path('content.locationprofile',{
+      loc_id:data.c_hq_state,
+      city:data.c_hq_city,
+    })
+
     data.shareUrl= "https://www.facebook.com/sharer/sharer.php?u=" + data.thisUrl;
     return data;
   },

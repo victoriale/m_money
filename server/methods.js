@@ -425,7 +425,11 @@ Meteor.methods({
 
     //random number to pick random list in list_index that's in database
     //param={list_index} , {location/DMA}
-    var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=statistics&state="+ loc_id
+    if ( loc_id.indexOf('.') == -1 ) {
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=statistics&state="+ loc_id;
+    } else {
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=statistics&partner_domain="+ loc_id;
+    }
     // console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, loc_id, error, data){
@@ -450,6 +454,11 @@ Meteor.methods({
     var future = new Future();
     var startTime = (new Date()).getTime();
     // console.log("New Sector Data",loc_id);
+
+    //Special case (Quick Fix to handle the / in this parameter)
+    if(sector === 'Consumer Non Cyclical'){
+      sector = 'Consumer/Non-Cyclical';
+    }
 
     //random number to pick random list in list_index that's in database
     console.log(loc_id, sector);
@@ -594,8 +603,10 @@ Meteor.methods({
     //param={list_index} , {location/DMA}
     if(loc_id == "National" || loc_id == ''){
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=list_of_lists";
-    }else if(isNaN(loc_id)){
+    }else if(isNaN(loc_id) && loc_id.indexOf('.') == -1){
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=list_of_lists&state="+loc_id;
+    }else if(isNaN(loc_id)){
+      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=list_of_lists&partner_domain="+loc_id;
     }else{
       var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=list_of_lists&dma="+loc_id;
     }

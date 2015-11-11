@@ -190,10 +190,6 @@ Template.myinvestkit_home.helpers({
       	url: Router.pick_path('content.partnerhome',{partner_id: "latimes.com"})
       },
       {
-      	name: "LaGrange Daily News",
-      	url: Router.pick_path('content.partnerhome',{partner_id: "lagrangedailynews.com"})
-      },
-      {
       	name: "Laurinburg Echange",
       	url: Router.pick_path('content.partnerhome',{partner_id: "laurinburgexchange.com"})
       },

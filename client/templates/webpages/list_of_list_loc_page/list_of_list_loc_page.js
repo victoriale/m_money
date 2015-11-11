@@ -14,6 +14,10 @@ Template.list_of_list_loc_page.helpers({
   goBack:function(){
     var params = Router.current().getParams();
 
+    if ( Router.current().params.partner_id == Router.current().params.loc_id ) {
+      return Router.pick_path('content.partnerhome',{});
+    }
+
     return Router.pick_path('content.locationprofile', {
       loc_id:params.loc_id,
     });
@@ -77,7 +81,9 @@ Template.list_of_list_loc_page.helpers({
     var params = Router.current().getParams();
     if(params.loc_id == "National"){
       return "United States";
-    }else{
+    }else if ( typeof Session.get('profile_header') != "undefined" ){
+      return Session.get('profile_header').location;
+    } else {
       return fullstate(params.loc_id);
     }
   },
