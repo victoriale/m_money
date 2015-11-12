@@ -148,9 +148,9 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
             &-txt1 //cfo-mid-top-txt1
             {
                 font-size: 16px;
-                border-right: 1px solid #363636;
+                //border-right: 1px solid #363636;
                 padding: 5px 14px;
-                max-width: 400px;
+                max-width: 640px;
                 height: 35px;
                 float: left;
                 overflow: hidden;
@@ -257,13 +257,10 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
 
                 &-btm1 //cfo-mid-mid-txtbox-btm1
                 {
-                    top: -4px;
-                    line-height: 30px;
                     font-style: normal;
                 }
                 &-btm2 //cfo-mid-mid-txtbox-btm2
                 {
-                    top: -9px;
                     font-style: normal;
                 }
             }
@@ -278,14 +275,16 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
 
             &-txt1 //cfo-mid-btm-txt1
             {
-                left: 20px;
-                top: 14px;
-                font-size: 18px;
+              top: 14px;
+              width: 450px;
+              font-size: 18px;
+              height: 30px;
+              overflow: hidden;
             }
 
             &-txt2 //cfo-mid-btm-txt2
             {
-                left: 20px;
+                left: 25px;
                 top: 44px;
                 font-size: 14px;
             }
@@ -305,6 +304,9 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
 
                 >.fa-angle-right{
                   padding-left: 10px;
+                }
+                &:hover{
+                  background-color: #000000;
                 }
             }
         }
@@ -335,7 +337,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
             border: 1px solid #ebebeb;
             font-size: 14px;
             margin-top: 15px;
-
+            float: left;
             &-top //cfo-btm-what-top
             {
                 width: 100%;
@@ -355,11 +357,12 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
 
             &-txt //cfo-btm-what-txt
             {
-                width: 610px;
-                height: 31px;
-                margin-top: 14px;
-                margin-left: 20px;
-                line-height: 16px;
+              width: 95%;
+              height: 31px;
+              margin-top: 14px;
+              margin-left: 20px;
+              line-height: 16px;
+              text-align: left;
             }
         }
 
@@ -376,7 +379,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 height: 28px;
                 font-size: 18px;
                 left: 15px;
-                border-bottom: 1px solid @grey-2;
+                //border-bottom: 1px solid @grey-2;
             }
 
             &-date //cfo-btm-data-date
@@ -384,14 +387,14 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 color: #959595;
                 font-size: 12px;
                 left: 15px;
-                top: 5px;
+                top: 25px;
             }
 
             &-graph //cfo-btm-data-graph
             {
                 left: 15px;
                 width: 650px;
-                margin-top: 5px;
+                margin-top: 30px;
                 height: 221px;
             }
 
