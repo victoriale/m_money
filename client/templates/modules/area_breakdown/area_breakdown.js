@@ -21,6 +21,26 @@ Template.area_breakdown.helpers({
       {money:data.total_companies,desci:"Total Companies",fa:"fa-building-o"},
       {money:data.total_executives,desci:"Total Executives",fa:"fa-user"}
     ];
+    if ( Router.current().route.getName() == 'content.partnerhome' ) {
+      statistics[2].url = Router.pick_path('content.executivelocation',{
+        loc_id: 'default',
+        page_num: 1
+      });
+      statistics[1].url = Router.pick_path('content.sector',{
+        loc_id: 'default',
+        page_num: 1
+      });
+    } else {
+      var params = Router.current().getParams();
+      statistics[2].url = Router.pick_path('content.executivelocation',{
+        loc_id: params.loc_id,
+        page_num:1
+      });
+      statistics[1].url = Router.pick_path('content.sector',{
+        loc_id: params.loc_id,
+        page_num:1
+      });
+    }
     return statistics;
   },
 

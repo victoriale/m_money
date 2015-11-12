@@ -85,17 +85,27 @@ Template.article_news_page.events({
 
 Template.article_news_page.helpers({
   stateImage: function(){
-    var data = Router.current().getParams().loc_id;
-    var datalist= Session.get('profile_header');
-    var state = fullstate(datalist.c_hq_state).replace(/ /g, '_');
+    var params = Router.current().getParams();
+    var data = Session.get('loc_id');
+    //if partner domain exists then choose the
+    if(typeof params.loc_id == 'undefined'){
+      var partner_image = Session.get('profile_header');
+      if(partner_image.dma_code == null){
+        return "background-image: url('/StateImages/Location_"+partner_image['location'] +".jpg');";
+      }else{
+        return "background-image: url('/DMA_images/location-"+partner_image['dma_code'].split(',')[0]+".jpg');";
+      }
+    }
+    //otherwise take url data to detmine what image to show statewise
     if(data == 'National' || data == '' || typeof data == 'undefined'){
-      return "background-image: url('/StateImages/Location_"+state+".jpg');";
+      return "background-image: url('/StateImages/Location_National.jpg');";
     }else{
       if(isNaN(data)){
-        state = fullstate(data).replace(/ /g, '_');
-        return "background-image: url('/StateImages/Location_"+state+".jpg');";
+        data = fullstate(data) || data;
+        data = data.replace(/ /g, '_');
+        return "background-image: url('/StateImages/Location_"+data+".jpg');";
       }else{
-        return "background-image: url('/DMA_images/location-"+ data +".jpg');";
+        return "background-image: url('/DMA_images/location-"+data+".jpg');";
       }
     }
   },
