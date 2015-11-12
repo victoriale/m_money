@@ -308,6 +308,9 @@ Template.daily_update.helpers({
       case '1D':
         if(Session.get('IsLocation')){
           var graphData = Session.get('one_day_location_daily_update');
+          graphData.sort(function(a,b){
+            return parseFloat(a[0]) - parseFloat(b[0]);
+          });
           var min = graphData[0][0];
         }
         if(Session.get('IsCompany')){
@@ -384,8 +387,12 @@ Template.daily_update.helpers({
       xAxis: {
           type: 'datetime',
           labels: {
-              overflow: 'justify'
+              overflow: 'justify',
+              // formatter: function() {
+              //     return Highcharts.dateFormat('%a %d %b %l %p', this.value);
+              // }
           },
+
           min: min,
       },
       yAxis: {
