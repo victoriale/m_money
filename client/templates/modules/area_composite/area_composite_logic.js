@@ -8,15 +8,15 @@ Template.area_composite.helpers({
 
   image: function(){
     var data = Session.get('loc_id');
+    data = fullstate(data).replace(/ /g, '_');
     if(data == 'National' || data == '' || typeof data == 'undefined'){
-      return "background-image: url('/StateImages/Location_"+ data +".jpg');";
+      return '/StateImages/Location_'+data+'.jpg';
     }else{
       if(isNaN(data)){
-        data = fullstate(data);
-        data = data.replace(/ /g, '_');
-        return "background-image: url('/StateImages/Location_"+ data +".jpg');";
+        data = fullstate(data).replace(/ /g, '_');
+        return '/StateImages/Location_'+data+'.jpg';
       }else{
-        return "background-image: url('/DMA_images/location-"+ data +".jpg');";
+        return '/DMA_images/location-'+data+'.jpg';
       }
     }
   },
