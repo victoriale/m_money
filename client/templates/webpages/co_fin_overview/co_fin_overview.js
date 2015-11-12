@@ -50,8 +50,7 @@ Template.co_fin_overview.helpers({
     }
 
     //Get dependencies to find date range
-    var dataLength = data.highchartsData.length;
-    var latestDate = moment(data.highchartsData[dataLength - 1][0]);
+    var latestDate = moment(data.highchartsData[0][0]);
     data.highchartsData.reverse();
     //Get range value based on option selected
     switch(fo_range){
@@ -196,10 +195,11 @@ Template.co_fin_overview.helpers({
 
     var company_data = data.company_data;
 
+    //console.log('company data', company_data);
+
     //Get beginning of 52 week range (Esitmated 250 open stock market days)
     if(data.stock_history.length >= 250){
-      var sh_length = data.stock_history.length;
-      var start_val = data.stock_history[sh_length - 250].sh_close;
+      var start_val = data.stock_history[250].sh_close;
       company_data.start_range = Math.round(Number(start_val) * 100) / 100;
       //Find percentage change since a year ago
       var pResult = findPercentage(Number(company_data.csi_price), company_data.start_range);
@@ -246,18 +246,6 @@ Template.co_fin_overview.helpers({
 
     company_data.share_company_url =  "https://www.facebook.com/sharer/sharer.php?u=" + Router.pick_path('content.companyprofile', {company_id: company_data.c_id, name: company_data.c_name, ticker: company_data.c_ticker});
     company_data.share_company_fin_overview_url = "https://www.facebook.com/sharer/sharer.php?u=" + Router.pick_path('content.finoverview', {company_id: company_data.c_id, name: company_data.c_name, ticker: company_data.c_ticker});
-
-    //Determine icon to be displayed
-    if(company_data.csi_price_change_since_last > 0){
-      company_data.icon = 'fa-arrow-up';
-      company_data.change_color = '#44b224';
-    }else if(company_data.csi_price_change_since_last < 0){
-      company_data.icon = 'fa-arrow-down';
-      company_data.change_color = '#ca1010';
-    }else{
-      company_data.icon = '';
-      company_data.change_color = '';
-    }
 
     //Build location string
     if(company_data.c_hq_city !== '' && company_data.c_hq_state !== ''){
