@@ -265,6 +265,9 @@ Template.money_memory_page.helpers({
     company_data.min_range = commaSeparateNumber_decimal((Math.min(Number(company_data.csi_opening_price), Number(company_data.csi_closing_price), Number(company_data.csi_price)) * 100) / 100);
     company_data.max_range = commaSeparateNumber_decimal((Math.max(Number(company_data.csi_opening_price), Number(company_data.csi_closing_price), Number(company_data.csi_price)) * 100) / 100);
 
+    company_data.csi_low = Number(company_data.csi_low).toFixed(2);
+    company_data.csi_high = Number(company_data.csi_high).toFixed(2);
+
     company_data.csi_price = commaSeparateNumber_decimal(Number(company_data.csi_price));
     company_data.csi_closing_price = commaSeparateNumber_decimal(Number(company_data.csi_closing_price));
     company_data.csi_opening_price = commaSeparateNumber_decimal(Number(company_data.csi_opening_price));
@@ -311,7 +314,7 @@ Template.money_memory_page.helpers({
       loc_id:company_data.c_hq_state,
       city:company_data.c_hq_city,
     })
-
+console.log(company_data);
     return company_data;
   },
   //Helper to display start date

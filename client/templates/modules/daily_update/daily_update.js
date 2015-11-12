@@ -104,7 +104,7 @@ function transformLocationDailyUpdate(){
   daily_update.csi_price = data.composite_summary.current_price;
   daily_update.csi_percent_change_since_last = data.composite_summary.percent_change;
   daily_update.csi_price_change_since_last = data.composite_summary.price_change;
-  daily_update.lastUpdated = moment(data.composite_summary.last_updated).tz('America/New_York').format('dddd MM/DD/YYYY');
+  daily_update.lastUpdated = (new Date(data.composite_summary.last_updated)).toSNTFormTime();
   daily_update.todays_high = data.composite_summary.todays_high;
   daily_update.todays_low = data.composite_summary.todays_low;
   daily_update.previous_close = data.composite_summary.previous_close;
