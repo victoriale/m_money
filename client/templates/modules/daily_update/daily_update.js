@@ -112,9 +112,7 @@ function transformLocationDailyUpdate(){
   daily_update.csi_price = data.composite_summary.current_price;
   daily_update.csi_percent_change_since_last = data.composite_summary.percent_change;
   daily_update.csi_price_change_since_last = data.composite_summary.price_change;
-  //WAITING ON API FIX FOR CORRECT DATE (USING TODAY'S DATE AS PLACEHOLDER) SWITCH OUT WHEN API READY
   daily_update.lastUpdated = (new Date(data.composite_summary.last_updated)).toSNTFormTime();
-  //daily_update.lastUpdated = (new Date()).toSNTFormTime();
   daily_update.todays_high = data.composite_summary.todays_high;
   daily_update.todays_low = data.composite_summary.todays_low;
   daily_update.previous_close = data.composite_summary.previous_close;
@@ -327,7 +325,8 @@ Template.daily_update.helpers({
           var graphData = data.highchartsData;
           //Old Method: Pulled 24 hour period. So when stock is closed, on graph straight line was shown
           //var min = latestDate.subtract(1, 'days').format('X') * 1000;
-          var min = moment().utc().hour(9).minute(30).format('X') * 1000;
+          //var min = moment().utc().hour(8).format('X') * 1000;
+          var min = new Date().setUTCHours(8);
         }
       break;
       case '5D':
@@ -402,7 +401,7 @@ Template.daily_update.helpers({
               //     return Highcharts.dateFormat('%a %d %b %l %p', this.value);
               // }
           },
-
+          //startOnTick: true,
           min: min,
       },
       yAxis: {
