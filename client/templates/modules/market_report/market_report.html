@@ -72,8 +72,8 @@
           <!--Price of stock-->
           <div class="mreport_body_stock">
             <span class="mreport_body_stock_price">{{stock_price}}</span>
-            <span class="mreport_body_stock_history {{color_class}}">
-              <i class="fa {{arrow_class}} mreport_body_stock_history_icon"></i>
+            <span class="mreport_body_stock_history" style="color: {{changeColor price_operator}}">
+              <i class="fa {{changeIcon price_operator}} mreport_body_stock_history_icon"></i>
               <span class="mreport_body_stock_history">{{stock_price_number}} ({{stock_price_percent}})</span>
             </span>
           </div>
@@ -128,7 +128,7 @@
         <!--***************textbox 3 starts here ****************************-->
         <div class="mreport-tb3">
           <span class="mreport-w1tb3">{{company_name}}
-            <i class="fa fa-angle-right mreport-fatb3"></i><span class="mreport-w2tb3" style="color: {{changeColor color}}">{{percent}}</span>
+            <i class="fa fa-angle-right mreport-fatb3"></i><span class="mreport-w2tb3" style="color: {{changeColor color}}">{{color}} {{percent}}</span>
           </span>
         </div>
         {{/with}}
