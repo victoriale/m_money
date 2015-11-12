@@ -180,7 +180,7 @@ Associated Files: sector_page_logic.js and sector_page.less
             </a>
             <!-- Here displays the description which come from the each loop-->
             <div class="list_vw-adjust">{{ c_name }}</div>
-            <div class="list_vw-follw1">${{lcsi_price}}
+            <div class="list_vw-follw1">{{c_ticker}}: ${{lcsi_price}}
               <span class="list_vw-follws1">  <i class="fa {{changeIcon csi_price_change_since_last}}" style="color:{{changeColor csi_price_change_since_last}}"></i> </span>
               <span class="list_vw-follw3" style="color:{{changeColor csi_price_change_since_last}}">{{csi_price_change_since_last}}({{csi_percent_change_since_last}}%) </span>
             </div>

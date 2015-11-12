@@ -182,9 +182,7 @@ Template.exec_loc.events({
 
     var counter = Session.get("lv_count");
     var params = Router.current().getParams();
-    if(params.list_id == 'all_executives'){
-      var list = Session.get('all_executives');
-    }
+    var list = Session.get('all_executives');
     if(counter > 0){
       counter--;
       Session.set("lv_count",counter);
@@ -198,9 +196,7 @@ Template.exec_loc.events({
   'click .list_vw-righthov': function(){
     var counter = Session.get("lv_count");
     var params = Router.current().getParams();
-    if(params.list_id == 'all_executives'){
-      var list = Session.get('all_executives');
-    }
+    var list = Session.get('all_executives');
     if(counter < list.length - 1)
     {
       counter++;

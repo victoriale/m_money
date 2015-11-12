@@ -179,14 +179,14 @@ Associated Files: list_view_logic.js and list_view.less
               <i class="fa fa-map-marker"></i>
               <a href="{{locUrl}}">
                 <span  class="list_vw-space list_vw-space2">
-                  {{c_hq_state}}, {{c_hq_city}}
+                  {{c_hq_state}}, {{c_hq_city}} ({{c_exchange}}:{{c_ticker}})
                 </span>
               </a>
               <!-- Here displays the description which come from the each loop-->
               <a href="{{url}}">
                 <div class="list_vw-adjust" title="{{c_name}}">{{ c_name }}</div>
               </a>
-              <div class="list_vw-follw1">${{price}}
+              <div class="list_vw-follw1">{{c_ticker}}: ${{price}}
                 <span class="list_vw-follws1" style="color: {{changeColor lcsi_price_last_operator}}">  <i class="fa {{changeIcon lcsi_price_last_operator}}"></i> </span>
                 <span class="list_vw-follw3" style="color: {{changeColor lcsi_price_last_operator}}">{{price_change}} ({{percent_change}}%) </span>
               </div>
@@ -234,10 +234,10 @@ Associated Files: list_view_logic.js and list_view.less
       {{/each}}
       </div>
       <!--created a container for the fotter  !-->
-      <div class="pagenate">
+      <!--<div class="pagenate">
         <div class ="pagenate-leftbox"><i class="fa fa-angle-left"></i> Prev</div>
         <div class ="pagenate-rightbox">Next <i class="fa fa-angle-right"></i></div>
-      </div>
+      </div>-->
       <div class="list_vw-fotter">
           {{> search_module}}
       </div>

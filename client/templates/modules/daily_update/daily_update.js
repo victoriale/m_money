@@ -4,12 +4,12 @@ Description: [daily_update]
 Associated Files: [daily_update.less][daily_update.html]*/
 
 Template.daily_update.onCreated(function(){
-  Session.set('d_u_range', '5D');
   this.autorun(function(){
     var params = Router.current().getParams();
 
     if(Session.get('IsLocation')){
       //Set initial range
+      Session.set('d_u_range', '5Y');
 
       Meteor.call('GetAIContent2', Session.get('state_id'), Session.get('city_id'), function(err, data){
         if(err){
@@ -95,16 +95,26 @@ function transformLocationDailyUpdate(){
       highchartsData.push(point);
 		}
   })
+
+
+
   //GRAPH MUST BE ASC order from [0] - [max] where max is the latest date in unix
   highchartsData.reverse();
   data.highchartsData = highchartsData;
+
+  highchartsData.push([
+    moment().format('X') * 1000,
+    Number(data.composite_summary.current_price)
+  ]);
 
   Session.set('graph_data', data);
 
   daily_update.csi_price = data.composite_summary.current_price;
   daily_update.csi_percent_change_since_last = data.composite_summary.percent_change;
   daily_update.csi_price_change_since_last = data.composite_summary.price_change;
-  daily_update.lastUpdated = moment(data.composite_summary.last_updated).tz('America/New_York').format('dddd MM/DD/YYYY');
+  //WAITING ON API FIX FOR CORRECT DATE (USING TODAY'S DATE AS PLACEHOLDER) SWITCH OUT WHEN API READY
+  daily_update.lastUpdated = (new Date(data.composite_summary.last_updated)).toSNTFormTime();
+  //daily_update.lastUpdated = (new Date()).toSNTFormTime();
   daily_update.todays_high = data.composite_summary.todays_high;
   daily_update.todays_low = data.composite_summary.todays_low;
   daily_update.previous_close = data.composite_summary.previous_close;
@@ -177,7 +187,6 @@ Template.daily_update.helpers({
     if(!Session.get('IsCompany')){
       style = 'disabled';
     }
-    var match = Session.get('d_u_range');
     var buttons = [
       {data:"1D"},
       {data:"5D"},
@@ -190,11 +199,6 @@ Template.daily_update.helpers({
       {data:"3Y", class: style},
       {data:"5Y", class: style},
     ];
-    for ( var i = 0; i < buttons.length; i++ ) {
-      if ( buttons[i].data == match ) {
-        buttons[i].class = "active";
-      }
-    }
     return buttons;
   },
   aiInfo: function(){
@@ -322,8 +326,8 @@ Template.daily_update.helpers({
         if(Session.get('IsCompany')){
           var graphData = data.highchartsData;
           //Old Method: Pulled 24 hour period. So when stock is closed, on graph straight line was shown
-          var min = latestDate.subtract(1, 'days').format('X') * 1000;
-          //var min = moment().utc().hour(8).minute(30).format('X') * 1000;
+          //var min = latestDate.subtract(1, 'days').format('X') * 1000;
+          var min = moment().utc().hour(9).minute(30).format('X') * 1000;
         }
       break;
       case '5D':
