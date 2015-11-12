@@ -9,7 +9,7 @@ Template.daily_update.onCreated(function(){
 
     if(Session.get('IsLocation')){
       //Set initial range
-      Session.set('d_u_range', '5Y');
+      Session.set('d_u_range', '1M');
 
       Meteor.call('GetAIContent2', Session.get('state_id'), Session.get('city_id'), function(err, data){
         if(err){
@@ -59,6 +59,8 @@ Template.daily_update.onCreated(function(){
   })
   this.autorun(function(){
     if(Session.get('IsCompany')){
+      Session.set('d_u_range', '5Y');
+
       var companyid =  Session.get('profile_header');
       if(typeof companyid != 'undefined'){
         Meteor.call('GetAIContent', companyid.c_id, function(err, data){
@@ -181,6 +183,7 @@ Template.daily_update.helpers({
   },
 
   buttons: function(){
+    var d_u_range = Session.get('d_u_range');
     var style = '';
     if(!Session.get('IsCompany')){
       style = 'disabled';
@@ -197,6 +200,13 @@ Template.daily_update.helpers({
       {data:"3Y", class: style},
       {data:"5Y", class: style},
     ];
+
+    buttons.forEach(function(item, index){
+      if(item.data === d_u_range){
+        item.active = 'active';
+      }
+    })
+
     return buttons;
   },
   aiInfo: function(){
