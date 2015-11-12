@@ -50,8 +50,7 @@ Template.co_fin_overview.helpers({
     }
 
     //Get dependencies to find date range
-    var dataLength = data.highchartsData.length;
-    var latestDate = moment(data.highchartsData[dataLength - 1][0]);
+    var latestDate = moment(data.highchartsData[0][0]);
     data.highchartsData.reverse();
     //Get range value based on option selected
     switch(fo_range){
@@ -200,8 +199,7 @@ Template.co_fin_overview.helpers({
 
     //Get beginning of 52 week range (Esitmated 250 open stock market days)
     if(data.stock_history.length >= 250){
-      var sh_length = data.stock_history.length;
-      var start_val = data.stock_history[sh_length - 250].sh_close;
+      var start_val = data.stock_history[250].sh_close;
       company_data.start_range = Math.round(Number(start_val) * 100) / 100;
       //Find percentage change since a year ago
       var pResult = findPercentage(Number(company_data.csi_price), company_data.start_range);
