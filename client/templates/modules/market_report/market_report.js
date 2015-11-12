@@ -254,6 +254,12 @@ Template.market_report.helpers({                   //helper class for adding dat
       ];
     }
 
+    //Push in most recent value to graph data
+    g_data.push([
+      new Date().setHours(0,0,0,0),
+      parseFloat(data.market_history[current][0].current_price)
+    ])
+
     var data = {
       c_name: current,
       highchartsData: g_data
@@ -329,7 +335,7 @@ Template.market_report.helpers({                   //helper class for adding dat
 });
 
 //Function to render the spline chart
-function mreportgraph() {
+/*function mreportgraph() {
   var seriesOptions = [],
   seriesCounter = 0,
   //Placeholder data labels
@@ -424,4 +430,4 @@ function mreportgraph() {
 
 Template.market_report.rendered=function() {
   mreportgraph();
-}
+}*/
