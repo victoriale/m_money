@@ -134,7 +134,9 @@ Template.c_p_graph.helpers({
     switch(c_p_range){
       case '1D':
         var range = 1;
-        var min = latestDate.subtract(1, 'days').format('X') * 1000;
+        //Old Method: Pulled 24 hour period. So when stock is closed, on graph straight line was shown
+        //var min = latestDate.subtract(1, 'days').format('X') * 1000;
+        var min = moment().utc().hour(8).minute(30).format('X') * 1000;
       break;
       case '5D':
         var range = 5;

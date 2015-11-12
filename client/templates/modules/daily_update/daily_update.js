@@ -312,7 +312,7 @@ Template.daily_update.helpers({
         }
         if(Session.get('IsCompany')){
           var graphData = data.highchartsData;
-          var min = latestDate.subtract(1, 'days').format('X') * 1000;
+          var min = moment().utc().hour(8).minute(30).format('X') * 1000;
         }
       break;
       case '5D':
@@ -360,6 +360,7 @@ Template.daily_update.helpers({
         var min = latestDate.subtract(5, 'years').format('X') * 1000;
       break;
     }
+
     //Get oldest date available to check if data range is possible
     var oldestDate = moment(data.highchartsData[0][0]).format('X') * 1000;
     //If min is less than oldest data available, set min to oldest date
@@ -383,7 +384,7 @@ Template.daily_update.helpers({
           labels: {
               overflow: 'justify'
           },
-          min: min
+          min: min,
       },
       yAxis: {
           title: '',
