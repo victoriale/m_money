@@ -45,7 +45,7 @@ Template.daily_update.onCreated(function(){
           var highchartsData = [];
 
           data.one_day_location_daily_update.forEach(function(item, index){
-            highchartsData.push([moment(item.sh_date).format('X') * 1000, Number(item.sh_close)])
+            highchartsData.push([item.sh_date * 1000, Number(item.sh_close)])
           })
 
           highchartsData.reverse();

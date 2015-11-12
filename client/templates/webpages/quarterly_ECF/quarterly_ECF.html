@@ -22,29 +22,49 @@
       <div class="q_ECF-pgh-img"></div>
       <div class="q_ECF-pgh-txt">
         <div class="q_ECF-pgh-txt-dt">LAST UPDATED: {{getdate}}</div>
-        <div class="q_ECF-pgh-txt-loc"><i class = "fa fa-map-marker q_ECF-pgh-txt-icon "></i> &nbsp; The United States of America</div>
-        <div class="q_ECF-pgh-txt-h1">2015 Q2 cash flow</div>
+        <div class="q_ECF-pgh-txt-loc"><i class = "fa fa-map-marker q_ECF-pgh-txt-icon "></i> &nbsp;{{loc}}</div>
+        <div class="q_ECF-pgh-txt-h1">{{title}} cash flow</div>
         <div class="q_ECF-pgh-txt-h2">For {{cname}}</div>
       </div>
       <!-- for horizontal line -->
       <div class="q_ECF-pgh-hln"></div>
       <!-- for dropdowns -->
-      <div class="q_ECF-pgh-drp" style="width:160px">
-          <div class="q_ECF-pgh-drp-txt"> Balance Sheet</div>
-        <div class="q_ECF-pgh-drp-cir">
-          <div> <i class="fa fa-caret-down icon"></i></div>
+      <div class="q_ECF-pgh-drp" style="width:160px" id="cir1">
+        <div class="q_ECF-pgh-drp-txt"> Balance Sheet</div>
+        <div class="q_ECF-pgh-drp-cir" ><i class="fa fa-caret-down icon"></i></div>
+        <div class="dropdown-menu box"  style="width:160px" id="dd1">
+          <div class="dropitem" style="width:160px; border-top:none" id="ExchangeType1">
+            <span> Income Statement</span>
+          </div>
+          <div class="dropitem" style="width:160px" id="ExchangeType2">
+            <span> Balance Sheet</span>
+          </div>
+          <div class="dropitem" style="width:160px" id=ExchangeType3>
+            <span> Cash Flow</span>
+          </div>
         </div>
       </div>
-      <div class="q_ECF-pgh-drp">
+      <div class="q_ECF-pgh-drp" style="width:140px" id = "cir2">
         <div class="q_ECF-pgh-drp-txt"> Quarterly Data</div>
-        <div class="q_ECF-pgh-drp-cir">
-            <div> <i class="fa fa-caret-down icon"></i></div>
+        <div class="q_ECF-pgh-drp-cir"  ><i class="fa fa-caret-down icon"></i></div>
+        <div class="dropdown-menu box"  style="width:140px"  id="dd2">
+          <div class="dropitem"  style="width:130px; border-top:none; border-right:none"  id="Q1">
+            <span> Quarterly Data</span>
+          </div>
+          <div class="dropitem" style="width:130px" id="AnnualData">
+            <span>Annual Data</span>
+          </div>
         </div>
       </div>
-      <div class="q_ECF-pgh-drp">
-        <div class="q_ECF-pgh-drp-txt"> 2015 </div>
-        <div class="q_ECF-pgh-drp-cir">
-          <div> <i class="fa fa-caret-down icon"></i></div>
+      <div class="q_ECF-pgh-drp" style="width:125px" id = "cir3">
+        <div class="q_ECF-pgh-drp-txt"> {{fyr}} </div>
+        <div class="q_ECF-pgh-drp-cir"><i class="fa fa-caret-down icon"></i></div>
+        <div class="dropdown-menu box"  style="width:125px" id="dd3">
+          {{#each yr}}
+          <div class="dropitem" id="2010">
+            <span> {{lbl}}</span>
+          </div>
+          {{/each}}
         </div>
       </div>
   <!-- for legends -->
@@ -55,21 +75,21 @@
         <div class="q_ECF-pgh-l-txt">
           <div class="q_ECF-pgh-l-cir" style="background-color:#ca1010" id="cir"></div>
           <div style="float:left;margin-right:5px;">
-            <div class="q_ECF-pgh-l-num">$2.94 Million</div>
+            <div class="q_ECF-pgh-l-num">{{financ}}</div>
             <div class="q_ECF-pgh-l-lbl">Financing</div>
           </div>
         </div>
         <div class="q_ECF-pgh-l-txt">
           <div class="q_ECF-pgh-l-cir" style="background-color:#f7701d" id="cir"></div>
           <div style="float:left;margin-right:5px;">
-            <div class="q_ECF-pgh-l-num">$12.46 Million</div>
+            <div class="q_ECF-pgh-l-num">{{investg}}</div>
             <div class="q_ECF-pgh-l-lbl">Investing</div>
           </div>
         </div>
         <div class="q_ECF-pgh-l-txt">
           <div class="q_ECF-pgh-l-cir" style="background-color:#3098ff" id="cir"></div>
           <div style="float:left;margin-right:5px;">
-            <div class="q_ECF-pgh-l-num">$4.99 Million</div>
+            <div class="q_ECF-pgh-l-num">{{operate}}</div>
             <div class="q_ECF-pgh-l-lbl">Operating Income</div>
           </div>
         </div>
