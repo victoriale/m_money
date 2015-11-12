@@ -163,6 +163,12 @@ function GetSuggest(nowTime) {
 
       var suggestions = sortSuggestions(data, $('.fi_mainsearch input')[0].value);
 
+      if ( suggestions.length == 0 ) {
+        $('.fi_search_recommendations').html('');
+        $('.fi_search_recommendations').removeClass('active');
+        return false;
+      }
+
       var HTMLString = '<div class="caret-top"></div>';
       for ( var index = 0; index < suggestions.length; index++ ) {
         if ( index != 0 ) {
