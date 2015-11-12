@@ -308,11 +308,16 @@ Template.daily_update.helpers({
       case '1D':
         if(Session.get('IsLocation')){
           var graphData = Session.get('one_day_location_daily_update');
+          graphData.sort(function(a,b){
+            return parseFloat(a[0]) - parseFloat(b[0]);
+          });
           var min = graphData[0][0];
         }
         if(Session.get('IsCompany')){
           var graphData = data.highchartsData;
+          //Old Method: Pulled 24 hour period. So when stock is closed, on graph straight line was shown
           var min = latestDate.subtract(1, 'days').format('X') * 1000;
+          //var min = moment().utc().hour(8).minute(30).format('X') * 1000;
         }
       break;
       case '5D':
@@ -360,6 +365,7 @@ Template.daily_update.helpers({
         var min = latestDate.subtract(5, 'years').format('X') * 1000;
       break;
     }
+
     //Get oldest date available to check if data range is possible
     var oldestDate = moment(data.highchartsData[0][0]).format('X') * 1000;
     //If min is less than oldest data available, set min to oldest date
@@ -381,9 +387,13 @@ Template.daily_update.helpers({
       xAxis: {
           type: 'datetime',
           labels: {
-              overflow: 'justify'
+              overflow: 'justify',
+              // formatter: function() {
+              //     return Highcharts.dateFormat('%a %d %b %l %p', this.value);
+              // }
           },
-          min: min
+
+          min: min,
       },
       yAxis: {
           title: '',
