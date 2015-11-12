@@ -4,12 +4,12 @@ Description: [daily_update]
 Associated Files: [daily_update.less][daily_update.html]*/
 
 Template.daily_update.onCreated(function(){
+  Session.set('d_u_range', '5D');
   this.autorun(function(){
     var params = Router.current().getParams();
 
     if(Session.get('IsLocation')){
       //Set initial range
-      Session.set('d_u_range', '5Y');
 
       Meteor.call('GetAIContent2', Session.get('state_id'), Session.get('city_id'), function(err, data){
         if(err){
@@ -177,6 +177,7 @@ Template.daily_update.helpers({
     if(!Session.get('IsCompany')){
       style = 'disabled';
     }
+    var match = Session.get('d_u_range');
     var buttons = [
       {data:"1D"},
       {data:"5D"},
@@ -189,6 +190,11 @@ Template.daily_update.helpers({
       {data:"3Y", class: style},
       {data:"5Y", class: style},
     ];
+    for ( var i = 0; i < buttons.length; i++ ) {
+      if ( buttons[i].data == match ) {
+        buttons[i].class = "active";
+      }
+    }
     return buttons;
   },
   aiInfo: function(){
