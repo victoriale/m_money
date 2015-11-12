@@ -112,13 +112,12 @@ Template.money_memory_page.helpers({
 
     //If data does not exists exit helper
     if(typeof data === 'undefined'){
-      return ''
+      return '';
     }
 
     //Get dependencies to find date range
-    var dataLength = data.highchartsData.length;
-    var latestDate = moment(data.highchartsData[dataLength - 1][0]);
-
+    var latestDate = moment(data.highchartsData[0][0]);
+    data.highchartsData.reverse();
     //Get range value based on option selected
     switch(mm_range){
       case 'mmbbl-0':
@@ -146,7 +145,6 @@ Template.money_memory_page.helpers({
         var min = latestDate.subtract(1, 'years').format('X') * 1000;
       break;
       case 'mmbbl-8':
-        var range = 1095;
         var min = latestDate.subtract(3, 'years').format('X') * 1000;
       break;
       case 'mmbbl-9':
@@ -166,6 +164,8 @@ Template.money_memory_page.helpers({
     if(min <= oldestDate){
       min = oldestDate;
     }
+
+    //console.log('DATA', data, min);
 
     var monmemGraphObject = {
       title: {
@@ -278,8 +278,7 @@ Template.money_memory_page.helpers({
 
     //Get beginning of 52 week range (Esitmated 250 open stock market days)
     if(data.stock_history.length >= 250){
-      var sh_length = data.stock_history.length;
-      var start_val = data.stock_history[sh_length - 250].sh_close;
+      var start_val = data.stock_history[250].sh_close;
       company_data.start_range = commaSeparateNumber_decimal(Math.round(Number(start_val) * 100) / 100);
     }else{
       company_data.start_range = 'N/A';

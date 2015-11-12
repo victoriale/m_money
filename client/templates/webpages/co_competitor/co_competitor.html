@@ -103,7 +103,7 @@ Associated Files: co_competitor_logic.js and co_competitor.less
             <div class="co_comp-m_c-dp-itl co_comp-m_c-dp-it2">
       {{c_name}} <span class="co_comp-m_c-dp-dpct">is currently priced at: <br></span>
       <span class="co_comp-m_c-dp-itl">${{csi_price}} </span>
-      <span class="co_comp-m_c-dp-itl co_comp-m_c-dp-it4"> <i class=" fa {{changeIcon csi_price_change_since_last}}"></i></span>  <span class="co_comp-m_c-dp-itl co_comp-m_c-dp-it5" style="color:{{changeColor csi_price_change_since_last}}">{{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%) </span>
+      <span class="co_comp-m_c-dp-itl co_comp-m_c-dp-it4" style="color: {{changeColor csi_price_last_operator}}"> <i class=" fa {{changeIcon csi_price_last_operator}}"></i></span>  <span class="co_comp-m_c-dp-itl co_comp-m_c-dp-it5" style="color:{{changeColor csi_price_last_operator}}">{{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%) </span>
             </div>
           <!-- </div> -->
         </li>
@@ -205,7 +205,7 @@ Associated Files: co_competitor_logic.js and co_competitor.less
           <div class="co_comp-rttx1"> Stock Price</div>
           <div class="co_comp-follwt">
           <span class="co_comp-follw1"> ${{csi_price}}</span>
-            <span class="co_comp-follw1 co_comp-follwg" style="color:{{changeColor csi_price_change_since_last}}"><i class="fa {{changeIcon csi_price_change_since_last}}" style="color:{{changeColor csi_price_change_since_last}}"> </i> {{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%)</span>
+            <span class="co_comp-follw1 co_comp-follwg" style="color:{{changeColor csi_price_last_operator}}"><i class="fa {{changeIcon csi_price_last_operator}}" style="color:{{changeColor csi_price_last_operator}}"> </i> {{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%)</span>
           </div>
           <div class="co_comp-rttxg"><span class="co_comp-follws">{{csi_price_last_updated}}</span></div>
         </div>
