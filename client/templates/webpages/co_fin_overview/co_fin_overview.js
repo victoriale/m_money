@@ -196,6 +196,8 @@ Template.co_fin_overview.helpers({
 
     var company_data = data.company_data;
 
+    //console.log('company data', company_data);
+
     //Get beginning of 52 week range (Esitmated 250 open stock market days)
     if(data.stock_history.length >= 250){
       var sh_length = data.stock_history.length;
@@ -246,18 +248,6 @@ Template.co_fin_overview.helpers({
 
     company_data.share_company_url =  "https://www.facebook.com/sharer/sharer.php?u=" + Router.pick_path('content.companyprofile', {company_id: company_data.c_id, name: company_data.c_name, ticker: company_data.c_ticker});
     company_data.share_company_fin_overview_url = "https://www.facebook.com/sharer/sharer.php?u=" + Router.pick_path('content.finoverview', {company_id: company_data.c_id, name: company_data.c_name, ticker: company_data.c_ticker});
-
-    //Determine icon to be displayed
-    if(company_data.csi_price_change_since_last > 0){
-      company_data.icon = 'fa-arrow-up';
-      company_data.change_color = '#44b224';
-    }else if(company_data.csi_price_change_since_last < 0){
-      company_data.icon = 'fa-arrow-down';
-      company_data.change_color = '#ca1010';
-    }else{
-      company_data.icon = '';
-      company_data.change_color = '';
-    }
 
     //Build location string
     if(company_data.c_hq_city !== '' && company_data.c_hq_state !== ''){
