@@ -24,6 +24,12 @@ function GetSuggest(nowTime) {
 
       var suggestions = sortSuggestions(data, $('.layout_nav-search_input')[0].value);
 
+      if ( suggestions.length == 0 ) {
+        $('.header_search_recommendations').html('');
+        $('.header_search_recommendations').removeClass('active');
+        return false;
+      }
+
       var HTMLString = '<div class="caret-top"></div>';
       for ( var index = 0; index < suggestions.length; index++ ) {
         if ( index != 0 ) {

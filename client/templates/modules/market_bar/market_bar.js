@@ -53,12 +53,15 @@ Template.market_bar.helpers({
       switch(data.name){
         case 'NASDAQ':
         data.listlink = Session.get('nasdaq-list');
+        data.close_value = Number(Session.get('new_market_report').market_history.NASDAQ[0].current_price).toFixed(2);
         break;
         case 'NYSE':
         data.listlink = Session.get('nyse-list');
+        data.close_value = Number(Session.get('new_market_report').market_history.NYSE[0].current_price).toFixed(2);
         break;
         case 'AMEX':
         data.listlink = Session.get('amex-list');
+        data.close_value = Number(Session.get('new_market_report').market_history.AMEX[0].current_price).toFixed(2);
         break;
         default:
 
