@@ -180,16 +180,9 @@ Template.market_report.helpers({                   //helper class for adding dat
     }
     data.market_history[current][0].sh_close = Math.round(data.market_history[current][0].sh_close*100)/100
     var percent_change = parseFloat(data.market_history[current][0].percent_change);
-    var change_amt = Number(data.market_history[current][0].price_change).toFixed(2);
-    if ( percent_change >= 0 ) {
-      var arrow_class = "fa-arrow-circle-o-up";
-      var color_class = "mreport_up";
-      change_amt = '$' + change_amt;
-    } else {
-      var arrow_class = "fa-arrow-circle-o-down";
-      var color_class = "mreport_down";
-      change_amt = '-$' + Math.abs(change_amt);
-    }
+    var change_amt = '$' + Number(data.market_history[current][0].price_change).toFixed(2);
+    var price_operator = data.market_history[current][0].price_operator;
+
     // Create graph
     var g_data = [];
     for ( var index = 0; index < data.market_history[current].length; index++ ) {
@@ -200,15 +193,14 @@ Template.market_report.helpers({                   //helper class for adding dat
 
     var dataReturn = {
       index_name: current + ' Index',
-      stock_price: '$' + ToCommaNumber(Number(data.market_history[current][0]['graph_data'][0].sh_open).toFixed(2)),
+      stock_price: '$' + ToCommaNumber(Number(data.market_history[current][0].current_price).toFixed(2)),
       stock_price_number: change_amt,
       stock_price_percent: percent_change + '%',
-      arrow_class: arrow_class,
-      color_class: color_class,
+      price_operator: price_operator,
       image: '/exchange/' + current + '.png',
       exchurl: globalUrl(current)
       };
-    console.log(dataReturn);
+    //console.log('data return', dataReturn);
     return dataReturn;
   },
 

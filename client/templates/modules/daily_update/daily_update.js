@@ -4,12 +4,12 @@ Description: [daily_update]
 Associated Files: [daily_update.less][daily_update.html]*/
 
 Template.daily_update.onCreated(function(){
+  Session.set('d_u_range', '5D');
   this.autorun(function(){
     var params = Router.current().getParams();
 
     if(Session.get('IsLocation')){
       //Set initial range
-      Session.set('d_u_range', '5Y');
 
       Meteor.call('GetAIContent2', Session.get('state_id'), Session.get('city_id'), function(err, data){
         if(err){
@@ -177,6 +177,7 @@ Template.daily_update.helpers({
     if(!Session.get('IsCompany')){
       style = 'disabled';
     }
+    var match = Session.get('d_u_range');
     var buttons = [
       {data:"1D"},
       {data:"5D"},
@@ -189,6 +190,11 @@ Template.daily_update.helpers({
       {data:"3Y", class: style},
       {data:"5Y", class: style},
     ];
+    for ( var i = 0; i < buttons.length; i++ ) {
+      if ( buttons[i].data == match ) {
+        buttons[i].class = "active";
+      }
+    }
     return buttons;
   },
   aiInfo: function(){
@@ -308,11 +314,16 @@ Template.daily_update.helpers({
       case '1D':
         if(Session.get('IsLocation')){
           var graphData = Session.get('one_day_location_daily_update');
+          graphData.sort(function(a,b){
+            return parseFloat(a[0]) - parseFloat(b[0]);
+          });
           var min = graphData[0][0];
         }
         if(Session.get('IsCompany')){
           var graphData = data.highchartsData;
+          //Old Method: Pulled 24 hour period. So when stock is closed, on graph straight line was shown
           var min = latestDate.subtract(1, 'days').format('X') * 1000;
+          //var min = moment().utc().hour(8).minute(30).format('X') * 1000;
         }
       break;
       case '5D':
@@ -360,6 +371,7 @@ Template.daily_update.helpers({
         var min = latestDate.subtract(5, 'years').format('X') * 1000;
       break;
     }
+
     //Get oldest date available to check if data range is possible
     var oldestDate = moment(data.highchartsData[0][0]).format('X') * 1000;
     //If min is less than oldest data available, set min to oldest date
@@ -381,9 +393,13 @@ Template.daily_update.helpers({
       xAxis: {
           type: 'datetime',
           labels: {
-              overflow: 'justify'
+              overflow: 'justify',
+              // formatter: function() {
+              //     return Highcharts.dateFormat('%a %d %b %l %p', this.value);
+              // }
           },
-          min: min
+
+          min: min,
       },
       yAxis: {
           title: '',

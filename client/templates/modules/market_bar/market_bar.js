@@ -53,12 +53,15 @@ Template.market_bar.helpers({
       switch(data.name){
         case 'NASDAQ':
         data.listlink = Session.get('nasdaq-list');
+        data.close_value = Number(Session.get('new_market_report').market_history.NASDAQ[0].current_price).toFixed(2);
         break;
         case 'NYSE':
         data.listlink = Session.get('nyse-list');
+        data.close_value = Number(Session.get('new_market_report').market_history.NYSE[0].current_price).toFixed(2);
         break;
         case 'AMEX':
         data.listlink = Session.get('amex-list');
+        data.close_value = Number(Session.get('new_market_report').market_history.AMEX[0].current_price).toFixed(2);
         break;
         default:
 
@@ -161,7 +164,7 @@ Template.market_bar.onCreated(function(){
         var latestItem = marketData[0]['graph_data'];
         var close_value = commaSeparateNumber_decimal(Math.round(latestItem[0].sh_open * 100) / 100);
         var change_value = Number(marketData[0].price_change).toFixed(2);
-        var change_value_number = Math.round(marketData[0].price_change * 100) / 100;
+        var price_operator = marketData.price_operator;
         lastUpdated = latestItem.c_tr_last_updated;
         latestItem.forEach(function(item, index){
           //Transform date
@@ -181,7 +184,7 @@ Template.market_bar.onCreated(function(){
           name: name,
           close_value: close_value,
           change_value: change_value,
-          change_value_number: change_value_number,
+          price_operator: price_operator,
           percent: Number(marketData[0].percent_change).toFixed(2)
         })
 

@@ -72,8 +72,8 @@
           <!--Price of stock-->
           <div class="mreport_body_stock">
             <span class="mreport_body_stock_price">{{stock_price}}</span>
-            <span class="mreport_body_stock_history {{color_class}}">
-              <i class="fa {{arrow_class}} mreport_body_stock_history_icon"></i>
+            <span class="mreport_body_stock_history" style="color: {{changeColor price_operator}}">
+              <i class="fa {{changeIcon price_operator}} mreport_body_stock_history_icon"></i>
               <span class="mreport_body_stock_history">{{stock_price_number}} ({{stock_price_percent}})</span>
             </span>
           </div>

@@ -99,6 +99,7 @@ Template.cp_rdr.helpers({
 
 Template.c_p_graph.helpers({
   buttons: function(){
+    var match = Session.get('c_p_range');
     var buttons = [
       {data:"1D"},
       {data:"5D"},
@@ -111,6 +112,11 @@ Template.c_p_graph.helpers({
       {data:"3Y"},
       {data:"5Y"},
     ];
+    for ( var i = 0; i < buttons.length; i++ ) {
+      if ( buttons[i].data == match ) {
+        buttons[i].class = "active";
+      }
+    }
     return buttons;
   },
 
@@ -134,7 +140,9 @@ Template.c_p_graph.helpers({
     switch(c_p_range){
       case '1D':
         var range = 1;
+        //Old Method: Pulled 24 hour period. So when stock is closed, on graph straight line was shown
         var min = latestDate.subtract(1, 'days').format('X') * 1000;
+        //var min = moment().utc().hour(8).minute(30).format('X') * 1000;
       break;
       case '5D':
         var range = 5;
@@ -261,7 +269,7 @@ Template.c_p_graph.events({
 })
 
 Template.c_p_graph.onCreated(function(){
-  Session.set('c_p_range', '5Y');
+  Session.set('c_p_range', '1D');
   this.autorun(function(){
     var data = Session.get('daily_update');
     var highchartsData = [];
