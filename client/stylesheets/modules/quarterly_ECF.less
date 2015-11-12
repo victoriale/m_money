@@ -1,0 +1,450 @@
+/*Author: Sri Sindhusha Kuchipudi
+  Created: 10/18/2015
+  Description: .less file for quarterly_ECF webpage
+  Associated Files: quarterly_ECF.html, quarterly_ECF.less, quarterly_ECF.js
+*/
+
+@import (reference)"../global_vars.less";
+// class for overflow hidden
+
+.txtc {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+//class for webpage
+.q_ECF{
+  background-color: #ffffff;
+  width: 680px;
+  height:auto;
+  //height:  1766px;
+  margin: 5px 0px 5px 10px;
+  //header
+  &-h{
+    width: 100%;
+    height: 50px;
+    background-image: url('/header_texture.png');
+    //class for blue box
+    &-hdarw{
+      background-color: @blue;
+      width: 60px;
+      height: 50px;
+      float:left;
+      &-facon{
+        color: white;
+        font-size: 30px;
+        margin: 11px 0px 0px 15px;
+      }
+    }
+    //class for blue arrow
+    &-arw{
+      width: 0;
+  	  height: 0;
+  	  border-top: 25px solid transparent;
+  	  border-bottom: 25px solid transparent;
+  	  border-left: 15px solid @blue;
+      float: left;
+    }
+    //class for text
+    &-txt{
+      width: 241px;
+      height: 18px;
+      &-t1{
+        height: 19px;
+        line-height: 15px;
+        float: left;
+        font-family: HN-L;
+        font-size: 19px;
+        margin-left: 20px;
+        margin-top: 17px;
+        color: @white;
+
+      &-strong{
+        height: 19px;
+        vertical-align: top;
+        display: inline-block;
+        max-width: 400px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight: normal;
+        font-family: HN-B;
+        }
+      }
+    }
+  }
+    //class for page header including graph section
+  &-pgh{
+    width: 100%;
+    height: 441px;
+      //class for image circle
+    &-img{
+      width: 100px;
+      height: 100px;
+      border: 2px solid @grey-3;
+      border-radius: 50%;
+      background-color: @white;
+      margin: 15px 0px 0px 15px;
+      float: left;
+      background-size: 100px 100px;
+      background-repeat: no-repeat;
+    }
+  //class for text container includeing date location and headings
+    &-txt{
+      width: 256px;
+      height: 100px;
+      margin: 14px 0px 0px 14px;
+      float: left;
+      text-align: left;
+      &-dt{
+        width: 201px;
+        max-width: 500px;
+        height: 10px;
+        font-family: HN;
+        font-size: 10px;
+        color: #838383;
+        line-height: 8px;
+        text-transform: uppercase;
+        .txtc;
+      }
+      &-icon{
+        color:  #000000;
+        font-size: 12px;/* Approximation due to font substitution */
+        font-weight: 400;
+        line-height: 28px;/* Approximation due to font substitution */
+        text-align: left;
+      }
+      //location
+      &-loc{
+        max-height: 20px;
+        font-family: HN;
+        font-size: 12px;
+        color: @black;
+        margin-top: 8px;
+        line-height: 28px;
+        text-align: left;
+        .txtc;
+        //line-height: 28px;/* Approximation due to font substitution */
+      }
+      //heading 1
+      &-h1{
+        height: 26px;
+        font-family: HN-B;
+        font-size: 28px;
+        color: @black;
+        margin-top: 5px;
+        line-height: 20px;
+        text-align: left;
+        //line-height: 28px;/* Approximation due to font substitution */
+
+      }
+      //heading 2
+      &-h2{
+        max-width: 500px;
+        height: 26px;
+        font-family: HN-L;
+        font-size: 28px;
+        color: @black;
+        margin-top: 3px;
+        line-height: 20px;
+        .txtc;
+      }
+    }
+    //horizontal line
+    &-hln{
+      background-color: #cccccc;
+      width: 680px;
+      height: 1px;
+      position:relative;
+      top:18px;
+      float: left;
+    }
+    //dropdowns
+    &-drp{
+      width: auto;
+      height: 30px;
+      float:left;
+      position: relative;
+      left: 12px;
+      top: 27px;
+      margin: 0px 10px 0px 0px;
+      border-radius: 3px;
+      border-width: 1px;
+      border-color:  #e1e1e1;
+      border-style: solid;
+      background-color:  #ebebeb;
+      cursor: pointer;
+      //text in drop downs
+      &-txt{
+        font-family: HN;
+        color:  #000000;
+        font-size: 12px;/* Approximation due to font substitution */
+        text-align: left;
+        float:left;
+        margin: 6px 33px 0px 7px;
+      }
+      // circle for dropdown arrow
+      &-cir{
+        border-radius: 50%;
+        background-color:  @white;
+        width: 20px;
+        text-align:center;
+        height: 20px;
+        float:right;
+        position:relative;
+        top:4px;
+        right: 10px;
+        .icon{
+          color:  #3098ff;
+          font-size: 12px;/* Approximation due to font substitution */
+          font-weight: 400;
+        }
+      }
+    }
+
+
+    // legend of the chart
+    &-l{
+      width: 650px;
+      height: 50px;
+      margin: 0px 10px 10px 10px;
+      background-color:  #f2f2f2;
+      padding: 0px 20px;
+      position: relative;
+      top: 35px;
+      float: left;
+      &-title{
+        float: left;
+        line-height: 28px;
+        fontSize: 18px;
+        fontFamily: HN-L;
+        color:#666666;
+        padding-top:10px;
+      }
+    //Container for each legend section
+      &-txt{
+        width: 130px;
+        margin-top: 10px;
+        margin-right: 8px;
+        float: right;
+        right: -35px;
+        position: relative;
+      }
+      //Color square
+      &-cir{
+        width: 10px;
+        height: 10px;
+        border-radius: 3px;
+        margin-top: 2px;
+        margin-right: 5px;
+        float: left;
+      }
+      //First line (amount)
+      &-num{
+        font-family: HN-B;
+        line-height: 16px;
+        max-width: 115px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      //Second line (label)
+      &-lbl{
+        font-size: 12px;
+        line-height: 14px;
+        max-width: 115px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+    &-gp{
+      width: 650px;
+      height: 197px;
+      float: left;
+      position: relative;
+      top: 38px;
+      left: 13px;
+    }
+  }
+  //bottom part including data
+  &-btm{
+    width: 655px;
+    height: 930px;
+    margin: 0px 0px 0px 10px;
+    //header
+    &-h{
+      width: 655px;
+      height: 40px;
+      background-color: @black;
+      float: left;
+      //vertical line
+      &-vln{
+        background-color:  #3098ff;
+        width: 5px;
+        height: 40px;
+        float: left;
+      }
+      //heading text
+      &-txt{
+        width: 412px;
+        height: 28px;
+        font-family: HN-B;
+        color: #ffffff;
+        position: relative;
+        font-size: 18px;
+        text-align: left;
+        left: 7px;
+        top: 7px;
+        .txtc;
+      }
+    }
+    //for sub menus background
+    .rec{
+      border-width: 1px;
+      border-color:  #E2E2E2;
+      border-style: solid;
+      background-color:#FDFDFD;
+      height: 28px;
+      float: left;
+    }
+    //for sub menus
+    &-subs{
+      width: 655px;
+      height: 30px;
+      position: relative;
+      top: 5px;
+      float: left;
+      //text in sub menu
+      &-txt{
+        font-family: HN;
+        color:  #000000;
+        font-size: 12px;/* Approximation due to font substitution */
+        line-height: 26px;/* Approximation due to font substitution */
+      }
+      //  for key metric
+      &-ky{
+        width: 215px;
+        text-align: center;
+        color:@black;
+      }
+      // for each quarter
+      &-Q{
+        width: 100px;
+        margin: 0px 0px 0px 10px;
+        text-align: center;
+        color: @black;
+      }
+    }
+    //section for a tile
+    &-sec{
+      width: 655px;
+      //height: 950px;
+      float: left;
+      //for tiles
+      &-tl{
+        //white tile
+        &-white{
+        background-color: #FDFDFD;
+        width: 655px;
+        height: 50px;
+        float:left;
+        }
+        //grey tile
+        &-grey{
+        background-color: #E9E9E9;
+        width: 655px;
+        height: 50px;
+        float:left;
+        }
+        //cointainer  for  key metric value
+        &-ky{
+          width: 215px;
+          text-align: center;
+          color: #000000;
+          float: left;
+          height: 50px;
+          overflow:hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          //key metric value
+          &-txt{
+            width: 215px;
+            max-height: 50px;
+            font-family: HN;
+            color:  #000000;
+            font-size: 12px;/* Approximation due to font substitution */
+            line-height: 50px;/* Approximation due to font substitution */
+            text-align: left;
+            float:left;
+            position: relative;
+            left: 30px;
+            .txtc;
+          }
+        }
+        //cointainer for each quartely value
+        &-Q{
+          width: 100px;
+          margin: 0px 0px 0px 10px;
+          text-align: center;
+          color: #000000;
+          height: 50px;
+          float: left;
+          // amount in each quarter
+        .num{
+            width: 100px;
+            max-height: 50px;
+            font-family: HN;
+            color:  #000000;
+            font-size: 12px;/* Approximation due to font substitution */
+            line-height: 50px;/* Approximation due to font substitution */
+            text-align: left;
+            float: left;
+            .txtc;
+          }
+          //position for displaying amount
+          &-n1{
+            position: relative;
+            left: 28px;;
+          }
+        }
+      }
+      //borders for each tiles
+      &-dashed{
+        border-bottom: 1px dashed #d7d7d7;
+      }
+      &-solid{
+        border-bottom: 5px solid #707070;
+      }
+      &-end{
+        border-bottom: 5px solid #d7d7d7;
+      }
+    }
+  }
+}
+.dropitem{
+  width: 100%;
+  height: 30px;
+  float:left;
+  padding-top:5px;
+  text-align:center;
+  position: relative;
+  top: -5px;
+  border-top: 1px solid #ebebeb;
+  background-color:  #ffffff;
+  cursor: pointer;
+}
+.box{
+  min-width: 100%;
+  height: auto;
+  float:left;
+  position: relative;
+  top:0px;
+  text-align: center;
+  border-radius: 3px;
+  border-width: 1px;
+  border-color:  #e1e1e1;
+  border-style: solid;
+  background-color:  #ffffff;
+  cursor: pointer;
+}
