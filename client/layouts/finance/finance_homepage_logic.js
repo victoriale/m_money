@@ -12,9 +12,7 @@ sortSuggestions = function(data, search_string) {
     var name_data = data.name.func_data.search_data;
     total_results = total_results + name_data.length;
     for ( var index = 0; index < name_data.length; index++ ) {
-      if ( results[name_data[index].name_type].length < 10 ) {
-        results[name_data[index].name_type][results[name_data[index].name_type].length] = name_data[index];
-      }
+      results[name_data[index].name_type][results[name_data[index].name_type].length] = name_data[index];
     }
   }
 
@@ -26,26 +24,21 @@ sortSuggestions = function(data, search_string) {
       max_index = 10;
     }
     for ( var index = 0; index < max_index; index++ ) {
-      if ( results[ticker_data[index].name_type].length < 10 ) {
-        results[ticker_data[index].name_type][results[ticker_data[index].name_type].length] = ticker_data[index];
-      }
+      results[ticker_data[index].name_type][results[ticker_data[index].name_type].length] = ticker_data[index];
     }
   }
 
   if ( data.location.func_success == true ) {
     var loc_data = data.location.func_data.search_data;
-    total_results = total_results + loc_data.length;
     for ( var index = 0; index < loc_data.length; index++ ) {
-      if ( results.location.length < 10 ) {
-        var isNew = true;
-        for ( var i = 0; i < results.location.length; i++ ) {
-          if ( results.location[i].c_dma_code == loc_data[index].c_dma_code && results.location[i].c_hq_city == loc_data[index].c_hq_city && results.location[i].c_hq_state == loc_data[index].c_hq_state ) {
-            isNew = false;
-          }
+      var isNew = true;
+      for ( var i = 0; i < results.location.length; i++ ) {
+        if ( results.location[i].c_dma_code == loc_data[index].c_dma_code && results.location[i].c_hq_city == loc_data[index].c_hq_city && results.location[i].c_hq_state == loc_data[index].c_hq_state ) {
+          isNew = false;
         }
-        if ( isNew && typeof loc_data[index].c_hq_state != "undefined" && typeof fullstate(loc_data[index].c_hq_state) != "undefined" && loc_data[index].dma_frontend_name != null ) {
-          results.location[results.location.length] = loc_data[index];
-        }
+      }
+      if ( isNew && typeof loc_data[index].c_hq_state != "undefined" && typeof fullstate(loc_data[index].c_hq_state) != "undefined" && loc_data[index].dma_frontend_name != null ) {
+        results.location[results.location.length] = loc_data[index];
       }
     }
   }
@@ -66,6 +59,7 @@ sortSuggestions = function(data, search_string) {
     officer: 2
   };
   for ( var index = 0; index < priority.length; index++ ) {
+    total_results += results[priority[index]].length;
     if ( results[priority[index]].length < 2 ) {
       amounts[priority[index]] = results[priority[index]].length;
     }
@@ -339,7 +333,7 @@ Template.finance_homepage.helpers({
         state.splice(curLoc, 1);
       }
     }
-    
+
     for(i = 0; i < 6; i++){
       var x = Math.floor((Math.random() * state.length));
       randomState[i] = state[x];
