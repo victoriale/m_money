@@ -193,7 +193,7 @@ Template.market_report.helpers({                   //helper class for adding dat
 
     var dataReturn = {
       index_name: current + ' Index',
-      stock_price: '$' + ToCommaNumber(Number(data.market_history[current][0]['graph_data'][0].sh_open).toFixed(2)),
+      stock_price: '$' + ToCommaNumber(Number(data.market_history[current][0].current_price).toFixed(2)),
       stock_price_number: change_amt,
       stock_price_percent: percent_change + '%',
       price_operator: price_operator,
