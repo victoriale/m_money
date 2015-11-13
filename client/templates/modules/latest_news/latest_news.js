@@ -54,7 +54,7 @@ Template.latest_news.helpers({
       var image = data.c_logo;
       if(image == null || image == 'nulll' || image == '' || typeof image == 'undefined'){
         state = fullstate(data.c_hq_state).replace(/ /g, '_');
-        return "background-image: url('/StateImages/Location_"+state+".jpg');";
+        return '/StateImages/Location_'+state+'.jpg';
       } else {
         return 'http://images.investkit.com/images/'+image;
       }
@@ -229,7 +229,7 @@ Template.latest_news.helpers({
     else {
       var image = Session.get('profile_header').c_hq_state;
       if(image == 'National' || image == '' || typeof image == 'undefined'){
-        return "background-image: url('/StateImages/Location_National.jpg');";
+        return "background-image: url('/StateImages/Location_"+image+".jpg');";
       }else{
         if(isNaN(image)){
           image = fullstate(image);
