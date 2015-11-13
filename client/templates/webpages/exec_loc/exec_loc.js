@@ -82,7 +82,7 @@ Template.exec_loc.helpers({
         data['lcsi_market_cap'] = 0;
       }else{
         data['objname'] = 'Compensation';
-        data['lcsi_market_cap'] = commaSeparateNumber_decimal(data.compensation.TotalComp.split('.')[0]);
+        data['lcsi_market_cap'] = commaSeparateNumber_decimal(data.compensation.TotalComp.toString().split('.')[0]);
       }
       data['newDate'] = CurrentDate();
       data['rank'] = index+1;
