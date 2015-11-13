@@ -37,8 +37,10 @@ Associated Files: latest_news.less, latest_news_logic.js
       <div class = "nws-bdy-desc">
         <!-- Company News Body Description Image Placeholder -->
         {{#if isLoc}}
+        <!--Location News Image Placeholder-->
           <div class = "nws-bdy-desc-plchldr" style="{{topImage}}"></div>
         {{else}}
+        <!--Company/Executive News Image Placeholder-->
           <div class = "nws-bdy-desc-plchldr" style="background-image:url('{{imageUrl topImage}}')"></div>
         {{/if}}
         <!-- END Company News Body Description Image Placeholder -->

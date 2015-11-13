@@ -850,10 +850,14 @@ Meteor.methods({
     return future.wait();
   },
 
-  listOfListData: function(company_id){
+  listOfListData: function(company_id, page){
     var future = new Future();
     var startTime = (new Date()).getTime();
     var UrlString = 'http://apifin.investkit.com/call_controller.php?action=company_profile&option=indie&call=list_of_lists&param=' + company_id + "&limit=1,10";
+
+    if ( typeof page != "undefined" ) {
+      UrlString += "&page=" + page;
+    }
     // console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, company_id, error, data){
