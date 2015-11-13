@@ -26,8 +26,8 @@ Template.co_competitor.helpers({
     var company_id = newData.c_id;
 
     newData['c_tr_last_updated'] = newData['c_tr_last_updated'].replace(/-/g, '/');
-
-    newData['market_cap'] = numConverter(Number(newData['market_cap']));
+    //database sending back in million
+    newData['market_cap'] = commaSeparateNumber_decimal(Number(newData['market_cap'])*1000000);
     newData['csi_price_change_since_last'] = Number(newData['csi_price_change_since_last']).toFixed(2);
     newData['csi_price'] = Number(newData['csi_price']).toFixed(2);
     newData['csi_percent_change_since_last'] = Number(newData['csi_percent_change_since_last']).toFixed(2);
@@ -55,7 +55,8 @@ Template.co_competitor.helpers({
     var compare = data.company;
     var competitors = data.competitors;
     $.map(competitors, function(data, index){
-      data['market_cap'] = numConverter(Number(data['market_cap']));
+      //database sending back in million
+      data['market_cap'] = commaSeparateNumber_decimal(Number(data['market_cap'])*1000000);
       data['csi_price_change_since_last'] = Number(data['csi_price_change_since_last']).toFixed(2);
       data['csi_price'] = Number(data['csi_price']).toFixed(2);
       data['csi_percent_change_since_last'] = Number(data['csi_percent_change_since_last']).toFixed(2);
@@ -111,17 +112,3 @@ Template.co_competitor.events({
         $(".co_comp-page-selector200").css("background-color","#ffffff");
     },
 });
-
-//number converter to decimal with correct format
-function numConverter(num) {
-	if (num >= 1000000000) {
-		return (num / 1000000000).toFixed(1).replace(/\.0$/, '') + ' Billion';
-	}
-	if (num >= 1000000) {
-		return (num / 1000000).toFixed(1).replace(/\.0$/, '') + ' Million';
-	}
-	if (num >= 1000) {
-		return (num / 1000).toFixed(1).replace(/\.0$/, '') + ' Thousand';
-	}
-	return num;
-}

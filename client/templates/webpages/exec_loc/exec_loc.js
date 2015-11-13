@@ -105,7 +105,7 @@ Template.exec_loc.helpers({
         }
         if(objName === 'market_cap'){
           data['data_name'] = "Market Cap";
-          data['data_value'] = '$'+commaSeparateNumber_decimal(data['market_cap'].split('.')[0]);
+          data['data_value'] = '$'+commaSeparateNumber_decimal(Number(data['market_cap']*1000000));
         }
         if(objName === 'market_percent'){
           data['data_name'] = "Market Percent";
