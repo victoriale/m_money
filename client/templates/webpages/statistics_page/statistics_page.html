@@ -171,6 +171,7 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                     <div class="stat-btm-data-graph-grad stat-pa"></div> <!--a gradient that adds a fading effect to the list above-->
                     <div class="stat-pa stat-btm-data-graph" id="statGraph">
                         <!--Put graph here-->
+                        <div class="stat-pa stat-btm-data-graph-image" style="{{image}}"></div>
                         {{> highchartsHelper chartId="statChart" chartWidth="180px" chartHeight="180px" chartObject=getGraphObject}}
                     </div>
                 </div>

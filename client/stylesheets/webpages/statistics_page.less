@@ -66,6 +66,7 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
 
     &-page //stat-page
     {
+        margin-top:17px;
         width: 680px;
         height: auto;
         background-color: @white;
@@ -211,6 +212,9 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                 background-color: @white;
                 left: 55px;
                 top: 34px;
+                background-size: contain !important;
+                background-position: center center !important;
+                background-repeat: no-repeat;
             }
 
             &-building //stat-mid-mid-building
@@ -450,11 +454,25 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
 
             &-graph //stat-btm-data-graph
             {
-                top:55px;
-                left: 485px;
-                width: 180px;
-                height: 180px;
-
+              float: right;
+              width: 180px;
+              height: 180px;
+              position: relative;
+              bottom: 570px;
+                &-image{
+                  width: 95px;
+                  height: 95px;
+                  border-radius: 50%;
+                  position: absolute;
+                  top: 23%;
+                  opacity: .8;
+                  left: 24%;
+                  float: right;
+                  background-position: center center;
+                  background-repeat: no-repeat;
+                  background-size: contain;
+                  z-index: 1;
+                }
                 &-circle //stat-btm-data-graph-circle: the circle in the graph
                 {
                   width: 102px;

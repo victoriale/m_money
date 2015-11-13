@@ -9,12 +9,31 @@ statGreyTile = true; //used to determine whether a list item is grey or not
 
 Template.statistics_page.helpers(
     {
-
       image: function(){
-        var data = Session.get('loc_id');
-        var state = fullstate(data).replace(/ /g, '_');
-        return "background-image: url('/StateImages/Location_"+ state +".jpg');";
-      },
+          var params = Router.current().getParams();
+          var data = Session.get('loc_id');
+          //if partner domain exists then choose the
+          if(typeof params.loc_id == 'undefined'){
+            var partner_image = Session.get('profile_header');
+            if(partner_image.dma_code == null){
+              return "background-image: url('/StateImages/Location_"+ partner_image['location'] +".jpg');";
+            }else{
+              return "background-image: url('/DMA_images/location-"+ partner_image['dma_code'].split(',')[0] +".jpg');";
+            }
+          }
+          //otherwise take url data to detmine what image to show statewise
+          if(data == 'National' || data == '' || typeof data == 'undefined'){
+            return "background-image: url('/StateImages/Location_National.jpg');";
+          }else{
+            if(isNaN(data)){
+              data = fullstate(data) || data;
+              data = data.replace(/ /g, '_');
+              return "background-image: url('/StateImages/Location_"+ data +".jpg');";
+            }else{
+              return "background-image: url('/DMA_images/location-"+ data +".jpg');";
+            }
+          }
+        },
 
       back_url: function(){
         if ( Router.current().params.partner_id == Router.current().params.loc_id ) {
@@ -214,9 +233,9 @@ Template.statistics_page.events({
 
 Template.statistics_page.onRendered(function(){
   //used to stick the circle in the graph
-  $('#statGraph').highcharts(statGraphObject, function (chart) {
+  $('.stat-btm-data-graph').highcharts(statGraphObject, function (chart) {
           chart.renderer.label('<div class="stat-btm-data-graph-circle-o"><div class="stat-btm-data-graph-circle" id="statGraphCircle"></div></div>', 36, 36,"rect",0,0,true,false,"").add();
   });
   //set graph circle's image here
-  document.getElementById('statGraphCircle').style.backgroundImage = "";
+  document.getElementById('statGraphCircle').style.backgroundImage = "{{image}}";
 });
