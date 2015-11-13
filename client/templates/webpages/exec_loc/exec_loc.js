@@ -82,7 +82,7 @@ Template.exec_loc.helpers({
         data['lcsi_market_cap'] = 0;
       }else{
         data['objname'] = 'Compensation';
-        data['lcsi_market_cap'] = nFormatter2(data.compensation.TotalComp);
+        data['lcsi_market_cap'] = commaSeparateNumber_decimal(data.compensation.TotalComp.split('.')[0]);
       }
       data['newDate'] = CurrentDate();
       data['rank'] = index+1;
@@ -105,7 +105,7 @@ Template.exec_loc.helpers({
         }
         if(objName === 'market_cap'){
           data['data_name'] = "Market Cap";
-          data['data_value'] = '$'+dNumberToCommaNumber(data['market_cap']);
+          data['data_value'] = '$'+commaSeparateNumber_decimal(data['market_cap'].split('.')[0]);
         }
         if(objName === 'market_percent'){
           data['data_name'] = "Market Percent";
@@ -113,7 +113,7 @@ Template.exec_loc.helpers({
         }
         if(objName === 'trading_volume'){
           data['data_name'] = "trading volume";
-          data['data_value'] = dNumberToCommaNumber(data['trading_volume']);
+          data['data_value'] = commaSeparateNumber_decimal(data['trading_volume'].split('.')[0]);
         }
         if(objName === 'pe_ratio'){
           data['data_name'] = "PE Ratio";
@@ -143,8 +143,9 @@ Template.exec_loc.helpers({
         data['TotalComp'] = 0;
       }else{
         data['objname'] = 'Compensation';
-        data['lcsi_market_cap'] = nFormatter2(data.compensation.TotalComp);
-        data['TotalComp'] = nFormatter2(data.compensation);
+        console.log(data.compensation.TotalComp);
+        data['lcsi_market_cap'] = commaSeparateNumber_decimal(data.compensation.TotalComp.split('.')[0]);
+        data['TotalComp'] = commaSeparateNumber_decimal(data.compensation.split('.')[0]);
       }
       data['newDate'] = CurrentDate();
       data['rank'] = index+1;

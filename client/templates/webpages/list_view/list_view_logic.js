@@ -144,7 +144,7 @@ Template.list_view.helpers({
         }
         if(objName === 'market_cap'){
           data['data_name'] = "Market Cap";
-          data['data_value'] = '$'+nFormatter2(data['market_cap']);
+          data['data_value'] = '$'+commaSeparateNumber_decimal(data['market_cap'].split('.')[0]);
         }
         if(objName === 'market_percent'){
           data['data_name'] = "Market Percent";
@@ -152,7 +152,7 @@ Template.list_view.helpers({
         }
         if(objName === 'trading_volume'){
           data['data_name'] = "trading volume";
-          data['data_value'] = nFormatter2(data['trading_volume']);
+          data['data_value'] = commaSeparateNumber_decimal(data['trading_volume'].split('.')[0]);
         }
         if(objName === 'pe_ratio'){
           data['data_name'] = "PE Ratio";
@@ -205,7 +205,7 @@ Template.list_view.helpers({
         }
         if(objName === 'market_cap'){
           data['data_name'] = "Market Cap";
-          data['data_value'] = '$'+dNumberToCommaNumber(data['market_cap']);
+          data['data_value'] = '$'+commaSeparateNumber_decimal(data['market_cap'].split('.')[0]);
         }
         if(objName === 'market_percent'){
           data['data_name'] = "Market Percent";
@@ -213,7 +213,7 @@ Template.list_view.helpers({
         }
         if(objName === 'trading_volume'){
           data['data_name'] = "trading volume";
-          data['data_value'] = dNumberToCommaNumber(data['trading_volume']);
+          data['data_value'] = commaSeparateNumber_decimal(data['trading_volume'].split('.')[0]);
         }
         if(objName === 'pe_ratio'){
           data['data_name'] = "PE Ratio";
