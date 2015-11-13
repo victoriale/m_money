@@ -292,7 +292,7 @@ Template.daily_update.helpers({
         data.text3 = 'Total Shares';
         data.text4 = 'Average Volume';
 
-        data.value1 = nFormatter(Number(data['csi_market_cap']));;
+        data.value1 = nFormatter(Number(data['csi_market_cap'])*1000000);;
         data.value2 = Number(data['csi_pe_ratio']).toFixed(2);
         data.value3 = nFormatter(Number(data['csi_total_shares']));
         data.value4 = nFormatter(Number(data['csi_trading_vol']));
