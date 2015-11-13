@@ -1,3 +1,32 @@
+Template.list_of_list_page.onRendered(function(){
+  Session.set('list_page_num', 2);
+  Session.set('isPulling', false);
+  function recursive_list() {
+    if ( Session.get('list_page_num') > 100 || (Router.current().route.getName() != "content.listoflist" && Router.current().route.getName() != "partner.listoflist") ) {
+      $(window).unbind('scroll');
+      return false;
+    }
+    if ( $(window).scrollTop() + $(window).height() < $('.footer-standard').offset().top - 100 || Session.get('isPulling') ) {
+      return false;
+    }
+    Session.set('isPulling', true);
+    Meteor.call('listOfListData', Router.current().params.company_id, Session.get('list_page_num'), function(error, data){
+      if(error || data.success == false){
+        console.log('Invalid Team Error', error);
+        Session.set('IsError', true);
+        return '';
+      }
+      var old_data = Session.get('list_of_lists');
+      $.merge(old_data.list_rankings, data.list_of_lists.list_rankings);
+      Session.set('list_of_lists', old_data);
+      Session.set('list_page_num', Session.get('list_page_num') + 1);
+      Session.set('isPulling', false);
+      recursive_list();
+    });
+  }
+  recursive_list();
+  $(window).scroll(recursive_list);
+});
 
 Template.list_of_list_page.helpers({
   goBack:function(){
@@ -45,7 +74,6 @@ Template.list_of_list_page.helpers({
       });
       //Build url for sub circle images
       subData.map(function(item, index){
-        console.log(item);
         item.imageURL = Router.pick_path('content.companyprofile', {
           ticker:item.c_ticker,
           name:compUrlName(item.c_name),

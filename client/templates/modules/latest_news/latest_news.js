@@ -52,8 +52,10 @@ Template.latest_news.helpers({
     }
     if(Session.get('IsCompany')){
       var image = data.c_logo;
+      return image;
     }else if(Session.get('IsExec')){
       var image = data.o_pic;
+      return image;
     }else{
       var params = Router.current().getParams();
       var data = Session.get('loc_id');

@@ -63,5 +63,8 @@ Template.directory_list_button.events({
   //Event to close list when options selected
   'click .dir-dropdown-block-list-ul-item': function(e, t){
     t.$('.dir-dropdown-block-list').hide();
+  },
+  'mouseleave .dir-dropdown-block-list': function(e, t){
+    t.$('.dir-dropdown-block-list').hide();
   }
 })
