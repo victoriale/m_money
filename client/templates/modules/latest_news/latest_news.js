@@ -52,10 +52,18 @@ Template.latest_news.helpers({
     }
     if(Session.get('IsCompany')){
       var image = data.c_logo;
-      return image;
+      if(data == null || data == 'nulll' || data == '' || typeof data == 'undefined'){
+        return 'http://images.investkit.com/images/'+image;
+      } else {
+        return 'http://images.investkit.com/images/'+image;
+      }
     }else if(Session.get('IsExec')){
       var image = data.o_pic;
-      return image;
+      if(data == null || data == 'nulll' || data == '' || typeof data == 'undefined'){
+        return 'http://images.investkit.com/images/'+;
+      } else {
+        return 'http://images.investkit.com/images/'+image;
+      }
     }else{
       var params = Router.current().getParams();
       var data = Session.get('loc_id');
@@ -69,7 +77,7 @@ Template.latest_news.helpers({
         }
       }
       if(data == 'National' || data == '' || typeof data == 'undefined'){
-        return "background-image: url('/StateImages/Location_"+ data +".jpg');";
+        return "background-image: url('/StateImages/Location_National.jpg');";
       }else{
         if(isNaN(data)){
           data = fullstate(data) || data;
@@ -217,7 +225,18 @@ Template.latest_news.helpers({
       return data.data[0]['lead_image'];
     }
     else {
-      return "";
+      var image = Session.get('profile_header').c_hq_state;
+      if(image == 'National' || image == '' || typeof image == 'undefined'){
+        return "background-image: url('/StateImages/Location_National.jpg');";
+      }else{
+        if(isNaN(image)){
+          image = fullstate(image);
+          image = image.replace(/ /g, '_');
+          return "background-image: url('/StateImages/Location_"+ image +".jpg');";
+        }else{
+          return "background-image: url('/DMA_images/location-"+ image +".jpg');";
+        }
+      }
     }
   },
   main_time: function(){
