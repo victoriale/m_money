@@ -188,22 +188,22 @@ Template.c_p_graph.helpers({
         var min = latestDate.subtract(5, 'days').format('X') * 1000;
 
         var xAxis = function(){
-          return Highcharts.dateFormat('%b %e %Y', this.value);
+          return Highcharts.dateFormat('%a, %b %e', this.value);
         }
 
         var tooltip = function(){
-          return Highcharts.dateFormat('%b %e %Y', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+          return Highcharts.dateFormat('%a, %b %e', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
         }
       break;
       case '10D':
         var min = latestDate.subtract(10, 'days').format('X') * 1000;
 
         var xAxis = function(){
-          return Highcharts.dateFormat('%b %e %Y', this.value);
+          return Highcharts.dateFormat('%a, %b %e', this.value);
         }
 
         var tooltip = function(){
-          return Highcharts.dateFormat('%b %e %Y', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+          return Highcharts.dateFormat('%a, %b %e', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
         }
       break;
       case '1M':
