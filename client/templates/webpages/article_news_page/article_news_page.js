@@ -82,11 +82,48 @@ Template.article_news_page.events({
 })
 
 Template.article_news_page.helpers({
+  /*
+headerImage:function(){
+  var data = Session.get('profile_header');
+  if(typeof data == 'undefined'){
+    return '';
+  }
+  var params = Router.current().getParams();
+  console.log(params);
+  var currentRoute = Router.current().route.getName();
+  console.log(getName);
+  switch(currentRoute){
+    case 'content.partnerhome':
+      var data = Session.get('profile_header');
+    case 'content.locationprofile':
+    case 'partner.locationprofile':
+      if(data == 'National' || data == '' || typeof data == 'undefined'){
+        return "background-image: url('/StateImages/Location_National.jpg');";
+      }else{
+        if(isNaN(data)){
+          data = fullstate(data) || data;
+          data = data.replace(/ /g, '_');
+          return "background-image: url('/StateImages/Location_"+data+".jpg');";
+        }else{
+          return "background-image: url('/DMA_images/location-"+data+".jpg');";
+        }
+      }
+    break;
+    case 'content.companyprofile':
+    case 'partner.companyprofile':
+      var data = Session.get('profile_header');
+      var image = data.c_logo;
+      if(data == null || data == 'nulll' || data == '' || typeof data == 'undefined'){
+        return 'http://images.investkit.com/images/'+image;
+      } else {
+        return 'http://images.investkit.com/images/'+image;
+      }
+    break;
+},
+*/
   topImage: function(){
     var params = Router.current().getParams();
-    console.log(params);
-    var getName = Router.current().route.getName();
-    console.log(getName);
+    //var getName = Router.current().route.getName();
     var data = Session.get('loc_id');
     //if partner domain exists then choose the
     if(typeof params.loc_id == 'undefined'){
@@ -109,6 +146,16 @@ Template.article_news_page.helpers({
         return "background-image: url('/DMA_images/location-"+data+".jpg');";
       }
     }
+  },
+  headImage: function(){
+    //var params = Router.current().getParams();
+    //console.log(params);
+    var data = Session.get('profile_header').c_hq_state;
+    if(data == 'National' || data == '' || typeof data == 'undefined'){
+      return "background-image: url('/StateImages/Location_National.jpg');";
+    }
+    data = fullstate(data).replace(/ /g, '_');
+    return "background-image: url('/StateImages/Location_"+data+".jpg');";
   },
   headerinfo: function(){
     var params = Router.current().getParams();
