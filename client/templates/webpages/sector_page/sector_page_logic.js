@@ -10,8 +10,35 @@ Template.sector_page.onCreated(function(){
 })
 //renders the data when page loads
 Template.sector_page.onRendered(function () {
-$(".sect_pg-page-selector1").css("background-color","#3098ff");
-
+  $(".sect_pg-page-selector1").css("background-color","#3098ff");
+  Session.set('sector_page_num', 2);
+  Session.set('isPulling', false);
+  function recursive_list() {
+    if ( Session.get('sector_page_num') > 100 || (Router.current().route.getName() != "content.sector" && Router.current().route.getName() != "partner.sector") ) {
+      $(window).unbind('scroll');
+      return false;
+    }
+    if ( $(window).scrollTop() + $(window).height() < $('.footer-standard').offset().top - 100 || Session.get('isPulling') ) {
+      return false;
+    }
+    Session.set('isPulling', true);
+    Meteor.call("sectorData", Session.get('loc_id'), Session.get('sector_id'), Session.get('sector_page_num'), function(error, data){
+      console.log(data);
+      if(error || data.success == false){
+        console.log('Invalid Sector Error',data);
+        Session.set('IsError',true);
+        return '';
+      }
+      var old_data = Session.get('sector_companies');
+      $.merge(old_data.companies, data.sector_companies.companies);
+      Session.set('sector_companies', old_data);
+      Session.set('sector_page_num', Session.get('sector_page_num') + 1);
+      Session.set('isPulling', false);
+      recursive_list();
+    });
+  }
+  recursive_list();
+  $(window).scroll(recursive_list);
 });
 
 var backgroundStyle="tilewhite";
@@ -131,7 +158,7 @@ Template.sector_page.helpers({
       data['lcsi_price'] = Number(data['lcsi_price']).toFixed(2);
       data['csi_price_change_since_last'] = Number(data['csi_price_change_since_last']).toFixed(2);
       data['csi_percent_change_since_last'] = Number(data['csi_percent_change_since_last']).toFixed(2);
-      data['locurl'] = Router.pick_path('locationprofile',{
+      data['locurl'] = Router.pick_path('content.locationprofile',{
         loc_id: data.c_hq_state,
         city: data.c_hq_city
       });
