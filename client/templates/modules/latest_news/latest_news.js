@@ -48,22 +48,24 @@ Template.latest_news.helpers({
   topImage: function(){
     var data = Session.get('profile_header');
     if(typeof data == 'undefined'){
-      return '';
+      return "background-image: url('/StateImages/Location_National.jpg');";
     }
     if(Session.get('IsCompany')){
       var image = data.c_logo;
-      if(data == null || data == 'nulll' || data == '' || typeof data == 'undefined'){
-        return 'http://images.investkit.com/images/'+image;
+      if(image == null || image == 'nulll' || image == '' || typeof image == 'undefined'){
+        state = fullstate(data.c_hq_state).replace(/ /g, '_');
+        return '/StateImages/Location_'+state+'.jpg';
       } else {
         return 'http://images.investkit.com/images/'+image;
       }
     }else if(Session.get('IsExec')){
       var image = data.o_pic;
-      if(data == null || data == 'nulll' || data == '' || typeof data == 'undefined'){
-        return 'http://images.investkit.com/images/'+data.c_logo;
-      } else {
+      if(image == null || image == 'nulll' || image == '' || typeof image == 'undefined'){
+        state = fullstate(data.c_hq_state).replace(/ /g, '_');
+        return '/StateImages/Location_'+state+'.jpg';
+       } else {
         return 'http://images.investkit.com/images/'+image;
-      }
+       }
     }else{
       var params = Router.current().getParams();
       var data = Session.get('loc_id');
@@ -227,7 +229,7 @@ Template.latest_news.helpers({
     else {
       var image = Session.get('profile_header').c_hq_state;
       if(image == 'National' || image == '' || typeof image == 'undefined'){
-        return "background-image: url('/StateImages/Location_National.jpg');";
+        return "background-image: url('/StateImages/Location_"+image+".jpg');";
       }else{
         if(isNaN(image)){
           image = fullstate(image);
