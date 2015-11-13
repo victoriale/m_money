@@ -502,7 +502,7 @@ Meteor.methods({
     return future.wait();
   },
 
-  sectorData: function(loc_id, sector){
+  sectorData: function(loc_id, sector, page){
     var future = new Future();
     var startTime = (new Date()).getTime();
     // console.log("New Sector Data",loc_id);
@@ -528,7 +528,11 @@ Meteor.methods({
     if(sector != null && typeof sector != 'undefined' && sector != ''){
       UrlString +="&param="+encodeURIComponent(sector);
     }
-    UrlString += "&page=1&per_page=100";
+    if ( typeof page == "number" ) {
+      UrlString += "&page=" + page + "&per_page=100";
+    } else {
+      UrlString += "&page=1&per_page=100";
+    }
     console.log(UrlString);
     Meteor.http.get(UrlString, (function(startTime, sector, loc_id, error, data){
       try{
