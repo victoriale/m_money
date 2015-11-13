@@ -61,7 +61,7 @@ Template.list_view_exec.helpers({
         data['objname'] = 'Compensation';
         data['TotalComp'] = dNumberToCommaNumber(data['TotalComp']);
       }
-      data['newDate'] = (new Date(Session.get('female_ceo')['list_last_updated'])).toSNTFormTime();
+      data['newDate'] = (new Date(listdata['list_last_updated'])).toSNTFormTime();
       data['rank'] = index+1;
       data['url'] = Router.pick_path('content.executiveprofile',{
         fname:data.o_first_name,
@@ -82,7 +82,7 @@ Template.list_view_exec.helpers({
         }
         if(objName === 'market_cap'){
           data['data_name'] = "Market Cap";
-          data['data_value'] = '$'+nFormatter2(data['market_cap']);
+          data['data_value'] = '$'+dNumberToCommaNumber(data['market_cap']);
         }
         if(objName === 'market_percent'){
           data['data_name'] = "Market Percent";
@@ -90,7 +90,7 @@ Template.list_view_exec.helpers({
         }
         if(objName === 'trading_volume'){
           data['data_name'] = "trading volume";
-          data['data_value'] = nFormatter2(data['trading_volume']);
+          data['data_value'] = dNumberToCommaNumber(data['trading_volume']);
         }
         if(objName === 'pe_ratio'){
           data['data_name'] = "PE Ratio";
@@ -117,7 +117,6 @@ Template.list_view_exec.helpers({
     if(typeof listdata =='undefined'){
       return '';
     }
-
     $.map(listdata.list_data, function(data,index){
       if(typeof data['TotalComp'] == 'undefined' || data['TotalComp'] == ''){
         data['objname'] = 'Salary';
@@ -126,7 +125,7 @@ Template.list_view_exec.helpers({
         data['objname'] = 'Compensation';
         data['TotalComp'] = dNumberToCommaNumber(data['TotalComp']);
       }
-      data['newDate'] = (new Date(Session.get('female_ceo')['list_last_updated'])).toSNTFormTime();
+      data['newDate'] = (new Date(listdata['list_last_updated'])).toSNTFormTime();
       data['rank'] = index+1;
       data['url'] = Router.pick_path('content.executiveprofile',{
         fname:data.o_first_name,

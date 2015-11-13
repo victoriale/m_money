@@ -22,6 +22,11 @@ Template.cp_body.onCreated(function(){
     //date comparison
     if(typeof data != 'undefined'){
       lastUpdated = (new Date(data['csi_price_last_updated'])).toSNTFormTime();
+      if(lastUpdated == false || lastUpdated == 'false'){
+        lastUpdated = data['csi_price_last_updated'].split(' ')[0];
+      }else{
+        lastUpdated = lastUpdated;
+      }
     }
   })
 })
@@ -34,7 +39,14 @@ Template.cp_head.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
-    data['c_tr_last_updated'] = (new Date(getDate['csi_price_last_updated'])).toSNTFormTime();
+    //console.log(SNTtime(getDate['csi_price_last_updated']));
+    //dateChance should return false if undefined or actual new date format
+    var dateChange = (new Date(getDate['csi_price_last_updated'])).toSNTFormTime();
+    if(dateChange == false || dateChange == 'false' || dateChange == ''){
+      data['c_tr_last_updated'] = getDate['csi_price_last_updated'].split(' ')[0];
+    }else{
+      data['c_tr_last_updated'] = dateChange;
+    }
     return data;
   },
   text: function(){
@@ -80,7 +92,7 @@ Template.cp_body.helpers({
     data['csi_percent_change_since_last'] = Number(data['csi_percent_change_since_last']).toFixed(2);
     data['csi_price'] = Number(data['csi_price']).toFixed(2);
     data['csi_price_change_since_last'] = Number(data['csi_price_change_since_last']).toFixed(2);
-    data['lastUpdated'] = lastUpdated;
+    data['lastUpdated'] = "as of "+ lastUpdated;
     Session.set('daily_update',data);
     return data;
   },
@@ -139,70 +151,54 @@ Template.c_p_graph.helpers({
     //if above is correct the below will work
     switch(c_p_range){
       case '1D':
-        //Set graphData to get minimum
-        var graphData = data.highchartsData;
-
-        var condition = false;
-        //Get last point of graph
-        var count = dataLength - 1;
-        //Find the most current day in the list
-        var current_month_hour = moment(graphData[count][0]).format('MMDD');
-        //Loop through the array to find the beginning of the latest day available
-        while(condition === false){
-          //get the month and date of the data point
-          var time = moment(graphData[count - 1][0]).format('MMDD');
-          //If the month and date of the current point dont match the latest day avaiable. Set the previous point to the beggining of the graph
-          if(time !== current_month_hour){
-            var min = graphData[count][0];
-            //Set condition to true to exit while loop
-            condition = true;
-          }
-          //Decrement count to continue loop iteration
-          count--;
-        }
+        var range = 1;
+        //Old Method: Pulled 24 hour period. So when stock is closed, on graph straight line was shown
+        //var min = latestDate.subtract(1, 'days').format('X') * 1000;
+        //var min = moment().utc().hour(8).format('X') * 1000;
+        var min = new Date().setUTCHours(8);
       break;
       case '5D':
-
+        var range = 5;
         var min = latestDate.subtract(5, 'days').format('X') * 1000;
       break;
       case '10D':
-
+        var range = 10;
         var min = latestDate.subtract(10, 'days').format('X') * 1000;
       break;
       case '1M':
-
+        var range = 30;
         var min = latestDate.subtract(1, 'months').format('X') * 1000;
       break;
       case '3M':
-
+        var range = 90;
         var min = latestDate.subtract(3, 'months').format('X') * 1000;
       break;
       case '6M':
-
+        var range = 180;
         var min = latestDate.subtract(6, 'months').format('X') * 1000;
       break;
       case '9M':
-
+        var range = 270;
         var min = latestDate.subtract(9, 'months').format('X') * 1000;
       break;
       case '1Y':
-
+        var range = 365;
         var min = latestDate.subtract(1, 'years').format('X') * 1000;
       break;
       case '3Y':
-
+        var range = 1095;
         var min = latestDate.subtract(3, 'years').format('X') * 1000;
       break;
       case '5Y':
-
+        var range = 1825;
         var min = latestDate.subtract(5, 'years').format('X') * 1000;
       break;
       case '10Y':
-
+        var range = 3650;
         var min = latestDate.subtract(10, 'years').format('X') * 1000;
       break;
       default:
-
+        var range = 3650;
       break;
     }
     //Get oldest date available to check if data range is possible

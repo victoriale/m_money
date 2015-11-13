@@ -31,7 +31,8 @@ Template.directory_list_button.onCreated(function(){
 
 Template.directory_list_button.helpers({
   site_name: function() {
-    if ( Router.current().url.match(/myinvestkit/) != null ) {
+    var params = Router.current().getParams();
+    if ( params.partner_id == null || typeof params.partner_id == 'undefined') {
       return 'MYINVESTKIT';
     }
     return 'INVESTKIT';
