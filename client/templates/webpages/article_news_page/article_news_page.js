@@ -84,6 +84,7 @@ Template.article_news_page.events({
 Template.article_news_page.helpers({
   topImage: function(){
     var params = Router.current().getParams();
+    console.log(params);
     var getName = Router.current().route.getName();
     console.log(getName);
     var data = Session.get('loc_id');
