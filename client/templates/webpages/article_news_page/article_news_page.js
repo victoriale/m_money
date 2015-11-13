@@ -431,5 +431,26 @@ Template.main_tag_item.onRendered(function(){
         Session.set('botrght_tag_hidden_count', count + 1);
       }
       break;
+    default:
+      if (this.data.artindex % 2 == 1 ) {
+        if(this.firstNode.offsetLeft + this.firstNode.offsetWidth > 250){
+          //Get count to increment
+          var count = Session.get('botleft_tag_hidden_count');
+          //Remove node from DOM
+          $(this.firstNode).remove();
+          //Increment count session var
+          Session.set('botleft_tag_hidden_count', count + 1);
+        }
+      } else {
+        if(this.firstNode.offsetLeft + this.firstNode.offsetWidth > 250){
+          //Get count to increment
+          var count = Session.get('botrght_tag_hidden_count');
+          //Remove node from DOM
+          $(this.firstNode).remove();
+          //Increment count session var
+          Session.set('botrght_tag_hidden_count', count + 1);
+        }
+      }
+      break;
   }
 })
