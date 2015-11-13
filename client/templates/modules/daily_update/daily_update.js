@@ -292,7 +292,7 @@ Template.daily_update.helpers({
         data.text3 = 'Total Shares';
         data.text4 = 'Average Volume';
 
-        data.value1 = nFormatter(Number(data['csi_market_cap']));;
+        data.value1 = nFormatter(Number(data['csi_market_cap'])*1000000);;
         data.value2 = Number(data['csi_pe_ratio']).toFixed(2);
         data.value3 = nFormatter(Number(data['csi_total_shares']));
         data.value4 = nFormatter(Number(data['csi_trading_vol']));
@@ -316,6 +316,8 @@ Template.daily_update.helpers({
     if(typeof data === 'undefined'){
       return ''
     }
+
+    var graphData = data.highchartsData;
 
     //Get dependencies to find date range
     var dataLength = data.highchartsData.length;
@@ -353,48 +355,126 @@ Template.daily_update.helpers({
             count--;
           }
 
-          //var min = new Date().setUTCHours(8);
+          var xAxis = function(){
+            return Highcharts.dateFormat('%l:%M %P', this.value);
+            //var time = new Date(this.value);
+            //return moment(this.value, 'America/North_Dakota/Center').tz('America/New_York').format('hh:mm a');
+          }
+
+          var tooltip = function(){
+            return Highcharts.dateFormat('%l:%M %P CST', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+          }
         }
       break;
       case '5D':
-        var graphData = data.highchartsData;
         var min = latestDate.subtract(5, 'days').format('X') * 1000;
+
+        var xAxis = function(){
+          return Highcharts.dateFormat('%a, %b %e', this.value);
+        }
+
+        var tooltip = function(){
+          return Highcharts.dateFormat('%a, %b %e', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+        }
       break;
       case '10D':
-        var graphData = data.highchartsData;
         var min = latestDate.subtract(10, 'days').format('X') * 1000;
+
+        var xAxis = function(){
+          return Highcharts.dateFormat('%b %e', this.value);
+        }
+
+        var tooltip = function(){
+          return Highcharts.dateFormat('%a, %b %e', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+        }
       break;
       case '1M':
-        var graphData = data.highchartsData;
         var min = latestDate.subtract(1, 'months').format('X') * 1000;
+
+        var xAxis = function(){
+          return Highcharts.dateFormat('%a, %b %e', this.value);
+        }
+
+        var tooltip = function(){
+          return Highcharts.dateFormat('%a, %b %e', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+        }
       break;
       case '3M':
-        var graphData = data.highchartsData;
         var min = latestDate.subtract(3, 'months').format('X') * 1000;
+
+        var xAxis = function(){
+          return Highcharts.dateFormat('%b %e', this.value);
+        }
+
+        var tooltip = function(){
+          return Highcharts.dateFormat('%a, %b %e', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+        }
       break;
       case '6M':
-        var graphData = data.highchartsData;
         var min = latestDate.subtract(6, 'months').format('X') * 1000;
+
+        var xAxis = function(){
+          return Highcharts.dateFormat('%b %e', this.value);
+        }
+
+        var tooltip = function(){
+          return Highcharts.dateFormat('%a, %b %e', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+        }
       break;
       case '9M':
-        var graphData = data.highchartsData;
         var min = latestDate.subtract(9, 'months').format('X') * 1000;
+
+        var xAxis = function(){
+          return Highcharts.dateFormat('%b %e', this.value);
+        }
+
+        var tooltip = function(){
+          return Highcharts.dateFormat('%b %e %Y', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+        }
       break;
       case '1Y':
-        var graphData = data.highchartsData;
         var min = latestDate.subtract(1, 'years').format('X') * 1000;
+
+        var xAxis = function(){
+          return Highcharts.dateFormat('%b %e %Y', this.value);
+        }
+
+        var tooltip = function(){
+          return Highcharts.dateFormat('%b %e %Y', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+        }
       break;
       case '3Y':
-        var graphData = data.highchartsData;
         var min = latestDate.subtract(3, 'years').format('X') * 1000;
+
+        var xAxis = function(){
+          return Highcharts.dateFormat('%b %Y', this.value);
+        }
+
+        var tooltip = function(){
+          return Highcharts.dateFormat('%b %e %Y', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+        }
       break;
       case '5Y':
-        var graphData = data.highchartsData;
         var min = latestDate.subtract(5, 'years').format('X') * 1000;
+
+        var xAxis = function(){
+          return Highcharts.dateFormat('%Y', this.value);
+        }
+
+        var tooltip = function(){
+          return Highcharts.dateFormat('%b %e %Y', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+        }
       break;
       case '10Y':
-        var graphData = data.highchartsData;
         var min = latestDate.subtract(10, 'years').format('X') * 1000;
+
+        var xAxis = function(){
+          return Highcharts.dateFormat('%Y', this.value);
+        }
+
+        var tooltip = function(){
+          return Highcharts.dateFormat('%b %e %Y', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+        }
       break;
       default:
         var graphData = data.highchartsData;
@@ -424,20 +504,16 @@ Template.daily_update.helpers({
           type: 'datetime',
           labels: {
               overflow: 'justify',
-              // formatter: function() {
-              //     return Highcharts.dateFormat('%a %d %b %l %p', this.value);
-              // }
+              formatter: xAxis
           },
           //startOnTick: true,
           min: min,
       },
       yAxis: {
           title: '',
-          floor: 0,
           opposite:true,
           gridLineDashStyle: 'longdash',
-          tickPixelInterval:25,
-          minTickInterval: 5,
+          tickAmount: 4,
           plotLines: [{
               value: 0,
               width: 1,
@@ -450,10 +526,7 @@ Template.daily_update.helpers({
           },
       },
       tooltip: {
-        //pointFormat: "Value: ${point.y:.2f}",
-        formatter: function(){
-          return moment(this.x).format('dddd MM/DD/YYYY') + '<br />Value: $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
-        }
+        formatter: tooltip
       },
       plotOptions: {
           spline: {
