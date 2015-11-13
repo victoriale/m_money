@@ -22,6 +22,11 @@ Template.cp_body.onCreated(function(){
     //date comparison
     if(typeof data != 'undefined'){
       lastUpdated = (new Date(data['csi_price_last_updated'])).toSNTFormTime();
+      if(lastUpdated == false || lastUpdated == 'false'){
+        lastUpdated = data['csi_price_last_updated'].split(' ')[0];
+      }else{
+        lastUpdated = lastUpdated;
+      }
     }
   })
 })
@@ -34,7 +39,14 @@ Template.cp_head.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
-    data['c_tr_last_updated'] = (new Date(getDate['csi_price_last_updated'])).toSNTFormTime();
+    //console.log(SNTtime(getDate['csi_price_last_updated']));
+    //dateChance should return false if undefined or actual new date format
+    var dateChange = (new Date(getDate['csi_price_last_updated'])).toSNTFormTime();
+    if(dateChange == false || dateChange == 'false' || dateChange == ''){
+      data['c_tr_last_updated'] = getDate['csi_price_last_updated'].split(' ')[0];
+    }else{
+      data['c_tr_last_updated'] = dateChange;
+    }
     return data;
   },
   text: function(){
@@ -80,7 +92,7 @@ Template.cp_body.helpers({
     data['csi_percent_change_since_last'] = Number(data['csi_percent_change_since_last']).toFixed(2);
     data['csi_price'] = Number(data['csi_price']).toFixed(2);
     data['csi_price_change_since_last'] = Number(data['csi_price_change_since_last']).toFixed(2);
-    data['lastUpdated'] = lastUpdated;
+    data['lastUpdated'] = "as of "+ lastUpdated;
     Session.set('daily_update',data);
     return data;
   },
