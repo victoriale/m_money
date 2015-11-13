@@ -9,7 +9,7 @@ Template.daily_update.onCreated(function(){
 
     if(Session.get('IsLocation')){
       //Set initial range
-      Session.set('d_u_range', '1M');
+      Session.set('d_u_range', '5D');
 
       Meteor.call('GetAIContent2', Session.get('state_id'), Session.get('city_id'), function(err, data){
         if(err){
@@ -45,10 +45,12 @@ Template.daily_update.onCreated(function(){
           var highchartsData = [];
 
           data.one_day_location_daily_update.forEach(function(item, index){
-            highchartsData.push([item.sh_date * 1000, Number(item.sh_close)])
+            //var date = moment(item.sh_date).tz('America/North_Dakota/New_Salem').format('X');
+
+            highchartsData.push([item.sh_date * 1000, Number(item.sh_close)]);
           })
 
-          highchartsData.reverse();
+          //highchartsData.reverse();
 
           Session.set('one_day_location_daily_update', highchartsData);
         }
@@ -59,7 +61,7 @@ Template.daily_update.onCreated(function(){
   })
   this.autorun(function(){
     if(Session.get('IsCompany')){
-      Session.set('d_u_range', '5Y');
+      Session.set('d_u_range', '1D');
 
       var companyid =  Session.get('profile_header');
       if(typeof companyid != 'undefined'){
@@ -326,17 +328,32 @@ Template.daily_update.helpers({
       case '1D':
         if(Session.get('IsLocation')){
           var graphData = Session.get('one_day_location_daily_update');
-          graphData.sort(function(a,b){
-            return parseFloat(a[0]) - parseFloat(b[0]);
-          });
+
           var min = graphData[0][0];
         }
         if(Session.get('IsCompany')){
           var graphData = data.highchartsData;
-          //Old Method: Pulled 24 hour period. So when stock is closed, on graph straight line was shown
-          //var min = latestDate.subtract(1, 'days').format('X') * 1000;
-          //var min = moment().utc().hour(8).format('X') * 1000;
-          var min = new Date().setUTCHours(8);
+
+          var condition = false;
+          //Get last point of graph
+          var count = dataLength - 1;
+          //Find the most current day in the list
+          var current_month_hour = moment(graphData[count][0]).format('MMDD');
+          //Loop through the array to find the beginning of the latest day available
+          while(condition === false){
+            //get the month and date of the data point
+            var time = moment(graphData[count - 1][0]).format('MMDD');
+            //If the month and date of the current point dont match the latest day avaiable. Set the previous point to the beggining of the graph
+            if(time !== current_month_hour){
+              var min = graphData[count][0];
+              //Set condition to true to exit while loop
+              condition = true;
+            }
+            //Decrement count to continue loop iteration
+            count--;
+          }
+
+          //var min = new Date().setUTCHours(8);
         }
       break;
       case '5D':
@@ -450,7 +467,7 @@ Template.daily_update.helpers({
                   enabled: false
               },
               pointInterval: 3600000, // one hour
-              pointStart: Date.UTC(2015, 4, 31, 0, 0, 0)
+              //pointStart: Date.UTC(2015, 4, 31, 0, 0, 0)
           }
       },
       legend: {
