@@ -14,22 +14,20 @@ Template.article_news_page.onRendered(function(){
   this.autorun(function(){
     var data, urlString;
     var params = Router.current().getParams();
-    if(typeof params.comp_id != 'undefined'){
+    if(typeof params.company_id != 'undefined'){
       data = Session.get('profile_header');
       if(data != undefined){
         var ticker = params.ticker;
         urlString = "http://api.synapsys.us/news/?action=get_finance_news&ticker=" + ticker;
       }
-    }
-    if(typeof params.fname != 'undefined'){
+    } else if(typeof params.fname != 'undefined'){
       data = Session.get('profile_header');
       if(data != undefined){
         var ticker = params.ticker;
         var name = params.fname + "+" + params.lname;
         urlString = "http://api.synapsys.us/news/?action=get_finance_news&ticker=" + ticker + "&name=" + name;
       }
-    }
-    if(typeof params.loc_id != 'undefined'){
+    } else if(typeof params.loc_id != 'undefined'){
       var city = fullstate(params.loc_id);
       urlString = "http://api.synapsys.us/news/?action=get_finance_news&city=" + city;
     }
