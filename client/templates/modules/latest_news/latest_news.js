@@ -60,7 +60,7 @@ Template.latest_news.helpers({
     }else if(Session.get('IsExec')){
       var image = data.o_pic;
       if(data == null || data == 'nulll' || data == '' || typeof data == 'undefined'){
-        return 'http://images.investkit.com/images/'+;
+        return 'http://images.investkit.com/images/'+data.c_logo;
       } else {
         return 'http://images.investkit.com/images/'+image;
       }
