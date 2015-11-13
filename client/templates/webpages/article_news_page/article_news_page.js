@@ -82,8 +82,10 @@ Template.article_news_page.events({
 })
 
 Template.article_news_page.helpers({
-  stateImage: function(){
+  topImage: function(){
     var params = Router.current().getParams();
+    var getName = Router.current().route.getName();
+    console.log(getName);
     var data = Session.get('loc_id');
     //if partner domain exists then choose the
     if(typeof params.loc_id == 'undefined'){
