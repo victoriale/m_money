@@ -117,8 +117,8 @@ function transformLocationDailyUpdate(){
   daily_update.csi_percent_change_since_last = data.composite_summary.percent_change;
   daily_update.csi_price_change_since_last = data.composite_summary.price_change;
   daily_update.lastUpdated = (new Date(data.composite_summary.last_updated)).toSNTFormTime();
-  daily_update.todays_high = data.composite_summary.todays_high;
-  daily_update.todays_low = data.composite_summary.todays_low;
+  daily_update.todays_high = commaSeparateNumber_decimal(data.composite_summary.todays_high);
+  daily_update.todays_low = commaSeparateNumber_decimal(data.composite_summary.todays_low);
   daily_update.previous_close = data.composite_summary.previous_close;
   daily_update.total_companies = data.composite_summary.total_companies;
 
@@ -292,7 +292,7 @@ Template.daily_update.helpers({
         data.text3 = 'Total Shares';
         data.text4 = 'Average Volume';
 
-        data.value1 = data['csi_market_cap'];
+        data.value1 = nFormatter(Number(data['csi_market_cap']));;
         data.value2 = Number(data['csi_pe_ratio']).toFixed(2);
         data.value3 = nFormatter(Number(data['csi_total_shares']));
         data.value4 = nFormatter(Number(data['csi_trading_vol']));
