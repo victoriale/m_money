@@ -27,7 +27,7 @@ Template.co_competitor.helpers({
 
     newData['c_tr_last_updated'] = newData['c_tr_last_updated'].replace(/-/g, '/');
     //database sending back in million
-    newData['market_cap'] = commaSeparateNumber_decimal(Number(newData['market_cap'])*1000000);
+    newData['market_cap'] = dNumberToCommaNumber(Number(newData['market_cap']).toFixed(0));
     newData['csi_price_change_since_last'] = Number(newData['csi_price_change_since_last']).toFixed(2);
     newData['csi_price'] = Number(newData['csi_price']).toFixed(2);
     newData['csi_percent_change_since_last'] = Number(newData['csi_percent_change_since_last']).toFixed(2);
