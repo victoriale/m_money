@@ -275,7 +275,7 @@ Template.co_fin_overview.helpers({
 
     //Transform dates
     company_data.csi_price_last_updated = (new Date(company_data.csi_price_last_updated)).toSNTFormTime();
-    company_data.c_tr_last_updated = (new Date(company_data.c_tr_last_updated)).toSNTForm();
+    company_data.csi_price_last_updated = (new Date(company_data.csi_price_last_updated)).toSNTForm();
 
     company_data.share_company_url =  "https://www.facebook.com/sharer/sharer.php?u=" + Router.pick_path('content.companyprofile', {company_id: company_data.c_id, name: company_data.c_name, ticker: company_data.c_ticker});
     company_data.share_company_fin_overview_url = "https://www.facebook.com/sharer/sharer.php?u=" + Router.pick_path('content.finoverview', {company_id: company_data.c_id, name: company_data.c_name, ticker: company_data.c_ticker});
