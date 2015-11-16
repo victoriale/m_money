@@ -61,32 +61,32 @@ Template.co_fin_overview.helpers({
       break;
       case 'cfoBtn1':
         var min = latestDate.subtract(5, 'days').format('X') * 1000;
-        var xAxis_format = '%a, %b %e %Y';
+        var xAxis_format = '%a, %b %e';
         var tooltip_format = '%a, %b %e';
       break;
       case 'cfoBtn2':
         var min = latestDate.subtract(10, 'days').format('X') * 1000;
-        var xAxis_format = '%b %e %Y';
+        var xAxis_format = '%b %e';
         var tooltip_format = '%a, %b %e';
       break;
       case 'cfoBtn3':
         var min = latestDate.subtract(1, 'months').format('X') * 1000;
-        var xAxis_format = '%b %e %Y';
+        var xAxis_format = '%b %e';
         var tooltip_format = '%a, %b %e';
       break;
       case 'cfoBtn4':
         var min = latestDate.subtract(3, 'months').format('X') * 1000;
-        var xAxis_format = '%b %e %Y';
+        var xAxis_format = '%b %e';
         var tooltip_format = '%a, %b %e';
       break;
       case 'cfoBtn5':
         var min = latestDate.subtract(6, 'months').format('X') * 1000;
-        var xAxis_format = '%b %e %Y';
+        var xAxis_format = '%b %e';
         var tooltip_format = '%a, %b %e';
       break;
       case 'cfoBtn6':
         var min = latestDate.subtract(9, 'months').format('X') * 1000;
-        var xAxis_format = '%b %e %Y';
+        var xAxis_format = '%b %e';
         var tooltip_format = '%b %e %Y';
       break;
       case 'cfoBtn7':
@@ -101,17 +101,17 @@ Template.co_fin_overview.helpers({
       break;
       case 'cfoBtn9':
         var min = latestDate.subtract(5, 'years').format('X') * 1000;
-        var xAxis_format = '%b %Y';
+        var xAxis_format = '%Y';
         var tooltip_format = '%b %e %Y';
       break;
       case 'cfoBtn10':
         var min = latestDate.subtract(10, 'years').format('X') * 1000;
-        var xAxis_format = '%b %Y';
+        var xAxis_format = '%Y';
         var tooltip_format = '%b %e %Y';
       break;
       default:
         var min = latestDate.subtract(10, 'years').format('X') * 1000;
-        var xAxis_format = '%b %Y';
+        var xAxis_format = '%Y';
         var tooltip_format = '%b %e %Y';
       break;
     }
@@ -268,7 +268,7 @@ Template.co_fin_overview.helpers({
     company_data.lcsi_opening_price = commaSeparateNumber_decimal(Number(company_data.lcsi_opening_price).toFixed(2));
     company_data.lcsi_price_change_since_last = commaSeparateNumber_decimal(Math.round(Number(company_data.lcsi_price_change_since_last) * 100) / 100);
     company_data.lcsi_percent_change_since_last = commaSeparateNumber_decimal(Math.round(Number(company_data.lcsi_percent_change_since_last) * 100) / 100);
-    company_data.lcsi_market_cap = commaSeparateNumber_decimal(Number(company_data.lcsi_market_cap).toFixed(0)*1000000);
+    company_data.lcsi_market_cap = nFormatter(Number(company_data.lcsi_market_cap).toFixed(0));
     company_data.lcsi_earnings_per_share = Math.round(company_data.lcsi_earnings_per_share * 100) / 100;
 
     company_data.lcsi_pe_ratio = (Number(company_data.lcsi_pe_ratio)).toFixed(2);
