@@ -332,12 +332,12 @@ Template.money_memory_page.helpers({
     company_data.c_tr_last_updated = moment(company_data.c_tr_last_updated).format('MM/DD/YYYY');
 
     //Get beginning of 52 week range (Esitmated 250 open stock market days)
-    if(data.stock_history.length >= 250){
+    /*if(data.stock_history.length >= 250){
       var start_val = data.stock_history[250].sh_close;
       company_data.start_range = commaSeparateNumber_decimal(Math.round(Number(start_val) * 100) / 100);
     }else{
       company_data.start_range = 'N/A';
-    }
+    }*/
 
     //Determine icon to be displayed
     if(company_data.csi_price_change_since_last > 0){
@@ -366,7 +366,7 @@ Template.money_memory_page.helpers({
       loc_id:company_data.c_hq_state,
       city:company_data.c_hq_city,
     })
-    
+
     return company_data;
   },
   //Helper to display start date

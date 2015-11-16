@@ -274,7 +274,10 @@ Template.money_memory.helpers({
       },
 
       tooltip: {
-        pointFormat: companyData.c_ticker+": ${point.y:.2f}"
+        //pointFormat: companyData.c_ticker+": ${point.y:.2f}",
+        formatter: function(){
+          return Highcharts.dateFormat('%a, %b %e %Y', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+        }
       },
 
       yAxis: {
