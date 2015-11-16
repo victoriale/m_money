@@ -33,9 +33,9 @@ Template.directory_list_button.helpers({
   site_name: function() {
     var params = Router.current().getParams();
     if ( params.partner_id == null || typeof params.partner_id == 'undefined') {
-      return 'MYINVESTKIT';
+      return 'INVESTKIT';
     }
-    return 'INVESTKIT';
+    return 'MYINVESTKIT';
   },
   trending_list: function(){
     var data = Session.get('investkit_trending_list');

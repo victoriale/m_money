@@ -26,7 +26,6 @@ Template.lp_head.helpers({
 Template.lp_body.helpers({
   locationData: function(){
     var data = Session.get('profile_header');
-
     if(typeof(data) === 'undefined'){
       return false;
     }
