@@ -40,9 +40,11 @@ Template.list_view_exec.helpers({
     var params = Router.current().getParams();
     if(params.list_id == 'dollar_ceo'){
       var listdata = Session.get('dollar_ceo');
+      listdata['list_title'] = 'CEOs Who Make $1 Salary in 2015';
     }
     if(params.list_id == 'female_ceo'){
       var listdata = Session.get('female_ceo');
+      listdata['list_title'] = 'Highest Paid Female CEOs in 2015';
     }
     if(typeof listdata =='undefined'){
       return '';
@@ -103,6 +105,7 @@ Template.list_view_exec.helpers({
         }
       }
     })
+
     return listdata;
   },
 
@@ -111,20 +114,23 @@ Template.list_view_exec.helpers({
     var params = Router.current().getParams();
     if(params.list_id == 'dollar_ceo'){
       var listdata = Session.get('dollar_ceo');
+      listdata['list_title'] = 'CEOs Who Make $1 Salary in 2015';
     }
     if(params.list_id == 'female_ceo'){
       var listdata = Session.get('female_ceo');
+      listdata['list_title'] = 'Highest Paid Female CEOs in 2015';
     }
     if(typeof listdata =='undefined'){
       return '';
     }
+
     $.map(listdata.list_data, function(data,index){
       if(typeof data['TotalComp'] == 'undefined' || data['TotalComp'] == ''){
         data['objname'] = 'Salary';
         data['TotalComp'] = 1;
       }else{
         data['objname'] = 'Compensation';
-        data['TotalComp'] = dNumberToCommaNumber(data['TotalComp']);
+        data['TotalComp'] = nFormatter(data['TotalComp']);
       }
       data['newDate'] = (new Date(listdata['list_last_updated'])).toSNTFormTime();
       data['rank'] = index+1;
