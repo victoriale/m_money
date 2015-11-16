@@ -268,7 +268,7 @@ Template.co_fin_overview.helpers({
     company_data.csi_opening_price = commaSeparateNumber_decimal(Number(company_data.csi_opening_price).toFixed(2));
     company_data.csi_price_change_since_last = commaSeparateNumber_decimal(Math.round(Number(company_data.csi_price_change_since_last) * 100) / 100);
     company_data.csi_percent_change_since_last = commaSeparateNumber_decimal(Math.round(Number(company_data.csi_percent_change_since_last) * 100) / 100);
-    company_data.csi_market_cap = nFormatter(Number(company_data.csi_market_cap)*1000000);
+    company_data.csi_market_cap = commaSeparateNumber_decimal(Number(company_data.csi_market_cap).toFixed(0)*1000000);
     company_data.csi_earnings_per_share = Math.round(company_data.csi_earnings_per_share * 100) / 100;
 
     company_data.csi_pe_ratio = (Number(company_data.csi_pe_ratio)).toFixed(2);
