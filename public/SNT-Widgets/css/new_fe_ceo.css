@@ -116,9 +116,6 @@ button:focus {
   padding: 0 5px;
   /*line-height: 1.7em;*/
 }
-.fcw-t2-num {
-  color:#3098ff;
-}
 /*top text END*/
 
 /*image && button*/
@@ -147,8 +144,8 @@ button:focus {
   width: 50px;
   height: 50px;
   position:absolute;
-  right:71px;
-  bottom:0px;
+  right:69px;
+  bottom:-2px;
   background-color:#fafafa;
 }
 .fcw-cmp-image .fa {
@@ -164,6 +161,22 @@ button:focus {
 }
 .fcw-cmp-image:hover .fa {
   display:block;
+}
+
+.fcw-t2-num {
+  font-family:HN-B;
+  font-size:25px;
+  color:#3098ff;
+  border-radius: 50%;
+  border: 1px solid #ebebeb;
+  width: 50px;
+  height: 50px;
+  position:absolute;
+  left:69px;
+  top:-2px;
+  background-color:#fafafa;
+  text-align:center;
+  line-height: 50px;
 }
 
 .fcw-image:hover .fcw-image-txt {
