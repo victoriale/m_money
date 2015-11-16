@@ -224,7 +224,9 @@ Template.co_fin_overview.helpers({
     }
 
     var company_data = data.company_data;
-
+    //convert high and low to two decimal
+    company_data['lcsi_52week_high'] = Number(company_data['lcsi_52week_high']).toFixed(2);
+    company_data['lcsi_52week_low'] = Number(company_data['lcsi_52week_low']).toFixed(2);
     //console.log('company data', company_data);
 
     //Get beginning of 52 week range (Esitmated 250 open stock market days)
@@ -316,7 +318,7 @@ function reformatFinancialOverviewData(){
 
   data.stock_history.forEach(function(item, index){
     //Transform date
-    var date = moment(item.sh_date).format('X') * 1000;
+    var date = item.sh_date * 1000;
     //Build point array
     if(!isNaN(date)){
       var point = [date, Number(item.sh_close)]
