@@ -127,32 +127,32 @@ Template.money_memory_page.helpers({
       break;
       case 'mmbbl-1':
         var min = latestDate.subtract(5, 'days').format('X') * 1000;
-        var xAxis_format = '%a, %b %e';
+        var xAxis_format = '%a, %b %e %Y';
         var tooltip_format = '%a, %b %e';
       break;
       case 'mmbbl-2':
         var min = latestDate.subtract(10, 'days').format('X') * 1000;
-        var xAxis_format = '%b %e';
+        var xAxis_format = '%b %e %Y';
         var tooltip_format = '%a, %b %e';
       break;
       case 'mmbbl-3':
         var min = latestDate.subtract(1, 'months').format('X') * 1000;
-        var xAxis_format = '%b %e';
+        var xAxis_format = '%b %e %Y';
         var tooltip_format = '%a, %b %e';
       break;
       case 'mmbbl-4':
         var min = latestDate.subtract(3, 'months').format('X') * 1000;
-        var xAxis_format = '%b %e';
+        var xAxis_format = '%b %e %Y';
         var tooltip_format = '%a, %b %e';
       break;
       case 'mmbbl-5':
         var min = latestDate.subtract(6, 'months').format('X') * 1000;
-        var xAxis_format = '%b %e';
+        var xAxis_format = '%b %e %Y';
         var tooltip_format = '%a, %b %e';
       break;
       case 'mmbbl-6':
         var min = latestDate.subtract(9, 'months').format('X') * 1000;
-        var xAxis_format = '%b %e';
+        var xAxis_format = '%b %e %Y';
         var tooltip_format = '%b %e %Y';
       break;
       case 'mmbbl-7':
@@ -167,17 +167,17 @@ Template.money_memory_page.helpers({
       break;
       case 'mmbbl-9':
         var min = latestDate.subtract(5, 'years').format('X') * 1000;
-        var xAxis_format = '%Y';
+        var xAxis_format = '%b %Y';
         var tooltip_format = '%b %e %Y';
       break;
       case 'mmbbl-10':
         var min = latestDate.subtract(10, 'years').format('X') * 1000;
-        var xAxis_format = '%Y';
+        var xAxis_format = '%b %Y';
         var tooltip_format = '%b %e %Y';
       break;
       default:
         var min = latestDate.subtract(10, 'years').format('X') * 1000;
-        var xAxis_format = '%Y';
+        var xAxis_format = '%b %Y';
         var tooltip_format = '%b %e %Y';
       break;
     }
@@ -291,7 +291,7 @@ Template.money_memory_page.helpers({
     company_data.c_hq_city = toTitleCase(company_data.c_hq_city);
     company_data.csi_trading_vol = nFormatter(Number(company_data.lcsi_trading_vol));
     company_data.avg_volume = nFormatter(Math.round(company_data.avg_volume));
-    
+
     company_data.min_range = commaSeparateNumber_decimal(Number(company_data.lcsi_52week_low));
     company_data.max_range = commaSeparateNumber_decimal(Number(company_data.lcsi_52week_high));
 
