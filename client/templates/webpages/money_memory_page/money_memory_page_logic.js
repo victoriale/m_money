@@ -123,7 +123,6 @@ Template.money_memory_page.helpers({
     //Get range value based on option selected
     switch(mm_range){
       case 'mmbbl-0':
-        var min = latestDate.subtract(1, 'days').format('X') * 1000;
         var graphData = data.highchartsData
 
         var condition = false;
@@ -367,7 +366,7 @@ Template.money_memory_page.helpers({
       loc_id:company_data.c_hq_state,
       city:company_data.c_hq_city,
     })
-console.log(company_data);
+    
     return company_data;
   },
   //Helper to display start date
