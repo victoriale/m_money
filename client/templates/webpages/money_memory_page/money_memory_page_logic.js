@@ -289,20 +289,20 @@ Template.money_memory_page.helpers({
 
     //Format values
     company_data.c_hq_city = toTitleCase(company_data.c_hq_city);
-    company_data.csi_trading_vol = nFormatter(Number(company_data.csi_trading_vol));
+    company_data.csi_trading_vol = nFormatter(Number(company_data.lcsi_trading_vol));
     company_data.avg_volume = nFormatter(Math.round(company_data.avg_volume));
+    
+    company_data.min_range = commaSeparateNumber_decimal(Number(company_data.lcsi_52week_low));
+    company_data.max_range = commaSeparateNumber_decimal(Number(company_data.lcsi_52week_high));
 
-    company_data.min_range = commaSeparateNumber_decimal((Math.min(Number(company_data.csi_opening_price), Number(company_data.csi_closing_price), Number(company_data.csi_price)) * 100) / 100);
-    company_data.max_range = commaSeparateNumber_decimal((Math.max(Number(company_data.csi_opening_price), Number(company_data.csi_closing_price), Number(company_data.csi_price)) * 100) / 100);
+    company_data.csi_low = Number(company_data.lcsi_low).toFixed(2);
+    company_data.csi_high = Number(company_data.lcsi_high).toFixed(2);
 
-    company_data.csi_low = Number(company_data.csi_low).toFixed(2);
-    company_data.csi_high = Number(company_data.csi_high).toFixed(2);
-
-    company_data.csi_price = commaSeparateNumber_decimal(Number(company_data.csi_price));
-    company_data.csi_closing_price = commaSeparateNumber_decimal(Number(company_data.csi_closing_price));
-    company_data.csi_opening_price = commaSeparateNumber_decimal(Number(company_data.csi_opening_price));
-    company_data.csi_price_change_since_last = commaSeparateNumber_decimal(Math.round(Number(company_data.csi_price_change_since_last) * 100) / 100);
-    company_data.csi_percent_change_since_last = commaSeparateNumber_decimal(Math.round(Number(company_data.csi_percent_change_since_last) * 100) / 100);
+    company_data.csi_price = commaSeparateNumber_decimal(Number(company_data.lcsi_price));
+    company_data.csi_closing_price = commaSeparateNumber_decimal(Number(company_data.lcsi_closing_price));
+    company_data.csi_opening_price = commaSeparateNumber_decimal(Number(company_data.lcsi_opening_price));
+    company_data.csi_price_change_since_last = commaSeparateNumber_decimal(Math.round(Number(company_data.lcsi_price_change_since_last) * 100) / 100);
+    company_data.csi_percent_change_since_last = commaSeparateNumber_decimal(Math.round(Number(company_data.lcsi_percent_change_since_last) * 100) / 100);
 
 
     //Transform dates
