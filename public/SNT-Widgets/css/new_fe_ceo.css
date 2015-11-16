@@ -64,9 +64,7 @@ button:focus {
 }
 
 .fcw{
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+  border: 1px solid #ccc;
   width:100%;
   height:350px;
   position: relative;
