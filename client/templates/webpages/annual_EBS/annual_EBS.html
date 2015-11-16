@@ -1,9 +1,12 @@
+ <!-- Author: jyothyswaroop
+ Created: 11/13/2015
+ Description: .js file for annual_EBS
+ Associated Files: annual_EBS.html, annual_EBS.less, annual_EBS.logic.js -->
 
 <!-- Note: page_header less comes from trending_page -->
 
 <template name = "annual_EBS">
   <div class = "anebs">
-
     <!-- Header Section -->
     <a href = "#" onclick="history.go(-1)">
       <div class = "anebs-hdr">
@@ -15,10 +18,10 @@
       </div>
     </a>
     <!-- END Header Section -->
-
     <!-- Title Section -->
     <div class = "anebs-ttl">
-      <a href = "#"><div class = "anebs-ttl-img" style="background-image:url('{{imageUrl compImage}}')"></div></a>
+      <a href = "#"><div class = "anebs-ttl-img" style="background-image: url('{{imageUrl imag}}')"></div></a>
+
       <div class = "anebs-ttl-txt">
         <div class = "anebs-ttl-txt-upd">LAST UPDATED: {{updated}}</div>
         <div class = "anebs-ttl-txt-loc"><i class = "fa fa-map-marker"></i>&nbsp;{{location}}</div>
@@ -27,21 +30,45 @@
       </div>
     </div>
     <!-- END Title Section -->
-
     <!-- Graph Section -->
     <div class = "anebs-grph">
       <div class = "anebs-grph-tabs">
-        <div class = "anebs-grph-tabs-tab" style = "width: 160px;">
-          <div class = "anebs-grph-tabs-tab-txt">Balance Sheet</div>
+        <div class = "anebs-grph-tabs-tab" id="anebs-grph-0">
+          <!-- <div class = "anebs-grph-tabs-tab-txt"> -->
+            Balance Sheet
           <div class = "anebs-grph-tabs-tab-circ"><i class = "fa fa-caret-down"></i></div>
+          <div class="anebs-grph-tabs-tab-options">
+            <div class="anebs-grph-tabs-tab-option"> Balance Sheet</div>
+            <div class="anebs-grph-tabs-tab-option"> Income Statement</div>
+            <div class="anebs-grph-tabs-tab-option"> Cash Flow</div>
+          </div>
+          <!-- </div> -->
         </div>
-        <div class = "anebs-grph-tabs-tab">
-          <div class = "anebs-grph-tabs-tab-txt">Annual Data</div>
+        <div class = "anebs-grph-tabs-tab" id="anebs-grph-1">
+          <!-- <div class = "anebs-grph-tabs-tab-txt"> -->
+            Annual Data
           <div class = "anebs-grph-tabs-tab-circ"><i class = "fa fa-caret-down"></i></div>
+          <div class="anebs-grph-tabs-tab-options">
+            <div class="anebs-grph-tabs-tab-option"> Annual Data </div>
+            <div class="anebs-grph-tabs-tab-option"> Quarterly Data</div>
+          </div>
+          <!-- </div> -->
         </div>
-        <div class = "anebs-grph-tabs-tab" style = "width: 100px">
-          <div class = "anebs-grph-tabs-tab-txt">2014</div>
+        <div class = "anebs-grph-tabs-tab" style = "width: 100px" id="anebs-grph-2">
+          <!-- <div class = "anebs-grph-tabs-tab-txt"> -->
+          <!-- 2015 !-->
+          {{firstLabel1}}
+          <!-- </div> -->
           <div class = "anebs-grph-tabs-tab-circ"><i class = "fa fa-caret-down"></i></div>
+          <div class="anebs-grph-tabs-tab-options">
+            {{#each label1}}
+            <div class="anebs-grph-tabs-tab-option">{{lbl1}}</div>
+            <!-- <div class="anebs-grph-tabs-tab-option">2015</div>
+            <div class="anebs-grph-tabs-tab-option"> 2014</div>
+            <div class="anebs-grph-tabs-tab-option">2013</div>
+            <div class="anebs-grph-tabs-tab-option"> 2012</div> -->
+            {{/each}}
+          </div>
         </div>
       </div>
       <div class = "anebs-grph-totals">
@@ -49,14 +76,14 @@
           <div class = "anebs-grph-totals-total-ind">
             <div class = "anebs-grph-totals-total-ind-box" style = "background-color: #434348"></div>
             <div class = "anebs-grph-totals-total-ind-txt">
-              <div class = "anebs-grph-totals-total-ind-txt-top">{{totaldbt}}</div>
+              <div class = "anebs-grph-totals-total-ind-txt-top">${{totaldbt}}</div>
               <div class = "anebs-grph-totals-total-ind-txt-bttm">Total Debt</div>
             </div>
           </div>
           <div class = "anebs-grph-totals-total-ind">
             <div class = "anebs-grph-totals-total-ind-box" style = "background-color: #3098FF"></div>
             <div class = "anebs-grph-totals-total-ind-txt">
-              <div class = "anebs-grph-totals-total-ind-txt-top">{{totalasets}}</div>
+              <div class = "anebs-grph-totals-total-ind-txt-top">${{totalasets}}</div>
               <div class = "anebs-grph-totals-total-ind-txt-bttm">Total Assets</div>
             </div>
           </div>

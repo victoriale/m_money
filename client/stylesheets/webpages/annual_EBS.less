@@ -1,5 +1,9 @@
 
-
+/*Author: jyothyswaroop
+** Created: 11/13/2015
+** Description: .js file for annual_EBS
+** Associated Files: annual_EBS.html, annual_EBS.less, annual_EBS.logic.js
+*/
 @import (reference)"../global_vars.less";
 @import (reference)"../modules.less";
 
@@ -16,7 +20,7 @@
   &-hdr {
     width: 100%;
     height: 50px;
-    background-image: url('/public/header_texture.png');
+    background-image: url('/header_texture.png');
 
     // anebs-hdr-box
     &-box {
@@ -85,7 +89,8 @@
       background-color: @white;
       margin: 15px;
       float: left;
-
+      background-size: 100px 100px;
+      background-repeat: no-repeat;
 
     } // END anebs-ttl-img
     // anebs-ttl-txt
@@ -147,23 +152,29 @@
     width: 100%;
     height: 449px;
 
+
     // anebs-grph-tabs
     &-tabs {
-      width: 670px;
-      height: 30px;
-      margin: 9px 0px 0px 10px;
+      width: 100%;
+      height: 55px;
+      //margin: 9px 0px 0px 10px;
 
       // anebs-grph-tabs-tab
       &-tab {
-        width: 160px;
+        margin-top: 10px;
+        margin-left: 10px;
         height: 30px;
-        border: 1px solid @bgcolor;
         border-radius: 3px;
-        background-color: @grey-8;
-        margin-right: 10px;
+        border: 1px solid #e1e1e1;
+        background-color: #ebebeb;
         float: left;
+        font-size: 12px;
+        line-height: 28px;
+        padding-left: 10px;
+        position: relative;
         cursor: pointer;
-
+        width:160px;
+        font-family: HN;
         // anebs-grph-tabs-tab-txt
         &-txt {
           height: 12px;
@@ -179,17 +190,46 @@
           width: 20px;
           height: 20px;
           border-radius: 50%;
-          background-color: @white;
+          background-color: #ffffff;
           margin: 4px 10px 5px 0px;
           float: right;
+          line-height: 20px;
+          text-align: center;
+          cursor: pointer;
 
           // anebs-grph-tabs-tab-circ .fa
           .fa {
             font-size: 12px;
             color: @blue;
-            margin: 4px 0px 0px 6px;
+            margin: 4px 0px 0px 1px;
           } // END anebs-grph-tabs-tab-circ .fa
         } // END anebs-grph-tabs-tab-circ
+        &-options{
+          position: absolute;
+          width: 100%;
+          min-height: 40px;
+          top: 29px;
+          left: 0px;
+          display: none;
+          border: 1px solid #ebebeb;
+          z-index: 10;
+        }
+
+        &-option{
+          width: 100%;
+          height: 40px;
+          background-color: @white;
+          color: @black;
+          border-top: 1px solid #ebebeb;
+          line-height: 40px;
+          padding-left: 20px;
+
+          &:hover{
+            background-color: @blue;
+            color: @white;
+          }
+      }
+
       } // END anebs-grph-tabs-tab
 
     } // END anebs-grph-tabs
@@ -199,7 +239,7 @@
       width: 660px;
       height: 50px;
       background-color: @grey-8;
-      margin: 15px 0px 0px 10px;
+      margin: 0px 0px 0px 10px;
       overflow: hidden;
 
       // anebs-grph-totals-total
@@ -243,10 +283,35 @@
               margin-top: 3px;
               line-height: 10px;
             }
+
+            &-options{
+              position: absolute;
+              width: 100%;
+              min-height: 40px;
+              top: 29px;
+              left: 0px;
+              display: none;
+              border: 1px solid #ebebeb;
+              z-index: 10;
+            }
+
+            &-option{
+              width: 100%;
+              height: 40px;
+              background-color: @white;
+              color: @black;
+              border-top: 1px solid #ebebeb;
+              line-height: 40px;
+              padding-left: 20px;
+
+              &:hover{
+                background-color: @blue;
+                color: @white;
+              }
           }
         } // END anebs-grph-totals-total-ind
       } // END anebs-grph-totals-total
-
+}
       // anebs-grph-totals-option
       &-option {
         width: 160px;
@@ -277,7 +342,8 @@
     &-hdr {
       width: 665px;
       height: 40px;
-      background-image: url('/public/header_texture2.png');
+      margin-top:10px;
+      background-image: url('/header_texture.png');
       border-left: 5px solid @blue;
       overflow: hidden;
 
@@ -287,7 +353,7 @@
         font-family: HN-B;
         font-size: 18px;
         color: @white;
-        margin: 13px 0px 0px 9px;
+        margin: 17px 0px 0px 9px;
         line-height: 14px;
       } // END anebs-stats-hdr-txt
     } // END anebs-stats-hdr

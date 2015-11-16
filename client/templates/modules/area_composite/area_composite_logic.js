@@ -158,7 +158,7 @@ Template.area_composite.helpers({
     var chartdata = {
       chart: {
         type: 'pie',
-        backgroundColor:'rgba(255, 255, 255, 0.1)'
+        backgroundColor:'rgba(255, 255, 255, 0)'
       },
       title: {
         useHTML:true,
@@ -181,7 +181,8 @@ Template.area_composite.helpers({
         }
       },
       tooltip: {
-        valueSuffix: '%'
+        valueSuffix: '%',
+        backgroundColor: "rgba(255,255,255,1)"
       },
       series: [{
         name: 'Sector Breakdown',
