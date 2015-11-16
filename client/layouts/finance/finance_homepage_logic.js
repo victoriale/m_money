@@ -4,7 +4,8 @@ sortSuggestions = function(data, search_string) {
     company: [],
     location: [],
     officer: [],
-    ticker: []
+    ticker: [],
+    states: []
   };
   var total_results = 0;
 
@@ -25,6 +26,133 @@ sortSuggestions = function(data, search_string) {
     }
     for ( var index = 0; index < max_index; index++ ) {
       results[ticker_data[index].name_type][results[ticker_data[index].name_type].length] = ticker_data[index];
+    }
+  }
+
+  var states = [
+    'AL',
+    'Alabama',
+    'AK',
+    'Alaska',
+    'AZ',
+    'Arizona',
+    'AR',
+    'Arkansas',
+    'CA',
+    'California',
+    'CO',
+    'Colorado',
+    'CT',
+    'Connecticut',
+    'DC',
+    'District of Columbia',
+    'DE',
+    'Delaware',
+    'FL',
+    'Florida',
+    'GA',
+    'Georgia',
+    'HI',
+    'Hawaii',
+    'ID',
+    'Idaho',
+    'IL',
+    'Illinois',
+    'IN',
+    'Indiana',
+    'IA',
+    'Iowa',
+    'KS',
+    'Kansas',
+    'KY',
+    'Kentucky',
+    'LA',
+    'Lousiana',
+    'ME',
+    'Maine',
+    'MD',
+    'Maryland',
+    'MA',
+    'Massachusetts',
+    'MI',
+    'Michigan',
+    'MN',
+    'Minnesota',
+    'MS',
+    'Mississippi',
+    'MO',
+    'Missouri',
+    'MT',
+    'Montana',
+    'NE',
+    'Nebraska',
+    'NV',
+    'Nevada',
+    'NH',
+    'New Hampshire',
+    'NJ',
+    'New Jersey',
+    'NM',
+    'New Mexico',
+    'NY',
+    'New York',
+    'NC',
+    'North Carolina',
+    'ND',
+    'North Dakota',
+    'OH',
+    'Ohio',
+    'OK',
+    'Oklahoma',
+    'ON',
+    'Ontario',
+    'OR',
+    'Oregon',
+    'PA',
+    'Pennsylvania',
+    'PR',
+    'Puerto Rico',
+    'RI',
+    'Rhode Island',
+    'SC',
+    'South Carolina',
+    'SD',
+    'South Dakota',
+    'TN',
+    'Tennessee',
+    'TX',
+    'Texas',
+    'UT',
+    'Utah',
+    'VT',
+    'Vermont',
+    'VA',
+    'Virginia',
+    'WA',
+    'Washington',
+    'WV',
+    'West Virginia',
+    'WI',
+    'Wisconsin',
+    'WY',
+    'Wyoming'
+  ];
+  for ( var i = 0; i < states.length; i++ ) {
+    if ( states[i].toLowerCase().indexOf(search_string.toLowerCase()) != -1 ) {
+      if ( typeof fullstate(states[i]) != "undefined" ) {
+        states[i] = fullstate(states[i]);
+      }
+      var uq = true;
+      for ( var e = 0; e < results.location.length; e++ ) {
+        if ( results.location[e].state == states[i] ) {
+          uq = false;
+        }
+      }
+      if ( uq ) {
+        results.location[results.location.length] = {
+          state: states[i]
+        };
+      }
     }
   }
 
@@ -98,10 +226,17 @@ sortSuggestions = function(data, search_string) {
           string: '<b>' + results[type][i].c_name + '</b> - ' + results[type][i].c_exchange + ':' + results[type][i].c_ticker + ' <i class="fa fa-chevron-right"></i>'
         };
       } else if ( type == 'location' ) {
-        var i_data = {
-          url: Router.pick_path('content.locationprofile',{loc_id: fullstate(results[type][i].c_hq_state), city: compUrlName(results[type][i].dma_frontend_name), city_id: results[type][i].c_dma_code}),
-          string: '<b>' + toTitleCase(results[type][i].c_hq_city) + ', ' + fullstate(results[type][i].c_hq_state) + '</b> - ' + toTitleCase(results[type][i].dma_frontend_name) + ' <i class="fa fa-chevron-right"></i>'
-        };
+        if ( typeof results[type][i].state != "undefined" ) {
+          var i_data = {
+            url: Router.pick_path('content.locationprofile',{loc_id: results[type][i].state}),
+            string: '<b>' + results[type][i].state + '</b> <i class="fa fa-chevron-right"></i>'
+          };
+        } else {
+          var i_data = {
+            url: Router.pick_path('content.locationprofile',{loc_id: fullstate(results[type][i].c_hq_state), city: compUrlName(results[type][i].dma_frontend_name), city_id: results[type][i].c_dma_code}),
+            string: '<b>' + toTitleCase(results[type][i].c_hq_city) + ', ' + fullstate(results[type][i].c_hq_state) + '</b> - ' + toTitleCase(results[type][i].dma_frontend_name) + ' <i class="fa fa-chevron-right"></i>'
+          };
+        }
       } else if ( type == 'officer' ) {
         var i_data = {
           url: Router.pick_path('content.executiveprofile',{ticker: results[type][i].c_ticker, fname: compUrlName(results[type][i].o_first_name), lname: compUrlName(results[type][i].o_last_name), exec_id: results[type][i].o_id}),
