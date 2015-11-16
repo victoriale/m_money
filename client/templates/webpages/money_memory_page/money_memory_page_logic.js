@@ -14,7 +14,7 @@ Template.money_memory_page.onCreated(function(){
   Session.set('user_start_date', Number(default_start));
   Session.set('user_end_date', Number(default_end));
   //Default value for graph range
-  Session.set('mm_range', 'mmbbl-10');
+  Session.set('mm_range', 'mmbbl-0');
 
   recallMoneyMemory_page();
 
@@ -115,6 +115,8 @@ Template.money_memory_page.helpers({
       return '';
     }
 
+    var dataLength = data.highchartsData.length;
+
     //Get dependencies to find date range
     var latestDate = moment(data.highchartsData[0][0]);
     data.highchartsData.reverse();
@@ -122,6 +124,27 @@ Template.money_memory_page.helpers({
     switch(mm_range){
       case 'mmbbl-0':
         var min = latestDate.subtract(1, 'days').format('X') * 1000;
+        var graphData = data.highchartsData
+
+        var condition = false;
+        //Get last point of graph
+        var count = dataLength - 1;
+        //Find the most current day in the list
+        var current_month_hour = moment(graphData[count][0]).format('MMDD');
+        //Loop through the array to find the beginning of the latest day available
+        while(condition === false){
+          //get the month and date of the data point
+          var time = moment(graphData[count - 1][0]).format('MMDD');
+          //If the month and date of the current point dont match the latest day avaiable. Set the previous point to the beggining of the graph
+          if(time !== current_month_hour){
+            var min = graphData[count][0];
+            //Set condition to true to exit while loop
+            condition = true;
+          }
+          //Decrement count to continue loop iteration
+          count--;
+        }
+
         var xAxis_format = '%l:%M %P';
         var tooltip_format = '%l:%M %P CST';
       break;
@@ -215,7 +238,7 @@ Template.money_memory_page.helpers({
           title: '',
           floor: 0,
           gridLineDashStyle: 'longdash',
-          minTickInterval: 5,
+          tickAmount: 4,
           plotLines: [{
               value: 0,
               width: 1,
