@@ -25,7 +25,9 @@ Template.co_competitor.helpers({
     var ticker = newData.c_ticker;
     var company_id = newData.c_id;
 
-    newData['csi_price_last_updated'] = newData['csi_price_last_updated'];
+    //newData['csi_price_last_updated'] = new Date(Data['csi_price_last_updated']).toSNTFormTime();
+    //newData['csi_price_last_updated'] = (new Date(['csi_price_last_updated']));
+
     //database sending back in million
     newData['market_cap'] = dNumberToCommaNumber(Number(newData['market_cap']).toFixed(0));
     newData['csi_price_change_since_last'] = Number(newData['csi_price_change_since_last']).toFixed(2);
@@ -60,7 +62,8 @@ Template.co_competitor.helpers({
       data['csi_price_change_since_last'] = Number(data['csi_price_change_since_last']).toFixed(2);
       data['csi_price'] = Number(data['csi_price']).toFixed(2);
       data['csi_percent_change_since_last'] = Number(data['csi_percent_change_since_last']).toFixed(2);
-      data['csi_price_last_updated'] = (new Date(data['csi_price_last_updated']));
+    //  data['csi_price_last_updated'] = (new Date(data['csi_price_last_updated']));
+      data['csi_price_last_updated'] = (new Date(data['csi_price_last_updated'])).toSNTForm();
       data.share_url = "https://www.facebook.com/sharer/sharer.php?u=" + Router.pick_path('content.companyprofile', {company_id: data.c_id, name: compUrlName(data.c_name), ticker: data.c_ticker});
 
       var company = compUrlName(data.c_name);
