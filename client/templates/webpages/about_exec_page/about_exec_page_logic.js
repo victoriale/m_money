@@ -97,7 +97,6 @@ Template.about_exec_page.helpers({
         loc_id: data.c_hq_state,
         city:data.c_hq_city
       });
-      console.log(data);
       return data;
     },
 
