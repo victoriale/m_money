@@ -306,7 +306,7 @@ Template.money_memory_page.helpers({
 
 
     //Transform dates
-    company_data.csi_price_last_updated = moment(company_data.csi_price_last_updated).format('dddd MM/DD/YYYY hh:mm A') + ' CST';
+    company_data.csi_price_last_updated = moment(company_data.csi_price_last_updated).format('dddd MM/DD/YYYY');
     company_data.c_tr_last_updated = moment(company_data.c_tr_last_updated).format('MM/DD/YYYY');
 
     //Get beginning of 52 week range (Esitmated 250 open stock market days)
