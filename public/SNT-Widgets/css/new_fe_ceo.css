@@ -162,9 +162,9 @@ button:focus {
 }
 
 .fcw-t2-num {
-  font-family:HN-B;
-  font-size:25px;
-  color:#3098ff;
+  font-family:HN;
+  font-size:18px;
+  color:#000;
   border-radius: 50%;
   border: 1px solid #ebebeb;
   width: 50px;
@@ -172,7 +172,7 @@ button:focus {
   position:absolute;
   left:69px;
   top:-2px;
-  background-color:#fafafa;
+  background-color:#fff;
   text-align:center;
   line-height: 50px;
 }
@@ -208,7 +208,7 @@ button:focus {
   -webkit-border-radius: 0 90px 90px 0;
   border:none;
   left: 0;
-  top:20%;
+  top:30%;
   background-color: #000;
   color:#fff;
   font-size: 25px;
@@ -228,7 +228,7 @@ button:focus {
   border:none;
   position: absolute;
   right: 0;
-  top:20%;
+  top:30%;
   background-color: #000;
   color:#fff;
   font-size: 25px;
