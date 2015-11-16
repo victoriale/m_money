@@ -25,7 +25,7 @@ Template.co_competitor.helpers({
     var ticker = newData.c_ticker;
     var company_id = newData.c_id;
 
-    newData['c_tr_last_updated'] = newData['c_tr_last_updated'].replace(/-/g, '/');
+    newData['csi_price_last_updated'] = newData['csi_price_last_updated'].toSNTForm();
     //database sending back in million
     newData['market_cap'] = dNumberToCommaNumber(Number(newData['market_cap']).toFixed(0));
     newData['csi_price_change_since_last'] = Number(newData['csi_price_change_since_last']).toFixed(2);
