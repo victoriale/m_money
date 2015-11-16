@@ -122,39 +122,63 @@ Template.money_memory_page.helpers({
     switch(mm_range){
       case 'mmbbl-0':
         var min = latestDate.subtract(1, 'days').format('X') * 1000;
+        var xAxis_format = '%l:%M %P';
+        var tooltip_format = '%l:%M %P CST';
       break;
       case 'mmbbl-1':
         var min = latestDate.subtract(5, 'days').format('X') * 1000;
+        var xAxis_format = '%a, %b %e';
+        var tooltip_format = '%a, %b %e';
       break;
       case 'mmbbl-2':
         var min = latestDate.subtract(10, 'days').format('X') * 1000;
+        var xAxis_format = '%b %e';
+        var tooltip_format = '%a, %b %e';
       break;
       case 'mmbbl-3':
         var min = latestDate.subtract(1, 'months').format('X') * 1000;
+        var xAxis_format = '%b %e';
+        var tooltip_format = '%a, %b %e';
       break;
       case 'mmbbl-4':
         var min = latestDate.subtract(3, 'months').format('X') * 1000;
+        var xAxis_format = '%b %e';
+        var tooltip_format = '%a, %b %e';
       break;
       case 'mmbbl-5':
         var min = latestDate.subtract(6, 'months').format('X') * 1000;
+        var xAxis_format = '%b %e';
+        var tooltip_format = '%a, %b %e';
       break;
       case 'mmbbl-6':
         var min = latestDate.subtract(9, 'months').format('X') * 1000;
+        var xAxis_format = '%b %e';
+        var tooltip_format = '%b %e %Y';
       break;
       case 'mmbbl-7':
         var min = latestDate.subtract(1, 'years').format('X') * 1000;
+        var xAxis_format = '%b %e %Y';
+        var tooltip_format = '%b %e %Y';
       break;
       case 'mmbbl-8':
         var min = latestDate.subtract(3, 'years').format('X') * 1000;
+        var xAxis_format = '%b %Y';
+        var tooltip_format = '%b %e %Y';
       break;
       case 'mmbbl-9':
         var min = latestDate.subtract(5, 'years').format('X') * 1000;
+        var xAxis_format = '%Y';
+        var tooltip_format = '%b %e %Y';
       break;
       case 'mmbbl-10':
         var min = latestDate.subtract(10, 'years').format('X') * 1000;
+        var xAxis_format = '%Y';
+        var tooltip_format = '%b %e %Y';
       break;
       default:
         var min = latestDate.subtract(10, 'years').format('X') * 1000;
+        var xAxis_format = '%Y';
+        var tooltip_format = '%b %e %Y';
       break;
     }
 
@@ -180,7 +204,10 @@ Template.money_memory_page.helpers({
       xAxis: {
           type: 'datetime',
           labels: {
-              overflow: 'justify'
+              overflow: 'justify',
+              formatter: function(){
+                return Highcharts.dateFormat(xAxis_format, this.value);
+              }
           },
           min: min
       },
@@ -198,10 +225,13 @@ Template.money_memory_page.helpers({
               formatter: function() {
                   return '$' + this.value
               }
-          }
+          },
+          opposite: true
       },
       tooltip: {
-      	pointFormat: "Value: ${point.y:.2f}"
+        formatter: function(){
+          return Highcharts.dateFormat(tooltip_format, this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+        }
       },
       plotOptions: {
           spline: {
@@ -276,8 +306,8 @@ Template.money_memory_page.helpers({
 
 
     //Transform dates
-    company_data.csi_price_last_updated = moment(company_data.csi_price_last_updated).tz('America/New_York').format('dddd MM/DD/YYYY hh:mm A') + ' EST';
-    company_data.c_tr_last_updated = moment(company_data.c_tr_last_updated).tz('America/New_York').format('MM/DD/YYYY');
+    company_data.csi_price_last_updated = moment(company_data.csi_price_last_updated).format('dddd MM/DD/YYYY hh:mm A') + ' CST';
+    company_data.c_tr_last_updated = moment(company_data.c_tr_last_updated).format('MM/DD/YYYY');
 
     //Get beginning of 52 week range (Esitmated 250 open stock market days)
     if(data.stock_history.length >= 250){

@@ -56,39 +56,63 @@ Template.co_fin_overview.helpers({
     switch(fo_range){
       case 'cfoBtn0':
         var min = latestDate.subtract(1, 'days').format('X') * 1000;
+        var xAxis_format = '%l:%M %P';
+        var tooltip_format = '%l:%M %P CST';
       break;
       case 'cfoBtn1':
         var min = latestDate.subtract(5, 'days').format('X') * 1000;
+        var xAxis_format = '%a, %b %e';
+        var tooltip_format = '%a, %b %e';
       break;
       case 'cfoBtn2':
         var min = latestDate.subtract(10, 'days').format('X') * 1000;
+        var xAxis_format = '%b %e';
+        var tooltip_format = '%a, %b %e';
       break;
       case 'cfoBtn3':
         var min = latestDate.subtract(1, 'months').format('X') * 1000;
+        var xAxis_format = '%b %e';
+        var tooltip_format = '%a, %b %e';
       break;
       case 'cfoBtn4':
         var min = latestDate.subtract(3, 'months').format('X') * 1000;
+        var xAxis_format = '%b %e';
+        var tooltip_format = '%a, %b %e';
       break;
       case 'cfoBtn5':
         var min = latestDate.subtract(6, 'months').format('X') * 1000;
+        var xAxis_format = '%b %e';
+        var tooltip_format = '%a, %b %e';
       break;
       case 'cfoBtn6':
         var min = latestDate.subtract(9, 'months').format('X') * 1000;
+        var xAxis_format = '%b %e';
+        var tooltip_format = '%b %e %Y';
       break;
       case 'cfoBtn7':
         var min = latestDate.subtract(1, 'years').format('X') * 1000;
+        var xAxis_format = '%b %e %Y';
+        var tooltip_format = '%b %e %Y';
       break;
       case 'cfoBtn8':
         var min = latestDate.subtract(3, 'years').format('X') * 1000;
+        var xAxis_format = '%b %Y';
+        var tooltip_format = '%b %e %Y';
       break;
       case 'cfoBtn9':
         var min = latestDate.subtract(5, 'years').format('X') * 1000;
+        var xAxis_format = '%Y';
+        var tooltip_format = '%b %e %Y';
       break;
       case 'cfoBtn10':
         var min = latestDate.subtract(10, 'years').format('X') * 1000;
+        var xAxis_format = '%Y';
+        var tooltip_format = '%b %e %Y';
       break;
       default:
         var min = latestDate.subtract(10, 'years').format('X') * 1000;
+        var xAxis_format = '%Y';
+        var tooltip_format = '%b %e %Y';
       break;
     }
 
@@ -112,7 +136,10 @@ Template.co_fin_overview.helpers({
       xAxis: {
           type: 'datetime',
           labels: {
-              overflow: 'justify'
+              overflow: 'justify',
+              formatter: function(){
+                return Highcharts.dateFormat(xAxis_format, this.value);
+              }
           },
           min: min
       },
@@ -130,10 +157,13 @@ Template.co_fin_overview.helpers({
               formatter: function() {
                   return '$' + this.value
               }
-          }
+          },
+          opposite: true
       },
       tooltip: {
-      	pointFormat: "Value: ${point.y:.2f}"
+      	formatter: function(){
+          return Highcharts.dateFormat(tooltip_format, this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+        }
       },
       plotOptions: {
           spline: {
