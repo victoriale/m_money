@@ -117,7 +117,7 @@ Template.featured_list.helpers (
           }
           if(objName === 'market_cap'){
             data['data_name'] = "Market Cap";
-            data['data_value'] = '$'+nFormatter2(data['market_cap']);
+            data['data_value'] = '$'+data['market_cap'];
           }
           if(objName === 'market_percent'){
             data['data_name'] = "Market Percent";

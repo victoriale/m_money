@@ -144,7 +144,7 @@ Template.list_view.helpers({
         }
         if(objName === 'market_cap'){
           data['data_name'] = "Market Cap";
-          data['data_value'] = '$'+commaSeparateNumber_decimal(Number(data['market_cap']*1000000));
+          data['data_value'] = '$'+data['market_cap'];
         }
         if(objName === 'market_percent'){
           data['data_name'] = "Market Percent";
@@ -205,7 +205,7 @@ Template.list_view.helpers({
         }
         if(objName === 'market_cap'){
           data['data_name'] = "Market Cap";
-          data['data_value'] = '$'+commaSeparateNumber_decimal(Number(data['market_cap']*1000000));
+          data['data_value'] = '$'+data['market_cap'];
         }
         if(objName === 'market_percent'){
           data['data_name'] = "Market Percent";

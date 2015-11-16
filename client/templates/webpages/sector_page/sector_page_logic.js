@@ -23,7 +23,6 @@ Template.sector_page.onRendered(function () {
     }
     Session.set('isPulling', true);
     Meteor.call("sectorData", Session.get('loc_id'), Session.get('sector_id'), Session.get('sector_page_num'), function(error, data){
-      console.log(data);
       if(error || data.success == false){
         console.log('Invalid Sector Error',data);
         Session.set('IsError',true);
