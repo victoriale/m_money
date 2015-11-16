@@ -173,126 +173,69 @@ Template.c_p_graph.helpers({
           count--;
         }
 
-        var xAxis = function(){
-          return Highcharts.dateFormat('%l:%M %P', this.value);
-          //var time = new Date(this.value);
-          //return moment(this.value, 'America/North_Dakota/Center').tz('America/New_York').format('hh:mm a');
-        }
-
-        var tooltip = function(){
-          return Highcharts.dateFormat('%l:%M %P CST', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
-        }
+        var xAxis_format = '%l:%M %P';
+        var tooltip_format = '%l:%M %P CST';
 
       break;
       case '5D':
         var min = latestDate.subtract(5, 'days').format('X') * 1000;
 
-        var xAxis = function(){
-          return Highcharts.dateFormat('%a, %b %e', this.value);
-        }
-
-        var tooltip = function(){
-          return Highcharts.dateFormat('%a, %b %e', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
-        }
+        var xAxis_format = '%a, %b %e';
+        var tooltip_format = '%a, %b %e';
       break;
       case '10D':
         var min = latestDate.subtract(10, 'days').format('X') * 1000;
 
-        var xAxis = function(){
-          return Highcharts.dateFormat('%a, %b %e', this.value);
-        }
-
-        var tooltip = function(){
-          return Highcharts.dateFormat('%a, %b %e', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
-        }
+        var xAxis_format = '%a, %b %e';
+        var tooltip_format = '%a, %b %e';
       break;
       case '1M':
         var min = latestDate.subtract(1, 'months').format('X') * 1000;
 
-        var xAxis = function(){
-          return Highcharts.dateFormat('%a, %b %e', this.value);
-        }
-
-        var tooltip = function(){
-          return Highcharts.dateFormat('%a, %b %e', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
-        }
+        var xAxis_format = '%a, %b %e';
+        var tooltip_format = '%a, %b %e';
       break;
       case '3M':
         var min = latestDate.subtract(3, 'months').format('X') * 1000;
 
-        var xAxis = function(){
-          return Highcharts.dateFormat('%b %e', this.value);
-        }
-
-        var tooltip = function(){
-          return Highcharts.dateFormat('%a, %b %e', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
-        }
+        var xAxis_format = '%b %e';
+        var tooltip_format = '%a, %b %e';
       break;
       case '6M':
         var min = latestDate.subtract(6, 'months').format('X') * 1000;
 
-        var xAxis = function(){
-          return Highcharts.dateFormat('%b %e', this.value);
-        }
-
-        var tooltip = function(){
-          return Highcharts.dateFormat('%a, %b %e', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
-        }
+        var xAxis_format = '%b %e';
+        var tooltip_format = '%a, %b %e';
       break;
       case '9M':
         var min = latestDate.subtract(9, 'months').format('X') * 1000;
 
-        var xAxis = function(){
-          return Highcharts.dateFormat('%b %e', this.value);
-        }
-
-        var tooltip = function(){
-          return Highcharts.dateFormat('%b %e %Y', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
-        }
+        var xAxis_format = '%b %e';
+        var tooltip_format = '%b %e %Y';
       break;
       case '1Y':
         var min = latestDate.subtract(1, 'years').format('X') * 1000;
 
-        var xAxis = function(){
-          return Highcharts.dateFormat('%b %e %Y', this.value);
-        }
-
-        var tooltip = function(){
-          return Highcharts.dateFormat('%b %e %Y', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
-        }
+        var xAxis_format = '%b %e %Y';
+        var tooltip_format = '%b %e %Y';
       break;
       case '3Y':
         var min = latestDate.subtract(3, 'years').format('X') * 1000;
 
-        var xAxis = function(){
-          return Highcharts.dateFormat('%b %Y', this.value);
-        }
-
-        var tooltip = function(){
-          return Highcharts.dateFormat('%b %e %Y', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
-        }
+        var xAxis_format = '%b %e';
+        var tooltip_format = '%b %e %Y';
       break;
       case '5Y':
         var min = latestDate.subtract(5, 'years').format('X') * 1000;
 
-        var xAxis = function(){
-          return Highcharts.dateFormat('%Y', this.value);
-        }
-
-        var tooltip = function(){
-          return Highcharts.dateFormat('%b %e %Y', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
-        }
+        var xAxis_format = '%Y';
+        var tooltip_format = '%b %e %Y';
       break;
       case '10Y':
         var min = latestDate.subtract(10, 'years').format('X') * 1000;
 
-        var xAxis = function(){
-          return Highcharts.dateFormat('%Y', this.value);
-        }
-
-        var tooltip = function(){
-          return Highcharts.dateFormat('%b %e %Y', this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
-        }
+        var xAxis_format = '%Y';
+        var tooltip_format = '%b %e %Y';
       break;
       default:
 
@@ -323,7 +266,9 @@ Template.c_p_graph.helpers({
           type: 'datetime',
           labels: {
               overflow: 'justify',
-              formatter: xAxis
+              formatter: function(){
+                return Highcharts.dateFormat(xAxis_format, this.value);
+              }
           },
           min: min
       },
@@ -344,7 +289,9 @@ Template.c_p_graph.helpers({
           },
       },
       tooltip: {
-        formatter: tooltip
+        formatter: function(){
+          return Highcharts.dateFormat(tooltip_format, this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+        }
       },
       plotOptions: {
           spline: {
