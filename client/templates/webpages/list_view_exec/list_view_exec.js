@@ -82,7 +82,7 @@ Template.list_view_exec.helpers({
         }
         if(objName === 'market_cap'){
           data['data_name'] = "Market Cap";
-          data['data_value'] = '$'+commaSeparateNumber_decimal(Number(data['market_cap']));
+          data['data_value'] = '$'+commaSeparateNumber_decimal(Number(data['market_cap']).toFixed(0));
 
         }
         if(objName === 'market_percent'){
