@@ -61,32 +61,32 @@ Template.co_fin_overview.helpers({
       break;
       case 'cfoBtn1':
         var min = latestDate.subtract(5, 'days').format('X') * 1000;
-        var xAxis_format = '%a, %b %e';
+        var xAxis_format = '%a, %b %e %Y';
         var tooltip_format = '%a, %b %e';
       break;
       case 'cfoBtn2':
         var min = latestDate.subtract(10, 'days').format('X') * 1000;
-        var xAxis_format = '%b %e';
+        var xAxis_format = '%b %e %Y';
         var tooltip_format = '%a, %b %e';
       break;
       case 'cfoBtn3':
         var min = latestDate.subtract(1, 'months').format('X') * 1000;
-        var xAxis_format = '%b %e';
+        var xAxis_format = '%b %e %Y';
         var tooltip_format = '%a, %b %e';
       break;
       case 'cfoBtn4':
         var min = latestDate.subtract(3, 'months').format('X') * 1000;
-        var xAxis_format = '%b %e';
+        var xAxis_format = '%b %e %Y';
         var tooltip_format = '%a, %b %e';
       break;
       case 'cfoBtn5':
         var min = latestDate.subtract(6, 'months').format('X') * 1000;
-        var xAxis_format = '%b %e';
+        var xAxis_format = '%b %e %Y';
         var tooltip_format = '%a, %b %e';
       break;
       case 'cfoBtn6':
         var min = latestDate.subtract(9, 'months').format('X') * 1000;
-        var xAxis_format = '%b %e';
+        var xAxis_format = '%b %e %Y';
         var tooltip_format = '%b %e %Y';
       break;
       case 'cfoBtn7':
@@ -101,17 +101,17 @@ Template.co_fin_overview.helpers({
       break;
       case 'cfoBtn9':
         var min = latestDate.subtract(5, 'years').format('X') * 1000;
-        var xAxis_format = '%Y';
+        var xAxis_format = '%b %Y';
         var tooltip_format = '%b %e %Y';
       break;
       case 'cfoBtn10':
         var min = latestDate.subtract(10, 'years').format('X') * 1000;
-        var xAxis_format = '%Y';
+        var xAxis_format = '%b %Y';
         var tooltip_format = '%b %e %Y';
       break;
       default:
         var min = latestDate.subtract(10, 'years').format('X') * 1000;
-        var xAxis_format = '%Y';
+        var xAxis_format = '%b %Y';
         var tooltip_format = '%b %e %Y';
       break;
     }
