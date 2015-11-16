@@ -21,7 +21,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                 <div class="cfo-pr cfo-top-circle" style="background-image: url('{{imageUrl c_logo}}')"> <!--back arrow in top-->
                 </div>
                 <i class="cfo-pa cfo-n cfo-top-txt1">
-                    Last Updated: {{csi_price_last_updated}}
+                    Last Updated: {{lcsi_price_last_updated}}
                 </i>
                 <a href="{{locurl}}">
                   <i class="cfo-pa cfo-n cfo-top-txt2">
@@ -74,14 +74,14 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                   <i class="cfo-mid-mid-txtbox-txt">
                       <i class="cfo-b">{{c_name}}</i>'s overall annual financials are <i class="cfo-b cfo-i">{{percent_year_type}}
                       {{percent_year_value}}%</i> from this time last year. With a <i class="cfo-b cfo-i">${{amount_year_value}} {{percent_year_text}}</i> in stock
-                      price bringing individual <i class="cfo-b cfo-i">share price to ${{csi_price}}.</i>
+                      price bringing individual <i class="cfo-b cfo-i">share price to ${{lcsi_price}}.</i>
                       <br>
                   </i>
                   <i class="cfo-mid-mid-txtbox-btm1">
                       <i class="cfo-b">{{c_name}}</i> is currently priced at:<br>
                   </i>
                   <i class="cfo-pr cfo-mid-mid-txtbox-btm2">
-                      <i class="cfo-b">${{csi_price}} </i> <span style="color: {{changeColor csi_price_last_operator}}"><i class="fa {{changeIcon csi_price_last_operator}}"></i> {{csi_price_change_since_last}} ({{csi_percent_change_since_last}})</span>
+                      <i class="cfo-b">${{lcsi_price}} </i> <span style="color: {{changeColor lcsi_price_last_operator}}"><i class="fa {{changeIcon lcsi_price_last_operator}}"></i> {{lcsi_price_change_since_last}} ({{lcsi_percent_change_since_last}})</span>
                   </i>
                 </div>
               </div>
@@ -90,7 +90,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                       Want more information about {{c_name}}?
                   </div>
                   <div class="cfo-pa cfo-l cfo-mid-btm-txt2">
-                      Profile Last Updated On: <i class="cfo-b"></i> {{csi_price_last_updated}}
+                      Profile Last Updated On: <i class="cfo-b"></i> {{lcsi_price_last_updated}}
                   </div>
                   <a href="{{backToComp}}">
                     <div class="cfo-pa cfo-mid-btm-btn">
@@ -120,7 +120,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                     </div>
                     <div class="cfo-pr cfo-btm-data-date">
                         <!--<i class="fa fa-calendar"></i>-->
-                        Updated {{csi_price_last_updated}}
+                        Updated {{lcsi_price_last_updated}}
                     </div>
                     <div class="cfo-pr cfo-btm-data-graph" id="cfoGraph">
                       <!--Put graph here-->
@@ -146,7 +146,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                                     Current Price
                                 </i>
                                 <i class="cfo-b cfo-btm-data-list-i-r">
-                                    ${{csi_price}}
+                                    ${{lcsi_price}}
                                 </i>
                             </div>
                             <div class="cfo-btm-data-list-i">
@@ -154,7 +154,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                                     Open Price
                                 </i>
                                 <i class="cfo-b cfo-btm-data-list-i-r">
-                                    ${{csi_opening_price}}
+                                    ${{lcsi_opening_price}}
                                 </i>
                             </div>
                             <div class="cfo-btm-data-list-i">
@@ -162,15 +162,15 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                                     Close Price
                                 </i>
                                 <i class="cfo-b cfo-btm-data-list-i-r">
-                                    ${{csi_closing_price}}
+                                    ${{lcsi_closing_price}}
                                 </i>
                             </div>
                             <div class="cfo-btm-data-list-i">
                                 <i class="cfo-l cfo-btm-data-list-i-l">
                                     Day Change $-%
                                 </i>
-                                <span class="cfo-btm-data-list-i-r" style="color: {{changeColor csi_price_last_operator}}">
-                                    <i class="fa {{changeIcon csi_price_last_operator}}"></i> {{csi_price_change_since_last}} <i class="cfo-black">|</i> {{csi_percent_change_since_last}}%
+                                <span class="cfo-btm-data-list-i-r" style="color: {{changeColor lcsi_price_last_operator}}">
+                                    <i class="fa {{changeIcon lcsi_price_last_operator}}"></i> {{lcsi_price_change_since_last}} <i class="cfo-black">|</i> {{lcsi_percent_change_since_last}}%
                                 </span>
                             </div>
                             <div class="cfo-btm-data-list-i-b">
@@ -178,7 +178,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                                     Day Range
                                 </i>
                                 <i class="cfo-b cfo-btm-data-list-i-r">
-                                    ${{csi_low}} - ${{csi_high}}
+                                    ${{lcsi_low}} - ${{lcsi_high}}
                                 </i>
                             </div>
                         </div>
@@ -196,18 +196,18 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                                     Vol/Avg.
                                 </i>
                                 <i class="cfo-b cfo-btm-data-list-i-r">
-                                    {{csi_trading_vol}}/{{avg_volume}}
+                                    {{lcsi_trading_vol}}/{{avg_volume}}
                                 </i>
                             </div>
                             <!--<div class="cfo-btm-data-list-e">
                                 <div class="cfo-btm-data-list-e-title cfo-l">
-                                    <i class="cfo-b">Learn why </i>{{c_name}} is <span style="color: {{changeColor csi_price_last_operator}}"><i class="fa {{changeIcon csi_price_last_operator}}"></i> {{csi_percent_change_since_last}}%</span> today:
+                                    <i class="cfo-b">Learn why </i>{{c_name}} is <span style="color: {{changeColor lcsi_price_last_operator}}"><i class="fa {{changeIcon lcsi_price_last_operator}}"></i> {{lcsi_percent_change_since_last}}%</span> today:
                                 </div>
                                 <div class="cfo-pr cfo-btm-data-list-e-circle" style="background-image: url('{{imageUrl c_logo}}')">
                                 </div>
                                 <div class="cfo-pr cfo-btm-data-list-e-txt">-->
                                     <!--{{c_name}} ({{c_ticker}}) stock is currently priced
-                                    at ${{csi_price}} per share. Yesterday, <i class="cfo-blue">3 articles</i>
+                                    at ${{lcsi_price}} per share. Yesterday, <i class="cfo-blue">3 articles</i>
                                     were written about {{c_ticker}}: 100% are positive.
                                     <i class="cfo-blue">Click here</i> to read more about {{c_name}} in the news.-->
                                     <!--{{AIcontent}}
@@ -229,7 +229,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                           P.E. Ratio
                         </div>
                         <div class="cfo-b cfo-btm-data-tile-stat-r">
-                          {{csi_pe_ratio}}
+                          {{lcsi_pe_ratio}}
                         </div>
                       </div>
                     </div>
@@ -247,7 +247,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                           E.P.S.
                         </div>
                         <div class="cfo-b cfo-btm-data-tile-stat-r">
-                          {{csi_earnings_per_share}}
+                          {{lcsi_earnings_per_share}}
                         </div>
                       </div>
                     </div>
@@ -269,7 +269,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                           Today vs Average
                         </div>
                         <div class="cfo-b cfo-btm-data-tile-stat-r">
-                          {{csi_trading_vol}} vs {{avg_volume}}
+                          {{lcsi_trading_vol}} vs {{avg_volume}}
                         </div>
                       </div>
                     </div>
@@ -287,7 +287,7 @@ Associated Files: co_fin_overview.html, co_fin_overview.less, co_fin_overview.js
                           Market Cap
                         </div>
                         <div class="cfo-b cfo-btm-data-tile-stat-r">
-                          {{csi_market_cap}}
+                          {{lcsi_market_cap}}
                         </div>
                       </div>
                     </div>

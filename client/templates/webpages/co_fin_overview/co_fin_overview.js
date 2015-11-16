@@ -232,18 +232,18 @@ Template.co_fin_overview.helpers({
       var start_val = data.stock_history[250].sh_close;
       company_data.start_range = Math.round(Number(start_val) * 100) / 100;
       //Find percentage change since a year ago
-      var pResult = findPercentage(Number(company_data.csi_price), company_data.start_range);
+      var pResult = findPercentage(Number(company_data.lcsi_price), company_data.start_range);
       //Set value for percent change
       company_data.percent_year_value = pResult.value;
       //Set text to be displayed before value
       if(pResult.type === 'increase'){
         company_data.percent_year_type = 'up';
         company_data.percent_year_text = 'increase';
-        company_data.amount_year_value = commaSeparateNumber_decimal(Math.round((Number(company_data.csi_price) - company_data.start_range) * 100 ) / 100);
+        company_data.amount_year_value = commaSeparateNumber_decimal(Math.round((Number(company_data.lcsi_price) - company_data.start_range) * 100 ) / 100);
       }else{
         company_data.percent_year_type = 'down';
         company_data.percent_year_text = 'decrease';
-        company_data.amount_year_value = commaSeparateNumber_decimal(Math.round((company_data.start_range - Number(company_data.csi_price)) * 100) / 100);
+        company_data.amount_year_value = commaSeparateNumber_decimal(Math.round((company_data.start_range - Number(company_data.lcsi_price)) * 100) / 100);
       }
 
       company_data.start_range = commaSeparateNumber_decimal(company_data.start_range );
@@ -254,28 +254,28 @@ Template.co_fin_overview.helpers({
 
     //Format values
     company_data.c_hq_city = toTitleCase(company_data.c_hq_city);
-    company_data.csi_trading_vol = nFormatter(Number(company_data.csi_trading_vol));
+    company_data.lcsi_trading_vol = nFormatter(Number(company_data.lcsi_trading_vol));
     company_data.avg_volume = nFormatter(Math.round(company_data.avg_volume));
 
-    company_data.min_range = commaSeparateNumber_decimal((Math.min(Number(company_data.csi_opening_price).toFixed(2), Number(company_data.csi_closing_price).toFixed(2), Number(company_data.csi_price).toFixed(2)) * 100) / 100);
-    company_data.max_range = commaSeparateNumber_decimal((Math.max(Number(company_data.csi_opening_price).toFixed(2), Number(company_data.csi_closing_price).toFixed(2), Number(company_data.csi_price).toFixed(2)) * 100) / 100);
+    company_data.min_range = commaSeparateNumber_decimal((Math.min(Number(company_data.lcsi_opening_price).toFixed(2), Number(company_data.lcsi_closing_price).toFixed(2), Number(company_data.lcsi_price).toFixed(2)) * 100) / 100);
+    company_data.max_range = commaSeparateNumber_decimal((Math.max(Number(company_data.lcsi_opening_price).toFixed(2), Number(company_data.lcsi_closing_price).toFixed(2), Number(company_data.lcsi_price).toFixed(2)) * 100) / 100);
 
-    company_data.csi_low = Number(company_data.csi_low).toFixed(2);
-    company_data.csi_high = Number(company_data.csi_high).toFixed(2);
+    company_data.lcsi_low = Number(company_data.lcsi_low).toFixed(2);
+    company_data.lcsi_high = Number(company_data.lcsi_high).toFixed(2);
 
-    company_data.csi_price = commaSeparateNumber_decimal(Number(company_data.csi_price).toFixed(2));
-    company_data.csi_closing_price = commaSeparateNumber_decimal(Number(company_data.csi_closing_price).toFixed(2));
-    company_data.csi_opening_price = commaSeparateNumber_decimal(Number(company_data.csi_opening_price).toFixed(2));
-    company_data.csi_price_change_since_last = commaSeparateNumber_decimal(Math.round(Number(company_data.csi_price_change_since_last) * 100) / 100);
-    company_data.csi_percent_change_since_last = commaSeparateNumber_decimal(Math.round(Number(company_data.csi_percent_change_since_last) * 100) / 100);
-    company_data.csi_market_cap = commaSeparateNumber_decimal(Number(company_data.csi_market_cap).toFixed(0)*1000000);
-    company_data.csi_earnings_per_share = Math.round(company_data.csi_earnings_per_share * 100) / 100;
+    company_data.lcsi_price = commaSeparateNumber_decimal(Number(company_data.lcsi_price).toFixed(2));
+    company_data.lcsi_closing_price = commaSeparateNumber_decimal(Number(company_data.lcsi_closing_price).toFixed(2));
+    company_data.lcsi_opening_price = commaSeparateNumber_decimal(Number(company_data.lcsi_opening_price).toFixed(2));
+    company_data.lcsi_price_change_since_last = commaSeparateNumber_decimal(Math.round(Number(company_data.lcsi_price_change_since_last) * 100) / 100);
+    company_data.lcsi_percent_change_since_last = commaSeparateNumber_decimal(Math.round(Number(company_data.lcsi_percent_change_since_last) * 100) / 100);
+    company_data.lcsi_market_cap = commaSeparateNumber_decimal(Number(company_data.lcsi_market_cap).toFixed(0)*1000000);
+    company_data.lcsi_earnings_per_share = Math.round(company_data.lcsi_earnings_per_share * 100) / 100;
 
-    company_data.csi_pe_ratio = (Number(company_data.csi_pe_ratio)).toFixed(2);
+    company_data.lcsi_pe_ratio = (Number(company_data.lcsi_pe_ratio)).toFixed(2);
 
     //Transform dates
-    company_data.csi_price_last_updated = (new Date(company_data.csi_price_last_updated)).toSNTFormTime();
-    company_data.csi_price_last_updated = (new Date(company_data.csi_price_last_updated)).toSNTForm();
+    company_data.lcsi_price_last_updated = (new Date(company_data.lcsi_price_last_updated)).toSNTFormTime();
+    company_data.lcsi_price_last_updated = (new Date(company_data.lcsi_price_last_updated)).toSNTForm();
 
     company_data.share_company_url =  "https://www.facebook.com/sharer/sharer.php?u=" + Router.pick_path('content.companyprofile', {company_id: company_data.c_id, name: company_data.c_name, ticker: company_data.c_ticker});
     company_data.share_company_fin_overview_url = "https://www.facebook.com/sharer/sharer.php?u=" + Router.pick_path('content.finoverview', {company_id: company_data.c_id, name: company_data.c_name, ticker: company_data.c_ticker});

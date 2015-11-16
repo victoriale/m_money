@@ -23,8 +23,8 @@ $(function(){
 
   url = document.domain;
 
-	$.get('http://apifin.investkit.com/call_controller.php?action=widget&option=highest_paid_female_ceo', function(data){
-    data_result = data.highest_paid_female_ceo;
+	$.get('http://apifin.investkit.com/call_controller.php?action=top_list&option=female_ceo', function(data){
+    data_result = data.female_ceo;
     curData = data_result.list_data;
     dataLength = curData.length;
     dataCall(offset);
@@ -33,9 +33,12 @@ $(function(){
 function dataCall(index){
   $('.fcw-t2-title').html(curData[index].c_ticker);
   $('.fcw-loc').html(curData[index].c_hq_city+' '+curData[index].c_hq_state);
-  $('.fcw-content1').html(curData[index].o_first_name+' '+curData[index].o_last_name);
+  $('.fcw-cmp').html(curData[index].c_name);
+  $('.fcw-t2-title').html(curData[index].o_first_name+' '+curData[index].o_last_name);
   $('#paid').html(nFormatter(curData[index].TotalComp));
   $('.fcw-image').css('background','url('+imageUrl(curData[index].o_pic)+') no-repeat');
+  $('.fcw-t2-num').html((index + 1) + '.');
+  $('.fcw-cmp-image').css('background','url('+imageUrl(curData[index].c_logo)+')');
 
   if(url == 'www.myinveskit.com'){
     var windowURL = document.referrer;
@@ -54,13 +57,15 @@ function dataCall(index){
     $('.exec-link').attr('href',"http://www.myinvestkit.com/"+domain+"/"+curData[index].c_ticker+"/"+curData[index].o_last_name+"-"+curData[index].o_first_name+"/e/"+curData[index].o_id);
     $('.fcw-href').attr('href',"http://www.myinvestkit.com/"+domain+"/"+compUrlName(data_result.list_title)+"/female_ceo/list-executives/1");
     $('#loc_link').attr('href',"http://www.myinvestkit.com/"+domain+"/"+curData[index].c_hq_state+"/loc");
-
+    $('#cmp_link').attr('href',"http://www.myinvestkit.com/"+domain+"/"+curData[index].c_name.replace(/ /g,'-')+"/"+curData[index].c_ticker+"/c/"+curData[index].c_id);
+    $('.fcw-cmp-image').parent().attr('href',"http://www.myinvestkit.com/"+domain+"/"+curData[index].c_name.replace(/ /g,'-')+"/"+curData[index].c_ticker+"/c/"+curData[index].c_id)
   }else{
     $('#title_link').attr('href',"http://www.investkit.com/"+curData[index].c_ticker+"/"+compUrlName(curData[index].c_name)+"/company/"+curData[index].c_id);
     $('.exec-link').attr('href',"http://www.investkit.com/"+curData[index].o_first_name+"-"+curData[index].o_last_name+"/"+curData[index].c_ticker+"/executive/"+curData[index].o_id);
     $('.fcw-href').attr('href',"http://www.investkit.com/"+compUrlName(data_result.list_title)+"/female_ceo/executive-list/1");
     $('#loc_link').attr('href',"http://www.investkit.com/"+curData[index].c_hq_state+"/location");
-
+    $('#cmp_link').attr('href',"http://www.investkit.com/"+curData[index].c_ticker+"/"+curData[index].c_name.replace(/ /g,'-')+"/company/"+curData[index].c_id);
+    $('.fcw-cmp-image').parent().attr('href',"http://www.investkit.com/"+curData[index].c_ticker+"/"+curData[index].c_name.replace(/ /g,'-')+"/company/"+curData[index].c_id);
   }
 }
 
