@@ -147,11 +147,11 @@ Template.list_view.helpers({
           data['data_value'] = '$'+commaSeparateNumber_decimal(Number(data['market_cap']).toFixed(0));
         }
         if(objName === 'market_percent'){
-          data['data_name'] = "Market Percent";
+          data['data_name'] = '$'+commaSeparateNumber_decimal(Number(data['lcsi_market_cap']).toFixed(0));
           data['data_value'] = Number(data['market_percent']).toFixed(2)+"%";
         }
         if(objName === 'trading_volume'){
-          data['data_name'] = "trading volume";
+          data['data_name'] = "Trading Volume";
           data['data_value'] = commaSeparateNumber_decimal(data['trading_volume'].split('.')[0]);
         }
         if(objName === 'pe_ratio'){

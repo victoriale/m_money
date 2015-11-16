@@ -37,7 +37,7 @@ function dataCall(index){
   $('.fcw-t2-title').html(curData[index].o_first_name+' '+curData[index].o_last_name);
   $('#paid').html(nFormatter(curData[index].TotalComp));
   $('.fcw-image').css('background','url('+imageUrl(curData[index].o_pic)+') no-repeat');
-  $('.fcw-t2-num').html((index + 1) + '.');
+  $('.fcw-t2-num').html('#' + (index + 1));
   $('.fcw-cmp-image').css('background','url('+imageUrl(curData[index].c_logo)+')');
 
   if(url == 'www.myinveskit.com'){

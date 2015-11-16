@@ -14,7 +14,7 @@ Template.money_memory_page.onCreated(function(){
   Session.set('user_start_date', Number(default_start));
   Session.set('user_end_date', Number(default_end));
   //Default value for graph range
-  Session.set('mm_range', 'mmbbl-10');
+  Session.set('mm_range', 'mmbbl-0');
 
   recallMoneyMemory_page();
 
@@ -115,44 +115,66 @@ Template.money_memory_page.helpers({
       return '';
     }
 
+    var dataLength = data.highchartsData.length;
+
     //Get dependencies to find date range
     var latestDate = moment(data.highchartsData[0][0]);
     data.highchartsData.reverse();
     //Get range value based on option selected
     switch(mm_range){
       case 'mmbbl-0':
-        var min = latestDate.subtract(1, 'days').format('X') * 1000;
+        var graphData = data.highchartsData
+
+        var condition = false;
+        //Get last point of graph
+        var count = dataLength - 1;
+        //Find the most current day in the list
+        var current_month_hour = moment(graphData[count][0]).format('MMDD');
+        //Loop through the array to find the beginning of the latest day available
+        while(condition === false){
+          //get the month and date of the data point
+          var time = moment(graphData[count - 1][0]).format('MMDD');
+          //If the month and date of the current point dont match the latest day avaiable. Set the previous point to the beggining of the graph
+          if(time !== current_month_hour){
+            var min = graphData[count][0];
+            //Set condition to true to exit while loop
+            condition = true;
+          }
+          //Decrement count to continue loop iteration
+          count--;
+        }
+
         var xAxis_format = '%l:%M %P';
         var tooltip_format = '%l:%M %P CST';
       break;
       case 'mmbbl-1':
         var min = latestDate.subtract(5, 'days').format('X') * 1000;
-        var xAxis_format = '%a, %b %e';
+        var xAxis_format = '%a, %b %e %Y';
         var tooltip_format = '%a, %b %e';
       break;
       case 'mmbbl-2':
         var min = latestDate.subtract(10, 'days').format('X') * 1000;
-        var xAxis_format = '%b %e';
+        var xAxis_format = '%b %e %Y';
         var tooltip_format = '%a, %b %e';
       break;
       case 'mmbbl-3':
         var min = latestDate.subtract(1, 'months').format('X') * 1000;
-        var xAxis_format = '%b %e';
+        var xAxis_format = '%b %e %Y';
         var tooltip_format = '%a, %b %e';
       break;
       case 'mmbbl-4':
         var min = latestDate.subtract(3, 'months').format('X') * 1000;
-        var xAxis_format = '%b %e';
+        var xAxis_format = '%b %e %Y';
         var tooltip_format = '%a, %b %e';
       break;
       case 'mmbbl-5':
         var min = latestDate.subtract(6, 'months').format('X') * 1000;
-        var xAxis_format = '%b %e';
+        var xAxis_format = '%b %e %Y';
         var tooltip_format = '%a, %b %e';
       break;
       case 'mmbbl-6':
         var min = latestDate.subtract(9, 'months').format('X') * 1000;
-        var xAxis_format = '%b %e';
+        var xAxis_format = '%b %e %Y';
         var tooltip_format = '%b %e %Y';
       break;
       case 'mmbbl-7':
@@ -167,17 +189,17 @@ Template.money_memory_page.helpers({
       break;
       case 'mmbbl-9':
         var min = latestDate.subtract(5, 'years').format('X') * 1000;
-        var xAxis_format = '%Y';
+        var xAxis_format = '%b %Y';
         var tooltip_format = '%b %e %Y';
       break;
       case 'mmbbl-10':
         var min = latestDate.subtract(10, 'years').format('X') * 1000;
-        var xAxis_format = '%Y';
+        var xAxis_format = '%b %Y';
         var tooltip_format = '%b %e %Y';
       break;
       default:
         var min = latestDate.subtract(10, 'years').format('X') * 1000;
-        var xAxis_format = '%Y';
+        var xAxis_format = '%b %Y';
         var tooltip_format = '%b %e %Y';
       break;
     }
@@ -215,7 +237,7 @@ Template.money_memory_page.helpers({
           title: '',
           floor: 0,
           gridLineDashStyle: 'longdash',
-          minTickInterval: 5,
+          tickAmount: 4,
           plotLines: [{
               value: 0,
               width: 1,
@@ -291,7 +313,7 @@ Template.money_memory_page.helpers({
     company_data.c_hq_city = toTitleCase(company_data.c_hq_city);
     company_data.csi_trading_vol = nFormatter(Number(company_data.lcsi_trading_vol));
     company_data.avg_volume = nFormatter(Math.round(company_data.avg_volume));
-    
+
     company_data.min_range = commaSeparateNumber_decimal(Number(company_data.lcsi_52week_low));
     company_data.max_range = commaSeparateNumber_decimal(Number(company_data.lcsi_52week_high));
 
@@ -344,7 +366,7 @@ Template.money_memory_page.helpers({
       loc_id:company_data.c_hq_state,
       city:company_data.c_hq_city,
     })
-console.log(company_data);
+    
     return company_data;
   },
   //Helper to display start date
@@ -463,7 +485,7 @@ function reformatMoneyMemoryData(){
 
   data.stock_history.forEach(function(item, index){
     //Transform date
-    var date = moment(item.sh_date).format('X') * 1000;
+    var date = item.sh_date * 1000;
     //Build point array
     var point = [date, Number(item.sh_close)]
     //Push point array to data set
