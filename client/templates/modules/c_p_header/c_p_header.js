@@ -132,6 +132,7 @@ Template.c_p_graph.helpers({
     return buttons;
   },
 
+
   //Helper to determine chart
   getGraph: function(){
     var data = Session.get('graph_data');
@@ -198,19 +199,19 @@ Template.c_p_graph.helpers({
       case '3M':
         var min = latestDate.subtract(3, 'months').format('X') * 1000;
 
-        var xAxis_format = '%b %e';
+        var xAxis_format = '%b %e %Y';
         var tooltip_format = '%a, %b %e';
       break;
       case '6M':
         var min = latestDate.subtract(6, 'months').format('X') * 1000;
 
-        var xAxis_format = '%b %e';
+        var xAxis_format = '%b %e %Y';
         var tooltip_format = '%a, %b %e';
       break;
       case '9M':
         var min = latestDate.subtract(9, 'months').format('X') * 1000;
 
-        var xAxis_format = '%b %e';
+        var xAxis_format = '%b %e %Y';
         var tooltip_format = '%b %e %Y';
       break;
       case '1Y':
@@ -222,19 +223,19 @@ Template.c_p_graph.helpers({
       case '3Y':
         var min = latestDate.subtract(3, 'years').format('X') * 1000;
 
-        var xAxis_format = '%b %e';
+        var xAxis_format = '%b %e %Y';
         var tooltip_format = '%b %e %Y';
       break;
       case '5Y':
         var min = latestDate.subtract(5, 'years').format('X') * 1000;
 
-        var xAxis_format = '%Y';
+        var xAxis_format = '%b %Y';
         var tooltip_format = '%b %e %Y';
       break;
       case '10Y':
         var min = latestDate.subtract(10, 'years').format('X') * 1000;
 
-        var xAxis_format = '%Y';
+        var xAxis_format = '&b %Y';
         var tooltip_format = '%b %e %Y';
       break;
       default:
