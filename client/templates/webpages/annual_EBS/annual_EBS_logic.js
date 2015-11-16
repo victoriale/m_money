@@ -1,32 +1,35 @@
-
+/*Author: jyothyswaroop
+** Created: 11/13/2015
+** Description: .js file for annual_EBS
+** Associated Files: annual_EBS.html, annual_EBS.less, annual_EBS.logic.js
+*/
 Template.annual_EBS.onCreated(function(){
   this.autorun(function(){
-    var id = Session.get("profile_header");
-    if(typeof id == 'undefined'){
-      return '';
-    }
-    Meteor.http.get('http://apifin.investkit.com/call_controller.php?action=company_page&option=balance_sheet&param=' + id.c_id,
-      function(error, data){
-        console.log(data);
-      Session.set("annual_EBS",data);
-      annualEBSgraph();
-      var chart = $('#annualEBSgraph').highcharts();
-      var axisMax = chart.yAxis[0].max;
-      chart.series[2].update({
-        tooltip:{
-          pointFormatter: function() {
-            return "Debt to Assets: " + (this.y / (axisMax / 100)).toFixed(2) + "%";
-          }
+  var id = Session.get("profile_header").c_id;
+  var imeg = Session.get("profile_header").c_logo;
+  // var name = Session.get("profile_header").c_name;
+  Meteor.http.get('http://apifin.investkit.com/call_controller.php?action=company_page&option=balance_sheet&param=' + id,
+    function(error, data){
+    Session.set("annual_EBS",data);
+    annualEBSgraph();
+    var chart = $('#annualEBSgraph').highcharts();
+    var axisMax = chart.yAxis[0].max;
+    chart.series[2].update({
+      tooltip:{
+        pointFormatter: function() {
+          return "Debt to Assets: " + (this.y / (axisMax / 100)).toFixed(2) + "%";
         }
-      });
-      for(var i = 0; i<chart.series[2].data.length; i++){
-        chart.series[2].data[i].y *= axisMax;
-        chart.series[2].data[i].update();
       }
     });
-  })
-})
+    for(var i = 0; i<chart.series[2].data.length; i++){
+      chart.series[2].data[i].y *= axisMax;
+      chart.series[2].data[i].update();
+    }
+      annualEBSgraph();
+  });
 
+});
+})
 
 function graphDebtData() {
   var data = Session.get('annual_EBS');
@@ -88,7 +91,6 @@ function annualEBSgraph(){
      title: "In Millions of USD"
    },
 
-
    series: [{
      type: 'column',
      name: 'Net assets',
@@ -122,21 +124,10 @@ function annualEBSgraph(){
  });
 }
 
-
 Template.annual_EBS.helpers({
-  // company: "Facebook, Inc",
-  // upd: "10/24/2014, 12:36PM EDT",
-  // loc: "The United States Of America",
-  // year: "2014",
-  // money1: "0",
-  // money2: "12.46 Million",
-  // money3: "0",
-  compImage: function(){
+  imag: function(){
     var data = Session.get('profile_header');
-    if(typeof data =='undefined'){
-      return '';
-    }
-    return data.c_logo;
+    return data['c_logo'];
   },
   company: function(){
     var data = Session.get('annual_EBS');
@@ -162,33 +153,57 @@ Template.annual_EBS.helpers({
 
   totaldbt: function() {
     var data = Session.get('annual_EBS');
-    var income = parseInt(data.data.balance_sheet.balance_sheet_data["Total Debt"]["2015"]);
-    if(income > 1000)
+    var totaldbt = parseInt(data.data.balance_sheet.balance_sheet_data["Total Debt"]["2015"]);
+    if(totaldbt > 1000)
     {
-      income /= 1000;
-      return "$" + income.toFixed(2) + " Billion";
+      totaldbt /= 1000;
+      return "$" + totaldbt.toFixed(2) + " Billion";
     }
-    return "$" + income + " Million";
+    return "$" + totaldbt + " Million";
   },
 
   totalasets: function() {
     var data = Session.get('annual_EBS');
-    var income = parseInt(data.data.balance_sheet.balance_sheet_data["Total Assets"]["2015"]);
-    if(income > 1000)
+    var totalasets = parseInt(data.data.balance_sheet.balance_sheet_data["Total Assets"]["2015"]);
+    if(totalasets > 1000)
     {
-      income /= 1000;
-      return "$" + income.toFixed(2) + " Billion";
+      totalasets /= 1000;
+      return "$" + totalasets.toFixed(2) + " Billion";
     }
-    return "$" + income + " Million";
+    return "$" + totalasets + " Million";
   },
 
   perce: function() {
     var data = Session.get('annual_EBS');
-    var income = parseFloat(data.data.balance_sheet.balance_sheet_data["Total Debt"]["2015"]);
+    var perce = parseFloat(data.data.balance_sheet.balance_sheet_data["Total Debt"]["2015"]);
     var rev = parseFloat(data.data.balance_sheet.balance_sheet_data["Total Assets"]["2015"]);
-    var out = (income / rev) * 100;
+    var out = (perce / rev) * 100;
 
     return out.toFixed(2) + "%";
+  },
+
+  label1: function(){
+    var data = Session.get('annual_EBS');
+    if(data == undefined){
+      return '';
+    }
+    returnArray = [];
+    var newv = Object.keys(data.data.balance_sheet['balance_sheet_data']['Total Debt']);
+    for(var i = 0; i < newv.length; i++){
+      returnArray[i] = {};
+     returnArray[i].lbl1 = Object.keys(data.data.balance_sheet['balance_sheet_data']['Total Debt'])[i];
+    }
+    return returnArray;
+  },
+
+  firstLabel1: function(){
+    var data = Session.get('annual_EBS');
+    if(data == undefined){
+      return '';
+    }
+    var newv = Object.keys(data.data.balance_sheet['balance_sheet_data']['Total Debt']);
+   return Object.keys(data.data.balance_sheet['balance_sheet_data']['Total Debt'])[newv.length - 1];
+
   },
 
   data: function(){
@@ -281,4 +296,73 @@ Template.annual_EBS.helpers({
 
     return returnArray;
   }
+});
+
+Template.annual_EBS.events({
+  'click #anebs-grph-0': function(){
+    //shows the dropdown
+    if($("#anebs-grph-0").children(".anebs-grph-tabs-tab-options").css("display") == "none")
+    {
+      //shows the dropdown for only #anebs-grph-0
+      $("#anebs-grph-0").children(".anebs-grph-tabs-tab-options").css("display", "inline");
+      $("#anebs-grph-0").children("anebs-grph-tabs-tab-circ").css("background-color", "#3098FF");
+      $("#anebs-grph-0").children("anebs-grph-tabs-tab-circ").children(".fa").css("color", "#ffffff");
+      //don't show any effect on #anebs-grph-1 #anebs-grph-2
+      $("#anebs-grph-1").children(".anebs-grph-tabs-tab-options").css("display","none");
+      $("#anebs-grph-1").children(".anebs-grph-tabs-tab-circ").css("background-color","#ffffff");
+      $("#anebs-grph-1").children(".anebs-grph-tabs-tab-circ").children(".fa").css("color","#3098FF");
+      $("#anebs-grph-2").children(".anebs-grph-tabs-tab-options").css("display","none");
+      $("#anebs-grph-2").children(".anebs-grph-tabs-tab-circ").css("background-color","#ffffff");
+      $("#anebs-grph-2").children(".anebs-grph-tabs-tab-circ").children(".fa").css("color","#3098FF");
+    }
+    else {
+      $("#anebs-grph-0").children(".anebs-grph-tabs-tab-options").css("display","none");
+      $("#anebs-grph-0").children(".anebs-grph-tabs-tab-circ").css("background-color","#ffffff");
+      $("#anebs-grph-0").children(".anebs-grph-tabs-tab-circ").children(".fa").css("color","#3098FF");
+    }
+  },
+  'click #anebs-grph-1': function(){
+    //shows the dropdown
+    if($("#anebs-grph-1").children(".anebs-grph-tabs-tab-options").css("display") == "none")
+    {
+      //shows the dropdown for only #anebs-grph-0
+      $("#anebs-grph-1").children(".anebs-grph-tabs-tab-options").css("display", "inline");
+      $("#anebs-grph-1").children("anebs-grph-tabs-tab-circ").css("background-color", "#3098FF");
+      $("#anebs-grph-1").children("anebs-grph-tabs-tab-circ").children(".fa").css("color", "#ffffff");
+      //don't show any effect on #anebs-grph-1 #anebs-grph-2
+      $("#anebs-grph-0").children(".anebs-grph-tabs-tab-options").css("display","none");
+      $("#anebs-grph-0").children(".anebs-grph-tabs-tab-circ").css("background-color","#ffffff");
+      $("#anebs-grph-0").children(".anebs-grph-tabs-tab-circ").children(".fa").css("color","#3098FF");
+      $("#anebs-grph-2").children(".anebs-grph-tabs-tab-options").css("display","none");
+      $("#anebs-grph-2").children(".anebs-grph-tabs-tab-circ").css("background-color","#ffffff");
+      $("#anebs-grph-2").children(".anebs-grph-tabs-tab-circ").children(".fa").css("color","#3098FF");
+    }
+    else {
+      $("#anebs-grph-1").children(".anebs-grph-tabs-tab-options").css("display","none");
+      $("#anebs-grph-1").children(".anebs-grph-tabs-tab-circ").css("background-color","#ffffff");
+      $("#anebs-grph-1").children(".anebs-grph-tabs-tab-circ").children(".fa").css("color","#3098FF");
+    }
+  },
+  'click #anebs-grph-2': function(){
+    //shows the dropdown
+    if($("#anebs-grph-2").children(".anebs-grph-tabs-tab-options").css("display") == "none")
+    {
+      //shows the dropdown for only #anebs-grph-0
+      $("#anebs-grph-2").children(".anebs-grph-tabs-tab-options").css("display", "inline");
+      $("#anebs-grph-2").children("anebs-grph-tabs-tab-circ").css("background-color", "#3098FF");
+      $("#anebs-grph-2").children("anebs-grph-tabs-tab-circ").children(".fa").css("color", "#ffffff");
+      //don't show any effect on #anebs-grph-1 #anebs-grph-2
+      $("#anebs-grph-1").children(".anebs-grph-tabs-tab-options").css("display","none");
+      $("#anebs-grph-1").children(".anebs-grph-tabs-tab-circ").css("background-color","#ffffff");
+      $("#anebs-grph-1").children(".anebs-grph-tabs-tab-circ").children(".fa").css("color","#3098FF");
+      $("#anebs-grph-0").children(".anebs-grph-tabs-tab-options").css("display","none");
+      $("#anebs-grph-0").children(".anebs-grph-tabs-tab-circ").css("background-color","#ffffff");
+      $("#anebs-grph-0").children(".anebs-grph-tabs-tab-circ").children(".fa").css("color","#3098FF");
+    }
+    else {
+      $("#anebs-grph-2").children(".anebs-grph-tabs-tab-options").css("display","none");
+      $("#anebs-grph-2").children(".anebs-grph-tabs-tab-circ").css("background-color","#ffffff");
+      $("#anebs-grph-2").children(".anebs-grph-tabs-tab-circ").children(".fa").css("color","#3098FF");
+    }
+  },
 });

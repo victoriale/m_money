@@ -156,7 +156,8 @@ Template.statistics_page.helpers(
                   width: 180,
                   margin: [0,0,0,0],
                   spacingBottom: 0,
-                  spacing: [0,0,0,0]
+                  spacing: [0,0,0,0],
+                  backgroundColor:'rgba(255, 255, 255, 0.1)'
               },
               title: {
                   text: ''
@@ -171,6 +172,11 @@ Template.statistics_page.helpers(
               },
               credits: {
                   enabled: false
+              },
+              tooltip: {
+                percentageDecimals: 2,
+                valueSuffix: '%',
+                backgroundColor: "rgba(255,255,255,1)"
               },
               series: [
                 {
