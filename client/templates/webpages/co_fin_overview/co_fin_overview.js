@@ -79,7 +79,7 @@ Template.co_fin_overview.helpers({
       }
 
         var xAxis_format = '%l:%M %P';
-        var tooltip_format = '%l:%M %P CST';
+        var tooltip_format = '%l:%M %P EST';
       break;
       case 'cfoBtn1':
         var min = latestDate.subtract(5, 'days').format('X') * 1000;

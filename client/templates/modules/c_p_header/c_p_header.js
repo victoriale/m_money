@@ -175,7 +175,7 @@ Template.c_p_graph.helpers({
         }
 
         var xAxis_format = '%l:%M %P';
-        var tooltip_format = '%l:%M %P CST';
+        var tooltip_format = '%l:%M %P EST';
 
       break;
       case '5D':

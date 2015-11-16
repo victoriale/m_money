@@ -341,7 +341,7 @@ Template.daily_update.helpers({
           var min = graphData[0][0];
 
           var xAxis_format = '%l:%M %P';
-          var tooltip_format = '%l:%M %P CST';
+          var tooltip_format = '%l:%M %P EST';
         }
         if(Session.get('IsCompany')){
           var graphData = data.highchartsData;
@@ -366,7 +366,7 @@ Template.daily_update.helpers({
           }
 
           var xAxis_format = '%l:%M %P';
-          var tooltip_format = '%l:%M %P CST';
+          var tooltip_format = '%l:%M %P EST';
         }
       break;
       case '5D':
