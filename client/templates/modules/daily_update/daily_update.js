@@ -9,7 +9,7 @@ Template.daily_update.onCreated(function(){
 
     if(Session.get('IsLocation')){
       //Set initial range
-      Session.set('d_u_range', '5D');
+      Session.set('d_u_range', '1D');
 
       Meteor.call('GetAIContent2', Session.get('state_id'), Session.get('city_id'), function(err, data){
         if(err){
