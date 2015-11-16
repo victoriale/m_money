@@ -56,7 +56,7 @@ Template.co_competitor.helpers({
     var competitors = data.competitors;
     $.map(competitors, function(data, index){
       //database sending back in million
-      data['market_cap'] = commaSeparateNumber_decimal(Number(data['market_cap'])*1000000);
+      data['market_cap'] = dNumberToCommaNumber(Number(data['market_cap']).toFixed(0));
       data['csi_price_change_since_last'] = Number(data['csi_price_change_since_last']).toFixed(2);
       data['csi_price'] = Number(data['csi_price']).toFixed(2);
       data['csi_percent_change_since_last'] = Number(data['csi_percent_change_since_last']).toFixed(2);
