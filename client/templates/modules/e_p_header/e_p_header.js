@@ -93,7 +93,6 @@ Template.ep_body.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
-    console.log(data);
     data['compURL'] = Router.pick_path('content.companyprofile',{
       ticker:data.c_ticker,
       name:compUrlName(data.c_name),
