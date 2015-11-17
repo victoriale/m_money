@@ -101,6 +101,9 @@ Meteor.methods({
   GetLocationData: function(loc_id, batchNum) {
     var future = new Future();
     var startTime = (new Date()).getTime();
+    if ( typeof loc_id == "undefined" || loc_id == null || loc_id == 'null') {
+      throw new Error(404,"Null Location ID");
+    }
     // console.log("New Company Request",loc_id,batchNum);
     if(loc_id === 'National'){
       // console.log('national call');
