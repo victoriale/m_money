@@ -51,7 +51,9 @@ Template.co_fin_overview.helpers({
 
     var dataLength = data.highchartsData.length;
 
+    //Set default values for highcharts obj
     var max = null;
+    var tickPositions = undefined;
 
     //Get dependencies to find date range
     var latestDate = moment(data.highchartsData[0][0]);
@@ -72,6 +74,8 @@ Template.co_fin_overview.helpers({
           var min = moment.utc().subtract(5, 'hours').hour(14).minute(30).format('X') * 1000;
           var max = moment.utc().subtract(5, 'hours').hour(21).minute(30).format('X') * 1000;
         }
+
+        var tickPositions = [min, min + ((3600 + 1800) * 1000), min + ((2 * 3600 + 1800) * 1000), min + ((3 * 3600 + 1800) * 1000), min + ((4 * 3600 + 1800) * 1000), min + ((5 * 3600 + 1800) * 1000), min + (7 * 3600 * 1000)];
 
         var xAxis_format = '%l:%M %P';
         var tooltip_format = '%l:%M %P EST';
@@ -155,9 +159,19 @@ Template.co_fin_overview.helpers({
           labels: {
               overflow: 'justify',
               formatter: function(){
+
+                if(this.isFirst && fo_range === 'cfoBtn0'){
+                  return Highcharts.dateFormat(xAxis_format, this.value) + '<br>(Open)';
+                }
+                if(this.isLast && fo_range == 'cfoBtn0'){
+                  return Highcharts.dateFormat(xAxis_format, this.value) + '<br>(Close)';
+                }
+
                 return Highcharts.dateFormat(xAxis_format, this.value);
+
               }
           },
+          tickPositions: tickPositions,
           min: min,
           max: max
       },
