@@ -301,6 +301,7 @@ Template.money_memory_page.helpers({
     var company_data = data.company_data;
 
     //Format values
+    company_data.lcsi_price_last_updated = (new Date(company_data.lcsi_price_last_updated)).toSNTForm();
     company_data.c_hq_city = toTitleCase(company_data.c_hq_city);
     company_data.csi_trading_vol = nFormatter(Number(company_data.lcsi_trading_vol));
     company_data.avg_volume = nFormatter(Math.round(company_data.avg_volume));
