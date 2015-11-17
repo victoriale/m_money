@@ -316,6 +316,16 @@ Template.daily_update.helpers({
     data['csi_percent_change_since_last'] = Number(data['csi_percent_change_since_last']).toFixed(2);
     data['csi_price'] = commaSeparateNumber_decimal(Math.round(data['csi_price'] * 100) / 100);
     data['csi_price_change_since_last'] = Number(data['csi_price_change_since_last']).toFixed(2);
+    if ( typeof data.csi_price_last_operator == "undefined" ) {
+      if ( Number(data.csi_percent_change_since_last) < 0 ) {
+        data.csi_percent_change_since_last = Math.abs(Number(data.csi_percent_change_since_last));
+        data.csi_price_change_since_last = Math.abs(Number(data.csi_price_change_since_last));
+        data.csi_price_last_operator = 0;
+      } else {
+        data.csi_price_last_operator = 1;
+      }
+    }
+    console.log(data);
 
     return data;
   },
