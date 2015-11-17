@@ -130,8 +130,8 @@ function transformLocationDailyUpdate(){
   daily_update.csi_percent_change_since_last = data.composite_summary.percent_change;
   daily_update.csi_price_change_since_last = data.composite_summary.price_change;
   daily_update.lastUpdated = (new Date(data.composite_summary.last_updated)).toSNTFormTime();
-  daily_update.todays_high = commaSeparateNumber_decimal(data.composite_summary.todays_high);
-  daily_update.todays_low = commaSeparateNumber_decimal(data.composite_summary.todays_low);
+  daily_update.todays_high = commaSeparateNumber_decimal(Number(data.composite_summary.todays_high).toFixed(2));
+  daily_update.todays_low = commaSeparateNumber_decimal(Number(data.composite_summary.todays_low).toFixed(2));
   daily_update.previous_close = data.composite_summary.previous_close;
   daily_update.total_companies = data.composite_summary.total_companies;
 
