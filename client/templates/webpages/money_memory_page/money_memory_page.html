@@ -175,8 +175,8 @@
           <div class="mmpg-stock-stats-data-amt">${{min_range}} - ${{max_range}}</div>
         </div>
         <div class="mmpg-stock-stats-data" style="border:none">
-          <div class="mmpg-stock-stats-data-lbl">Vol/Avg.</div>
-          <div class="mmpg-stock-stats-data-amt">{{csi_trading_vol}}/{{avg_volume}}</div>
+          <div class="mmpg-stock-stats-data-lbl">Vol<!--/Avg.--></div>
+          <div class="mmpg-stock-stats-data-amt">{{csi_trading_vol}}<!--/{{avg_volume}}--></div>
         </div>
       </div>
     </div>
@@ -184,7 +184,7 @@
     {{/with}}
 
 
-    {{> didnt_find}}
+    {{> search_module}}
   </div>
 </template>
 

@@ -47,6 +47,7 @@ Template.cp_head.helpers({
     }else{
       data['c_tr_last_updated'] = dateChange;
     }
+    data.mrURL = globalUrl(data.c_exchange);
     return data;
   },
   text: function(){
@@ -80,6 +81,7 @@ Template.cp_body.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
+    data.sect_url = Router.pick_path('content.sector',{page_num: 1, loc_id: data.c_hq_state, sector_id: compUrlName(data.c_sector)});
     return data;
   },
 
@@ -143,6 +145,10 @@ Template.c_p_graph.helpers({
       return '';
     }
 
+    //Set default values for highcharts obj
+    var max = null;
+    var tickPositions = undefined;
+
     //Get dependencies to find date range
     var dataLength = data.highchartsData.length;
     var latestDate = moment(data.highchartsData[dataLength - 1][0]);
@@ -157,13 +163,23 @@ Template.c_p_graph.helpers({
 
         //Fetch what day it is 0 - Monday -> 7 - Sunday
         var current_day = moment.utc().subtract(5, 'hours').isoWeekday();
+        var current_time = Number(moment.utc().subtract(5, 'hours').format('HHmm'));
 
         //If current day is saturday or sunday, set min to friday 9:30 AM else set to current weekday 9:30 AM
         if(current_day === 6|| current_day === 7){
           var min = moment.utc().subtract(5, 'hours').endOf('isoweek').subtract(2, 'days').hour(14).minute(30).format('X') * 1000;
+          var max = moment.utc().subtract(5, 'hours').endOf('isoweek').subtract(2, 'days').hour(21).minute(30).format('X') * 1000;
         }else{
-          var min = moment.utc().subtract(5, 'hours').hour(14).minute(30).format('X') * 1000;
+          if(current_time > 930){
+            var min = moment.utc().subtract(5, 'hours').hour(14).minute(30).second(0).format('X') * 1000;
+            var max = moment.utc().subtract(5, 'hours').hour(21).minute(30).second(0).format('X') * 1000;
+          }else{
+            var min = moment.utc().subtract(1, 'days').subtract(5, 'hours').hour(14).minute(30).second(0).format('X') * 1000;
+            var max = moment.utc().subtract(1, 'days').subtract(5, 'hours').hour(21).minute(30).second(0).format('X') * 1000;
+          }
         }
+
+        var tickPositions = [min, min + ((3600 + 1800) * 1000), min + ((2 * 3600 + 1800) * 1000), min + ((3 * 3600 + 1800) * 1000), min + ((4 * 3600 + 1800) * 1000), min + ((5 * 3600 + 1800) * 1000), min + (7 * 3600 * 1000)];
 
         var xAxis_format = '%l:%M %P';
         var tooltip_format = '%l:%M %P EST';
@@ -259,10 +275,21 @@ Template.c_p_graph.helpers({
           labels: {
               overflow: 'justify',
               formatter: function(){
+
+                if(this.isFirst && c_p_range === '1D'){
+                  return Highcharts.dateFormat(xAxis_format, this.value) + '<br>(Open)';
+                }
+                if(this.isLast && c_p_range == '1D'){
+                  return Highcharts.dateFormat(xAxis_format, this.value) + '<br>(Close)';
+                }
+
                 return Highcharts.dateFormat(xAxis_format, this.value);
+
               }
           },
-          min: min
+          tickPositions: tickPositions,
+          min: min,
+          max: max
       },
       yAxis: {
           title: '',

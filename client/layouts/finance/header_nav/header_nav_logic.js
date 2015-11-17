@@ -195,6 +195,19 @@ Template.header_nav.events({
   });
 
 Template.header_nav.helpers({
+  partnerHome:function(){
+    var link = Session.get('p_data');
+    var params = Router.current().getParams();
+    if(typeof link == 'undefined'){
+      return '';
+    }
+    var data = {};
+    data.url = Router.pick_path('content.partnerhome',{
+      partner_id:params.partner_id
+    });
+    data.title = link.name + ' Home';
+    return data;
+  },
   homepage:function(){
     return Session.get('IsHome');
   },

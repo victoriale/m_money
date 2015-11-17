@@ -51,6 +51,10 @@ Template.co_fin_overview.helpers({
 
     var dataLength = data.highchartsData.length;
 
+    //Set default values for highcharts obj
+    var max = null;
+    var tickPositions = undefined;
+
     //Get dependencies to find date range
     var latestDate = moment(data.highchartsData[0][0]);
     data.highchartsData.reverse();
@@ -61,13 +65,25 @@ Template.co_fin_overview.helpers({
 
         //Fetch what day it is 0 - Monday -> 7 - Sunday
         var current_day = moment.utc().subtract(5, 'hours').isoWeekday();
+        var current_time = Number(moment.utc().subtract(5, 'hours').format('HHmm'));
+
 
         //If current day is saturday or sunday, set min to friday 9:30 AM else set to current weekday 9:30 AM
         if(current_day === 6|| current_day === 7){
           var min = moment.utc().subtract(5, 'hours').endOf('isoweek').subtract(2, 'days').hour(14).minute(30).format('X') * 1000;
+          var max = moment.utc().subtract(5, 'hours').endOf('isoweek').subtract(2, 'days').hour(21).minute(30).format('X') * 1000;
         }else{
-          var min = moment.utc().subtract(5, 'hours').hour(14).minute(30).format('X') * 1000;
+          //If current hour:minute is after 9:30 (Open) use today range, else use yesterday's values
+          if(current_time > 930){
+            var min = moment.utc().subtract(5, 'hours').hour(14).minute(30).second(0).format('X') * 1000;
+            var max = moment.utc().subtract(5, 'hours').hour(21).minute(30).second(0).format('X') * 1000;
+          }else{
+            var min = moment.utc().subtract(1, 'days').subtract(5, 'hours').hour(14).minute(30).second(0).format('X') * 1000;
+            var max = moment.utc().subtract(1, 'days').subtract(5, 'hours').hour(21).minute(30).second(0).format('X') * 1000;
+          }
         }
+
+        var tickPositions = [min, min + ((3600 + 1800) * 1000), min + ((2 * 3600 + 1800) * 1000), min + ((3 * 3600 + 1800) * 1000), min + ((4 * 3600 + 1800) * 1000), min + ((5 * 3600 + 1800) * 1000), min + (7 * 3600 * 1000)];
 
         var xAxis_format = '%l:%M %P';
         var tooltip_format = '%l:%M %P EST';
@@ -151,10 +167,21 @@ Template.co_fin_overview.helpers({
           labels: {
               overflow: 'justify',
               formatter: function(){
+
+                if(this.isFirst && fo_range === 'cfoBtn0'){
+                  return Highcharts.dateFormat(xAxis_format, this.value) + '<br>(Open)';
+                }
+                if(this.isLast && fo_range == 'cfoBtn0'){
+                  return Highcharts.dateFormat(xAxis_format, this.value) + '<br>(Close)';
+                }
+
                 return Highcharts.dateFormat(xAxis_format, this.value);
+
               }
           },
-          min: min
+          tickPositions: tickPositions,
+          min: min,
+          max: max
       },
       yAxis: {
           title: '',

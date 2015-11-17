@@ -228,12 +228,10 @@ Template.project_history.helpers (
           name:compUrlName(val.c_name),
           company_id:val.c_id,
         });
-
-        val.workurl = Router.pick_path('content.workhistory',{
-          lname:params.lname,
-          fname:params.fname,
+        val.workurl = Router.pick_path('content.boardcommittee',{
+          name:compUrlName(val.c_name),
           ticker:val.c_ticker,
-          exec_id:val.o_id
+          company_id:val.c_id
         });
       });
       return data;
@@ -251,7 +249,19 @@ Template.project_history.helpers (
           exec_id:val.o_id
         });
       });
-      return data[0]
+      return data[0];
+    },
+
+    WholeListUrl:function(){
+      var data = Session.get('ListPage');
+      var params = Router.current().getParams();
+
+      return Router.pick_path('content.workhistory',{
+        lname:params.lname,
+        fname:params.fname,
+        ticker:params.ticker,
+        exec_id:params.exec_id
+      });;
     },
 //Function returns list of all projects worked by the current executive
 

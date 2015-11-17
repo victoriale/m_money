@@ -11,6 +11,23 @@ sortSuggestions = function(data, search_string) {
 
   if ( data.name.func_success == true ) {
     var name_data = data.name.func_data.search_data;
+    // Remove bad tickers
+    var badTicker = [
+      'Nasdaq',
+      'AMEX',
+      'Nyse'
+    ];
+    for ( var i = 0; i < name_data.length; i++ ) {
+      var isBad = false;
+      for ( var t = 0; t < badTicker.length; t++ ) {
+        if ( badTicker[t] == name_data[i].c_name ) {
+          isBad = true;
+        }
+      }
+      if ( isBad ) {
+        name_data.splice(i,1);
+      }
+    }
     total_results = total_results + name_data.length;
     for ( var index = 0; index < name_data.length; index++ ) {
       results[name_data[index].name_type][results[name_data[index].name_type].length] = name_data[index];
@@ -19,6 +36,23 @@ sortSuggestions = function(data, search_string) {
 
   if ( data.ticker.func_success == true ) {
     var ticker_data = data.ticker.func_data.search_data;
+    // Remove bad tickers
+    var badTicker = [
+      '.IXIC',
+      '.XAX',
+      '.NYA'
+    ];
+    for ( var i = 0; i < ticker_data.length; i++ ) {
+      var isBad = false;
+      for ( var t = 0; t < badTicker.length; t++ ) {
+        if ( badTicker[t] == ticker_data[i].c_ticker ) {
+          isBad = true;
+        }
+      }
+      if ( isBad ) {
+        ticker_data.splice(i,1);
+      }
+    }
     total_results = total_results + ticker_data.length;
     var max_index = ticker_data.length;
     if ( max_index > 10 ) {
