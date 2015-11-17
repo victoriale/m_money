@@ -342,6 +342,9 @@ Template.daily_update.helpers({
     //Get dependencies to find date range
     var dataLength = data.highchartsData.length;
     var latestDate = moment(data.highchartsData[dataLength - 1][0]);
+
+    var max = null;
+
     //Get range value based on option selected
 
     //GRAPH MUST BE ASC order from [0] - [max] where max is the latest date in unix
@@ -363,8 +366,10 @@ Template.daily_update.helpers({
         //If current day is saturday or sunday, set min to friday 9:30 AM else set to current weekday 9:30 AM
         if(current_day === 6|| current_day === 7){
           var min = moment.utc().subtract(5, 'hours').endOf('isoweek').subtract(2, 'days').hour(14).minute(30).format('X') * 1000;
+          var max = moment.utc().subtract(5, 'hours').endOf('isoweek').subtract(2, 'days').hour(21).minute(30).format('X') * 1000;
         }else{
           var min = moment.utc().subtract(5, 'hours').hour(14).minute(30).format('X') * 1000;
+          var max = moment.utc().subtract(5, 'hours').hour(21).minute(30).format('X') * 1000;
         }
 
         var xAxis_format = '%l:%M %P';
@@ -467,6 +472,7 @@ Template.daily_update.helpers({
           },
           //startOnTick: true,
           min: min,
+          max: max
       },
       yAxis: {
           title: '',

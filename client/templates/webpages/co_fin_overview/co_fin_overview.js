@@ -51,6 +51,8 @@ Template.co_fin_overview.helpers({
 
     var dataLength = data.highchartsData.length;
 
+    var max = null;
+
     //Get dependencies to find date range
     var latestDate = moment(data.highchartsData[0][0]);
     data.highchartsData.reverse();
@@ -65,8 +67,10 @@ Template.co_fin_overview.helpers({
         //If current day is saturday or sunday, set min to friday 9:30 AM else set to current weekday 9:30 AM
         if(current_day === 6|| current_day === 7){
           var min = moment.utc().subtract(5, 'hours').endOf('isoweek').subtract(2, 'days').hour(14).minute(30).format('X') * 1000;
+          var max = moment.utc().subtract(5, 'hours').endOf('isoweek').subtract(2, 'days').hour(21).minute(30).format('X') * 1000;
         }else{
           var min = moment.utc().subtract(5, 'hours').hour(14).minute(30).format('X') * 1000;
+          var max = moment.utc().subtract(5, 'hours').hour(21).minute(30).format('X') * 1000;
         }
 
         var xAxis_format = '%l:%M %P';
@@ -154,7 +158,8 @@ Template.co_fin_overview.helpers({
                 return Highcharts.dateFormat(xAxis_format, this.value);
               }
           },
-          min: min
+          min: min,
+          max: max
       },
       yAxis: {
           title: '',
