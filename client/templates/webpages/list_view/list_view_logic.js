@@ -188,8 +188,8 @@ Template.list_view.helpers({
     }
     Session.set('top_list_gen', listdata);
     $.map(listdata.top_list_list, function(data,index){
-
-      data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
+      data['newDate'] = (new Date(moment(data.csi_price_last_updated))).toSNTForm();
+      //data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
       data['rank'] = index+1;
       data['url'] = Router.pick_path('content.companyprofile',{
         ticker: data.c_ticker,
