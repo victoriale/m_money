@@ -112,6 +112,12 @@
           <a href="/">
             <div class="layout_nav-logo"></div>
           </a>
+          {{else}}
+          {{#with partnerHome}}
+          <a href="{{url}}">
+            <div style="color:#ffffff; font-family:HN-B; font-size:18px;white-space:nowrap;">{{title}}</div>
+          </a>
+          {{/with}}
           {{/if}}
         </td>
         <td style="padding-left: 23vw; position: relative">
