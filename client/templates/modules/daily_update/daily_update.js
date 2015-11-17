@@ -505,7 +505,6 @@ Template.daily_update.helpers({
       },
       tooltip: {
         formatter: function(){
-          console.log('TOOLTIP', this, min);
 
           if(this.x === min){
             return "Yesterday' Closing Price<br />" + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
