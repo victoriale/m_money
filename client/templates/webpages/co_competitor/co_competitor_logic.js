@@ -51,8 +51,8 @@ Template.co_competitor.helpers({
 
   companyList: function(){
     var data = Session.get('competitors');
-    if(typeof data == 'undefined'){
-      return '';
+    if(typeof data == 'undefined' || typeof data.competitors == "undefined" ){
+      return false;
     }
     var compare = data.company;
     var competitors = data.competitors;

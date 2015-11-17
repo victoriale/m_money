@@ -153,95 +153,102 @@ Associated Files: co_competitor_logic.js and co_competitor.less
     {{/with}}
     <div class="co_comp-wrapper">
       <!-- The loop starts here and the each will take each data item from the items on each iteration-->
-      {{#each companyList}}
-      <div class="co_comp-{{getBackgroundStyle}}"><br>
-        <!--This is the main (circle) image-->
-        <a href="{{url}}">
-          <div class="co_comp-head-circ">
-            <div class="co_comp-head-image" style="background-image:url('{{imageUrl c_logo}}')">
-              <!-- Here displays the counter number which is a result of each loop-->
-              <div class="hover">
-                <div class="hover-txt1">
-                  View
+      {{#if companyList}}
+        {{#each companyList}}
+        <div class="co_comp-{{getBackgroundStyle}}"><br>
+          <!--This is the main (circle) image-->
+          <a href="{{url}}">
+            <div class="co_comp-head-circ">
+              <div class="co_comp-head-image" style="background-image:url('{{imageUrl c_logo}}')">
+                <!-- Here displays the counter number which is a result of each loop-->
+                <div class="hover">
+                  <div class="hover-txt1">
+                    View
+                  </div>
+                  <div class="hover-txt2">
+                    Profile
+                  </div>
                 </div>
-                <div class="hover-txt2">
-                  Profile
-                </div>
+                <span class="co_comp-counter">#{{rank}}</span>
+                <span class="co_comp-counter2" style="background-image:url('{{exchange c_exchange}}')"><div class="hover"></div></span>
               </div>
-              <span class="co_comp-counter">#{{rank}}</span>
-              <span class="co_comp-counter2" style="background-image:url('{{exchange c_exchange}}')"><div class="hover"></div></span>
+            </div>
+          </a>
+          <!--Location title -->
+          <div class="co_comp-sp">
+            <div  class="co_comp-space">
+              <!-- This displays the font awesome map sybmol infornt of the united states-->
+              <i class="fa fa-map-marker"></i>
+              <span  class="co_comp-space co_comp-space2">
+                <a href="{{locurl}}">{{c_hq_city}} {{c_hq_state}}</a><span class="co_comp-space co_comp-space2"><i class="fa fa-angle-double-right"></i> </span>
+                <a href="{{secturl}}"><span class="co_comp-space co_comp-space2"> {{c_sector}}:{{c_ticker}} </span></a>
+              </span>
+              <!-- Here displays the description which come from the each loop-->
+              <div class="co_comp-adjust">{{ c_name }}</div>
+              <div class="co_comp-follw3">Market Cap: <span class="co_comp-follw4"> {{market_cap}} </span> </div>
             </div>
           </div>
-        </a>
-        <!--Location title -->
-        <div class="co_comp-sp">
-          <div  class="co_comp-space">
-            <!-- This displays the font awesome map sybmol infornt of the united states-->
-            <i class="fa fa-map-marker"></i>
-            <span  class="co_comp-space co_comp-space2">
-              <a href="{{locurl}}">{{c_hq_city}} {{c_hq_state}}</a><span class="co_comp-space co_comp-space2"><i class="fa fa-angle-double-right"></i> </span>
-              <a href="{{secturl}}"><span class="co_comp-space co_comp-space2"> {{c_sector}}:{{c_ticker}} </span></a>
+          <!--This displays the blue button which holds the text "View Full List"-->
+          <div class="co_comp-ctmain">
+            <span class="co_comp-ctmaintxt">
+              Want an in-depth comparison?
             </span>
-            <!-- Here displays the description which come from the each loop-->
-            <div class="co_comp-adjust">{{ c_name }}</div>
-            <div class="co_comp-follw3">Market Cap: <span class="co_comp-follw4"> {{market_cap}} </span> </div>
+            <a href="{{url}}">
+              <button class="co_comp-tile-button">
+                View Profile
+                <span style="margin-left:6px"><i class="fa fa-angle-right"></i></span>
+              </button>
+            </a>
           </div>
-        </div>
-        <!--This displays the blue button which holds the text "View Full List"-->
-        <div class="co_comp-ctmain">
-          <span class="co_comp-ctmaintxt">
-            Want an in-depth comparison?
-          </span>
-          <a href="{{url}}">
-            <button class="co_comp-tile-button">
-              View Profile
-              <span style="margin-left:6px"><i class="fa fa-angle-right"></i></span>
-            </button>
-          </a>
-        </div>
-        <div class="co_comp-rtct">
-          <div class="co_comp-rttx1"> Stock Price</div>
-          <div class="co_comp-follwt">
-          <span class="co_comp-follw1"> ${{csi_price}}</span>
-            <span class="co_comp-follw1 co_comp-follwg" style="color:{{changeColor csi_price_last_operator}}"><i class="fa {{changeIcon csi_price_last_operator}}" style="color:{{changeColor csi_price_last_operator}}"> </i> {{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%)</span>
+          <div class="co_comp-rtct">
+            <div class="co_comp-rttx1"> Stock Price</div>
+            <div class="co_comp-follwt">
+            <span class="co_comp-follw1"> ${{csi_price}}</span>
+              <span class="co_comp-follw1 co_comp-follwg" style="color:{{changeColor csi_price_last_operator}}"><i class="fa {{changeIcon csi_price_last_operator}}" style="color:{{changeColor csi_price_last_operator}}"> </i> {{csi_price_change_since_last}} ({{csi_percent_change_since_last}}%)</span>
+            </div>
+            <div class="co_comp-rttxg"><span class="co_comp-follws">As of {{csi_price_last_updated}}</span></div>
           </div>
-          <div class="co_comp-rttxg"><span class="co_comp-follws">As of {{csi_price_last_updated}}</span></div>
-        </div>
-        <!-- This displays the font awesome heart symbol beside the text "save"-->
-        <!--<div class="co_comp-sn">
-          <div  class="co_comp-save">
-            <i class="fa fa-heart"></i>
-            <span  class="co_comp-save co_comp-st">
-              Follow
-            </span>
-          </div>
-        </div>-->
-
-        <!-- This displays the font awesome share symbol beside the text "share"-->
-        <div class="co_comp-sh">
-          <!--
-          <a href="{{share_url}}">
-            <div  class="co_comp-share">
-              <i class="fa fa-share-alt"></i>
-              <span  class="co_comp-share co_comp-sht">
-                Share
+          <!-- This displays the font awesome heart symbol beside the text "save"-->
+          <!--<div class="co_comp-sn">
+            <div  class="co_comp-save">
+              <i class="fa fa-heart"></i>
+              <span  class="co_comp-save co_comp-st">
+                Follow
               </span>
             </div>
-          </a>
-        -->
-        </div>
-        <!-- This displays the font awesome flag symbol beside the text "Feedback"-->
-        <!--<div class="co_comp-fe ">
-          <div  class="co_comp-share co_comp-feedback">
-            <i class="fa fa-flag"></i>
-            <span  class="co_comp-share co_comp-ft">
-              Feedback
-            </span>
+          </div>-->
+
+          <!-- This displays the font awesome share symbol beside the text "share"-->
+          <div class="co_comp-sh">
+            <!--
+            <a href="{{share_url}}">
+              <div  class="co_comp-share">
+                <i class="fa fa-share-alt"></i>
+                <span  class="co_comp-share co_comp-sht">
+                  Share
+                </span>
+              </div>
+            </a>
+          -->
           </div>
-        </div>-->
+          <!-- This displays the font awesome flag symbol beside the text "Feedback"-->
+          <!--<div class="co_comp-fe ">
+            <div  class="co_comp-share co_comp-feedback">
+              <i class="fa fa-flag"></i>
+              <span  class="co_comp-share co_comp-ft">
+                Feedback
+              </span>
+            </div>
+          </div>-->
+        </div>
+        <!--This is the End of each loop-->
+      {{/each}}
+    {{else}}
+      <div class="co_comp-nocomp">
+        <img class="co_comp-nocomp-img" src="/icons/no_comps.png">
+        <div class="co_comp-nocomp-txt">Sorry, it appears our data sources do not have any<br>U.S. based competitors for this company.</div>
       </div>
-      <!--This is the End of each loop-->
-    {{/each}}
+    {{/if}}
 </div>
   <!--created a container for the fotter  !-->
 <div class="co_comp-fotter">
