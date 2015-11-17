@@ -55,7 +55,7 @@ Template.cp_head.helpers({
     if(typeof data == 'undefined' && typeof aidata == "undefined" ){
       return '';
     }
-    if ( typeof aidata == "undefined" ) {
+    if ( typeof aidata == "undefined" || aidata == 'false' || aidata == false || aidata == '' ) {
       return data.c_desc;
     }
     return aidata;
