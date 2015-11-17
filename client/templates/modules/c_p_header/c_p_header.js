@@ -47,6 +47,7 @@ Template.cp_head.helpers({
     }else{
       data['c_tr_last_updated'] = dateChange;
     }
+    data.mrURL = globalUrl(data.c_exchange);
     return data;
   },
   text: function(){
@@ -80,6 +81,7 @@ Template.cp_body.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
+    data.sect_url = Router.pick_path('content.sector',{page_num: 1, loc_id: data.c_hq_state, sector_id: compUrlName(data.c_sector)});
     return data;
   },
 
