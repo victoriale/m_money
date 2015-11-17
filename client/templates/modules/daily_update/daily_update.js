@@ -343,12 +343,11 @@ Template.daily_update.helpers({
     var dataLength = data.highchartsData.length;
     var latestDate = moment(data.highchartsData[dataLength - 1][0]);
 
+
+    //Set default values for highcharts obj
     var max = null;
+    var tickPositions = undefined;
 
-    //Get range value based on option selected
-
-    //GRAPH MUST BE ASC order from [0] - [max] where max is the latest date in unix
-    //if above is correct the below will work
     switch(d_u_range){
       case '1D':
         //Define what data to use. Location uses separate api call
@@ -371,6 +370,8 @@ Template.daily_update.helpers({
           var min = moment.utc().subtract(5, 'hours').hour(14).minute(30).format('X') * 1000;
           var max = moment.utc().subtract(5, 'hours').hour(21).minute(30).format('X') * 1000;
         }
+
+        var tickPositions = [min, min + ((2 * 3600 + 1800) * 1000), min + ((4 * 3600 + 1800) * 1000), min + (7 * 3600 * 1000)];
 
         var xAxis_format = '%l:%M %P';
         var tooltip_format = '%l:%M %P EST';
@@ -467,10 +468,19 @@ Template.daily_update.helpers({
           labels: {
               overflow: 'justify',
               formatter: function(){
+
+                if(this.isFirst && d_u_range === '1D'){
+                  return Highcharts.dateFormat(xAxis_format, this.value) + '<br>(Open)';
+                }
+                if(this.isLast && d_u_range == '1D'){
+                  return Highcharts.dateFormat(xAxis_format, this.value) + '<br>(Close)';
+                }
+
                 return Highcharts.dateFormat(xAxis_format, this.value);
+
               }
           },
-          //startOnTick: true,
+          tickPositions: tickPositions,
           min: min,
           max: max
       },
