@@ -16,8 +16,7 @@ Template.c_hq_page.helpers({
       {
         title: 'Address',
         line:[
-          {text: company.c_name, isLink: false},
-          {text: company.c_sector, isLink: false},
+          {text: data.c_street_addr + " "},
           {text: data.c_hq_city + ", "+ data.c_hq_state + " " + data.c_zip, isLink: false}
         ]
       },
