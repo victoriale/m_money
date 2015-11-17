@@ -325,7 +325,6 @@ Template.daily_update.helpers({
         data.csi_price_last_operator = 1;
       }
     }
-    console.log(data);
 
     return data;
   },
