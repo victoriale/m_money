@@ -29,7 +29,7 @@ Template.co_competitor.helpers({
     newData['csi_price_last_updated'] = (new Date(newData['csi_price_last_updated']).toSNTFormTime());
 
     //database sending back in million
-    newData['market_cap'] = dNumberToCommaNumber(Number(newData['market_cap']).toFixed(0));
+    newData['market_cap'] = nFormatter(newData['market_cap']);
     newData['csi_price_change_since_last'] = Number(newData['csi_price_change_since_last']).toFixed(2);
     newData['csi_price'] = Number(newData['csi_price']).toFixed(2);
     newData['csi_percent_change_since_last'] = Number(newData['csi_percent_change_since_last']).toFixed(2);
@@ -51,14 +51,14 @@ Template.co_competitor.helpers({
 
   companyList: function(){
     var data = Session.get('competitors');
-    if(typeof data == 'undefined'){
-      return '';
+    if(typeof data == 'undefined' || typeof data.competitors == "undefined" ){
+      return false;
     }
     var compare = data.company;
     var competitors = data.competitors;
     $.map(competitors, function(data, index){
       //database sending back in million
-      data['market_cap'] = dNumberToCommaNumber(Number(data['market_cap']).toFixed(0));
+      data['market_cap'] = nFormatter(data['market_cap']);
       data['csi_price_change_since_last'] = Number(data['csi_price_change_since_last']).toFixed(2);
       data['csi_price'] = Number(data['csi_price']).toFixed(2);
       data['csi_percent_change_since_last'] = Number(data['csi_percent_change_since_last']).toFixed(2);

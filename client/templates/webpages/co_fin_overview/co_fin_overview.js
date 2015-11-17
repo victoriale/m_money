@@ -57,29 +57,20 @@ Template.co_fin_overview.helpers({
     //Get range value based on option selected
     switch(fo_range){
       case 'cfoBtn0':
-      var graphData = data.highchartsData
+        var graphData = data.highchartsData
 
-      var condition = false;
-      //Get last point of graph
-      var count = dataLength - 1;
-      //Find the most current day in the list
-      var current_month_hour = moment(graphData[count][0]).format('MMDD');
-      //Loop through the array to find the beginning of the latest day available
-      while(condition === false){
-        //get the month and date of the data point
-        var time = moment(graphData[count - 1][0]).format('MMDD');
-        //If the month and date of the current point dont match the latest day avaiable. Set the previous point to the beggining of the graph
-        if(time !== current_month_hour){
-          var min = graphData[count][0];
-          //Set condition to true to exit while loop
-          condition = true;
+        //Fetch what day it is 0 - Monday -> 7 - Sunday
+        var current_day = moment.utc().subtract(5, 'hours').isoWeekday();
+
+        //If current day is saturday or sunday, set min to friday 9:30 AM else set to current weekday 9:30 AM
+        if(current_day === 6|| current_day === 7){
+          var min = moment.utc().subtract(5, 'hours').endOf('isoweek').subtract(2, 'days').hour(14).minute(30).format('X') * 1000;
+        }else{
+          var min = moment.utc().subtract(5, 'hours').hour(14).minute(30).format('X') * 1000;
         }
-        //Decrement count to continue loop iteration
-        count--;
-      }
 
         var xAxis_format = '%l:%M %P';
-        var tooltip_format = '%l:%M %P CST';
+        var tooltip_format = '%l:%M %P EST';
       break;
       case 'cfoBtn1':
         var min = latestDate.subtract(5, 'days').format('X') * 1000;

@@ -61,7 +61,7 @@ Template.list_view_exec.helpers({
         data['TotalComp'] = 1;
       }else{
         data['objname'] = 'Compensation';
-        data['TotalComp'] = dNumberToCommaNumber(data['TotalComp']);
+        data['TotalComp'] = nFormatter(Number(data['TotalComp']));
       }
       data['newDate'] = (new Date(listdata['list_last_updated'])).toSNTFormTime();
       data['rank'] = index+1;
