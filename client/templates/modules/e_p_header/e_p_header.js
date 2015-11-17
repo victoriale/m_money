@@ -41,7 +41,21 @@ Template.ep_head.helpers({
     data['last_updated'] = lastUpdated;
     data['c_hq_location'] = data.c_hq_city + ", " + data.c_hq_state;
     data['e_name'] = data.o_first_name + " " + data.o_middle_initial + " " + data.o_last_name;
+    // data['mrURL'] = Router.pick_path('content.executiveprofile',
+    //   {
+    //     fname: data.o_first_name,
+    //     lname: data.o_last_name,
+    //     ticker: companies[i].c_ticker,
+    //     exec_id: companies[i].o_id
+    //   });
+    data['compURL'] = Router.pick_path('content.companyprofile',{
+      ticker:data.c_ticker,
+      name:compUrlName(data.c_name),
+      company_id:data.c_id
+    });
+
     var companies = Session.get('company_profiles');
+
     if ( typeof companies == "object" && companies.length > 1 ) {
       var cmp_data = {companies: []};
       var count = 0;
@@ -79,6 +93,12 @@ Template.ep_body.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
+    console.log(data);
+    data['compURL'] = Router.pick_path('content.companyprofile',{
+      ticker:data.c_ticker,
+      name:compUrlName(data.c_name),
+      company_id:data.c_id
+    });
     var convString = data.compensation.o_compensation;
     convString.Salary = dNumberToCommaNumber(convString.Salary);
     convString.TotalComp = dNumberToCommaNumber(convString.TotalComp);
