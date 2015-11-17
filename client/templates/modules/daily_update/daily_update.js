@@ -36,7 +36,7 @@ Template.daily_update.onCreated(function(){
       }
 
       //Call to get one day data for daily update graph
-      Meteor.call('GetOneDayDailyUpdate', input_param, input_type, function(err, data){
+      /*Meteor.call('GetOneDayDailyUpdate', input_param, input_type, function(err, data){
         if(err){
           console.log('error Call', err);
           return false;
@@ -55,7 +55,7 @@ Template.daily_update.onCreated(function(){
 
           Session.set('one_day_location_daily_update', highchartsData);
         }
-      })
+      })*/
 
       transformLocationDailyUpdate();
     }
@@ -83,6 +83,7 @@ Template.daily_update.onCreated(function(){
 //Function to transform location data to form useable my already existing helpers
 function transformLocationDailyUpdate(){
   var data = Session.get('location_daily_update');
+  var data2 = Session.get('one_day_location_daily_update');
   //If data is undefined exit function
   if(typeof data === 'undefined'){
     return '';
@@ -101,6 +102,17 @@ function transformLocationDailyUpdate(){
 		}
   })
 
+  var highchartsData2 = [];
+  data2.forEach(function(item, index){
+
+    var date = item.sh_date * 1000;
+
+    var point2 = [date, Number(item.sh_close)];
+
+    highchartsData2.push(point2);
+  })
+
+  Session.set('new_one_day_location_daily_update', highchartsData2);
 
 
   //GRAPH MUST BE ASC order from [0] - [max] where max is the latest date in unix
@@ -311,6 +323,7 @@ Template.daily_update.helpers({
   //Helper to determine chart
   getGraph: function(){
     var data = Session.get('graph_data');
+
     var d_u_range = Session.get('d_u_range');
 
     //If data does not exists exit helper
@@ -337,7 +350,8 @@ Template.daily_update.helpers({
       case '1D':
         //Define what data to use. Location uses separate api call
         if(Session.get('IsLocation')){
-          var graphData = Session.get('one_day_location_daily_update');
+          var graphData = Session.get('new_one_day_location_daily_update');
+
         }
         if(Session.get('IsCompany')){
           var graphData = data.highchartsData;
@@ -433,9 +447,6 @@ Template.daily_update.helpers({
     }
 
     var cfoGraphObject = {
-      global: {
-        //timezoneOffset: 5 * 60
-      },
       title: {
           text: ''
       },
