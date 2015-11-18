@@ -1133,8 +1133,8 @@ function exec_list(params, req, res){
 }
 
 // Sector page
-seoPicker.route('/:loc_id/sector/:sector_id',sector_page);
-seoPicker.route('/:partner_id/sector/:loc_id/:sector_id',sector_page);
+seoPicker.route('/:loc_id/sector/:sector_id/:page_num',sector_page);
+seoPicker.route('/:partner_id/sector/:loc_id/:sector_id/:page_num',sector_page);
 function sector_page(params, req, res) {
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
@@ -1221,6 +1221,7 @@ function sector_page(params, req, res) {
         console.log("SSRSTAT|\"Sector Page\",\"" + info.params.sector_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch(e) {
+        console.log(e);
         console.log("SSRSTAT|\"Sector Page - Error\",\"" + info.params.sector_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
         RenderError(res);
       }
