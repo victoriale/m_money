@@ -725,7 +725,7 @@ function location_profile(params, req, res){
           var t_data = data.market_movers[index];
           var items = [];
           for ( var i = 0; i < t_data.data.top_list_list.length; i++ ) {
-            items.push('<a href="' + Router.pick_path('content.companyprofile',{company_id: t_data.data.top_list_list[i].c_id, ticker: t_data.data.top_list_list[i].c_ticker, name: t_data.data.top_list_list[i].c_name}) + '">' + t_data.data.top_list_list[i].c_name + ' (' + t_data.data.top_list_list[i].c_exchange + ':' + t_data.data.top_list_list[i].c_ticker + ')</a> as of ' + (new Date(t_data.data.top_list_list[i].lcsi_price_last_updated)).toSNTFormTimeSEO());
+            items.push('<a href="' + Router.pick_path('content.companyprofile',{company_id: t_data.data.top_list_list[i].c_id, ticker: t_data.data.top_list_list[i].c_ticker, name: compUrlName(t_data.data.top_list_list[i].c_name)}) + '">' + t_data.data.top_list_list[i].c_name + ' (' + t_data.data.top_list_list[i].c_exchange + ':' + t_data.data.top_list_list[i].c_ticker + ')</a> as of ' + (new Date(t_data.data.top_list_list[i].lcsi_price_last_updated)).toSNTFormTimeSEO());
           }
           var l_data = {
             title: '<a href="' + Router.pick_path('content.toplist',{l_name: compUrlName(t_data.data.top_list_info.top_list_title), list_id: t_data.data.top_list_info.top_list_id, loc_id: data.profile_header.location, page_num: 1}, info.params) + '">' + t_data.data.top_list_info.top_list_title + '</a>',
@@ -1221,7 +1221,6 @@ function sector_page(params, req, res) {
         console.log("SSRSTAT|\"Sector Page\",\"" + info.params.sector_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch(e) {
-        console.log(e);
         console.log("SSRSTAT|\"Sector Page - Error\",\"" + info.params.sector_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
         RenderError(res);
       }
