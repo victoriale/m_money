@@ -35,6 +35,12 @@ Template.about_company.helpers({
 })
 
 Template.about_company.onRendered(function(){
+  //Backup if geocodes are innacurate
+  //initializeHQMap_address is found in webpages/c_hq_page/c_hq_page_logic.js
+  /*this.autorun(function(){
+    initializeHQMap_address();
+  })*/
+
   Tracker.autorun(function(){
     MapInit();
   })
