@@ -120,7 +120,7 @@ function company_profile(params, req, res){
         var flist_data = data.list_of_lists ? data.list_of_lists.list_rankings || [] : [];
         for ( var index = 0; index < flist_data.length; index++ ) {
           var ldata = {};
-          ldata.title = '<a href="' + Router.pick_path('content.toplist',{partner_id: info.params.partner_id, l_name: compUrlName(flist_data[index].top_list_list[0].list_of_lists_title), list_id: flist_data[index].tli_id},info.params) + '">' + flist_data[index].top_list_list[0].list_of_lists_title.toTitleCase() + ' As Of ' + (new Date(flist_data[index].tle_last_updated)).toSNTFormTimeSEO() + '</a>';
+          ldata.title = '<a href="' + Router.pick_path('content.toplist',{partner_id: info.params.partner_id, l_name: compUrlName(flist_data[index].top_list_list[0].list_of_lists_title), list_id: flist_data[index].tli_id, page_num: 1},info.params) + '">' + flist_data[index].top_list_list[0].list_of_lists_title.toTitleCase() + ' As Of ' + (new Date(flist_data[index].tle_last_updated)).toSNTFormTimeSEO() + '</a>';
           ldata.content = {ul: []};
           for ( var i = 0; i < flist_data[index].top_list_list[0].list_of_lists_data.length; i++ ) {
             var c_cmp = flist_data[index].top_list_list[0].list_of_lists_data[i];
@@ -171,7 +171,7 @@ function company_profile(params, req, res){
             data.ai,
             '',
             location,
-            data.profile_header.comp_name2 + ' is in the <a href="' + Router.pick_path('content.sector',{sector_id: compUrlName(data.profile_header.c_sector), loc_id: data.profile_header.c_hq_state}, info.params) + '">' + data.profile_header.c_sector.toLowerCase() + '</a> sector.',
+            data.profile_header.comp_name2 + ' is in the <a href="' + Router.pick_path('content.sector',{sector_id: compUrlName(data.profile_header.c_sector), loc_id: data.profile_header.c_hq_state, page_num: 1}, info.params) + '">' + data.profile_header.c_sector.toLowerCase() + '</a> sector.',
             '',
             'Thomson Reuters Summary:',
             data.bio_location.c_desc
@@ -187,9 +187,9 @@ function company_profile(params, req, res){
               ticker_link + ' Opening Price: $' + ToCommaNumber(data.daily_update.csi_opening_price),
               ticker_link + ' Closing Price: $' + ToCommaNumber(data.daily_update.csi_closing_price),
               ticker_link + ' Total Shares: ' + ToCommaNumber(data.daily_update.csi_total_shares),
-              ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-market-cap', list_id: '5222', loc_id: data.profile_header.c_hq_state}) + '">Market Cap</a>: ' + ToCommaNumber(data.daily_update.csi_market_cap),
-              ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-PE-ratio', list_id: '5223', loc_id: data.profile_header.c_hq_state}) + '">PE Ratio</a>: ' + data.daily_update.csi_pe_ratio,
-              ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-volume', list_id: '5226', loc_id: data.profile_header.c_hq_state}) + '">Trading Volume</a>: ' + ToCommaNumber(data.daily_update.csi_trading_vol)
+              ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-market-cap', list_id: '5222', loc_id: data.profile_header.c_hq_state, page_num: 1}) + '">Market Cap</a>: ' + ToCommaNumber(data.daily_update.csi_market_cap),
+              ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-PE-ratio', list_id: '5223', loc_id: data.profile_header.c_hq_state, page_num: 1}) + '">PE Ratio</a>: ' + data.daily_update.csi_pe_ratio,
+              ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-volume', list_id: '5226', loc_id: data.profile_header.c_hq_state, page_num: 1}) + '">Trading Volume</a>: ' + ToCommaNumber(data.daily_update.csi_trading_vol)
             ]
           }
         };
