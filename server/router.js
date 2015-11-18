@@ -880,8 +880,8 @@ function location_profile(params, req, res){
 }
 
 // List Page
-seoPicker.route('/:l_name/:list_id/list/:loc_id?',list_page);
-seoPicker.route('/:partner_id/:l_name/:loc_id?/:list_id/list',list_page);
+seoPicker.route('/:l_name/:list_id/list/:loc_id?/:page_num',list_page);
+seoPicker.route('/:partner_id/:l_name/:loc_id?/:list_id/list/:page_num',list_page);
 function list_page(params, req, res){
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
@@ -926,13 +926,13 @@ function list_page(params, req, res){
         for ( var index = 0; index < data.top_list_gen.top_list_list.length; index++ ) {
           var cdata = data.top_list_gen.top_list_list[index];
           var line = (index + 1) + ': <a href="' + Router.pick_path('content.companyprofile',{partner_id: info.params.partner_id, company_id: cdata.c_id, ticker: cdata.c_ticker, name: compUrlName(cdata.c_name)}, info.params) + '">' + cdata.c_name + ' (' + cdata.c_exchange + ':' + cdata.c_ticker + ')</a>: ' + cdata.c_name + ' stock is ';
-          if ( cdata.csi_price_last_operator == 0 ) {
+          if ( cdata.lcsi_price_last_operator == 0 ) {
             line = line + 'down ';
           } else {
             line = line + 'up ';
           }
-          line = line + ToCommaNumber(cdata.csi_percent_change_since_last) + '% or $' + ToCommaNumber(cdata.csi_price_change_since_last) + ' to $' + ToCommaNumber(cdata.csi_price);
-          line = line + ' as of ' + (new Date(cdata.latest_date)).toSNTFormTimeSEO();
+          line = line + ToCommaNumber(cdata.lcsi_percent_change_since_last) + '% or $' + ToCommaNumber(cdata.lcsi_price_change_since_last) + ' to $' + ToCommaNumber(cdata.lcsi_price);
+          line = line + ' as of ' + (new Date(cdata.lcsi_price_last_updated)).toSNTFormTimeSEO();
           l_info.push(line);
         }
 
