@@ -863,24 +863,6 @@ function location_profile(params, req, res){
         Meteor.call("GetLocationData",loc_id,"batch_4", bound_cb);
       });
     });
-    // functions.push(function(batch){
-    //   batch_envar.withValue(batch, function(){
-    //     var bound_cb = Meteor.bindEnvironment(method_cb);
-    //     Meteor.call("GetLocationData",loc_id,"batch_5", bound_cb);
-    //   });
-    // });
-    // functions.push(function(batch){
-    //   batch_envar.withValue(batch, function(){
-    //     var bound_cb = Meteor.bindEnvironment(method_cb);
-    //     Meteor.call("GetLocationData",loc_id,"batch_6", bound_cb);
-    //   });
-    // });
-    // functions.push(function(batch){
-    //   batch_envar.withValue(batch, function(){
-    //     var bound_cb = Meteor.bindEnvironment(method_cb);
-    //     Meteor.call("GetLocationData",loc_id,"batch_7", bound_cb);
-    //   });
-    // });
 
     if ( typeof params.partner_id != "undefined" ) {
       functions.push(function(batch){
@@ -2167,7 +2149,7 @@ seoPicker.route('/',function(params, req, res){
   }
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
-  var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','District of Columbia','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Lousiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Ontario','Oregon','Pennsylvania','Peurto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
+  var states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Lousiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
 
   var states_list = [];
   for ( var index = 0; index < states.length; index++ ) {
