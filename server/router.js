@@ -515,7 +515,7 @@ function executive_profile(params, req, res){
         var wrk_hist = {};
         if ( work_hist.length != 0 ) {
           var wrk_hist = {
-            title: profile_header.o_full_name + '\'s Work History',
+            title: '<a href="' + Router.pick_path('content.workhistory',{exec_id: profile_header.o_id, fname: profile_header.o_first_name, lname: profile_header.o_last_name, ticker: profile_header.c_ticker},info.params) + '">' + profile_header.o_full_name + '\'s Work History</a>',
             h3: work_hist
           };
         }
@@ -1323,7 +1323,7 @@ function college_rivals(params, req, res){
         var page_data = {
           head_data: head_data,
           h1: {
-            title: 'College Rivals for <a href="' + Router.pick_path('content.executiveprofile',{fname: data.college_rivals.officer.o_first_name, lname: data.college_rivals.officer.o_last_name, ticker: data.college_rivals.officer.c_ticker, exec_id: data.college_rivals.officer.o_id},info.params) + '">' + data.college_rivals.officer.o_first_name + ' ' + data.college_rivals.officer.o_last_name + '</a> at <a href="' + Router.pick_path('content.companyprofile',{name: compUrlName(data.college_rivals.officer.c_name), ticker: data.college_rivals.officer.c_ticker, company_id: data.college_rivals.officer.c_id},info.params) + '">' + data.college_rivals.officer.c_name + ' (ticker: ' + data.college_rivals.officer.c_ticker + ')</a>',
+            title: 'College Rivals for <a href="' + Router.pick_path('content.executiveprofile',{fname: data.college_rivals.officer.o_first_name, lname: data.college_rivals.officer.o_last_name, ticker: data.college_rivals.officer.c_ticker, exec_id: data.college_rivals.officer.o_id},info.params) + '">' + data.college_rivals.officer.o_first_name + ' ' + data.college_rivals.officer.o_last_name + '</a> from <a href="' + Router.pick_path('content.companyprofile',{name: compUrlName(data.college_rivals.officer.c_name), ticker: data.college_rivals.officer.c_ticker, company_id: data.college_rivals.officer.c_id},info.params) + '">' + data.college_rivals.officer.c_name + ' (ticker: ' + data.college_rivals.officer.c_ticker + ')</a>',
             content: {
               ul: rivals
             }
@@ -1362,6 +1362,143 @@ function college_rivals(params, req, res){
       batch_envar.withValue(batch, function(){
         var bound_cb = Meteor.bindEnvironment(method_cb);
         Meteor.call("ExecWebpageData",params.exec_id,"college_rivals", bound_cb);
+      });
+    });
+
+    if ( typeof params.partner_id != "undefined" ) {
+      functions.push(function(batch){
+        batch_envar.withValue(batch, function(){
+          var bound_cb = Meteor.bindEnvironment(method_cb);
+          Meteor.call('GetPartnerHeader',params.partner_id, bound_cb);
+        });
+      });
+    }
+
+    var company_batch = new async_mult(functions, callback);
+
+    company_batch.execute();
+  });
+}
+
+// Executive College Rivals
+seoPicker.route('/:name/:ticker/workhistory/:exec_id',work_history);
+seoPicker.route('/:partner_id/:ticker/:name/wrk-hist/:exec_id',work_history);
+function work_history(params, req, res){
+  var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
+
+  // Get the data
+  info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){
+    var callback = Meteor.bindEnvironment(function(results){
+      var res_arr = {};
+      for ( var index = 0; index < results.length; index++ ) {
+        for ( var attr in results[index] ) {
+          if ( results[index].hasOwnProperty(attr) ) {
+            res_arr[attr] = results[index][attr];
+          }
+        }
+      }
+
+      var info = info_envar.get();
+      var res = info.res;
+
+      var data = res_arr;
+
+      try {
+        profile_header = data.profile_header || {};
+        profile_header.o_current_title = profile_header.o_current_title || {};
+        profile_header.compensation = profile_header.compensation || {};
+        var cmp_reg = new RegExp(profile_header.c_name,'g');
+        profile_header.o_bio = (profile_header.o_bio || '').replace(cmp_reg,'<a href="' + Router.pick_path('content.companyprofile',{company_id: profile_header.c_id, partner_id: info.params.partner_id, name: compUrlName(profile_header.c_name), ticker: profile_header.c_ticker}, info.params) + '">' + profile_header.c_name + '</a>');
+        profile_header.c_name_orig = profile_header.c_name;
+        profile_header.c_name = '<a href="' + Router.pick_path('content.companyprofile',{company_id: profile_header.c_id, partner_id: info.params.partner_id, name: compUrlName(profile_header.c_name), ticker: profile_header.c_ticker}, info.params) + '">' + profile_header.c_name + ' (' + profile_header.c_ticker + ')</a>';
+        data.profile_header.o_full_name = data.profile_header.o_first_name + ' ' + data.profile_header.o_middle_initial + ' ' + data.profile_header.o_last_name;
+
+        if ( typeof data.content != "undefined" ) {
+          var temp_d = JSON.parse(data.content);
+          temp_d.results.name = temp_d.name;
+          data.results = temp_d.results;
+        }
+
+        // Work History
+        var work_hist = [];
+        if ( typeof data.work_history != "undefined" ) {
+          for ( var attr in data.work_history.companies ) {
+            var c_data = data.work_history.companies[attr];
+            var loc_data = {title: profile_header.o_full_name + ' at <a href="' + Router.pick_path('content.companyprofile',{company_id: c_data.company_data.c_id, partner_id: info.params.partner_id, ticker: c_data.company_data.c_ticker, name: compUrlName(c_data.company_data.c_name)}, info.params) +  '">' + c_data.company_data.c_name + ' (' + c_data.company_data.c_ticker + ')</a>: ' + c_data.officer_positions[0].LongTitle};
+            loc_data.content = {};
+            loc_data.content.line = [c_data.company_data.c_desc];
+            var ul = [];
+            for ( var index = 0; index < c_data.officer_positions.length; index++ ) {
+              var p_data = c_data.officer_positions[index];
+              if ( typeof p_data.end_year != "undefined" ) {
+                ul[ul.length] = '<b>' + p_data.LongTitle + '</b>: ' + p_data.start_year + '-' + p_data.end_year;
+              } else {
+                ul[ul.length] = '<b>' + p_data.LongTitle + '</b>: ' + p_data.start_year + '-Now';
+              }
+            }
+            loc_data.content.ul = ul;
+            work_hist[work_hist.length] = loc_data;
+          }
+        }
+
+        var head_data = { // Data to put into the head of the document (meta tags/title)
+          description: 'Learn about ' + data.profile_header.o_full_name + '\'s Work History',
+          title: 'An Investor\'s Guide to ' + data.profile_header.o_full_name + '\'s Work History | InvestKit.com',
+          url: 'http://www.investkit.com' + Router.pick_path('content.workhistory',{fname: data.college_rivals.officer.o_first_name, lname: data.college_rivals.officer.o_last_name, ticker: data.college_rivals.officer.c_ticker}, info.params),
+        };
+
+        if ( typeof data.results != "undefined" ) {
+          head_data.title = 'List of the Executives for ' + data.profile_header.c_name + ' | ' + data.results.name + ' Finance';
+          head_data.url = 'http://www.myinvestkit.com' + Router.pick_path('content.boardcommittee',{name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker, company_id: data.profile_header.c_id}, info.params);
+          head_data.siteName = data.results.name + ' Finance';
+        }
+
+        var page_data = {
+          head_data: head_data,
+          h1: {
+            title: 'Work History for <a href="' + Router.pick_path('content.executiveprofile',{fname: data.college_rivals.officer.o_first_name, lname: data.college_rivals.officer.o_last_name, ticker: data.college_rivals.officer.c_ticker, exec_id: data.college_rivals.officer.o_id},info.params) + '">' + data.college_rivals.officer.o_first_name + ' ' + data.college_rivals.officer.o_last_name + '</a> from <a href="' + Router.pick_path('content.companyprofile',{name: compUrlName(data.college_rivals.officer.c_name), ticker: data.college_rivals.officer.c_ticker, company_id: data.college_rivals.officer.c_id},info.params) + '">' + data.college_rivals.officer.c_name + ' (ticker: ' + data.college_rivals.officer.c_ticker + ')</a>',
+            h2: work_hist
+          }
+        };
+
+        if ( typeof data.results != "undefined" ) {
+          page_data.partner_header = data.results.header.script;
+        }
+
+        // res.end(JSON.stringify(res_arr, null, 2));
+
+        // res.end(SSR.render('generic_page',page_data));
+        res.end(minify(SSR.render('generic_page',page_data), {
+          minifyCSS: true,
+          minifyJS: true,
+          removeComments: true,
+          collapseWhitespace: true
+        })); // Write the pages template
+        // Also minifies the HTML string
+
+        // Log how long it took to render the page
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"Work History\",\"" + info.params.exec_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
+        return false;
+      } catch (e) {
+        console.log(e.stack);
+        console.log("SSRSTAT|\"Work History - Error\",\"" + info.params.exec_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+        RenderError(res);
+      }
+    });
+
+    var functions = [];
+
+    functions.push(function(batch){
+      batch_envar.withValue(batch, function(){
+        var bound_cb = Meteor.bindEnvironment(method_cb);
+        Meteor.call("GetExecData",params.exec_id,"batch_1", bound_cb);
+      });
+    });
+    functions.push(function(batch){
+      batch_envar.withValue(batch, function(){
+        var bound_cb = Meteor.bindEnvironment(method_cb);
+        Meteor.call("GetExecData",params.exec_id,"batch_2", bound_cb);
       });
     });
 
