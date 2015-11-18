@@ -147,7 +147,7 @@ function company_profile(params, req, res){
         }
 
         var published = (new Date()).toSNTForm();
-        var updated = (new Date(data.daily_update.csi_price_last_updated)).toSNTFormTimeSEO();
+        var updated = (new Date(data.daily_update.lcsi_price_last_updated)).toSNTFormTimeSEO();
 
         // Get HQ state
         var location = '';
@@ -181,15 +181,15 @@ function company_profile(params, req, res){
           title: '<a href="' + Router.pick_path('content.finoverview',{partner_id: info.params.partner_id, company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker}, info.params) + '">Today At ' + data.profile_header.comp_name + '</a>',
           content: {
             line: [
-              'Last Updated: ' + (new Date(data.daily_update.csi_price_last_updated)).toSNTFormTimeSEO(),
-              ticker_link2 + ' Share Price: $' + ToCommaNumber(data.daily_update.csi_price),
-              ticker_link + ' <a href="' + Router.pick_path('content.toplist',getListID(undefined, data.profile_header.c_hq_state), info.params) + '">Change</a>: $' + data.daily_update.csi_price_change_since_last + ' (' + data.daily_update.csi_percent_change_since_last + '%)',
-              ticker_link + ' Opening Price: $' + ToCommaNumber(data.daily_update.csi_opening_price),
-              ticker_link + ' Closing Price: $' + ToCommaNumber(data.daily_update.csi_closing_price),
-              ticker_link + ' Total Shares: ' + ToCommaNumber(data.daily_update.csi_total_shares),
-              ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-market-cap', list_id: '5222', loc_id: data.profile_header.c_hq_state, page_num: 1}) + '">Market Cap</a>: ' + ToCommaNumber(data.daily_update.csi_market_cap),
-              ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-PE-ratio', list_id: '5223', loc_id: data.profile_header.c_hq_state, page_num: 1}) + '">PE Ratio</a>: ' + data.daily_update.csi_pe_ratio,
-              ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-volume', list_id: '5226', loc_id: data.profile_header.c_hq_state, page_num: 1}) + '">Trading Volume</a>: ' + ToCommaNumber(data.daily_update.csi_trading_vol)
+              'Last Updated: ' + (new Date(data.daily_update.lcsi_price_last_updated)).toSNTFormTimeSEO(),
+              ticker_link2 + ' Share Price: $' + ToCommaNumber(data.daily_update.lcsi_price),
+              ticker_link + ' <a href="' + Router.pick_path('content.toplist',getListID(undefined, data.profile_header.c_hq_state), info.params) + '">Change</a>: $' + data.daily_update.lcsi_price_change_since_last + ' (' + data.daily_update.lcsi_percent_change_since_last + '%)',
+              ticker_link + ' Opening Price: $' + ToCommaNumber(data.daily_update.lcsi_opening_price),
+              ticker_link + ' Closing Price: $' + ToCommaNumber(data.daily_update.lcsi_closing_price),
+              ticker_link + ' Total Shares: ' + ToCommaNumber(data.daily_update.lcsi_total_shares),
+              ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-market-cap', list_id: '5222', loc_id: data.profile_header.c_hq_state, page_num: 1}) + '">Market Cap</a>: ' + ToCommaNumber(data.daily_update.lcsi_market_cap),
+              ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-PE-ratio', list_id: '5223', loc_id: data.profile_header.c_hq_state, page_num: 1}) + '">PE Ratio</a>: ' + data.daily_update.lcsi_pe_ratio,
+              ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-volume', list_id: '5226', loc_id: data.profile_header.c_hq_state, page_num: 1}) + '">Trading Volume</a>: ' + ToCommaNumber(data.daily_update.lcsi_trading_vol)
             ]
           }
         };
@@ -1622,28 +1622,28 @@ function fin_ovw(params, req, res) {
         var c_name1 = '<a href="' + Router.pick_path('content.companyprofile',{company_id: cdata.c_id, name: compUrlName(cdata.c_name), ticker: cdata.c_ticker}, info.params) + '">' + cdata.c_name + ' (ticker: ' + cdata.c_ticker + ')</a>';
         var c_name = '<a href="' + Router.pick_path('content.companyprofile',{company_id: cdata.c_id, name: compUrlName(cdata.c_name), ticker: cdata.c_ticker}, info.params) + '">' + cdata.c_name + '</a>';
         var line = [];
-        line[line.length] = 'Page Updated on ' + (new Date(data.fin_overview.company_data.csi_price_last_updated)).toSNTFormTimeSEO();
+        line[line.length] = 'Page Updated on ' + (new Date(data.fin_overview.company_data.lcsi_price_last_updated)).toSNTFormTimeSEO();
         line[line.length] = '';
         line[line.length] = data.ai;
         var l_line = '';
         if ( areDefined(cdata,['c_hq_city','c_hq_state']) ) {
           l_line = l_line + c_name1 + ' is headquartered in ' + cdata.c_hq_city.toTitleCase() + ', <a href="' + Router.pick_path('content.locationprofile',{loc_id: fullstate(cdata.c_hq_state)}, info.params) + '">' + cdata.c_hq_state + '</a>. ';
         }
-        if ( areDefined(cdata,['csi_price','csi_price_change_since_last','csi_percent_change_since_last','csi_price_last_operator']) ) {
-          l_line = l_line + 'The stock for ' + c_name + ' is currently trading at $' + ToCommaNumber(cdata.csi_price) + ', which is ';
-          if ( cdata.csi_price_last_operator == 0 ) {
+        if ( areDefined(cdata,['lcsi_price','lcsi_price_change_since_last','lcsi_percent_change_since_last','lcsi_price_last_operator']) ) {
+          l_line = l_line + 'The stock for ' + c_name + ' is currently trading at $' + ToCommaNumber(cdata.lcsi_price) + ', which is ';
+          if ( cdata.lcsi_price_last_operator == 0 ) {
             l_line = l_line + ' down';
           } else {
             l_line = l_line + ' up';
           }
-          l_line = l_line + ' $' + ToCommaNumber(cdata.csi_price_change_since_last) + ' or ' + ToCommaNumber(cdata.csi_percent_change_since_last) + '%. '
+          l_line = l_line + ' $' + ToCommaNumber(cdata.lcsi_price_change_since_last) + ' or ' + ToCommaNumber(cdata.lcsi_percent_change_since_last) + '%. '
         }
-        if ( areDefined(cdata,['csi_opening_price','csi_closing_price','csi_high','csi_low']) ) {
-          l_line = l_line + c_name + ' most recently opened at $' + ToCommaNumber(cdata.csi_opening_price) + ' and closed at $' + ToCommaNumber(cdata.csi_closing_price) + '. ';
-          l_line = l_line + 'In ' + c_name + '\'s most recent trading day, ' + c_name + ' hit a high of $' + ToCommaNumber(cdata.csi_high) + ' and a low of $' + ToCommaNumber(cdata.csi_low) + '. ';
+        if ( areDefined(cdata,['lcsi_opening_price','lcsi_closing_price','lcsi_high','lcsi_low']) ) {
+          l_line = l_line + c_name + ' most recently opened at $' + ToCommaNumber(cdata.lcsi_opening_price) + ' and closed at $' + ToCommaNumber(cdata.lcsi_closing_price) + '. ';
+          l_line = l_line + 'In ' + c_name + '\'s most recent trading day, ' + c_name + ' hit a high of $' + ToCommaNumber(cdata.lcsi_high) + ' and a low of $' + ToCommaNumber(cdata.lcsi_low) + '. ';
         }
-        if ( areDefined(cdata,['avg_volume','csi_total_shares','csi_market_cap']) ) {
-          l_line = l_line + 'There are ' + ToCommaNumber(cdata.csi_total_shares) + ' shares of ' + c_name + ', while the <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-volume', list_id: '5226', loc_id: data.fin_overview.company_data.c_hq_state}, info.params) + '">trading volume</a> averages ' + ToCommaNumber(Math.round(cdata.avg_volume)) + ' shares. The <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-market-cap', list_id: '5222', loc_id: data.fin_overview.company_data.c_hq_state}, info.params) + '">total market cap</a> of ' + c_name + ' is $' + ToCommaNumber(cdata.csi_market_cap) + '. ';
+        if ( areDefined(cdata,['avg_volume','lcsi_total_shares','lcsi_market_cap']) ) {
+          l_line = l_line + 'There are ' + ToCommaNumber(cdata.lcsi_total_shares) + ' shares of ' + c_name + ', while the <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-volume', list_id: '5226', loc_id: data.fin_overview.company_data.c_hq_state}, info.params) + '">trading volume</a> averages ' + ToCommaNumber(Math.round(cdata.avg_volume)) + ' shares. The <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-market-cap', list_id: '5222', loc_id: data.fin_overview.company_data.c_hq_state}, info.params) + '">total market cap</a> of ' + c_name + ' is $' + ToCommaNumber(cdata.lcsi_market_cap) + '. ';
         }
         line[line.length] = l_line;
         line[line.length] = '';
@@ -1985,7 +1985,7 @@ seoPicker.route('/:partner_id',function(params, req, res){
           var t_data = data.market_movers[index];
           var items = [];
           for ( var i = 0; i < t_data.data.top_list_list.length; i++ ) {
-            items.push('<a href="' + Router.pick_path('content.companyprofile',{comapny_id: t_data.data.top_list_list[i].c_id, ticker: t_data.data.top_list_list[i].c_ticker, name: t_data.data.top_list_list[i].c_name}) + '">' + t_data.data.top_list_list[i].c_name + ' (' + t_data.data.top_list_list[i].c_exchange + ':' + t_data.data.top_list_list[i].c_ticker + ')</a> as of ' + (new Date(t_data.data.top_list_list[i].csi_price_last_updated)).toSNTFormTimeSEO());
+            items.push('<a href="' + Router.pick_path('content.companyprofile',{comapny_id: t_data.data.top_list_list[i].c_id, ticker: t_data.data.top_list_list[i].c_ticker, name: t_data.data.top_list_list[i].c_name}) + '">' + t_data.data.top_list_list[i].c_name + ' (' + t_data.data.top_list_list[i].c_exchange + ':' + t_data.data.top_list_list[i].c_ticker + ')</a> as of ' + (new Date(t_data.data.top_list_list[i].lcsi_price_last_updated)).toSNTFormTimeSEO());
           }
           var l_data = {
             title: '<a href="' + Router.pick_path('content.toplist',{l_name: compUrlName(t_data.data.top_list_info.top_list_title), list_id: t_data.data.top_list_info.top_list_id, loc_id: data.profile_header.location}, info.params) + '">' + t_data.data.top_list_info.top_list_title + '</a>',
