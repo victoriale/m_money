@@ -207,7 +207,7 @@ function company_profile(params, req, res){
         var featList = {};
         if ( featured_lists.length != 0 ) {
           var featList = {
-            title: 'Featured Lists of ' + data.profile_header.comp_name2,
+            title: '<a href="' + Router.pick_path('content.listoflist',{ticker: data.profile_header.c_ticker, name: compUrlName(data.profile_header.c_name), company_id: data.profile_header.c_id},info.params) + '">Featured Lists of ' + data.profile_header.comp_name + '</a>',
             h3: featured_lists
           };
         }
@@ -987,6 +987,142 @@ function list_page(params, req, res){
       batch_envar.withValue(batch, function(){
         var bound_cb = Meteor.bindEnvironment(method_cb);
         Meteor.call("topListData", params.list_id, loc_id, bound_cb);
+      });
+    });
+
+    if ( typeof params.partner_id != "undefined" ) {
+      functions.push(function(batch){
+        batch_envar.withValue(batch, function(){
+          var bound_cb = Meteor.bindEnvironment(method_cb);
+          Meteor.call('GetPartnerHeader',params.partner_id, bound_cb);
+        });
+      });
+    }
+
+    var company_batch = new async_mult(functions, callback);
+
+    company_batch.execute();
+  });
+}
+
+// List of Lists (company)
+seoPicker.route('/:ticker/:name/lists/:company_id',list_of_lists);
+seoPicker.route('/:partner_id/:name/:ticker/lists/:company_id',list_of_lists);
+function list_of_lists(params, req, res){
+  var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
+
+  if ( typeof params.loc_id != "undefined" ) {
+    params.loc_id = params.loc_id.replace(/-/g,' ');
+  }
+
+  var loc_id = params.loc_id;
+  if ( typeof params.loc_id != "undefined" && typeof fullstate(params.loc_id) != "undefined" ) {
+    params.loc_id = fullstate(params.loc_id);
+  } else if ( typeof params.loc_id != "undefined" && typeof abbrstate(params.loc_id.toLowerCase()) != "undefined" ) {
+    loc_id = abbrstate(params.loc_id.toLowerCase());
+  }
+
+  // Get the data
+  info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){
+    var callback = Meteor.bindEnvironment(function(results){
+      var res_arr = {};
+      for ( var index = 0; index < results.length; index++ ) {
+        for ( var attr in results[index] ) {
+          if ( results[index].hasOwnProperty(attr) ) {
+            res_arr[attr] = results[index][attr];
+          }
+        }
+      }
+
+      var info = info_envar.get();
+      var res = info.res;
+
+      var data = res_arr;
+
+      try {
+        if ( typeof data.profile_header == "undefined" ) {
+          console.log("SSRSTAT|\"List of Lists (Company) Page - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          RenderTimeoutError(res);
+          return false;
+        }
+
+        if ( typeof data.content != "undefined" ) {
+          var temp_d = JSON.parse(data.content);
+          temp_d.results.name = temp_d.name;
+          data.results = temp_d.results;
+        }
+
+        // Section specific data
+        // List Information
+        var featured_lists = [];
+        var flist_data = data.list_of_lists ? data.list_of_lists.list_rankings || [] : [];
+        for ( var index = 0; index < flist_data.length; index++ ) {
+          var ldata = {};
+          ldata.title = '<a href="' + Router.pick_path('content.toplist',{partner_id: info.params.partner_id, l_name: compUrlName(flist_data[index].top_list_list[0].list_of_lists_title), list_id: flist_data[index].tli_id, page_num: 1},info.params) + '">' + flist_data[index].top_list_list[0].list_of_lists_title.toTitleCase() + ' As Of ' + (new Date(flist_data[index].tle_last_updated)).toSNTFormTimeSEO() + '</a>';
+          ldata.content = {ul: []};
+          for ( var i = 0; i < flist_data[index].top_list_list[0].list_of_lists_data.length; i++ ) {
+            var c_cmp = flist_data[index].top_list_list[0].list_of_lists_data[i];
+            ldata.content.ul[ldata.content.ul.length] = 'Number ' + (i + 1) + ': <a href="' + Router.pick_path('content.companyprofile',{partner_id: params.partner_id, company_id: c_cmp.c_id, ticker: c_cmp.c_ticker, name: compUrlName(c_cmp.c_name)},info.params) + '">' + c_cmp.c_name + ' (' + c_cmp.c_exchange + ':' + c_cmp.c_ticker + ')</a>';
+          }
+          ldata.content.ul[ldata.content.ul.length] = 'Number ' + flist_data[index].tle_ranking + ': ' + data.profile_header.c_name;
+          featured_lists[featured_lists.length] = ldata;
+        }
+
+        var head_data = { // Data to put into the head of the document (meta tags/title)
+          description: 'Lists of companies that feature ' + data.profile_header.c_name,
+          title: data.profile_header.c_name + '\'s Top Lists | InvestKit.com',
+          url: 'http://www.investkit.com' + Router.pick_path('content.listoflist', {name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker, company_id: data.profile_header.c_id}, info.params)
+        };
+
+        if ( typeof data.results != "undefined" ) {
+          head_data.siteName = data.results.name + ' Finance';
+          head_data.title = data.top_list_gen.top_list_info.top_list_title + ' | ' + data.results.name + ' Finance';
+          head_data.url = 'http://www.investkit.com' + Router.pick_path('content.toplist', {l_name: compUrlName(data.top_list_gen.top_list_info.top_list_title), list_id: data.top_list_gen.top_list_info.top_list_id, loc_id: compUrlName(info.params.loc_id)}, info.params);
+        }
+
+        var page_data = {
+          head_data: head_data,
+          h1: {
+            title: 'Lists that Feature ' + data.profile_header.c_name,
+            h2: featured_lists
+          }
+        };
+
+        if ( typeof data.results != "undefined" ) {
+          page_data.partner_header = data.results.header.script;
+        }
+
+        // res.end(SSR.render('generic_page',page_data));
+        res.end(minify(SSR.render('generic_page',page_data), {
+          minifyCSS: true,
+          minifyJS: true,
+          removeComments: true,
+          collapseWhitespace: true
+        })); // Write the pages template
+        // Also minifies the HTML string
+
+        // Log how long it took to render the page
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"List of Lists (Company) Page\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
+        return false;
+      } catch(e) {
+        console.log("SSRSTAT|\"List of Lists (Company) Page - Error\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+        RenderError(res);
+      }
+    });
+
+    var functions = [];
+
+    functions.push(function(batch){
+      batch_envar.withValue(batch, function(){
+        var bound_cb = Meteor.bindEnvironment(method_cb);
+        Meteor.call("listOfListData", params.company_id, 2, bound_cb);
+      });
+    });
+    functions.push(function(batch){
+      batch_envar.withValue(batch, function(){
+        var bound_cb = Meteor.bindEnvironment(method_cb);
+        Meteor.call("GetCompanyData",params.company_id,"batch_1", bound_cb);
       });
     });
 
