@@ -148,7 +148,7 @@ function company_profile(params, req, res){
         }
 
         var published = (new Date()).toSNTForm();
-        var updated = (new Date(data.daily_update.lcsi_price_last_updated)).toSNTFormTimeSEO();
+        var updated = (new Date(data.daily_update.csi_price_last_updated)).toSNTFormTimeSEO();
 
         // Get HQ state
         var location = '';
