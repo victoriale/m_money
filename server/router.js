@@ -2158,7 +2158,7 @@ seoPicker.route('/:partner_id',function(params, req, res){
 
 // Home Page
 seoPicker.route('/',function(params, req, res){
-  if ( /myinvestkit/.test(req.headers.host) ) {
+  if ( isMyInvestKit(req) ) {
     var endTime = (new Date()).getTime();
     console.log("SSRSTAT|\"Home Page - MyInvestKit\",,," + endTime + ",|");
     res.writeHead(404);
@@ -2257,6 +2257,13 @@ var method_cb = function(error, data) {
   batch.done(data);
 }
 
+function isMyInvestKit(req) {
+  if ( req.headers.host.indexOf('myinvestkit') != -1 ) {
+    return true;
+  }
+  return false;
+}
+
 function author(num) {
   var authors = [
     'Kevin Owens',
@@ -2295,7 +2302,7 @@ var async_mult = function(functions, callback) {
       callback(results, this._remaining);
     }
   };
-  this._timeout = 1000;
+  this._timeout = 100000;
   this._callback = cback.bind(this);
   this._isDone = false;
 }
