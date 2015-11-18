@@ -71,6 +71,8 @@ Template.c_hq_page.helpers({
       data.location = '';
     }
 
+    data.c_tr_last_updated = (new Date(data.c_tr_last_updated)).toSNTForm();
+
     data.locurl = Router.pick_path('content.locationprofile',{
       loc_id:data.c_hq_state,
       city:data.c_hq_city,
