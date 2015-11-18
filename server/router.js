@@ -413,7 +413,7 @@ function executive_profile(params, req, res){
         // Section specific data
         // Rivals
         var rival_data = [];
-        if ( typeof data.college_rivals != "object" ) {
+        if ( typeof data.college_rivals != "object" || typeof data.college_rivals.rivals != "object" || data.college_rivals.rivals == null ) {
           data.college_rivals = {
             rivals: []
           };
@@ -421,7 +421,7 @@ function executive_profile(params, req, res){
         for ( var index = 0; index < data.college_rivals.rivals.length; index++ ) {
           var localData = data.college_rivals.rivals[index];
           if ( localData != null ) {
-            rival_data[rival_data.length] = '<a href="' + Router.pick_path('content.executiveprofile',{exec_id: localData.o_id, partner_id: info.params.partner_id, fname: localData.o_first_name, lname: localData.o_last_name, ticker: localData.c_ticker}, info.params) + '">' + localData.o_first_name + ' ' + localData.o_middle_initial + ' ' + localData.o_last_name + '</a>: ' + localData.long_title + ' at <a href="' + Router.pick_path('content.companyprofile',{company_id: localData.c_id, partner_id: info.params.partner_id, name: compUrlName(localData.c_name), ticker: localData.c_ticker}, info.params) + '">' + localData.c_name + '</a><br>' + localData.o_bio;
+            rival_data[rival_data.length] = '<a href="' + Router.pick_path('content.executiveprofile',{exec_id: localData.o_id, partner_id: info.params.partner_id, fname: localData.o_first_name, lname: localData.o_last_name, ticker: localData.c_ticker}, info.params) + '">' + localData.o_first_name + ' ' + localData.o_last_name + '</a>: ' + localData.long_title + ' at <a href="' + Router.pick_path('content.companyprofile',{company_id: localData.c_id, partner_id: info.params.partner_id, name: compUrlName(localData.c_name), ticker: localData.c_ticker}, info.params) + '">' + localData.c_name + '</a>';
           }
         }
         // Compensation
@@ -506,7 +506,7 @@ function executive_profile(params, req, res){
         var rivals = {};
         if ( rival_data.length != 0 ) {
           var rivals = {
-            title: profile_header.o_full_name + '\'s College Rivals',
+            title: '<a href="' + Router.pick_path('content.collegerivals',{exec_id: profile_header.o_id, fname: profile_header.o_first_name, lname: profile_header.o_last_name, ticker: profile_header.c_ticker},info.params) + '">' + profile_header.o_full_name + '\'s College Rivals</a>',
             content: {
               ul: rival_data
             }
@@ -531,7 +531,7 @@ function executive_profile(params, req, res){
         var head_data = { // Data to put into the head of the document (meta tags/title)
           description: 'Find out everything you need to know about ' + profile_header.o_full_name + ', an executive at ' + profile_header.c_name_orig + ' (' + profile_header.c_ticker + '): Insider activity, compensation details, history with the company and more.',
           title: 'An Investors Guide To ' + profile_header.o_full_name + ' From ' + profile_header.c_name_orig + ' | InvestKit.com',
-          url: 'http://www.investkit.com' + Router.pick_path('content.executiveprofile',{partner_id: info.params.partner_id, exec_id: profile_header.o_id, fname: profile_header.o_first_name, lname: profile_header.o_last_name, ticker: profile_header.c_ticker}, info.params),
+          url: 'http://www.investkit.com' + Router.pick_path('content.executiveprofile',{exec_id: profile_header.o_id, fname: profile_header.o_first_name, lname: profile_header.o_last_name, ticker: profile_header.c_ticker}, info.params),
           other_tags: [
             {
               name: 'og:image',
@@ -601,6 +601,7 @@ function executive_profile(params, req, res){
         console.log("SSRSTAT|\"Executive Profile\",\"" + info.params.exec_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch(e) {
+        console.log(e.stack);
         console.log("SSRSTAT|\"Executive Profile - Error\",\"" + info.params.exec_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
         RenderError(res);
       }
@@ -1122,7 +1123,7 @@ function list_of_lists(params, req, res){
     functions.push(function(batch){
       batch_envar.withValue(batch, function(){
         var bound_cb = Meteor.bindEnvironment(method_cb);
-        Meteor.call("GetCompanyData",params.company_id,"batch_1", bound_cb);
+        Meteor.call("CompIndie",params.company_id,"profile_header", bound_cb);
       });
     });
 
@@ -1250,6 +1251,117 @@ function exec_list(params, req, res){
       batch_envar.withValue(batch, function(){
         var bound_cb = Meteor.bindEnvironment(method_cb);
         Meteor.call("CompIndie",params.company_id,"profile_header", bound_cb);
+      });
+    });
+
+    if ( typeof params.partner_id != "undefined" ) {
+      functions.push(function(batch){
+        batch_envar.withValue(batch, function(){
+          var bound_cb = Meteor.bindEnvironment(method_cb);
+          Meteor.call('GetPartnerHeader',params.partner_id, bound_cb);
+        });
+      });
+    }
+
+    var company_batch = new async_mult(functions, callback);
+
+    company_batch.execute();
+  });
+}
+
+// Executive College Rivals
+seoPicker.route('/:name/:ticker/rivals/:exec_id',college_rivals);
+seoPicker.route('/:partner_id/:ticker/:name/rival/:exec_id',college_rivals);
+function college_rivals(params, req, res){
+  var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
+
+  // Get the data
+  info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){
+    var callback = Meteor.bindEnvironment(function(results){
+      var res_arr = {};
+      for ( var index = 0; index < results.length; index++ ) {
+        for ( var attr in results[index] ) {
+          if ( results[index].hasOwnProperty(attr) ) {
+            res_arr[attr] = results[index][attr];
+          }
+        }
+      }
+
+      var info = info_envar.get();
+      var res = info.res;
+
+      var data = res_arr;
+
+      try {
+        if ( typeof data.content != "undefined" ) {
+          var temp_d = JSON.parse(data.content);
+          temp_d.results.name = temp_d.name;
+          data.results = temp_d.results;
+        }
+
+        // Get Rival
+        var rivals = [];
+        for ( var index = 0; index < data.college_rivals.rivals.length; index++ ) {
+          var o_data = data.college_rivals.rivals[index];
+          var r_data = {};
+          r_data = '<a href="' + Router.pick_path('content.executiveprofile',{fname: o_data.o_first_name, lname: o_data.o_last_name, ticker: o_data.c_ticker},info.params) + '">' + o_data.o_first_name + ' ' + o_data.o_last_name + '</a> at <a href="">' + o_data.c_name + ' (ticker: ' + o_data.c_ticker + ')</a>: ' + o_data.long_title;
+          rivals[rivals.length] = r_data;
+        }
+
+        var head_data = { // Data to put into the head of the document (meta tags/title)
+          description: 'Find out who ' + data.college_rivals.officer.o_first_name + ' ' + data.college_rivals.officer.o_last_name + ' went to school with and where they are now.',
+          title: 'An Investor\'s Guide to ' + data.college_rivals.officer.o_first_name + ' ' + data.college_rivals.officer.o_last_name + '\'s College Rivals | InvestKit.com',
+          url: 'http://www.investkit.com' + Router.pick_path('content.collegerivals',{fname: data.college_rivals.officer.o_first_name, lname: data.college_rivals.officer.o_last_name, ticker: data.college_rivals.officer.c_ticker}, info.params),
+        };
+
+        if ( typeof data.results != "undefined" ) {
+          head_data.title = 'List of the Executives for ' + data.profile_header.c_name + ' | ' + data.results.name + ' Finance';
+          head_data.url = 'http://www.myinvestkit.com' + Router.pick_path('content.boardcommittee',{name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker, company_id: data.profile_header.c_id}, info.params);
+          head_data.siteName = data.results.name + ' Finance';
+        }
+
+        var page_data = {
+          head_data: head_data,
+          h1: {
+            title: 'College Rivals for <a href="' + Router.pick_path('content.executiveprofile',{fname: data.college_rivals.officer.o_first_name, lname: data.college_rivals.officer.o_last_name, ticker: data.college_rivals.officer.c_ticker, exec_id: data.college_rivals.officer.o_id},info.params) + '">' + data.college_rivals.officer.o_first_name + ' ' + data.college_rivals.officer.o_last_name + '</a> at <a href="' + Router.pick_path('content.companyprofile',{name: compUrlName(data.college_rivals.officer.c_name), ticker: data.college_rivals.officer.c_ticker, company_id: data.college_rivals.officer.c_id},info.params) + '">' + data.college_rivals.officer.c_name + ' (ticker: ' + data.college_rivals.officer.c_ticker + ')</a>',
+            content: {
+              ul: rivals
+            }
+          }
+        };
+
+        if ( typeof data.results != "undefined" ) {
+          page_data.partner_header = data.results.header.script;
+        }
+
+        // res.end(JSON.stringify(res_arr, null, 2));
+
+        // res.end(SSR.render('generic_page',page_data));
+        res.end(minify(SSR.render('generic_page',page_data), {
+          minifyCSS: true,
+          minifyJS: true,
+          removeComments: true,
+          collapseWhitespace: true
+        })); // Write the pages template
+        // Also minifies the HTML string
+
+        // Log how long it took to render the page
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"College Rivals\",\"" + info.params.exec_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
+        return false;
+      } catch (e) {
+        console.log(e.stack);
+        console.log("SSRSTAT|\"College Rivals - Error\",\"" + info.params.exec_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+        RenderError(res);
+      }
+    });
+
+    var functions = [];
+
+    functions.push(function(batch){
+      batch_envar.withValue(batch, function(){
+        var bound_cb = Meteor.bindEnvironment(method_cb);
+        Meteor.call("ExecWebpageData",params.exec_id,"college_rivals", bound_cb);
       });
     });
 
