@@ -120,7 +120,7 @@ function company_profile(params, req, res){
         var flist_data = data.list_of_lists ? data.list_of_lists.list_rankings || [] : [];
         for ( var index = 0; index < flist_data.length; index++ ) {
           var ldata = {};
-          ldata.title = '<a href="' + Router.pick_path('content.toplist',{partner_id: info.params.partner_id, l_name: compUrlName(flist_data[index].top_list_list[0].list_of_lists_title), list_id: flist_data[index].tli_id},info.params) + '">' + flist_data[index].top_list_list[0].list_of_lists_title.toTitleCase() + ' As Of ' + (new Date(flist_data[index].tle_last_updated)).toSNTFormTime() + '</a>';
+          ldata.title = '<a href="' + Router.pick_path('content.toplist',{partner_id: info.params.partner_id, l_name: compUrlName(flist_data[index].top_list_list[0].list_of_lists_title), list_id: flist_data[index].tli_id},info.params) + '">' + flist_data[index].top_list_list[0].list_of_lists_title.toTitleCase() + ' As Of ' + (new Date(flist_data[index].tle_last_updated)).toSNTFormTimeSEO() + '</a>';
           ldata.content = {ul: []};
           for ( var i = 0; i < flist_data[index].top_list_list[0].list_of_lists_data.length; i++ ) {
             var c_cmp = flist_data[index].top_list_list[0].list_of_lists_data[i];
@@ -134,7 +134,7 @@ function company_profile(params, req, res){
         if ( typeof data.news != "undefined" ) {
           for ( var index = 0; index < data.news.length; index++ ) {
             var n_data = {
-              title: data.profile_header.c_name + ' (' + ticker_link + ') ' + (new Date(parseInt(data.news[index].pubDate_ut)*1000)).toSNTFormTime() + ': <a href="' + data.news[index].link + '">' + data.news[index].title + '</a>',
+              title: data.profile_header.c_name + ' (' + ticker_link + ') ' + (new Date(parseInt(data.news[index].pubDate_ut)*1000)).toSNTFormTimeSEO() + ': <a href="' + data.news[index].link + '">' + data.news[index].title + '</a>',
               content: {
                 line: [
                   data.news[index].description,
@@ -147,7 +147,7 @@ function company_profile(params, req, res){
         }
 
         var published = (new Date()).toSNTForm();
-        var updated = (new Date(data.daily_update.csi_price_last_updated)).toSNTFormTime();
+        var updated = (new Date(data.daily_update.csi_price_last_updated)).toSNTFormTimeSEO();
 
         // Get HQ state
         var location = '';
@@ -181,7 +181,7 @@ function company_profile(params, req, res){
           title: '<a href="' + Router.pick_path('content.finoverview',{partner_id: info.params.partner_id, company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker}, info.params) + '">Today At ' + data.profile_header.comp_name + '</a>',
           content: {
             line: [
-              'Last Updated: ' + (new Date(data.daily_update.csi_price_last_updated)).toSNTFormTime(),
+              'Last Updated: ' + (new Date(data.daily_update.csi_price_last_updated)).toSNTFormTimeSEO(),
               ticker_link2 + ' Share Price: $' + ToCommaNumber(data.daily_update.csi_price),
               ticker_link + ' <a href="' + Router.pick_path('content.toplist',getListID(undefined, data.profile_header.c_hq_state), info.params) + '">Change</a>: $' + data.daily_update.csi_price_change_since_last + ' (' + data.daily_update.csi_percent_change_since_last + '%)',
               ticker_link + ' Opening Price: $' + ToCommaNumber(data.daily_update.csi_opening_price),
@@ -493,7 +493,7 @@ function executive_profile(params, req, res){
         }
 
         var published = (new Date()).toSNTForm();
-        var updated = (new Date(profile_header.o_last_updated)).toSNTFormTime();
+        var updated = (new Date(profile_header.o_last_updated)).toSNTFormTimeSEO();
 
         var h1content = {
           line: [
@@ -694,7 +694,7 @@ function location_profile(params, req, res){
         for ( var attr in data.companies_by_sector ) {
           if ( data.companies_by_sector.hasOwnProperty(attr) && attr != "total_company_count" ) {
             var ldata = {};
-            ldata.title = '<a href="' + Router.pick_path('content.sector',{sector_id: compUrlName(attr), loc_id: data.profile_header.location},info.params) + '">' + attr + ' (' + (Math.round(data.companies_by_sector[attr].percentage*1000)/10) + '% of companies in ' + data.profile_header.location + ')</a>';
+            ldata.title = '<a href="' + Router.pick_path('content.sector',{sector_id: compUrlName(attr), loc_id: data.profile_header.location, page_num: 1},info.params) + '">' + attr + ' (' + (Math.round(data.companies_by_sector[attr].percentage*1000)/10) + '% of companies in ' + data.profile_header.location + ')</a>';
             var arr = [];
             for ( var index = 0; index < data.companies_by_sector[attr].count; index++ ) {
               c_data = data.companies_by_sector[attr][index];
@@ -725,10 +725,10 @@ function location_profile(params, req, res){
           var t_data = data.market_movers[index];
           var items = [];
           for ( var i = 0; i < t_data.data.top_list_list.length; i++ ) {
-            items.push('<a href="' + Router.pick_path('content.companyprofile',{company_id: t_data.data.top_list_list[i].c_id, ticker: t_data.data.top_list_list[i].c_ticker, name: t_data.data.top_list_list[i].c_name}) + '">' + t_data.data.top_list_list[i].c_name + ' (' + t_data.data.top_list_list[i].c_exchange + ':' + t_data.data.top_list_list[i].c_ticker + ')</a> as of ' + (new Date(t_data.data.top_list_list[i].csi_price_last_updated)).toSNTFormTime());
+            items.push('<a href="' + Router.pick_path('content.companyprofile',{company_id: t_data.data.top_list_list[i].c_id, ticker: t_data.data.top_list_list[i].c_ticker, name: t_data.data.top_list_list[i].c_name}) + '">' + t_data.data.top_list_list[i].c_name + ' (' + t_data.data.top_list_list[i].c_exchange + ':' + t_data.data.top_list_list[i].c_ticker + ')</a> as of ' + (new Date(t_data.data.top_list_list[i].lcsi_price_last_updated)).toSNTFormTimeSEO());
           }
           var l_data = {
-            title: '<a href="' + Router.pick_path('content.toplist',{l_name: compUrlName(t_data.data.top_list_info.top_list_title), list_id: t_data.data.top_list_info.top_list_id, loc_id: data.profile_header.location}, info.params) + '">' + t_data.data.top_list_info.top_list_title + '</a>',
+            title: '<a href="' + Router.pick_path('content.toplist',{l_name: compUrlName(t_data.data.top_list_info.top_list_title), list_id: t_data.data.top_list_info.top_list_id, loc_id: data.profile_header.location, page_num: 1}, info.params) + '">' + t_data.data.top_list_info.top_list_title + '</a>',
             content: {
               ul: items
             }
@@ -737,7 +737,7 @@ function location_profile(params, req, res){
         }
 
         var published = (new Date()).toSNTForm();
-        var updated = (new Date(data.location_daily_update.composite_summary.last_updated)).toSNTFormTime();
+        var updated = (new Date(data.location_daily_update.composite_summary.last_updated)).toSNTFormTimeSEO();
 
         var h1content = {
           line: [
@@ -745,7 +745,7 @@ function location_profile(params, req, res){
             'Page Published on ' + published,
             'Page Updated on ' + updated,
             '',
-            data.profile_header.location + ' is home to <a href="' + Router.pick_path('content.toplist',getListID(undefined,data.profile_header.location), info.params) + '">' + data.profile_header.total_companies + ' companies</a> with a total market cap of $' + data.profile_header.total_market_cap + '. ' + data.profile_header.location + ' is also home to ' + data.profile_header.total_executives + ' executives.',
+            data.profile_header.location + ' is home to <a href="' + Router.pick_path('content.sector',{loc_id: compUrlName(data.profile_header.location), page_num: 1}, info.params) + '">' + data.profile_header.total_companies + ' companies</a> with a total market cap of $' + data.profile_header.total_market_cap + '. ' + data.profile_header.location + ' is also home to <a href="' + Router.pick_path('content.executivelocation',{loc_id: compUrlName(data.profile_header.location), page_num: 1}, info.params) + '">' + data.profile_header.total_executives + ' executives</a>.',
             data.profile_header.location + ' Current Aggragate Price: $' + ToCommaNumber(data.location_daily_update.composite_summary.current_price),
             data.profile_header.location + ' Previous Close: $' + ToCommaNumber(data.location_daily_update.composite_summary.previous_close),
             data.profile_header.location + ' <a href="' + Router.pick_path('content.toplist',getListID(undefined, data.profile_header.location), info.params) + '">Percent Change</a>: ' + data.location_daily_update.composite_summary.percent_change + '%',
@@ -932,7 +932,7 @@ function list_page(params, req, res){
             line = line + 'up ';
           }
           line = line + ToCommaNumber(cdata.csi_percent_change_since_last) + '% or $' + ToCommaNumber(cdata.csi_price_change_since_last) + ' to $' + ToCommaNumber(cdata.csi_price);
-          line = line + ' as of ' + (new Date(cdata.latest_date)).toSNTFormTime();
+          line = line + ' as of ' + (new Date(cdata.latest_date)).toSNTFormTimeSEO();
           l_info.push(line);
         }
 
@@ -1285,7 +1285,7 @@ function cmp_news(params, req, res) {
         if ( typeof data.news != "undefined" ) {
           for ( var index = 0; index < data.news.length; index++ ) {
             var n_data = {
-              title: '<a href="' + Router.pick_path('content.companyprofile',{company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker}, info.params) + '">' + data.profile_header.c_name + ' (' + data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ')</a> ' + (new Date(parseInt(data.news[index].pubDate_ut)*1000)).toSNTFormTime() + ': <a href="' + data.news[index].link + '">' + data.news[index].title + '</a>',
+              title: '<a href="' + Router.pick_path('content.companyprofile',{company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker}, info.params) + '">' + data.profile_header.c_name + ' (' + data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ')</a> ' + (new Date(parseInt(data.news[index].pubDate_ut)*1000)).toSNTFormTimeSEO() + ': <a href="' + data.news[index].link + '">' + data.news[index].title + '</a>',
               content: {
                 line: [
                   data.news[index].description,
@@ -1461,7 +1461,7 @@ function exec_comp(params, req, res){
         }
 
         var published = (new Date()).toSNTForm();
-        var updated = (new Date(profile_header.o_last_updated)).toSNTFormTime();
+        var updated = (new Date(profile_header.o_last_updated)).toSNTFormTimeSEO();
 
         var h1content = {
           line: [
@@ -1622,7 +1622,7 @@ function fin_ovw(params, req, res) {
         var c_name1 = '<a href="' + Router.pick_path('content.companyprofile',{company_id: cdata.c_id, name: compUrlName(cdata.c_name), ticker: cdata.c_ticker}, info.params) + '">' + cdata.c_name + ' (ticker: ' + cdata.c_ticker + ')</a>';
         var c_name = '<a href="' + Router.pick_path('content.companyprofile',{company_id: cdata.c_id, name: compUrlName(cdata.c_name), ticker: cdata.c_ticker}, info.params) + '">' + cdata.c_name + '</a>';
         var line = [];
-        line[line.length] = 'Page Updated on ' + (new Date(data.fin_overview.company_data.csi_price_last_updated)).toSNTFormTime();
+        line[line.length] = 'Page Updated on ' + (new Date(data.fin_overview.company_data.csi_price_last_updated)).toSNTFormTimeSEO();
         line[line.length] = '';
         line[line.length] = data.ai;
         var l_line = '';
@@ -1985,7 +1985,7 @@ seoPicker.route('/:partner_id',function(params, req, res){
           var t_data = data.market_movers[index];
           var items = [];
           for ( var i = 0; i < t_data.data.top_list_list.length; i++ ) {
-            items.push('<a href="' + Router.pick_path('content.companyprofile',{comapny_id: t_data.data.top_list_list[i].c_id, ticker: t_data.data.top_list_list[i].c_ticker, name: t_data.data.top_list_list[i].c_name}) + '">' + t_data.data.top_list_list[i].c_name + ' (' + t_data.data.top_list_list[i].c_exchange + ':' + t_data.data.top_list_list[i].c_ticker + ')</a> as of ' + (new Date(t_data.data.top_list_list[i].csi_price_last_updated)).toSNTFormTime());
+            items.push('<a href="' + Router.pick_path('content.companyprofile',{comapny_id: t_data.data.top_list_list[i].c_id, ticker: t_data.data.top_list_list[i].c_ticker, name: t_data.data.top_list_list[i].c_name}) + '">' + t_data.data.top_list_list[i].c_name + ' (' + t_data.data.top_list_list[i].c_exchange + ':' + t_data.data.top_list_list[i].c_ticker + ')</a> as of ' + (new Date(t_data.data.top_list_list[i].csi_price_last_updated)).toSNTFormTimeSEO());
           }
           var l_data = {
             title: '<a href="' + Router.pick_path('content.toplist',{l_name: compUrlName(t_data.data.top_list_info.top_list_title), list_id: t_data.data.top_list_info.top_list_id, loc_id: data.profile_header.location}, info.params) + '">' + t_data.data.top_list_info.top_list_title + '</a>',
@@ -1997,7 +1997,7 @@ seoPicker.route('/:partner_id',function(params, req, res){
         }
 
         var published = (new Date()).toSNTForm();
-        var updated = (new Date(data.location_daily_update.composite_summary.last_updated)).toSNTFormTime();
+        var updated = (new Date(data.location_daily_update.composite_summary.last_updated)).toSNTFormTimeSEO();
 
         var h1content = {
           line: [
@@ -2204,7 +2204,7 @@ var ToCommaNumber = function(Number) {
 }
 
 function getListID(exchange, location) {
-  var retArr = {loc_id: location};
+  var retArr = {loc_id: location, page_num: 1};
   retArr.l_name = 'Top-companies-with-stock-percent-gain';
   retArr.list_id = 5233;
   if ( typeof exchange == "undefined" ) {
@@ -2343,4 +2343,13 @@ function RenderTimeoutError(res) {
 function RenderError(res) {
   res.writeHead(500);
   res.end('Unknown Server Error');
+}
+
+Date.prototype.toSNTFormTimeSEO = function() {
+  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  u = this;
+  var d = new Date(u.getTime() + (u.getTimezoneOffset() * 60000) - (5 * 1000 * 60 * 60));
+  var r_string = days[d.getDay()] + ', ' + months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear() + ' at ' + d.getHours() + ':' + d.getMinutes().toString().pad() + ':' + d.getSeconds().toString().pad() + ' EST';
+  return r_string;
 }
