@@ -24,7 +24,7 @@ robotsPicker.route('/robots.txt',function(params, req, res){
 
 // Filter out bot requests
 var seoPicker = Picker.filter(function(req, res) {
-  // return true;
+  return true;
   if ( /bot/.test(req.headers['user-agent']) || /Webmaster/.test(req.headers['user-agent']) || /Bing/.test(req.headers['user-agent']) || /externalhit/.test(req.headers['user-agent']) ) {
     return true;
   }
@@ -1538,6 +1538,121 @@ function fin_ovw(params, req, res) {
           batch_envar.get().done({ai: data});
         }
         Meteor.call("GetAIContent",params.company_id, bound_cb);
+      });
+    });
+
+    if ( typeof params.partner_id != "undefined" ) {
+      functions.push(function(batch){
+        batch_envar.withValue(batch, function(){
+          var bound_cb = Meteor.bindEnvironment(method_cb);
+          Meteor.call('GetPartnerHeader',params.partner_id, bound_cb);
+        });
+      });
+    }
+
+    var company_batch = new async_mult(functions, callback);
+
+    company_batch.execute();
+  });
+}
+
+// Competitors
+seoPicker.route('/:ticker/:name/competitors/:company_id',competitors);
+seoPicker.route('/:partner_id/:name/:ticker/rivals/:company_id',competitors);
+function competitors(params, req, res){
+  var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
+
+  // Get the data
+  info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){
+    var callback = Meteor.bindEnvironment(function(results){
+      var res_arr = {};
+      for ( var index = 0; index < results.length; index++ ) {
+        for ( var attr in results[index] ) {
+          if ( results[index].hasOwnProperty(attr) ) {
+            res_arr[attr] = results[index][attr];
+          }
+        }
+      }
+
+      var info = info_envar.get();
+      var res = info.res;
+
+      var data = res_arr;
+
+      try {
+        if ( typeof data.content != "undefined" ) {
+          var temp_d = JSON.parse(data.content);
+          temp_d.results.name = temp_d.name;
+          data.results = temp_d.results;
+        }
+
+        data.profile_header = data.competitors.company;
+
+        // Section specific data
+        // List Information
+        var competitors = [];
+        var comp_data = data.competitors.competitors;
+        for ( var i = 0; i < comp_data.length; i++ ) {
+          var cData = {};
+          cData.title = '<a href="' + Router.pick_path('content.companyprofile',{name: compUrlName(comp_data[i].c_name), ticker: comp_data[i].c_ticker, company_id: comp_data[i].c_id}, info.params) + '">' + comp_data[i].c_name + ' (' + comp_data[i].c_exchange + ':' + comp_data[i].c_ticker + ')</a>';
+          var cLines = [
+            comp_data[i].c_name + ' is in the <a href="' + Router.pick_path('content.sector', {sector_id: compUrlName(comp_data[i].c_sector), loc_id: fullstate(comp_data[i].c_hq_state), page_num: 1}, info.params) + '">' + comp_data[i].c_sector + ' Sector</a> and is headquartered in ' + comp_data[i].c_hq_city + ', <a href="' + Router.pick_path('content.locationprofile', {loc_id: fullstate(comp_data[i].c_hq_state)}, info.params) + '">' + comp_data[i].c_hq_state + '</a>.',
+            comp_data[i].c_desc
+          ];
+          cData.content = {line: cLines};
+          competitors.push(cData);
+        }
+
+        var head_data = { // Data to put into the head of the document (meta tags/title)
+          description: 'Competitors of ' + data.profile_header.c_name,
+          title: data.profile_header.c_name + '\'s Top Lists | InvestKit.com',
+          url: 'http://www.investkit.com' + Router.pick_path('content.listoflist', {name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker, company_id: data.profile_header.c_id}, info.params)
+        };
+
+        if ( typeof data.results != "undefined" ) {
+          head_data.siteName = data.results.name + ' Finance';
+          head_data.title = data.top_list_gen.top_list_info.top_list_title + ' | ' + data.results.name + ' Finance';
+          head_data.url = 'http://www.investkit.com' + Router.pick_path('content.toplist', {l_name: compUrlName(data.top_list_gen.top_list_info.top_list_title), list_id: data.top_list_gen.top_list_info.top_list_id, loc_id: compUrlName(info.params.loc_id)}, info.params);
+        }
+
+        var page_data = {
+          head_data: head_data,
+          h1: {
+            title: 'Competitors of <a href="' + Router.pick_path('content.companyprofile', {name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker, company_id: data.profile_header.c_id}, info.params) + '">' + data.profile_header.c_name + ' (' + data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ')</a>',
+            h2: competitors
+          }
+        };
+
+        if ( typeof data.results != "undefined" ) {
+          page_data.partner_header = data.results.header.script;
+        }
+
+        // res.end(SSR.render('generic_page',page_data));
+        res.end(minify(SSR.render('generic_page',page_data), {
+          minifyCSS: true,
+          minifyJS: true,
+          removeComments: true,
+          collapseWhitespace: true
+        })); // Write the pages template
+        // Also minifies the HTML string
+
+        // Log how long it took to render the page
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"Competitors Page\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
+        return false;
+      } catch(e) {
+        console.log(e.stack);
+        console.log("SSRSTAT|\"Competitors Page - Error\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+        RenderError(res);
+      }
+    });
+
+    var functions = [];
+
+    functions.push(function(batch){
+      batch_envar.withValue(batch, function(){
+        var bound_cb = Meteor.bindEnvironment(method_cb);
+        Meteor.call("CompWebPageData", params.company_id, "competitors", bound_cb);
       });
     });
 
