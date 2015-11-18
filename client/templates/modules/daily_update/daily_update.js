@@ -332,7 +332,6 @@ Template.daily_update.helpers({
   //Helper to determine chart
   getGraph: function(){
     var data = Session.get('graph_data');
-
     var d_u_range = Session.get('d_u_range');
 
     //If data does not exists exit helper
@@ -350,8 +349,7 @@ Template.daily_update.helpers({
 
     //Get dependencies to find date range
     var dataLength = data.highchartsData.length;
-    var latestDate = moment(data.highchartsData[dataLength - 1][0]);
-
+    var latestDate = moment.utc(data.highchartsData[dataLength - 1][0]).subtract(5, 'hours');
 
     //Set default values for highcharts obj
     var max = null;
@@ -367,24 +365,9 @@ Template.daily_update.helpers({
         if(Session.get('IsCompany')){
           var graphData = data.highchartsData;
         }
-
-        //Fetch what day it is 0 - Monday -> 7 - Sunday
-        var current_day = moment.utc().subtract(5, 'hours').isoWeekday();
-        var current_time = Number(moment.utc().subtract(5, 'hours').format('HHmm'));
-
-        //If current day is saturday or sunday, set min to friday 9:30 AM else set to current weekday 9:30 AM
-        if(current_day === 6|| current_day === 7){
-          var min = moment.utc().subtract(5, 'hours').endOf('isoweek').subtract(2, 'days').hour(14).minute(0).second(0).format('X') * 1000;
-          var max = moment.utc().subtract(5, 'hours').endOf('isoweek').subtract(2, 'days').hour(21).minute(0).second(0).format('X') * 1000;
-        }else{//If current hour:minute is after 9:30 (Open) use today range, else use yesterday's values
-          if(current_time > 930){
-            var min = moment.utc().subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
-            var max = moment.utc().subtract(5, 'hours').hour(21).minute(0).second(0).format('X') * 1000;
-          }else{
-            var min = moment.utc().subtract(1, 'days').subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
-            var max = moment.utc().subtract(1, 'days').subtract(5, 'hours').hour(21).minute(0).second(0).format('X') * 1000;
-          }
-        }
+        //Set min and max of graphs to latest day available (9:00am EST - 4:00pm EST)
+        var min = moment.utc(data.highchartsData[dataLength - 1][0]).subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
+        var max = moment.utc(data.highchartsData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(0).second(0).format('X') * 1000;
 
         var tickPositions = [min + (1800 * 1000), min + ((3 * 3600) * 1000), min + ((5 * 3600) * 1000), min + ((7 * 3600) * 1000)];
 
@@ -461,7 +444,7 @@ Template.daily_update.helpers({
     }
 
     //Get oldest date available to check if data range is possible
-    var oldestDate = moment(data.highchartsData[0][0]).format('X') * 1000;
+    var oldestDate = moment.utc(data.highchartsData[0][0]).subtract(5, 'hours').format('X') * 1000;
     //If min is less than oldest data available, set min to oldest date
     if(min <= oldestDate){
       min = oldestDate;
@@ -473,10 +456,7 @@ Template.daily_update.helpers({
       },
       chart: {
           height:120,
-          type: 'spline',
-          events: {
-              redraw: function() {}
-          }
+          type: 'spline'
       },
       xAxis: {
           type: 'datetime',
@@ -522,7 +502,7 @@ Template.daily_update.helpers({
         formatter: function(){
 
           if(this.x === min){
-            return "Yesterday' Closing Price<br />" + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+            return "Yesterday's Closing Price<br />" + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
           }else{
             return Highcharts.dateFormat(tooltip_format, this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
           }
@@ -538,9 +518,7 @@ Template.daily_update.helpers({
               },
               marker: {
                   enabled: false
-              },
-              pointInterval: 3600000, // one hour
-              //pointStart: Date.UTC(2015, 4, 31, 0, 0, 0)
+              }
           }
       },
       legend: {

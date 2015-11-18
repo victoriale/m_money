@@ -96,7 +96,7 @@ Template.sector_page.helpers({
       }
     }
 
-      var image = Session.get('loc_id');
+      var image = data.companies[0].c_hq_state;
       if(image == 'National' || image == '' || typeof image == 'undefined'){
         data['image'] = "background-image: url('/StateImages/Location_"+ image +".jpg');";
       }else{

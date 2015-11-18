@@ -128,24 +128,10 @@ Template.money_memory_page.helpers({
       case 'mmbbl-0':
         var graphData = data.highchartsData
 
-        //Fetch what day it is 0 - Monday -> 7 - Sunday
-        var current_day = moment.utc().subtract(5, 'hours').isoWeekday();
-        var current_time = Number(moment.utc().subtract(5, 'hours').format('HHmm'));
+        //Set min and max of graphs to latest day available (9:00am EST - 4:00pm EST)
+        var min = moment.utc(data.highchartsData[dataLength - 1][0]).subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
+        var max = moment.utc(data.highchartsData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(0).second(0).format('X') * 1000;
 
-        //If current day is saturday or sunday, set min to friday 9:30 AM else set to current weekday 9:30 AM
-        if(current_day === 6|| current_day === 7){
-          var min = moment.utc().subtract(5, 'hours').endOf('isoweek').subtract(2, 'days').hour(14).minute(0).second(0).format('X') * 1000;
-          var max = moment.utc().subtract(5, 'hours').endOf('isoweek').subtract(2, 'days').hour(21).minute(0).second(0).format('X') * 1000;
-        }else{
-          if(current_time > 930){
-            var min = moment.utc().subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
-            var max = moment.utc().subtract(5, 'hours').hour(21).minute(0).second(0).format('X') * 1000;
-          }else{
-            var min = moment.utc().subtract(1, 'days').subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
-            var max = moment.utc().subtract(1, 'days').subtract(5, 'hours').hour(21).minute(0).second(0).format('X') * 1000;
-          }
-        }
-        
         var tickPositions = [min + ((1800) * 1000), min + ((2 * 3600) * 1000), min + ((3 * 3600) * 1000), min + ((4 * 3600) * 1000), min + ((5 * 3600) * 1000), min + ((6 * 3600) * 1000), min + ((7 * 3600) * 1000)];
 
         var xAxis_format = '%l:%M %P';
@@ -209,7 +195,7 @@ Template.money_memory_page.helpers({
     }
 
     //Get oldest date available to check if data range is possible
-    var oldestDate = moment(data.highchartsData[0][0]).format('X') * 1000;
+    var oldestDate = moment.utc(data.highchartsData[0][0]).subtract(5, 'hours').format('X') * 1000;
     //If min is less than oldest data available, set min to oldest date
     if(min <= oldestDate){
       min = oldestDate;
@@ -222,11 +208,7 @@ Template.money_memory_page.helpers({
           text: ''
       },
       chart: {
-          type: 'spline',
-          events: {
-              redraw: function() {}
-          },
-          marginLeft: 10
+          type: 'spline'
       },
       xAxis: {
           type: 'datetime',
@@ -281,9 +263,7 @@ Template.money_memory_page.helpers({
               },
               marker: {
                   enabled: false
-              },
-              pointInterval: 3600000, // one hour
-              pointStart: Date.UTC(2015, 4, 31, 0, 0, 0)
+              }
           }
       },
       legend: {
