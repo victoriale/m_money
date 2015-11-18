@@ -24,7 +24,7 @@ robotsPicker.route('/robots.txt',function(params, req, res){
 
 // Filter out bot requests
 var seoPicker = Picker.filter(function(req, res) {
-  return true;
+  // return true;
   if ( /bot/.test(req.headers['user-agent']) || /Webmaster/.test(req.headers['user-agent']) || /Bing/.test(req.headers['user-agent']) || /externalhit/.test(req.headers['user-agent']) ) {
     return true;
   }
@@ -182,15 +182,15 @@ function company_profile(params, req, res){
           title: '<a href="' + Router.pick_path('content.finoverview',{partner_id: info.params.partner_id, company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker}, info.params) + '">Today At ' + data.profile_header.comp_name + '</a>',
           content: {
             line: [
-              'Last Updated: ' + (new Date(data.daily_update.lcsi_price_last_updated)).toSNTFormTimeSEO(),
-              ticker_link2 + ' Share Price: $' + ToCommaNumber(data.daily_update.lcsi_price),
-              ticker_link + ' <a href="' + Router.pick_path('content.toplist',getListID(undefined, data.profile_header.c_hq_state), info.params) + '">Change</a>: $' + data.daily_update.lcsi_price_change_since_last + ' (' + data.daily_update.lcsi_percent_change_since_last + '%)',
-              ticker_link + ' Opening Price: $' + ToCommaNumber(data.daily_update.lcsi_opening_price),
-              ticker_link + ' Closing Price: $' + ToCommaNumber(data.daily_update.lcsi_closing_price),
-              ticker_link + ' Total Shares: ' + ToCommaNumber(data.daily_update.lcsi_total_shares),
-              ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-market-cap', list_id: '5222', loc_id: data.profile_header.c_hq_state, page_num: 1}) + '">Market Cap</a>: ' + ToCommaNumber(data.daily_update.lcsi_market_cap),
-              ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-PE-ratio', list_id: '5223', loc_id: data.profile_header.c_hq_state, page_num: 1}) + '">PE Ratio</a>: ' + data.daily_update.lcsi_pe_ratio,
-              ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-volume', list_id: '5226', loc_id: data.profile_header.c_hq_state, page_num: 1}) + '">Trading Volume</a>: ' + ToCommaNumber(data.daily_update.lcsi_trading_vol)
+              'Last Updated: ' + (new Date(data.daily_update.csi_price_last_updated)).toSNTFormTimeSEO(),
+              ticker_link2 + ' Share Price: $' + ToCommaNumber(data.daily_update.csi_price),
+              ticker_link + ' <a href="' + Router.pick_path('content.toplist',getListID(undefined, data.profile_header.c_hq_state), info.params) + '">Change</a>: $' + data.daily_update.csi_price_change_since_last + ' (' + data.daily_update.csi_percent_change_since_last + '%)',
+              ticker_link + ' Opening Price: $' + ToCommaNumber(data.daily_update.csi_opening_price),
+              ticker_link + ' Closing Price: $' + ToCommaNumber(data.daily_update.csi_closing_price),
+              ticker_link + ' Total Shares: ' + ToCommaNumber(data.daily_update.csi_total_shares),
+              ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-market-cap', list_id: '5222', loc_id: data.profile_header.c_hq_state, page_num: 1}) + '">Market Cap</a>: ' + ToCommaNumber(data.daily_update.csi_market_cap),
+              ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-PE-ratio', list_id: '5223', loc_id: data.profile_header.c_hq_state, page_num: 1}) + '">PE Ratio</a>: ' + data.daily_update.csi_pe_ratio,
+              ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-volume', list_id: '5226', loc_id: data.profile_header.c_hq_state, page_num: 1}) + '">Trading Volume</a>: ' + ToCommaNumber(data.daily_update.csi_trading_vol)
             ]
           }
         };
