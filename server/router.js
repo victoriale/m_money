@@ -1,147 +1,3 @@
-var ToCommaNumber = function(Number) {
-  if ( typeof Number == "undefined" || Number == null ) {
-    return '';
-  }
-  var split = Number.toString().split('.');
-  split[0] = split[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  return split.join('.');
-}
-
-function getListID(exchange, location) {
-  var retArr = {loc_id: location};
-  retArr.l_name = 'Top-companies-with-stock-percent-gain';
-  retArr.list_id = 5233;
-  if ( typeof exchange == "undefined" ) {
-    return retArr;
-  }
-  exchange = exchange.toLowerCase();
-  var ids = {
-    'nasdaq': 5191,
-    'nyse': 5205,
-    'amex': 5219
-  };
-  var name = {
-    'nasdaq': 'Top-companies-on-NASDAQ-with-stock-percent-gain',
-    'nyse': 'Top-companies-on-NYSE-with-stock-percent-gain',
-    'amex': 'Top-companies-on-AMEX-with-stock-percent-gain'
-  };
-  if ( typeof ids[exchange] != "undefined" ) {
-    retArr.l_name = name[exchange];
-    retArr.list_id = ids[exchange];
-  }
-  return retArr;
-}
-
-// Used as async callback function
-var method_cb = function(error, data) {
-  var batch = batch_envar.get();
-  if ( error ) {
-    // console.log("Batch Error:", error);
-    batch.done({});
-    return false;
-  }
-  batch.done(data);
-}
-
-function author(num) {
-  var authors = [
-    'Kevin Owens',
-    'Emily Behlmann',
-    'William Klausmeyer',
-    'Tommy Lofgren',
-    'Larry Pham',
-    'Lutz Lai',
-    'Taewook Kang',
-    'Vance Banks',
-    'Adam Clyde',
-    'Cameron Brocksen',
-    'Catherine Janzen',
-    'Christine Ridge',
-    'Daniel Vernon',
-    'Grant Gillespie',
-    'James Mason'
-  ];
-
-  if ( typeof num != "number" ) {
-    var rand = Math.floor(Math.random()*authors.length);
-  } else {
-    var rand = num % authors.length;
-  }
-
-  return authors[rand];
-}
-
-// Create a custom handler for multiple async functions
-var async_mult = function(functions, callback) {
-  this._functions = functions;
-  function cback(results){
-    if ( this._isDone == false ) {
-      results = results || this._results;
-      this._isDone = true;
-      callback(results, this._remaining);
-    }
-  };
-  this._timeout = 1000;
-  this._callback = cback.bind(this);
-  this._isDone = false;
-}
-
-var async_env = new Meteor.EnvironmentVariable;
-
-/**
- * Executes the functions passed to the constructor.
- */
-async_mult.prototype.execute = function execute() {
-    var i;
-    var functions = this._functions;
-    var length = functions.length;
-    this._remaining = functions.length;
-    this._results = [];
-
-    for (i = 0; i < length; i++) {
-      async_env.withValue({func: functions[i], batch: this}, function(){
-        var callback = Meteor.bindEnvironment(function(){
-          var async = async_env.get();
-          async.func(async.batch);
-        });
-        Meteor.setTimeout(callback,0);
-      });
-    }
-
-    Meteor.setTimeout(this._callback.bind(this), this._timeout);
-};
-
-/**
- * Signifies that another function has finished executing. Can be provided with
- * a value to store in the results array which is passed to the completion
- * handler.
- *
- * All functions in the batch must call this when done.
- *
- * @param {*} [result] Optional value to store and pass back to the completion handler when done.
- */
-async_mult.prototype.done = function done(result) {
-    this._remaining -= 1;
-
-    if (typeof result !== 'undefined') {
-        this._results.push(result);
-    }
-
-    if (this._remaining === 0) {
-        this._callback(this._results);
-    }
-};
-
-function RenderTimeoutError(res) {
-  res.writeHead(503);
-  res.end('Server Time Limit Reached');
-}
-
-function RenderError(res) {
-  res.writeHead(500);
-  res.end('Unknown Server Error');
-}
-
 // HTML minifier
 var minify = Npm.require('html-minifier').minify;
 // Environment Variables
@@ -2355,3 +2211,147 @@ seoPicker.route('/',function(params, req, res){
   console.log("SSRSTAT|\"Home Page\",," + (endTime - startTime) + "," + endTime + ",|");
   return false;
 });
+
+var ToCommaNumber = function(Number) {
+  if ( typeof Number == "undefined" || Number == null ) {
+    return '';
+  }
+  var split = Number.toString().split('.');
+  split[0] = split[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return split.join('.');
+}
+
+function getListID(exchange, location) {
+  var retArr = {loc_id: location};
+  retArr.l_name = 'Top-companies-with-stock-percent-gain';
+  retArr.list_id = 5233;
+  if ( typeof exchange == "undefined" ) {
+    return retArr;
+  }
+  exchange = exchange.toLowerCase();
+  var ids = {
+    'nasdaq': 5191,
+    'nyse': 5205,
+    'amex': 5219
+  };
+  var name = {
+    'nasdaq': 'Top-companies-on-NASDAQ-with-stock-percent-gain',
+    'nyse': 'Top-companies-on-NYSE-with-stock-percent-gain',
+    'amex': 'Top-companies-on-AMEX-with-stock-percent-gain'
+  };
+  if ( typeof ids[exchange] != "undefined" ) {
+    retArr.l_name = name[exchange];
+    retArr.list_id = ids[exchange];
+  }
+  return retArr;
+}
+
+// Used as async callback function
+var method_cb = function(error, data) {
+  var batch = batch_envar.get();
+  if ( error ) {
+    // console.log("Batch Error:", error);
+    batch.done({});
+    return false;
+  }
+  batch.done(data);
+}
+
+function author(num) {
+  var authors = [
+    'Kevin Owens',
+    'Emily Behlmann',
+    'William Klausmeyer',
+    'Tommy Lofgren',
+    'Larry Pham',
+    'Lutz Lai',
+    'Taewook Kang',
+    'Vance Banks',
+    'Adam Clyde',
+    'Cameron Brocksen',
+    'Catherine Janzen',
+    'Christine Ridge',
+    'Daniel Vernon',
+    'Grant Gillespie',
+    'James Mason'
+  ];
+
+  if ( typeof num != "number" ) {
+    var rand = Math.floor(Math.random()*authors.length);
+  } else {
+    var rand = num % authors.length;
+  }
+
+  return authors[rand];
+}
+
+// Create a custom handler for multiple async functions
+var async_mult = function(functions, callback) {
+  this._functions = functions;
+  function cback(results){
+    if ( this._isDone == false ) {
+      results = results || this._results;
+      this._isDone = true;
+      callback(results, this._remaining);
+    }
+  };
+  this._timeout = 1000;
+  this._callback = cback.bind(this);
+  this._isDone = false;
+}
+
+var async_env = new Meteor.EnvironmentVariable;
+
+/**
+ * Executes the functions passed to the constructor.
+ */
+async_mult.prototype.execute = function execute() {
+    var i;
+    var functions = this._functions;
+    var length = functions.length;
+    this._remaining = functions.length;
+    this._results = [];
+
+    for (i = 0; i < length; i++) {
+      async_env.withValue({func: functions[i], batch: this}, function(){
+        var callback = Meteor.bindEnvironment(function(){
+          var async = async_env.get();
+          async.func(async.batch);
+        });
+        Meteor.setTimeout(callback,0);
+      });
+    }
+
+    Meteor.setTimeout(this._callback.bind(this), this._timeout);
+};
+
+/**
+ * Signifies that another function has finished executing. Can be provided with
+ * a value to store in the results array which is passed to the completion
+ * handler.
+ *
+ * All functions in the batch must call this when done.
+ *
+ * @param {*} [result] Optional value to store and pass back to the completion handler when done.
+ */
+async_mult.prototype.done = function done(result) {
+    this._remaining -= 1;
+
+    if (typeof result !== 'undefined') {
+        this._results.push(result);
+    }
+
+    if (this._remaining === 0) {
+        this._callback(this._results);
+    }
+};
+
+function RenderTimeoutError(res) {
+  res.writeHead(503);
+  res.end('Server Time Limit Reached');
+}
+
+function RenderError(res) {
+  res.writeHead(500);
+  res.end('Unknown Server Error');
+}
