@@ -92,10 +92,46 @@ Template.c_hq_page.helpers({
 });
 
 Template.c_hq_page.onRendered(function(){
+
+  //Backup if geocodes are innacurate
+  /*this.autorun(function(){
+    initializeHQMap_address();
+  })*/
+
   Tracker.autorun(function(){
     initializeHQMap();
   })
 });
+
+//This is a backup plan for maps. If database geocodes are innacurate use this. This directly gives google maps the address to get lng and lat, then plugs it back into google maps to get map with marker
+initializeHQMap_address = function(){
+  var bio_location = Session.get('bio_location');
+  if(typeof bio_location === 'undefined'){
+    return false;
+  }
+
+  Meteor.http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + bio_location.c_street_addr + ',' + bio_location.c_hq_city + ',' + bio_location.c_hq_state, function(err, result){
+
+    var lat = result.data.results[0].geometry.location.lat;
+    var lng = result.data.results[0].geometry.location.lng;
+
+    //Map options
+    var mapOptions = {
+      zoom: 19,
+      center: new google.maps.LatLng(lat, lng),
+      mapTypeId: google.maps.MapTypeId.HYBRID
+    };
+    mainmap = new google.maps.Map(
+      document.getElementById('mainmap'),
+      mapOptions
+    );
+    var marker = new google.maps.Marker({
+      position: {lat:lat, lng:lng},
+      map: mainmap,
+      icon: '/public/mapmarker.png',
+    });
+  })
+}
 
 //Global Function to initialize the map
 initializeHQMap = function() {
@@ -118,6 +154,6 @@ initializeHQMap = function() {
   var marker = new google.maps.Marker({
     position: {lat:lat, lng:long},
     map: mainmap,
-    icon: '/public/mapmarker.png'
+    icon: '/public/mapmarker.png',
   });
 }
