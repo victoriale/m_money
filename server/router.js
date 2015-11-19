@@ -24,7 +24,7 @@ robotsPicker.route('/robots.txt',function(params, req, res){
 
 // Filter out bot requests
 var seoPicker = Picker.filter(function(req, res) {
-  return true;
+  // return true;
   if ( /bot/.test(req.headers['user-agent']) || /Webmaster/.test(req.headers['user-agent']) || /Bing/.test(req.headers['user-agent']) || /externalhit/.test(req.headers['user-agent']) ) {
     return true;
   }
