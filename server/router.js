@@ -1182,6 +1182,10 @@ seoPicker.route('/:partner_id/:name/:ticker/execs/:company_id',exec_list);
 function exec_list(params, req, res){
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
+  if ( is404Page(params, req, res) ) {
+    return false;
+  }
+
   // Get the data
   info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){
     var callback = Meteor.bindEnvironment(function(results){
@@ -1200,6 +1204,12 @@ function exec_list(params, req, res){
       var data = res_arr;
 
       try {
+        if ( isMyInvestKit(info.req) && typeof data.content == "undefined" ) {
+          console.log("SSRSTAT|\"Company Executives - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          RenderTimeoutError(res);
+          return false;
+        }
+
         if ( typeof data.content != "undefined" ) {
           var temp_d = JSON.parse(data.content);
           temp_d.results.name = temp_d.name;
@@ -1221,7 +1231,7 @@ function exec_list(params, req, res){
         var head_data = { // Data to put into the head of the document (meta tags/title)
           description: 'Find out who the executives for ' + data.profile_header.c_name + ' (' + data.profile_header.c_exchange + ':' + data.profile_header.c_ticker + ') are and get in-depth information about them',
           title: 'An Investor\'s Guide to ' + data.profile_header.c_name + ' Executives | InvestKit.com',
-          url: 'http://www.investkit.com' + Router.pick_path('content.boardcommittee',{name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker, company_id: data.profile_header.c_id}, info.params),
+          url: Router.pick_path('content.boardcommittee',{name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker, company_id: data.profile_header.c_id}, info.params),
           other_tags: [
             {
               name: 'og:image',
@@ -1235,9 +1245,11 @@ function exec_list(params, req, res){
         };
 
         if ( typeof data.results != "undefined" ) {
-          head_data.title = 'List of the Executives for ' + data.profile_header.c_name + ' | ' + data.results.name + ' Finance';
-          head_data.url = 'http://www.myinvestkit.com' + Router.pick_path('content.boardcommittee',{name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker, company_id: data.profile_header.c_id}, info.params);
+          head_data.title = 'Everything You Need To Know Abuot ' + data.profile_header.c_name + ' Executives | ' + data.results.name + ' Finance';
+          head_data.url = 'http://www.myinvestkit.com' + head_data.url;
           head_data.siteName = data.results.name + ' Finance';
+        } else {
+          head_data.url = "http://www.investkit.com" + head_data.url;
         }
 
         var page_data = {
