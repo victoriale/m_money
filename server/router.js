@@ -2205,6 +2205,10 @@ seoPicker.route('/:partner_id/:l_name/:loc_id?/:list_id/list/:page_num',list_pag
 function list_page(params, req, res){
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
+  if ( is404Page(params, req, res) ) {
+    return false;
+  }
+
   if ( typeof params.loc_id != "undefined" ) {
     params.loc_id = params.loc_id.replace(/-/g,' ');
   }
@@ -2234,6 +2238,12 @@ function list_page(params, req, res){
       var data = res_arr;
 
       try {
+        if ( isMyInvestKit(info.req) && typeof data.content == "undefined" ) {
+          console.log("SSRSTAT|\"List Page - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          RenderTimeoutError(res);
+          return false;
+        }
+
         if ( typeof data.content != "undefined" ) {
           var temp_d = JSON.parse(data.content);
           temp_d.results.name = temp_d.name;
@@ -2259,13 +2269,15 @@ function list_page(params, req, res){
         var head_data = { // Data to put into the head of the document (meta tags/title)
           description: data.top_list_gen.top_list_info.top_list_title,
           title: data.top_list_gen.top_list_info.top_list_title + ' | InvestKit.com',
-          url: 'http://www.investkit.com' + Router.pick_path('content.toplist', {l_name: compUrlName(data.top_list_gen.top_list_info.top_list_title), list_id: data.top_list_gen.top_list_info.top_list_id, loc_id: compUrlName(info.params.loc_id)}, info.params)
+          url: Router.pick_path('content.toplist', {l_name: compUrlName(data.top_list_gen.top_list_info.top_list_title), list_id: data.top_list_gen.top_list_info.top_list_id, loc_id: compUrlName(info.params.loc_id)}, info.params)
         };
 
         if ( typeof data.results != "undefined" ) {
           head_data.siteName = data.results.name + ' Finance';
           head_data.title = data.top_list_gen.top_list_info.top_list_title + ' | ' + data.results.name + ' Finance';
-          head_data.url = 'http://www.investkit.com' + Router.pick_path('content.toplist', {l_name: compUrlName(data.top_list_gen.top_list_info.top_list_title), list_id: data.top_list_gen.top_list_info.top_list_id, loc_id: compUrlName(info.params.loc_id)}, info.params);
+          head_data.url = 'http://www.myinvestkit.com' + head_data.url;
+        } else {
+          head_data.url = 'http://www.investkit.com' + head_data.url;
         }
 
         var page_data = {
