@@ -377,6 +377,9 @@ seoPicker.route('/:partner_id/:ticker/:name/e/:exec_id',executive_profile);
 function executive_profile(params, req, res){
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
+  if ( is404Page(params, req, res) ) {
+    return false;
+  }
   // Get the data
   info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){
     var callback = Meteor.bindEnvironment(function(results){
@@ -394,7 +397,7 @@ function executive_profile(params, req, res){
 
       var data = res_arr;
 
-      if ( typeof data.profile_header == "undefined" ) {
+      if ( typeof data.profile_header == "undefined" || (isMyInvestKit(info.req) && typeof data.content == "undefined") ) {
         console.log("SSRSTAT|\"Executive Profile - Timeout\",\"" + info.params.exec_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
         RenderTimeoutError(res);
         return false;
@@ -504,7 +507,7 @@ function executive_profile(params, req, res){
         var h1content = {
           line: [
             'Written By: ' + author(parseInt(info.params.exec_id)),
-            'Page Published on ' + published + '<br>Page Updated on ' + updated,
+            'Page Published on ' + published,
             '',
             profile_header.o_bio
           ]
@@ -537,7 +540,7 @@ function executive_profile(params, req, res){
         var head_data = { // Data to put into the head of the document (meta tags/title)
           description: 'Find out everything you need to know about ' + profile_header.o_full_name + ', an executive at ' + profile_header.c_name_orig + ' (' + profile_header.c_ticker + '): Insider activity, compensation details, history with the company and more.',
           title: 'An Investors Guide To ' + profile_header.o_full_name + ' From ' + profile_header.c_name_orig + ' | InvestKit.com',
-          url: 'http://www.investkit.com' + Router.pick_path('content.executiveprofile',{exec_id: profile_header.o_id, fname: profile_header.o_first_name, lname: profile_header.o_last_name, ticker: profile_header.c_ticker}, info.params),
+          url: Router.pick_path('content.executiveprofile',{exec_id: profile_header.o_id, fname: profile_header.o_first_name, lname: profile_header.o_last_name, ticker: profile_header.c_ticker}, info.params),
           other_tags: [
             {
               name: 'og:image',
@@ -560,13 +563,13 @@ function executive_profile(params, req, res){
 
         if ( typeof data.results != "undefined" ) {
           h1content.line[0] = 'Written By: ' + author(parseInt(info.params.exec_id) + 2);
+          head_data.url = "http://www.myinvestkit.com" + head_data.url;
           head_data.siteName = data.results.name + ' Finance';
           head_data.title = 'Everything You Need To Know About ' + profile_header.c_name_orig + '\'s ' + profile_header.o_full_name + ' | ' + data.results.name + ' Finance';
           head_data.description = 'Compensation details, insider activity and other information about ' + profile_header.c_name_orig + '\'s executive ' + profile_header.o_full_name + '.';
-          head_data.url = 'http://www.myinvestkit.com' + Router.pick_path('content.executiveprofile',{partner_id: info.params.partner_id, exec_id: profile_header.o_id, fname: profile_header.o_first_name, lname: profile_header.o_last_name, ticker: profile_header.c_ticker}, info.params);
-          rivals.title = 'Other Executives Who Went To College With ' + profile_header.o_full_name;
-          wrk_hist.title = 'Other Places ' + profile_header.o_full_name + ' Has Worked';
-          other_exec.title = profile_header.c_name + '\'s Other Executives';
+          rivals = changeTitle(rivals, '<a href="' + Router.pick_path('content.collegerivals',{exec_id: profile_header.o_id, fname: profile_header.o_first_name, lname: profile_header.o_last_name, ticker: profile_header.c_ticker},info.params) + '">Other Executives Who Went To The Same College As ' + profile_header.o_full_name + '</a>');
+          wrk_hist = changeTitle(wrk_hist, '<a href="' + Router.pick_path('content.workhistory',{exec_id: profile_header.o_id, fname: profile_header.o_first_name, lname: profile_header.o_last_name, ticker: profile_header.c_ticker},info.params) + '">Other Places ' + profile_header.o_full_name + ' Has Worked</a>');
+          other_exec = changeTitle(other_exec, profile_header.c_name + '\'s Other Executives');
           var h2Data = [wrk_hist, rivals, compensation, other_exec];
           var h1 = {
             title: 'Everything You Need To Know About ' + profile_header.c_name + '\'s ' + profile_header.o_full_name,
@@ -574,6 +577,7 @@ function executive_profile(params, req, res){
             h2: h2Data
           };
         } else {
+          head_data.url = "http://www.investkit.com" + head_data.url;
           var h2Data = [compensation, rivals, wrk_hist, other_exec];
           var h1 = {
             title: 'An Investors Guide To ' + profile_header.o_full_name + ' From ' + profile_header.c_name,
