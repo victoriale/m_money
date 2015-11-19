@@ -44,6 +44,10 @@ seoPicker.route('/:partner_id/:name/:ticker/c/:company_id',company_profile);
 function company_profile(params, req, res){
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
+  if ( is404Page(params, req, res) ) {
+    return false;
+  }
+
   // Get the data
   info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){
     var callback = Meteor.bindEnvironment(function(results){
@@ -60,7 +64,7 @@ function company_profile(params, req, res){
       var res = info.res;
       var data = res_arr;
 
-      if ( typeof data.profile_header == "undefined" ) {
+      if ( typeof data.profile_header == "undefined" || (isMyInvestKit(info.req) && typeof data.content == "undefined") ) {
         console.log("SSRSTAT|\"Company Profile - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
         RenderTimeoutError(res);
         return false;
@@ -239,7 +243,7 @@ function company_profile(params, req, res){
         var head_data = { // Data to put into the head of the document (regular site)
           description: 'SEC Documents, financial data, news, executive details and other valuable information about ' + data.profile_header.comp_name,
           title: 'An Investor\'s Guide To ' + data.profile_header.c_name + ' | InvestKit.com',
-          url: 'http://www.investkit.com' + Router.pick_path('content.companyprofile', {partner_id: info.params.partner_id, company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker},info.params),
+          url: Router.pick_path('content.companyprofile', {partner_id: info.params.partner_id, company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker},info.params),
           other_tags: [
             {
               name: 'og:image',
@@ -257,12 +261,12 @@ function company_profile(params, req, res){
           head_data.siteName = data.results.name + ' Finance';
           head_data.title = 'Everything You Need To Know About ' + data.profile_header.c_name + ' | ' + data.results.name + ' Finance';
           head_data.description = data.profile_header.comp_name + ' SEC documents, financial data, news, executive details and other valuable information for investors.';
-          head_data.url = 'http://www.myinvestkit.com' + Router.pick_path('content.companyprofile', {partner_id: info.params.partner_id, company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker},info.params);
-          todayAt.title = '<a href="' + Router.pick_path('content.finoverview',{partner_id: info.params.partner_id, company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker}, info.params) + '">' + data.profile_header.comp_name + '\'s Daily Update</a>';
-          whosWho.title = '<a href="' + Router.pick_path('content.boardcommittee',{partner_id: info.params.partner_id, ticker: data.profile_header.c_ticker, name: compUrlName(data.profile_header.c_name), company_id: data.profile_header.c_id}, info.params) + '">Meet the Executives For ' + data.profile_header.comp_name + '</a>';
-          featList.title = data.profile_header.comp_name2 + '\'s Featured Lists';
-          earnings.title = data.profile_header.comp_name2 + '\'s Earnings Reports';
-          ran_facts.title = data.profile_header.comp_name2 + '\' Random Facts';
+          head_data.url = 'http://www.myinvestkit.com' + head_data.url;
+          todayAt = changeTitle(todayAt, '<a href="' + Router.pick_path('content.finoverview',{partner_id: info.params.partner_id, company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker}, info.params) + '">' + data.profile_header.comp_name + '\'s Daily Update</a>');
+          whosWho = changeTitle(whosWho, '<a href="' + Router.pick_path('content.boardcommittee',{partner_id: info.params.partner_id, ticker: data.profile_header.c_ticker, name: compUrlName(data.profile_header.c_name), company_id: data.profile_header.c_id}, info.params) + '">Meet the Executives For ' + data.profile_header.comp_name + '</a>');
+          featList = changeTitle(featList, '<a href="' + Router.pick_path('content.listoflist',{ticker: data.profile_header.c_ticker, name: compUrlName(data.profile_header.c_name), company_id: data.profile_header.c_id},info.params) + '">' + data.profile_header.comp_name + '\'s Featured Lists</a>');
+          earnings = changeTitle(earnings, data.profile_header.comp_name2 + '\'s Earnings Reports');
+          ran_facts = changeTitle(ran_facts, data.profile_header.comp_name2 + '\' Random Facts');
           var h2Data = [todayAt, featList, ran_facts, whosWho, innews, earnings];
           var h1 = {
             title: 'Everything You Need To Know About ' + data.profile_header.comp_name2,
@@ -270,6 +274,7 @@ function company_profile(params, req, res){
             h2: h2Data
           };
         } else {
+          head_data.url = "http://www.investkit.com" + head_data.url;
           var h2Data = [todayAt, whosWho, featList, earnings, ran_facts, innews];
           var h1 = {
             title: 'An Investor\'s Guide To ' + data.profile_header.comp_name2,
@@ -2648,8 +2653,7 @@ seoPicker.route('/',function(params, req, res){
   if ( isMyInvestKit(req) ) {
     var endTime = (new Date()).getTime();
     console.log("SSRSTAT|\"Home Page - MyInvestKit\",,," + endTime + ",|");
-    res.writeHead(404);
-    res.end('404 Error: Page Not Found');
+    Render404(res);
     return false;
   }
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
@@ -2748,7 +2752,18 @@ function isMyInvestKit(req) {
   if ( req.headers.host.indexOf('myinvestkit') != -1 ) {
     return true;
   }
+  if ( req.headers.host.indexOf('localhost') != -1 ) {
+    return true;
+  }
   return false;
+}
+
+function is404Page(params,req,res) {
+  if ( (typeof params.partner_id != "undefined" && !isMyInvestKit(req)) || (typeof params.partner_id == "undefined" && isMyInvestKit(req)) ) {
+    Render404(res);
+    return true;
+  }
+  return false
 }
 
 function author(num) {
@@ -2777,6 +2792,13 @@ function author(num) {
   }
 
   return authors[rand];
+}
+
+function changeTitle(data, title) {
+  if ( typeof data == "object" && typeof data.title != "undefined" ) {
+    data.title = title;
+  }
+  return data;
 }
 
 // Create a custom handler for multiple async functions
@@ -2848,6 +2870,11 @@ function RenderTimeoutError(res) {
 function RenderError(res) {
   res.writeHead(500);
   res.end('Unknown Server Error');
+}
+
+function Render404(res) {
+  res.writeHead(404);
+  res.end('Page Does Not Exist');
 }
 
 Date.prototype.toSNTFormTimeSEO = function() {
