@@ -1877,6 +1877,10 @@ seoPicker.route('/:partner_id/:ticker/:name/wrk-hist/:exec_id',work_history);
 function work_history(params, req, res){
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
+  if ( is404Page(params, req, res) ) {
+    return false;
+  }
+
   // Get the data
   info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){
     var callback = Meteor.bindEnvironment(function(results){
@@ -1895,6 +1899,12 @@ function work_history(params, req, res){
       var data = res_arr;
 
       try {
+        if ( isMyInvestKit(info.req) && typeof data.content == "undefined" ) {
+          console.log("SSRSTAT|\"Financial Overview - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          RenderTimeoutError(res);
+          return false;
+        }
+
         profile_header = data.profile_header || {};
         profile_header.o_current_title = profile_header.o_current_title || {};
         profile_header.compensation = profile_header.compensation || {};
@@ -2015,6 +2025,10 @@ seoPicker.route('/:partner_id/:ticker/:lname-:fname/comp/:exec_id',exec_comp);
 function exec_comp(params, req, res){
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
+  if ( is404Page(params, req, res) ) {
+    return false;
+  }
+
   // Get the data
   info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){
     var callback = Meteor.bindEnvironment(function(results){
@@ -2032,6 +2046,12 @@ function exec_comp(params, req, res){
 
       try {
         var data = res_arr;
+        if ( isMyInvestKit(info.req) && typeof data.content == "undefined" ) {
+          console.log("SSRSTAT|\"Financial Overview - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          RenderTimeoutError(res);
+          return false;
+        }
+
         profile_header = data.profile_header || {};
         profile_header.o_current_title = profile_header.o_current_title || {};
         profile_header.compensation = profile_header.compensation || {};
@@ -2095,7 +2115,7 @@ function exec_comp(params, req, res){
         var h1content = {
           line: [
             'Written By: ' + author(parseInt(info.params.exec_id)),
-            'Page Published on ' + published + '<br>Page Updated on ' + updated,
+            'Page Published on ' + published,
             '',
             profile_header.o_bio
           ]
@@ -2104,7 +2124,7 @@ function exec_comp(params, req, res){
         var head_data = { // Data to put into the head of the document (meta tags/title)
           description: 'Executive Compensation for ' + profile_header.o_full_name,
           title: 'An Investors Guide To ' + profile_header.o_full_name + '\'s Executive Compensation | InvestKit.com',
-          url: 'http://www.investkit.com' + Router.pick_path('content.compensation',{partner_id: info.params.partner_id, exec_id: profile_header.o_id, fname: profile_header.o_first_name, lname: profile_header.o_last_name, ticker: profile_header.c_ticker}, info.params),
+          url: Router.pick_path('content.compensation',{partner_id: info.params.partner_id, exec_id: profile_header.o_id, fname: profile_header.o_first_name, lname: profile_header.o_last_name, ticker: profile_header.c_ticker}, info.params),
           other_tags: [
             {
               name: 'og:image',
@@ -2129,14 +2149,15 @@ function exec_comp(params, req, res){
           h1content.line[0] = 'Written By: ' + author(parseInt(info.params.exec_id) + 2);
           head_data.siteName = data.results.name + ' Finance';
           head_data.title = 'Everything You Need To Know About ' + profile_header.o_full_name + '\'s Executive Compensation | ' + data.results.name + ' Finance';
-          head_data.description = 'Compensation details about ' + profile_header.c_name_orig;
-          head_data.url = 'http://www.myinvestkit.com' + Router.pick_path('content.compensation',{partner_id: info.params.partner_id, exec_id: profile_header.o_id, fname: profile_header.o_first_name, lname: profile_header.o_last_name, ticker: profile_header.c_ticker}, info.params);
+          head_data.description = 'Compensation details about ' + profile_header.o_full_name;
+          head_data.url = 'http://www.myinvestkit.com' + head_data.url;
           var h1 = {
-            title: 'Everything You Need To Know About ' + profile_header.c_name + '\'s Compensation',
+            title: 'Everything You Need To Know About ' + profile_header.o_full_name + '\'s Compensation',
             content: h1content,
             h2: compensation
           };
         } else {
+          head_data.url = 'http://www.investkit.com' + head_data.url;
           var h1 = {
             title: 'An Investors Guide To ' + profile_header.o_full_name + '\'s Compensation',
             content: h1content,
