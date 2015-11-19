@@ -2564,6 +2564,10 @@ function termsofservice(params, req, res) {
 seoPicker.route('/:partner_id',function(params, req, res){
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
+  if ( is404Page(params, req, res) ) {
+    return false;
+  }
+
   // Get the data
   info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){
     var callback = Meteor.bindEnvironment(function(results){
@@ -2582,6 +2586,12 @@ seoPicker.route('/:partner_id',function(params, req, res){
       try {
         var data = res_arr;
 
+        if ( typeof data.content == "undefined" ) {
+          console.log("SSRSTAT|\"Partner Profile - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          RenderTimeoutError(res);
+          return false;
+        }
+
         if ( typeof data.content != "undefined" ) {
           var temp_d = JSON.parse(data.content);
           temp_d.results.name = temp_d.name;
@@ -2596,7 +2606,7 @@ seoPicker.route('/:partner_id',function(params, req, res){
         for ( var attr in data.companies_by_sector ) {
           if ( data.companies_by_sector.hasOwnProperty(attr) && attr != "total_company_count" ) {
             var ldata = {};
-            ldata.title = '<a href="' + Router.pick_path('content.sector',{sector_id: compUrlName(attr), loc_id: data.profile_header.location},info.params) + '">' + attr + ' (' + (Math.round(data.companies_by_sector[attr].percentage*1000)/10) + '% of companies in ' + data.profile_header.location + ')</a>';
+            ldata.title = '<a href="' + Router.pick_path('content.sector',{sector_id: compUrlName(attr), loc_id: 'default', page_num: 1},info.params) + '">' + attr + ' (' + (Math.round(data.companies_by_sector[attr].percentage*1000)/10) + '% of companies in ' + data.profile_header.location + ')</a>';
             var arr = [];
             for ( var index = 0; index < data.companies_by_sector[attr].count; index++ ) {
               c_data = data.companies_by_sector[attr][index];
@@ -2623,10 +2633,10 @@ seoPicker.route('/:partner_id',function(params, req, res){
           var t_data = data.market_movers[index];
           var items = [];
           for ( var i = 0; i < t_data.data.top_list_list.length; i++ ) {
-            items.push('<a href="' + Router.pick_path('content.companyprofile',{comapny_id: t_data.data.top_list_list[i].c_id, ticker: t_data.data.top_list_list[i].c_ticker, name: t_data.data.top_list_list[i].c_name}, info.params) + '">' + t_data.data.top_list_list[i].c_name + ' (' + t_data.data.top_list_list[i].c_exchange + ':' + t_data.data.top_list_list[i].c_ticker + ')</a> as of ' + (new Date(t_data.data.top_list_list[i].lcsi_price_last_updated)).toSNTFormTimeSEO());
+            items.push('<a href="' + Router.pick_path('content.companyprofile',{company_id: t_data.data.top_list_list[i].c_id, ticker: t_data.data.top_list_list[i].c_ticker, name: compUrlName(t_data.data.top_list_list[i].c_name)}, info.params) + '">' + t_data.data.top_list_list[i].c_name + ' (' + t_data.data.top_list_list[i].c_exchange + ':' + t_data.data.top_list_list[i].c_ticker + ')</a> as of ' + (new Date(t_data.data.top_list_list[i].lcsi_price_last_updated)).toSNTFormTimeSEO());
           }
           var l_data = {
-            title: '<a href="' + Router.pick_path('content.toplist',{l_name: compUrlName(t_data.data.top_list_info.top_list_title), list_id: t_data.data.top_list_info.top_list_id, loc_id: data.profile_header.location}, info.params) + '">' + t_data.data.top_list_info.top_list_title + '</a>',
+            title: '<a href="' + Router.pick_path('content.toplist',{l_name: compUrlName(t_data.data.top_list_info.top_list_title), list_id: t_data.data.top_list_info.top_list_id, loc_id: t_data.data.top_list_info.top_list_location[0], page_num: 1}, info.params) + '">' + t_data.data.top_list_info.top_list_title + '</a>',
             content: {
               ul: items
             }
@@ -2677,33 +2687,17 @@ seoPicker.route('/:partner_id',function(params, req, res){
 
         var head_data = { // Data to put into the head of the document (meta tags/title)
           description: 'SEC documents, financial data, executive details and more valuable information for investors about companies in ' + data.profile_header.location + '.',
-          title: 'An Investor\'s Guide to Public Companies in ' + data.profile_header.location + ' | InvestKit.com',
-          url: 'http://www.investkit.com' + Router.pick_path('content.locationprofile',{partner_id: info.params.partner_id, loc_id: info.params.loc_id}, info.params)
+          title: 'Everything You Need To Know About Public Companies in the ' + data.profile_header.location + ' | InvestKit.com',
+          url: 'http://www.myinvestkit.com' + Router.pick_path('content.partnerhome',{partner_id: info.params.partner_id}, info.params),
+          siteName: data.results.name + ' Finance'
         };
 
-        if ( typeof data.results != "undefined" ) {
-          h1content.line[0] = 'Written By: ' + author(info.params.partner_id.length + 1); // CHANGE TO DIFF AUTHOR WHEN CONST
-          head_data.siteName = data.results.name + ' Finance';
-          head_data.title = 'Everything You Need To Know About Public Companies in ' + data.profile_header.location + ' | ' + data.results.name + ' Finance';
-          head_data.description = 'Find out everything you need to know about publicly traded companies in ' + data.profile_header.location + ': Financial data, SEC documents, news, executive information and more.';
-          head_data.url = 'http://www.myinvestkit.com' + Router.pick_path('content.locationprofile',{partner_id: info.params.partner_id, loc_id: info.params.loc_id}, info.params);
-          bysect.title = 'Companies By Sector in ' + data.profile_header.location;
-          earn.title = 'Earnings Reports for Companies in ' + data.profile_header.location;
-          l_lists.title = data.profile_header.location + ' Lists';
-          var h2Data = [earn, l_lists, bysect];
-          var h1 = {
-            title: 'Everything You Need To Know About Public Companies in ' + data.profile_header.location,
-            content: h1content,
-            h2: h2Data
-          };
-        } else {
-          var h2Data = [bysect, l_lists, earn];
-          var h1 = {
-            title: 'An Investor\'s Guide to Public Companies in ' + data.profile_header.location,
-            content: h1content,
-            h2: h2Data
-          };
-        }
+        var h2Data = [bysect, l_lists, earn];
+        var h1 = {
+          title: 'An Investor\'s Guide to Public Companies in ' + data.profile_header.location,
+          content: h1content,
+          h2: h2Data
+        };
 
         var page_data = {
           head_data: head_data,
@@ -2732,7 +2726,7 @@ seoPicker.route('/:partner_id',function(params, req, res){
       } catch(e) {
         var endTime = (new Date()).getTime();
         console.log("SSRSTAT|\"Partner Profile - Error\",\"" + info.params.partner_id + "\",," + endTime + ",\"" + info.params.partner_id + "\"|");
-        RenderError(res);
+        RenderError(res,e.stack);
       }
     });
 
