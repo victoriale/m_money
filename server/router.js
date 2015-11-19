@@ -1321,6 +1321,10 @@ seoPicker.route('/:partner_id/:name/:ticker/n/:company_id',cmp_news);
 function cmp_news(params, req, res) {
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
+  if ( is404Page(params, req, res) ) {
+    return false;
+  }
+
   // Get the data
   info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){
     var callback = Meteor.bindEnvironment(function(results){
@@ -1338,6 +1342,12 @@ function cmp_news(params, req, res) {
 
       try {
         var data = res_arr;
+
+        if ( isMyInvestKit(info.req) && typeof data.content == "undefined" ) {
+          console.log("SSRSTAT|\"Company Executives - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          RenderTimeoutError(res);
+          return false;
+        }
 
         if ( typeof data.content != "undefined" ) {
           var temp_d = JSON.parse(data.content);
@@ -1365,13 +1375,15 @@ function cmp_news(params, req, res) {
         var head_data = { // Data to put into the head of the document (meta tags/title)
           description: 'Get all of the news about ' + data.profile_header.c_name + '.',
           title: 'An Investor\'s Guide to ' + data.profile_header.c_name + ' In The News | InvestKit.com',
-          url: 'http://www.investkit.com' + Router.pick_path('content.articlenews',{company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker}, info.params)
+          url: Router.pick_path('content.articlenews',{company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker}, info.params)
         };
 
         if ( typeof data.results != "undefined" ) {
-          head_data.title = 'All The News About ' + data.profile_header.c_name + ' | ' + data.results.name + ' Finance';
-          head_data.url = 'http://www.myinvestkit.com' + Router.pick_path('content.articlenews',{company_id: data.profile_header.c_id, name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker}, info.params);
+          head_data.title = 'Everything You Need To Know About ' + data.profile_header.c_name + ' In The News | ' + data.results.name + ' Finance';
+          head_data.url = 'http://www.myinvestkit.com' + head_data.url;
           head_data.siteName = data.results.name + ' Finance';
+        } else {
+          head_data.url = "http://www.investkit.com" + head_data.url;
         }
 
         var page_data = {
