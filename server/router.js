@@ -24,7 +24,7 @@ robotsPicker.route('/robots.txt',function(params, req, res){
 
 // Filter out bot requests
 var seoPicker = Picker.filter(function(req, res) {
-  // return true;
+  return true;
   if ( /bot/.test(req.headers['user-agent']) || /Webmaster/.test(req.headers['user-agent']) || /Bing/.test(req.headers['user-agent']) || /externalhit/.test(req.headers['user-agent']) ) {
     return true;
   }
@@ -1039,6 +1039,11 @@ seoPicker.route('/:partner_id/:name/:ticker/lists/:company_id',list_of_lists);
 function list_of_lists(params, req, res){
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
+
+  if ( is404Page(params, req, res) ) {
+    return false;
+  }
+
   if ( typeof params.loc_id != "undefined" ) {
     params.loc_id = params.loc_id.replace(/-/g,' ');
   }
@@ -1068,7 +1073,7 @@ function list_of_lists(params, req, res){
       var data = res_arr;
 
       try {
-        if ( typeof data.profile_header == "undefined" ) {
+        if ( typeof data.profile_header == "undefined" || (isMyInvestKit(info.req) && typeof data.content == "undefined") ) {
           console.log("SSRSTAT|\"List of Lists (Company) Page - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
           RenderTimeoutError(res);
           return false;
@@ -1099,13 +1104,15 @@ function list_of_lists(params, req, res){
         var head_data = { // Data to put into the head of the document (meta tags/title)
           description: 'Lists of companies that feature ' + data.profile_header.c_name,
           title: data.profile_header.c_name + '\'s Top Lists | InvestKit.com',
-          url: 'http://www.investkit.com' + Router.pick_path('content.listoflist', {name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker, company_id: data.profile_header.c_id}, info.params)
+          url: Router.pick_path('content.listoflist', {name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker, company_id: data.profile_header.c_id}, info.params)
         };
 
         if ( typeof data.results != "undefined" ) {
+          head_data.url = "http://www.myinvestkit.com" + head_data.url;
           head_data.siteName = data.results.name + ' Finance';
-          head_data.title = data.top_list_gen.top_list_info.top_list_title + ' | ' + data.results.name + ' Finance';
-          head_data.url = 'http://www.investkit.com' + Router.pick_path('content.toplist', {l_name: compUrlName(data.top_list_gen.top_list_info.top_list_title), list_id: data.top_list_gen.top_list_info.top_list_id, loc_id: compUrlName(info.params.loc_id)}, info.params);
+          head_data.title = 'Top Lists That Feature ' + data.profile_header.c_name + ' | ' + data.results.name + ' Finance';
+        } else {
+          head_data.url = "http://www.investkit.com" + head_data.url;
         }
 
         var page_data = {
