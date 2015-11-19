@@ -1432,6 +1432,10 @@ seoPicker.route('/:partner_id/:name/:ticker/fin-view/:company_id',fin_ovw);
 function fin_ovw(params, req, res) {
   var startTime = (new Date()).getTime();
 
+  if ( is404Page(params, req, res) ) {
+    return false;
+  }
+
   info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){
     var callback = Meteor.bindEnvironment(function(results){
       var res_arr = {};
@@ -1448,6 +1452,12 @@ function fin_ovw(params, req, res) {
 
       try {
         var data = res_arr;
+
+        if ( isMyInvestKit(info.req) && typeof data.content == "undefined" ) {
+          console.log("SSRSTAT|\"Financial Overview - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          RenderTimeoutError(res);
+          return false;
+        }
 
         if ( typeof data.content != "undefined" ) {
           var temp_d = JSON.parse(data.content);
@@ -1509,7 +1519,7 @@ function fin_ovw(params, req, res) {
         var head_data = { // Data to put into the head of the document (meta tags/title)
           description: 'A daily stock update for ' + cdata.c_name,
           title: 'An Investors Guide To ' + cdata.c_name + ': Daily Report | InvestKit.com',
-          url: 'http://www.investkit.com' + Router.pick_path('content.finoverview',{company_id: cdata.c_id, name: compUrlName(cdata.c_name), ticker: cdata.c_ticker}, info.params)
+          url: Router.pick_path('content.finoverview',{company_id: cdata.c_id, name: compUrlName(cdata.c_name), ticker: cdata.c_ticker}, info.params)
         };
 
         var h1 = {
@@ -1520,9 +1530,12 @@ function fin_ovw(params, req, res) {
         };
 
         if ( typeof data.results != "undefined" ) {
+          head_data.url = "http://www.myinvestkit.com" + head_data.url;
           head_data.siteName = data.results.name;
           head_data.title = 'Everything You Need To Know About ' + cdata.c_name + ': Daily Report | ' + data.results.name + ' Finance';
           h1.title = 'Everything You Need To Know About ' + c_name1 + ': Daily Report';
+        } else {
+          head_data.url = "http://www.investkit.com" + head_data.url;
         }
 
         var page_data = {
