@@ -1638,6 +1638,10 @@ seoPicker.route('/:partner_id/:name/:ticker/rivals/:company_id',competitors);
 function competitors(params, req, res){
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
+  if ( is404Page(params, req, res) ) {
+    return false;
+  }
+
   // Get the data
   info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){
     var callback = Meteor.bindEnvironment(function(results){
@@ -1656,6 +1660,12 @@ function competitors(params, req, res){
       var data = res_arr;
 
       try {
+        if ( isMyInvestKit(info.req) && typeof data.content == "undefined" ) {
+          console.log("SSRSTAT|\"Competitors Page - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          RenderTimeoutError(res);
+          return false;
+        }
+
         if ( typeof data.content != "undefined" ) {
           var temp_d = JSON.parse(data.content);
           temp_d.results.name = temp_d.name;
@@ -1681,14 +1691,16 @@ function competitors(params, req, res){
 
         var head_data = { // Data to put into the head of the document (meta tags/title)
           description: 'Competitors of ' + data.profile_header.c_name,
-          title: data.profile_header.c_name + '\'s Top Lists | InvestKit.com',
-          url: 'http://www.investkit.com' + Router.pick_path('content.listoflist', {name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker, company_id: data.profile_header.c_id}, info.params)
+          title: data.profile_header.c_name + '\'s Rivals | InvestKit.com',
+          url: Router.pick_path('content.listoflist', {name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker, company_id: data.profile_header.c_id}, info.params)
         };
 
         if ( typeof data.results != "undefined" ) {
           head_data.siteName = data.results.name + ' Finance';
-          head_data.title = data.top_list_gen.top_list_info.top_list_title + ' | ' + data.results.name + ' Finance';
-          head_data.url = 'http://www.investkit.com' + Router.pick_path('content.toplist', {l_name: compUrlName(data.top_list_gen.top_list_info.top_list_title), list_id: data.top_list_gen.top_list_info.top_list_id, loc_id: compUrlName(info.params.loc_id)}, info.params);
+          head_data.title = 'Rivals of ' + data.profile_header.c_name + ' | ' + data.results.name + ' Finance';
+          head_data.url = 'http://www.myinvestkit.com' + head_data.url;
+        } else {
+          head_data.url = 'http://www.investkit.com' + head_data.url;
         }
 
         var page_data = {
@@ -1719,7 +1731,7 @@ function competitors(params, req, res){
       } catch(e) {
         console.log(e.stack);
         console.log("SSRSTAT|\"Competitors Page - Error\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
-        RenderError(res);
+        RenderError(res,e.stack);
       }
     });
 
@@ -2938,8 +2950,12 @@ function RenderTimeoutError(res) {
   res.end('Server Time Limit Reached');
 }
 
-function RenderError(res) {
+function RenderError(res,stack) {
   res.writeHead(500);
+  if ( stack ) {
+    res.end(stack);
+    return false;
+  }
   res.end('Unknown Server Error');
 }
 
