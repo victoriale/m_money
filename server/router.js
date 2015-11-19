@@ -899,7 +899,7 @@ function location_profile(params, req, res){
 //****************** LOCATION PAGES ******************
 // Sector page
 seoPicker.route('/:loc_id/sector/:sector_id/:page_num',sector_page);
-seoPicker.route('/:partner_id/sector/:loc_id/:sector_id/:page_num',sector_page);
+seoPicker.route('/:partner_id/sec/:loc_id/:sector_id?/:page_num',sector_page);
 function sector_page(params, req, res) {
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
@@ -910,7 +910,9 @@ function sector_page(params, req, res) {
     loc_id = abbrstate(params.loc_id.toLowerCase());
   }
 
-  params.sector_id = params.sector_id.replace(/_/g,'%5C%2F').replace(/-/g,' ');
+  if ( typeof params.sector_id != "undefined" ) {
+    params.sector_id = params.sector_id.replace(/_/g,'%5C%2F').replace(/-/g,' ');
+  }
 
   // Get the data
   info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){
@@ -945,26 +947,41 @@ function sector_page(params, req, res) {
         }
 
         var head_data = { // Data to put into the head of the document (meta tags/title)
-          description: 'Get a list of all the companies in ' + info.params.loc_id + ' in the ' + data.sector_companies.sector + ' sector.',
-          title: 'An Investor\'s Guide to ' + data.sector_companies.sector + ' Companies in ' + info.params.loc_id + ' | InvestKit.com',
-          url: 'http://www.investkit.com' + Router.pick_path('content.sector',{sector_id: compUrlName(info.params.sector_id), loc_id: info.params.loc_id}, info.params)
+          description: 'Get a list of all the companies in ' + info.params.loc_id,
+          title: 'An Investor\'s Guide to Companies in ' + info.params.loc_id + ' | InvestKit.com',
+          url: Router.pick_path('content.sector',{sector_id: compUrlName(info.params.sector_id), loc_id: info.params.loc_id}, info.params)
         };
 
+        if ( typeof data.sector_companies.sector != "undefined" && data.sector_companies.sector != null ) {
+          head_data.description +=  ' in the ' + data.sector_companies.sector + ' sector.';
+          head_data.title = 'An Investor\'s Guide to ' + data.sector_companies.sector + ' Companies in ' + info.params.loc_id + ' | InvestKit.com';
+        }
+
         if ( typeof data.results != "undefined" ) {
-          head_data.title = 'Everything You Need To Know About ' + data.sector_companies.sector + ' Companies in ' + info.params.loc_id + ' | ' + data.results.name + ' Finance';
-          head_data.url = 'http://www.myinvestkit.com' + Router.pick_path('content.sector',{sector_id: compUrlName(info.params.sector_id), loc_id: info.params.loc_id}, info.params);
+          head_data.title = 'Everything You Need To Know About Companies in ' + info.params.loc_id + ' | ' + data.results.name + ' Finance';
+          if ( typeof data.sector_companies.sector != "undefined" && data.sector_companies.sector != null ) {
+            head_data.title = 'Everything You Need To Know About ' + data.sector_companies.sector + ' Companies in ' + info.params.loc_id + ' | ' + data.results.name + ' Finance';
+          }
+          head_data.url = 'http://www.myinvestkit.com' + head_data.url;
           head_data.siteName = data.results.name + ' Finance';
+        } else {
+          head_data.url = "http://www.investkit.com" + head_data.url;
         }
 
         var page_data = {
           head_data: head_data,
           h1: {
-            title: data.sector_companies.sector + ' Companies in <a href="' + Router.pick_path('content.locationprofile',{loc_id: info.params.loc_id}, info.params) + '">' + info.params.loc_id + '</a>',
+            title: 'Companies in <a href="' + Router.pick_path('content.locationprofile',{loc_id: info.params.loc_id}, info.params) + '">' + info.params.loc_id + '</a>',
             content: {
               ul: c_list
             }
           }
         };
+
+
+        if ( typeof data.sector_companies.sector != "undefined" && data.sector_companies.sector != null ) {
+          page_data.h1.title = data.sector_companies.sector + ' ' + page_data.h1.title;
+        }
 
         if ( typeof data.results != "undefined" ) {
           page_data.partner_header = data.results.header.script;
