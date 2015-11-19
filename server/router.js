@@ -2231,6 +2231,187 @@ function exec_comp(params, req, res){
   });
 }
 
+// Executive Education Page
+seoPicker.route('/:name/:ticker/education/:exec_id',exec_edu);
+seoPicker.route('/:partner_id/:ticker/:name/edu/:exec_id',exec_edu);
+function exec_edu(params, req, res){
+  var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
+
+  if ( is404Page(params, req, res) ) {
+    return false;
+  }
+
+  // Get the data
+  info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){
+    var callback = Meteor.bindEnvironment(function(results){
+      var res_arr = {};
+      for ( var index = 0; index < results.length; index++ ) {
+        for ( var attr in results[index] ) {
+          if ( results[index].hasOwnProperty(attr) ) {
+            res_arr[attr] = results[index][attr];
+          }
+        }
+      }
+
+      var info = info_envar.get();
+      var res = info.res;
+
+      try {
+        var data = res_arr;
+        if ( isMyInvestKit(info.req) && typeof data.content == "undefined" ) {
+          console.log("SSRSTAT|\"Education History - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          RenderTimeoutError(res);
+          return false;
+        }
+
+        profile_header = data.profile_header || {};
+        profile_header.o_current_title = profile_header.o_current_title || {};
+        profile_header.compensation = profile_header.compensation || {};
+        var cmp_reg = new RegExp(profile_header.c_name,'g');
+        profile_header.o_bio = (profile_header.o_bio || '').replace(cmp_reg,'<a href="' + Router.pick_path('content.companyprofile',{company_id: profile_header.c_id, partner_id: info.params.partner_id, name: compUrlName(profile_header.c_name), ticker: profile_header.c_ticker}, info.params) + '">' + profile_header.c_name + '</a>');
+        profile_header.c_name_orig = profile_header.c_name;
+        profile_header.c_name = '<a href="' + Router.pick_path('content.companyprofile',{company_id: profile_header.c_id, partner_id: info.params.partner_id, name: compUrlName(profile_header.c_name), ticker: profile_header.c_ticker}, info.params) + '">' + profile_header.c_name + ' (' + profile_header.c_ticker + ')</a>';
+        data.profile_header.o_full_name = data.profile_header.o_first_name + ' ' + data.profile_header.o_middle_initial + ' ' + data.profile_header.o_last_name;
+
+        if ( typeof data.content != "undefined" ) {
+          var temp_d = JSON.parse(data.content);
+          temp_d.results.name = temp_d.name;
+          data.results = temp_d.results;
+        }
+
+        // Create linked name
+        data.profile_header.link_name = '<a href="' + Router.pick_path('content.executiveprofile',{fname: data.profile_header.o_first_name, lname: data.profile_header.o_last_name, exec_id: data.profile_header.o_id, ticker: data.profile_header.c_ticker}, info.params) + '">' + data.profile_header.o_first_name + ' ' + data.profile_header.o_last_name + '</a>';
+
+        // Get College Information
+        var eduHist = [];
+        for ( var index = 0; index < data.college_rivals.officer.education_data.length; index++ ) {
+          var o_data = data.college_rivals.officer.education_data[index];
+          var r_data = {};
+          r_data.title = o_data.College;
+          r_data.content = {
+            line: [data.profile_header.link_name + ' obtained a ' + o_data.Degree + ' in ' + o_data.Major]
+          }
+          eduHist[eduHist.length] = r_data;
+        }
+
+
+        var published = (new Date()).toSNTForm();
+        var updated = (new Date(profile_header.o_last_updated)).toSNTFormTimeSEO();
+
+        var h1content = {
+          line: [
+            'Written By: ' + author(parseInt(info.params.exec_id)),
+            'Page Published on ' + published,
+            '',
+            profile_header.o_bio
+          ]
+        };
+
+        var head_data = { // Data to put into the head of the document (meta tags/title)
+          description: 'Education History for ' + profile_header.o_full_name,
+          title: 'An Investors Guide To ' + profile_header.o_full_name + '\'s Education History | InvestKit.com',
+          url: Router.pick_path('content.eduhist',{partner_id: info.params.partner_id, exec_id: profile_header.o_id, fname: profile_header.o_first_name, lname: profile_header.o_last_name, ticker: profile_header.c_ticker}, info.params),
+          other_tags: [
+            {
+              name: 'og:image',
+              content: profile_header.o_pic
+            },
+            {
+              name: 'og:type',
+              content: 'profile'
+            },
+            {
+              name: 'profile:first_name',
+              content: profile_header.o_first_name
+            },
+            {
+              name: 'profile:last_name',
+              content: profile_header.o_last_name
+            }
+          ]
+        };
+
+        if ( typeof data.results != "undefined" ) {
+          h1content.line[0] = 'Written By: ' + author(parseInt(info.params.exec_id) + 2);
+          head_data.siteName = data.results.name + ' Finance';
+          head_data.title = 'Everything You Need To Know About ' + profile_header.o_full_name + '\'s Education History | ' + data.results.name + ' Finance';
+          head_data.description = 'Education history for ' + profile_header.o_full_name;
+          head_data.url = 'http://www.myinvestkit.com' + head_data.url;
+          var h1 = {
+            title: 'Everything You Need To Know About ' + profile_header.o_full_name + '\'s Education History',
+            content: h1content,
+            h2: eduHist
+          };
+        } else {
+          head_data.url = 'http://www.investkit.com' + head_data.url;
+          var h1 = {
+            title: 'An Investors Guide To ' + profile_header.o_full_name + '\'s Education History',
+            content: h1content,
+            h2: eduHist
+          };
+        }
+
+        var page_data = {
+          head_data: head_data,
+          h1: h1
+        };
+
+        if ( typeof data.results != "undefined" ) {
+          page_data.partner_header = data.results.header.script;
+        }
+
+        // res.end(JSON.stringify(res_arr, null, 2));
+
+        // res.end(SSR.render('generic_page',page_data));
+        res.end(minify(SSR.render('generic_page',page_data), {
+          minifyCSS: true,
+          minifyJS: true,
+          removeComments: true,
+          collapseWhitespace: true
+        })); // Write the pages template
+        // Also minifies the HTML string
+
+        // Log how long it took to render the page
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"Education History\",\"" + info.params.exec_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
+        return false;
+      } catch(e) {
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"Education History - Error\",\"" + info.params.exec_id + "\",," + endTime + ",\"" + info.params.partner_id + "\"|");
+        RenderError(res, e.stack);
+      }
+    });
+
+    var functions = [];
+
+    functions.push(function(batch){
+      batch_envar.withValue(batch, function(){
+        var bound_cb = Meteor.bindEnvironment(method_cb);
+        Meteor.call("GetExecData",params.exec_id,"batch_1", bound_cb);
+      });
+    });
+    functions.push(function(batch){
+      batch_envar.withValue(batch, function(){
+        var bound_cb = Meteor.bindEnvironment(method_cb);
+        Meteor.call("ExecWebpageData",params.exec_id,"education", bound_cb);
+      });
+    });
+
+    if ( typeof params.partner_id != "undefined" ) {
+      functions.push(function(batch){
+        batch_envar.withValue(batch, function(){
+          var bound_cb = Meteor.bindEnvironment(method_cb);
+          Meteor.call('GetPartnerHeader',params.partner_id, bound_cb);
+        });
+      });
+    }
+
+    var company_batch = new async_mult(functions, callback);
+
+    company_batch.execute();
+  });
+}
+
 //****************** LIST PAGES ******************
 // List Page
 seoPicker.route('/:l_name/:list_id/list/:loc_id?/:page_num',list_page);
@@ -2874,9 +3055,9 @@ function isMyInvestKit(req) {
   if ( req.headers.host.indexOf('myinvestkit') != -1 ) {
     return true;
   }
-  if ( req.headers.host.indexOf('localhost') != -1 ) {
-    return true;
-  }
+  // if ( req.headers.host.indexOf('localhost') != -1 ) {
+  //   return true;
+  // }
   return false;
 }
 
