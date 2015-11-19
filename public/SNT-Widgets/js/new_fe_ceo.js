@@ -93,5 +93,5 @@ function imageUrl(path){
   if(typeof path == 'undefined' || path == null || path == '' || path == 'null'){
     return '/public/no_image.png';
   }
-  return 'http://images.investkit.com/images/' + path;
+  return 'http://cdn.investkit.com/' + path;
 }
