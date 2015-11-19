@@ -1935,19 +1935,21 @@ function work_history(params, req, res){
         var head_data = { // Data to put into the head of the document (meta tags/title)
           description: 'Learn about ' + data.profile_header.o_full_name + '\'s Work History',
           title: 'An Investor\'s Guide to ' + data.profile_header.o_full_name + '\'s Work History | InvestKit.com',
-          url: 'http://www.investkit.com' + Router.pick_path('content.workhistory',{fname: data.college_rivals.officer.o_first_name, lname: data.college_rivals.officer.o_last_name, ticker: data.college_rivals.officer.c_ticker}, info.params),
+          url: Router.pick_path('content.workhistory',{fname: data.profile_header.o_first_name, lname: data.profile_header.o_last_name, ticker: data.profile_header.c_ticker}, info.params),
         };
 
         if ( typeof data.results != "undefined" ) {
-          head_data.title = 'List of the Executives for ' + data.profile_header.c_name + ' | ' + data.results.name + ' Finance';
-          head_data.url = 'http://www.myinvestkit.com' + Router.pick_path('content.boardcommittee',{name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker, company_id: data.profile_header.c_id}, info.params);
+          head_data.title = 'Everything You Need To Know About ' + data.profile_header.o_full_name + '\'s Work History | ' + data.results.name + ' Finance';
+          head_data.url = 'http://www.myinvestkit.com' + head_data.url;
           head_data.siteName = data.results.name + ' Finance';
+        } else {
+          head_data.url = 'http://www.investkit.com' + head_data.url;
         }
 
         var page_data = {
           head_data: head_data,
           h1: {
-            title: 'Work History for <a href="' + Router.pick_path('content.executiveprofile',{fname: data.college_rivals.officer.o_first_name, lname: data.college_rivals.officer.o_last_name, ticker: data.college_rivals.officer.c_ticker, exec_id: data.college_rivals.officer.o_id},info.params) + '">' + data.college_rivals.officer.o_first_name + ' ' + data.college_rivals.officer.o_last_name + '</a> from <a href="' + Router.pick_path('content.companyprofile',{name: compUrlName(data.college_rivals.officer.c_name), ticker: data.college_rivals.officer.c_ticker, company_id: data.college_rivals.officer.c_id},info.params) + '">' + data.college_rivals.officer.c_name + ' (ticker: ' + data.college_rivals.officer.c_ticker + ')</a>',
+            title: 'Work History for <a href="' + Router.pick_path('content.executiveprofile',{fname: data.profile_header.o_first_name, lname: data.profile_header.o_last_name, ticker: data.profile_header.c_ticker, exec_id: data.profile_header.o_id},info.params) + '">' + data.profile_header.o_full_name + '</a> from <a href="' + Router.pick_path('content.companyprofile',{name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker, company_id: data.profile_header.c_id},info.params) + '">' + data.profile_header.c_name + ' (ticker: ' + data.profile_header.c_ticker + ')</a>',
             h2: work_hist
           }
         };
@@ -1972,9 +1974,8 @@ function work_history(params, req, res){
         console.log("SSRSTAT|\"Work History\",\"" + info.params.exec_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch (e) {
-        console.log(e.stack);
         console.log("SSRSTAT|\"Work History - Error\",\"" + info.params.exec_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
-        RenderError(res);
+        RenderError(res, e.stack);
       }
     });
 
