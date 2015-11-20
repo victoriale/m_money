@@ -389,7 +389,7 @@ Template.daily_update.helpers({
       case '1M':
         var min = latestDate.subtract(1, 'months').format('X') * 1000;
 
-        var xAxis_format = '%a, %b %e';
+        var xAxis_format = '%b %e';
         var tooltip_format = '%a, %b %e';
       break;
       case '3M':
