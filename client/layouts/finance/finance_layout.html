@@ -1,50 +1,56 @@
 <!-- Header template -->
 <template name="finance_layout">
   {{{partner_header}}}
-  {{> yield "header"}}
-  {{> header_nav}}
+  <div class="finance-content">
+    {{> yield "header"}}
+    {{> header_nav}}
 
-  <table class="finance_body">
-    <tr>
-      <td class="finance_body_left"></td>
-      <td class="finance_body_center">
-        {{> yield}}
-      </td>
-      <td class="finance_body_faq">{{> ad_zone}}</td>
-      <td class="finance_body_right"></td>
-    </tr>
-  </table>
+    <table class="finance_body">
+      <tr>
+        <td class="finance_body_left"></td>
+        <td class="finance_body_center">
+          {{> yield}}
+        </td>
+        <td class="finance_body_faq">{{> ad_zone}}</td>
+        <td class="finance_body_right"></td>
+      </tr>
+    </table>
     {{> footer}}
+  </div>
 </template>
 <!-- END Header template -->
 
 <!-- Header template -->
 <template name="finance_layout_loading">
   {{{partner_header}}}
-  {{> yield "header"}}
-  {{> header_nav}}
+  <div class="finance-content">
+    {{> yield "header"}}
+    {{> header_nav}}
 
-  <table class="finance_body">
-    <tr>
-      <td class="finance_body_left"></td>
-      <td class="finance_body_center">
-        {{> yield}}
-      </td>
-      <td class="finance_body_right"></td>
-    </tr>
-  </table>
-  {{> footer}}
+    <table class="finance_body">
+      <tr>
+        <td class="finance_body_left"></td>
+        <td class="finance_body_center">
+          {{> yield}}
+        </td>
+        <td class="finance_body_right"></td>
+      </tr>
+    </table>
+    {{> footer}}
+  </div>
 </template>
 
 <template name="finance_layout_home">
   {{{partner_header}}}
-  {{> yield "header"}}
-  <div class="directory_page" style="width: 100%; font-size: 2vw; height:auto;"></div>
-  {{#unless myinvestkit}}
-    {{> header_nav}}
-  {{/unless}}
+  <div class="finance-content">
+    {{> yield "header"}}
+    <div class="directory_page" style="width: 100%; font-size: 2vw; height:auto;"></div>
+    {{#unless myinvestkit}}
+      {{> header_nav}}
+    {{/unless}}
 
-  {{> yield}}
-{{> footer}}
+    {{> yield}}
+  {{> footer}}
+  </div>
 </template>
 <!-- END Header template -->
