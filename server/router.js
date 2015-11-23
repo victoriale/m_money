@@ -42,6 +42,10 @@ seoPicker.route('/favicon.ico',function(params, req, res){
   res.end('Not Found');
 })
 
+seoPicker.route('/data', function(params, req, res) {
+  res.end(JSON.stringify(req.headers, null, 2));
+});
+
 //****************** PROFILE ROUTES ******************
 // Company Profile
 seoPicker.route('/:ticker/:name/company/:company_id',company_profile);
