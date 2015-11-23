@@ -334,7 +334,7 @@ Template.c_p_graph.onCreated(function(){
     }
     data.stock_hist.forEach(function(item, index){
       //Transform date
-      var date = item.sh_date * 1000;
+      var date = (item.sh_date - 15 * 60) * 1000;
       //Build point array
       var point = [date, Number(item.sh_close)]
       //Push point array to data set

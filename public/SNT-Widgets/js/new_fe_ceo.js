@@ -59,6 +59,8 @@ function dataCall(index){
     $('#loc_link').attr('href',"http://www.myinvestkit.com/"+domain+"/"+curData[index].c_hq_state+"/loc");
     $('#cmp_link').attr('href',"http://www.myinvestkit.com/"+domain+"/"+curData[index].c_name.replace(/ /g,'-')+"/"+curData[index].c_ticker+"/c/"+curData[index].c_id);
     $('.fcw-cmp-image').parent().attr('href',"http://www.myinvestkit.com/"+domain+"/"+curData[index].c_name.replace(/ /g,'-')+"/"+curData[index].c_ticker+"/c/"+curData[index].c_id)
+    $('#ad_link').attr('href',"http://www.joyfulhome.com/");
+
   }else{
     $('#title_link').attr('href',"http://www.investkit.com/"+curData[index].c_ticker+"/"+compUrlName(curData[index].c_name)+"/company/"+curData[index].c_id);
     $('.exec-link').attr('href',"http://www.investkit.com/"+curData[index].o_first_name+"-"+curData[index].o_last_name+"/"+curData[index].c_ticker+"/executive/"+curData[index].o_id);
@@ -66,6 +68,8 @@ function dataCall(index){
     $('#loc_link').attr('href',"http://www.investkit.com/"+curData[index].c_hq_state+"/location");
     $('#cmp_link').attr('href',"http://www.investkit.com/"+curData[index].c_ticker+"/"+curData[index].c_name.replace(/ /g,'-')+"/company/"+curData[index].c_id);
     $('.fcw-cmp-image').parent().attr('href',"http://www.investkit.com/"+curData[index].c_ticker+"/"+curData[index].c_name.replace(/ /g,'-')+"/company/"+curData[index].c_id);
+    $('#ad_link').attr('href',"http://www.joyfulhome.com/");
+
   }
 }
 
@@ -93,5 +97,5 @@ function imageUrl(path){
   if(typeof path == 'undefined' || path == null || path == '' || path == 'null'){
     return '/public/no_image.png';
   }
-  return 'http://images.investkit.com/images/' + path;
+  return 'http://cdn.investkit.com/' + path;
 }
