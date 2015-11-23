@@ -337,7 +337,7 @@ function reformatFinancialOverviewData(){
 
   data.stock_history.forEach(function(item, index){
     //Transform date
-    var date = item.sh_date * 1000;
+    var date = (item.sh_date - 15 * 60) * 1000;
     //Build point array
     if(!isNaN(date)){
       var point = [date, Number(item.sh_close)]

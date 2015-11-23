@@ -105,7 +105,7 @@ function transformLocationDailyUpdate(){
   var highchartsData2 = [];
   data2.forEach(function(item, index){
 
-    var date = item.sh_date * 1000;
+    var date = (item.sh_date - 15 * 60) * 1000;
 
     var point2 = [date, Number(item.sh_close)];
 
@@ -119,10 +119,10 @@ function transformLocationDailyUpdate(){
   highchartsData.reverse();
   data.highchartsData = highchartsData;
 
-  highchartsData.push([
+  /*highchartsData.push([
     moment().format('X') * 1000,
     Number(data.composite_summary.current_price)
-  ]);
+  ]);*/
 
   Session.set('graph_data', data);
 
@@ -360,14 +360,17 @@ Template.daily_update.helpers({
         //Define what data to use. Location uses separate api call
         if(Session.get('IsLocation')){
           var graphData = Session.get('new_one_day_location_daily_update');
-
+          var dataLength = graphData.length;
+          //Set min and max of graphs to latest day available (9:00am EST - 4:00pm EST)
+          var min = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
+          var max = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(0).second(0).format('X') * 1000;
         }
         if(Session.get('IsCompany')){
           var graphData = data.highchartsData;
+          //Set min and max of graphs to latest day available (9:00am EST - 4:00pm EST)
+          var min = moment.utc(data.highchartsData[dataLength - 1][0]).subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
+          var max = moment.utc(data.highchartsData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(0).second(0).format('X') * 1000;
         }
-        //Set min and max of graphs to latest day available (9:00am EST - 4:00pm EST)
-        var min = moment.utc(data.highchartsData[dataLength - 1][0]).subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
-        var max = moment.utc(data.highchartsData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(0).second(0).format('X') * 1000;
 
         var tickPositions = [min + (1800 * 1000), min + ((3 * 3600) * 1000), min + ((5 * 3600) * 1000), min + ((7 * 3600) * 1000)];
 
