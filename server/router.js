@@ -1032,6 +1032,145 @@ function sector_page(params, req, res) {
   });
 }
 
+// List of Lists (location)
+seoPicker.route('/:loc_id/lists',lol_loc);
+seoPicker.route('/:partner_id/lists/:loc_id',lol_loc);
+function lol_loc(params, req, res) {
+  var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
+
+  if ( is404Page(params, req, res) ) {
+    return false;
+  }
+
+  var loc_id = params.loc_id;
+  if ( typeof fullstate(params.loc_id) != "undefined" ) {
+    params.loc_id = fullstate(params.loc_id);
+  } else if ( typeof abbrstate(params.loc_id.toLowerCase()) != "undefined" ) {
+    loc_id = abbrstate(params.loc_id.toLowerCase());
+  }
+
+  // Get the data
+  info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){
+    var callback = Meteor.bindEnvironment(function(results){
+      var res_arr = {};
+      for ( var index = 0; index < results.length; index++ ) {
+        for ( var attr in results[index] ) {
+          if ( results[index].hasOwnProperty(attr) ) {
+            res_arr[attr] = results[index][attr];
+          }
+        }
+      }
+
+      var info = info_envar.get();
+      var res = info.res;
+
+      try {
+        var data = res_arr;
+
+        if ( typeof data.profile_header == "undefined" || (isMyInvestKit(info.req) && typeof data.content == "undefined") ) {
+          console.log("SSRSTAT|\"List of Lists Location - Timeout\",\"" + info.params.loc_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          RenderTimeoutError(res);
+          return false;
+        }
+
+        if ( typeof data.content != "undefined" ) {
+          var temp_d = JSON.parse(data.content);
+          temp_d.results.name = temp_d.name;
+          data.results = temp_d.results;
+        }
+
+        // Make the list of lists
+        var c_list = [];
+        if ( typeof data.list_of_lists == "array" || typeof data.list_of_lists == "object" ) {
+          for ( var index = 0; index < data.list_of_lists.length; index++ ) {
+            var lData = {};
+            var listData = data.list_of_lists[index];
+            lData.title = '<a href="' + Router.pick_path('content.toplist',{loc_id: compUrlName(info.params.loc_id), l_name: compUrlName(listData.top_list_info.top_list_title), list_id: listData.top_list_info.top_list_id, page_num: 1}, info.params) + '">' + listData.top_list_info.top_list_title + '</a>';
+            lData.content = {ul: []};
+            for ( var i = 0; i < listData.top_list_list.length; i++ ) {
+              lData.content.ul.push('<a href="' + Router.pick_path('content.companyprofile', {company_id: listData.top_list_list[i].c_id, name: compUrlName(listData.top_list_list[i].c_name), ticker: listData.top_list_list[i].c_ticker}, info.params) + '">' + listData.top_list_list[i].c_name + ' (' + listData.top_list_list[i].c_exchange + ':' + listData.top_list_list[i].c_ticker + ')</a>');
+            }
+            c_list.push(lData);
+          }
+        }
+
+        var head_data = { // Data to put into the head of the document (meta tags/title)
+          description: 'Get a List of All the Lists About ' + info.params.loc_id,
+          title: 'An Investor\'s Guide to Lists About ' + info.params.loc_id + ' | InvestKit.com',
+          url: Router.pick_path('content.listoflistloc',{loc_id: info.params.loc_id}, info.params)
+        };
+
+        if ( typeof data.results != "undefined" ) {
+          head_data.title = 'Everything You Need To Know About Lists About ' + info.params.loc_id + ' | ' + data.results.name + ' Finance';
+          head_data.url = 'http://www.myinvestkit.com' + head_data.url;
+          head_data.siteName = data.results.name + ' Finance';
+        } else {
+          head_data.url = "http://www.investkit.com" + head_data.url;
+        }
+
+        var page_data = {
+          head_data: head_data,
+          h1: {
+            title: 'Lists of Lists About <a href="' + Router.pick_path('content.locationprofile',{loc_id: info.params.loc_id}, info.params) + '">' + info.params.loc_id + '</a>',
+            h2: c_list
+          }
+        };
+
+        if ( typeof data.results != "undefined" ) {
+          page_data.partner_header = data.results.header.script;
+        }
+
+        // res.end(JSON.stringify(res_arr, null, 2));
+
+        // res.end(SSR.render('generic_page',page_data));
+        res.end(minify(SSR.render('generic_page',page_data), {
+          minifyCSS: true,
+          minifyJS: true,
+          removeComments: true,
+          collapseWhitespace: true
+        })); // Write the pages template
+        // Also minifies the HTML string
+
+        // Log how long it took to render the page
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"List of Lists Location\",\"" + info.params.loc_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
+        return false;
+      } catch(e) {
+        console.log("SSRSTAT|\"List of Lists Location - Error\",\"" + info.params.loc_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+        RenderError(res, e.stack);
+      }
+    });
+
+    var functions = [];
+
+    functions.push(function(batch){
+      batch_envar.withValue(batch, function(){
+        var bound_cb = Meteor.bindEnvironment(method_cb);
+        Meteor.call("listOfListLoc", loc_id, bound_cb);
+      });
+    });
+    functions.push(function(batch){
+      batch_envar.withValue(batch, function(){
+        var bound_cb = Meteor.bindEnvironment(method_cb);
+        Meteor.call("GetLocationData",loc_id,"batch_1", bound_cb);
+      });
+    });
+
+    if ( typeof params.partner_id != "undefined" ) {
+      functions.push(function(batch){
+        batch_envar.withValue(batch, function(){
+          var bound_cb = Meteor.bindEnvironment(method_cb);
+          Meteor.call('GetPartnerHeader',params.partner_id, bound_cb);
+        });
+      });
+    }
+
+    var company_batch = new async_mult(functions, callback);
+
+    company_batch.execute();
+  });
+}
+
 //****************** COMPANY PAGES ******************
 // List of Lists (company)
 seoPicker.route('/:ticker/:name/lists/:company_id',list_of_lists);
