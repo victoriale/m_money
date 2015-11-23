@@ -66,8 +66,8 @@ Template.list_view.helpers({
     return fullstate(url.loc_id);
   },
   image: function(){
-    var params = Router.current().getParams();
-    var data = params.loc_id;
+    var datalist = Session.get('top_list_gen').top_list_info;
+    var data = datalist.top_list_location[0];
     if(data == 'National' || data == '' || typeof data == 'undefined'){
       return "background-image: url('/StateImages/Location_National.jpg');";
     }else{

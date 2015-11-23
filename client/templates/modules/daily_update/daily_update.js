@@ -35,28 +35,6 @@ Template.daily_update.onCreated(function(){
         var input_type = 'normal';
       }
 
-      //Call to get one day data for daily update graph
-      /*Meteor.call('GetOneDayDailyUpdate', input_param, input_type, function(err, data){
-        if(err){
-          console.log('error Call', err);
-          return false;
-        }else{
-          //console.log('ONE DAY RESULT', data);
-
-          var highchartsData = [];
-
-          data.one_day_location_daily_update.forEach(function(item, index){
-            //var date = moment(item.sh_date).tz('America/North_Dakota/New_Salem').format('X');
-
-            highchartsData.push([item.sh_date * 1000, Number(item.sh_close)]);
-          })
-
-          //highchartsData.reverse();
-
-          Session.set('one_day_location_daily_update', highchartsData);
-        }
-      })*/
-
       transformLocationDailyUpdate();
     }
   })
@@ -75,10 +53,46 @@ Template.daily_update.onCreated(function(){
             Session.set('AI_daily_update',aiContent);
           }
         })
+
+        transformCompanyDailyUpdate();
       }
     }
   })
 })
+
+function transformCompanyDailyUpdate(){
+  var data = Session.get('daily_update');
+  var data2 = Session.get('one_day_daily_update');
+
+  if(typeof data === 'undefined'){
+    return '';
+  }
+
+  var highchartsData = [];
+  var daily_update = {};
+
+  data.stock_hist.forEach(function(item, index){
+    var date = item.sh_date * 1000;
+
+    var point = [date, Number(item.sh_close)];
+    highchartsData.push(point);
+  })
+
+  var highchartsData2 = [];
+
+  data2.stock_hist.forEach(function(item, index){
+    var date = (item.sh_date - 15 * 60) * 1000;
+
+    var point = [date, Number(item.sh_close)];
+    highchartsData2.push(point);
+  })
+
+  highchartsData.reverse();
+  data.highchartsData = highchartsData;
+
+  Session.set('graph_data', data);
+  Session.set('new_one_day_daily_update', highchartsData2);
+}
 
 //Function to transform location data to form useable my already existing helpers
 function transformLocationDailyUpdate(){
@@ -328,7 +342,26 @@ Template.daily_update.helpers({
 
     return data;
   },
+  graphTitle: function(){
+    var d_u_range = Session.get('d_u_range');
 
+    if(Session.get('IsLocation')){
+      if(d_u_range === '1D'){
+        var data = Session.get('new_one_day_location_daily_update');
+        return ' - ' + moment.utc(data[0][0]).subtract(5, 'hours').format('dddd MMM Do, YYYY');
+      }
+    }
+
+    if(Session.get('IsCompany')){
+      if(d_u_range === '1D'){
+        var data = Session.get('new_one_day_daily_update');
+        return ' - ' + moment.utc(data[0][0]).subtract(5, 'hours').format('dddd MMM Do, YYYY');
+      }
+    }
+
+    return '';
+
+  },
   //Helper to determine chart
   getGraph: function(){
     var data = Session.get('graph_data');
@@ -363,13 +396,14 @@ Template.daily_update.helpers({
           var dataLength = graphData.length;
           //Set min and max of graphs to latest day available (9:00am EST - 4:00pm EST)
           var min = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
-          var max = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(0).second(0).format('X') * 1000;
+          var max = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(10).second(0).format('X') * 1000;
         }
         if(Session.get('IsCompany')){
-          var graphData = data.highchartsData;
+          var graphData = Session.get('new_one_day_daily_update');
+          var dataLength = graphData.length;
           //Set min and max of graphs to latest day available (9:00am EST - 4:00pm EST)
-          var min = moment.utc(data.highchartsData[dataLength - 1][0]).subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
-          var max = moment.utc(data.highchartsData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(0).second(0).format('X') * 1000;
+          var min = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
+          var max = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(10).second(0).format('X') * 1000;
         }
 
         var tickPositions = [min + (1800 * 1000), min + ((3 * 3600) * 1000), min + ((5 * 3600) * 1000), min + ((7 * 3600) * 1000)];
@@ -379,7 +413,6 @@ Template.daily_update.helpers({
       break;
       case '5D':
         var min = latestDate.subtract(5, 'days').format('X') * 1000;
-
         var xAxis_format = '%b %e';
         var tooltip_format = '%a, %b %e';
       break;
@@ -504,7 +537,7 @@ Template.daily_update.helpers({
       tooltip: {
         formatter: function(){
 
-          if(this.x === min){
+          if(this.x === min && d_u_range === '1D'){
             return "Yesterday's Closing Price<br />" + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
           }else{
             return Highcharts.dateFormat(tooltip_format, this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);

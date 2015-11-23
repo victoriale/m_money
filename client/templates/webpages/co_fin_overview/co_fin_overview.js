@@ -51,6 +51,8 @@ Template.co_fin_overview.helpers({
 
     var dataLength = data.highchartsData.length;
 
+    var graphData = data.highchartsData;
+
     //Set default values for highcharts obj
     var max = null;
     var tickPositions = undefined;
@@ -61,11 +63,12 @@ Template.co_fin_overview.helpers({
     //Get range value based on option selected
     switch(fo_range){
       case 'cfoBtn0':
-        var graphData = data.highchartsData
+        var graphData = Session.get('new_one_day_daily_update');
+        var dataLength = graphData.length;
 
         //Set min and max of graphs to latest day available (9:00am EST - 4:00pm EST)
-        var min = moment.utc(data.highchartsData[dataLength - 1][0]).subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
-        var max = moment.utc(data.highchartsData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(0).second(0).format('X') * 1000;
+        var min = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
+        var max = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(10).second(0).format('X') * 1000;
         //Set static tick positions based on minimum value (9:00am)
         var tickPositions = [min + ((1800) * 1000), min + ((2 * 3600) * 1000), min + ((3 * 3600) * 1000), min + ((4 * 3600) * 1000), min + ((5 * 3600) * 1000), min + ((6 * 3600) * 1000), min + ((7 * 3600) * 1000)];
 
@@ -183,7 +186,11 @@ Template.co_fin_overview.helpers({
       },
       tooltip: {
       	formatter: function(){
-          return Highcharts.dateFormat(tooltip_format, this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+          if(this.x === min && fo_range === 'cfoBtn0'){
+            return "Yesterday's Closing Price<br />" + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+          }else{
+            return Highcharts.dateFormat(tooltip_format, this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+          }
         }
       },
       plotOptions: {
@@ -207,7 +214,7 @@ Template.co_fin_overview.helpers({
       },
       series: [{
           name: data.company_data.c_name,
-          data: data.highchartsData
+          data: graphData
       }]
     }
 
@@ -337,7 +344,7 @@ function reformatFinancialOverviewData(){
 
   data.stock_history.forEach(function(item, index){
     //Transform date
-    var date = (item.sh_date - 15 * 60) * 1000;
+    var date = (item.sh_date) * 1000;
     //Build point array
     if(!isNaN(date)){
       var point = [date, Number(item.sh_close)]
@@ -347,6 +354,16 @@ function reformatFinancialOverviewData(){
   })
   data.highchartsData = highchartsData;
 
+  var highchartsData2 = [];
+
+  data.daily_update.forEach(function(item, index){
+    var date = (item.sh_date - 15 * 60) * 1000;
+    var point = [date, Number(item.sh_close)];
+
+    highchartsData2.push(point);
+  })
+
+  Session.set('new_one_day_daily_update', highchartsData2);
   Session.set('new_fin_overview', data);
 }
 
