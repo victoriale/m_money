@@ -31,6 +31,19 @@ Template.cp_body.onCreated(function(){
   })
 })
 
+Template.c_p_header.helpers({
+  graphTitle: function(){
+    var c_p_range = Session.get('c_p_range');
+
+    if(c_p_range === '1D'){
+      var data = Session.get('new_one_day_daily_update');
+      return ' - ' + moment.utc(data[0][0]).subtract(5, 'hours').format('dddd MMM Do, YYYY');
+    }
+
+    return '';
+
+  }
+})
 
 Template.cp_head.helpers({
   topInfo: function(){
@@ -145,6 +158,8 @@ Template.c_p_graph.helpers({
       return '';
     }
 
+    var graphData = data.highchartsData;
+
     //Set default values for highcharts obj
     var max = null;
     var tickPositions = undefined;
@@ -157,11 +172,12 @@ Template.c_p_graph.helpers({
     switch(c_p_range){
       case '1D':
         //Set graphData to get minimum
-        var graphData = data.highchartsData;
+        var graphData = Session.get('new_one_day_daily_update');
+        var dataLength = graphData.length;
 
         //Set min and max of graphs to latest day available (9:00am EST - 4:00pm EST)
-        var min = moment.utc(data.highchartsData[dataLength - 1][0]).subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
-        var max = moment.utc(data.highchartsData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(0).second(0).format('X') * 1000;
+        var min = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
+        var max = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(10).second(0).format('X') * 1000;
 
         var tickPositions = [min + ((1800) * 1000), min + ((2 * 3600) * 1000), min + ((3 * 3600) * 1000), min + ((4 * 3600) * 1000), min + ((5 * 3600) * 1000), min + ((6 * 3600) * 1000), min + ((7 * 3600) * 1000)];
 
@@ -286,7 +302,13 @@ Template.c_p_graph.helpers({
       },
       tooltip: {
         formatter: function(){
-          return Highcharts.dateFormat(tooltip_format, this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+
+          if(this.x === min && c_p_range === '1D'){
+            return "Yesterday's Closing Price<br />" + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+          }else{
+            return Highcharts.dateFormat(tooltip_format, this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+          }
+
         }
       },
       plotOptions: {
@@ -310,7 +332,7 @@ Template.c_p_graph.helpers({
       },
       series: [{
           name: data.c_name,
-          data: data.highchartsData
+          data: graphData
       }]
     }
 
@@ -328,17 +350,29 @@ Template.c_p_graph.onCreated(function(){
   Session.set('c_p_range', '1D');
   this.autorun(function(){
     var data = Session.get('daily_update');
-    var highchartsData = [];
+    var data2 = Session.get('one_day_daily_update');
+
     if(typeof data == 'undefined'){
       return '';
     }
+
+    var highchartsData = [];
     data.stock_hist.forEach(function(item, index){
       //Transform date
-      var date = (item.sh_date - 15 * 60) * 1000;
+      var date = item.sh_date * 1000;
       //Build point array
       var point = [date, Number(item.sh_close)]
       //Push point array to data set
       highchartsData.push(point);
+    })
+
+    var highchartsData2 = [];
+
+    data2.stock_hist.forEach(function(item, index){
+      var date = (item.sh_date - 15 * 60) * 1000;
+
+      var point = [date, Number(item.sh_close)];
+      highchartsData2.push(point);
     })
 
     //GRAPH MUST BE ASC order from [0] - [max] where max is the latest date in unix
@@ -346,5 +380,6 @@ Template.c_p_graph.onCreated(function(){
     data.highchartsData = highchartsData;
 
     Session.set('graph_data', data);
+    Session.set('new_one_day_daily_update', highchartsData2);
   })
 })
