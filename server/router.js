@@ -903,6 +903,10 @@ seoPicker.route('/:partner_id/sec/:loc_id/:sector_id?/:page_num',sector_page);
 function sector_page(params, req, res) {
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
+  if ( is404Page(params, req, res) ) {
+    return false;
+  }
+
   var loc_id = params.loc_id;
   if ( typeof fullstate(params.loc_id) != "undefined" ) {
     params.loc_id = fullstate(params.loc_id);
@@ -931,6 +935,12 @@ function sector_page(params, req, res) {
 
       try {
         var data = res_arr;
+
+        if ( isMyInvestKit(info.req) && typeof data.content == "undefined" ) {
+          console.log("SSRSTAT|\"Sector Page - Timeout\",\"" + info.params.loc_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          RenderTimeoutError(res);
+          return false;
+        }
 
         if ( typeof data.content != "undefined" ) {
           var temp_d = JSON.parse(data.content);
@@ -1014,6 +1024,136 @@ function sector_page(params, req, res) {
       batch_envar.withValue(batch, function(){
         var bound_cb = Meteor.bindEnvironment(method_cb);
         Meteor.call("sectorData", loc_id, params.sector_id, bound_cb);
+      });
+    });
+
+    if ( typeof params.partner_id != "undefined" ) {
+      functions.push(function(batch){
+        batch_envar.withValue(batch, function(){
+          var bound_cb = Meteor.bindEnvironment(method_cb);
+          Meteor.call('GetPartnerHeader',params.partner_id, bound_cb);
+        });
+      });
+    }
+
+    var company_batch = new async_mult(functions, callback);
+
+    company_batch.execute();
+  });
+}
+
+// Sector page
+seoPicker.route('/:loc_id/executives-list/:page_num',execListLoc);
+seoPicker.route('/:partner_id/:loc_id/list-executives/:page_num',execListLoc);
+function execListLoc(params, req, res) {
+  var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
+
+  if ( is404Page(params, req, res) ) {
+    return false;
+  }
+
+  var loc_id = params.loc_id;
+  if ( typeof fullstate(params.loc_id) != "undefined" ) {
+    params.loc_id = fullstate(params.loc_id);
+  } else if ( typeof abbrstate(params.loc_id.toLowerCase()) != "undefined" ) {
+    loc_id = abbrstate(params.loc_id.toLowerCase());
+  }
+
+  // Get the data
+  info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){
+    var callback = Meteor.bindEnvironment(function(results){
+      var res_arr = {};
+      for ( var index = 0; index < results.length; index++ ) {
+        for ( var attr in results[index] ) {
+          if ( results[index].hasOwnProperty(attr) ) {
+            res_arr[attr] = results[index][attr];
+          }
+        }
+      }
+
+      var info = info_envar.get();
+      var res = info.res;
+
+      try {
+        var data = res_arr;
+
+        if ( isMyInvestKit(info.req) && typeof data.content == "undefined" ) {
+          console.log("SSRSTAT|\"Executive List Location - Timeout\",\"" + info.params.loc_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          RenderTimeoutError(res);
+          return false;
+        }
+
+        if ( typeof data.content != "undefined" ) {
+          var temp_d = JSON.parse(data.content);
+          temp_d.results.name = temp_d.name;
+          data.results = temp_d.results;
+        }
+
+        // Make the executive list
+        var e_list = [];
+        for ( var i = 0; i < data.all_executives.length; i++ ) {
+          var eData = data.all_executives[i];
+          e_list.push({
+            title: '<a href="' + Router.pick_path('content.executiveprofile', {exec_id: eData.o_id, fname: eData.o_first_name, lname: eData.o_last_name, ticker: eData.c_ticker}, info.params) + '">' + eData.o_first_name + ' ' + eData.o_last_name + '</a>',
+            content: {
+              ul: [eData.o_first_name + ' ' + eData.o_last_name + ' works for <a href="' + Router.pick_path('content.companyprofile', {company_id: eData.c_id, name: compUrlName(eData.c_name), ticker: eData.c_ticker}, info.params) + '">' + eData.c_name + ' (ticker: ' + eData.c_ticker + ')</a> as ' + eData.o_current_title.long_title]
+            }
+          });
+        }
+
+        var head_data = { // Data to put into the head of the document (meta tags/title)
+          description: 'Get a list of all the executives in ' + info.params.loc_id,
+          title: 'An Investor\'s Guide to Executives in ' + info.params.loc_id + ' | InvestKit.com',
+          url: Router.pick_path('content.executivelocation',{page_num: 1, loc_id: info.params.loc_id}, info.params)
+        };
+
+        if ( typeof data.results != "undefined" ) {
+          head_data.title = 'Everything You Need To Know About Executives in ' + info.params.loc_id + ' | ' + data.results.name + ' Finance';
+          head_data.url = 'http://www.myinvestkit.com' + head_data.url;
+          head_data.siteName = data.results.name + ' Finance';
+        } else {
+          head_data.url = "http://www.investkit.com" + head_data.url;
+        }
+
+        var page_data = {
+          head_data: head_data,
+          h1: {
+            title: 'Executives in <a href="' + Router.pick_path('content.locationprofile',{loc_id: info.params.loc_id}, info.params) + '">' + info.params.loc_id + '</a>',
+            h2: e_list
+          }
+        };
+
+        if ( typeof data.results != "undefined" ) {
+          page_data.partner_header = data.results.header.script;
+        }
+
+        // res.end(JSON.stringify(res_arr, null, 2));
+
+        // res.end(SSR.render('generic_page',page_data));
+        res.end(minify(SSR.render('generic_page',page_data), {
+          minifyCSS: true,
+          minifyJS: true,
+          removeComments: true,
+          collapseWhitespace: true
+        })); // Write the pages template
+        // Also minifies the HTML string
+
+        // Log how long it took to render the page
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"Executive List Location\",\"" + info.params.sector_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
+        return false;
+      } catch(e) {
+        console.log("SSRSTAT|\"Executive List Location - Error\",\"" + info.params.sector_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+        RenderError(res,e.stack);
+      }
+    });
+
+    var functions = [];
+
+    functions.push(function(batch){
+      batch_envar.withValue(batch, function(){
+        var bound_cb = Meteor.bindEnvironment(method_cb);
+        Meteor.call("GetLocationPage", loc_id, 'all_executives', 1, bound_cb);
       });
     });
 
