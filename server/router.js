@@ -655,8 +655,8 @@ function executive_profile(params, req, res){
 }
 
 // Location Profile
-seoPicker.route('/:loc_id/:city?/location',location_profile);
-seoPicker.route('/:partner_id/:city?/:loc_id/loc',location_profile);
+seoPicker.route('/:loc_id/:city?/location/:city_id?',location_profile);
+seoPicker.route('/:partner_id/:city?/:loc_id/loc/:city_id?',location_profile);
 function location_profile(params, req, res){
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
 
@@ -788,7 +788,7 @@ function location_profile(params, req, res){
         var l_lists = {};
         if ( lists.length != 0 ) {
           l_lists = {
-            title: 'Lists About ' + data.profile_header.location,
+            title: '<a href="' + Router.pick_path('content.listoflistloc', {loc_id: info.params.loc_id}, info.params) + '">Lists About ' + data.profile_header.location + '</a>',
             h3: lists
           };
         }
@@ -807,7 +807,7 @@ function location_profile(params, req, res){
           head_data.description = 'Find out everything you need to know about publicly traded companies in ' + data.profile_header.location + ': Financial data, SEC documents, news, executive information and more.';
           bysect = changeTitle(bysect, 'Companies By Sector in ' + data.profile_header.location);
           earn = changeTitle(earn, 'Earnings Reports for Companies in ' + data.profile_header.location);
-          l_lists = changeTitle(l_lists, data.profile_header.location + ' Lists');
+          l_lists = changeTitle(l_lists, '<a href="' + Router.pick_path('content.listoflistloc', {loc_id: info.params.loc_id}, info.params) + '">' + data.profile_header.location + ' Lists</a>');
           var h2Data = [earn, l_lists, bysect];
           var h1 = {
             title: 'Everything You Need To Know About Public Companies in ' + data.profile_header.location,
