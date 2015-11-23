@@ -15,9 +15,8 @@ Template.money_memory.onCreated(function(){
     var data = Session.get('money_memory');
     //If data exists and user input session variables do not match data, then set user input session variables
     if(typeof data !== 'undefined' && typeof Session.get('user_start_date') === 'undefined' && typeof Session.get('user_end_date') === 'undefined'){
-    //if(typeof(data) !== 'undefined' && !Session.equals('user_start_date', convert_date_readableToUnix(data.furthest_close_date)) && !Session.equals('user_end_date', convert_date_readableToUnix(data.most_recent_close_date))){}
-      Session.set('user_start_date', convert_date_readableToUnix(data.furthest_close_date));
-      Session.set('user_end_date', convert_date_readableToUnix(data.most_recent_close_date));
+      Session.set('user_start_date', moment.utc(data.furthest_close_date).format('X'));
+      Session.set('user_end_date', moment.utc(data.most_recent_close_date).format('X'));
       Session.set('user_initial_investment', data.investment_total - data.roi);
     }
   })
