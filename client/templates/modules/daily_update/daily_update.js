@@ -328,7 +328,19 @@ Template.daily_update.helpers({
 
     return data;
   },
+  graphTitle: function(){
+    var d_u_range = Session.get('d_u_range');
 
+    if(Session.get('IsLocation')){
+      if(d_u_range === '1D'){
+        var data = Session.get('new_one_day_location_daily_update');
+        return ' - ' + moment.utc(data[0][0]).subtract(5, 'hours').format('dddd MMM Do, YYYY');
+      }
+    }
+
+    return '';
+
+  },
   //Helper to determine chart
   getGraph: function(){
     var data = Session.get('graph_data');
@@ -363,7 +375,7 @@ Template.daily_update.helpers({
           var dataLength = graphData.length;
           //Set min and max of graphs to latest day available (9:00am EST - 4:00pm EST)
           var min = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
-          var max = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(0).second(0).format('X') * 1000;
+          var max = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(15).second(0).format('X') * 1000;
         }
         if(Session.get('IsCompany')){
           var graphData = data.highchartsData;
@@ -379,7 +391,6 @@ Template.daily_update.helpers({
       break;
       case '5D':
         var min = latestDate.subtract(5, 'days').format('X') * 1000;
-
         var xAxis_format = '%b %e';
         var tooltip_format = '%a, %b %e';
       break;
