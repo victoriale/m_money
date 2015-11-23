@@ -219,15 +219,11 @@ function company_profile(params, req, res){
           title: '<a href="' + Router.pick_path('content.listoflist',{ticker: data.profile_header.c_ticker, name: compUrlName(data.profile_header.c_name), company_id: data.profile_header.c_id},info.params) + '">Featured Lists of ' + data.profile_header.comp_name + '</a>',
         };
         if ( featured_lists.length != 0 ) {
-          var featList = {
-            h3: featured_lists
-          };
+          featList.h3 = featured_lists;
         }
         var earnings = {};
         if ( earnings_report_data.length != 0 ) {
-          var earnings = {
-            h3: earnings_report_data
-          };
+          earnings.h3 = earnings_report_data;
         }
         var ran_facts = {};
         if ( typeof data.did_you_know == "object" && data.did_you_know.facts.length != 0 ) {
@@ -242,9 +238,7 @@ function company_profile(params, req, res){
           title: '<a href="' + Router.pick_path('content.articlenews',{name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker, company_id: data.profile_header.c_id}, info.params) + '">' + data.profile_header.comp_name + ' In The News</a>',
         };
         if ( news.length != 0 ) {
-          var innews = {
-            h3: news
-          };
+          innews.h3 = news;
         }
 
         var head_data = { // Data to put into the head of the document (regular site)
@@ -527,19 +521,15 @@ function executive_profile(params, req, res){
           title: '<a href="' + Router.pick_path('content.collegerivals',{exec_id: profile_header.o_id, fname: profile_header.o_first_name, lname: profile_header.o_last_name, ticker: profile_header.c_ticker},info.params) + '">' + profile_header.o_full_name + '\'s College Rivals</a>',
         };
         if ( rival_data.length != 0 ) {
-          var rivals = {
-            content: {
-              ul: rival_data
-            }
+          rivals.content = {
+            ul: rival_data
           };
         }
         var wrk_hist = {
           title: '<a href="' + Router.pick_path('content.workhistory',{exec_id: profile_header.o_id, fname: profile_header.o_first_name, lname: profile_header.o_last_name, ticker: profile_header.c_ticker},info.params) + '">' + profile_header.o_full_name + '\'s Work History</a>',
         };
         if ( work_hist.length != 0 ) {
-          var wrk_hist = {
-            h3: work_hist
-          };
+          wrk_hist.h3 = work_hist;
         }
         var other_exec = {};
         if ( other_execs.length != 0 ) {
@@ -803,9 +793,7 @@ function location_profile(params, req, res){
           title: '<a href="' + Router.pick_path('content.listoflistloc', {loc_id: info.params.loc_id}, info.params) + '">Lists About ' + data.profile_header.location + '</a>',
         };
         if ( lists.length != 0 ) {
-          l_lists = {
-            h3: lists
-          };
+          l_lists.h3 = lists;
         }
 
         var head_data = { // Data to put into the head of the document (meta tags/title)
