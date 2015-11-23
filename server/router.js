@@ -65,7 +65,8 @@ function company_profile(params, req, res){
       var data = res_arr;
 
       if ( typeof data.profile_header == "undefined" || (isMyInvestKit(info.req) && typeof data.content == "undefined") ) {
-        console.log("SSRSTAT|\"Company Profile - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"Company Profile - Timeout\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
         RenderTimeoutError(res);
         return false;
       }
@@ -194,7 +195,7 @@ function company_profile(params, req, res){
               ticker_link + ' Total Shares: ' + ToCommaNumber(data.daily_update.csi_total_shares),
               ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-market-cap', list_id: '5222', loc_id: data.profile_header.c_hq_state, page_num: 1}, info.params) + '">Market Cap</a>: ' + ToCommaNumber(data.daily_update.csi_market_cap),
               ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-PE-ratio', list_id: '5223', loc_id: data.profile_header.c_hq_state, page_num: 1}, info.params) + '">PE Ratio</a>: ' + data.daily_update.csi_pe_ratio,
-              ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-volume', list_id: '5226', loc_id: data.profile_header.c_hq_state, page_num: 1}, info.params) + '">Trading Volume</a>: ' + ToCommaNumber(data.daily_update.csi_trading_vol)
+              ticker_link + ' <a href="' + Router.pick_path('content.toplist',{l_name: 'Top-companies-with-highest-trade-volume', list_id: '5227', loc_id: data.profile_header.c_hq_state, page_num: 1}, info.params) + '">Trading Volume</a>: ' + ToCommaNumber(data.daily_update.csi_trading_vol)
             ]
           }
         };
@@ -308,8 +309,9 @@ function company_profile(params, req, res){
         console.log("SSRSTAT|\"Company Profile\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch(e) {
-        console.log("SSRSTAT|\"Company Profile - Error\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
-        RenderError(res);
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"Company Profile - Error\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+        RenderError(res, e.stack);
       }
     });
 
@@ -399,7 +401,8 @@ function executive_profile(params, req, res){
       var data = res_arr;
 
       if ( typeof data.profile_header == "undefined" || (isMyInvestKit(info.req) && typeof data.content == "undefined") ) {
-        console.log("SSRSTAT|\"Executive Profile - Timeout\",\"" + info.params.exec_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"Executive Profile - Timeout\",\"" + info.params.exec_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
         RenderTimeoutError(res);
         return false;
       }
@@ -612,9 +615,10 @@ function executive_profile(params, req, res){
         console.log("SSRSTAT|\"Executive Profile\",\"" + info.params.exec_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch(e) {
+        var endTime = (new Date()).getTime();
         console.log(e.stack);
-        console.log("SSRSTAT|\"Executive Profile - Error\",\"" + info.params.exec_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
-        RenderError(res);
+        console.log("SSRSTAT|\"Executive Profile - Error\",\"" + info.params.exec_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+        RenderError(res, e.stack);
       }
     });
 
@@ -689,7 +693,8 @@ function location_profile(params, req, res){
       var data = res_arr;
 
       if ( typeof data.profile_header == "undefined" || (isMyInvestKit(info.req) && typeof data.content == "undefined") ) {
-        console.log("SSRSTAT|\"Location Profile - Timeout\",\"" + info.params.loc_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"Location Profile - Timeout\",\"" + info.params.loc_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
         RenderTimeoutError(res);
         return false;
       }
@@ -849,8 +854,9 @@ function location_profile(params, req, res){
         console.log("SSRSTAT|\"Location Profile\",\"" + info.params.loc_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch(e) {
-        console.log("SSRSTAT|\"Location Profile - Error\",\"" + info.params.loc_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
-        RenderError(res);
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"Location Profile - Error\",\"" + info.params.loc_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+        RenderError(res, e.stack);
       }
     });
 
@@ -898,7 +904,7 @@ function location_profile(params, req, res){
 
 //****************** LOCATION PAGES ******************
 // Sector page
-seoPicker.route('/:loc_id/sector/:sector_id/:page_num',sector_page);
+seoPicker.route('/:loc_id/sector/:sector_id?/:page_num',sector_page);
 seoPicker.route('/:partner_id/sec/:loc_id/:sector_id?/:page_num',sector_page);
 function sector_page(params, req, res) {
   var startTime = (new Date()).getTime(); // Log the start time (normal variable b/c no async)
@@ -937,7 +943,8 @@ function sector_page(params, req, res) {
         var data = res_arr;
 
         if ( isMyInvestKit(info.req) && typeof data.content == "undefined" ) {
-          console.log("SSRSTAT|\"Sector Page - Timeout\",\"" + info.params.loc_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          var endTime = (new Date()).getTime();
+          console.log("SSRSTAT|\"Sector Page - Timeout\",\"" + info.params.loc_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
           RenderTimeoutError(res);
           return false;
         }
@@ -1013,8 +1020,9 @@ function sector_page(params, req, res) {
         console.log("SSRSTAT|\"Sector Page\",\"" + info.params.sector_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch(e) {
-        console.log("SSRSTAT|\"Sector Page - Error\",\"" + info.params.sector_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
-        RenderError(res);
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"Sector Page - Error\",\"" + info.params.sector_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+        RenderError(res, e.stack);
       }
     });
 
@@ -1078,7 +1086,8 @@ function execListLoc(params, req, res) {
         var data = res_arr;
 
         if ( isMyInvestKit(info.req) && typeof data.content == "undefined" ) {
-          console.log("SSRSTAT|\"Executive List Location - Timeout\",\"" + info.params.loc_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          var endTime = (new Date()).getTime();
+          console.log("SSRSTAT|\"Executive List Location - Timeout\",\"" + info.params.loc_id + "\"" + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
           RenderTimeoutError(res);
           return false;
         }
@@ -1143,7 +1152,8 @@ function execListLoc(params, req, res) {
         console.log("SSRSTAT|\"Executive List Location\",\"" + info.params.sector_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch(e) {
-        console.log("SSRSTAT|\"Executive List Location - Error\",\"" + info.params.sector_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"Executive List Location - Error\",\"" + info.params.sector_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
         RenderError(res,e.stack);
       }
     });
@@ -1208,7 +1218,8 @@ function lol_loc(params, req, res) {
         var data = res_arr;
 
         if ( typeof data.profile_header == "undefined" || (isMyInvestKit(info.req) && typeof data.content == "undefined") ) {
-          console.log("SSRSTAT|\"List of Lists Location - Timeout\",\"" + info.params.loc_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          var endTime = (new Date()).getTime();
+          console.log("SSRSTAT|\"List of Lists Location - Timeout\",\"" + info.params.loc_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
           RenderTimeoutError(res);
           return false;
         }
@@ -1276,7 +1287,8 @@ function lol_loc(params, req, res) {
         console.log("SSRSTAT|\"List of Lists Location\",\"" + info.params.loc_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch(e) {
-        console.log("SSRSTAT|\"List of Lists Location - Error\",\"" + info.params.loc_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"List of Lists Location - Error\",\"" + info.params.loc_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
         RenderError(res, e.stack);
       }
     });
@@ -1353,7 +1365,8 @@ function list_of_lists(params, req, res){
 
       try {
         if ( typeof data.profile_header == "undefined" || (isMyInvestKit(info.req) && typeof data.content == "undefined") ) {
-          console.log("SSRSTAT|\"List of Lists Company - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          var endTime = (new Date()).getTime();
+          console.log("SSRSTAT|\"List of Lists Company - Timeout\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
           RenderTimeoutError(res);
           return false;
         }
@@ -1420,8 +1433,9 @@ function list_of_lists(params, req, res){
         console.log("SSRSTAT|\"List of Lists Company\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch(e) {
-        console.log("SSRSTAT|\"List of Lists Company - Error\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
-        RenderError(res);
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"List of Lists Company - Error\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+        RenderError(res, e.stack);
       }
     });
 
@@ -1484,7 +1498,8 @@ function exec_list(params, req, res){
 
       try {
         if ( isMyInvestKit(info.req) && typeof data.content == "undefined" ) {
-          console.log("SSRSTAT|\"Company Executives - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          var endTime = (new Date()).getTime();
+          console.log("SSRSTAT|\"Company Executives - Timeout\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
           RenderTimeoutError(res);
           return false;
         }
@@ -1559,8 +1574,9 @@ function exec_list(params, req, res){
         console.log("SSRSTAT|\"Company Executives\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch (e) {
-        console.log("SSRSTAT|\"Company Executives - Error\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
-        RenderError(res);
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"Company Executives - Error\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+        RenderError(res, e.stack);
       }
     });
 
@@ -1623,7 +1639,8 @@ function cmp_news(params, req, res) {
         var data = res_arr;
 
         if ( isMyInvestKit(info.req) && typeof data.content == "undefined" ) {
-          console.log("SSRSTAT|\"Company Executives - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          var endTime = (new Date()).getTime();
+          console.log("SSRSTAT|\"Company Executives - Timeout\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
           RenderTimeoutError(res);
           return false;
         }
@@ -1694,8 +1711,8 @@ function cmp_news(params, req, res) {
         return false;
       } catch(e) {
         var endTime = (new Date()).getTime();
-        console.log("SSRSTAT|\"Company News Page - Error\",\"" + info.params.company_id + "\",," + endTime + ",\"" + info.params.partner_id + "\"|");
-        RenderError(res);
+        console.log("SSRSTAT|\"Company News Page - Error\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
+        RenderError(res, e.stack);
       }
     });
 
@@ -1764,7 +1781,8 @@ function fin_ovw(params, req, res) {
         var data = res_arr;
 
         if ( isMyInvestKit(info.req) && typeof data.content == "undefined" ) {
-          console.log("SSRSTAT|\"Financial Overview - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          var endTime = (new Date()).getTime();
+          console.log("SSRSTAT|\"Financial Overview - Timeout\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
           RenderTimeoutError(res);
           return false;
         }
@@ -1874,8 +1892,8 @@ function fin_ovw(params, req, res) {
         return false;
       } catch(e) {
         var endTime = (new Date()).getTime();
-        console.log("SSRSTAT|\"Financial Overview - Error\",\"" + info.params.company_id + "\",," + endTime + ",\"" + info.params.partner_id + "\"|");
-        RenderError(res);
+        console.log("SSRSTAT|\"Financial Overview - Error\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
+        RenderError(res, e.stack);
       }
     });
 
@@ -1940,7 +1958,8 @@ function competitors(params, req, res){
 
       try {
         if ( isMyInvestKit(info.req) && typeof data.content == "undefined" ) {
-          console.log("SSRSTAT|\"Competitors Page - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          var endTime = (new Date()).getTime();
+          console.log("SSRSTAT|\"Competitors Page - Timeout\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
           RenderTimeoutError(res);
           return false;
         }
@@ -2009,7 +2028,8 @@ function competitors(params, req, res){
         return false;
       } catch(e) {
         console.log(e.stack);
-        console.log("SSRSTAT|\"Competitors Page - Error\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"Competitors Page - Error\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
         RenderError(res,e.stack);
       }
     });
@@ -2068,7 +2088,8 @@ function college_rivals(params, req, res){
 
       try {
         if ( isMyInvestKit(info.req) && typeof data.content == "undefined" ) {
-          console.log("SSRSTAT|\"Competitors Page - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          var endTime = (new Date()).getTime();
+          console.log("SSRSTAT|\"Competitors Page - Timeout\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
           RenderTimeoutError(res);
           return false;
         }
@@ -2132,7 +2153,8 @@ function college_rivals(params, req, res){
         console.log("SSRSTAT|\"College Rivals\",\"" + info.params.exec_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch (e) {
-        console.log("SSRSTAT|\"College Rivals - Error\",\"" + info.params.exec_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"College Rivals - Error\",\"" + info.params.exec_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
         RenderError(res, e.stack);
       }
     });
@@ -2190,7 +2212,8 @@ function work_history(params, req, res){
 
       try {
         if ( isMyInvestKit(info.req) && typeof data.content == "undefined" ) {
-          console.log("SSRSTAT|\"Work History - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          var endTime = (new Date()).getTime();
+          console.log("SSRSTAT|\"Work History - Timeout\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
           RenderTimeoutError(res);
           return false;
         }
@@ -2274,7 +2297,8 @@ function work_history(params, req, res){
         console.log("SSRSTAT|\"Work History\",\"" + info.params.exec_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch (e) {
-        console.log("SSRSTAT|\"Work History - Error\",\"" + info.params.exec_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"Work History - Error\",\"" + info.params.exec_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
         RenderError(res, e.stack);
       }
     });
@@ -2337,7 +2361,8 @@ function exec_comp(params, req, res){
       try {
         var data = res_arr;
         if ( isMyInvestKit(info.req) && typeof data.content == "undefined" ) {
-          console.log("SSRSTAT|\"Executive Compensation - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          var endTime = (new Date()).getTime();
+          console.log("SSRSTAT|\"Executive Compensation - Timeout\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
           RenderTimeoutError(res);
           return false;
         }
@@ -2481,8 +2506,8 @@ function exec_comp(params, req, res){
         return false;
       } catch(e) {
         var endTime = (new Date()).getTime();
-        console.log("SSRSTAT|\"Executive Compensation - Error\",\"" + info.params.exec_id + "\",," + endTime + ",\"" + info.params.partner_id + "\"|");
-        RenderError(res);
+        console.log("SSRSTAT|\"Executive Compensation - Error\",\"" + info.params.exec_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
+        RenderError(res, e.stack);
       }
     });
 
@@ -2538,7 +2563,8 @@ function exec_edu(params, req, res){
       try {
         var data = res_arr;
         if ( isMyInvestKit(info.req) && typeof data.content == "undefined" ) {
-          console.log("SSRSTAT|\"Education History - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          var endTime = (new Date()).getTime();
+          console.log("SSRSTAT|\"Education History - Timeout\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
           RenderTimeoutError(res);
           return false;
         }
@@ -2656,7 +2682,7 @@ function exec_edu(params, req, res){
         return false;
       } catch(e) {
         var endTime = (new Date()).getTime();
-        console.log("SSRSTAT|\"Education History - Error\",\"" + info.params.exec_id + "\",," + endTime + ",\"" + info.params.partner_id + "\"|");
+        console.log("SSRSTAT|\"Education History - Error\",\"" + info.params.exec_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         RenderError(res, e.stack);
       }
     });
@@ -2732,7 +2758,8 @@ function list_page(params, req, res){
 
       try {
         if ( isMyInvestKit(info.req) && typeof data.content == "undefined" ) {
-          console.log("SSRSTAT|\"List Page - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          var endTime = (new Date()).getTime();
+          console.log("SSRSTAT|\"List Page - Timeout\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
           RenderTimeoutError(res);
           return false;
         }
@@ -2801,8 +2828,9 @@ function list_page(params, req, res){
         console.log("SSRSTAT|\"List Page\",\"" + info.params.list_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch(e) {
-        console.log("SSRSTAT|\"List Page - Error\",\"" + info.params.list_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
-        RenderError(res);
+        var endTime = (new Date()).getTime();
+        console.log("SSRSTAT|\"List Page - Error\",\"" + info.params.list_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+        RenderError(res, e.stack);
       }
     });
 
@@ -3067,7 +3095,8 @@ seoPicker.route('/:partner_id',function(params, req, res){
         var data = res_arr;
 
         if ( typeof data.content == "undefined" ) {
-          console.log("SSRSTAT|\"Partner Profile - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          var endTime = (new Date()).getTime();
+          console.log("SSRSTAT|\"Partner Profile - Timeout\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
           RenderTimeoutError(res);
           return false;
         }
@@ -3205,7 +3234,7 @@ seoPicker.route('/:partner_id',function(params, req, res){
         return false;
       } catch(e) {
         var endTime = (new Date()).getTime();
-        console.log("SSRSTAT|\"Partner Profile - Error\",\"" + info.params.partner_id + "\",," + endTime + ",\"" + info.params.partner_id + "\"|");
+        console.log("SSRSTAT|\"Partner Profile - Error\",\"" + info.params.partner_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         RenderError(res,e.stack);
       }
     });
@@ -3316,21 +3345,21 @@ var ToCommaNumber = function(Number) {
 
 function getListID(exchange, location) {
   var retArr = {loc_id: location, page_num: 1};
-  retArr.l_name = 'Top-companies-with-stock-percent-gain';
-  retArr.list_id = 5233;
+  retArr.l_name = 'Top-companies-with-highest-percentage-gain-in-stock-price';
+  retArr.list_id = 5225;
   if ( typeof exchange == "undefined" ) {
     return retArr;
   }
   exchange = exchange.toLowerCase();
   var ids = {
-    'nasdaq': 5191,
-    'nyse': 5205,
-    'amex': 5219
+    'nasdaq': 5183,
+    'nyse': 5197,
+    'amex': 5211
   };
   var name = {
-    'nasdaq': 'Top-companies-on-NASDAQ-with-stock-percent-gain',
-    'nyse': 'Top-companies-on-NYSE-with-stock-percent-gain',
-    'amex': 'Top-companies-on-AMEX-with-stock-percent-gain'
+    'nasdaq': 'Top-companies-on-NASDAQ-with-highest-percentage-gain-in-stock-price',
+    'nyse': 'Top-companies-on-NYSE-with-highest-percentage-gain-in-stock-price',
+    'amex': 'Top-companies-on-AMEX-with-highest-percentage-gain-in-stock-price'
   };
   if ( typeof ids[exchange] != "undefined" ) {
     retArr.l_name = name[exchange];
