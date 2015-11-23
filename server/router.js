@@ -84,7 +84,7 @@ function company_profile(params, req, res){
         var ticker_link2 = '<a href="' + Router.pick_path('content.toplist',getListID(data.profile_header.c_exchange, compUrlName(fullstate(data.profile_header.c_hq_state))), info.params) + '">' + data.profile_header.c_exchange + '</a>:' + data.profile_header.c_ticker;
 
         // AI parse:
-        if ( typeof data.ai == "object" ) {
+        if ( typeof data.ai == "object" || typeof data.ai == "undefined" ) {
           data.ai = '';
         } else {
           data.ai = data.ai.match(/<y.txt[^\n]*/)[0].replace(/<y.txt[^>]*>/,'');
@@ -215,17 +215,17 @@ function company_profile(params, req, res){
             }
           };
         }
-        var featList = {};
+        var featList = {
+          title: '<a href="' + Router.pick_path('content.listoflist',{ticker: data.profile_header.c_ticker, name: compUrlName(data.profile_header.c_name), company_id: data.profile_header.c_id},info.params) + '">Featured Lists of ' + data.profile_header.comp_name + '</a>',
+        };
         if ( featured_lists.length != 0 ) {
           var featList = {
-            title: '<a href="' + Router.pick_path('content.listoflist',{ticker: data.profile_header.c_ticker, name: compUrlName(data.profile_header.c_name), company_id: data.profile_header.c_id},info.params) + '">Featured Lists of ' + data.profile_header.comp_name + '</a>',
             h3: featured_lists
           };
         }
         var earnings = {};
         if ( earnings_report_data.length != 0 ) {
           var earnings = {
-            title: 'Earnings Reports for ' + data.profile_header.comp_name2,
             h3: earnings_report_data
           };
         }
@@ -238,10 +238,11 @@ function company_profile(params, req, res){
             }
           };
         }
-        var innews = {};
+        var innews = {
+          title: '<a href="' + Router.pick_path('content.articlenews',{name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker, company_id: data.profile_header.c_id}, info.params) + '">' + data.profile_header.comp_name + ' In The News</a>',
+        };
         if ( news.length != 0 ) {
           var innews = {
-            title: '<a href="' + Router.pick_path('content.articlenews',{name: compUrlName(data.profile_header.c_name), ticker: data.profile_header.c_ticker, company_id: data.profile_header.c_id}, info.params) + '">' + data.profile_header.comp_name + ' In The News</a>',
             h3: news
           };
         }
@@ -522,19 +523,21 @@ function executive_profile(params, req, res){
             profile_header.o_bio
           ]
         };
-        var rivals = {};
+        var rivals = {
+          title: '<a href="' + Router.pick_path('content.collegerivals',{exec_id: profile_header.o_id, fname: profile_header.o_first_name, lname: profile_header.o_last_name, ticker: profile_header.c_ticker},info.params) + '">' + profile_header.o_full_name + '\'s College Rivals</a>',
+        };
         if ( rival_data.length != 0 ) {
           var rivals = {
-            title: '<a href="' + Router.pick_path('content.collegerivals',{exec_id: profile_header.o_id, fname: profile_header.o_first_name, lname: profile_header.o_last_name, ticker: profile_header.c_ticker},info.params) + '">' + profile_header.o_full_name + '\'s College Rivals</a>',
             content: {
               ul: rival_data
             }
           };
         }
-        var wrk_hist = {};
+        var wrk_hist = {
+          title: '<a href="' + Router.pick_path('content.workhistory',{exec_id: profile_header.o_id, fname: profile_header.o_first_name, lname: profile_header.o_last_name, ticker: profile_header.c_ticker},info.params) + '">' + profile_header.o_full_name + '\'s Work History</a>',
+        };
         if ( work_hist.length != 0 ) {
           var wrk_hist = {
-            title: '<a href="' + Router.pick_path('content.workhistory',{exec_id: profile_header.o_id, fname: profile_header.o_first_name, lname: profile_header.o_last_name, ticker: profile_header.c_ticker},info.params) + '">' + profile_header.o_full_name + '\'s Work History</a>',
             h3: work_hist
           };
         }
@@ -545,7 +548,6 @@ function executive_profile(params, req, res){
             content: {ul: other_execs}
           };
         }
-
 
         var head_data = { // Data to put into the head of the document (meta tags/title)
           description: 'Find out everything you need to know about ' + profile_header.o_full_name + ', an executive at ' + profile_header.c_name_orig + ' (' + profile_header.c_ticker + '): Insider activity, compensation details, history with the company and more.',
@@ -797,10 +799,11 @@ function location_profile(params, req, res){
             h3: earnings
           };
         }
-        var l_lists = {};
+        var l_lists = {
+          title: '<a href="' + Router.pick_path('content.listoflistloc', {loc_id: info.params.loc_id}, info.params) + '">Lists About ' + data.profile_header.location + '</a>',
+        };
         if ( lists.length != 0 ) {
           l_lists = {
-            title: '<a href="' + Router.pick_path('content.listoflistloc', {loc_id: info.params.loc_id}, info.params) + '">Lists About ' + data.profile_header.location + '</a>',
             h3: lists
           };
         }
