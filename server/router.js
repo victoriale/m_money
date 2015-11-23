@@ -223,6 +223,7 @@ function company_profile(params, req, res){
         }
         var earnings = {};
         if ( earnings_report_data.length != 0 ) {
+          earnings.title = "Earnings Reports for " + data.profile_header.comp_name;
           earnings.h3 = earnings_report_data;
         }
         var ran_facts = {};
