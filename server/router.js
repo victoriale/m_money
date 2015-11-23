@@ -4,6 +4,11 @@ var minify = Npm.require('html-minifier').minify;
 var info_envar = new Meteor.EnvironmentVariable;
 var batch_envar = new Meteor.EnvironmentVariable;
 
+// Timeouts
+var profile_timeout = 2000;
+var page_timeout = 1000;
+var default_timeout = 1500;
+
 // Robots.txt filter
 var robotsPicker = Picker.filter(function(req, res) {
   return true;
@@ -368,6 +373,7 @@ function company_profile(params, req, res){
     }
 
     var company_batch = new async_mult(functions, callback);
+    company_batch._timeout = profile_timeout;
 
     company_batch.execute();
   });
@@ -653,6 +659,7 @@ function executive_profile(params, req, res){
     }
 
     var company_batch = new async_mult(functions, callback);
+    company_batch._timeout = profile_timeout;
 
     company_batch.execute();
   });
@@ -897,6 +904,7 @@ function location_profile(params, req, res){
     }
 
     var company_batch = new async_mult(functions, callback);
+    company_batch._timeout = profile_timeout;
 
     company_batch.execute();
   });
@@ -1045,12 +1053,13 @@ function sector_page(params, req, res) {
     }
 
     var company_batch = new async_mult(functions, callback);
+    company_batch._timeout = page_timeout;
 
     company_batch.execute();
   });
 }
 
-// Sector page
+// Location Executive List
 seoPicker.route('/:loc_id/executives-list/:page_num',execListLoc);
 seoPicker.route('/:partner_id/:loc_id/list-executives/:page_num',execListLoc);
 function execListLoc(params, req, res) {
@@ -1177,6 +1186,7 @@ function execListLoc(params, req, res) {
     }
 
     var company_batch = new async_mult(functions, callback);
+    company_batch._timeout = page_timeout;
 
     company_batch.execute();
   });
@@ -1318,6 +1328,7 @@ function lol_loc(params, req, res) {
     }
 
     var company_batch = new async_mult(functions, callback);
+    company_batch._timeout = page_timeout;
 
     company_batch.execute();
   });
@@ -1464,6 +1475,7 @@ function list_of_lists(params, req, res){
     }
 
     var company_batch = new async_mult(functions, callback);
+    company_batch._timeout = page_timeout;
 
     company_batch.execute();
   });
@@ -1605,6 +1617,7 @@ function exec_list(params, req, res){
     }
 
     var company_batch = new async_mult(functions, callback);
+    company_batch._timeout = page_timeout;
 
     company_batch.execute();
   });
@@ -1748,6 +1761,7 @@ function cmp_news(params, req, res) {
     }
 
     var company_batch = new async_mult(functions, callback);
+    company_batch._timeout = page_timeout;
 
     company_batch.execute();
   });
@@ -1924,6 +1938,7 @@ function fin_ovw(params, req, res) {
     }
 
     var company_batch = new async_mult(functions, callback);
+    company_batch._timeout = page_timeout;
 
     company_batch.execute();
   });
@@ -2053,6 +2068,7 @@ function competitors(params, req, res){
     }
 
     var company_batch = new async_mult(functions, callback);
+    company_batch._timeout = page_timeout;
 
     company_batch.execute();
   });
@@ -2178,6 +2194,7 @@ function college_rivals(params, req, res){
     }
 
     var company_batch = new async_mult(functions, callback);
+    company_batch._timeout = page_timeout;
 
     company_batch.execute();
   });
@@ -2328,6 +2345,7 @@ function work_history(params, req, res){
     }
 
     var company_batch = new async_mult(functions, callback);
+    company_batch._timeout = page_timeout;
 
     company_batch.execute();
   });
@@ -2530,6 +2548,7 @@ function exec_comp(params, req, res){
     }
 
     var company_batch = new async_mult(functions, callback);
+    company_batch._timeout = page_timeout;
 
     company_batch.execute();
   });
@@ -2712,6 +2731,7 @@ function exec_edu(params, req, res){
     }
 
     var company_batch = new async_mult(functions, callback);
+    company_batch._timeout = page_timeout;
 
     company_batch.execute();
   });
@@ -2853,6 +2873,7 @@ function list_page(params, req, res){
     }
 
     var company_batch = new async_mult(functions, callback);
+    company_batch._timeout = page_timeout;
 
     company_batch.execute();
   });
@@ -3274,6 +3295,7 @@ seoPicker.route('/:partner_id',function(params, req, res){
     });
 
     var company_batch = new async_mult(functions, callback);
+    company_batch._timeout = page_timeout;
 
     company_batch.execute();
   });
@@ -3442,7 +3464,7 @@ var async_mult = function(functions, callback) {
       callback(results, this._remaining);
     }
   };
-  this._timeout = 100000;
+  this._timeout = default_timeout;
   this._callback = cback.bind(this);
   this._isDone = false;
 }
