@@ -1213,7 +1213,7 @@ function list_of_lists(params, req, res){
 
       try {
         if ( typeof data.profile_header == "undefined" || (isMyInvestKit(info.req) && typeof data.content == "undefined") ) {
-          console.log("SSRSTAT|\"List of Lists (Company) Page - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          console.log("SSRSTAT|\"List of Lists Company - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
           RenderTimeoutError(res);
           return false;
         }
@@ -1277,10 +1277,10 @@ function list_of_lists(params, req, res){
 
         // Log how long it took to render the page
         var endTime = (new Date()).getTime();
-        console.log("SSRSTAT|\"List of Lists (Company) Page\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
+        console.log("SSRSTAT|\"List of Lists Company\",\"" + info.params.company_id + "\"," + (endTime - info.startTime) + "," + endTime + ",\"" + info.params.partner_id + "\"|");
         return false;
       } catch(e) {
-        console.log("SSRSTAT|\"List of Lists (Company) Page - Error\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+        console.log("SSRSTAT|\"List of Lists Company - Error\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
         RenderError(res);
       }
     });
@@ -2050,7 +2050,7 @@ function work_history(params, req, res){
 
       try {
         if ( isMyInvestKit(info.req) && typeof data.content == "undefined" ) {
-          console.log("SSRSTAT|\"Financial Overview - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          console.log("SSRSTAT|\"Work History - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
           RenderTimeoutError(res);
           return false;
         }
@@ -2197,7 +2197,7 @@ function exec_comp(params, req, res){
       try {
         var data = res_arr;
         if ( isMyInvestKit(info.req) && typeof data.content == "undefined" ) {
-          console.log("SSRSTAT|\"Financial Overview - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
+          console.log("SSRSTAT|\"Executive Compensation - Timeout\",\"" + info.params.company_id + "\",," + (new Date()).getTime() + ",\"" + info.params.partner_id + "\"|");
           RenderTimeoutError(res);
           return false;
         }
@@ -2697,6 +2697,10 @@ seoPicker.route('/:partner_id/disclaimer',disclaimer);
 function disclaimer(params, req, res) {
   var startTime = (new Date()).getTime();
 
+  if ( is404Page(params, req, res) ) {
+    return false;
+  }
+
   if ( typeof params.partner_id != "undefined" ) {
     var page_data = {
       head_data: {
@@ -2741,6 +2745,10 @@ seoPicker.route('/:partner_id/copyright',copyright);
 function copyright(params, req, res) {
   var startTime = (new Date()).getTime();
 
+  if ( is404Page(params, req, res) ) {
+    return false;
+  }
+
   if ( typeof params.partner_id != "undefined" ) {
     var page_data = {
       head_data: {
@@ -2776,6 +2784,10 @@ seoPicker.route('/privacy-policy',privacypolicy);
 seoPicker.route('/:partner_id/privacy-policy',privacypolicy);
 function privacypolicy(params, req, res) {
   var startTime = (new Date()).getTime();
+
+  if ( is404Page(params, req, res) ) {
+    return false;
+  }
 
   if ( typeof params.partner_id != "undefined" ) {
     var page_data = {
@@ -2813,6 +2825,10 @@ seoPicker.route('/:partner_id/stock-disclaimer',stockdisclaimer);
 function stockdisclaimer(params, req, res) {
   var startTime = (new Date()).getTime();
 
+  if ( is404Page(params, req, res) ) {
+    return false;
+  }
+
   if ( typeof params.partner_id != "undefined" ) {
     var page_data = {
       head_data: {
@@ -2848,6 +2864,10 @@ seoPicker.route('/terms-of-service',termsofservice);
 seoPicker.route('/:partner_id/terms-of-service',termsofservice);
 function termsofservice(params, req, res) {
   var startTime = (new Date()).getTime();
+
+  if ( is404Page(params, req, res) ) {
+    return false;
+  }
 
   if ( typeof params.partner_id != "undefined" ) {
     var page_data = {
