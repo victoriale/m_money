@@ -241,6 +241,7 @@
     visibility: visible;
     font-family: HN-L;
     font-size: 30px;
+    color:@white;
 
     div{
       font-family: HN-L;
@@ -304,6 +305,32 @@
     padding: 80px 0;
     font-family: HN-L;
     position: relative;
+  }
+  &-national{
+    width: 960px;
+    height:250px;
+    margin:5px;
+    padding: 80px 0;
+    z-index: 0;
+    position: relative;
+    text-align: center;
+    display:inline-block;
+
+    &:hover .fi_explore-bg{
+      -webkit-filter: blur(10px);
+  	  -moz-filter: blur(10px);
+  	  -o-filter: blur(10px);
+  	  -ms-filter: blur(10px);
+      filter: blur(10px);
+    }
+
+    &:hover .fi_explore-btn{
+      visibility: visible;
+    }
+
+    &:hover .fi_explore-txt{
+      visibility: visible;
+    }
   }
   #explore3{
     font-size:30px;

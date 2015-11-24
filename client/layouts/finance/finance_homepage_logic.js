@@ -530,7 +530,11 @@ Template.finance_homepage.helpers({
       {URL: Router.pick_path('content.locationprofile',{loc_id:randomState[4]}), class: "fi_explore-image2",id: "explore6", State: fullstate(randomState[4]), txt: '', index: 4, image: image[x+4]}
     ];
     return Cities;
-  }
+  },
+
+  National: function(){
+    return Router.pick_path('content.locationprofile', {loc_id:'National'});
+  },
 });
 
 function homestates(){
