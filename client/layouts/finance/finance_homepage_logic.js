@@ -467,19 +467,6 @@ Template.finance_homepage.onCreated(function() {
    });
 });
 
-Template.finance_homepage.onRendered(function(){
-  //$('.finance_body_faq').css('display','none');
-
-  //images for features boxes
-  $("#feature1").css({"background-image":"URL(http://cdn.joyfulhome.com/Image_Interactive_Map.png)","float":"left"});
-  $("#feature2").css({"background-color":"#000000","float":"left"});
-  $("#feature3").css({"background-image":"URL(http://cdn.joyfulhome.com/Image_Trending_News.png)","float":"right"});
-  $("#feature4").css({"background-image":"URL(http://cdn.joyfulhome.com/Image_Top_100_List.png)","float":"right"});
-
-  $(".fi_explore-blue").css({"background-image":"URL(http://cdn.joyfulhome.com/Icons_Explore.png)"});
-  $(".fi_features_note-blue").css({"background-image":"URL(http://cdn.joyfulhome.com/Icons_Features.png)"});
-});
-
 Template.finance_homepage.helpers({
   topList:function(){
     return globalUrl('National');
@@ -501,12 +488,19 @@ Template.finance_homepage.helpers({
 
     var randomState = [];
 
-    var curLoc = state.indexOf(Session.get('home_state'));
-    //remove the current home location gotten from removeaddr api
-    if(typeof curLoc != 'undefined'){
-      if (curLoc > -1) {
-        state.splice(curLoc, 1);
+    if ( typeof Session.get('home_state') != "undefined" ) {
+      var curLoc = state.indexOf(Session.get('home_state'));
+      //remove the current home location gotten from removeaddr api
+      if(typeof curLoc != 'undefined'){
+        if (curLoc > -1) {
+          state.splice(curLoc, 1);
+        }
       }
+    } else {
+      var ran = Math.floor(Math.random() * state.length);
+      var curLoc = state[ran];
+      Session.set('home_state', curLoc);
+      state.splice(ran, 1);
     }
 
     for(i = 0; i < 6; i++){
@@ -530,7 +524,11 @@ Template.finance_homepage.helpers({
       {URL: Router.pick_path('content.locationprofile',{loc_id:randomState[4]}), class: "fi_explore-image2",id: "explore6", State: fullstate(randomState[4]), txt: '', index: 4, image: image[x+4]}
     ];
     return Cities;
-  }
+  },
+
+  National: function(){
+    return Router.pick_path('content.locationprofile', {loc_id:'National'});
+  },
 });
 
 function homestates(){
