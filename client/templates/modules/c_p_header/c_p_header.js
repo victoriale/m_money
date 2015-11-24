@@ -304,7 +304,11 @@ Template.c_p_graph.helpers({
         formatter: function(){
 
           if(this.x === min && c_p_range === '1D'){
+            //This text gets attached to the point that matches the minimum for the 1D graph
             return "Yesterday's Closing Price<br />" + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+          }else if(this.point.index === (this.point.series.data.length - 1) && c_p_range === '1D'){
+            //This text gets attached to the last point in the data for 1D graph
+            return "Today's Closing Price<br />" + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
           }else{
             return Highcharts.dateFormat(tooltip_format, this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
           }
@@ -369,7 +373,7 @@ Template.c_p_graph.onCreated(function(){
     var highchartsData2 = [];
 
     data2.stock_hist.forEach(function(item, index){
-      var date = (item.sh_date - 15 * 60) * 1000;
+      var date = (item.sh_date - 20 * 60) * 1000;
 
       var point = [date, Number(item.sh_close)];
       highchartsData2.push(point);
