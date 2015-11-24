@@ -2148,7 +2148,7 @@ function college_rivals(params, req, res){
         for ( var index = 0; index < data.college_rivals.rivals.length; index++ ) {
           var o_data = data.college_rivals.rivals[index];
           var r_data = {};
-          r_data = '<a href="' + Router.pick_path('content.executiveprofile',{fname: o_data.o_first_name, lname: o_data.o_last_name, ticker: o_data.c_ticker},info.params) + '">' + o_data.o_first_name + ' ' + o_data.o_last_name + '</a> at <a href="">' + o_data.c_name + ' (ticker: ' + o_data.c_ticker + ')</a>: ' + o_data.long_title;
+          r_data = '<a href="' + Router.pick_path('content.executiveprofile',{fname: o_data.o_first_name, lname: o_data.o_last_name, ticker: o_data.c_ticker, exec_id: o_data.o_id},info.params) + '">' + o_data.o_first_name + ' ' + o_data.o_last_name + '</a> at <a href="">' + o_data.c_name + ' (ticker: ' + o_data.c_ticker + ')</a>: ' + o_data.long_title;
           rivals[rivals.length] = r_data;
         }
 
