@@ -36,7 +36,7 @@ Template.c_p_header.helpers({
     var c_p_range = Session.get('c_p_range');
 
     if(c_p_range === '1D'){
-      var data = Session.get('new_one_day_daily_update');
+      var data = Session.get('new_header_one_day_daily_update');
       return ' - ' + moment.utc(data[0][0]).subtract(5, 'hours').format('dddd MMM Do, YYYY');
     }
 
@@ -172,12 +172,12 @@ Template.c_p_graph.helpers({
     switch(c_p_range){
       case '1D':
         //Set graphData to get minimum
-        var graphData = Session.get('new_one_day_daily_update');
+        var graphData = Session.get('new_header_one_day_daily_update');
         var dataLength = graphData.length;
 
         //Set min and max of graphs to latest day available (9:00am EST - 4:00pm EST)
         var min = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
-        var max = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(10).second(0).format('X') * 1000;
+        var max = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(5).second(0).format('X') * 1000;
 
         var tickPositions = [min + ((1800) * 1000), min + ((2 * 3600) * 1000), min + ((3 * 3600) * 1000), min + ((4 * 3600) * 1000), min + ((5 * 3600) * 1000), min + ((6 * 3600) * 1000), min + ((7 * 3600) * 1000)];
 
@@ -304,10 +304,10 @@ Template.c_p_graph.helpers({
         formatter: function(){
 
           if(this.x === min && c_p_range === '1D'){
-            //This text gets attached to the point that matches the minimum for the 1D graph
+            //This text gets attached to the point that matches the minimum for the 1D graph]
             return "Yesterday's Closing Price<br />" + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
-          }else if(this.point.index === (this.point.series.data.length - 1) && c_p_range === '1D'){
-            //This text gets attached to the last point in the data for 1D graph
+          }else if(this.x >= max - (5 * 60 * 1000) && this.x <= max && c_p_range === '1D'){
+            //This text gets attached to the last point in the data for 1D graph, if the point is greater than 5 minutes of the max value
             return "Today's Closing Price<br />" + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
           }else{
             return Highcharts.dateFormat(tooltip_format, this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
@@ -384,6 +384,6 @@ Template.c_p_graph.onCreated(function(){
     data.highchartsData = highchartsData;
 
     Session.set('graph_data', data);
-    Session.set('new_one_day_daily_update', highchartsData2);
+    Session.set('new_header_one_day_daily_update', highchartsData2);
   })
 })
