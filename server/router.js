@@ -5,9 +5,9 @@ var info_envar = new Meteor.EnvironmentVariable;
 var batch_envar = new Meteor.EnvironmentVariable;
 
 // Timeouts
-var profile_timeout = 2000;
-var page_timeout = 5000;
-var default_timeout = 1500;
+var profile_timeout = 30000;
+var page_timeout = 30000;
+var default_timeout = 30000;
 
 // Robots.txt filter
 var robotsPicker = Picker.filter(function(req, res) {
