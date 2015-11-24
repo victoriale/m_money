@@ -6,7 +6,7 @@ var batch_envar = new Meteor.EnvironmentVariable;
 
 // Timeouts
 var profile_timeout = 2000;
-var page_timeout = 2000;
+var page_timeout = 5000;
 var default_timeout = 1500;
 
 // Robots.txt filter
@@ -766,7 +766,7 @@ function location_profile(params, req, res){
             'Page Published on ' + published,
             'Page Updated on ' + updated,
             '',
-            data.profile_header.location + ' is home to <a href="' + Router.pick_path('content.sector',{loc_id: compUrlName(data.profile_header.location), page_num: 1}, info.params) + '">' + data.profile_header.total_companies + ' companies</a> with a total market cap of $' + data.profile_header.total_market_cap + '. ' + data.profile_header.location + ' is also home to <a href="' + Router.pick_path('content.executivelocation',{loc_id: compUrlName(data.profile_header.location), page_num: 1}, info.params) + '">' + data.profile_header.total_executives + ' executives</a>.',
+            data.profile_header.location + ' is home to <a href="' + Router.pick_path('content.sector',{loc_id: compUrlName(data.profile_header.location), page_num: 1}, info.params) + '">' + data.profile_header.total_companies + ' companies</a> with a <a href="' + Router.pick_path('content.toplist', {l_name: 'Top-companies-with-the-highest-market-cap', list_id: 5222, page_num: 1, loc_id: info.params.loc_id}, info.params) + '">total market cap of $' + data.profile_header.total_market_cap + '</a>. ' + data.profile_header.location + ' is also home to <a href="' + Router.pick_path('content.executivelocation',{loc_id: compUrlName(data.profile_header.location), page_num: 1}, info.params) + '">' + data.profile_header.total_executives + ' executives</a>.',
             data.profile_header.location + ' Current Aggragate Price: $' + ToCommaNumber(data.location_daily_update.composite_summary.current_price),
             data.profile_header.location + ' Previous Close: $' + ToCommaNumber(data.location_daily_update.composite_summary.previous_close),
             data.profile_header.location + ' <a href="' + Router.pick_path('content.toplist',getListID(undefined, data.profile_header.location), info.params) + '">Percent Change</a>: ' + data.location_daily_update.composite_summary.percent_change + '%',
@@ -974,7 +974,7 @@ function sector_page(params, req, res) {
         var head_data = { // Data to put into the head of the document (meta tags/title)
           description: 'Get a list of all the companies in ' + locName,
           title: 'An Investor\'s Guide to Companies in ' + locName + ' | InvestKit.com',
-          url: Router.pick_path('content.sector',{sector_id: compUrlName(info.params.sector_id), loc_id: info.params.loc_id}, info.params)
+          url: Router.pick_path('content.sector',{sector_id: compUrlName(info.params.sector_id), loc_id: info.params.loc_id, page_num: 1}, info.params)
         };
 
         if ( typeof data.sector_companies.sector != "undefined" && data.sector_companies.sector != null ) {
@@ -2155,7 +2155,7 @@ function college_rivals(params, req, res){
         var head_data = { // Data to put into the head of the document (meta tags/title)
           description: 'Find out who ' + data.college_rivals.officer.o_first_name + ' ' + data.college_rivals.officer.o_last_name + ' went to school with and where they are now.',
           title: 'An Investor\'s Guide to ' + data.college_rivals.officer.o_first_name + ' ' + data.college_rivals.officer.o_last_name + '\'s College Rivals | InvestKit.com',
-          url: Router.pick_path('content.collegerivals',{fname: data.college_rivals.officer.o_first_name, lname: data.college_rivals.officer.o_last_name, ticker: data.college_rivals.officer.c_ticker}, info.params),
+          url: Router.pick_path('content.collegerivals',{fname: data.college_rivals.officer.o_first_name, lname: data.college_rivals.officer.o_last_name, ticker: data.college_rivals.officer.c_ticker, exec_id: data.college_rivals.officer.o_id}, info.params),
         };
 
         if ( typeof data.results != "undefined" ) {
@@ -2302,7 +2302,7 @@ function work_history(params, req, res){
         var head_data = { // Data to put into the head of the document (meta tags/title)
           description: 'Learn about ' + data.profile_header.o_full_name + '\'s Work History',
           title: 'An Investor\'s Guide to ' + data.profile_header.o_full_name + '\'s Work History | InvestKit.com',
-          url: Router.pick_path('content.workhistory',{fname: data.profile_header.o_first_name, lname: data.profile_header.o_last_name, ticker: data.profile_header.c_ticker}, info.params),
+          url: Router.pick_path('content.workhistory',{fname: data.profile_header.o_first_name, lname: data.profile_header.o_last_name, ticker: data.profile_header.c_ticker, exec_id: data.profile_header.o_id}, info.params),
         };
 
         if ( typeof data.results != "undefined" ) {
@@ -2836,7 +2836,7 @@ function list_page(params, req, res){
         var head_data = { // Data to put into the head of the document (meta tags/title)
           description: data.top_list_gen.top_list_info.top_list_title,
           title: data.top_list_gen.top_list_info.top_list_title + ' | InvestKit.com',
-          url: Router.pick_path('content.toplist', {l_name: compUrlName(data.top_list_gen.top_list_info.top_list_title), list_id: data.top_list_gen.top_list_info.top_list_id, loc_id: compUrlName(info.params.loc_id)}, info.params)
+          url: Router.pick_path('content.toplist', {l_name: compUrlName(data.top_list_gen.top_list_info.top_list_title), list_id: data.top_list_gen.top_list_info.top_list_id, loc_id: compUrlName(info.params.loc_id), page_num: 1}, info.params)
         };
 
         if ( typeof data.results != "undefined" ) {
@@ -3244,7 +3244,7 @@ seoPicker.route('/:partner_id',function(params, req, res){
 
         var head_data = { // Data to put into the head of the document (meta tags/title)
           description: 'SEC documents, financial data, executive details and more valuable information for investors about companies in ' + data.profile_header.location + '.',
-          title: 'Everything You Need To Know About Public Companies in the ' + data.profile_header.location + ' | InvestKit.com',
+          title: 'Everything You Need To Know About Public Companies in the ' + data.profile_header.location + ' | ' + data.results.name + ' Finance',
           url: 'http://www.myinvestkit.com' + Router.pick_path('content.partnerhome',{partner_id: info.params.partner_id}, info.params),
           siteName: data.results.name + ' Finance'
         };
