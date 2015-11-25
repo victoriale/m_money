@@ -3379,7 +3379,7 @@ seoPicker.route('/',function(params, req, res){
 
   // Log how long it took to render the page
   var endTime = (new Date()).getTime();
-  console.log("SSRSTAT|\"Home Page\",," + (endTime - startTime) + "," + endTime + ",,\"" + info.req.headers['user-agent'] + "\"|");
+  console.log("SSRSTAT|\"Home Page\",," + (endTime - startTime) + "," + endTime + ",,\"" + req.headers['user-agent'] + "\"|");
   return false;
 });
 
