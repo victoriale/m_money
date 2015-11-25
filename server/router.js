@@ -2910,6 +2910,141 @@ function list_page(params, req, res){
   });
 }
 
+seoPicker.route('/directory/profiles/:type/page/:pageNum',directory);
+seoPicker.route(':partner_id/directory/profiles/:type/page/pageNum',directory);
+function directory(params, req, res){
+  var startTime = (new Date()).getTime();
+
+  if ( is404Page(params, req, res) ){
+    return false;
+  }
+
+  //Get the data
+  info_envar.withValue({params: params, res: res, req: req, startTime: startTime}, function(){
+      var callback = Meteor.bindEnvironment(function(results){
+        var res_arr = {};
+        for ( var index = 0; index < results.length; index++ ) {
+          for ( var attr in results[index] ) {
+            if ( results[index].hasOwnProperty(attr) ){
+              res_arr[attr] = results[index][attr];
+            }
+          }
+        }
+
+        var info = info_envar.get();
+        var res = info.res;
+
+        var data = res_arr;
+
+        try{
+          var head_data = {
+            description: "Directory Page",
+            title: "Directory Page | InvestKit.com",
+            url: Router.pick_path('content.finance.directory', {partner_id: info.params.partner_id, type: info.params.type, pageNum: info.params.pageNum})
+          };
+          if( typeof data.results != "undefined"){
+            head_data.siteName = data.results.name  + ' Finance';
+            head_data.url = 'http://myinvestkit.com' + head_data.url;
+          } else {
+            head_data.url = 'http://investkit.com' + head_data.url;
+          }
+
+          var items = [];
+          for(var index = 0; index < data.directory.listings.length; index++ ){
+            items[index] = {
+              c_id: data.directory.listings[index].c_id,
+              c_name: data.directory.listings[index].c_name,
+              c_hq_city: data.directory.listings[index].c_hq_city,
+              c_hq_state: data.directory.listings[index].c_hq_state,
+              c_ticker: data.directory.listings[index].c_ticker,
+              c_tr_last_updated: data.directory.listings[index].c_tr_last_updated,
+              c_sector: data.directory.listings[index].c_sector,
+              c_industry: data.directory.listings[index].c_industry,
+              c_ceo_id: data.directory.listings[index].c_ceo_id,
+              c_ceo_name: data.directory.listings[index].c_ceo_name,
+            };
+          }
+
+          var names = [];
+          var comps = [];
+          var cities = [];
+          var states = [];
+          var tickers = [];
+          var updates = [];
+          var sectors = [];
+          var industries = [];
+          var ceo_ids = [];
+          var comp_ids = [];
+          for(var i = 0; i < items.length; i++){
+            names[i] = items[i].c_ceo_name;
+            comps[i] = items[i].c_name;
+            cities[i] = items[i].c_hq_city;
+            states[i] = items[i].c_hq_state;
+            tickers[i] = items[i].c_ticker;
+            updates[i] = items[i].c_tr_last_updated;
+            sectors[i] = items[i].c_sector;
+            industries[i] = items[i].c_industry;
+            ceo_ids[i] = items[i].c_ceo_id;
+            comp_ids[i] = items[i].c_id;
+          }
+
+          var listeditems = [];
+          for(var i = 0; i < items.length; i++){
+            listeditems[i] = names[i] + '<br>' + comps[i] + '-' + tickers[i] + '<br>' + cities[i] + ', ' + states[i] + '<br>';
+          }
+
+          var h1content = {
+            title: head_data.title,
+            content: {
+              ul: listeditems
+            }
+          };
+
+          var page_data = {
+            head_data: head_data,
+            h1: h1content
+          };
+
+          res.end(minify(SSR.render('generic_page', page_data), {
+            minifyCSS: true,
+            minifyJS: true,
+            removeComments: true,
+            collapseWhitespace: false //for now
+          }));
+
+          var endTime = (new Date()).getTime();
+          console.log("SSRSTAT|\" Directory Page " + (endTime - info.startTime) + info.params.partner_id + "\"|");
+          return false;
+        } catch(e){
+          var endTime = (new Date()).getTime();
+          console.log("SSRSTAT|\" Directory Page -- Error\",\"" + (endTime - info.startTime) + info.params.partner_id + "\"|");
+          RenderError(res, e.stack);
+        }
+      }); //end callback var
+
+      var functions = [];
+
+      functions.push(function(batch){
+        batch_envar.withValue(batch, function(){
+          var bound_cb = Meteor.bindEnvironment(method_cb);
+          Meteor.call('GetDirectoryData', params.pageNum, params.type, null, bound_cb);
+        });
+      });
+
+      functions.push(function(batch){
+        batch_envar.withValue(batch, function(){
+          var bound_cb = Meteor.bindEnvironment(method_cb);
+          Meteor.call('GetPartnerHeader', params.partner_id, bound_cb);
+        });
+      });
+
+      var company_batch = new async_mult(functions, callback);
+      company_batch._timeout = page_timeout;
+
+      company_batch.execute();
+  }); //end info_envar
+}//end directory
+
 //**********************STATIC PAGES**********************
 // Disclaimer
 seoPicker.route('/disclaimer',disclaimer);
