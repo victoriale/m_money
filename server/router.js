@@ -3332,7 +3332,7 @@ seoPicker.route('/:partner_id',function(params, req, res){
 seoPicker.route('/',function(params, req, res){
   if ( isMyInvestKit(req) ) {
     var endTime = (new Date()).getTime();
-    console.log("SSRSTAT|\"Home Page - MyInvestKit\",,," + endTime + ",,\"" + info.req.headers['user-agent'] + "\"|");
+    console.log("SSRSTAT|\"Home Page - MyInvestKit\",,," + endTime + ",,\"" + req.headers['user-agent'] + "\"|");
     Render404(res);
     return false;
   }
