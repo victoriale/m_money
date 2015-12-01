@@ -21,6 +21,7 @@ Template.list_of_list_loc_page.onRendered(function(){
     Meteor.call('listOfListLoc', Router.current().params.loc_id, Session.get('list_page_num'), function(error, data){
       if(error || data.success == false){
         console.log('Invalid Team Error', error);
+        Session.set('list_page_num', Session.get('list_page_num') + 1);
         Session.set('IsError', true);
         return '';
       }
