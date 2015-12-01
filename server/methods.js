@@ -653,23 +653,28 @@ Meteor.methods({
     return future.wait();
   },
 
-  listOfListLoc:function(loc_id){
+  listOfListLoc:function(loc_id, page){
     var future = new Future();
     var startTime = (new Date()).getTime();
     // console.log("New featured List Request",loc_id);
 
     //random number to pick random list in list_index that's in database
     //param={list_index} , {location/DMA}
-    if(loc_id == "National" || loc_id == ''){
-      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=list_of_lists";
-    }else if(isNaN(loc_id) && loc_id.indexOf('.') == -1){
-      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=list_of_lists&state="+loc_id;
-    }else if(isNaN(loc_id)){
-      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=list_of_lists&partner_domain="+loc_id;
-    }else{
-      var UrlString = "http://apifin.investkit.com/call_controller.php?action=location_page&option=list_of_lists&dma="+loc_id;
-    }
+    //http://testapi.investkit.com:90/call_controller.php?action=location_page&option=list_of_lists&state=KS&page=2&per_page=10  <= TEST
 
+    //http://apifin.investkit.com/call_controller.php?action=location_page&option=list_of_lists  <= LIVE
+    if(loc_id == "National" || loc_id == ''){
+      var UrlString = "http://testapi.investkit.com:90/call_controller.php?action=location_page&option=list_of_lists";
+    }else if(isNaN(loc_id) && loc_id.indexOf('.') == -1){
+      var UrlString = "http://testapi.investkit.com:90/call_controller.php?action=location_page&option=list_of_lists&state="+loc_id;
+    }else if(isNaN(loc_id)){
+      var UrlString = "http://testapi.investkit.com:90/call_controller.php?action=location_page&option=list_of_lists&partner_domain="+loc_id;
+    }else{
+      var UrlString = "http://testapi.investkit.com:90/call_controller.php?action=location_page&option=list_of_lists&dma="+loc_id;
+    }
+    if ( typeof page != "undefined" ) {
+      UrlString += "&page=" + page + "&per_page=10";
+    }
     // console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, loc_id, error, data){
