@@ -673,9 +673,10 @@ Meteor.methods({
       var UrlString = "http://testapi.investkit.com:90/call_controller.php?action=location_page&option=list_of_lists&dma="+loc_id;
     }
     if ( typeof page != "undefined" ) {
-      UrlString += "&page=" + page + "&per_page=10";
+      UrlString += "&page=" + page + "&per_page=20";
+      console.log('listpageloc');
     }
-    // console.log(UrlString);
+     console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, loc_id, error, data){
       try{
@@ -710,7 +711,7 @@ Meteor.methods({
             // console.log("error");
             return false;
           }
-          var URL = "http://72.52.250.160:8080/yseop-manager/direct/passfail-training/dialog.do";
+          var URL = "http://72.52.250.160:8080/yseop-manager/direct/snt-fin/dialog.do";
           var UN = "client";
           var PW = "123";
           var info = data.content;
@@ -756,7 +757,7 @@ Meteor.methods({
             // console.log("error");
             return false;
           }
-          var URL = "http://72.52.250.160:8080/yseop-manager/direct/passfail-training/dialog.do";
+          var URL = "http://72.52.250.160:8080/yseop-manager/direct/snt-fin/dialog.do";
           var UN = "client";
           var PW = "123";
           var info = data.content;
