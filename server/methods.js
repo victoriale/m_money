@@ -673,7 +673,7 @@ Meteor.methods({
       var UrlString = "http://testapi.investkit.com:90/call_controller.php?action=location_page&option=list_of_lists&dma="+loc_id;
     }
     if ( typeof page != "undefined" ) {
-      UrlString += "&page=" + page + "&per_page=20";
+      UrlString += "&page=" + page + "&per_page=30";
       console.log('listpageloc');
     }
      console.log(UrlString);
