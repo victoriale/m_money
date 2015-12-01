@@ -674,9 +674,8 @@ Meteor.methods({
     }
     if ( typeof page != "undefined" ) {
       UrlString += "&page=" + page + "&per_page=30";
-      console.log('listpageloc');
     }
-     console.log(UrlString);
+    // console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, loc_id, error, data){
       try{
