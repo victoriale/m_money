@@ -46,12 +46,19 @@ Meteor.methods({
     // console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, batchNum, company_id, error, data){
+      if ( error ) {
+        future.throw(error);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"GetCompanyData - HTTP Error","' + batchNum + '","' + company_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+        return false;
+      }
+
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);
         var endTime = (new Date()).getTime();
-        console.log('METHODSTAT|"GetCompanyData - Error","' + batchNum + '","' + company_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+        console.log('METHODSTAT|"GetCompanyData - Parse Error","' + batchNum + '","' + company_id + '",' + (endTime - startTime) + ',' + endTime + '|');
         return false;
       }
       future.return(data);
@@ -117,6 +124,12 @@ Meteor.methods({
 
     curloc_id.withValue(batchNum, function(){
       Meteor.http.get(UrlString, Meteor.bindEnvironment((function(startTime,batchNum,loc_id,error, data){
+        if ( error ) {
+          future.throw(error);
+          var endTime = (new Date()).getTime();
+          console.log('METHODSTAT|"GetLocationData - HTTP Error","' + batchNum + '","' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+          return false;
+        }
         data.content = data.content.toString().replace(/^[^{]*/,function(a){ return ''; });
         var batch = curloc_id.get();
         try{
@@ -124,7 +137,7 @@ Meteor.methods({
         } catch (e) {
           future.throw(e);
           var endTime = (new Date()).getTime();
-          console.log('METHODSTAT|"GetLocationData - Error","' + batchNum + '","' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+          console.log('METHODSTAT|"GetLocationData - Parse Error","' + batchNum + '","' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
           return false;
         }
         future.return(data);
@@ -146,13 +159,19 @@ Meteor.methods({
      console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime,batchNum,exec_id, error, data){
+      if ( error ) {
+        future.throw(error);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"GetExecData - HTTP Error","' + batchNum + '","' + loc_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+        return false;
+      }
       data.content = data.content.toString().replace(/^[^{]*/,function(a){ return ''; });
       try{
         data = JSON.parse(data['content']);
       } catch (e) {
         future.throw(e);
         var endTime = (new Date()).getTime();
-        console.log('METHODSTAT|"GetExecData - Error","' + batchNum + '","' + exec_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+        console.log('METHODSTAT|"GetExecData - Parse Error","' + batchNum + '","' + exec_id + '",' + (endTime - startTime) + ',' + endTime + '|');
         return false;
       }
       var endTime = (new Date()).getTime();
@@ -673,9 +692,10 @@ Meteor.methods({
       var UrlString = "http://testapi.investkit.com:90/call_controller.php?action=location_page&option=list_of_lists&dma="+loc_id;
     }
     if ( typeof page != "undefined" ) {
-      UrlString += "&page=" + page + "&per_page=30";
+      UrlString += "&page=" + page + "&per_page=20";
+      console.log('listpageloc');
     }
-    // console.log(UrlString);
+     console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, loc_id, error, data){
       try{
