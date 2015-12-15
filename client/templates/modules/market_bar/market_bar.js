@@ -39,6 +39,7 @@ Template.market_bar.helpers({
       return '';
     }
     data.lastUpdated = moment(data.lastUpdated).tz('America/New_York').format('dddd, MMM DD, YYYY');
+
     return data;
   },
   //Helper to get data for market bar
@@ -49,25 +50,29 @@ Template.market_bar.helpers({
     if(typeof(data) === 'undefined'){
       return '';
     }
-    $.map(data.displayData, function(data, index){
-      switch(data.name){
+    $.map(data.displayData, function(item, index){
+      switch(item.name){
         case 'NASDAQ':
-        data.listlink = Session.get('nasdaq-list');
-        data.close_value = Number(Session.get('new_market_report').market_history.NASDAQ[0].current_price).toFixed(2);
+        item.listlink = Session.get('nasdaq-list');
+        item.close_value = Number(data.market_history.NASDAQ[0].current_price).toFixed(2);
+        item.price_operator = data.market_history.NASDAQ[0].price_operator;
         break;
         case 'NYSE':
-        data.listlink = Session.get('nyse-list');
-        data.close_value = Number(Session.get('new_market_report').market_history.NYSE[0].current_price).toFixed(2);
+        item.listlink = Session.get('nyse-list');
+        item.close_value = Number(data.market_history.NYSE[0].current_price).toFixed(2);
+        item.price_operator = data.market_history.NYSE[0].price_operator;
         break;
         case 'AMEX':
-        data.listlink = Session.get('amex-list');
-        data.close_value = Number(Session.get('new_market_report').market_history.AMEX[0].current_price).toFixed(2);
+        item.listlink = Session.get('amex-list');
+        item.close_value = Number(data.market_history.AMEX[0].current_price).toFixed(2);
+        item.price_operator = data.market_history.AMEX[0].price_operator;
         break;
         default:
 
         break;
       }
     })
+
     return data.displayData;
 
   },
