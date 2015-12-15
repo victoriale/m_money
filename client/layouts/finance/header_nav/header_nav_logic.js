@@ -205,7 +205,8 @@ Template.header_nav.helpers({
     data.url = Router.pick_path('content.partnerhome',{
       partner_id:params.partner_id
     });
-    data.title = link.name + ' Home';
+    //data.title = link.name + ' Home';
+    data.title = 'Home';
     return data;
   },
   homepage:function(){
