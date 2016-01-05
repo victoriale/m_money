@@ -449,7 +449,7 @@ Template.finance_homepage.events({
 Template.finance_homepage.onCreated(function() {
    Session.set('SuggestTime',0);
    Session.set('IsHome', true);
-   Meteor.http.get('http://apireal.synapsys.us/listhuv/?action=get_remote_addr', function(error, data){
+   Meteor.http.get('//w1.synapsys.us/get-remote-addr2/', function(error, data){
      //console.log(data);
 
      var getLoc = data.data.loc;
