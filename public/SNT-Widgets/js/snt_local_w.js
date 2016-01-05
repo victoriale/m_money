@@ -45,7 +45,7 @@ $(function(){
   console.log(windowURL);
   domain = windowURL;
   console.log("Grabbing data call");
-  $.get("http://apireal.synapsys.us/listhuv/?action=get_remote_addr2",function(r_data){
+  $.get("http://w1.synapsys.us/get-remote-addr/",function(r_data){
     city = r_data[0].city;
     state = r_data[0].state;
 

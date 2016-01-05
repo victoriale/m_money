@@ -88,7 +88,7 @@ function listCall(method, count){
     //even if remnant possibility of no city or state detected and will run get remote address.
     //should only happen if new partners and no city and/or state has been entered into collection
     if(remnant && (city == '' || city == null || state == '' || state == null)){
-  		$.get("http://apireal.synapsys.us/listhuv/?action=get_remote_addr2",function(r_data){
+  		$.get("http://w1.synapsys.us/get-remote-addr/",function(r_data){
         //will change the title text and resize using resizetext() function
         var name = method[offset]['name'];
 				$("#title_text").html(name);
