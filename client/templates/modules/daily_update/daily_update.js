@@ -62,7 +62,7 @@ Template.daily_update.onCreated(function(){
 
 function transformCompanyDailyUpdate(){
   var data = Session.get('daily_update');
-  var data2 = Session.get('one_day_daily_update');
+  var data2 = Session.get('daily_update');
 
   if(typeof data === 'undefined'){
     return '';
@@ -91,7 +91,7 @@ function transformCompanyDailyUpdate(){
   data.highchartsData = highchartsData;
 
   Session.set('graph_data', data);
-  Session.set('new_one_day_daily_update', highchartsData2);
+  Session.set('new_one_day_daily_update', highchartsData);
 }
 
 //Function to transform location data to form useable my already existing helpers

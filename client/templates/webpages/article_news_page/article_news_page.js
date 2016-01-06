@@ -18,21 +18,21 @@ Template.article_news_page.onRendered(function(){
       data = Session.get('profile_header');
       if(data != undefined){
         var ticker = params.ticker;
-        urlString = "http://api.synapsys.us/news/?action=get_finance_news&ticker=" + ticker;
+        urlString = "http://newsapi.synapsys.us/news/?action=get_finance_news&ticker=" + ticker;
       }
     } else if(typeof params.fname != 'undefined'){
       data = Session.get('profile_header');
       if(data != undefined){
         var ticker = params.ticker;
         var name = params.fname + "+" + params.lname;
-        urlString = "http://api.synapsys.us/news/?action=get_finance_news&ticker=" + ticker + "&name=" + name;
+        urlString = "http://newsapi.synapsys.us/news/?action=get_finance_news&ticker=" + ticker + "&name=" + name;
       }
     } else if(typeof params.loc_id != 'undefined'){
       var city = fullstate(params.loc_id);
-      urlString = "http://api.synapsys.us/news/?action=get_finance_news&city=" + city;
+      urlString = "http://newsapi.synapsys.us/news/?action=get_finance_news&city=" + city;
     }
     else{
-      urlString = "http://api.synapsys.us/news/?action=get_finance_news";
+      urlString = "http://newsapi.synapsys.us/news/?action=get_finance_news";
     }
     Meteor.http.get(urlString,
       function(error, data){
