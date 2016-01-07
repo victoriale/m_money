@@ -730,7 +730,7 @@ Meteor.methods({
             // console.log("error");
             return false;
           }
-          var URL = "http://72.52.250.160:8080/yseop-manager/direct/snt-fin/dialog.do";
+          var URL = "http://publisher.synapsys.us:8080/yseop-manager/direct/snt-fin/dialog.do";
           var UN = "client";
           var PW = "123";
           var info = data.content;
@@ -776,7 +776,7 @@ Meteor.methods({
             // console.log("error");
             return false;
           }
-          var URL = "http://72.52.250.160:8080/yseop-manager/direct/snt-fin/dialog.do";
+          var URL = "http://publisher.synapsys.us:8080/yseop-manager/direct/snt-fin/dialog.do";
           var UN = "client";
           var PW = "123";
           var info = data.content;
