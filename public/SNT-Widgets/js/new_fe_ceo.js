@@ -3,6 +3,8 @@ var dataLength;
 var curData;
 var domain = '';
 var url = '';
+var max = 10;
+var bord = false;
 $(function(){
   $('.fcw-rightnav').on('click', function() {
       if (offset < dataLength-1 && $(this).data('dir') === 'next') {
@@ -31,14 +33,12 @@ $(function(){
   }, 'json')
 })//END OF FUNCTION
 function dataCall(index){
-  $('.fcw-t2-title').html(curData[index].c_ticker);
-  $('.fcw-loc').html(curData[index].c_hq_city+' '+curData[index].c_hq_state);
-  $('.fcw-cmp').html(curData[index].c_name);
-  $('.fcw-t2-title').html(curData[index].o_first_name+' '+curData[index].o_last_name);
-  $('#paid').html(nFormatter(curData[index].TotalComp));
-  $('.fcw-image').css('background','url('+imageUrl(curData[index].o_pic)+') no-repeat');
   $('.fcw-t2-num').html('#' + (index + 1));
-  $('.fcw-cmp-image').css('background','url('+imageUrl(curData[index].c_logo)+')');
+  $('.fcw-t2-title').html(curData[index].o_first_name+' '+curData[index].o_last_name);
+  $('.fcw-loc').html(curData[index].c_name);
+  $('.fcw-image').css('background','url('+imageUrl(curData[index].o_pic)+') no-repeat');
+  $('.fcw-logo').css('background','url('+imageUrl(curData[index].c_logo)+') no-repeat');
+  $('#paid').html("$"+nFormatter(curData[index].TotalComp));
 
   if(url == 'www.myinveskit.com'){
     var windowURL = document.referrer;
@@ -53,20 +53,18 @@ function dataCall(index){
     reqdString = reqdString.split('/');
     domain = reqdString[3];
 
-    $('#title_link').attr('href',"http://www.myinvestkit.com/"+domain+"/"+compUrlName(curData[index].c_name)+"/"+curData[index].c_ticker+"/c/"+curData[index].c_id);
+    $('#title_link').attr('href',"http://www.myinvestkit.com/"+domain+"/"+curData[index].c_ticker+"/"+curData[index].o_last_name+"-"+curData[index].o_first_name+"/e/"+curData[index].o_id);
     $('.exec-link').attr('href',"http://www.myinvestkit.com/"+domain+"/"+curData[index].c_ticker+"/"+curData[index].o_last_name+"-"+curData[index].o_first_name+"/e/"+curData[index].o_id);
     $('.fcw-href').attr('href',"http://www.myinvestkit.com/"+domain+"/"+compUrlName(data_result.list_title)+"/female_ceo/list-executives/1");
-    $('#loc_link').attr('href',"http://www.myinvestkit.com/"+domain+"/"+curData[index].c_hq_state+"/loc");
-    $('#cmp_link').attr('href',"http://www.myinvestkit.com/"+domain+"/"+curData[index].c_name.replace(/ /g,'-')+"/"+curData[index].c_ticker+"/c/"+curData[index].c_id);
+    $('#loc_link').attr('href',"http://www.myinvestkit.com/"+domain+"/"+compUrlName(curData[index].c_name)+"/"+curData[index].c_ticker+"/c/"+curData[index].c_id);    $('.comp_link').attr('href',"http://www.myinvestkit.com/"+domain+"/"+curData[index].c_name.replace(/ /g,'-')+"/"+curData[index].c_ticker+"/c/"+curData[index].c_id);
     $('.fcw-cmp-image').parent().attr('href',"http://www.myinvestkit.com/"+domain+"/"+curData[index].c_name.replace(/ /g,'-')+"/"+curData[index].c_ticker+"/c/"+curData[index].c_id)
     $('#ad_link').attr('href',"http://www.joyfulhome.com/");
 
   }else{
-    $('#title_link').attr('href',"http://www.investkit.com/"+curData[index].c_ticker+"/"+compUrlName(curData[index].c_name)+"/company/"+curData[index].c_id);
+    $('#title_link').attr('href',"http://www.investkit.com/"+curData[index].o_first_name+"-"+curData[index].o_last_name+"/"+curData[index].c_ticker+"/executive/"+curData[index].o_id);
     $('.exec-link').attr('href',"http://www.investkit.com/"+curData[index].o_first_name+"-"+curData[index].o_last_name+"/"+curData[index].c_ticker+"/executive/"+curData[index].o_id);
     $('.fcw-href').attr('href',"http://www.investkit.com/"+compUrlName(data_result.list_title)+"/female_ceo/executive-list/1");
-    $('#loc_link').attr('href',"http://www.investkit.com/"+curData[index].c_hq_state+"/location");
-    $('#cmp_link').attr('href',"http://www.investkit.com/"+curData[index].c_ticker+"/"+curData[index].c_name.replace(/ /g,'-')+"/company/"+curData[index].c_id);
+    $('#loc_link').attr('href',"http://www.investkit.com/"+curData[index].c_ticker+"/"+compUrlName(curData[index].c_name)+"/company/"+curData[index].c_id);    $('.comp-link').attr('href',"http://www.investkit.com/"+curData[index].c_ticker+"/"+compUrlName(curData[index].c_name)+"/company/"+curData[index].c_id);
     $('.fcw-cmp-image').parent().attr('href',"http://www.investkit.com/"+curData[index].c_ticker+"/"+curData[index].c_name.replace(/ /g,'-')+"/company/"+curData[index].c_id);
     $('#ad_link').attr('href',"http://www.joyfulhome.com/");
 

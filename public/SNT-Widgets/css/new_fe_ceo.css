@@ -1,12 +1,12 @@
 html, body {
   margin: 0 !important;
-  font-family: HN;
+  font-family: 'Lato', sans-serif;font-weight:300;
   width: 100%;
   height: auto;
   background-color: white;
 }
 div{
-  font-family: HN;
+  font-family: 'Lato', sans-serif;font-weight:300;
 }
 * {
   -webkit-box-sizing: border-box;
@@ -15,43 +15,15 @@ div{
 }
 a {
   text-decoration: none;
-  color: #000;
-}
-a:hover {
-  color:#39abff;
+  outline:0;
 }
 
 button:focus {
   outline:0;
 }
 
-@font-face{
-  font-family: 'HN';
-  src: url('public/fonts/HelveticaNeue.otf');
-}
-
-@font-face{
-  font-family: 'HN-B';
-  src: url('public/fonts/HelveticaNeue-Bold.otf');
-}
-
-@font-face{
-  font-family: 'HN-L';
-  src: url('public/fonts/HelveticaNeue-Light.otf');
-}
-
-@font-face{
-  font-family: 'HN-T';
-  src: url('public/fonts/HelveticaNeue-Thin.otf');
-}
-
-@font-face{
-  font-family: 'HN-UL';
-  src: url('public/fonts/HelveticaNeue-UltraLight.otf');
-}
-
 .ad_location{
-  width:100%;
+  width:300px;
   height:250px;
   background-color: #ccc;
 }
@@ -60,59 +32,58 @@ button:focus {
   overflow: hidden;
   width:300px;
   height:auto;
-  margin: 0 auto 0 auto;
+  margin:0 auto;
 }
 
 .fcw{
-  border: 1px solid #ccc;
-  width:100%;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  width:300px;
   height:350px;
   position: relative;
 }
 
 /*top text*/
-.fcw-logo{
+.fcw-icon{
   width:25px;
   height:25px;
   background-color: #39abff;
-  background-image: url("/icons/Investkit_logo.png");
+  background-image: url("public/Fin_Widget_Icon.png");
   background-position: center center !important;
   background-repeat: no-repeat;
   border-radius: 50%;
-  margin: 7px 5px;
+  margin: 7px 10px;
   position: absolute;
   top:0;
   left:0;
 }
-
+.fcw-icon:hover{
+  background-color: #000;
+}
 .fcw-text{
-  width:261px;
+  width:100%;
   height:70px;
   padding-top: 2px;
-  padding-left: 35px;
   position:relative;
 }
 
 .fcw-t1{
-  position: absolute;
-  top: 0;
   margin-top: 2px;
-  font-family:HN-B;
-  font-size:18px;
+  font-family: 'Lato', sans-serif;font-weight:700;
+  font-size: 18px;
   text-align: left;
-  line-height: 18px;
-  /*white-space: nowrap;*/
+  line-height: 22px;
+  padding-left: 45px;
+  width: 90%
 }
 .fcw-t2{
-  position: absolute;
-  top: 40px;
-  width: 100%;
-  margin: 0 auto 2px;
+  margin-bottom: 2px;
   font-size:14px;
-  line-height: 16px;
   text-align: center;
-  padding: 0 5px;
-  /*line-height: 1.7em;*/
+  line-height: 16px;
+  font-weight: 400;
+  width: 100%;
 }
 /*top text END*/
 
@@ -120,85 +91,50 @@ button:focus {
 .fcw-middle{
   position: relative;
   width:100%;
-  height:155px;
+  margin: 12px 0 10px 0;
 }
 .fcw-image{
-  width:150px;
-  height:150px;
+  width:144px;
+  height:144px;
   margin:5px auto;
   border-radius: 50%;
   box-shadow: 0 0 0 3px #cccccc;
-  background-size: contain !important;
+  background-size: cover !important;
   background-position: center center !important;
   background-repeat: no-repeat;
+  /*remove below cause its funny*/
   text-align: center;
+  position: relative;
 }
-.fcw-cmp-image {
+.fcw-t2-num{
+  position: absolute;
+  top: 0;
+  width: 45px;
+  font-size: 20px;
+  height: 45px;
+  border: 1px solid #ccc;
   border-radius: 50%;
-  border: 1px solid #ebebeb;
-  background-size: contain !important;
+  background-color: #ffffff;
+  line-height: 40px;
+}
+.fcw-logo{
+  border-radius: 50%;
+  border-width: 1px;
+  border-color: #ebebeb;
+  border-style: solid;
+  background-color: #ffffff !important;
+  width: 48px;
+  height: 48px;
+  background-size: cover !important;
   background-position: center center !important;
   background-repeat: no-repeat;
-  width: 50px;
-  height: 50px;
-  position:absolute;
-  right:69px;
-  bottom:-2px;
-  background-color:#fafafa;
+  position: absolute;
+  right:0;
+  margin-top: 90px;
 }
-.fcw-cmp-image .fa {
-  color:#fff;
-  display: none;
-  line-height:50px;
-  text-align:center;
-  font-size:24px;
-  width:100%;
-  height:100%;
-  background-color:rgba(57,171,255,0.85);
-  border-radius:50%;
+.fcw-logo:hover{
+  background-color: #39abff;
 }
-.fcw-cmp-image:hover .fa {
-  display:block;
-}
-
-.fcw-t2-num {
-  font-family:HN;
-  font-size:18px;
-  color:#000;
-  border-radius: 50%;
-  border: 1px solid #ebebeb;
-  width: 50px;
-  height: 50px;
-  position:absolute;
-  left:69px;
-  top:-2px;
-  background-color:#fff;
-  text-align:center;
-  line-height: 50px;
-}
-
-.fcw-image:hover .fcw-image-txt {
-  display:block;
-}
-.fcw-image-txt {
-  display:none;
-  background-color:rgba(57,171,255,0.85);
-  text-align:center;
-  width:100%;
-  height:100%;
-  border-radius:50%;
-  color:#fff;
-  padding-top:42px;
-}
-.img-l1 {
-  line-height:40px;
-  font-size:32px;
-}
-.img-l2 {
-  line-height:18px;
-  font-size:18px;
-}
-
 .fcw-leftnav{
   position: absolute;
   height:60px;
@@ -208,15 +144,12 @@ button:focus {
   -webkit-border-radius: 0 90px 90px 0;
   border:none;
   left: 0;
-  top:30%;
+  top:20%;
   background-color: #000;
   color:#fff;
   font-size: 25px;
   padding-right: 10px;
   cursor: pointer;
-}
-.fcw-leftnav:hover {
-  background-color:#39abff;
 }
 
 .fcw-rightnav{
@@ -228,28 +161,26 @@ button:focus {
   border:none;
   position: absolute;
   right: 0;
-  top:30%;
+  top:20%;
   background-color: #000;
   color:#fff;
   font-size: 25px;
   padding-left: 10px;
   cursor: pointer;
 }
-.fcw-rightnav:hover {
-  background-color:#39abff;
-}
 /*image && button END*/
 
 /*bottom text*/
 .fcw-content{
   width:100%;
-  height:45px;
+  /*height:45px;*/
 }
 
 .fcw-content1{
   font-size: 24px;
-  color:#3098ff;
-  font-family: HN-B;
+  color:#39abff;
+  font-family: 'Lato', sans-serif;
+  font-weight:700;;
   text-align: center;
 }
 
@@ -258,49 +189,58 @@ button:focus {
   color:#000000;
   text-align: center;
   line-height: 1em;
+  font-weight: 500;
+  margin-top: 2px;
 }
 /*bottom text END*/
 
 .fcw-list{
-  width:120px;
-  height: 30px;
+  width:100%;
+  height: 20px;
   text-align: center;
-  position: relative;
-  margin: 0 auto 16px;
-  top:8px;
-  border: 1px solid #3098ff;
-  border-radius: 3px;
-  color:#636363;
+  position: absolute;
+  bottom:0;
+  margin-bottom: 30px;
 }
 
 .fcw-list-link{
+  color: #000;
   font-size: 10px;
-  line-height:28px;
-  font-family: HN-B;
+  font-family: 'Lato', sans-serif;font-weight:700;;
+  border-radius: 3px;
+  border-width: 1px;
+  border-color: #3098ff;
+  border-style: solid;
+  background-color: #ffffff;
+  width: 118px;
+  height: 28px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 18px;
+  padding-right: 18px;
 }
-.fcw-list:hover {
-  background-color:#3098ff;
-  color:#fff !important;
+.fcw-list-link:hover{
+  background-color: #3098ff;
+  color: #ffffff;
 }
-.fcw-list:active {
-  background-color:#000;
-  color:#fff !important;
+.fcw-list-link:active{
+  background-color: #000000;
+  color: #ffffff;
 }
-
 .fcw-presentedby{
-  position: absolute;
-  bottom: 0px;
-  left: 2px;
-  color:#aaaaaa;
-  text-align: left;
-  font-size: 12px;
+    position: absolute;
+    bottom: 4px;
+    left: 2px;
+    color:#aaaaaa;
+    text-align: left;
+    font-size: 10px;
 }
 
-.fcw-rightnav:active{
+.fcw-rightnav:hover{
   background-color: #39abff;
 }
 
-.fcw-leftnav:active{
+.fcw-leftnav:hover{
   background-color: #39abff;
 }
 
@@ -311,6 +251,7 @@ button:focus {
 .swc-space{
   margin:0 2px;
 }
+
 .fcw-t2-title{
   color: #000;
 }
@@ -322,4 +263,28 @@ button:focus {
 }
 .fcw-loc:hover{
   color:#39abff;
+}
+.hover1{
+  width:100%;
+  height:100%;
+  border-radius: 50%;
+  opacity: 0;
+  text-align: center;
+}
+.txt1{
+  padding-top:1em;
+  font-size: 32px;
+  font-family: 'Lato', sans-serif;font-weight:400;-L;
+  color:#ffffff;
+}
+.txt2{
+  font-size: 18px;
+  font-family: 'Lato', sans-serif;font-weight:700;;
+  color:#ffffff;
+}
+.hover1:hover{
+  opacity: .85;
+  padding-top: 10px;
+  background: #39abff;
+  font-size: 20px;
 }
