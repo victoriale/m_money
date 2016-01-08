@@ -1,12 +1,12 @@
 html, body {
   margin: 0 !important;
-  font-family: 'Lato', sans-serif;font-weight:300;
+  font-family: 'Lato', sans-serif;font-weight:400;
   width: 100%;
   height: auto;
   background-color: white;
 }
 div{
-  font-family: 'Lato', sans-serif;font-weight:300;
+  font-family: 'Lato', sans-serif;font-weight:400;
 }
 * {
   -webkit-box-sizing: border-box;
