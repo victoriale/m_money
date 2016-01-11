@@ -195,6 +195,23 @@ Template.header_nav.events({
   });
 
 Template.header_nav.helpers({
+  title: function() {
+    var titleName;
+    if ( Router.current().url.match(/myinvestkit/) != null ) {
+      titleName = "MyInvestKit";
+      return titleName;
+    }
+    titleName = "InvestKit";
+    return titleName;
+  },
+  logo: function() {
+    var logoName;
+    if ( Router.current().url.match(/myinvestkit/) != null ) {
+      return "";
+    }
+    logoName = "http://" + window.location.host + "/public/financial_logo_lg.png";
+    return logoName;
+  },
   partnerHome:function(){
     var link = Session.get('p_data');
     var params = Router.current().getParams();

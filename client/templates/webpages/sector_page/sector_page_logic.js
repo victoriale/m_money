@@ -73,6 +73,7 @@ Template.sector_page.helpers({
       data.sector = data.sector + ' Sector';
     }
 
+    //if current location is a partner domain then pull partner information
     if ( Router.current().params.loc_id == Router.current().params.partner_id ) {
       data.location_data = {
         url: Router.pick_path('content.partnerhome',{})
@@ -82,6 +83,14 @@ Template.sector_page.helpers({
       } else {
         data.location_data.name = '';
       }
+    } else if(Router.current().params.loc_id == 'National'){
+      data. location_data = {};
+      data.location_data = {
+        name: 'United States',
+        url: Router.pick_path('content.locationprofile',{
+          loc_id: 'National'
+        })
+      };
     } else {
       data.location_data = {
         url: Router.pick_path('content.locationprofile',{

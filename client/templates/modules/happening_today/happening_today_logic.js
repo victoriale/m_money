@@ -15,7 +15,7 @@
      var city = Session.get('bio_location');
      //var url = "http://api.synapsys.us/news/?action=get_finance_whats_happening&ticker=CSCO";
      if(typeof city != 'undefined'){
-       var url = "http://api.synapsys.us/news/?action=get_finance_whats_happening&ticker="+ params.ticker;
+       var url = "http://newsapi.synapsys.us/news/?action=get_finance_whats_happening&ticker="+ params.ticker;
        Meteor.http.get(url ,function(err, data){
          if(err){
            console.log('CALL ERROR', err);

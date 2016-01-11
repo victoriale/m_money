@@ -8,9 +8,13 @@
 <meta charset='utf-8'>
 <!--ATTENTION css/fontawesome.css is being called locally the cdn link site was not working-->
 <link href="../css/font-awesome.css" media="all" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Lato:400,300,100,700,900" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="../css/new_fe_ceo.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script type="text/javascript" src="../js/new_fe_ceo.js"></script>
+<base target="_blank">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
 </head>
 <body>
   <!--container of widget-->
@@ -18,46 +22,61 @@
     <!--wrapper of just widget-->
     <div class="fcw">
       <!--top text-->
-      <div class="fcw-logo"></div>
       <div class="fcw-text">
+        <div class="fcw-icon"></div>
         <div class="fcw-t1">Highest Paid Female CEOs in 2015</div>
-      </div><!--top text END-->
-      <div class="fcw-t2">
-        <a class="exec-link" href="" target="_blank">
+        <div class="fcw-t2">
+        <a id="title_link" href="">
           <span class="fcw-t2-title"></span>
         </a>
         <i class="fa fa-angle-right title-icon"></i>
-        <a id="cmp_link" href="" target="_blank">
-          <span class="fcw-cmp"></span>
+        <a id="loc_link" href="">
+          <span class="fcw-loc"></span>
         </a>
-      </div>
+        </div>
+      </div><!--top text END-->
         <!--image && button-->
       <div class="fcw-middle">
-        <div class="fcw-t2-num">1</div>
-        <a class="exec-link" href="" target="_blank"><div class="fcw-image"><div class="fcw-image-txt"><span class="img-l1">View</span><br><span class="img-l2">Profile</span></div></div></a>
-        <a href="" target="_blank"><div class="fcw-cmp-image"><i class="fa fa-share"></i></div></a>
+        <div class="fcw-image">
+          <a class="exec-link" href="">
+            <div class="hover1">
+              <div class="txt1">View</div>
+              <div class="txt2">Profile</div>
+            </div>
+          </a>
+          <div class="fcw-t2-num"></div>
+          <a class="comp-link" href="">
+            <div class="fcw-logo" style="color: #fff; top:5px;">
+              <div class="hover1">
+                <i class="fa fa-share fontsize"></i>
+              </div>
+            </div>
+          </a>
+        </div>
         <button class="fcw-leftnav" data-dir='prev'><i class="fa fa-angle-left"></i></button>
         <button class="fcw-rightnav" data-dir='next'><i class="fa fa-angle-right"></i></button>
       </div><!--image && button END-->
       <!--bottom text-->
       <div class="fcw-content">
-        <div class="fcw-content1">$<span id="paid"></span></div><!--name of ceo-->
+        <div class="fcw-content1"><span id="paid"></span></div><!--name of ceo-->
         <div class="fcw-content2">
           <span class="fcw-content2-comp">Reported Total Compensation</span>
         </div>
       </div>
-      <a class="fcw-href" href="" target="_blank">
-        <div class="fcw-list">
+      <div class="fcw-list">
+        <a class="fcw-href" href="">
           <span class="fcw-list-link">SEE THE LIST <i class="fa fa-mail-forward swc-space"></i></span>
-        </div>
-      </a>
+        </a>
+      </div>
       <div class="fcw-presentedby">
-        PRESENTED BY
+        HIGHEST PAID WOMEN CEOS - PRESENTED BY
       </div>
       <!--bottom text END-->
     </div><!--wrapper END-->
     <!--AD Placement-->
-    <div class="ad_location" style="background-image:url('/ads/RolexAd.png')"></div>
+    <a id="ad_link" href="">
+      <div class="ad_location" style="background-image:url('/ads/Joyfulhome_Ad.jpg')"></div>
+    </a>
   </div>
 </body>
 </html>

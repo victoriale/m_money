@@ -105,6 +105,17 @@ Template.money_memory_page.helpers({
 
     return val === mm_range ? 'mmpg-stock-sort-bbl-selected' : '';
   },
+  //Helper to display graph date
+  graphDate: function(){
+    var mm_range = Session.get('mm_range');
+
+    if(mm_range === 'mmbbl-0'){
+      var data = Session.get('new_one_day_daily_update');
+      return ' ' + moment.utc(data[0][0]).subtract(5, 'hours').format('dddd MMM Do, YYYY');
+    }
+
+    return '';
+  },
   //Helper to determine chart
   getMonMemChart: function(){
     var data = Session.get('new_fin_overview');
@@ -120,17 +131,20 @@ Template.money_memory_page.helpers({
     var max = null;
     var tickPositions = undefined;
 
+    var graphData = data.highchartsData;
+
     //Get dependencies to find date range
     var latestDate = moment(data.highchartsData[0][0]);
     data.highchartsData.reverse();
     //Get range value based on option selected
     switch(mm_range){
       case 'mmbbl-0':
-        var graphData = data.highchartsData
+        var graphData = Session.get('new_one_day_daily_update');
+        var dataLength = graphData.length;
 
         //Set min and max of graphs to latest day available (9:00am EST - 4:00pm EST)
-        var min = moment.utc(data.highchartsData[dataLength - 1][0]).subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
-        var max = moment.utc(data.highchartsData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(0).second(0).format('X') * 1000;
+        var min = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
+        var max = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(5).second(0).format('X') * 1000;
 
         var tickPositions = [min + ((1800) * 1000), min + ((2 * 3600) * 1000), min + ((3 * 3600) * 1000), min + ((4 * 3600) * 1000), min + ((5 * 3600) * 1000), min + ((6 * 3600) * 1000), min + ((7 * 3600) * 1000)];
 
@@ -250,7 +264,15 @@ Template.money_memory_page.helpers({
       },
       tooltip: {
         formatter: function(){
-          return Highcharts.dateFormat(tooltip_format, this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+          if(this.x === min && mm_range === 'mmbbl-0'){
+            //This text gets attached to the point that matches the minimum for the 1D graph
+            return "Yesterday's Closing Price<br />" + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+          }else if(this.x >= max - (5 * 60 * 1000) && this.x <= max && mm_range === 'mmbbl-0'){
+            //This text gets attached to the last point in the data for 1D graph, if the point is greater than 5 minutes of the max value
+            return "Today's Closing Price<br />" + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+          }else{
+            return Highcharts.dateFormat(tooltip_format, this.x) + '<br />' + this.series.name + ': $' + commaSeparateNumber_decimal(Math.round(this.y * 100) / 100);
+          }
         }
       },
       plotOptions: {
@@ -274,7 +296,7 @@ Template.money_memory_page.helpers({
       },
       series: [{
           name: data.company_data.c_name,
-          data: data.highchartsData
+          data: graphData
       }]
     }
 
@@ -478,6 +500,7 @@ function recallMoneyMemory_page(){
 function reformatMoneyMemoryData(){
   var data = Session.get('fin_overview');
 
+
   var highchartsData = [];
 
   data.stock_history.forEach(function(item, index){
@@ -491,5 +514,16 @@ function reformatMoneyMemoryData(){
 
   data.highchartsData = highchartsData;
 
+  var highchartsData2 = [];
+
+  data.daily_update.forEach(function(item, index){
+    var date = (item.sh_date - 20 * 60) * 1000;
+
+    var point = [date, Number(item.sh_close)];
+
+    highchartsData2.push(point);
+  })
+
+  Session.set('new_one_day_daily_update', highchartsData2);
   Session.set('new_fin_overview', data);
 }

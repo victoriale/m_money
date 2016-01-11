@@ -14,7 +14,7 @@ Template.latest_news.onRendered(function(){
       data = Session.get('profile_header');
       if(data != undefined){
         var ticker = data['c_ticker'];
-        urlString = "http://api.synapsys.us/news/?action=get_finance_news&ticker=" + ticker;
+        urlString = "http://newsapi.synapsys.us/news/?action=get_finance_news&ticker=" + ticker;
       }
     }
     else if(Session.get('IsExec')){
@@ -22,14 +22,14 @@ Template.latest_news.onRendered(function(){
       if(data != undefined){
         var ticker = data['c_ticker'];
         var name = data['o_first_name'] + "+" + data['o_last_name'];
-        urlString = "http://api.synapsys.us/news/?action=get_finance_news&ticker=" + ticker + "&name=" + name;
+        urlString = "http://newsapi.synapsys.us/news/?action=get_finance_news&ticker=" + ticker + "&name=" + name;
       }
     }
     else if(Session.get('IsLocation')){
-      urlString = "http://api.synapsys.us/news/?action=get_finance_news&state="+fullstate(params.loc_id);
+      urlString = "http://newsapi.synapsys.us/news/?action=get_finance_news&state="+fullstate(params.loc_id);
     }
     else{
-      urlString = "http://api.synapsys.us/news/?action=get_finance_news";
+      urlString = "http://newsapi.synapsys.us/news/?action=get_finance_news";
     }
     Meteor.http.get(urlString,
       function(error, data){

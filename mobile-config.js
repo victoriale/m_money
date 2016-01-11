@@ -1,0 +1,3 @@
+App.info({});
+
+App.accessRule("*");

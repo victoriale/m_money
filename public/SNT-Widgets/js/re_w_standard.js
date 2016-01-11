@@ -35,18 +35,6 @@ $(function () {
     //returns string true or false
   	bord = query.bord;
 
-    /*
-    //Same as domain = query.dom  but if that doesnt work this should work so USE [loc] global variable
-  	//USE BOTTOM ONCE WE IMPLEMENT MULTIPLE CITIES INTO LIST PAGE
-  	for(var i = 0; i < query['loc']['loc']['city'].length; i++){
-  		var c = query['loc']['loc']['city'][i].city;
-  		var s = query['loc']['loc']['city'][i].state;
-  		loc = loc + c + "," + s;
-  		if (typeof query['loc']['loc']['city'][i+1] != 'undefined'){
-  			loc += '|';
-  		}
-  	}
-    */
   }
 
   if(bord == 'true'){
@@ -159,7 +147,7 @@ function listCall(method, count){
 				//some reason had to run below again
 				locName = locName.replace('+',' ');
 				$(".re_w_list-location-text").html(locName);
-				$(".re_w_list-listbutton-icon").css("background-image","url('http://cdn.joyfulhome.com/joyfulhome_house_clear.png')");
+				$(".re_w_list-listbutton-icon").css("background-image","url('http://images.joyfulhome.com/joyfulhome_house_clear.png')");
 				$(".re_w_list-listbutton-link").attr('href',"http://www.myhousekit.com/"+p_domain+"view_list/"+link);
 				//go to location page go to myhousekit for partner non remnant
 				$("#location_link").attr('href',"http://www.myhousekit.com/"+p_domain+"loc/");
