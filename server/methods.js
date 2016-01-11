@@ -852,7 +852,7 @@ Meteor.methods({
 
   GetSuggestion: function(searchString,currentTime){
     var startTime = (new Date()).getTime();
-    var stringURL = callUrl + "action=search&option=batch&wild=true&param=" + searchString;
+    var stringURL = callUrl + "?action=search&option=batch&wild=true&param=" + searchString;
     var future = new Future();
     curTime.withValue(currentTime,function(){
       var boundFunction = Meteor.bindEnvironment((function(startTime, searchString, error, data){
@@ -886,12 +886,12 @@ Meteor.methods({
   listOfListData: function(company_id, page){
     var future = new Future();
     var startTime = (new Date()).getTime();
-    var UrlString = callUrl + "action=company_profile&option=indie&call=list_of_lists&param=" + company_id + "&limit=1,10";
+    var UrlString = callUrl + "?action=company_profile&option=indie&call=list_of_lists&param=" + company_id + "&limit=1,10";
 
     if ( typeof page != "undefined" ) {
       UrlString += "&page=" + page;
     }
-    // console.log(UrlString);
+    console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, company_id, error, data){
       try{
@@ -915,9 +915,9 @@ Meteor.methods({
   GetDirectoryData: function(pageNum, type, query){
     var startTime = (new Date()).getTime();
     if(query === null){
-      var URLString = callUrl + "action=global_page&option=directory&page=" + pageNum + '&type=' + type;
+      var URLString = callUrl + "?action=global_page&option=directory&page=" + pageNum + '&type=' + type;
     }else{
-      var URLString = callUrl + "action=global_page&option=directory&page=" + pageNum + '&type=' + type + query;
+      var URLString = callUrl + "?action=global_page&option=directory&page=" + pageNum + '&type=' + type + query;
     }
 
     // console.log('Directory URL', URLString);

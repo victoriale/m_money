@@ -399,7 +399,7 @@ Template.daily_update.helpers({
           var max = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(5).second(0).format('X') * 1000;
         }
         if(Session.get('IsCompany')){
-          var graphData = Session.get('new_one_day_daily_update');
+          var graphData = Session.get('new_header_one_day_daily_update');
           var dataLength = graphData.length;
           //Set min and max of graphs to latest day available (9:00am EST - 4:00pm EST)
           var min = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
