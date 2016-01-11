@@ -134,14 +134,38 @@
         <td style="float:right;min-width:200px;max-width:1600px;">
           <a class="share-link">
             <div class="layout_nav-share">
-              <span class='st_sharethis_large' displayText=''></span>
+              <span id="button_1" displayText=''></span>
               <span class='st__large' displayText=''></span>
+              <script>
+                stWidget.addEntry({
+                  service: "sharethis",
+                  element: document.getElementById('button_1'),
+                  url: window.location.href,
+                  title: "{{title}}",
+                  type: "large",
+                  text: "ShareThis",
+                  image: "{{logo}}",
+                  summary: "Get an investor's guide to companies, executives, locations, and more. Browse lists of top performing companies, see what investments might have gained, and access news about companies."
+                });
+              </script>
             </div>
           </a>
           <a class="facebook-link">
             <div class="layout_nav-fb"><span class='st__large' displayText=''></span>
               <span class='st__large' displayText=''></span>
-              <span class='st_facebook_large' displayText=''></span>
+              <span id="button_2" displayText=''></span>
+              <script>
+              stWidget.addEntry({
+                service: "facebook",
+                element: document.getElementById('button_2'),
+                url: window.location.href,
+                title: "{{title}}",
+                type: "large",
+                text: "ShareThis",
+                image: "http://" + window.location.host + "{{logo}}",
+                summary: "Get an investor's guide to companies, executives, locations, and more. Browse lists of top performing companies, see what investments might have gained, and access news about companies."
+              });
+              </script>
             </div>
             <div class="layout_nav-share_text">Share It</div>
           </a>

@@ -1,0 +1,35 @@
+<!-- vle 01/07/2016-->
+
+<head>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+<template name="disqus_comments_module">
+  <div class="dsqs module-6">
+
+    <!-- Header Section -->
+    <div class="module-header">
+      <span class="module-header-line"></span>
+
+      <span class="module-header-title">Comments About {{profile_name}}</span>
+    </div>
+    <!-- END Header Section -->
+
+    <!--comments-->
+    <div id="disqus_thread" style="padding:10px;"></div>
+    <script>
+    /**
+    * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+
+    s.src = '//myinvestkit.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    </div>
+</template>
