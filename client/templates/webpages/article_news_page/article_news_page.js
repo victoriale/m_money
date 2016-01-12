@@ -28,7 +28,11 @@ Template.article_news_page.onRendered(function(){
         urlString = "http://newsapi.synapsys.us/news/?action=get_finance_news&ticker=" + ticker + "&name=" + name;
       }
     } else if(typeof params.loc_id != 'undefined'){
-      var city = fullstate(params.loc_id);
+      if(params.loc_id == 'National'){
+        var city = params.loc_id;
+      }else{
+        var city = fullstate(params.loc_id);
+      }
       urlString = "http://newsapi.synapsys.us/news/?action=get_finance_news&city=" + city;
     }
     else{
