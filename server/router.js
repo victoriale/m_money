@@ -1,5 +1,5 @@
 // HTML minifier
-var minify = Npm.require('html-minifier').minify;
+var minify = Meteor.npmRequire('html-minifier').minify;
 // Environment Variables
 var info_envar = new Meteor.EnvironmentVariable;
 var batch_envar = new Meteor.EnvironmentVariable;
