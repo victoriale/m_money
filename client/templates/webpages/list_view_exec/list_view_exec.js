@@ -40,7 +40,7 @@ Template.list_view_exec.helpers({
     var params = Router.current().getParams();
     if(params.list_id == 'dollar_ceo'){
       var listdata = Session.get('dollar_ceo');
-      listdata['list_title'] = 'CEOs Who Make $1 Salary in 2015';
+      listdata['list_title'] = 'CEOs Who Made $1 Salary in 2015';
     }
     if(params.list_id == 'female_ceo'){
       var listdata = Session.get('female_ceo');

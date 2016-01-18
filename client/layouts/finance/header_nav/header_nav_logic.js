@@ -198,7 +198,7 @@ Template.header_nav.helpers({
   title: function() {
     var titleName;
     if ( Router.current().url.match(/myinvestkit/) != null ) {
-      titleName = "MyInvestKit";
+      titleName = "Home";
       return titleName;
     }
     titleName = "InvestKit";
