@@ -63,17 +63,14 @@ Template.daily_update.onCreated(function(){
 function transformCompanyDailyUpdate(){
   var data = Session.get('daily_update');
   var data2 = Session.get('daily_update');
-
   if(typeof data === 'undefined'){
     return '';
   }
-
   var highchartsData = [];
   var daily_update = {};
 
   data.stock_hist.forEach(function(item, index){
     var date = item.sh_date * 1000;
-
     var point = [date, Number(item.sh_close)];
     highchartsData.push(point);
   })
