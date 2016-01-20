@@ -49,8 +49,7 @@ Template.daily_update.onCreated(function(){
             console.log("error Call", err);
             return false;
           }else{
-            var aiContent = createGenericString(false, data);
-            Session.set('AI_daily_update',aiContent);
+            Session.set('AI_daily_update',JSON.parse(data));
           }
         })
 
