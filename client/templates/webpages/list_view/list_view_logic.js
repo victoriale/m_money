@@ -66,9 +66,13 @@ Template.list_view.helpers({
     return fullstate(url.loc_id);
   },
   image: function(){
+    var params = Router.current().getParams();
     var datalist = Session.get('top_list_gen').top_list_info;
-    var data = datalist.top_list_location[0];
-    if(data == 'National' || data == '' || typeof data == 'undefined'){
+    if(params.list_id != 'sv150_gainers' && params.list_id != 'sv150_losers'){
+      var data = datalist.top_list_location[0];
+    }
+    if(data == 'National' || data == '' || typeof data == 'undefined' || params.list_id == 'sv150_gainers' || params.list_id == 'sv150_losers'){
+
       return "background-image: url('/StateImages/Location_National.jpg');";
     }else{
       if(isNaN(data)){
@@ -103,6 +107,9 @@ Template.list_view.helpers({
         data['background'] = 'tilewhite';
       }else{
         data['background'] = 'tilegrey';
+      }
+      if (params.list_id == 'sv150_gainers' || params.list_id == 'sv150_losers'){
+        data.lcsi_price_last_operator = data.csi_price_last_operator;
       }
 
       if(typeof data.c_hq_state =='undefined'){
