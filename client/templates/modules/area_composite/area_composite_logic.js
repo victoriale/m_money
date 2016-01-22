@@ -100,6 +100,7 @@ Template.area_composite.helpers({
       'Basic Materials': 'fa-flask',
       'Conglomerates': 'fa-building-o',
       'Consumer Goods': 'fa-opencart',
+      'Energy': 'fa-plug',
       'Financial': 'fa-line-chart',
       'Healthcare': 'fa-heartbeat',
       'Industrial Goods': 'fa-truck',
