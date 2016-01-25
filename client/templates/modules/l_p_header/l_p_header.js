@@ -40,7 +40,7 @@ Template.lp_head.helpers({
     //if partner domain exists then choose the
     if(typeof params.loc_id == 'undefined'){
       var partner_image = Session.get('profile_header');
-      if(partner_image.dma_code == null || partner_image.dma_code == ''){
+      if(partner_image.dma_code == null || partner_image.dma_code == '' || typeof partner_image.dma_code == 'undefined' || partner_image.dma_code == "null" || partner_image.dma_code == 0){
         partner_image['location'] = partner_image['location'].replace(/ /g, '_');
         return "background-image: url('/StateImages/Location_"+ partner_image['location'] +".jpg');";
       }else{

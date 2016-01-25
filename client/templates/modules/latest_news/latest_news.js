@@ -72,7 +72,7 @@ Template.latest_news.helpers({
       //if partner domain exists then choose the
       if(typeof params.loc_id == 'undefined'){
         var partner_image = Session.get('profile_header');
-        if(partner_image.dma_code == null){
+        if(partner_image.dma_code == null || partner_image.dma_code == '' || typeof partner_image.dma_code == 'undefined' || partner_image.dma_code == "null" || partner_image.dma_code == 0){
           return "background-image: url('/StateImages/Location_"+ partner_image['location'] +".jpg');";
         }else{
           return "background-image: url('/DMA_images/location-"+ partner_image['dma_code'].split(',')[0] +".jpg');";
