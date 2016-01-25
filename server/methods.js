@@ -719,7 +719,7 @@ Meteor.methods({
   //AI CONTENT METEOR CALL
   GetAIContent: function(comp_id){
     this.unblock();
-    var URL = "http://sports-ai.synapsys.us:91/tempfintest/API_AI_FIN.php?id=" + comp_id;
+    var URL = "http://dev-finance-ai.synapsys.us:90/API_AI_FIN.php?call=company&id=" + comp_id;
     // console.log(URL);
     var future = new Future();
     curTime.withValue((new Date()).getTime(),function(){
