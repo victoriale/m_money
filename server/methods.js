@@ -720,7 +720,7 @@ Meteor.methods({
   //AI CONTENT METEOR CALL
   GetAIContent: function(comp_id){
     this.unblock();
-    var URL = "http://apifin.investkit.com/yseop/yseop-company-class.php?id=" + comp_id;
+    var URL = "http://dev-finance-ai.synapsys.us:90/API_AI_FIN.php?call=company&id=" + comp_id;
     // console.log(URL);
     var future = new Future();
     curTime.withValue((new Date()).getTime(),function(){
@@ -731,29 +731,9 @@ Meteor.methods({
             // console.log("error");
             return false;
           }
-          var URL = "http://publisher.synapsys.us:8080/yseop-manager/direct/snt-fin/dialog.do";
-          var UN = "client";
-          var PW = "123";
-          var info = data.content;
-          firstTime.withValue(Math.round(((new Date()).getTime() - curTime.get())/100)/10,function(){
-            curTime.withValue((new Date()).getTime(),function(){
-              var callback2 = Meteor.bindEnvironment(function(error,data){
-                if ( error ) {
-                  future.return(data);
-                  console.log("SNTAI|\"" + curcomp_id.get() + "\",\"" + (new Date()).getTime() + "\",\"" + firstTime.get() + "\",\"" + (Math.round(((new Date()).getTime() - curTime.get())/100)/10) + "\",\"ERROR\"|");
-                  return false;
-                }
-                console.log("SNTAI|\"" + curcomp_id.get() + "\",\"" + (new Date()).getTime() + "\",\"" + firstTime.get() + "\",\"" + (Math.round(((new Date()).getTime() - curTime.get())/100)/10) + "\",\"SUCCESS\"|");
-                future.return(data.content);
-              });
-              Meteor.http.post(URL,{
-                auth: UN+":"+PW,
-                params: {xml: info}
-              },callback2);
-            });
-          });
+          future.return(data.content);
         });
-        Meteor.http.get(URL,callback1);
+        Meteor.http.get(URL, callback1);
       });
     });
     return future.wait();
