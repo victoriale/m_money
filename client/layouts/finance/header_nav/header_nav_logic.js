@@ -197,7 +197,8 @@ Template.header_nav.events({
 Template.header_nav.helpers({
   title: function() {
     var titleName;
-    if ( Router.current().url.match(/myinvestkit/) != null ) {
+    var params = Router.current().getParams();
+    if ( typeof params.partner_id != 'undefined' ) {
       titleName = "Home";
       return titleName;
     }
@@ -206,7 +207,8 @@ Template.header_nav.helpers({
   },
   logo: function() {
     var logoName;
-    if ( Router.current().url.match(/myinvestkit/) != null ) {
+    var params = Router.current().getParams();
+    if ( typeof params.partner_id != 'undefined' ) {
       return "";
     }
     logoName = "http://" + window.location.host + "/public/financial_logo_lg.png";
