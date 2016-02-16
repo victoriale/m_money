@@ -925,7 +925,6 @@ Meteor.methods({
     // Inputs: tw - trigger word, sw - sort parameter, input - input value
     // If value is not needed, pass -1
     var api_url = "http://dw.synapsys.us/list_creator_api.php";
-    var api_url = "http://localhost/list_creator_api.php";
 
     // Return error if no tw
     if ( typeof(tw) == "undefined" ) {
