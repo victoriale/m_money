@@ -1,0 +1,500 @@
+/*
+Author: jyothyswaroop
+Created: 07/30/2015
+Description: followers page
+Associated Files: list_view_logic.js and list_view_page.html
+*/
+
+
+/* Imports global variable*/
+@import (reference)"../global_vars.less";
+
+.dwl-nav_button {
+  height: 80px;
+  width: 40px;
+  text-align: center;
+  border: none;
+  outline: none;
+  background-color: @black;
+  cursor: pointer;
+  position: absolute;
+  top: 90px;
+
+  &:hover {
+    background-color: @blue;
+  }
+
+  .fa {
+    color: @white;
+    line-height: 80px;
+    font-size: 28px;
+  }
+}
+
+.dwl {
+  width: 100%;
+  height: auto;
+
+  &-gb {
+    height: 50px;
+    width: 100%;
+    background-color: @black;
+
+    color: @white;
+    font-size: 19px;
+    line-height: 50px;
+    text-align: left;
+    font-family: HN-L;
+
+    &-blue {
+      background-color: @blue;
+      width: 60px;
+      height: 50px;
+      text-align: center;
+      float: left;
+
+      .fa {
+        color: @white;
+        font-size: 30px;
+        line-height: 50px;
+      } // .dwl-gb-blue .fa
+    } // .dwl-gb-blue
+
+    &-tri {
+      float: left;
+      width: 0;
+      height: 0;
+      border-top: 25px solid transparent;
+      border-left: 15px solid @blue;
+      border-bottom: 25px solid transparent;
+      margin-right: 20px;
+    } // .dwl-gb-tri
+  } // .dwl-gb
+
+  &-head {
+    height: 130px;
+    width: 100%;
+    background-color: @white;
+    position: relative;
+
+    &-img {
+      width: 100px;
+      height: 100px;
+      border: 2px solid @bgcolor;
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-image: url('/StateImages/Location_National.jpg');
+      border-radius: 50%;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+    } // .dwl-head-img
+
+    &-update {
+      color: #838383;
+      font-size: 10px;
+      position: absolute;
+      top: 10px;
+      left: 130px;
+    } // .dwl-head-update
+
+    &-loc {
+      font-size: 12px;
+      color: @black;
+      position: absolute;
+      top: 25px;
+      left: 130px;
+    } // .dwl-head-loc
+
+    &-title {
+      position: absolute;
+      left: 130px;
+      top: 40px;
+      font-size: 28px;
+      font-weight: bold;
+      line-height: 28px;
+      text-align: left;
+      width: 530px;
+    } // .dwl-head-title
+  } // .dwl-head
+
+  &-car {
+    background-color: rgba(40, 40, 40, 0.7);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url('/dwl-car-bg.jpg');
+
+    width: 100%;
+    height: 326px;
+    color: @white;
+    position: relative;
+
+    &-left {
+      .dwl-nav_button;
+      border-top-right-radius: 40px;
+      border-bottom-right-radius: 40px;
+      left: 0;
+    } // .dwl-car-left
+
+    &-right {
+      .dwl-nav_button;
+      border-top-left-radius: 40px;
+      border-bottom-left-radius: 40px;
+      right: 0;
+    } // .dwl-car-right
+
+    &-img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 3px solid #ccc;
+      position: absolute;
+      left: 55px;
+      top: 40px;
+
+      &-hv {
+        background: rgba(48, 152, 255, 0.75);
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        color: @white;
+        display: none;
+        font-size: 20px;
+        padding: 45px 0px;
+      } // .dwl-car-img-hv
+
+      &:hover .dwl-car-img-hv {
+        display: block;
+      }
+    } // .dwl-car-img
+
+    &-sub {
+      width: 65px;
+      height: 65px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 50%;
+      background-color: @white;
+      background-size: contain;
+      background-position: center center;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 160px;
+      left: 175px;
+
+      &:hover .fa {
+        display: block;
+      }
+
+      .fa {
+        width: 100%;
+        height: 100%;
+        line-height: 63px;
+        background: rgba(48, 152, 255, 0.75);
+        border-radius: 50%;
+        color: @white;
+        display: none;
+        font-size: 20px;
+      } // .dwl-car-sub .fa
+    } // .dwl-car-sub
+
+    &-rank {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid #ccc;
+      position: absolute;
+      left: 57px;
+      top: 38px;
+      line-height: 48px;
+      text-align: center;
+      color: @black;
+      background-color: @white;
+      font-size: 18px;
+    } // .dwl-car-rank
+
+    &-title {
+      display: flex;
+      align-items: flex-end;
+      font-size: 22px;
+      font-family: HN-B;
+      line-height: 22px;
+      position: absolute;
+      top: 56px;
+      left: 270px;
+      text-align: left;
+      width: 350px;
+      height: 44px;
+    } // .dwl-car-title
+
+    &-subt {
+      font-size: 16px;
+      line-height: 16px;
+      position: absolute;
+      top: 105px;
+      left: 270px;
+      text-align: left;
+    } // .dwl-car-subt
+
+    &-value {
+      font-size: 24px;
+      font-family: HN-B;
+      line-height: 24px;
+      position: absolute;
+      top: 140px;
+      left: 270px;
+      text-align: left;
+      width: 350px;
+      height: 24px;
+    } // .dwl-car-value
+
+    &-label {
+      font-size: 16px;
+      line-height: 16px;
+      position: absolute;
+      top: 164px;
+      left: 270px;
+      text-align: left;
+    } // .dwl-car-label
+
+    &-btm {
+      height: 76px;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background: rgba(0,0,0,0.75);
+      padding-left: 22px;
+      line-height: 76px;
+      font-size: 18px;
+      text-align: left;
+
+      &-btn {
+        width: 180px;
+        height: 35px;
+        border-radius: 5px;
+        background-color: @blue;
+        position: absolute;
+        top: 21px;
+        right: 10px;
+        line-height: 35px;
+        font-size: 14px;
+        text-align: center;
+
+        .fa {
+          margin: 0 4px;
+        }
+
+        &:hover {
+          color: @white;
+          background-color: @black;
+        }
+      } // .wl-car-btm-btn
+    } // .wl-car-btm
+  } // .dwl-car
+
+  &-list {
+    &-i {
+      width: 100%;
+      height: 155px;
+      background-color: #f2f2f2;
+      position: relative;
+      border-bottom: 1px solid #ccc;
+
+      &:nth-child(even) {
+        background-color: @white;
+      }
+
+      &-img {
+        width: 125px;
+        height: 125px;
+        border-radius: 50%;
+        border: 2px solid #ccc;
+        position: absolute;
+        top: 15px;
+        left: 20px;
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+
+        &:hover .dwl-list-i-img-hv {
+          display: block;
+        }
+
+        &-hv {
+          width: 100%;
+          height: 100%;
+          background: rgba(48, 152, 255, 0.75);
+          border-radius: 50%;
+          color: @white;
+          display: none;
+          font-size: 20px;
+          padding: 20px 0px;
+        } // .dwl-list-i-img-hv
+      } // .dwl-list-i-img
+
+      &-rank {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        background-color: @white;
+        position: absolute;
+        top: 15px;
+        left: 20px;
+      } // .dwl-list-i-rank
+
+      &-sub {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        background-color: @white;
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 100px;
+        left: 105px;
+
+        &:hover .fa {
+          display: block;
+        }
+
+        .fa {
+          width: 100%;
+          height: 100%;
+          line-height: 38px;
+          background: rgba(48, 152, 255, 0.75);
+          border-radius: 50%;
+          color: @white;
+          display: none;
+          font-size: 20px;
+        } // .dwl-list-i-sub .fa
+      } // .dwl-list-i-sub
+
+      &-l1 {
+        position: absolute;
+        top: 24px;
+        left: 160px;
+        width: 500px;
+        font-size: 20px;
+        font-family: HN-B;
+      } // .dwl-list-i-l1
+
+      &-l2 {
+        position: absolute;
+        top: 54px;
+        left: 160px;
+        width: 500px;
+        font-size: 14px;
+      } // .dwl-list-i-l1
+
+      &-title {
+        text-align: left;
+        position: absolute;
+        left: 0;
+        font-family: HN-B;
+        width: 340px;
+        height: 28px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      } // .dwl-list-i-title
+
+      &-value {
+        text-align: right;
+        position: absolute;
+        right: 0;
+        font-family: HN-B;
+      } // .dwl-list-i-value
+
+      &-subt {
+        text-align: left;
+        position: absolute;
+        left: 0;
+      } // .dwl-list-i-subt
+
+      &-label {
+        text-align: right;
+        position: absolute;
+        right: 0;
+      } // .dwl-list-i-label
+
+      &-link {
+        position: absolute;
+        top: 80px;
+        left: 160px;
+        width: 500px;
+        height: 45px;
+        border-radius: 5px;
+        border: 1px solid #ebebeb;
+        background-color: @white;
+        line-height: 43px;
+        font-size: 14px;
+        padding-left: 20px;
+        text-align: left;
+        color: @black;
+
+        &-btn {
+          width: 160px;
+          height: 35px;
+          border-radius: 5px;
+          background-color: @blue;
+          position: absolute;
+          top: 4px;
+          right: 4px;
+          line-height: 35px;
+          font-size: 14px;
+          text-align: center;
+          color: @white;
+
+          .fa {
+            margin: 0 4px;
+          }
+
+          &:hover {
+            color: @white;
+            background-color: @black;
+          }
+        } // .dwl-list-i-link-btn
+      } // .dwl-list-i-link
+    } // .dwl-list-i
+  } // .dwl-list
+
+  &-nav {
+    width: 100%;
+    height: 45px;
+    background-color: @white;
+    padding: 10px 0px;
+
+    &-circle {
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      border: solid 1px #dadada;
+      line-height: 23px;
+      font-size: 14px;
+      color: @black;
+      border-radius: 50%;
+
+      &:hover {
+        background-color: @black;
+        border-color: @black;
+        color: @white;
+      }
+
+      &.active {
+        background-color: @blue;
+        color: @white;
+        border-color: @blue;
+      }
+    } // .dwl-nav-circle
+  } // .dwl-nav
+} // .dwl
