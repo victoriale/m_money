@@ -130,6 +130,27 @@ Template.search_page.onCreated(function(){
 Template.search_page.onRendered(function(){
   var searchParams = Router.current().getParams();
   $('.header_search_recommendations').removeClass('active');
+
+  //Code to determine anchor tags attributes
+  if(window.history.length > 1){
+    //If previous history exists, go back a page
+    this.$('#go_back').attr({
+      'href': '',
+      'onclick': 'history.go(-1)'
+    });
+  }else{
+    //If previous history does not exist, go back to home page
+    if(typeof searchParams.partner_id === 'undefined'){
+      //Non partner page
+      var path = Router.path('content.finance.home');
+    }else{
+      //Partner page
+      var path = Router.path('content.partnerhome', {partner_id: searchParams.partner_id});
+    }
+
+    this.$('#go_back').attr('href', path);
+  }
+
 })
 
 Template.search_page.events({
