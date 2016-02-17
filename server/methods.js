@@ -918,6 +918,70 @@ Meteor.methods({
     }).bind(undefined, startTime, type, pageNum));
     this.unblock();
     return future.wait();
+  },
+
+  // Method to get data for the list for the dynamic widget
+  GetWidgetData: function(tw, sw, input) {
+    // Inputs: tw - trigger word, sw - sort parameter, input - input value
+    // If value is not needed, pass -1
+    var api_url = "http://dw.synapsys.us/list_creator_api.php";
+
+    // Return error if no tw
+    if ( typeof(tw) == "undefined" ) {
+      return {
+        "success": false,
+        "message": "Error: Trigger word is required"
+      };
+    }
+
+    // Set defaults
+    if ( typeof(sw) == "undefined" ) {
+      sw = -1;
+    }
+    if ( typeof(input) == "undefined" ) {
+      input = -1;
+    }
+
+    // Start the timer
+    var startTime = (new Date()).getTime();
+
+    // Build the URL
+    var url = api_url + "?tw=" + tw + "&sw=" + sw + "&input=" + input;
+
+    // Build a key for logging
+    var key = tw + ":" + sw + ":" + input;
+
+    // Options array (unzip gzip response)
+    var opts = {
+      npmRequestOptions: {
+        gzip: true
+      }
+    };
+
+    // Make the API call
+    var future = new Future();
+    HTTP.call('GET', url, opts, (function(startTime, key, error, data){
+      // Error handling
+      if ( error ) {
+        future.return(error); // Return the error
+        // Logging
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"GetWidgetData - Error","' + key + '",,' + (endTime - startTime) + ',' + endTime + '|');
+        return false;
+      }
+
+      // Handle success
+      future.return(data.data);
+
+      // Logging
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"GetWidgetData","' + key + '","' + data.headers['snt-served-by'] + "-" + data.headers['snt-cached-response'] + '",' + (endTime - startTime) + ',' + endTime + '|');
+      return false;
+    }).bind(undefined, startTime, key));
+    this.unblock();
+
+    // Return the future wait
+    return future.wait();
   }
 
 });

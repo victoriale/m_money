@@ -1,0 +1,111 @@
+<!--
+Author: jyothyswaroop
+Created: 07/30/2015
+Description: followers page
+Associated Files: list_view_logic.js and list_view.less
+-->
+<!--Gave a template name stock_disclaimer_page !-->
+<template name="widget_list_view">
+  {{#with toplist}}
+  <!--Defined a class name globally for height and width !-->
+  <div class="dwl">
+    <!-- National Profile Link -->
+    <a href="{{backurl}}" style="cursor: pointer">
+      <div class="dwl-gb">
+        <div class="dwl-gb-blue"><i class="fa fa-reply"></i></div>
+        <div class="dwl-gb-tri"></div>
+        Go To The National Profile
+      </div>
+    </a>
+    <!-- Header -->
+    <div class="dwl-head">
+      <div class="dwl-head-img"></div>
+      <div class="dwl-head-update">LAST UPDATED {{date}}</div>
+      <div class="dwl-head-loc"><i class="fa fa-map-marker"></i> United States Of America</div>
+      <div class="dwl-head-title">{{title}}</div>
+    </div>
+    <!-- Carousel -->
+    {{#with carouselList}}
+    <div class="dwl-car">
+      <div class="dwl-car-left"><i class="fa fa-angle-left"></i></div>
+      <a href="{{url}}">
+        <div class="dwl-car-img" style="background-image: url('{{img}}')">
+          <div class="dwl-car-img-hv">
+            <span style="font-size: 32px; font-family: HN-B">View</span>
+            <br>Profile
+          </div>
+        </div>
+      </a>
+      <div class="dwl-car-rank">#{{rank}}</div>
+      {{#with sub_img}}
+      <a href="{{url}}">
+        <div class="dwl-car-sub" style="background-image: url('{{img}}')"><i class="fa fa-share"></i></div>
+      </a>
+      {{/with}}
+      <div class="dwl-car-title">{{title}}</div>
+      <div class="dwl-car-subt">{{list_sub}}</div>
+      <div class="dwl-car-value">{{value}}</div>
+      <div class="dwl-car-label">{{tag}}</div>
+      <div class="dwl-car-right"><i class="fa fa-angle-right"></i></div>
+      <div class="dwl-car-btm">
+        Interested in discovering more about this profile? <a href="{{url}}"><div class="dwl-car-btm-btn"><i class="fa fa-line-chart"></i> View Profile <i class="fa fa-angle-right"></i></div></a>
+      </div>
+    </div>
+    {{/with}}
+    <!-- Actual List Data -->
+    <div class="dwl-list">
+      {{#each data}}
+      <div class="dwl-list-i">
+        <!-- Left Portion -->
+        <a href="{{url}}">
+          <div class="dwl-list-i-img" style="background-image: url({{img}})">
+            <div class="dwl-list-i-img-hv">
+              <span style="font-size: 32px; font-family: HN-B">View</span>
+              <br>Profile
+            </div>
+          </div>
+        </a>
+        <div class="dwl-list-i-rank">#{{rank}}</div>
+        {{#with sub_img}}
+        <a href="{{url}}">
+          <div class="dwl-list-i-sub" style="background-image: url({{img}})"><i class="fa fa-share"></i></div>
+        </a>
+        {{/with}}
+
+        <!-- Right Portion -->
+        <div class="dwl-list-i-l1">
+          <div class="dwl-list-i-title">{{title}}</div>
+          <div class="dwl-list-i-value">{{value}}</div>
+        </div>
+        <div class="dwl-list-i-l2">
+          <div class="dwl-list-i-subt">{{list_sub}}</div>
+          <div class="dwl-list-i-label">{{tag}}</div>
+        </div>
+        <a href="{{url}}">
+          <div class="dwl-list-i-link">
+            Want more info about this profile? <div class="dwl-list-i-link-btn"><i class="fa fa-line-chart"></i> View Profile <i class="fa fa-angle-right"></i></div>
+          </div>
+        </a>
+      </div>
+      {{/each}}
+    </div>
+
+    <!-- Nav bar -->
+    {{#with page_nav}}
+    <div class="dwl-nav">
+      {{#if prev}}
+      <i class="fa fa-angle-left"></i>
+      {{/if}}
+      {{#each bubble}}
+      <a href="{{url}}">
+        <div class="dwl-nav-circle {{class}}">{{page}}</div>
+      </a>
+      {{/each}}
+      {{#if next}}
+      <i class="fa fa-angle-right"></i>
+      {{/if}}
+    </div>
+    {{/with}}
+  </div>
+  {{/with}}
+</template>
