@@ -303,7 +303,7 @@ Template.myinvestkit_home.helpers({
       },
       {
       	name: "Northwest Arkansas Times",
-      	url: Router.pick_path('content.partnerhome',{partner_id: "nwadg.com"})
+      	url: Router.pick_path('content.partnerhome',{partner_id: "nwaonline.com"})
       },
       {
       	name: "Oberlin News Tribune",
