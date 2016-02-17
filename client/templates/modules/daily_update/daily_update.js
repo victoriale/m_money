@@ -218,12 +218,12 @@ Template.daily_update.helpers({
       {data:"5D"},
       {data:"10D"},
       {data:"1M"},
-      {data:"3M", class: style},
-      {data:"6M", class: style},
-      {data:"9M", class: style},
-      {data:"1Y", class: style},
-      {data:"3Y", class: style},
-      {data:"5Y", class: style},
+      {data:"3M"},
+      {data:"6M"},
+      {data:"9M"},
+      {data:"1Y"},
+      {data:"3Y"},
+      {data:"5Y"},
     ];
 
     buttons.forEach(function(item, index){
