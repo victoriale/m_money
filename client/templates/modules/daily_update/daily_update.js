@@ -10,7 +10,6 @@ Template.daily_update.onCreated(function(){
     if(Session.get('IsLocation')){
       //Set initial range
       Session.set('d_u_range', '1D');
-      console.log(params);
       Meteor.call('GetAIContent2', params.loc_id, Session.get('city_id'), function(err, data){
         if(err){
           console.log("error Call", err);

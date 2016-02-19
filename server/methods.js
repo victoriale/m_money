@@ -5,7 +5,7 @@ var curcomp_id = new Meteor.EnvironmentVariable;
 var curloc_id = new Meteor.EnvironmentVariable;
 var firstTime = new Meteor.EnvironmentVariable;
 
-var callUrl = "http://testapi.investkit.com:90/call_controller.php";
+var callUrl = "http://apifin.investkit.com/call_controller.php";
 
 Meteor.methods({
   GetProfileData: function(profile, batchNum, state, city){
