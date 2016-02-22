@@ -66,38 +66,6 @@ function GetSuggest(nowTime) {
     });
   }
 }
-/*
-function GetSuggest() {
-  var searchString = $('.re_mainsearch input')[0].value;
-  if ( searchString == "" ) {
-    $('.discover_recommendations').removeClass('active');
-  } else {
-    var stringURL = 'http://api.synapsys.us/listhuv/?action=search_helper&q=' + encodeURIComponent(searchString);
-    $.ajax({
-      url: stringURL,
-      dataType: 'json',
-      cache: false,
-      success: function(data) {
-        var HTMLString = '<div class="caret-top"></div><i class="fa fa-times discover_recommendations_close"></i>';
-        if ( data.length == 0 ) {
-          $('.discover_recommendations').removeClass('active');
-          return false;
-        }
-        for ( var index = 0; index < data.length; index++ ) {
-          if ( index < 10 ) {
-            if ( index != 0 ) {
-              HTMLString = HTMLString + '<div class="border-li"></div>';
-            }
-            HTMLString = HTMLString + '<div class="discover_recommendations_item">' + data[index].city + ", " + data[index].state + '</div>';
-          }
-        }
-        $('.discover_recommendations')[0].innerHTML = HTMLString;
-        $('.discover_recommendations').addClass('active');
-      }
-    });
-  }
-}
-*/
 Template.search_module.onRendered(function(){
   $('.header_search_recommendations').removeClass('active');
 });
@@ -159,8 +127,5 @@ Template.search_module.events({
     $(".fi_mainsearch-text").removeClass("boxhighlight");
     $('.discover_recommendations').removeClass('active');
   }
-  /*'focusout .fi_mainsearch-text' : function(){
-    $(".fi_mainsearch-text").removeClass("boxhighlight");
-    $('.discover_recommendations').removeClass('active');
-  }*/
+
 });

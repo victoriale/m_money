@@ -9,7 +9,20 @@
         Go Back
       </div>
     </a>
-    {{> search_module}}
+    <div class="re_discover_small" style="background-image: url('/public/search_image.png');">
+      <div class="re_discover_small-title" style="font-size: 38px;">Discover Your Next Investment</div>
+      <div class="re_discover_small-subtitle">Find the stocks you can invest in right in your neighborhood.</div>
+      <form autocomplete="off">
+          <div class="re_mainsearch">
+              <input type="text" name="keyword" class="re_mainsearch-text" placeholder="Search for a Company, Location, or Executive">
+              <button class="re_searchbtn fa fa-search"></button>
+              <ul class="discover_recommendations">
+                  <div class="caret-top"></div>
+                  <i class="fa fa-times discover_recommendations_close"></i>
+              </ul>
+          </div>
+      </form>
+    </div>
     <!--menu options-->
     {{#with searchLength}}
     <nav class="search_tab-menu">
