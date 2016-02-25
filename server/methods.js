@@ -7,6 +7,8 @@ var firstTime = new Meteor.EnvironmentVariable;
 
 var callUrl = "http://testapi.investkit.com:90/call_controller.php";
 var AICall = "http://dev-finance-api.synapsys.us:280/";
+var getPartner = "http://dev-real-api.synapsys.us:280/";
+
 Meteor.methods({
   nexstarMethod: function(UrlString){
     var future = new Future();
@@ -799,7 +801,7 @@ Meteor.methods({
 
   GetPartnerHeader: function(partner_id) {
     var startTime = (new Date()).getTime();
-    var URLString = "http://apireal.synapsys.us/listhuv/?action=get_partner_data&domain=" + partner_id;
+    var URLString = getPartner+"listhuv/?action=get_partner_data&domain=" + partner_id;
     var future = new Future();
     Meteor.http.get(URLString,(function(startTime, partner_id, error,data){
       if ( error ) {
