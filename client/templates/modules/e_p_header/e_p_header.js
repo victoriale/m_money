@@ -102,6 +102,25 @@ Template.ep_body.helpers({
     convString.Salary = dNumberToCommaNumber(convString.Salary);
     convString.TotalComp = dNumberToCommaNumber(convString.TotalComp);
     convString.AllOtherLT = dNumberToCommaNumber(convString.AllOtherLT);
+
+    if (convString.Salary == 0) {
+      convString.Salary = "N/A";
+    }else {
+      convString.Salary = '$' + convString.Salary;
+    }
+
+    if (convString.TotalComp == 0) {
+      convString.TotalComp = "N/A";
+    }else {
+      convString.TotalComp = '$' + convString.TotalComp;
+    }
+
+    if (convString.AllOtherLT == 0) {
+      convString.AllOtherLT = "N/A";
+    }else{
+      convString.AllOtherLT = '$' + convString.AllOtherLT;
+    }
+
     return data;
   },
 
