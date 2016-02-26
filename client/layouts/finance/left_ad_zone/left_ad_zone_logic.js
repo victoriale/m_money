@@ -33,15 +33,6 @@ Template.left_ad_zone.onRendered(function(){
         tag_string = tag_string.replace("document.write('", '').replace("');", '');
         $(".ad_zone-test").append(tag_string);
       });
-
-      // var script = document.createElement("script");
-      // $.get( scriptUrl,function( data ) {
-      //   console.log(data);
-      // },'text');
-      // script.type="text/javascript";
-      // script.language = "javascript1.1";
-      // script.src = scriptUrl;
-      // $(".ad_zone-test").append(script);
     });
   }else{
     $('.finance_body_skyscraper').css('display','none');

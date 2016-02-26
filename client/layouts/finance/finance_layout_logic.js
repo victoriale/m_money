@@ -35,7 +35,7 @@ Template.finance_layout.onRendered(function(){
       var info = getTagInfo();
       //in globalfunc.js to grab nexstart alias script tag;
       var script_tag = getScript(params.partner_id);
-      var alias = script_tag+'_passfail_leaderboard';
+      var alias = script_tag +'_passfail_leaderboard';
       alias = alias !== '' ? 'alias=' + ( alias.split("_") ? alias.split("_")[ 0 ] : alias ) + '_' + info.alias : '';
       // var script = '<scr'+'ipt src="http://' + info.domain + '.adtechus.com/addyn/3.0/5336.1/defaultplacementid/0/-1/ADTECH;' + alias + ';loc=100;target=_blank;grp=' + info.groupId + ';misc=' + new Date().getTime() + '"></scri'+'pt>'
       var scriptUrl = 'http://' + info.domain + '.adtechus.com/addyn/3.0/5336.1/defaultplacementid/0/-1/ADTECH;' + alias + ';loc=100;target=_blank;grp=' + info.groupId + ';misc=' + new Date().getTime();
@@ -46,15 +46,6 @@ Template.finance_layout.onRendered(function(){
         tag_string = tag_string.replace("document.write('", '').replace("');", '');
         $(".leaderboard_ad").append(tag_string);
       });
-
-      // var script = document.createElement("script");
-      // $.get( scriptUrl,function( data ) {
-      //   console.log(data);
-      // },'text');
-      // script.type="text/javascript";
-      // script.language = "javascript1.1";
-      // script.src = scriptUrl;
-      // $(".leaderboard_ad").append(script);
     });
   }else{
     $(".leaderboard_ad").css('display','none');
