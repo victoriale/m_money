@@ -43,7 +43,23 @@
 }
 
 .leaderboard_ad{
-    text-align: center;
-    padding: 20px 0;
-    background: @grey-6;
+  display:none;
+  width: 100%;
+  background: @grey-6;
+  text-align: center;
+  font-size:0px;
+  margin:0;
+  padding:0;
+  line-height: 0;
+  .leaderboard_space{
+    width:auto;
+    height:auto;
+    display:inline-block;
+  }
+  a:first-child{
+    width: 100%;
+    img:first-child{
+      margin: 20px 0;
+    }
+  }
 }

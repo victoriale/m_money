@@ -41,9 +41,25 @@ Template.finance_layout.onRendered(function(){
           var scriptUrl = 'http://' + info.domain + '.adtechus.com/addyn/3.0/5336.1/defaultplacementid/0/-1/ADTECH;' + alias + ';loc=100;target=_blank;grp=' + info.groupId + ';misc=' + new Date().getTime();
           //due to no access controller on their end decided to make a server side call to allow us to grab and parse out the tag_string
           Meteor.call('nexstarMethod',scriptUrl,function(error,data){
-            var tag_string = data.content;
-            tag_string = tag_string.replace("document.write('", '').replace("');", '');
-            $(".leaderboard_ad").append(tag_string);
+            if(data.statusCode == 304 || data.statusCode == 200){
+              //display the whole header leaderboard_ad
+              $(".leaderboard_ad").css('display','block');
+              var tag_string = data.content;
+              tag_string = tag_string.replace("document.write('", '').replace("');", '');
+              //appends content into a child elemement of leaderboard_ad called leaderboard_space
+              $(".leaderboard_space").append(tag_string);
+
+              //check whether the correct size ad is being returned otherwise remove the leaderboard_ad area
+              var l_adh = $(".leaderboard_space").height();
+              var l_adw = $(".leaderboard_space").width();
+              if(l_adh < 50 || l_adw < 250){
+                console.log("ERROR: size of leaderboard ad is less than 250px width or 50px height");
+                $(".leaderboard_ad").css('display','none');
+              }
+            }else{
+              console.error(data);
+              $(".leaderboard_ad").css('display','none');
+            }
           });
         });
       }//end nexstar if statement

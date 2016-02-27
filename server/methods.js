@@ -15,6 +15,8 @@ Meteor.methods({
 
     // console.log(UrlString);
     Meteor.http.get(UrlString,function(error, data){
+      console.log(data);
+      console.log(error);
       future.return(data);
     });
     this.unblock();
