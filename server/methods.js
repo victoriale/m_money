@@ -5,9 +5,23 @@ var curcomp_id = new Meteor.EnvironmentVariable;
 var curloc_id = new Meteor.EnvironmentVariable;
 var firstTime = new Meteor.EnvironmentVariable;
 
-var callUrl = "http://apifin.investkit.com/call_controller.php";
+var callUrl = "http://testapi.investkit.com:90/call_controller.php";
+var AICall = "http://dev-finance-api.synapsys.us:280/";
+var getPartner = "http://dev-real-api.synapsys.us:280/";
 
 Meteor.methods({
+  nexstarMethod: function(UrlString){
+    var future = new Future();
+
+    // console.log(UrlString);
+    Meteor.http.get(UrlString,function(error, data){
+      future.return(data);
+    });
+    this.unblock();
+    return future.wait();
+
+  },
+
   GetProfileData: function(profile, batchNum, state, city){
     var future = new Future();
     var startTime = (new Date()).getTime();
@@ -720,7 +734,7 @@ Meteor.methods({
   //AI CONTENT METEOR CALL
   GetAIContent: function(comp_id){
     this.unblock();
-    var URL = "http://dev-finance-ai.synapsys.us:90/API_AI_FIN.php?call=company&id=" + comp_id;
+    var URL = AICall + "API_AI_FIN.php?call=company&id=" + comp_id;
     // console.log(URL);
     var future = new Future();
     curTime.withValue((new Date()).getTime(),function(){
@@ -742,7 +756,7 @@ Meteor.methods({
   //AI CONTENT METEOR CALL
   GetAIContent2: function(state, city){
     this.unblock();
-    var URL = "http://apifin.investkit.com/yseop/yseop-location-class.php?state=" + state;
+    var URL = AICall + "yseop/yseop-location-class.php?state=" + state;
     var loc_id = state;
     if(typeof city != 'undefined' && city != null){
       URL += "&city="+ city;
@@ -787,7 +801,7 @@ Meteor.methods({
 
   GetPartnerHeader: function(partner_id) {
     var startTime = (new Date()).getTime();
-    var URLString = "http://apireal.synapsys.us/listhuv/?action=get_partner_data&domain=" + partner_id;
+    var URLString = getPartner+"listhuv/?action=get_partner_data&domain=" + partner_id;
     var future = new Future();
     Meteor.http.get(URLString,(function(startTime, partner_id, error,data){
       if ( error ) {

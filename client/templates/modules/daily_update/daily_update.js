@@ -181,7 +181,7 @@ Template.daily_update.helpers({
       if(typeof params.loc_id == 'undefined'){
         var partner_image = Session.get('profile_header');
         if(partner_image.dma_code == null || partner_image.dma_code == '' || typeof partner_image.dma_code == 'undefined' || partner_image.dma_code == "null" || partner_image.dma_code == 0){
-          return "/StateImages/Location_"+ partner_image['location'] +".jpg";
+          return "/StateImages/Location_"+ partner_image['location'].replace(/ /g, '_') +".jpg";
         }else{
           return "/DMA_images/location-"+ partner_image['dma_code'].split(',')[0] +".jpg";
         }
@@ -217,12 +217,12 @@ Template.daily_update.helpers({
       {data:"5D"},
       {data:"10D"},
       {data:"1M"},
-      {data:"3M", class: style},
-      {data:"6M", class: style},
-      {data:"9M", class: style},
-      {data:"1Y", class: style},
-      {data:"3Y", class: style},
-      {data:"5Y", class: style},
+      {data:"3M"},
+      {data:"6M"},
+      {data:"9M"},
+      {data:"1Y"},
+      {data:"3Y"},
+      {data:"5Y"},
     ];
 
     buttons.forEach(function(item, index){

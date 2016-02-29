@@ -1,5 +1,12 @@
 <!-- Header template -->
 <template name="finance_layout">
+  <div class="leaderboard_ad">
+    <div class="leaderboard_space">
+      <!-- <a href="">
+        <img src="/ads/728x90.jpg" />
+      </a> -->
+    </div>
+  </div>
   {{{partner_header}}}
   <div class="finance-content">
     {{> yield "header"}}
@@ -8,6 +15,7 @@
     <table class="finance_body">
       <tr>
         <td class="finance_body_left"></td>
+        <td class="finance_body_skyscraper">{{> left_ad_zone}}</td>
         <td class="finance_body_center">
           {{> yield}}
         </td>
