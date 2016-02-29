@@ -5,9 +5,9 @@ var curcomp_id = new Meteor.EnvironmentVariable;
 var curloc_id = new Meteor.EnvironmentVariable;
 var firstTime = new Meteor.EnvironmentVariable;
 
-var callUrl = "http://testapi.investkit.com:90/call_controller.php";
-var AICall = "http://dev-finance-api.synapsys.us:280/";
-var getPartner = "http://dev-real-api.synapsys.us:280/";
+var callUrl = "http://dev-finance-api.synapsys.us/call_controller.php";
+var AICall = "http://dev-finance-api.synapsys.us/";
+var getPartner = "http://dev-real-api.synapsys.us/";
 
 Meteor.methods({
   nexstarMethod: function(UrlString){
