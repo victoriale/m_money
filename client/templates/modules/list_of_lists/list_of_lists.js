@@ -46,6 +46,13 @@ Template.list_of_lists.helpers({
       });
     }
   },
+  checkData: function() {
+    var data = Session.get('list_of_lists');
+    if(typeof data == 'undefined' || data == "There are no lists to display or an incorrect parameters were passed. [error:list_of_lists]"){
+      return '';
+    }
+    return true;
+  },
   listsData: function(){
     var list = Session.get('list_of_lists');
     if(typeof list =='undefined'){
