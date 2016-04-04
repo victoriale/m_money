@@ -307,8 +307,8 @@ Template.daily_update.helpers({
       break;
       case 'content.companyprofile':
       case 'partner.companyprofile':
-        data.header = 'How Well is ' + getheader.name.replace(/-/g, ' ') + ' Doing Today';
-        data.subheader = getheader.name.replace(/-/g, ' ') + ' Daily Update';
+        data.header = 'How Well is ' + data.c_name + ' Doing Today';
+        data.subheader = data.c_name + ' Daily Update';
         data.text1 = 'Market Cap';
         data.text2 = 'PE Ratio';
         data.text3 = 'Total Shares';
