@@ -389,14 +389,14 @@ Template.daily_update.helpers({
         if(Session.get('IsLocation')){
           var graphData = Session.get('new_one_day_location_daily_update');
           var dataLength = graphData.length;
-          //Set min and max of graphs to latest day available (9:00am EST - 4:00pm EST)
+          //Set min and max of graphs to latest day available (9:00am EST/EDT - 4:00pm EST/EDT)
           var min = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
           var max = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(5).second(0).format('X') * 1000;
         }
         if(Session.get('IsCompany')){
           var graphData = Session.get('new_header_one_day_daily_update');
           var dataLength = graphData.length;
-          //Set min and max of graphs to latest day available (9:00am EST - 4:00pm EST)
+          //Set min and max of graphs to latest day available (9:00am EST/EDT - 4:00pm EST/EDT)
           var min = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
           var max = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(5).second(0).format('X') * 1000;
         }
@@ -404,7 +404,7 @@ Template.daily_update.helpers({
         var tickPositions = [min + (1800 * 1000), min + ((3 * 3600) * 1000), min + ((5 * 3600) * 1000), min + ((7 * 3600) * 1000)];
 
         var xAxis_format = '%l:%M %P';
-        var tooltip_format = '%l:%M %P EST';
+        var tooltip_format = '%l:%M %P ' + getTimezone();
       break;
       case '5D':
         var min = latestDate.subtract(5, 'days').format('X') * 1000;
@@ -496,10 +496,10 @@ Template.daily_update.helpers({
               formatter: function(){
 
                 if(this.isFirst && d_u_range === '1D'){
-                  return Highcharts.dateFormat(xAxis_format, this.value) + '<br>(Open EST)';
+                  return Highcharts.dateFormat(xAxis_format, this.value) + '<br>(Open ' + getTimezone() + ')';
                 }
                 if(this.isLast && d_u_range == '1D'){
-                  return Highcharts.dateFormat(xAxis_format, this.value) + '<br>(Close EST)';
+                  return Highcharts.dateFormat(xAxis_format, this.value) + '<br>(Close ' + getTimezone() + ')';
                 }
 
                 return Highcharts.dateFormat(xAxis_format, this.value);

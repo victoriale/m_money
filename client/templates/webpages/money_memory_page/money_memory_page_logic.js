@@ -142,14 +142,14 @@ Template.money_memory_page.helpers({
         var graphData = Session.get('new_one_day_daily_update');
         var dataLength = graphData.length;
 
-        //Set min and max of graphs to latest day available (9:00am EST - 4:00pm EST)
+        //Set min and max of graphs to latest day available (9:00am EST/EDT - 4:00pm ES/EDT)
         var min = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
         var max = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(5).second(0).format('X') * 1000;
 
         var tickPositions = [min + ((1800) * 1000), min + ((2 * 3600) * 1000), min + ((3 * 3600) * 1000), min + ((4 * 3600) * 1000), min + ((5 * 3600) * 1000), min + ((6 * 3600) * 1000), min + ((7 * 3600) * 1000)];
 
         var xAxis_format = '%l:%M %P';
-        var tooltip_format = '%l:%M %P EST';
+        var tooltip_format = '%l:%M %P ' + getTimezone();
       break;
       case 'mmbbl-1':
         var min = latestDate.subtract(5, 'days').format('X') * 1000;
@@ -231,10 +231,10 @@ Template.money_memory_page.helpers({
               formatter: function(){
 
                 if(this.isFirst && mm_range === 'mmbbl-0'){
-                  return Highcharts.dateFormat(xAxis_format, this.value) + '<br>(Open EST)';
+                  return Highcharts.dateFormat(xAxis_format, this.value) + '<br>(Open ' + getTimezone() + ')';
                 }
                 if(this.isLast && mm_range == 'mmbbl-0'){
-                  return Highcharts.dateFormat(xAxis_format, this.value) + '<br>(Close EST)';
+                  return Highcharts.dateFormat(xAxis_format, this.value) + '<br>(Close ' + getTimezone() + ')';
                 }
 
                 return Highcharts.dateFormat(xAxis_format, this.value);
