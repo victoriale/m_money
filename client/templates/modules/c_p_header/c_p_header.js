@@ -165,6 +165,11 @@ Template.c_p_graph.helpers({
     //Set default values for highcharts obj
     var max = null;
     var tickPositions = undefined;
+    var offset = getHourOffset();
+    //13 if DST, else 14
+    var minHour = offset === 4 ? 13 : 14;
+    //20 if DST, else 21
+    var maxHour = minHour + 7;
 
     //Get dependencies to find date range
     var dataLength = data.highchartsData.length;
@@ -178,8 +183,8 @@ Template.c_p_graph.helpers({
         var dataLength = graphData.length;
 
         //Set min and max of graphs to latest day available (9:00am EST/EDT - 4:00pm EST/EDT)
-        var min = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
-        var max = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(5).second(0).format('X') * 1000;
+        var min = moment.utc(graphData[dataLength - 1][0]).subtract(offset, 'hours').hour(minHour).minute(0).second(0).format('X') * 1000;
+        var max = moment.utc(graphData[dataLength - 1][0]).subtract(offset, 'hours').hour(maxHour).minute(5).second(0).format('X') * 1000;
 
         var tickPositions = [min + ((1800) * 1000), min + ((2 * 3600) * 1000), min + ((3 * 3600) * 1000), min + ((4 * 3600) * 1000), min + ((5 * 3600) * 1000), min + ((6 * 3600) * 1000), min + ((7 * 3600) * 1000)];
 
