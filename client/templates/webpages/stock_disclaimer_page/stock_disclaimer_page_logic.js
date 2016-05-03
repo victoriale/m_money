@@ -20,7 +20,7 @@ Template.stock_disclaimer_page.helpers({
   },
   Country: "The United States",
   Statement: "For InvestKit",
-  Update: "06/24/2015,8:00 AM EST",
+  Update: "06/24/2015, 8:00 AM " + getTimezone(),
   back_url: function(){
     if(Session.get('IsCompany')) {
        return "/company/"+ Session.get("profile_header").c_ticker;
