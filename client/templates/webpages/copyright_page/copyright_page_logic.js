@@ -20,7 +20,7 @@ Template.copyright_page.helpers({
   },
   Country: "The United States",
   Statement: "For InvestKit",
-  Update: "06/24/2015,8:00 AM " + getTimezone(),
+  Update: "06/24/2015,8:00 AM EDT",
   back_url: function(){
     if(Session.get('IsCompany')) {
        return "/company/"+ Session.get("profile_header").c_ticker;
