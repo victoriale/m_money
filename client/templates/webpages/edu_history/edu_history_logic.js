@@ -20,7 +20,6 @@ Template.edu_history.helpers({
     if ( typeof data == "undefined" ) {
       return '';
     }
-
     data.ExecURL = Router.pick_path('content.executiveprofile',{
       exec_id: data.officer.o_id,
       fname: data.officer.o_first_name,
@@ -40,7 +39,6 @@ Template.edu_history.helpers({
     data.lastupdate = (new Date()).toSNTForm();
 
     data.officer.College = data.officer.education_data[0].College;
-
     data.schools = [];
     edu_data_uq = [];
     edu_data = data.officer.education_data;
