@@ -195,10 +195,10 @@ Template.money_memory.helpers({
     }
     //Determine rise or fall of investment and percent change
     if(data.roi >= 0){
-      data.colorIndicator = '#44b224'
+      data.colorIndicator = '#44b224';
       data.earn_lose = 'earned';
     }else if(data.roi < 0){
-      data.colorIndicator = '#ca1010'
+      data.colorIndicator = '#ca1010';
       data.earn_lose = 'lost';
     }
     if(data.percent_change >= 0){
