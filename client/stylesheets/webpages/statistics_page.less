@@ -402,6 +402,7 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
             height: auto;
             left: -15px;
             margin-top: 13px;
+            overflow: hidden;
 
             &-title //stat-btm-data-title
             {
@@ -458,8 +459,6 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
               width: 180px;
               height: 180px;
               position: relative;
-              bottom: 570px;
-              right: 30px;
                 &-image{
                   width: 95px;
                   height: 95px;
@@ -496,7 +495,7 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                   top:55px;
                   left: 50%;
                   width: 150px;
-                  height: 551px;
+                  height: 100%;
                   background-image: -webkit-linear-gradient(left, rgba(255,255,255,0), rgb(255,255,255)); /* For Safari 5.1 to 6.0 */
                   background: -o-linear-gradient(right, rgba(0,0,0,0), rgb(255,255,255)); /* For Opera 11.1 to 12.0 */
                   background: -moz-linear-gradient(right, rgba(0,0,0,0), rgb(255,255,255)); /* For Firefox 3.6 to 15 */
@@ -510,7 +509,7 @@ Associated Files: statistics_page.html, statistics_page.less, statistics_page.js
                   margin-top: 5px;
                   margin-bottom: 5px;
                   width: 461px;
-                  min-height: 600px;
+                  float: left;
                   &-itm //stat-btm-data-graph-lst-itm: an item in the list
                   {
                     height: 50px;
