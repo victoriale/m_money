@@ -340,8 +340,31 @@ Template.money_memory.events({
   },
   //Event to show/hide initial investment box
   'click .mon-mem_body_investment': function(e, t){
-    t.$('.mon-mem_body_investment_input').toggle();
-    t.$('#investment-input').focus();
+    if($(e.currentTarget).find('.mon-mem_body_investment_input').css('display') === 'block'){
+      //Menu is open
+      $('.mon-mem_body_investment_input').hide();
+      $('html').unbind('click');
+    }else{
+      //Menu is closed
+      t.$('.mon-mem_body_investment_input').show();
+      t.$('#investment-input').focus();
+
+      //Delay click bind so it does not fire during this event
+      Meteor.setTimeout(function(){
+        //Add click event to html to detect if user clicks off element
+        $('html').click(function(event){
+
+          if($(event.target).hasClass('mon-mem_body_investment_input') || $(event.target).hasClass('mon-mem_body_investment_input-triangle')){
+            return false;
+          }
+
+          $('.mon-mem_body_investment_input').hide();
+          $('html').unbind('click');
+        });
+      }, 1);
+
+    }
+
   },
   //Event to submit initial investment
   'submit #investment-form': function(e, t){
