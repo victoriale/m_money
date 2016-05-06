@@ -53,5 +53,8 @@ Template.footer.helpers({
       return Router.path('content.finance.directory', {type: type, pageNum: pageNum}, {query: query});
     }
 
+  },
+  pathPickStatic: function(route_name){
+    return Router.pick_path(route_name, {});
   }
 });
