@@ -80,8 +80,12 @@ Associated Files: edu_history_logic.js and edu_history.less
         <li class="edu_his-m_c-dp">
           <div class="edu_his-m_c-dp-dpct">
             {{officer.fullname}} graduated from {{officer.College}} and is the {{officer.long_title}} of {{officer.c_name}}.
-            <!-- <br><br> -->
-            <!-- <b>{{officer.c_name}}</b> is currently priced at -->
+            <br><br>
+            <b>{{officer.c_name}}</b> is currently priced at:
+            <br>
+            <b>${{officer.c_price}}</b>
+            <span style="color:{{changeColor officer.c_change_operator}}"><i class="fa {{changeIcon officer.c_change_operator}}"></i></span>
+            <span style="color:{{changeColor officer.c_change_operator}}">{{officer.c_price}} ({{officer.c_price_change}}%)</span>
         </div>
         </li>
       </ul>
