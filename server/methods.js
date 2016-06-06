@@ -5,9 +5,16 @@ var curcomp_id = new Meteor.EnvironmentVariable;
 var curloc_id = new Meteor.EnvironmentVariable;
 var firstTime = new Meteor.EnvironmentVariable;
 
+/* PROD
 var callUrl = "http://apifin.investkit.com/call_controller.php";
 var AICall = "http://apifin.investkit.com/";
 var getPartner = "http://apireal.synapsys.us/";
+*/
+
+var callUrl = "http://dev-finance-api.synapsys.us/call_controller.php";
+var AICall = "http://dev-finance-api.synapsys.us/";
+var getPartner = "http://dev-real-api.synapsys.us/";
+>>>>>>> develop
 
 Meteor.methods({
   nexstarMethod: function(UrlString){

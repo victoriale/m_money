@@ -133,12 +133,12 @@ Template.list_view.helpers({
       });
       data['exchurl'] = globalUrl(data.c_exchange);
       if(params.list_id == 'sv150_gainers' || params.list_id == 'sv150_losers'){
-        data['newDate'] = (new Date(data.csi_price_last_updated)).toSNTForm();
+        data['newDate'] = moment(data.csi_price_last_updated).format('dddd, MMMM DD, YYYY');
         data.price = commaSeparateNumber_decimal(Number(data.csi_price).toFixed(2));
         data.price_change = commaSeparateNumber_decimal(Number(data.csi_price_change_since_last).toFixed(2));
         data.percent_change = commaSeparateNumber_decimal(Number(data.csi_percent_change_since_last).toFixed(2));
       }else{
-        data['newDate'] = (new Date(data.lcsi_price_last_updated)).toSNTForm();
+        data['newDate'] = moment(data.lcsi_price_last_updated).format('dddd, MMMM DD, YYYY');
         data.price = commaSeparateNumber_decimal(Number(data.lcsi_price).toFixed(2));
         data.price_change = commaSeparateNumber_decimal(Number(data.lcsi_price_change_since_last).toFixed(2));
         data.percent_change = commaSeparateNumber_decimal(Number(data.lcsi_percent_change_since_last).toFixed(2));
@@ -195,8 +195,8 @@ Template.list_view.helpers({
     }
     Session.set('top_list_gen', listdata);
     $.map(listdata.top_list_list, function(data,index){
-      data['newDate'] = (new Date(moment(data.csi_price_last_updated))).toSNTForm();
-      //data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
+      //data['newDate'] = (new Date(moment(data.csi_price_last_updated))).toSNTForm(); // non standard input for new Date() -- breaks in Safari
+      data['newDate'] = moment(data.csi_price_last_updated).format('dddd, MMMM DD, YYYY');
       data['rank'] = index+1;
       data['url'] = Router.pick_path('content.companyprofile',{
         ticker: data.c_ticker,
@@ -254,7 +254,7 @@ Template.list_view.events({
   //Event to close tooltip
   'click .list_vw-x': function(e, t){
     //Currently disabled: Styling needs to be fixed to handle this event
-    //t.$('.list_vw-wl').hide();
+    t.$('.list_vw-ct1').hide();
   },
   'click .list_vw-lefthov': function(){
     var counter = Session.get("lv_count");

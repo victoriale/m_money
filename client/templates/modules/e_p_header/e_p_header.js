@@ -10,10 +10,11 @@ Template.ep_head.onCreated(function(){
     if(typeof data == 'undefined'){
       return '';
     }
+    
     data.compensation = PHcheck(data.compensation);
     Session.set('profile_header', data);
     resizetext('.p-head-top-name','.p-head-top-name-txt', '44px');
-  })
+  });
 
   this.autorun(function(){
     //actual time of data coming in which is 5 hours and 15 mins
@@ -24,7 +25,16 @@ Template.ep_head.onCreated(function(){
       data['last_updated'] = (new Date(data['o_last_updated'])).toSNTFormTime();
       lastUpdated = data['o_last_updated'];
     }
-  })
+  });
+});
+
+Template.ep_head.onRendered(function() {  
+  this.autorun(function(){    
+    var bioText = Session.get('ep_head_o_bio');
+    if ( bioText !== undefined && bioText.length > 0 ) {
+      addCustomScroller();
+    }
+  });
 });
 
 Template.ep_head.helpers({
@@ -74,6 +84,7 @@ Template.ep_head.helpers({
       data.cmp_data = cmp_data;
     }
     Session.set('profile_header', data);
+    Session.set('ep_head_o_bio', data.o_bio);
     return data;
   },
 

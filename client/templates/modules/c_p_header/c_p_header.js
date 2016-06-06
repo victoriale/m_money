@@ -11,9 +11,14 @@ Template.cp_head.onRendered(function(){
   **cursize is the cur font-size of the container that needs to decrease
   */
   this.autorun(function(){
+    var textStuff = Session.get('cp_head_textStuff');
+    if ( textStuff.length > 0 ) {
+      addCustomScroller();
+    }
+    
     resizetext(".p-head-top-name", ".p-head-top-name-txt", "44px");
-  })
-})
+  });
+});
 
 Template.cp_body.onCreated(function(){
   this.autorun(function(){
@@ -45,7 +50,7 @@ Template.c_p_header.helpers({
     return '';
 
   }
-})
+});
 
 Template.cp_head.helpers({
   topInfo: function(){
@@ -68,13 +73,19 @@ Template.cp_head.helpers({
   text: function(){
     var data = Session.get('bio_location');
     var aidata = Session.get('AI_daily_update');
+    var textStuff = '';
+    
     if(typeof data == 'undefined' && typeof aidata == "undefined" ){
-      return '';
+      textStuff = '';
     }
-    if ( typeof aidata == "undefined" || aidata == 'false' || aidata == false || aidata == '' ) {
-      return data.c_desc;
+    else if ( typeof aidata == "undefined" || aidata == 'false' || aidata == false || aidata == '' ) {
+      textStuff = data.c_desc;
     }
-    return aidata;
+    else {
+      textStuff = aidata;
+    }
+    Session.set('cp_head_textStuff', textStuff);
+    return textStuff;
   },
   locationURL: function(){
     var data = Session.get('profile_header');
@@ -165,6 +176,11 @@ Template.c_p_graph.helpers({
     //Set default values for highcharts obj
     var max = null;
     var tickPositions = undefined;
+    var offset = getHourOffset();
+    //13 if DST, else 14
+    var minHour = offset === 4 ? 13 : 14;
+    //20 if DST, else 21
+    var maxHour = minHour + 7;
 
     //Get dependencies to find date range
     var dataLength = data.highchartsData.length;
@@ -177,14 +193,14 @@ Template.c_p_graph.helpers({
         var graphData = Session.get('new_header_one_day_daily_update');
         var dataLength = graphData.length;
 
-        //Set min and max of graphs to latest day available (9:00am EST - 4:00pm EST)
-        var min = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(14).minute(0).second(0).format('X') * 1000;
-        var max = moment.utc(graphData[dataLength - 1][0]).subtract(5, 'hours').hour(21).minute(5).second(0).format('X') * 1000;
+        //Set min and max of graphs to latest day available (9:00am EST/EDT - 4:00pm EST/EDT)
+        var min = moment.utc(graphData[dataLength - 1][0]).subtract(offset, 'hours').hour(minHour).minute(0).second(0).format('X') * 1000;
+        var max = moment.utc(graphData[dataLength - 1][0]).subtract(offset, 'hours').hour(maxHour).minute(5).second(0).format('X') * 1000;
 
         var tickPositions = [min + ((1800) * 1000), min + ((2 * 3600) * 1000), min + ((3 * 3600) * 1000), min + ((4 * 3600) * 1000), min + ((5 * 3600) * 1000), min + ((6 * 3600) * 1000), min + ((7 * 3600) * 1000)];
 
         var xAxis_format = '%l:%M %P';
-        var tooltip_format = '%l:%M %P EST';
+        var tooltip_format = '%l:%M %P ' + getTimezone();
 
       break;
       case '5D':
@@ -273,10 +289,10 @@ Template.c_p_graph.helpers({
             formatter: function(){
 
               if(this.isFirst && c_p_range === '1D'){
-                return Highcharts.dateFormat(xAxis_format, this.value) + '<br>(Open EST)';
+                return Highcharts.dateFormat(xAxis_format, this.value) + '<br>(Open ' + getTimezone() + ')';
               }
               if(this.isLast && c_p_range == '1D'){
-                return Highcharts.dateFormat(xAxis_format, this.value) + '<br>(Close EST)';
+                return Highcharts.dateFormat(xAxis_format, this.value) + '<br>(Close ' + getTimezone() + ')';
               }
 
               return Highcharts.dateFormat(xAxis_format, this.value);
