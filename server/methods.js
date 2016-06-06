@@ -11,10 +11,32 @@ var AICall = "http://apifin.investkit.com/";
 var getPartner = "http://apireal.synapsys.us/";
 */
 
-var callUrl = "http://dev-finance-api.synapsys.us/call_controller.php";
-var AICall = "http://dev-finance-api.synapsys.us/";
-var getPartner = "http://dev-real-api.synapsys.us/";
->>>>>>> develop
+var callUrl = "";
+var AICall = "";
+var getPartner = "";
+
+//Global Url that will auto check the environment and call the appropriate api
+if (Meteor.absoluteUrl().indexOf("localhost") > -1 ) {
+  callUrl = "http://dev-finance-api.synapsys.us/call_controller.php";
+  AICall = "http://dev-finance-api.synapsys.us/";
+  getPartner = "http://dev-real-api.synapsys.us/";
+} else if ( Meteor.absoluteUrl().indexOf("dev.") > -1) {
+  callUrl = "http://dev-finance-api.synapsys.us/call_controller.php";
+  AICall = "http://dev-finance-api.synapsys.us/";
+  getPartner = "http://dev-real-api.synapsys.us/";
+} else if ( Meteor.absoluteUrl().indexOf("qa.") > -1) {
+  callUrl = "http://qa-finance-api.synapsys.us/call_controller.php";
+  AICall = "http://qa-finance-api.synapsys.us/";
+  getPartner = "http://qa-real-api.synapsys.us/";
+} else if ( Meteor.absoluteUrl().indexOf("sandbox.") > -1) {
+  callUrl = "http://sandbox-finance-api.synapsys.us/call_controller.php";
+  AICall = "http://sandbox-finance-api.synapsys.us/";
+  getPartner = "http://sandbox-real-api.synapsys.us/";
+} else {
+  callUrl = "http://apifin.investkit.com/call_controller.php";
+  AICall = "http://apifin.investkit.com/";
+  getPartner = "http://apireal.synapsys.us/";
+}
 
 Meteor.methods({
   nexstarMethod: function(UrlString){
