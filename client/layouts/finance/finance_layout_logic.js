@@ -46,21 +46,11 @@ Template.finance_layout.onRendered(function(){
               //display the whole header leaderboard_ad
               $(".leaderboard_ad").css('display','block');
               var tag_string = data.content;
-              if(tag_string.split('document.write("').length > 1){
-                tag_string = tag_string.split('document.write("').join('').split('");').join('');
-                tag_string = tag_string.replace(/\\n/g, '').replace(/\\"/g, '');
-              }else{
-                tag_string = tag_string.replace("document.write('", '').replace("');", '');
-              }
-              //appends content into a child elemement of leaderboard_ad called leaderboard_space
-              $(".leaderboard_space").append(tag_string);
-              //check whether the correct size ad is being returned otherwise remove the leaderboard_ad area
-              var l_adh = $(".leaderboard_space").height();
-              var l_adw = $(".leaderboard_space").width();
-              if(l_adh < 50 || l_adw < 250){
-                console.log("ERROR: size of leaderboard ad is less than 250px width or 50px height");
-                $(".leaderboard_ad").css('display','none');
-              }
+              var bannerIframe = document.getElementById("leaderboard_iframe");
+              var script = bannerIframe.contentWindow.document.createElement("script");
+              script.type = "text/javascript";
+              script.innerHTML = tag_string;
+              bannerIframe.contentWindow.document.body.appendChild(script);
             }else{
               $(".leaderboard_ad").css('display','none');
             }
