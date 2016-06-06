@@ -33,22 +33,11 @@ Template.left_ad_zone.onRendered(function(){
             if(data.statusCode == 304 || data.statusCode == 200){
               $(".ad_zone-placement").css('display','block');
               var tag_string = data.content;
-              if(tag_string.split('document.write("').length > 1){
-                tag_string = tag_string.split('document.write("').join('').split('");').join('');
-                tag_string = tag_string.replace(/\\n/g, '').replace(/\\"/g, '');
-              }else{
-                tag_string = tag_string.replace("document.write('", '').replace("');", '');
-              }
-              //appends content into a child elemement of leaderboard_ad called ad_zone-placement
-              $(".ad_zone-placement").append(tag_string);
-              //check whether the correct size ad is being returned otherwise remove the leaderboard_ad area
-              var az_ph = $(".ad_zone-placement").height();
-              var az_pw = $(".ad_zone-placement").width();
-
-              // if(az_ph < 600 || az_pw < 160){
-              //   console.log("ERROR: size of skyscraper ad is less than 160px width or 600px height");
-              //   $(".finance_body_skyscraper").css('display','none');
-              // }
+              var skyscraperIframe = document.getElementById("ad_zone_iframe");
+              var script = skyscraperIframe.contentWindow.document.createElement("script");
+              script.type = "text/javascript";
+              script.innerHTML = tag_string;
+              skyscraperIframe.contentWindow.document.body.appendChild(script);
             }else{
               $(".ad_zone-placement").css('display','none');
             }
