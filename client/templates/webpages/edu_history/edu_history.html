@@ -84,8 +84,10 @@ Associated Files: edu_history_logic.js and edu_history.less
             <b>{{officer.c_name}}</b> is currently priced at:
             <br>
             <b>${{officer.c_price}}</b>
-            <span style="color:{{changeColor officer.c_change_operator}}"><i class="fa {{changeIcon officer.c_change_operator}}"></i></span>
-            <span style="color:{{changeColor officer.c_change_operator}}">{{officer.c_price}} ({{officer.c_price_change}}%)</span>
+            <span style="color:{{changeColor officer.c_change_operator}}">
+              <i class="fa {{changeIcon officer.c_change_operator}}"></i>
+            </span>
+            <span style="color:{{changeColor officer.c_change_operator}}">{{changeSign officer.c_change_operator}}{{officer.c_price}} ({{changeSign officer.c_change_operator}}{{officer.c_price_change}}%)</span>
         </div>
         </li>
       </ul>
