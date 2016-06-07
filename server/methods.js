@@ -158,8 +158,8 @@ Meteor.methods({
     if(typeof graph_option == 'undefined' || graph_option == null){
       graph_option = '';
     }else{
-      // graph_option = "&call=location_daily_update&graph_option=5Y";
-      graph_option = "&graph_option=5Y";
+      graph_option = "&call=location_daily_update&graph_option=5Y";
+      // graph_option = "&graph_option=5Y";//old call that does not pull all historical datapoints
     }
     // console.log("New Company Request",loc_id,batchNum);
     if(loc_id === 'National'){
@@ -170,8 +170,7 @@ Meteor.methods({
     }else{
       var UrlString = callUrl + "?action=location_profile&option="+batchNum+"&dma="+loc_id + graph_option;
     }
-    console.log(graph_option);
-    console.log(UrlString);
+    // console.log(UrlString);
 
     curloc_id.withValue(batchNum, function(){
       Meteor.http.get(UrlString, Meteor.bindEnvironment((function(startTime,batchNum,loc_id,error, data){
@@ -207,7 +206,7 @@ Meteor.methods({
     // console.log("New Executive Request",exec_id,batchNum);
 
     var UrlString = callUrl + "?action=executive_profile&option="+batchNum+"&param="+exec_id;
-     console.log(UrlString);
+    //  console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime,batchNum,exec_id, error, data){
       if ( error ) {
