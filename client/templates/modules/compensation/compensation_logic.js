@@ -15,7 +15,9 @@ Template.compensation.onCreated(function(){
     var yearArray = [];
     //takes all the historic compensation data and toss them into a yearly object array
     $.map(compensation.compensation_periods, function(data, index){
+      console.log('ORIGINAL COMPENSATION',data);
       var result = PHcheck(data);
+      console.log('AFTER PHCHECK',result);
       if(typeof result['o_period_end_date'] != 'undefined'){
         var year = result['o_period_end_date'].split('-');
         if(typeof compYear[year[0]] == 'undefined'){

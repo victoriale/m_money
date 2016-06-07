@@ -129,7 +129,8 @@ Meteor.methods({
     if(typeof graph_option == 'undefined' || graph_option == null){
       graph_option = '';
     }else{
-      graph_option = "&call=location_daily_update&graph_option=5Y";
+      // graph_option = "&call=location_daily_update&graph_option=5Y";
+      graph_option = "&graph_option=5Y";
     }
     // console.log("New Company Request",loc_id,batchNum);
     if(loc_id === 'National'){
