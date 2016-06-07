@@ -106,7 +106,9 @@ Template.area_composite.helpers({
       'Industrial Goods': 'fa-truck',
       'Services': 'fa-phone',
       'Technology': 'fa-database',
-      'Utilities': 'fa-lightbulb-o'
+      'Utilities': 'fa-lightbulb-o',
+      'Consumer/Non-Cyclical': 'fa-opencart',
+      'Transportation': 'fa-truck'
     };
     for ( var index = 0; index < cmp_arr.length; index++ ) {
       var loc_arr = [];
@@ -129,6 +131,12 @@ Template.area_composite.helpers({
       }
       cmp_arr[index].comp = loc_arr;
       cmp_arr[index].icon = images[cmp_arr[index].title];
+      console.log("images[]",images);
+      console.log("comp_arr[]",cmp_arr);
+      console.log("index",index);
+      console.log("comp_arr[index].title",cmp_arr[index].title);
+
+      console.log("icon", cmp_arr[index].icon);
       cmp_arr[index].sector_url = Router.pick_path('content.sector',{
         loc_id: params.loc_id,
         sector_id: compUrlName(cmp_arr[index].title),
