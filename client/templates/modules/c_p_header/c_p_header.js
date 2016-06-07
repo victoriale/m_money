@@ -13,7 +13,7 @@ Template.cp_head.onRendered(function(){
   this.autorun(function(){
     var textStuff = Session.get('cp_head_textStuff');
     if ( textStuff.length > 0 ) {
-      addCustomScroller();
+      addCustomScroller('p-head-bottom-text');
     }
     
     resizetext(".p-head-top-name", ".p-head-top-name-txt", "44px");
