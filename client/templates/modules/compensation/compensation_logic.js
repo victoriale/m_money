@@ -29,7 +29,9 @@ Template.compensation.onCreated(function(){
     });
     //push into new array for the select option in compensation module
     for (key in compYear){
-      yearArray.push(key);
+      if(key != 0000){ // comes from database this way and need to filter it out.(prob needs to be done backend)
+        yearArray.push(key);
+      }
     }
 
     compYear['full_name'] = compensation['officer'].o_first_name + " " + compensation['officer'].o_middle_initial + " " + compensation['officer'].o_last_name;

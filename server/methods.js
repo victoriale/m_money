@@ -120,22 +120,28 @@ Meteor.methods({
     this.unblock();
     return future.wait();
   },
-  GetLocationData: function(loc_id, batchNum) {
+  GetLocationData: function(loc_id, batchNum, graph_option) {
     var future = new Future();
     var startTime = (new Date()).getTime();
     if ( typeof loc_id == "undefined" || loc_id == null || loc_id == 'null') {
       throw new Error(404,"Null Location ID");
     }
+    if(typeof graph_option == 'undefined' || graph_option == null){
+      graph_option = '';
+    }else{
+      graph_option = "&call=location_daily_update&graph_option=5Y";
+    }
     // console.log("New Company Request",loc_id,batchNum);
     if(loc_id === 'National'){
       // console.log('national call');
-      var UrlString = callUrl + "?action=location_profile&option="+batchNum;
+      var UrlString = callUrl + "?action=location_profile&option="+batchNum + graph_option;
     }else if(isNaN(loc_id)){
-      var UrlString = callUrl + "?action=location_profile&option="+batchNum+"&state="+loc_id;
+      var UrlString = callUrl + "?action=location_profile&option="+batchNum+"&state="+loc_id + graph_option;
     }else{
-      var UrlString = callUrl + "?action=location_profile&option="+batchNum+"&dma="+loc_id;
+      var UrlString = callUrl + "?action=location_profile&option="+batchNum+"&dma="+loc_id + graph_option;
     }
-    // console.log(UrlString);
+    console.log(graph_option);
+    console.log(UrlString);
 
     curloc_id.withValue(batchNum, function(){
       Meteor.http.get(UrlString, Meteor.bindEnvironment((function(startTime,batchNum,loc_id,error, data){
