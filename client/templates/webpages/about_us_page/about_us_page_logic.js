@@ -44,7 +44,7 @@ Template.about_us_page.helpers({
    ];
    return items;
   },
-  Country: "The United States",
+  Country: "United States",
   Statement: "Take a Seat and get to know us better.",
   Update: "06/24/2015,8:00 AM EST",
 

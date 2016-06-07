@@ -45,6 +45,15 @@ Template.compensation.onCreated(function(){
 });
 
 Template.compensation.helpers({
+  hasCompensation: function(){
+    var checker = 0;
+    for(item in Session.get("compensation").compensation_periods){
+      if(Session.get("compensation").compensation_periods[item].o_compensation.length !== 0) {
+        checker++;
+      }
+    }
+    return (checker > 0);
+  },
   //Helper to display executive name
   execName: function(){
     var data = Session.get('new_compensation');

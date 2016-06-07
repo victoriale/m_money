@@ -32,7 +32,7 @@ Template.ep_head.onRendered(function() {
   this.autorun(function(){    
     var bioText = Session.get('ep_head_o_bio');
     if ( bioText !== undefined && bioText.length > 0 ) {
-      addCustomScroller();
+      addCustomScroller('p-head-bottom-text');
     }
   });
 });
