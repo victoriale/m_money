@@ -11,9 +11,14 @@ Template.cp_head.onRendered(function(){
   **cursize is the cur font-size of the container that needs to decrease
   */
   this.autorun(function(){
+    var textStuff = Session.get('cp_head_textStuff');
+    if ( textStuff.length > 0 ) {
+      addCustomScroller();
+    }
+    
     resizetext(".p-head-top-name", ".p-head-top-name-txt", "44px");
-  })
-})
+  });
+});
 
 Template.cp_body.onCreated(function(){
   this.autorun(function(){
@@ -45,7 +50,7 @@ Template.c_p_header.helpers({
     return '';
 
   }
-})
+});
 
 Template.cp_head.helpers({
   topInfo: function(){
@@ -68,13 +73,19 @@ Template.cp_head.helpers({
   text: function(){
     var data = Session.get('bio_location');
     var aidata = Session.get('AI_daily_update');
+    var textStuff = '';
+    
     if(typeof data == 'undefined' && typeof aidata == "undefined" ){
-      return '';
+      textStuff = '';
     }
-    if ( typeof aidata == "undefined" || aidata == 'false' || aidata == false || aidata == '' ) {
-      return data.c_desc;
+    else if ( typeof aidata == "undefined" || aidata == 'false' || aidata == false || aidata == '' ) {
+      textStuff = data.c_desc;
     }
-    return aidata;
+    else {
+      textStuff = aidata;
+    }
+    Session.set('cp_head_textStuff', textStuff);
+    return textStuff;
   },
   locationURL: function(){
     var data = Session.get('profile_header');
