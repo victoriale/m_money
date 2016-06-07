@@ -15,9 +15,7 @@ Template.compensation.onCreated(function(){
     var yearArray = [];
     //takes all the historic compensation data and toss them into a yearly object array
     $.map(compensation.compensation_periods, function(data, index){
-      console.log('ORIGINAL COMPENSATION',data);
       var result = PHcheck(data);
-      console.log('AFTER PHCHECK',result);
       if(typeof result['o_period_end_date'] != 'undefined'){
         var year = result['o_period_end_date'].split('-');
         if(typeof compYear[year[0]] == 'undefined'){
@@ -31,9 +29,7 @@ Template.compensation.onCreated(function(){
     });
     //push into new array for the select option in compensation module
     for (key in compYear){
-      if(key != 0000){ // comes from database this way and need to filter it out.(prob needs to be done backend)
-        yearArray.push(key);
-      }
+      yearArray.push(key);
     }
 
     compYear['full_name'] = compensation['officer'].o_first_name + " " + compensation['officer'].o_middle_initial + " " + compensation['officer'].o_last_name;
