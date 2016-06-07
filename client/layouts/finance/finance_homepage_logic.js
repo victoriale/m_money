@@ -389,7 +389,7 @@ Template.finance_homepage.events({
   },
 
   'click .fi_search_recommendations_item': function(event) {
-    $('.fi_mainsearch input')[0].value = $(event.target)[0].innerHTML.replace('<i class="fa fa-angle-right"></i>', '');
+    $('.fi_mainsearch input')[0].value = $(event.target).text();
     $('.fi_search_recommendations').removeClass('active');
     $('.fi_searchbtn').css("background-color", "black");
     $(".fi_mainsearch").addClass("boxhighlight-black");

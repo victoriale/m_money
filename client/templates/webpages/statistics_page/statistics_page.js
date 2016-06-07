@@ -13,9 +13,10 @@ Template.statistics_page.helpers(
           var params = Router.current().getParams();
           var data = Session.get('loc_id');
           //if partner domain exists then choose the
-          if(typeof params.loc_id == 'undefined'){
+          console.log(data);
+          if(typeof params.loc_id == 'undefined' || params.loc_id == params.partner_id){//for some reason the partner_id is also the loc_id need to revisit this code when more time is available [this is a bandaid]
             var partner_image = Session.get('profile_header');
-            if(partner_image.dma_code == null){
+            if(partner_image.dma_code == null || typeof partner_image.dma_code == 'undefined' || partner_image.dma_code == ''){
               return "background-image: url('/StateImages/Location_"+ partner_image['location'] +".jpg');";
             }else{
               return "background-image: url('/DMA_images/location-"+ partner_image['dma_code'].split(',')[0] +".jpg');";

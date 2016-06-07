@@ -190,10 +190,17 @@
             <i class="fa fa-caret-right"></i><span class="footer-b_blue"><a href="{{national}}"> Today's Market Movers </a></span>
         </p>
                 <hr class="footer-separator"/>
-        <p>     <span class="footer-b_blue"><a href="{{pathFor 'content.home'}}">InvestKit.com </a></span>
-                <i class="fa fa-caret-right"></i><a href="{{pathFor 'content.contactus'}}"> Advertise with InvestKit</a> <i class="fa fa-caret-right">
-                </i><a href="{{pathFor 'content.contactus'}}"> Contact us</a>
-                <i class="fa fa-caret-right"></i> <a href="{{pathFor 'content.latestnews'}}"> Company News</a>
+        <p> 
+            {{#if notPartner}}
+              <span class="footer-b_blue"><a href="{{pathPickStatic 'content.finance.home'}}">InvestKit.com </a></span>
+              <i class="fa fa-caret-right"></i><a href="{{pathPickStatic 'content.contactus'}}"> Advertise with InvestKit</a> 
+            {{else}}
+              <span class="footer-b_blue"><a href="{{pathPickStatic 'content.partnerhome'}}">MyInvestKit.com </a></span>
+              <i class="fa fa-caret-right"></i><a href="{{pathPickStatic 'content.contactus'}}"> Advertise with MyInvestKit</a> 
+            {{/if}}
+            <i class="fa fa-caret-right">
+            </i><a href="{{pathPickStatic 'content.contactus'}}"> Contact us</a>
+            <i class="fa fa-caret-right"></i> <a href="{{pathPickStatic 'content.latestnews'}}"> Company News</a>
         </p>
         <p>
           <a href="{{pathPickStatic 'content.termsofservice'}}"> Terms of Use</a>
