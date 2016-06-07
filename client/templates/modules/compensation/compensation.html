@@ -6,6 +6,7 @@
 -->
 
 <template name = "compensation">
+  {{#if hasCompensation}}
   <div class = "comp">
     <div class = "comp-hdr">
       <div class = "comp-hdr-icon"></div>
@@ -25,8 +26,15 @@
   		</select>
     </div>
 
-    <div class = "comp-graph" id = "comp_graph">
-      {{> highchartsHelper chartId="comp_graph" chartWidth="641px" chartHeight="218px"  chartObject=getCompGraphObject}}
+    <div class = "comp-graph">
+      {{#with showCompensation}}
+      <div id="comp_error">
+        {{showCompensation}}
+      </div>
+      {{/with}}
+      <div class = "comp-graph" id = "comp_graph">
+        {{> highchartsHelper chartId="comp_graph" chartWidth="641px" chartHeight="218px"  chartObject=getCompGraphObject}}
+      </div>
     </div>
 
     <a href = "{{compURL}}"><div class = "comp-footer">
@@ -37,4 +45,5 @@
       <i class = "fa fa-angle-right"></i>
     </div></a>
   </div>
+    {{/if}}
 </template>

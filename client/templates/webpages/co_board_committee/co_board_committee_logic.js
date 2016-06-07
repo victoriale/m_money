@@ -7,10 +7,17 @@ Associated Files: co_board_committee.less and co_board_committee.html
 var counter=0;
 Template.co_board_committee.onCreated(function(){
   Session.set('board_count', 0);
-})
+});
 //renders the data when page loads
 Template.co_board_committee.onRendered(function(){
-
+  this.autorun(function(){    
+    var bio = Session.get('officer_bio_updated');
+    if ( bio && bio.length > 0 ) {
+      Tracker.afterFlush(function(){
+        addCustomScroller('co_commi-m_c-dp');
+      });
+    }
+  });
 });
 
 var backgroundStyle="tilewhite";
@@ -65,7 +72,7 @@ Template.co_board_committee.helpers({
       return '';
     }
     $.map(list,function(data, index){
-      data['o_last_updated'] = (new Date(data['o_last_updated'])).toSNTForm();
+      data.o_last_updated = moment(data.o_last_updated).format("dddd, MMMM DD, YYYY");
 
       if(typeof data['compensation'] == 'undefined'){
         data['compensation'] = {};
@@ -100,7 +107,7 @@ Template.co_board_committee.helpers({
       return '';
     }
     list[count]['image'] = image.c_logo;
-    list[count]['o_last_updated'] = (new Date(list[count]['o_last_updated'])).toSNTForm();
+    list[count].o_last_updated = moment(list[count].o_last_updated).format("dddd, MMMM DD, YYYY");
 
     list[count]['url'] = Router.pick_path('content.executiveprofile',{
       fname:list[count].o_first_name,
@@ -108,7 +115,7 @@ Template.co_board_committee.helpers({
       ticker:Router.current().getParams().ticker,
       exec_id: list[count].o_id
     });
-
+    Session.set('officer_bio_updated', list[count].o_bio);
     return list[count];
   },
 

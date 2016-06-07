@@ -149,20 +149,26 @@ Meteor.methods({
     this.unblock();
     return future.wait();
   },
-  GetLocationData: function(loc_id, batchNum) {
+  GetLocationData: function(loc_id, batchNum, graph_option) {
     var future = new Future();
     var startTime = (new Date()).getTime();
     if ( typeof loc_id == "undefined" || loc_id == null || loc_id == 'null') {
       throw new Error(404,"Null Location ID");
     }
+    if(typeof graph_option == 'undefined' || graph_option == null){
+      graph_option = '';
+    }else{
+      graph_option = "&call=location_daily_update&graph_option=5Y";
+      // graph_option = "&graph_option=5Y";//old call that does not pull all historical datapoints
+    }
     // console.log("New Company Request",loc_id,batchNum);
     if(loc_id === 'National'){
       // console.log('national call');
-      var UrlString = callUrl + "?action=location_profile&option="+batchNum;
+      var UrlString = callUrl + "?action=location_profile&option="+batchNum + graph_option;
     }else if(isNaN(loc_id)){
-      var UrlString = callUrl + "?action=location_profile&option="+batchNum+"&state="+loc_id;
+      var UrlString = callUrl + "?action=location_profile&option="+batchNum+"&state="+loc_id + graph_option;
     }else{
-      var UrlString = callUrl + "?action=location_profile&option="+batchNum+"&dma="+loc_id;
+      var UrlString = callUrl + "?action=location_profile&option="+batchNum+"&dma="+loc_id + graph_option;
     }
     // console.log(UrlString);
 
@@ -200,7 +206,7 @@ Meteor.methods({
     // console.log("New Executive Request",exec_id,batchNum);
 
     var UrlString = callUrl + "?action=executive_profile&option="+batchNum+"&param="+exec_id;
-     console.log(UrlString);
+    //  console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime,batchNum,exec_id, error, data){
       if ( error ) {

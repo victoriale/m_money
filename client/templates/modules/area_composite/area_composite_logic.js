@@ -106,7 +106,9 @@ Template.area_composite.helpers({
       'Industrial Goods': 'fa-truck',
       'Services': 'fa-phone',
       'Technology': 'fa-database',
-      'Utilities': 'fa-lightbulb-o'
+      'Utilities': 'fa-lightbulb-o',
+      'Consumer/Non-Cyclical': 'fa-opencart',
+      'Transportation': 'fa-truck'
     };
     for ( var index = 0; index < cmp_arr.length; index++ ) {
       var loc_arr = [];

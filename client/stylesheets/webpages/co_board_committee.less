@@ -101,7 +101,6 @@ Associated Files: co_board_committee_logic.js and co_board_committee_page.html
     font-size: 22px;
   }
 
-  //the bottom bar
   &-bar {
     width: 680px;
     height: 35px;
@@ -120,43 +119,17 @@ Associated Files: co_board_committee_logic.js and co_board_committee_page.html
     a {
       color:@white;
     }
-    &-text{
-      font-family: HN-L;
-      color:  #ffffff;
-      font-size: 14px;
-      text-align: right;
-    }
-    //the title next to save and share
     &-title{
-      border-right: 1px solid #363636;
       background-color: inherit;
       text-align: center;
       float: left;
       height:35px;
       line-height: 35px;
-      width:297px;
       font-size: 16px;
       font-family: HN-B;
       text-align: left;
       left: 15px;
       position: relative;
-    }
-    // the button for save and share
-    &-button {
-      border: none;
-      text-align: center;
-      float: left;
-      line-height: 35px;
-      height:35px;
-      width:85px;
-      margin-right: 8px;
-      font-family: HN-L;
-      left: 20px;
-      position: relative;
-
-      .fa{
-        margin-right: 10px;
-      }
     }
   }
 
@@ -297,27 +270,63 @@ Associated Files: co_board_committee_logic.js and co_board_committee_page.html
         left:56px;
       }
     }
-    // the description part
     &-dp {
-      height:84px;
+      height: 96px;
+      width: 360px;
       border-left: solid 2px #cccccc;
       padding: 0 0 0 15px;
       position: relative;
       top: 29px;
       left: 5px;
-
-      &-dpct{
-        //height: 71px;
-        height: 67px;
-        width: 328px;
-        font-size: 16px;
-        font-family: HN-L;
-        color: #ffffff;
-        line-height: 17px;
-        text-align: left;
-        overflow: hidden;
-        text-overflow: ellipsis;
+      overflow: hidden; 
+      display: block;    
+       
+      font-size: 16px;
+      font-family: HN-L;
+      color: #ffffff;
+      line-height: 23px;
+      text-align: left;
+        
+      /* scrollbar */
+      &.showScroll::after {
+        width: 12px;
+        box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        margin-left: 5px;
+        
+        position: absolute;
+        content: '';
+        top: 0;
+        right: 6px;
+        height: 100%;
       }
+      
+      &-wrapper {
+        width: 388px;
+        height: 100%;
+        padding-right: 50px;
+        overflow-y: scroll;
+      }
+      
+      .scroller {
+        width: 12px;
+        border-radius: 10px;
+        box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+        
+        z-index: 5;
+        cursor: pointer;
+        position: absolute;
+        top: 0px;
+        right: 6px;
+        -webkit-transition: top .08s;
+        -moz-transition: top .08s;
+        -ms-transition: top .08s;
+        -o-transition: top .08s;
+        transition: top .08s;
+      }
+
       &-itl{
         font-family: HN-B;
         color:  #ffffff;

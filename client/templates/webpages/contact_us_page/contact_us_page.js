@@ -16,7 +16,7 @@ Template.contact_us_page.helpers({
       return "San Francisco";
     }
   },
-  Country: "The United States",
+  Country: "United States",
   Statement: "Help us help you faster",
   back_url: function(){
     if(Session.get('IsCompany')) {
