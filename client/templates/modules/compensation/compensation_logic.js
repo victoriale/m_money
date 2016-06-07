@@ -76,9 +76,22 @@ Template.compensation.helpers({
     if(typeof(chosen) === 'undefined' || typeof(data) === 'undefined'){
       return false;
     }
-
     return nFormatter(data.comp_array[chosen].TotalComp);
+  },
 
+  showCompensation: function(){
+    var chosen = Session.get('compensation_year_chosen');
+    var data = Session.get('new_compensation');
+
+    //If dependencies are undefined exit helper
+    if(typeof(chosen) === 'undefined' || typeof(data) === 'undefined'){
+      return false;
+    }
+    if(data.comp_array[chosen].TotalComp == 0){
+      return "Sorry, there is no "+chosen+" compensation data available for "+data.comp_array.full_name+".";
+    }else{
+      return false;
+    }
   },
   //Helper to draw graph
   getCompGraphObject: function(){
