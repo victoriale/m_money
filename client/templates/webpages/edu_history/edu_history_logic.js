@@ -20,7 +20,6 @@ Template.edu_history.helpers({
     if ( typeof data == "undefined" ) {
       return '';
     }
-
     data.ExecURL = Router.pick_path('content.executiveprofile',{
       exec_id: data.officer.o_id,
       fname: data.officer.o_first_name,
@@ -34,13 +33,23 @@ Template.edu_history.helpers({
       lname: data.officer.o_last_name,
       ticker: data.officer.c_ticker
     });
-
+    var dataList = data.officer;
     data.officer.fullname = data.officer.o_first_name + ' ' + data.officer.o_last_name;
+    dataList.c_price = nFormatter(Number(dataList['c_price']).toFixed(2));
+    dataList.c_price_change = nFormatter(Number(dataList['c_price_change']).toFixed(2));
+    dataList.c_percentage_change = nFormatter(Number(dataList['c_percentage_change']).toFixed(2));
+    if( typeof dataList.c_change_operator == "undefined" ){
+      if(Number(dataList.c_percentage_change) < 0){
+        dataList.c_price_change = Math.abs(Number(dataList.c_price_change));
+        dataList.c_percentage_change = Math.abs(Number(dataList.c_percentage_change));
+        dataList.c_change_operator = 0;
+      } else {
+        dataList.c_change_operator = 1;
+      }
+    }
 
     data.lastupdate = (new Date()).toSNTForm();
-
     data.officer.College = data.officer.education_data[0].College;
-
     data.schools = [];
     edu_data_uq = [];
     edu_data = data.officer.education_data;

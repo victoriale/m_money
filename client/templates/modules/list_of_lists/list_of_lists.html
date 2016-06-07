@@ -5,64 +5,66 @@ Associated Files: list_of_lists.html, list_of_lists_logic.js and list_of_lists.l
 -->
 <!-- The program starts here-->
 <template name="list_of_lists">
-  {{#with checkList}}
-  <div class="module-listoflists">
-    <div class="list_header"><span class='list_header-line'></span>Top Lists That Feature {{headerInfo}}
-    </div>
-    {{#each listsData}}
-    <div class="list_ol" style="background-color:{{index_color}}">
-      <div class="list_ol-top">
-        <div class="list_ol-top-img1" style="background-image:url('{{imageUrl c_logo}}')">
-          <div class="list_ol-top-img2">#{{tle_ranking}}</div>
-        </div>
-        <div class="list_ol-top-content">
-          {{#each top_list_list}}
-          <div class="list_ol-top-content-textbox">
-            <div class="list_ol-top-content-textbox-txt1">
-              <i class="fa fa-map-marker" style="color:#3098ff"></i>
-              United States
-            </div>
-            <div class="list_ol-top-content-textbox-txt2" title="{{list_of_lists_title}}">
-                {{list_of_lists_title}}
-            </div>
+  {{#with checkData}}
+    {{#with checkList}}
+    <div class="module-listoflists">
+      <div class="list_header"><span class='list_header-line'></span>Top Lists That Feature {{headerInfo}}
+      </div>
+      {{#each listsData}}
+      <div class="list_ol" style="background-color:{{index_color}}">
+        <div class="list_ol-top">
+          <div class="list_ol-top-img1" style="background-image:url('{{imageUrl c_logo}}')">
+            <div class="list_ol-top-img2">#{{tle_ranking}}</div>
           </div>
-          <div class="list_ol-top-content-compbox">
-            {{#each list_of_lists_data}}
-            <a href="{{imageURL}}">
-              <div class="list_ol-top-content-compbox-subimages" style="background-image:url('{{imageUrl c_logo}}')">
-                <div class="hover"></div>
+          <div class="list_ol-top-content">
+            {{#each top_list_list}}
+            <div class="list_ol-top-content-textbox">
+              <div class="list_ol-top-content-textbox-txt1">
+                <i class="fa fa-map-marker" style="color:#3098ff"></i>
+                United States
               </div>
-            </a>
+              <div class="list_ol-top-content-textbox-txt2" title="{{list_of_lists_title}}">
+                  {{list_of_lists_title}}
+              </div>
+            </div>
+            <div class="list_ol-top-content-compbox">
+              {{#each list_of_lists_data}}
+              <a href="{{imageURL}}">
+                <div class="list_ol-top-content-compbox-subimages" style="background-image:url('{{imageUrl c_logo}}')">
+                  <div class="hover"></div>
+                </div>
+              </a>
+              {{/each}}
+            </div>
             {{/each}}
+            <a href="{{url}}">
+              <button class="list_ol-top-content-button">
+                <div class="fin_icon"></div>
+                <div class="fin_text">See The List <i class="fa fa-angle-right"></i></div>
+              </button>
+            </a>
           </div>
-          {{/each}}
-          <a href="{{url}}">
-            <button class="list_ol-top-content-button">
-              <div class="fin_icon"></div>
-              <div class="fin_text">See The List <i class="fa fa-angle-right"></i></div>
-            </button>
-          </a>
+        </div>
+        <div class="list_ol-bottom">
+          <!--<a href=""><div class="list_ol-bottom-share"><i class="fa fa-heart"></i> Save</div></a>-->
+          <!--<a href=""><div class="list_ol-bottom-share"><i class="fa fa-share-alt"></i> Share</div></a>-->
+          <!--<a href=""><div class="list_ol-bottom-feedback"><i class="fa fa-flag"></i> Feedback</div></a>-->
         </div>
       </div>
-      <div class="list_ol-bottom">
-        <!--<a href=""><div class="list_ol-bottom-share"><i class="fa fa-heart"></i> Save</div></a>-->
-        <!--<a href=""><div class="list_ol-bottom-share"><i class="fa fa-share-alt"></i> Share</div></a>-->
-        <!--<a href=""><div class="list_ol-bottom-feedback"><i class="fa fa-flag"></i> Feedback</div></a>-->
+      {{/each}}
+      <div class="module-footer">
+        <a href= "{{toListOfList}}">
+          <button class="module-footer-button">
+            <div class="nws-footer"><i class="fa fa-share"></i></div>
+            <div class="module-footer-button-text list_ol-footer-button">
+              <span style="left:0%;padding-right:10px; font-family: HN-B; font-size: 14px">View All Lists</span>
+              <i class="fa fa-angle-right"></i>
+            </div>
+          </button>
+        </a>
       </div>
     </div>
-    {{/each}}
-    <div class="module-footer">
-      <a href= "{{toListOfList}}">
-        <button class="module-footer-button">
-          <div class="nws-footer"><i class="fa fa-share"></i></div>
-          <div class="module-footer-button-text list_ol-footer-button">
-            <span style="left:0%;padding-right:10px; font-family: HN-B; font-size: 14px">View All Lists</span>
-            <i class="fa fa-angle-right"></i>
-          </div>
-        </button>
-      </a>
-    </div>
-  </div>
+    {{/with}}
   {{/with}}
   <!-- End of Template-->
 </template>

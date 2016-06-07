@@ -3,6 +3,9 @@
 **** Description: Exec profile header
 **** Associated Files: l-p_header.html, l-p_header.less, l-p_header_logic.js
 */
+Template.lp_head.onRendered(function(){
+  addCustomScroller();
+});
 
 Template.l_p_header.helpers({
 })

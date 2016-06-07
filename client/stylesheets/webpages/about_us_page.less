@@ -21,9 +21,9 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
   background-color: @white;
   // Begin abus-bkbx
   &-bkbx {
-    background-color:  #000000;
+    background-color:  @black;
     height: 50px;
-    color:@white;
+    color: @white;
     background-image: url("/public/header_texture.png");
     // Begin abus-bkbx-bx
     &-bx {
@@ -36,7 +36,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
       // Begin abus-bkbx-bx .fa
       .fa {
         font-size: 30px;
-        color:@white;
+        color: @white;
       } // End abus-bkbx-bx .fa
     } // End abus-bkbx-bx
     // Begin abus-bkbx-tgl
@@ -67,7 +67,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
   } // End abus-bkbx
   // Begin abus-about
   &-about {
-    background-color:  @white;
+    background-color: @white;
     padding: 14px;
     position: relative;
     // Begin abus-about-image
@@ -75,9 +75,9 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
       padding-left: 7px;
       border-radius: 50%;
       border-width: 2px;
-      border-color:  #cccccc;
+      border-color: #cccccc;
       border-style: solid;
-      background-color:  #ffffff;
+      background-color: @white;
       width: 100px;
       height: 100px;
       background-size: cover !important;
@@ -87,36 +87,37 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
     &-head {
       position: absolute;
       left: 125px;
-      top:  10px;
+      top: 10px;
       width: 520px;
       height: 99px;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
+      text-align: left;
       // Begin abus-about-head-update
       &-update {
-        color:  #959595;
+        color: #959595;
         font-size: 10px;
         font-family: HN;
       } // End abus-about-head-update
       // Begin abus-about-head-country
       &-country {
-        color:  #000000;
+        color: @black;
         font-size: 12px;
         font-family: HN;
         margin-top: 12px;
       }// End abus-about-head-country
       // Begin abus-about-head H1
-      H1 {
-        color:  #000000;
+      h1 {
+        color: @black;
         font-size: 27px;
         font-family: HN-B;
         line-height: 27px;
         margin-top: 0px;
       } // End abus-about-head H1
       // Begin abus-about-head H2
-      H2 {
-        color:  #000000;
+      h2 {
+        color: @black;
         font-size: 27px;
         font-family: HN;
         position: absolute;
@@ -176,7 +177,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
     &-dropdown {
       float:right;
       height:26px;
-      background-color: #FFFFFF;
+      background-color: @white;
       font-family: HN-L;
       font-size: 12px;
       text-align: right;
@@ -200,7 +201,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
       &-left {
         float: left;
         font-family:HN;
-        color:  #000000;
+        color:  @black;
         font-size: 18px;
         text-align: left;
         width: 400px;
@@ -216,7 +217,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
       &-dropdown {
        vertical-align: middle;
         float: right;
-        background-color: #FFFFFF;
+        background-color: @white;
         font-family: HN-L;
         font-size: 12px;
         text-align: right;
@@ -269,12 +270,12 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
       blockquote{
         padding-top: 0px;
         padding-bottom:0px;
-        border-left: 5px solid #ffffff;
+        border-left: 5px solid @white;
         font-family: HN;
         font-size: 13.5px
       }
       blockquote:before{
-      //  color: #ffffff;
+      //  color: @white;
       }
       &-underline{
         font-family: HN-L;
@@ -327,7 +328,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
       // Begin abus-boxes-box-totals
       &-totals {
         font-family: HN-B;
-        color:  #959595;
+        color: #959595;
         font-size: 12px;
         position: absolute;
         top: 12px;
@@ -346,7 +347,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
         top: 25px;
         left:110px;
         font-family: HN-B;
-        color:  #000000;
+        color: @black;
         font-size: 24px;
    //     line-height: 14px;
         text-align: left;
@@ -387,7 +388,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
         position: relative;
         top :-20px;
         font-family: HN-B;
-        color:  #000000;
+        color: @black;
         font-size: 28px;
       } // End abus-member-txt h2
     } // End abus-member-txt
@@ -433,7 +434,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
         padding-left:15px;
         font-family:HN-l;
         font-size: 28px;
-        color:#ffffff;
+        color: @white;
       } // End abus-rdr-container-dr
       // Begin abus-rdr-container-explore
       &-explore {
@@ -442,14 +443,14 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
         left:47px;
         font-family:HN-B;
         font-size: 45px;
-        color:#ffffff;
+        color: @white;
       } // End abus-rdr-container-explore
       // Begin abus-rdr-container-line
       &-line {
         position: absolute;
         top:200px;
         left:50px;
-        background-color: #ffffff;
+        background-color: @white;
         width: 250px;
         height: 2px;
       } // End abus-rdr-container-line
@@ -458,7 +459,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
         position: absolute;
         border-radius: 50%;
         border-width: 2px;
-        border-color:  #ffffff;
+        border-color:  @white;
         border-style: solid;
         width: 65px;
         height: 65px;
@@ -470,7 +471,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
           font-size: 36px;
           top:9px;
           left:25px;
-          color: #ffffff;
+          color: @white;
         } // End abus-rdr-container-circle .fa
       } // End abus-rdr-container-circle
       // Begin abus-rdr-container-exec
@@ -479,7 +480,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
         padding: 1px 19px 5px 19px;
         font-family:HN;
         font-size: 27px;
-        color:#ffffff;
+        color: @white;
         position: absolute;
         top: 235px;
         left:50px;
@@ -496,7 +497,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
         position: absolute;
         font-size: 17px;
         font-family:HN-l;
-        color:#ffffff;
+        color: @white;
         top:295px;
         left:50px;
         overflow: hidden;
@@ -508,7 +509,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
 .abt_us{
 // webpage dimensions
 &-dimensions{
-  background-color:  #ffffff;
+  background-color:  @white;
   width: 680px;
   margin: 5px 0px 0px 5px;
   text-align: left;
@@ -518,7 +519,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
 &-dropdown {
   height: 26px;
   float: right;
-  background-color: #FFFFFF;
+  background-color: @white;
   font-family: HN-L;
   font-size: 12px;
   text-align: right;
@@ -561,17 +562,17 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
     // the font awesome icon color
     .fa {
     //  color: @white;
-      color: #ffffff;
+      color: @white;
     }
     //the link color
     a {
       //color:@white;
-      color: #ffffff;
+      color: @white;
     }
 
     &-text{
       font-family: HN-L;
-      color:  #ffffff;
+      color:  @white;
       font-size: 14px;
       text-align: right;
     }
@@ -621,7 +622,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
       margin-left: 15px;
       .fa{
         margin-right: 10px;
-        color: #ffffff;
+        color: @white;
       }
     }
   }
@@ -638,7 +639,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
   //what is font sytle
   &-wtft{
     font-family:HN;
-    color:  #000000;
+    color:  @black;
     font-size: 18px;
     line-height: 28px;
     text-align: left;
@@ -677,7 +678,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
   //font style for the text
   &-txtft{
     font-family: HN;
-    color:  #000000;
+    color:  @black;
     font-size: 14px;
     text-align: left;
     overflow: hidden;
@@ -737,7 +738,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
   //font sytle for number
   &-num{
     font-family: HN-B;
-    color:  #000000;
+    color:  @black;
     font-size: 24px;
     line-height: 14px;
     text-align: left;
@@ -786,7 +787,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
 &-number{
   height: 26px;
   font-family: HN-B;
-  color:  #000000;
+  color:  @black;
   font-size: 28px;
   line-height: 20px;
   text-align: center;
@@ -832,7 +833,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
 }
 //styles for text
 &-srchtxt1{
-  color: #ffffff;
+  color: @white;
   font-size: 35px;
   font-family: HN-B;
   line-height: 30.027px;/* Approximation due to font substitution */
@@ -840,7 +841,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
   padding-bottom: 5px;
 }
 &-srchtxt2{
-  color:  #ffffff;
+  color:  @white;
   font-size: 18px;
   font-family: HN;
   line-height: 30.027px;/* Approximation due to font substitution */
@@ -849,7 +850,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
 //input box
 &-inptbox{
   border-radius: 5px;
-  background-color:  #ffffff;
+  background-color:  @white;
   width: 540px;
   height: 40px;
   border: none;
@@ -877,7 +878,7 @@ Associated Files: about_us_page.html, about_us_page_logic.js, about_us_page.less
 }
 //icon on search button
 &-srchicon{
-  color:  #ffffff;
+  color:  @white;
   font-size: 22px;
   font-weight: 400;
 }

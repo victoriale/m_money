@@ -56,7 +56,7 @@ Template.featured_list.helpers (
   {
     checkData:function(){
       var data = Session.get('featured_lists');
-      if(typeof data == 'undefined'){
+      if(typeof data == 'undefined' || data == "Either there are no articles to display or you passed the incorrect ID. [error:featured_lists]"){
         return '';
       }
       if(Session.get('IsExec')){
