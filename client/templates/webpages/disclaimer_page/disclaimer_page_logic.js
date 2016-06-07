@@ -40,7 +40,6 @@ Template.disclaimer_page.events({
 
 Template.disclaimer_page.helpers({
     Title: "Disclaimer",
-    About: "InvestKit's Disclaimer",
     Profile: function () {
         if (Session.get('IsCompany')) {
             return Session.get("profile_header").c_name;
@@ -52,7 +51,6 @@ Template.disclaimer_page.helpers({
         }
     },
     Country: "The United States",
-    Statement: "For Investkit",
     Update: moment.utc(1435150800000).tz('America/New_York').format('MM/DD/YYYY, h:mm A z'),
     back_url: function () {
         if (Session.get('IsCompany')) {
@@ -79,5 +77,11 @@ Template.disclaimer_page.helpers({
     },
     termsOfService: function () {
         return Router.pick_path('content.termsofservice', {});
-    }
+    },
+    notPartner: function() {
+        if ( typeof Router.current().params.partner_id != "undefined" ) {
+            return false;
+        }
+        return true;
+    },
 });

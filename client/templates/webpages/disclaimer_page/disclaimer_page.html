@@ -19,11 +19,20 @@ Associated Files: disclaimer_page.html, disclaimer_page_logic.js, about_us_page.
         <div class="abus-about-head-update">Last Updated: {{Update}}</div>
         <div class="abus-about-head-country"><i class="fa fa-map-marker"></i> &nbsp;{{Country}}</div>
         <h1>{{Title}}</h1>
-        <h2>{{Statement}}</h2>
+          {{#if notPartner}}
+              <h2>For Investkit</h2>
+          {{else}}
+              <h2>For MyInvestkit</h2>
+          {{/if}}
       </div>
     </div>
     <div class="abus-kit">
-      <div class="abus-kit-left">{{About}}</div>
+        {{#if notPartner}}
+            <div class="abus-kit-left">InvestKit's Disclaimer</div>
+        {{else}}
+            <div class="abus-kit-left">MyInvestKit's Disclaimer</div>
+        {{/if}}
+
       <div class="abus-kit-right">
         <!--
         <a href="#"><i class="fa fa-heart"></i><span>Save</span></a>
