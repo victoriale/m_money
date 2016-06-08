@@ -61,7 +61,7 @@ Meteor.methods({
     if(typeof city != 'undefined' && city != null){
       UrlString += ","+city;
     }
-    console.log(UrlString);
+    // console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, batchNum, state, error, data){
       try{
@@ -130,7 +130,7 @@ Meteor.methods({
     if(typeof page != 'undefined' || page != null){
       UrlString += "&page="+page;
     }
-    console.log(UrlString);
+    // console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, option, loc_id, error, data){
       try{
@@ -170,6 +170,7 @@ Meteor.methods({
     }else{
       var UrlString = callUrl + "?action=location_profile&option="+batchNum+"&dma="+loc_id + graph_option;
     }
+
     // console.log(UrlString);
 
     curloc_id.withValue(batchNum, function(){
@@ -585,7 +586,7 @@ Meteor.methods({
     }
 
     //random number to pick random list in list_index that's in database
-    console.log(loc_id, sector);
+    // console.log(loc_id, sector);
     if(loc_id === 'National'){
       // console.log('national call');
       var UrlString = callUrl + "?action=location_page&option=sector_companies";
@@ -853,12 +854,19 @@ Meteor.methods({
     return future.wait();
   },
 
-  GetPartnerProfile: function(partner_id, batch) {
+  GetPartnerProfile: function(partner_id, batch, graph_option) {
     var future = new Future();
     var startTime = (new Date()).getTime();
     // console.log("New Partner Request",partner_id,batch);
 
-    var UrlString = callUrl + "?action=location_profile&option="+batch+"&partner_domain="+partner_id;
+    if(typeof graph_option == 'undefined' || graph_option == null){
+      graph_option = '';
+    }else{
+      graph_option = "&call=location_daily_update&graph_option=5Y";
+      // graph_option = "&graph_option=5Y";//old call that does not pull all historical datapoints
+    }
+
+    var UrlString = callUrl + "?action=location_profile&option="+batch+"&partner_domain="+partner_id+graph_option;
     // console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, batch, partner_id, error, data){
