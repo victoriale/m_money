@@ -260,7 +260,6 @@ Template.co_fin_overview.helpers({
 
     var company_data = data.company_data;
     //convert high and low to two decimal
-    console.log(company_data);
     company_data['lcsi_52week_high'] = company_data['lcsi_52week_high'] != null ? nFormatter(Number(company_data['lcsi_52week_high']).toFixed(2)) : 'N/A';
     company_data['lcsi_52week_low'] = company_data['lcsi_52week_high'] != null ? nFormatter(Number(company_data['lcsi_52week_low']).toFixed(2)) : 'N/A';
     //console.log('company data', company_data);
