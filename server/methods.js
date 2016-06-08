@@ -867,7 +867,7 @@ Meteor.methods({
     }
 
     var UrlString = callUrl + "?action=location_profile&option="+batch+"&partner_domain="+partner_id+graph_option;
-    console.log(UrlString);
+    // console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, batch, partner_id, error, data){
       try{
