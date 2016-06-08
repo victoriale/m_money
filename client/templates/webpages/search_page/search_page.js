@@ -99,7 +99,7 @@ Template.search_page.events({
     GetSuggest();
   },
   'click .discover_recommendations_item': function(event) {
-    $('.re_mainsearch-text')[0].value = $(event.target)[0].innerHTML;
+    $('.re_mainsearch-text')[0].value = $(event.target).text();
     $('.discover_recommendations').removeClass('active');
     Finance_Search($('.re_mainsearch-text')[0].value);
   },
