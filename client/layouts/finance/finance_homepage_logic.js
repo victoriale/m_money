@@ -420,20 +420,24 @@ Template.finance_homepage.events({
 
   'click .fi_mainsearch-text': function(){
     $(".fi_mainsearch").addClass("boxhighlight");
-    if($('.fi_mainsearch input')[0].value == '' || $('.fi_mainsearch input')[0].value == ' ' || $('.fi_mainsearch input')[0].value == undefined){
+    var searchResultCount = $('.fi_search_recommendations a').length;
+    if(searchResultCount == 0){
       return false;
     }else{
       $('.fi_search_recommendations').addClass('active');
     }
   },
+  
   'mouseenter .fi_mainsearch': function(){
     $(".fi_mainsearch").addClass("boxhighlight");
-    if($('.fi_mainsearch input')[0].value == '' || $('.fi_mainsearch input')[0].value == ' ' || $('.fi_mainsearch input')[0].value == undefined){
+    var searchResultCount = $('.fi_search_recommendations a').length;
+    if(searchResultCount == 0){
       return false;
     }else{
       $('.fi_search_recommendations').addClass('active');
     }
   },
+  
   'mouseleave .fi_search_recommendations': function(){
     $('.fi_search_recommendations').removeClass('active');
   }
