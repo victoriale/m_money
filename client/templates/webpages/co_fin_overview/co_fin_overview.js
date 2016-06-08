@@ -260,8 +260,9 @@ Template.co_fin_overview.helpers({
 
     var company_data = data.company_data;
     //convert high and low to two decimal
-    company_data['lcsi_52week_high'] = Number(company_data['lcsi_52week_high']).toFixed(2);
-    company_data['lcsi_52week_low'] = Number(company_data['lcsi_52week_low']).toFixed(2);
+    console.log(company_data);
+    company_data['lcsi_52week_high'] = company_data['lcsi_52week_high'] != null ? nFormatter(Number(company_data['lcsi_52week_high']).toFixed(2)) : 'N/A';
+    company_data['lcsi_52week_low'] = company_data['lcsi_52week_high'] != null ? nFormatter(Number(company_data['lcsi_52week_low']).toFixed(2)) : 'N/A';
     //console.log('company data', company_data);
 
     //Get beginning of 52 week range (Esitmated 250 open stock market days)
@@ -297,8 +298,8 @@ Template.co_fin_overview.helpers({
     company_data.min_range = commaSeparateNumber_decimal((Math.min(Number(company_data.lcsi_opening_price).toFixed(2), Number(company_data.lcsi_closing_price).toFixed(2), Number(company_data.lcsi_price).toFixed(2)) * 100) / 100);
     company_data.max_range = commaSeparateNumber_decimal((Math.max(Number(company_data.lcsi_opening_price).toFixed(2), Number(company_data.lcsi_closing_price).toFixed(2), Number(company_data.lcsi_price).toFixed(2)) * 100) / 100);
 
-    company_data.lcsi_low = Number(company_data.lcsi_low).toFixed(2);
-    company_data.lcsi_high = Number(company_data.lcsi_high).toFixed(2);
+    company_data.lcsi_low = nFormatter(Number(company_data.lcsi_low).toFixed(2));
+    company_data.lcsi_high = nFormatter(Number(company_data.lcsi_high).toFixed(2));
 
     company_data.lcsi_price = commaSeparateNumber_decimal(Number(company_data.lcsi_price).toFixed(2));
     company_data.lcsi_closing_price = commaSeparateNumber_decimal(Number(company_data.lcsi_closing_price).toFixed(2));
@@ -306,7 +307,7 @@ Template.co_fin_overview.helpers({
     company_data.lcsi_price_change_since_last = commaSeparateNumber_decimal(Math.round(Number(company_data.lcsi_price_change_since_last) * 100) / 100);
     company_data.lcsi_percent_change_since_last = commaSeparateNumber_decimal(Math.round(Number(company_data.lcsi_percent_change_since_last) * 100) / 100);
     company_data.lcsi_market_cap = nFormatter(Number(company_data.lcsi_market_cap).toFixed(0));
-    company_data.lcsi_earnings_per_share = Math.round(company_data.lcsi_earnings_per_share * 100) / 100;
+    company_data.lcsi_earnings_per_share = nFormatter(Math.round(company_data.lcsi_earnings_per_share * 100) / 100);
 
     company_data.lcsi_pe_ratio = (Number(company_data.lcsi_pe_ratio)).toFixed(2);
 
