@@ -31,7 +31,7 @@ if (Meteor.absoluteUrl().indexOf("localhost") > -1 ) {
 } else if ( Meteor.absoluteUrl().indexOf("sandbox.") > -1) {
   callUrl = "http://sandbox-finance-api.synapsys.us/call_controller.php";
   AICall = "http://sandbox-finance-api.synapsys.us/";
-  getPartner = "http://apireal.synapsys.us/";
+  getPartner = "http://dev-real-api.synapsys.us/";
 } else {
   callUrl = "http://apifin.investkit.com/call_controller.php";
   AICall = "http://apifin.investkit.com/";
