@@ -177,7 +177,7 @@ Template.latest_news.helpers({
     var date = new Date();
   //  var nowDate = (date.getMonth()+1) + '/' + date.getDate() + '/' + date.getFullYear();
     //nowDate = (new Date(nowDate)).toSNTForm();
-    var nowDate = globalDateFormat(date);
+    var nowDate = globalDateFormat(date,'dayOfWeek');
     return nowDate;
   },
 
