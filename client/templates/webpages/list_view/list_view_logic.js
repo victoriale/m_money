@@ -133,12 +133,14 @@ Template.list_view.helpers({
       });
       data['exchurl'] = globalUrl(data.c_exchange);
       if(params.list_id == 'sv150_gainers' || params.list_id == 'sv150_losers'){
-        data['newDate'] = moment(data.csi_price_last_updated).format('dddd, MMM. DD, YYYY');
+        // data['newDate'] = moment(data.csi_price_last_updated).format('dddd, MMM. DD, YYYY');
+        data['newDate'] = globalDateFormat(data.csi_price_last_updated,'dayOfWeek');
         data.price = commaSeparateNumber_decimal(Number(data.csi_price).toFixed(2));
         data.price_change = commaSeparateNumber_decimal(Number(data.csi_price_change_since_last).toFixed(2));
         data.percent_change = commaSeparateNumber_decimal(Number(data.csi_percent_change_since_last).toFixed(2));
       }else{
-        data['newDate'] = moment(data.lcsi_price_last_updated).format('dddd, MMM. DD, YYYY');
+      //  data['newDate'] = moment(data.lcsi_price_last_updated).format('dddd, MMM. DD, YYYY');
+        data['newDate'] = globalDateFormat(data.lcsi_price_last_updated,'dayOfWeek');
         data.price = commaSeparateNumber_decimal(Number(data.lcsi_price).toFixed(2));
         data.price_change = commaSeparateNumber_decimal(Number(data.lcsi_price_change_since_last).toFixed(2));
         data.percent_change = commaSeparateNumber_decimal(Number(data.lcsi_percent_change_since_last).toFixed(2));
