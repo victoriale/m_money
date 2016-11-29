@@ -51,7 +51,8 @@ Template.disclaimer_page.helpers({
         }
     },
     Country: "The United States",
-    Update: moment.utc(1435150800000).tz('America/New_York').format('MM/DD/YYYY, h:mm A z'),
+    Update: globalDateFormat(1435150800000,'timeZone'),
+    // Update: moment.utc(1435150800000).tz('America/New_York').format('MM/DD/YYYY, h:mm A z'),
     back_url: function () {
         if (Session.get('IsCompany')) {
             return "/company/" + Session.get("profile_header").c_ticker;

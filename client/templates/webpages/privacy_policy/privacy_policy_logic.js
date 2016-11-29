@@ -53,7 +53,7 @@ Template.privacy_policy_page.helpers({
   },
   Country: "The United States",
   Statement: "For InvestKit",
-  Update: "06/24/2015,8:00 AM EST",
+  Update: "Wednesday, June 24, 2015 8:00 AM (EST)",
   back_url: function(){
     if(Session.get('IsCompany')) {
        return "/company/"+ Session.get("profile_header").c_ticker;

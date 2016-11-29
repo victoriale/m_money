@@ -38,8 +38,8 @@ Template.market_bar.helpers({
     if(typeof(data) === 'undefined'){
       return '';
     }
-    data.lastUpdated = moment(data.lastUpdated).tz('America/New_York').format('dddd, MMM DD, YYYY');
-
+  //  data.lastUpdated = moment(data.lastUpdated).tz('America/New_York').format('dddd, MMM. DD, YYYY');
+    data.lastUpdated = globalDateFormat(data.lastUpdated,'dayOfWeek');
     return data;
   },
   //Helper to get data for market bar
