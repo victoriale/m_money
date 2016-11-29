@@ -259,5 +259,9 @@ Template.sector_page.events({
         $(".sect_pg-page-selector2").css("background-color","#ffffff");
         $(".sect_pg-page-selector3").css("background-color","#ffffff");
         $(".sect_pg-page-selector1").css("background-color","#ffffff");
+    },
+    'click .list_vw-x': function()
+    {
+        $(".list_vw-ct1").css("display","none");
     }
 });
