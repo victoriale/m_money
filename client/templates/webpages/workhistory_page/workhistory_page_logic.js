@@ -94,6 +94,10 @@ Template.workhistory_page.events({
       $(".wrkh-p_lstpaging_pagcir2").css({"background-color":"#ffffff","color":"#000"});
       $(".wrkh-p_lstpaging_pagcir3").css({"background-color":"#ffffff","color":"#000"});
       $(".wrkh-p_lstpaging_pagcir1").css({"background-color":"#ffffff","color":"#000"});
+    },
+    'click .wrkh-p_srtbr_srtcon_srthead_srtheadcross': function()
+    {
+      $(".wrkh-p_srtbr").css({"display":"none"});
     }
 });
 

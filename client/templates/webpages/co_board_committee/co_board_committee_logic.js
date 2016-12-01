@@ -10,7 +10,7 @@ Template.co_board_committee.onCreated(function(){
 });
 //renders the data when page loads
 Template.co_board_committee.onRendered(function(){
-  this.autorun(function(){    
+  this.autorun(function(){
     var bio = Session.get('officer_bio_updated');
     if ( bio && bio.length > 0 ) {
       Tracker.afterFlush(function(){
@@ -72,7 +72,8 @@ Template.co_board_committee.helpers({
       return '';
     }
     $.map(list,function(data, index){
-      data.o_last_updated = moment(data.o_last_updated).format("dddd, MMMM DD, YYYY");
+      //data.o_last_updated = moment(data.o_last_updated).format("dddd, MMM. DD, YYYY");
+      data.o_last_updated = globalDateFormat(date.o_last_updated,'dayOfWeek');
 
       if(typeof data['compensation'] == 'undefined'){
         data['compensation'] = {};
@@ -107,7 +108,8 @@ Template.co_board_committee.helpers({
       return '';
     }
     list[count]['image'] = image.c_logo;
-    list[count].o_last_updated = moment(list[count].o_last_updated).format("dddd, MMMM DD, YYYY");
+    // list[count].o_last_updated = moment(list[count].o_last_updated).format("dddd, MMM. DD, YYYY");
+    list[count].o_last_updated = globalDateFormat(list[count].o_last_updated,'dayOfWeek');
 
     list[count]['url'] = Router.pick_path('content.executiveprofile',{
       fname:list[count].o_first_name,

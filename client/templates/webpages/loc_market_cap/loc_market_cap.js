@@ -40,7 +40,8 @@ Template.loc_market_cap.helpers({
         data['objname'] = 'Compensation';
         data['TotalComp'] = dNumberToCommaNumber(data['TotalComp']);
       }
-      data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
+      // data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
+      data['newDate'] = moment(data.csi_price_last_updated,'shortDate');
       data['rank'] = index+1;
       data['url'] = Router.pick_path('content.executiveprofile',{
         fname:data.o_first_name,
@@ -100,7 +101,8 @@ Template.loc_market_cap.helpers({
         data['objname'] = 'Compensation';
         data['TotalComp'] = dNumberToCommaNumber(data['TotalComp']);
       }
-      data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
+      // data['newDate'] = moment(data.csi_price_last_updated).tz('America/New_York').format('MM/DD/YYYY');
+      data['newDate'] = globalDateFormat(data.csi_price_last_updated,'shortDate');
       data['rank'] = index+1;
       data['url'] = Router.pick_path('content.companyprofile',{
         ticker: data.c_ticker,
