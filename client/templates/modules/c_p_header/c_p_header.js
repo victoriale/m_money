@@ -15,7 +15,7 @@ Template.cp_head.onRendered(function(){
     if ( textStuff.length > 0 ) {
       addCustomScroller('p-head-bottom-text');
     }
-    
+
     resizetext(".p-head-top-name", ".p-head-top-name-txt", "44px");
   });
 });
@@ -46,11 +46,10 @@ Template.c_p_header.helpers({
       }
       return ' - ' + moment.utc(data[0][0]).subtract(5, 'hours').format('dddd MMM Do, YYYY');
     }
-
     return '';
-
   }
 });
+
 
 Template.cp_head.helpers({
   topInfo: function(){
@@ -74,7 +73,7 @@ Template.cp_head.helpers({
     var data = Session.get('bio_location');
     var aidata = Session.get('AI_daily_update');
     var textStuff = '';
-    
+
     if(typeof data == 'undefined' && typeof aidata == "undefined" ){
       textStuff = '';
     }
@@ -140,6 +139,9 @@ Template.cp_rdr.helpers({
 Template.c_p_graph.helpers({
   buttons: function(){
     var match = Session.get('c_p_range');
+    var data = Session.get('daily_update');
+  //  var oldComp = Session.get('old_company');
+
     var buttons = [
       {data:"1D"},
       {data:"5D"},
@@ -151,7 +153,66 @@ Template.c_p_graph.helpers({
       {data:"1Y"},
       {data:"3Y"},
       {data:"5Y"},
+      {data:"10Y"},
     ];
+
+    var currentDate = data.lastUpdated.replace('as of ','');
+    var lastPos = data['stock_hist'].length - 1;
+    var maxDate = moment(data['stock_hist'][lastPos]['sh_date']*1000);
+    var nowDate = moment(currentDate);
+    var buttonNums = 11;
+    var timeDiff = nowDate.diff(maxDate,'years'); // How long the company has been on the stock market
+    var timeType; // unit of time elapsed
+
+    if(timeDiff <= 0){ // if company is younger than 1 year
+      if(nowDate.diff(maxDate,'months') <= 0) {
+        timeDiff = nowDate.diff(maxDate,'days');
+        timeType = 'd';
+      } else {
+        timeDiff = nowDate.diff(maxDate,'months');
+        timeType = 'm';
+      }
+    } else {
+      timeType = 'y';
+    }
+
+    if(typeof timeDiff != 'undefined'){
+      switch(timeType){
+        case 'y':
+          if(timeDiff >= 5) {
+            buttonNums = 11;
+          }else if(timeDiff < 5 && timeDiff >= 3){
+            buttonNums = 10;
+          }else if(timeDiff < 3 && timeDiff >= 1){
+            buttonNums = 9;
+          }
+        break;
+        case 'm':
+          if(timeDiff >= 9){
+            buttonNums = 8;
+          }else if(timeDiff < 9 && timeDiff >= 6) {
+            buttonNums = 7;
+          }else if(timeDiff < 6 && timeDiff >= 3){
+            buttonNums = 6;
+          }else if(timeDiff < 3 && timeDiff >= 1){
+            buttonNums = 5;
+          }
+        break;
+        case 'd':
+          if(timeDiff >= 10){
+            buttonNums = 4;
+          }else if(timeDiff < 10 && timeDiff >= 5){
+            buttonNums = 3;
+          }else if(timeDiff < 5){
+            buttonNums = 2;
+          }
+        break;
+        }
+      }
+
+
+    buttons.length = buttonNums; // cutting buttons if company is below 10 years
+
     for ( var i = 0; i < buttons.length; i++ ) {
       if ( buttons[i].data == match ) {
         buttons[i].class = "active";
@@ -260,7 +321,7 @@ Template.c_p_graph.helpers({
       case '10Y':
         var min = latestDate.subtract(10, 'years').format('X') * 1000;
 
-        var xAxis_format = '&b %Y';
+        var xAxis_format = '%b %Y';
         var tooltip_format = '%b %e %Y';
       break;
       default:
@@ -296,7 +357,6 @@ Template.c_p_graph.helpers({
               }
 
               return Highcharts.dateFormat(xAxis_format, this.value);
-
             }
           },
           tickPositions: tickPositions,
