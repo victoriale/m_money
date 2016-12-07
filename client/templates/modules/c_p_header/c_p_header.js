@@ -140,7 +140,6 @@ Template.c_p_graph.helpers({
   buttons: function(){
     var match = Session.get('c_p_range');
     var data = Session.get('daily_update');
-  //  var oldComp = Session.get('old_company');
 
     var buttons = [
       {data:"1D"},
