@@ -209,7 +209,6 @@ Template.daily_update.helpers({
   buttons: function(){
     var d_u_range = Session.get('d_u_range');
     var data = Session.get('daily_update');
-    var maxDate = Session.get('companyStockAge'); // first day the company was on the stock market
     var style = '';
 
     if(!Session.get('IsCompany')){
