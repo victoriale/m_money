@@ -208,10 +208,13 @@ Template.daily_update.helpers({
 
   buttons: function(){
     var d_u_range = Session.get('d_u_range');
+    var data = Session.get('daily_update');
     var style = '';
+
     if(!Session.get('IsCompany')){
       style = 'disabled';
     }
+
     var buttons = [
       {data:"1D"},
       {data:"5D"},
@@ -225,12 +228,70 @@ Template.daily_update.helpers({
       {data:"5Y"},
     ];
 
+    var lastPos = data['stock_hist'].length - 1;
+    var maxDate = moment(data['stock_hist'][lastPos]['sh_date']*1000);
+    var currentDate = data.lastUpdated.replace('as of ','');
+    var lastPos = data['stock_hist'].length - 1;
+    var nowDate = moment(currentDate);
+    var buttonNum = 11; //
+    var timeDiff = nowDate.diff(maxDate,'years'); // How long the company has been on the stock market
+    var timeType; // unit of time elapsed ie 'y' and 'm'
+
+    if(timeDiff <= 0){ // if company is younger than 1 year
+      if(nowDate.diff(maxDate,'months') <= 0) { // if company is younger than 10 days
+        timeDiff = nowDate.diff(maxDate,'days');
+        timeType = 'd';
+      } else { // if company is younger than 9 months;
+        timeDiff = nowDate.diff(maxDate,'months');
+        timeType = 'm';
+      }
+    } else {
+      timeType = 'y';
+    }
+
+    if(typeof timeDiff != 'undefined'){ // switch to determine how many buttons
+      switch(timeType){
+        case 'y':
+          if(timeDiff >= 5) {
+            buttonNum = 10;
+          }else if(timeDiff < 5 && timeDiff >= 3){
+            buttonNum = 10;
+          }else if(timeDiff < 3 && timeDiff >= 1){
+            buttonNum = 9;
+          }
+        break;
+        case 'm':
+          if(timeDiff >= 9){
+            buttonNum = 8;
+          }else if(timeDiff < 9 && timeDiff >= 6) {
+            buttonNum = 7;
+          }else if(timeDiff < 6 && timeDiff >= 3){
+            buttonNum = 6;
+          }else if(timeDiff < 3 && timeDiff >= 1){
+            buttonNum = 5;
+          }
+        break;
+        case 'd':
+          if(timeDiff >= 10){
+            buttonNum = 4;
+          }else if(timeDiff < 10 && timeDiff >= 5){
+            buttonNum = 3;
+          }else if(timeDiff < 5){
+            buttonNum = 2;
+          }
+        break;
+        default:
+          buttonNum = 10;
+        }
+      }
+
+    buttons.length = buttonNum; // shortening buttons[] array
+
     buttons.forEach(function(item, index){
       if(item.data === d_u_range){
         item.active = 'active';
       }
     })
-
     return buttons;
   },
   aiInfo: function(){
@@ -343,14 +404,14 @@ Template.daily_update.helpers({
     if(Session.get('IsLocation')){
       if(d_u_range === '1D'){
         var data = Session.get('new_one_day_location_daily_update');
-        return ' - ' + moment.utc(data[0][0]).subtract(5, 'hours').format('dddd MMM Do, YYYY');
+        return ' - ' + moment.utc(data[0][0]).subtract(5, 'hours').format('dddd MMM. Do, YYYY');
       }
     }
 
     if(Session.get('IsCompany')){
       if(d_u_range === '1D'){
         var data = Session.get('new_one_day_daily_update');
-        return ' - ' + moment.utc(data[0][0]).subtract(5, 'hours').format('dddd MMM Do, YYYY');
+        return ' - ' + moment.utc(data[0][0]).subtract(5, 'hours').format('dddd MMM. Do, YYYY');
       }
     }
 
