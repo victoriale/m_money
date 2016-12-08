@@ -73,7 +73,7 @@ Template.co_board_committee.helpers({
     }
     $.map(list,function(data, index){
       //data.o_last_updated = moment(data.o_last_updated).format("dddd, MMM. DD, YYYY");
-      data.o_last_updated = globalDateFormat(date.o_last_updated,'dayOfWeek');
+      data.o_last_updated = globalDateFormat(data.o_last_updated,'dayOfWeek');
 
       if(typeof data['compensation'] == 'undefined'){
         data['compensation'] = {};
@@ -162,5 +162,9 @@ Template.co_board_committee.events({
       counter = 0;
       Session.set("board_count", counter);
     }
+  },
+  'click .co_commi-x': function(){
+    document.getElementById("co_commi-wl").style.display = "none";
+    document.getElementById("co_commi-wrapper").style.top = "43px";
   },
 });
