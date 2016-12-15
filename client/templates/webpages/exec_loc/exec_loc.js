@@ -176,8 +176,7 @@ Template.exec_loc.helpers({
 Template.exec_loc.events({
   //Event to close tooltip
   'click .list_vw-x': function(e, t){
-    //Currently disabled: Styling needs to be fixed to handle this event
-    //t.$('.list_vw-wl').hide();
+    t.$('.list_vw-ct1').hide();
   },
   'click .list_vw-lefthov': function(){
 
