@@ -117,7 +117,7 @@ Meteor.methods({
     var future = new Future();
     var startTime = (new Date()).getTime();
     // console.log("New Location Request",loc_id);
-    if(loc_id === 'National'){
+    if(loc_id === 'location'){
       // console.log('national call');
       var UrlString = callUrl + "?action=location_page&option="+option;
     }else if(isNaN(loc_id) && loc_id.indexOf('.') == -1){
