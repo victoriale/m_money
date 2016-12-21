@@ -97,7 +97,7 @@ Template.workhistory_page.events({
     },
     'click .wrkh-p_srtbr_srtcon_srthead_srtheadcross': function()
     {
-      $(".wrkh-p_srtbr").css({"display":"none"});
+      $(".wrkh-p_srtbr").hide();
     }
 });
 

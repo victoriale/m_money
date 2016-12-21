@@ -66,8 +66,13 @@ Template.exec_loc.helpers({
       };
 
       if ( typeof fullstate(Router.current().params.loc_id) != undefined ) {
-        listdata.location_data.name = fullstate(Router.current().params.loc_id);
-      } else {
+        if(Router.current().params.loc_id == 'National'){
+          listdata.location_data.name = 'The United States';
+        } else {
+          listdata.location_data.name = fullstate(Router.current().params.loc_id);
+        }
+      }
+      else {
         listdata.location_data.name = Router.current().params.loc_id;
       }
     }
@@ -137,15 +142,14 @@ Template.exec_loc.helpers({
       return '';
     }
     $.map(listdata.list_data, function(data,index){
-      if(typeof data.compensation == 'undefined' || data.compensation == '' || data.compensation == null){
+      if(typeof data.compensation == 'undefined' || data.compensation == '' || data.compensation == null || data.compensation == 0){
         data['objname'] = 'Compensation';
         data['lcsi_market_cap'] = 0;
         data['TotalComp'] = 0;
       }else{
         data['objname'] = 'Compensation';
-        console.log(data.compensation.TotalComp);
-        data['lcsi_market_cap'] = commaSeparateNumber_decimal(data.compensation.TotalComp.split('.')[0]);
-        data['TotalComp'] = commaSeparateNumber_decimal(data.compensation.split('.')[0]);
+        data['lcsi_market_cap'] = commaSeparateNumber_decimal(data.compensation.TotalComp);
+        data['TotalComp'] = commaSeparateNumber_decimal(data.compensation.TotalComp);
       }
       data['newDate'] = CurrentDate();
       data['rank'] = index+1;
