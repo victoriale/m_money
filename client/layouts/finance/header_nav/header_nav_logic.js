@@ -238,7 +238,7 @@ Template.header_nav.helpers({
     { listname:"Date", listtype:"Date Range", listno:"DR", option1: "Date Range1", option2: "Date Range2", option3: "Date Range3", option4: "Date Range4"},
   ],
   notPartner: function() {
-    if ( typeof Router.current().params.partner_id != "undefined" ) {
+    if ( typeof Router.current().params.partner_id != "undefined" || Session.get('IsSubDomain') ) {
       return false;
     }
     return true;
