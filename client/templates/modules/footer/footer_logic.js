@@ -24,7 +24,7 @@ Template.footer.onRendered(function(){
 
 Template.footer.helpers({
   notPartner: function() {
-    if ( typeof Router.current().params.partner_id != "undefined" ) {
+    if ( typeof Router.current().params.partner_id != "undefined" || Session.get('IsSubDomain') ) {
       return false;
     }
     return true;

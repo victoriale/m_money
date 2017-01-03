@@ -14,10 +14,30 @@ Template.widget_list_view.helpers({
   toplist:function(){
     // Get data
     var list_data = Session.get('ListData');
-    if ( typeof(list_data) == "undefined" ) {
+    if (typeof(list_data) == "undefined") {
       return false;
     }
-
+    // Get root domains
+    if(Session.get('isPartner')) {
+      // Call function to determine root domain
+      var rootDomain = getRootDomain();
+      $.map(list_data.data, function(val, index) {
+        // Remove any apostrophes from images
+        val['img'] = val['img'].replace(/'/g, '');
+        // Strip root domain from DWL API data and replace with domain from domain API
+        val['url'] = rootDomain + val['primary_url'].replace(/^.*\/\/[^\/]+/, '');
+        // If there is a sub_img, replace that URL also
+        if(val['sub_img']['url']) {
+          val['sub_img']['url'] = rootDomain + val['sub_img']['primary_url'].replace(/^.*\/\/[^\/]+/, '');
+        }
+      });
+    } else {
+      // This is not a partner, so use relative links from DWL API
+      $.map(list_data.data, function(val, index) {
+        // Remove any apostrophes from images
+        val['img'] = val['img'].replace(/'/g, '');
+      });
+    }
     list_data.data = list_data.data.slice(Session.get('ListPage') * 10, (Session.get('ListPage') + 1) * 10);
 
     return list_data;
@@ -29,6 +49,28 @@ Template.widget_list_view.helpers({
     list_index = Session.get('lv_count');
     if ( typeof(list_data) == "undefined" ) {
       return false;
+    }
+
+    // Get root domains
+    if(Session.get('isPartner')) {
+      // Call function to determine root domain
+      var rootDomain = getRootDomain();
+      $.map(list_data.data, function(val, index) {
+        // Remove any apostrophes from images
+        val['img'] = val['img'].replace(/'/g, '');
+        // Strip root domain from DWL API data and replace with domain from domain API
+        val['url'] = rootDomain + val['primary_url'].replace(/^.*\/\/[^\/]+/, '');
+        // If there is a sub_img, replace that URL also
+        if(val['sub_img']['url']) {
+          val['sub_img']['url'] = rootDomain + val['sub_img']['primary_url'].replace(/^.*\/\/[^\/]+/, '');
+        }
+      });
+    } else {
+      // This is not a partner, so use relative links from DWL API
+      $.map(list_data.data, function(val, index) {
+        // Remove any apostrophes from images
+        val['img'] = val['img'].replace(/'/g, '');
+      });
     }
 
     // Return the correct data
@@ -96,3 +138,14 @@ Template.widget_list_view.events({
     Session.set('lv_count', count);
   },
 });
+
+getRootDomain = function() {
+  var domData = Session.get('domainData');
+  if (typeof(domData) == "undefined") {
+    return false;
+  }
+  var domainKey = 'finance';
+  // Set correct domain based on key
+  var rootDomain = '//' + domData[domainKey];
+  return rootDomain;
+};

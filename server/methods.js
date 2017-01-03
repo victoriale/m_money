@@ -20,22 +20,27 @@ if (Meteor.absoluteUrl().indexOf("localhost") > -1 ) {
   callUrl = "http://dev-finance-api.synapsys.us/call_controller.php";
   AICall = "http://dev-finance-api.synapsys.us/";
   getPartner = "http://dev-real-api.synapsys.us/";
+  var domainUrl = "http://devapi.synapsys.us/widgets/deepdive/bar/domain_api.php";
 } else if ( Meteor.absoluteUrl().indexOf("dev.") > -1) {
   callUrl = "http://dev-finance-api.synapsys.us/call_controller.php";
   AICall = "http://dev-finance-api.synapsys.us/";
   getPartner = "http://dev-real-api.synapsys.us/";
+  var domainUrl = "http://devapi.synapsys.us/widgets/deepdive/bar/domain_api.php";
 } else if ( Meteor.absoluteUrl().indexOf("qa.") > -1) {
   callUrl = "http://qa-finance-api.synapsys.us/call_controller.php";
   AICall = "http://qa-finance-api.synapsys.us/";
   getPartner = "http://apireal.synapsys.us/";
+  var domainUrl = "http://devapi.synapsys.us/widgets/deepdive/bar/domain_api.php";
 } else if ( Meteor.absoluteUrl().indexOf("sandbox.") > -1) {
   callUrl = "http://sandbox-finance-api.synapsys.us/call_controller.php";
   AICall = "http://sandbox-finance-api.synapsys.us/";
   getPartner = "http://dev-real-api.synapsys.us/";
+  var domainUrl = "http://w1.synapsys.us/widgets/deepdive/bar/domain_api.php";
 } else {
   callUrl = "http://apifin.investkit.com/call_controller.php";
   AICall = "http://apifin.investkit.com/";
   getPartner = "http://apireal.synapsys.us/";
+  var domainUrl = "http://w1.synapsys.us/widgets/deepdive/bar/domain_api.php";
 }
 
 Meteor.methods({
@@ -828,6 +833,28 @@ Meteor.methods({
         Meteor.http.get(URL,callback1);
       });
     });
+    return future.wait();
+  },
+
+  GetPartnerDomain: function(partner_id) {
+    var startTime = (new Date()).getTime();
+    // NOTE: FOR DEV
+      var URLString = "http://devapi.synapsys.us/widgets/deepdive/bar/domain_api.php?dom=" + partner_id;
+    // NOTE: FOR PROD
+    // URLString = domainUrl + "?dom=" + partner_id;
+    var future = new Future();
+    Meteor.http.get(URLString, (function(startTime, partner_id, error, data) {
+      if (error) {
+        future.return(error);
+        var endTime = (new Date()).getTime();
+        console.log('METHODSTAT|"GetPartnerDomain",,"' + partner_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+        return false;
+      }
+      future.return(data);
+      var endTime = (new Date()).getTime();
+      console.log('METHODSTAT|"GetPartnerDomain",,"' + partner_id + '",' + (endTime - startTime) + ',' + endTime + '|');
+    }).bind(undefined, startTime, partner_id));
+    this.unblock();
     return future.wait();
   },
 
