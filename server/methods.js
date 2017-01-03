@@ -772,7 +772,7 @@ Meteor.methods({
   GetAIContent: function(comp_id){
     this.unblock();
     var URL = AICall + "API_AI_FIN.php?call=company&id=" + comp_id;
-    // console.log(URL);
+  //   console.log(URL);
     var future = new Future();
     curTime.withValue((new Date()).getTime(),function(){
       curcomp_id.withValue(comp_id,function(){
