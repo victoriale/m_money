@@ -311,7 +311,8 @@ Template.co_fin_overview.helpers({
     company_data.lcsi_pe_ratio = (Number(company_data.lcsi_pe_ratio)).toFixed(2);
 
     //Transform dates
-    company_data.lcsi_price_last_updated = moment(company_data.lcsi_price_last_updated).format('dddd, MMMM DD, YYYY');
+    // company_data.lcsi_price_last_updated = moment(company_data.lcsi_price_last_updated).format('dddd, MMMM DD, YYYY');
+    company_data.lcsi_price_last_updated = globalDateFormat(company_data.lcsi_price_last_updated,'dayOfWeek');
 
     company_data.share_company_url =  "https://www.facebook.com/sharer/sharer.php?u=" + Router.pick_path('content.companyprofile', {company_id: company_data.c_id, name: company_data.c_name, ticker: company_data.c_ticker});
     company_data.share_company_fin_overview_url = "https://www.facebook.com/sharer/sharer.php?u=" + Router.pick_path('content.finoverview', {company_id: company_data.c_id, name: company_data.c_name, ticker: company_data.c_ticker});
