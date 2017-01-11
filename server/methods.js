@@ -19,12 +19,12 @@ var getPartner = "";
 if (Meteor.absoluteUrl().indexOf("localhost") > -1 ) {
   callUrl = "http://dev-finance-api.synapsys.us/call_controller.php";
   AICall = "http://dev-finance-api.synapsys.us/";
-  getPartner = "http://dev-real-api.synapsys.us/";
+  getPartner = "http://apireal.synapsys.us/"; // Temp fix for broken dev api call
   var domainUrl = "http://devapi.synapsys.us/widgets/deepdive/bar/domain_api.php";
 } else if ( Meteor.absoluteUrl().indexOf("dev.") > -1) {
   callUrl = "http://dev-finance-api.synapsys.us/call_controller.php";
   AICall = "http://dev-finance-api.synapsys.us/";
-  getPartner = "http://dev-real-api.synapsys.us/";
+  getPartner = "http://apireal.synapsys.us/"; // Temp fix for broken dev api call
   var domainUrl = "http://devapi.synapsys.us/widgets/deepdive/bar/domain_api.php";
 } else if ( Meteor.absoluteUrl().indexOf("qa.") > -1) {
   callUrl = "http://qa-finance-api.synapsys.us/call_controller.php";
