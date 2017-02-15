@@ -136,7 +136,6 @@ Meteor.methods({
     if(typeof page != 'undefined' || page != null){
       UrlString += "&page="+page;
     }
-    // console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, option, loc_id, error, data){
       try{
@@ -556,7 +555,6 @@ Meteor.methods({
     } else {
       var UrlString = callUrl + "?action=location_page&option=statistics&partner_domain="+ loc_id;
     }
-    // console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, loc_id, error, data){
       try{
