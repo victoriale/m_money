@@ -12,9 +12,16 @@ var backgroundStyle="tilewhite";
 Template.exec_loc.helpers({
   back_url: function(){
     var params = Router.current().getParams();
-    return Router.pick_path('content.locationprofile', {
-      loc_id: params.loc_id
-    });
+    if(params.partner_id) {
+      return Router.pick_path('partner.locationprofile', {
+        partner_id: params.partner_id,
+        loc_id: params.loc_id
+      });
+    } else {
+      return Router.pick_path('content.locationprofile', {
+        loc_id: params.loc_id
+      });
+    }
   },
   location: function(){
     var data = Router.current().params;
@@ -22,7 +29,18 @@ Template.exec_loc.helpers({
       return '';
     }
     var loc = fullstate(data.loc_id);
+    if(data.loc_id == "National") {
+      var loc = "United States";
+    }
     return loc;
+  },
+  isNational: function() {
+    var data = Router.current().params;
+    if(data.loc_id == "National") {
+      return true;
+    } else {
+      return false;
+    }
   },
   loc_url: function(){
     return Router.pick_path('content.locationprofile',{
@@ -71,18 +89,21 @@ Template.exec_loc.helpers({
         listdata.location_data.name = Router.current().params.loc_id;
       }
     }
+    if(Router.current().params.loc_id == "National") {
+      listdata.location_data.name = "United States";
+    }
     $.map(listdata.list_data, function(data,index){
       if(index % 2 == 0){
         data['background'] = 'tilewhite';
       }else{
         data['background'] = 'tilegrey';
       }
-      if(typeof data.compensation == 'undefined' || data.compensation == '' || data.compensation == null){
-        data['objname'] = 'Compensation';
+      if(typeof data.lcsi_market_cap == 'undefined' || data.lcsi_market_cap == '' || data.lcsi_market_cap == null){
+        data['objname'] = 'Market Cap';
         data['lcsi_market_cap'] = 0;
       }else{
-        data['objname'] = 'Compensation';
-        data['lcsi_market_cap'] = commaSeparateNumber_decimal(data.compensation.TotalComp.toString().split('.')[0]);
+        data['objname'] = 'Market Cap';
+        data['lcsi_market_cap'] = abbreviateNumber(parseInt(data.lcsi_market_cap.split('.')[0]), 0);
       }
       data['newDate'] = CurrentDate();
       data['rank'] = index+1;
@@ -97,33 +118,7 @@ Template.exec_loc.helpers({
         name: compUrlName(data.c_name),
         company_id: data.c_id
       });
-      //data from list can come in 6 different ways these values will catch and give results back
-      for(objName in data){
-        if(objName === 'stock_percent'){
-          data['data_name'] = "Stock Percent";
-          data['data_value'] = Number(data['stock_percent']).toFixed(2)+"%";
-        }
-        if(objName === 'market_cap'){
-          data['data_name'] = "Market Cap";
-          data['data_value'] = '$'+commaSeparateNumber_decimal(Number(data['market_cap']).toFixed(0));
-        }
-        if(objName === 'market_percent'){
-          data['data_name'] = "Market Percent";
-          data['data_value'] = Number(data['market_percent']).toFixed(2)+"%";
-        }
-        if(objName === 'trading_volume'){
-          data['data_name'] = "trading volume";
-          data['data_value'] = commaSeparateNumber_decimal(data['trading_volume'].split('.')[0]);
-        }
-        if(objName === 'pe_ratio'){
-          data['data_name'] = "PE Ratio";
-          data['data_value'] = Number(data['pe_ratio']).toFixed(0);
-        }
-        if(objName === 'eps'){
-          data['data_name'] = "Earnings Per Share";
-          data['data_value'] = Number(data['eps']).toFixed(2);
-        }
-      }
+      data['o_current_title']['long_title'] = "Chief Executive Officer";
     })
     return listdata;
   },
@@ -137,15 +132,13 @@ Template.exec_loc.helpers({
       return '';
     }
     $.map(listdata.list_data, function(data,index){
-      if(typeof data.compensation == 'undefined' || data.compensation == '' || data.compensation == null){
-        data['objname'] = 'Compensation';
+      if(typeof data.lcsi_market_cap == 'undefined' || data.lcsi_market_cap == '' || data.lcsi_market_cap == null){
+        data['objname'] = 'Market Cap';
         data['lcsi_market_cap'] = 0;
         data['TotalComp'] = 0;
       }else{
-        data['objname'] = 'Compensation';
-        console.log(data.compensation.TotalComp);
-        data['lcsi_market_cap'] = commaSeparateNumber_decimal(data.compensation.TotalComp.split('.')[0]);
-        data['TotalComp'] = commaSeparateNumber_decimal(data.compensation.split('.')[0]);
+        data['objname'] = 'Market Cap';
+        data['lcsi_market_cap'] = abbreviateNumber(parseInt(data.lcsi_market_cap.split('.')[0]), 0);
       }
       data['newDate'] = CurrentDate();
       data['rank'] = index+1;
@@ -155,6 +148,17 @@ Template.exec_loc.helpers({
         ticker: data.c_ticker,
         exec_id: data.o_id
       });
+      data['compurl'] = Router.pick_path('content.companyprofile',{
+        ticker: data.c_ticker,
+        name: compUrlName(data.c_name),
+        company_id: data.c_id
+      });
+      var location = params.loc_id;
+      if(location == "National") {
+        data['loc'] = "United States";
+      } else {
+        data['loc'] = fullstate(params.loc_id);
+      }
     })
     return listdata.list_data[count];
   },
