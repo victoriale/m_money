@@ -179,7 +179,7 @@ Finance_Search = function(quer){
           Router.go('content.executiveprofile', paramObj);
         }
         return false;
-      }else if(route == 'loc'){
+      }else if(route == 'loc' || route == 'location'){
         if(Session.get('isPartner')) {
           Router.go('partner.locationprofile', paramObj);
         } else {
