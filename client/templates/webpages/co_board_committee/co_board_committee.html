@@ -87,7 +87,7 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
           </div>
         </li>
         <!-- the description about the person-->
-        <li class="co_commi-m_c-dp">          
+        <li class="co_commi-m_c-dp">
           <div class="co_commi-m_c-dp-wrapper">
             <div class="co_commi-m_c-dp-content">
               {{{o_bio}}}
@@ -117,7 +117,7 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
 
     </div>
     <!-- contianer for the complete 'what is this list' class name is wl!-->
-    <div class="co_commi-wl">
+    <div class="co_commi-wl" id="co_commi-wl">
       <!-- container for the 'what is this list' class name is wl2!-->
       <div class="co_commi-wlc">
         <!-- font style for the 'what is this list'!-->
@@ -138,7 +138,7 @@ Associated Files: co_board_committee_logic.js and co_board_committee.less
     </div>
     </div>
 
-    <div class="co_commi-wrapper">
+    <div class="co_commi-wrapper" id="co_commi-wrapper">
       <!-- The loop starts here and the each will take each data item from the items on each iteration-->
       {{#each officerList}}
       <div class="co_commi-{{getBackgroundStyle}}"><br>

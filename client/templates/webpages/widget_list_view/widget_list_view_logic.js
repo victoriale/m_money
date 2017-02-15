@@ -55,7 +55,6 @@ Template.widget_list_view.helpers({
           }
         });
       }
-    console.log(list_data.data);
     list_data.data = list_data.data.slice(Session.get('ListPage') * 10, (Session.get('ListPage') + 1) * 10);
 
     return list_data;

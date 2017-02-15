@@ -84,8 +84,13 @@ Template.exec_loc.helpers({
       };
 
       if ( typeof fullstate(Router.current().params.loc_id) != undefined ) {
-        listdata.location_data.name = fullstate(Router.current().params.loc_id);
-      } else {
+        if(Router.current().params.loc_id == 'National'){
+          listdata.location_data.name = 'The United States';
+        } else {
+          listdata.location_data.name = fullstate(Router.current().params.loc_id);
+        }
+      }
+      else {
         listdata.location_data.name = Router.current().params.loc_id;
       }
     }
@@ -180,8 +185,7 @@ Template.exec_loc.helpers({
 Template.exec_loc.events({
   //Event to close tooltip
   'click .list_vw-x': function(e, t){
-    //Currently disabled: Styling needs to be fixed to handle this event
-    //t.$('.list_vw-wl').hide();
+    t.$('.list_vw-ct1').hide();
   },
   'click .list_vw-lefthov': function(){
 

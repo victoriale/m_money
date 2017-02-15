@@ -37,7 +37,7 @@ Template.sector_page.onRendered(function () {
     });
   }
   recursive_list();
-  $(window).scroll(recursive_list);
+//  $(window).scroll(recursive_list);
 });
 
 var backgroundStyle="tilewhite";

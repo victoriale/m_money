@@ -122,6 +122,7 @@ Meteor.methods({
     var future = new Future();
     var startTime = (new Date()).getTime();
     // console.log("New Location Request",loc_id);
+
     if(loc_id === 'National'){
       // console.log('national call');
       var UrlString = callUrl + "?action=location_page&option="+option;
@@ -160,12 +161,12 @@ Meteor.methods({
       throw new Error(404,"Null Location ID");
     }
     if(typeof graph_option == 'undefined' || graph_option == null){
-      graph_option = '';
+        graph_option = "&call=location_daily_update&graph_option=5Y";
+      //  graph_option = '';
     }else{
-      graph_option = "&call=location_daily_update&graph_option=5Y";
+        graph_option = "&call=location_daily_update&graph_option=5Y";
       // graph_option = "&graph_option=5Y";//old call that does not pull all historical datapoints
     }
-    // console.log("New Company Request",loc_id,batchNum);
     if(loc_id === 'National'){
       // console.log('national call');
       var UrlString = callUrl + "?action=location_profile&option="+batchNum + graph_option;
@@ -174,9 +175,6 @@ Meteor.methods({
     }else{
       var UrlString = callUrl + "?action=location_profile&option="+batchNum+"&dma="+loc_id + graph_option;
     }
-
-    // console.log(UrlString);
-
     curloc_id.withValue(batchNum, function(){
       Meteor.http.get(UrlString, Meteor.bindEnvironment((function(startTime,batchNum,loc_id,error, data){
         if ( error ) {
@@ -244,7 +242,6 @@ Meteor.methods({
     // console.log("New company Request",comp_id);
 
     var UrlString =   callUrl + "?action=company_page&option=" + option + "&param=" + comp_id;
-    // console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, option, comp_id, error, data){
       try{
@@ -497,10 +494,9 @@ Meteor.methods({
   GetMoneyMemoryData: function(company_id, initial_investment, start_date, end_date){
     var future = new Future();
     var startTime = (new Date()).getTime();
-    // console.log("Money Memory Request",company_id, initial_investment, start_date, end_date);
 
     var UrlString = callUrl + "?action=company_profile&option=indie&call=money_memory&param=" + company_id + "&mmem=" + initial_investment + "," + end_date + "," + start_date;
-    // console.log(UrlString);
+    //console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, company_id, error, data){
       try{
@@ -609,7 +605,7 @@ Meteor.methods({
     } else {
       UrlString += "&page=1&per_page=100";
     }
-    console.log(UrlString);
+    //console.log(UrlString);
     Meteor.http.get(UrlString, (function(startTime, sector, loc_id, error, data){
       try{
         data.content = data.content.toString().replace(/^[^{]*/,function(a){ return ''; });
@@ -749,7 +745,7 @@ Meteor.methods({
       UrlString += "&page=" + page + "&per_page=20";
       console.log('listpageloc');
     }
-     console.log(UrlString);
+     //console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, loc_id, error, data){
       try{
@@ -774,7 +770,7 @@ Meteor.methods({
   GetAIContent: function(comp_id){
     this.unblock();
     var URL = AICall + "API_AI_FIN.php?call=company&id=" + comp_id;
-    // console.log(URL);
+  //   console.log(URL);
     var future = new Future();
     curTime.withValue((new Date()).getTime(),function(){
       curcomp_id.withValue(comp_id,function(){
@@ -892,7 +888,7 @@ Meteor.methods({
     }
 
     var UrlString = callUrl + "?action=location_profile&option="+batch+"&partner_domain="+partner_id+graph_option;
-    // console.log(UrlString);
+    //console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, batch, partner_id, error, data){
       try{
