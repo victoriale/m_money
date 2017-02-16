@@ -159,22 +159,46 @@ Finance_Search = function(quer){
 
     function RouterSwitcher(route, paramObj){
       if(route == 'wild'){
-        Router.go('content.search', paramObj);
+        if(Session.get('isPartner')) {
+          Router.go('partner.search', paramObj);
+        } else {
+          Router.go('content.search', paramObj);
+        }
         return false;
       }else if(route == 'comp'){
-        Router.go('content.companyprofile', paramObj);
+        if(Session.get('isPartner')) {
+          Router.go('partner.companyprofile', paramObj);
+        } else {
+          Router.go('content.companyprofile', paramObj);
+        }
         return false;
       }else if(route == 'exec'){
-        Router.go('content.executiveprofile', paramObj);
+        if(Session.get('isPartner')) {
+          Router.go('partner.executiveprofile', paramObj);
+        } else {
+          Router.go('content.executiveprofile', paramObj);
+        }
         return false;
-      }else if(route == 'loc'){
-        Router.go('content.locationprofile', paramObj);
+      }else if(route == 'loc' || route == 'location'){
+        if(Session.get('isPartner')) {
+          Router.go('partner.locationprofile', paramObj);
+        } else {
+          Router.go('content.locationprofile', paramObj);
+        }
         return false;
       }else if(route == 'tick'){
-        Router.go('content.companyprofile', paramObj);
+        if(Session.get('isPartner')) {
+          Router.go('partner.companyprofile', paramObj);
+        } else {
+          Router.go('content.companyprofile', paramObj);
+        }
         return false;
       }else if(route == 'none'){
-        Router.go('content.search', {partner_id: Session.get('partner_id'), search_results: quer.replace(/\s+/g, '-')});
+        if(Session.get('isPartner')) {
+          Router.go('partner.search', {partner_id: Session.get('partner_id'), search_results: quer.replace(/\s+/g, '-')});
+        } else {
+          Router.go('content.search', {partner_id: Session.get('partner_id'), search_results: quer.replace(/\s+/g, '-')});
+        }
         return false;
       }
     }
