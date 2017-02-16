@@ -30,7 +30,7 @@ Template.exec_loc.helpers({
     }
     var loc = fullstate(data.loc_id);
     if(data.loc_id == "National") {
-      var loc = "United States";
+      loc = "United States";
     }
     return loc;
   },
