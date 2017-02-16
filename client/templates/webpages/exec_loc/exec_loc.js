@@ -71,8 +71,8 @@ Template.exec_loc.helpers({
       listdata.location_data = {
         url: Router.pick_path('content.partnerhome',{})
       };
-      if ( typeof Session.get('profile_header') != "undefined" ) {
-        listdata.location_data.name = Session.get('profile_header').location;
+      if (Session.get('p_data')) {
+        listdata.location_data.name = fullstate(Session.get('p_data')['results']['location']['realestate']['location']['city'][0]['state']);;
       } else {
         listdata.location_data.name = '';
       }
