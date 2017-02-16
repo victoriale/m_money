@@ -605,7 +605,6 @@ Meteor.methods({
     } else {
       UrlString += "&page=1&per_page=100";
     }
-    //console.log(UrlString);
     Meteor.http.get(UrlString, (function(startTime, sector, loc_id, error, data){
       try{
         data.content = data.content.toString().replace(/^[^{]*/,function(a){ return ''; });

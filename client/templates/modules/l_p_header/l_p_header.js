@@ -68,8 +68,8 @@ Template.lp_head.helpers({
 Template.lp_body.helpers({
   execUrl: function(){
     if ( Router.current().route.getName() == 'content.partnerhome' ) {
-      if ( typeof Session.get('profile_header') != "undefined" ) {
-        loc_id = Session.get('profile_header').location;
+      if ( typeof Session.get('p_data') != "undefined" ) {
+        loc_id = fullstate(Session.get('p_data')['results']['location']['realestate']['location']['city'][0]['state']);
       } else {
         loc_id = 'default';
       }
@@ -89,21 +89,15 @@ Template.lp_body.helpers({
   compUrl: function(){
     var params = Router.current().getParams();
     if ( Router.current().route.getName() == 'content.partnerhome' ) {
-      if ( typeof Session.get('profile_header') != "undefined" ) {
-        loc_id = Session.get('profile_header').location;
-      } else {
-        loc_id = 'default';
-      }
       return Router.pick_path('content.sector',{
-        loc_id: loc_id,
+        loc_id: 'default',
         page_num: 1
       });
-    } else {
-      return Router.pick_path('content.sector',{
-        loc_id: params.loc_id,
-        page_num:1
-      })
     }
+    return Router.pick_path('content.sector',{
+      loc_id: params.loc_id,
+      page_num:1
+    })
   },
 
 });
