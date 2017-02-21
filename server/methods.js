@@ -662,7 +662,6 @@ Meteor.methods({
     var x = Math.floor((Math.random() * 2) + 1);
     //param={list_index} , {location/DMA}
     var UrlString = callUrl + "?action=company_profile&option=batch_3&param="+id+"&limit=1,3";
-    // console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, id, error, data){
       try{
@@ -744,7 +743,6 @@ Meteor.methods({
       UrlString += "&page=" + page + "&per_page=20";
       console.log('listpageloc');
     }
-     //console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, loc_id, error, data){
       try{

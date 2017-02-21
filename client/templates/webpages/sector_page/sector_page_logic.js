@@ -137,10 +137,10 @@ Template.sector_page.helpers({
       });
       data['lcsi_price'] = Number(data['lcsi_price']).toFixed(2);
       data['csi_price_change_since_last'] = Number(data['csi_price_change_since_last']).toFixed(2);
+      data['csi_market_cap_friendly'] = data['lcsi_market_cap'] != null ? '$'+nFormatter(data['lcsi_market_cap']) : '';
       data['csi_percent_change_since_last'] = Number(data['csi_percent_change_since_last']).toFixed(2);
     });
     data['location'] = fullstate(Session.get('loc_id'));
-
     return data;
   },
 

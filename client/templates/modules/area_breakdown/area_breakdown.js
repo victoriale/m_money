@@ -96,6 +96,8 @@ Template.breakdown_map.onRendered(function(){
       if ( (ydiff + xdiff) < results.best ) {
         results.best = ydiff + xdiff;
         results.index = o;
+      } else {
+        results.index = 0;
       }
 
       data[o].xdiff = xdiff;

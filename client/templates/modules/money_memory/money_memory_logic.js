@@ -49,6 +49,7 @@ Template.mm_start_date.onRendered(function(){
     container: '#start-date-container',
     orientation: 'bottom',
     endDate: '0d',
+    startDate: '-50y',
     todayHighlight: true,
     daysOfWeekDisabled: [0,6]
   });
@@ -82,6 +83,7 @@ Template.mm_end_date.onRendered(function(){
     container: '#end-date-container',
     orientation: 'bottom',
     endDate: '0d',
+    startDate: '-50y',
     todayHighlight: true,
     daysOfWeekDisabled: [0,6]
   })

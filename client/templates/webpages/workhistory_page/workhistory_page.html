@@ -35,7 +35,7 @@
     <!--  contaner for content in page header-->
       <div class="wrkh-p_pghead_pgloc">
           <!--date part-->
-        <div class="wrkh-p_pghead_pgloc_lstdate">Last Updated: {{getdtime}}</div>
+        <div class="wrkh-p_pghead_pgloc_lstdate">LAST UPDATED: {{getdtime}}</div>
           <!--location part-->
         <div class="wrkh-p_pghead_pgloc_headloc">&nbsp;</div>
         <!-- work and project details-->
@@ -109,7 +109,7 @@
     <!--start of listings section-->
     <div class="wrkh-p_lstcon">
     {{#each listings}}
-      <div class="wrkh-p_lstcon_lsttile_{{getBackgroundStyle}}">
+      <div class="wrkh-p_lstcon_lsttile_{{getBackgroundStyle}}" id="history_listing{{@index}}">
       <div class="wrkh-p_lstcon_txtlft">
         <a href="{{locurl}}">
           <div class="wrkh-p_lstcon_txtlft_place"><i class="fa fa-map-marker faicons-mark"></i> &nbsp;{{location}}</div>
