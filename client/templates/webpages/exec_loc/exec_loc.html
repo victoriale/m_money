@@ -6,15 +6,13 @@
   <div class= "list_vw">
     <!--gave the dimensions for the module with total height and width !-->
     <div class = "list_vw-n_m">
-      {{#with location_data}}
-        <a href="{{url}}" style="cursor:pointer;">
+        <a href="{{back_url}}" style="cursor:pointer;">
           <div class="abus-bkbx">
             <div class="abus-bkbx-bx"><i class="fa fa-reply"></i></div>
             <div class="abus-bkbx-tgl"></div>
-            <div class="abus-bkbx-txt">Go Back to {{name}} Profile</div>
+            <div class="abus-bkbx-txt">Go Back to {{#if isNational}}the {{/if}}{{location_data.name}} Profile</div>
           </div>
         </a>
-      {{/with}}
       <!--dimensions for the circle container as ('cir-d') !-->
       <div class="list_vw_header">
         <div class="list_vw-cir_d"  >
@@ -37,21 +35,21 @@
                 <i class="fa fa-map-marker"></i>
                 <!--specified font style for the state name !-->
                 <span class="list_vw-loc_st">
-                  {{name}}
+                  {{#if isNational}}The {{/if}}{{name}}
                 </span>
               </a>
             {{/with}}
           </div>
           <!-- specified font sytle for the stock disclaimer !-->
           <div class="list_vw-loc_st list_vw-disc">
-          Top Executives of Top 20 Companies in {{location_data.name}}
+          CEOs Of The Top Companies By Market Cap In {{#if isNational}}The {{/if}}{{location_data.name}}
           </div>
           <!--specified font style for the inveskit finance  !-->
         </div>
       </div>
       <div class="list_vw-bar">
         <div class="list_vw-bar-title">
-          Today's Top Executives
+          Today's Top CEOs
         </div>
 
       </div>
@@ -88,18 +86,12 @@
           </li>
             <!--the follow('fbt') and share  !-->
 
-            <div class="list_vw-fbt1">
-
-            </div>
-            <div class="list_vw-fbt1 list_vw-fbt2">
-
-            </div>
-
           <!-- the description about the person-->
           <li class="list_vw-m_c-dp">
             <div class="list_vw-m_c-dp-dpct">
-            {{o_first_name}} {{o_last_name}} at {{c_name}} ({{c_exchange}}: {{c_ticker}}) with a ${{TotalComp}} Compensation.
-              <span class="list_vw-m_c-dp-itl">{{data_value}}</span>
+            <!--{{o_first_name}} {{o_last_name}} at {{c_name}} ({{c_exchange}}: {{c_ticker}}) with a ${{TotalComp}} Compensation.-->
+            {{o_first_name}} {{o_last_name}} is ranked #{{rank}} among the CEOs of the top companies in {{#if isNational}}the {{/if}}{{loc}}. {{c_name}}'s current market cap is ${{lcsi_market_cap}} USD.
+              <!--<span class="list_vw-m_c-dp-itl">{{data_value}}</span>-->
             </div>
             <!-- <div class="list_vw-m_c-dp-itl list_vw-m_c-dp-it2">{{c_name}}
               <span class="list_vw-m_c-dp-itl list_vw-m_c-dp-dpct">is currently priced at: <br></span>
@@ -117,7 +109,7 @@
             <div class="list_vw-m_c-view_more-text-ln1">Interested in discovering more about {{c_name}}?</div>
             <div class="list_vw-m_c-view_more-text-ln2">Profile Last Updated On: <span class="list_vw-m_c-dp-itl">{{newDate}}</span></div>
           </div>
-          <a href="{{url}}">
+          <a href="{{compurl}}">
             <button class="list_vw-m_c-view_more-button">
               View Profile <i class="fa fa-angle-right"></i>
             </button>
@@ -149,7 +141,7 @@
           <div class="list_vw-wltxt">
             <!--font style for the text !-->
             <div class="list_vw-wltxtf">
-              This is a list featuring the top 3 executives of the top 20 companies in {{location}}.
+              This is a list featuring the CEOs of the top companies by market cap in {{#if isNational}}the {{/if}}{{location}}.
             </div>
           </div>
         </div>
@@ -187,16 +179,15 @@
               </a>
               <!-- Here displays the description which come from the each loop-->
               <div class="list_vw-adjust">{{o_first_name}} {{o_last_name}}</div>
-              <div class="list_vw-follw1">
-                <!--<span class="list_vw-follws1" style="color: {{changeColor csi_price_last_operator}}">  <i class="fa {{changeIcon csi_price_last_operator}}"></i> </span>
-                <span class="list_vw-follw3" style="color: {{changeColor csi_price_last_operator}}"></span>-->
+              <div class="list_vw-exectitle">
+                {{o_current_title.long_title}}
               </div>
             </div>
           </div>
           <!--This displays the blue button which holds the text "View Full List"-->
           <div class="list_vw-ctmain">
             <span class="list_vw-ctmaintxt">
-              Want more info about this company?
+              Want more info about this executive?
             </span>
             <a href="{{url}}">
               <button class="list_vw-tile-button">
@@ -206,7 +197,7 @@
             </a>
           </div>
           <div class="list_vw-rtct">
-            <div class="list_vw-rttx1"> {{objname}}</div>
+            <div class="list_vw-rttx1"> {{c_ticker}} {{objname}}</div>
             <div class="list_vw-rttx2"> ${{lcsi_market_cap}}</div>
             <div class="list_vw-rttx3"> {{newDate}} </div>
           </div>

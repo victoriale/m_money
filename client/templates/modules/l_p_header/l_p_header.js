@@ -68,16 +68,22 @@ Template.lp_head.helpers({
 Template.lp_body.helpers({
   execUrl: function(){
     if ( Router.current().route.getName() == 'content.partnerhome' ) {
+      if ( typeof Session.get('p_data') != "undefined" ) {
+        loc_id = fullstate(Session.get('p_data')['results']['location']['realestate']['location']['city'][0]['state']);
+      } else {
+        loc_id = 'default';
+      }
       return Router.pick_path('content.executivelocation',{
-        loc_id: 'default',
+        loc_id: loc_id,
         page_num: 1
       });
+    } else {
+      var params = Router.current().getParams();
+      return Router.pick_path('content.executivelocation',{
+        loc_id: params.loc_id,
+        page_num:1
+      })
     }
-    var params = Router.current().getParams();
-    return Router.pick_path('content.executivelocation',{
-      loc_id: params.loc_id,
-      page_num:1
-    })
   },
 
   compUrl: function(){
