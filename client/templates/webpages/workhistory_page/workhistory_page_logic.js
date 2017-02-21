@@ -11,6 +11,7 @@ Template.workhistory_page.onCreated( function() {
     //console.log("Initial Data", data);
     if(typeof data != 'undefined'){
       var companies = data.companies;
+      Session.set('companies_history',companies);
       if(typeof companies != 'undefined'){
         var projArray = [];
         for (id in companies){
@@ -59,7 +60,15 @@ Template.workhistory_page.onCreated( function() {
 
 
 Template.workhistory_page.onRendered(function () {
-$(".wrkh-p_lstpaging_pagcir1").css({"background-color":"#3098ff","color":"#ffffff"});
+  var data = Session.get('companies_history');
+  var i = 0;
+  for(id in data){
+    if(data[id]['company_data'].c_id == null && data[id]['c_hq_state'] == null){
+      $("#history_listing" + i).css({'display':'none'});
+    }
+    i++;
+  }
+  $(".wrkh-p_lstpaging_pagcir1").css({"background-color":"#3098ff","color":"#ffffff"});
 });
 //This function is used to change the color of the clicked button
 Template.workhistory_page.events({
@@ -140,7 +149,7 @@ Template.workhistory_page.helpers({
       return name;
     },getorgNm:function(){
       var data = Session.get('new_work_history');
-      var currentComp = data[data.length - 1];
+      var currentComp = data[0]['c_desc'] != null ? data[0] : data[1];
       return currentComp['c_name'];
     },
     getdate:function()
@@ -151,7 +160,7 @@ Template.workhistory_page.helpers({
     },
     getDesc:function(){
       var data = Session.get('new_work_history');
-      var currentComp = data[data.length - 1];
+      var currentComp = data[0]['c_desc'] != null ? data[0] : data[1];
       return currentComp['c_desc'];
     },
     getPic:function(){
@@ -189,10 +198,10 @@ Template.workhistory_page.helpers({
       for(i = 0; i < data.length; i++){
         returnArray[i] = {};
         var company = data[i];
+        returnArray[i]['compurl'] = company['compurl'];
         returnArray[i]['listno'] = i;
         returnArray[i]['location'] = company['location'];
         returnArray[i]['locurl'] = company['locurl'];
-        returnArray[i]['compurl'] = company['compurl'];
         returnArray[i]['boardurl'] = company['boardurl'];
         returnArray[i]['c_logo'] = company['c_logo'];
         returnArray[i]['wrkNam'] = company['c_name'];

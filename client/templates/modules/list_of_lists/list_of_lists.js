@@ -76,7 +76,6 @@ Template.list_of_lists.helpers({
           name:compUrlName(item.c_name),
           company_id: item.c_id
         });
-
         return item;
       })
 
