@@ -42,6 +42,10 @@ Template.exec_loc.helpers({
       return false;
     }
   },
+  dataProvidedBy: function() {
+    var data = getDataProvider()
+    return data;
+  },
   loc_url: function(){
     return Router.pick_path('content.locationprofile',{
       loc_id: Router.current().params.loc_id
