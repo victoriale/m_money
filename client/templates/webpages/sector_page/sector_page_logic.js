@@ -62,6 +62,11 @@ Template.sector_page.helpers({
     return loc;
   },
 
+  dataProvidedBy: function() {
+    var data = getDataProvider()
+    return data;
+  },
+
   sectorData:function(){
     var data = Session.get('sector_companies');
     if(typeof data == 'undefined'){
