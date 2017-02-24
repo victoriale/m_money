@@ -112,6 +112,11 @@ Template.widget_list_view.helpers({
     return Router.pick_path('content.locationprofile', {loc_id: "National"});
   },
 
+  dataProvidedBy: function() {
+    var data = getDataProvider()
+    return data;
+  },
+
   page_nav: function() {
     var page = Session.get('ListPage'),
     data = Session.get('ListData');

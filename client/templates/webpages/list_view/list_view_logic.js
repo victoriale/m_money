@@ -46,6 +46,10 @@ Template.list_view.helpers({
       name: data.top_list_info.top_list_location[0]
     };
   },
+  dataProvidedBy: function() {
+    var data = getDataProvider()
+    return data;
+  },
   back_url: function(){
     var url = Router.current().getParams();
     if(url.loc_id === '' || typeof url.loc_id == 'undefined' || url.loc_id == null){
