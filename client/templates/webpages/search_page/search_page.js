@@ -128,6 +128,7 @@ Template.search_page.events({
     $('.discover_recommendations').removeClass('active');
   },
   'click .search_tab-menu-active-list': function(event, t){
+    Session.set('dataLimit',20);
     t.$('.current-list').removeClass('current-list');
     t.$(event.currentTarget).addClass('current-list');
     Session.set('searchTab',t.$(event.currentTarget).attr('id'));
@@ -262,9 +263,20 @@ function get_all_sorted(data) {
 
 Template.search_page.onCreated(function(){
   Session.set('searchTab', 'executive');
+  Session.set('dataLimit',20);
+
 })
 
 Template.search_page.onRendered(function(){
+  $(window).scroll(function() { //scroll function | if user scrolls to bottom
+    if($(window).scrollTop() + $(window).height() > $(document).height() - $('.footer-standard').height()) { // if user scrolls to bottom
+     if(Session.get('dataLimit') >= 20){
+       var limit = Session.get('dataLimit') + 20; // increment 'dataLimit' by 20
+     }
+     setTimeout(function(){ Session.set('dataLimit',limit); }, 100);
+    }
+ });
+
   var searchParams = Router.current().getParams();
   $('.header_search_recommendations').removeClass('active');
 
@@ -296,13 +308,21 @@ Template.search_page.helpers({
   Results: function(){
     var allResults = Session.get('data');
     var resultTab = Session.get('searchTab');
+    var listLimit = Session.get('dataLimit');
+
     if(typeof allResults == 'undefined'){
       return '';
     }
     var data = get_all_sorted(allResults);
     Session.set('totalResults', data.company.length + data.executive.length + data.location.length);
     Session.set('SortedSearch', data);
-    return data[resultTab];
+
+    if(data[resultTab].length > 20) {
+      var results = data[resultTab].slice(0,listLimit);
+    } else {
+      var results = data[resultTab]
+    }
+    return results;
   },
 
   totalResults:function(){

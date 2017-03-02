@@ -109,7 +109,7 @@ Template.area_composite.helpers({
       'Utilities': 'fa fa-lightbulb-o',
       'Consumer/Non-Cyclical': 'fa fa-opencart',
       'Transportation': 'fa fa-truck',
-      'Capital Goods': 'imageIcon capital-goods'
+      'Capital Goods': 'imageIcon capital-goods' // fix until all svg's/icons are independent from fontawesome
     };
     for ( var index = 0; index < cmp_arr.length; index++ ) {
       var loc_arr = [];
@@ -132,16 +132,15 @@ Template.area_composite.helpers({
       }
       cmp_arr[index].comp = loc_arr;
       cmp_arr[index].icon = images[cmp_arr[index].title];
-
       cmp_arr[index].sector_url = Router.pick_path('content.sector',{
         loc_id: params.loc_id,
-        sector_id: compUrlName(cmp_arr[index].title),
+        sector_id: compUrlName(cmp_arr[index].title.replace('/','-')),
         page_num:1
       })
       if ( Router.current().route.getName() == 'content.partnerhome' ) {
         cmp_arr[index].sector_url = Router.pick_path('content.sector',{
           loc_id: 'default',
-          sector_id: compUrlName(cmp_arr[index].title),
+          sector_id: compUrlName(cmp_arr[index].title.replace('/','-')),
           page_num:1
         })
       }

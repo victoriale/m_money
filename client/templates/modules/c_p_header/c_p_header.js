@@ -106,7 +106,7 @@ Template.cp_body.helpers({
     if(typeof data == 'undefined'){
       return '';
     }
-    data.sect_url = Router.pick_path('content.sector',{page_num: 1, loc_id: data.c_hq_state, sector_id: compUrlName(data.c_sector)});
+    data.sect_url = Router.pick_path('content.sector',{page_num: 1, loc_id: data.c_hq_state, sector_id: compUrlName(data.c_sector.replace('/','-'))});
     return data;
   },
 
@@ -161,7 +161,7 @@ Template.c_p_graph.helpers({
     var nowDate = moment(currentDate);
     var buttonNums = 11;
     var timeDiff = nowDate.diff(maxDate,'years'); // How long the company has been on the stock market
-    var timeType; // unit of time elapsed
+    var timeType; // unit of time elapsed: ie d, m, or y
 
     if(timeDiff <= 0){ // if company is younger than 1 year
       if(nowDate.diff(maxDate,'months') <= 0) {
@@ -225,7 +225,6 @@ Template.c_p_graph.helpers({
   getGraph: function(){
     var data = Session.get('graph_data');
     var c_p_range = Session.get('c_p_range');
-
     //If data does not exists exit helper
     if(typeof data === 'undefined'){
       return '';
@@ -363,6 +362,7 @@ Template.c_p_graph.helpers({
           max: max
       },
       yAxis: {
+          softMin: 0,
           title: '',
           opposite:true,
           gridLineDashStyle: 'longdash',
