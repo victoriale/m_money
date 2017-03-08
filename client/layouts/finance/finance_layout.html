@@ -1,7 +1,9 @@
 <!-- Header template -->
 <template name="finance_layout">
     <div class="header_container">
-        {{{partner_header}}}
+        <div id="partner" style="height:{{partner_height}}">
+            {{{partner_header}}}
+        </div>
         <div class="leaderboard_ad">
             <div class="leaderboard_space" >
                 <iframe id="leaderboard_iframe" frameborder="0" scrolling="no" style="display: block; height: 110px; width: 900px; margin: 0px; border: 0px; overflow: hidden;"></iframe>
@@ -13,9 +15,7 @@
         {{> yield "header"}}
         {{> header_nav}}
     </div>
-  <div class="finance-content">
-
-
+    <div class="finance-content">
     <table class="finance_body">
       <tr>
         <td class="finance_body_left"></td>
@@ -28,14 +28,16 @@
       </tr>
     </table>
     {{> footer}}
-  </div>
+    </div>
 </template>
 <!-- END Header template -->
 
 <!-- Header template -->
 <template name="finance_layout_loading">
     <div class="header_container">
-      {{{partner_header}}}
+        <div id="partner" style="height:{{partner_height}}">
+            {{{partner_header}}}
+        </div>
       {{> yield "header"}}
       {{> header_nav}}
   </div>
@@ -55,7 +57,9 @@
 
 <template name="finance_layout_home">
   <div class="header_container">
-      {{{partner_header}}}
+      <div id="partner" style="height:{{partner_height}}">
+        {{{partner_header}}}
+      </div>
       {{> yield "header"}}
       <div class="directory_page" style="width: 100%; font-size: 2vw; height:auto;"></div>
       {{#unless myinvestkit}}
