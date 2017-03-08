@@ -26,7 +26,7 @@
         <div class="list_vw-tc">
           <!-- class date has all the font-weight and font specific !-->
           <div class="list_vw-date">
-            Last Updated: {{newDate}}
+            LAST UPDATED: {{newDate}}
           </div>
           <!--specified font style for location !-->
           <div class="list_vw-loc_st">
@@ -35,7 +35,7 @@
                 <i class="fa fa-map-marker"></i>
                 <!--specified font style for the state name !-->
                 <span class="list_vw-loc_st">
-                  {{#if isNational}}The {{/if}}{{name}}
+                  {{#if isNational}}The {{/if}}{{name}} &nbsp;| &nbsp;<p class="data-by-text">Data Provided By: <b>{{dataProvidedBy}}</b></p>
                 </span>
               </a>
             {{/with}}

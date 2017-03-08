@@ -136,7 +136,7 @@ Meteor.methods({
     if(typeof page != 'undefined' || page != null){
       UrlString += "&page="+page;
     }
-
+    //console.log(UrlString);
     Meteor.http.get(UrlString, (function(startTime, option, loc_id, error, data){
       try{
         data = JSON.parse(data['content']);
@@ -175,6 +175,7 @@ Meteor.methods({
     }else{
       var UrlString = callUrl + "?action=location_profile&option="+batchNum+"&dma="+loc_id + graph_option;
     }
+    //console.log(UrlString);
     curloc_id.withValue(batchNum, function(){
       Meteor.http.get(UrlString, Meteor.bindEnvironment((function(startTime,batchNum,loc_id,error, data){
         if ( error ) {
@@ -209,7 +210,7 @@ Meteor.methods({
     // console.log("New Executive Request",exec_id,batchNum);
 
     var UrlString = callUrl + "?action=executive_profile&option="+batchNum+"&param="+exec_id;
-    //  console.log(UrlString);
+     //console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime,batchNum,exec_id, error, data){
       if ( error ) {
@@ -662,7 +663,6 @@ Meteor.methods({
     var x = Math.floor((Math.random() * 2) + 1);
     //param={list_index} , {location/DMA}
     var UrlString = callUrl + "?action=company_profile&option=batch_3&param="+id+"&limit=1,3";
-    // console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, id, error, data){
       try{
@@ -744,7 +744,6 @@ Meteor.methods({
       UrlString += "&page=" + page + "&per_page=20";
       console.log('listpageloc');
     }
-     //console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, loc_id, error, data){
       try{

@@ -35,6 +35,7 @@ Template.mm_page_start_date.onRendered(function(){
     container: '#mm_page_start_div',
     orientation: 'top right',
     endDate: '0d',
+    startDate: '-50y',
     todayHighlight: true,
     daysOfWeekDisabled: [0,6]
   });
@@ -67,6 +68,7 @@ Template.mm_page_end_date.onRendered(function(){
     container: '#mm_page_end_div',
     orientation: 'top right',
     endDate: '0d',
+    startDate: '-50y',
     todayHighlight: true,
     daysOfWeekDisabled: [0,6]
   });
@@ -344,7 +346,7 @@ Template.money_memory_page.helpers({
     company_data.csi_low = Number(company_data.lcsi_low).toFixed(2);
     company_data.csi_high = Number(company_data.lcsi_high).toFixed(2);
 
-    company_data.csi_price = commaSeparateNumber_decimal(Number(company_data.lcsi_price));
+    company_data.csi_price = commaSeparateNumber_decimal(Number(company_data.lcsi_price).toFixed(2));
     company_data.csi_closing_price = commaSeparateNumber_decimal(Number(company_data.lcsi_closing_price));
     company_data.csi_opening_price = commaSeparateNumber_decimal(Number(company_data.lcsi_opening_price));
     company_data.csi_price_change_since_last = commaSeparateNumber_decimal(Math.round(Number(company_data.lcsi_price_change_since_last) * 100) / 100);

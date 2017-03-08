@@ -20,16 +20,20 @@ Template.project_history.onCreated( function() {
         for (id in companies){
           var compList = companies[id];
           var comp = {};
-          comp['location'] = compList['company_data'].c_hq_city + ", " + compList['company_data'].c_hq_state;
-          comp['locurl'] = Router.pick_path('content.locationprofile',{loc_id:compList['company_data'].c_hq_state,city:compList['company_data'].c_hq_city})
-          comp['c_name'] = compList['company_data'].c_name;
-          comp['c_ticker'] = compList['company_data'].c_ticker;
-          comp['c_id'] = compList['company_data'].c_id;
-          comp['exec_nearest_pos'] = compList['officer_positions'][0];
-          comp['connections'] = compList['connections'];
-          comp['o_id'] = data['officer_data'].o_id;
-          comp['c_logo'] = compList.company_data.c_logo;
-          projArray.push(comp);
+          if(compList['company_data'].c_id != null && compList['company_data'].c_hq_state != null){
+            comp['location'] = compList['company_data'].c_hq_city + ", " + compList['company_data'].c_hq_state;
+            comp['locurl'] = Router.pick_path('content.locationprofile',{loc_id:compList['company_data'].c_hq_state,city:compList['company_data'].c_hq_city})
+            comp['c_name'] = compList['company_data'].c_name;
+            comp['c_ticker'] = compList['company_data'].c_ticker;
+            comp['c_id'] = compList['company_data'].c_id;
+            comp['exec_nearest_pos'] = compList['officer_positions'][0];
+            comp['connections'] = compList['connections'];
+            comp['o_id'] = data['officer_data'].o_id;
+            comp['c_logo'] = compList.company_data.c_logo;
+            projArray.push(comp);
+          } else { // if company id [c_id] is null, don't push to projArray
+            continue;
+          }
         }
         Session.set('new_project_history', projArray);
         //SetprojList();
@@ -45,7 +49,7 @@ Template.project_history.onCreated( function() {
     var x = 0;
     if(typeof data != "undefined")
     {
-      for(x;x<data.length;x++)//forloop iterates through each object returned by Session.get
+      for(x; x < data.length; x++)//forloop iterates through each object returned by Session.get
       {//each object returned by session.get represents a single project
         var startmonth = data[x]['exec_nearest_pos']['start_month'];
         var startyear = data[x]['exec_nearest_pos']['start_year']*12;//coverts years to months
@@ -152,7 +156,6 @@ function resetPage(){
 };
 
 
-
 Template.project_history.events({
   'click .proj_hist-page-selector':function(e,t){//Updates list when switching between pages
     delete Session.keys["ListPage"];
@@ -185,9 +188,8 @@ Template.project_history.helpers (
       var data = Session.get('new_project_history');
       var index = this["iteration"];//gets element "iteration" from array returned by projList (see function below)
       var params = Router.current().getParams();
-
       $.map(data,function(val,i){
-        $.map(val.connections,function(value, index){
+        $.map(val,function(value, index){
           value.url = Router.pick_path('content.executiveprofile',{
             lname:value.o_last_name,
             fname:value.o_first_name,
@@ -196,7 +198,6 @@ Template.project_history.helpers (
           });
         })
       })
-
       return data[index]['connections'];//index makes sures the connections list belongs to the particular company
     },
     firstName: function(){

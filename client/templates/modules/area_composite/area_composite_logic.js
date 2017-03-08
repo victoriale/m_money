@@ -97,18 +97,19 @@ Template.area_composite.helpers({
 
     // Company list
     var images = {
-      'Basic Materials': 'fa-flask',
-      'Conglomerates': 'fa-building-o',
-      'Consumer Goods': 'fa-opencart',
-      'Energy': 'fa-plug',
-      'Financial': 'fa-line-chart',
-      'Healthcare': 'fa-heartbeat',
-      'Industrial Goods': 'fa-truck',
-      'Services': 'fa-phone',
-      'Technology': 'fa-database',
-      'Utilities': 'fa-lightbulb-o',
-      'Consumer/Non-Cyclical': 'fa-opencart',
-      'Transportation': 'fa-truck'
+      'Basic Materials': 'fa fa-flask',
+      'Conglomerates': 'fa fa-building-o',
+      'Consumer Goods': 'fa fa-opencart',
+      'Energy': 'fa fa-plug',
+      'Financial': 'fa fa-line-chart',
+      'Healthcare': 'fa fa-heartbeat',
+      'Industrial Goods': 'fa fa-truck',
+      'Services': 'fa fa-phone',
+      'Technology': 'fa fa-database',
+      'Utilities': 'fa fa-lightbulb-o',
+      'Consumer/Non-Cyclical': 'fa fa-opencart',
+      'Transportation': 'fa fa-truck',
+      'Capital Goods': 'imageIcon capital-goods' // fix until all svg's/icons are independent from fontawesome
     };
     for ( var index = 0; index < cmp_arr.length; index++ ) {
       var loc_arr = [];
@@ -133,13 +134,13 @@ Template.area_composite.helpers({
       cmp_arr[index].icon = images[cmp_arr[index].title];
       cmp_arr[index].sector_url = Router.pick_path('content.sector',{
         loc_id: params.loc_id,
-        sector_id: compUrlName(cmp_arr[index].title),
+        sector_id: compUrlName(cmp_arr[index].title.replace('/','-')),
         page_num:1
       })
       if ( Router.current().route.getName() == 'content.partnerhome' ) {
         cmp_arr[index].sector_url = Router.pick_path('content.sector',{
           loc_id: 'default',
-          sector_id: compUrlName(cmp_arr[index].title),
+          sector_id: compUrlName(cmp_arr[index].title.replace('/','-')),
           page_num:1
         })
       }

@@ -373,7 +373,7 @@ Template.daily_update.helpers({
         data.text1 = 'Market Cap';
         data.text2 = 'PE Ratio';
         data.text3 = 'Total Shares';
-        data.text4 = 'Average Volume';
+        data.text4 = 'Today\'s Volume';
 
         data.value1 = nFormatter(Number(data['csi_market_cap']).toFixed(2));
         data.value2 = Number(data['csi_pe_ratio']).toFixed(2);
