@@ -1,6 +1,8 @@
 <!-- Header template -->
 <template name="finance_layout">
-  {{{partner_header}}}
+  <div id="partner" style="height:{{partner_height}}">
+    {{{partner_header}}}
+  </div>
   <div class="leaderboard_ad">
     <div class="leaderboard_space" >
       <iframe id="leaderboard_iframe" frameborder="0" scrolling="no" style="display: block; height: 110px; width: 900px; margin: 0px; border: 0px; overflow: hidden;"></iframe>
@@ -31,7 +33,9 @@
 
 <!-- Header template -->
 <template name="finance_layout_loading">
-  {{{partner_header}}}
+  <div id="partner" style="height:{{partner_height}}">
+    {{{partner_header}}}
+  </div>
   <div class="finance-content">
     {{> yield "header"}}
     {{> header_nav}}
@@ -50,7 +54,9 @@
 </template>
 
 <template name="finance_layout_home">
-  {{{partner_header}}}
+  <div id="partner" style="height:{{partner_height}}">
+    {{{partner_header}}}
+  </div>
   <div class="finance-content">
     {{> yield "header"}}
     <div class="directory_page" style="width: 100%; font-size: 2vw; height:auto;"></div>
