@@ -64,11 +64,44 @@ Template.header_nav.onRendered(function () {
   $(".pgheader-nav_divbtm_dropdown-meDR").hide();
   String_facebook ="https://www.facebook.com/sharer/sharer.php?u="+ URL;
   $(".facebook-link").attr("href", String_facebook);
+
+    var scrollTopPrev = 0;
+    var menuTransitionAmount = 0;
+    var headerContainer = $('.header_container');
+    var headerContainerHeight = headerContainer.height();
+    var layoutNav = $('.layout_nav');
+    var layoutNavHeight = layoutNav ? layoutNav.height() : 0;
+    var stickyHeaderSetting = headerContainerHeight-layoutNavHeight;
+    $('body').css('padding-top', headerContainerHeight); //adds padding to pages based on fixed header height
+
+
+  $(window).on('scroll', function() {
+      var scrollTop = $(window).scrollTop();
+      var scrollPolarity = scrollTop - scrollTopPrev;
+      headerContainer.css('top', menuTransitionAmount);
+
+      if ( scrollPolarity > 0 ) { //scrolling up
+            headerContainer.addClass('scrollUp').removeClass('scrollDown');
+            if ( menuTransitionAmount >= -stickyHeaderSetting ) {
+                menuTransitionAmount = menuTransitionAmount - scrollPolarity;
+                if (menuTransitionAmount < -stickyHeaderSetting) { //if the value doesn't calculate quick enough based on scroll speed set it manually
+                    menuTransitionAmount = -stickyHeaderSetting;
+                }
+            }
+        }
+        else if ( scrollPolarity < 0 ) { //scrolling down
+            menuTransitionAmount = 0;
+            headerContainer.addClass('scrollDown').removeClass('scrollUp');
+        }
+        // fix for 'page overscroll' in safari
+        if ( scrollTop == 0 ) {
+            menuTransitionAmount = 0;
+        }
+        scrollTopPrev = scrollTop;
+  });
 });
 /* this is for on click events */
 Template.header_nav.events({
-
-
     /*the color of the background will change for the coressponding button*/
     'click .pgheader-nav_divtp_Resrch': function()
     {
