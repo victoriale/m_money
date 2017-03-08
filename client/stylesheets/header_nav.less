@@ -6,6 +6,16 @@
 @import (reference)"global_vars.less";
 @import (reference)"modules.less";
 
+.header_container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+    &.scrollDown {
+        transition: all .35s ease-in-out;
+    }
+}
+
 .header_search_recommendations {
   .noclick;
   display: none;
