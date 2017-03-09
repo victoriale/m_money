@@ -887,7 +887,6 @@ Meteor.methods({
       graph_option = "&call=location_daily_update&graph_option=5Y";
       // graph_option = "&graph_option=5Y";//old call that does not pull all historical datapoints
     }
-
     var UrlString = callUrl + "?action=location_profile&option="+batch+"&partner_domain="+partner_id+graph_option;
     //console.log(UrlString);
 
@@ -950,7 +949,7 @@ Meteor.methods({
     if ( typeof page != "undefined" ) {
       UrlString += "&page=" + page;
     }
-    console.log(UrlString);
+    //console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, company_id, error, data){
       try{
