@@ -228,7 +228,6 @@ Template.daily_update.helpers({
       {data:"3Y"},
       {data:"5Y"},
     ];
-
     if(data['stock_hist']){
       var lastPos = data['stock_hist'].length - 1;
       var maxDate = moment(data['stock_hist'][lastPos]['sh_date']*1000);
@@ -237,7 +236,8 @@ Template.daily_update.helpers({
       var nowDate = moment(currentDate);
       var buttonNum = 11; //
       var timeDiff = nowDate.diff(maxDate,'years'); // How long the company has been on the stock market
-      var timeType; // unit of time elapsed ie 'y' and 'm'
+      var timeType; // unit of time elapsed ie 'y = years' , 'm = months' , 'd = days'
+      var differentInTime = moment(new Date());
 
       if(timeDiff <= 0){ // if company is younger than 1 year
         if(nowDate.diff(maxDate,'months') <= 0) { // if company is younger than 10 days
@@ -251,7 +251,7 @@ Template.daily_update.helpers({
         timeType = 'y';
       }
       if(typeof timeDiff != 'undefined'){ // switch to determine how many buttons
-        switch(timeType){
+        switch(timeType){ //which unit to use
           case 'y':
             if(timeDiff >= 5) {
               buttonNum = 10;

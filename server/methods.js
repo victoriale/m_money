@@ -835,9 +835,9 @@ Meteor.methods({
   GetPartnerDomain: function(partner_id) {
     var startTime = (new Date()).getTime();
     // NOTE: FOR DEV
-      var URLString = "http://devapi.synapsys.us/widgets/deepdive/bar/domain_api.php?dom=" + partner_id;
+    //  var URLString = "http://devapi.synapsys.us/widgets/deepdive/bar/domain_api.php?dom=" + partner_id;
     // NOTE: FOR PROD
-    // URLString = domainUrl + "?dom=" + partner_id;
+    var URLString = domainUrl + "?dom=" + partner_id;
     var future = new Future();
     Meteor.http.get(URLString, (function(startTime, partner_id, error, data) {
       if (error) {

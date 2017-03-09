@@ -20,7 +20,7 @@ Template.stock_disclaimer_page.helpers({
   },
   Country: "The United States",
   Statement: "For InvestKit",
-  Updated: globalDateFormat(1435150800000,'timeZone'),
+  Update: globalDateFormat(1435150800000,'timeZone'),
   // Update: moment.utc(1435150800000).tz('America/New_York').format('MM/DD/YYYY, h:mm A z'),
   back_url: function(){
     if(Session.get('IsCompany')) {

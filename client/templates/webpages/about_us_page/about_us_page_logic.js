@@ -46,7 +46,7 @@ Template.about_us_page.helpers({
   },
   Country: "United States",
   Statement: "Take a Seat and get to know us better.",
-  Update: "06/24/2015,8:00 AM EST",
+  Update: globalDateFormat(1435150800000,'timeZone'),
 
   back_url: function(){
     if(Session.get('IsCompany')) {
