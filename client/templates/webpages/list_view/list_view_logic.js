@@ -106,6 +106,7 @@ Template.list_view.helpers({
     if(typeof listdata =='undefined'){
       return '';
     }
+
     $.map(listdata.top_list_list, function(data,index){
       if(index % 2 == 0){
         data['background'] = 'tilewhite';
@@ -135,18 +136,19 @@ Template.list_view.helpers({
         name: compUrlName(data.c_name),
         company_id: data.c_id
       });
+
       data['exchurl'] = globalUrl(data.c_exchange);
       if(params.list_id == 'sv150_gainers' || params.list_id == 'sv150_losers'){
         // data['newDate'] = moment(data.csi_price_last_updated).format('dddd, MMM. DD, YYYY');
         data['newDate'] = globalDateFormat(data.csi_price_last_updated,'dayOfWeek');
-        data.price = commaSeparateNumber_decimal(Number(data.csi_price).toFixed(2));
-        data.price_change = commaSeparateNumber_decimal(Number(data.csi_price_change_since_last).toFixed(2));
+        data.price = Number(data.csi_price) < .01 ? commaSeparateNumber_decimal(Number(data.csi_price).toFixed(3)) : commaSeparateNumber_decimal(Number(data.csi_price).toFixed(2));
+        data.price_change = Number(data.csi_price_change_since_last) < .01 ? commaSeparateNumber_decimal(Number(data.csi_price_change_since_last).toFixed(3)) : commaSeparateNumber_decimal(Number(data.csi_price_change_since_last).toFixed(2));
         data.percent_change = commaSeparateNumber_decimal(Number(data.csi_percent_change_since_last).toFixed(2));
       }else{
       //  data['newDate'] = moment(data.lcsi_price_last_updated).format('dddd, MMM. DD, YYYY');
         data['newDate'] = globalDateFormat(data.lcsi_price_last_updated,'dayOfWeek');
-        data.price = commaSeparateNumber_decimal(Number(data.lcsi_price).toFixed(2));
-        data.price_change = commaSeparateNumber_decimal(Number(data.lcsi_price_change_since_last).toFixed(2));
+        data.price = Number(data.lcsi_price) < .01 ? commaSeparateNumber_decimal(Number(data.lcsi_price).toFixed(3)) : commaSeparateNumber_decimal(Number(data.lcsi_price).toFixed(2));
+        data.price_change = Number(data.lcsi_price_change_since_last) < .01 ? commaSeparateNumber_decimal(Number(data.lcsi_price_change_since_last).toFixed(3)) : commaSeparateNumber_decimal(Number(data.lcsi_price_change_since_last).toFixed(2));
         data.percent_change = commaSeparateNumber_decimal(Number(data.lcsi_percent_change_since_last).toFixed(2));
       }
       //data from list can come in 6 different ways these values will catch and give results back
@@ -198,6 +200,12 @@ Template.list_view.helpers({
     }
     if(typeof listdata =='undefined'){
       return '';
+    }
+    var position = listdata.top_list_list.length;
+    while (position--) { // filter through listData, removing inactive companies
+      if (listdata.top_list_list[position]['c_inactive'] == 1) {
+          listdata.top_list_list.splice(position, 1);
+      }
     }
     Session.set('top_list_gen', listdata);
     $.map(listdata.top_list_list, function(data,index){
