@@ -4,18 +4,27 @@
 Template.finance_layout.helpers({
   partner_header: function() {
     return Session.get('partner_header_code');
+  },
+  partner_height: function() {
+    return Session.get('partner_header_height');
   }
 });
 
 Template.finance_layout_loading.helpers({
   partner_header: function() {
     return Session.get('partner_header_code');
+  },
+  partner_height: function() {
+    return Session.get('partner_header_height');
   }
 });
 
 Template.finance_layout_home.helpers({
   partner_header: function() {
     return Session.get('partner_header_code');
+  },
+  partner_height: function() {
+    return Session.get('partner_header_height');
   },
   myinvestkit: function() {
     if ( Router.current().url.match(/myinvestkit/) != null ) {

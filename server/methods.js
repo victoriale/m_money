@@ -835,9 +835,9 @@ Meteor.methods({
   GetPartnerDomain: function(partner_id) {
     var startTime = (new Date()).getTime();
     // NOTE: FOR DEV
-      var URLString = "http://devapi.synapsys.us/widgets/deepdive/bar/domain_api.php?dom=" + partner_id;
+    //  var URLString = "http://devapi.synapsys.us/widgets/deepdive/bar/domain_api.php?dom=" + partner_id;
     // NOTE: FOR PROD
-    // URLString = domainUrl + "?dom=" + partner_id;
+    var URLString = domainUrl + "?dom=" + partner_id;
     var future = new Future();
     Meteor.http.get(URLString, (function(startTime, partner_id, error, data) {
       if (error) {
@@ -884,7 +884,6 @@ Meteor.methods({
       graph_option = "&call=location_daily_update&graph_option=5Y";
       // graph_option = "&graph_option=5Y";//old call that does not pull all historical datapoints
     }
-
     var UrlString = callUrl + "?action=location_profile&option="+batch+"&partner_domain="+partner_id+graph_option;
     //console.log(UrlString);
 
@@ -947,7 +946,7 @@ Meteor.methods({
     if ( typeof page != "undefined" ) {
       UrlString += "&page=" + page;
     }
-    console.log(UrlString);
+    //console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, company_id, error, data){
       try{
