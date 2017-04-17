@@ -427,7 +427,7 @@ Template.finance_homepage.events({
       $('.fi_search_recommendations').addClass('active');
     }
   },
-  
+
   'mouseenter .fi_mainsearch': function(){
     $(".fi_mainsearch").addClass("boxhighlight");
     var searchResultCount = $('.fi_search_recommendations a').length;
@@ -437,7 +437,7 @@ Template.finance_homepage.events({
       $('.fi_search_recommendations').addClass('active');
     }
   },
-  
+
   'mouseleave .fi_search_recommendations': function(){
     $('.fi_search_recommendations').removeClass('active');
   }
@@ -453,17 +453,10 @@ Template.finance_homepage.events({
 Template.finance_homepage.onCreated(function() {
    Session.set('SuggestTime',0);
    Session.set('IsHome', true);
-   Meteor.http.get('//w1.synapsys.us/get-remote-addr2/', function(error, data){
-     //console.log(data);
+   Meteor.http.get('//waldo.synapsys.us/getlocation/2', function(error, data){
 
-     var getLoc = data.data.loc;
-     var state = 'KS';
-     for(var obj in getLoc){
-       //console.log(obj);
-       if ( getLoc.hasOwnProperty(obj) ) {
-         var state = getLoc[obj].state;
-       }
-     }
+     var getLoc = data.data[0];
+     var state = getLoc.state;
      if ( typeof abbrstate(state) != "undefined" ) {
        state = abbrstate(state);
      }

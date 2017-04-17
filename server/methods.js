@@ -13,34 +13,35 @@ var getPartner = "http://apireal.synapsys.us/";
 
 var callUrl = "";
 var AICall = "";
-var getPartner = "";
+var domainUrl = "";
+var synapview = "";
 
 //Global Url that will auto check the environment and call the appropriate api
 if (Meteor.absoluteUrl().indexOf("localhost") > -1 ) {
   callUrl = "http://dev-finance-api.synapsys.us/call_controller.php";
   AICall = "http://dev-finance-api.synapsys.us/";
-  getPartner = "http://apireal.synapsys.us/"; // Temp fix for broken dev api call
-  var domainUrl = "http://devapi.synapsys.us/widgets/deepdive/bar/domain_api.php";
+  domainUrl = "http://devapi.synapsys.us/widgets/deepdive/bar/domain_api.php";
+  synapview = "http://dev-synapview.synapsys.us";
 } else if ( Meteor.absoluteUrl().indexOf("dev.") > -1) {
   callUrl = "http://dev-finance-api.synapsys.us/call_controller.php";
   AICall = "http://dev-finance-api.synapsys.us/";
-  getPartner = "http://apireal.synapsys.us/"; // Temp fix for broken dev api call
-  var domainUrl = "http://devapi.synapsys.us/widgets/deepdive/bar/domain_api.php";
+  domainUrl = "http://devapi.synapsys.us/widgets/deepdive/bar/domain_api.php";
+  synapview = "http://dev-synapview.synapsys.us";
 } else if ( Meteor.absoluteUrl().indexOf("qa.") > -1) {
   callUrl = "http://qa-finance-api.synapsys.us/call_controller.php";
   AICall = "http://qa-finance-api.synapsys.us/";
-  getPartner = "http://apireal.synapsys.us/";
-  var domainUrl = "http://devapi.synapsys.us/widgets/deepdive/bar/domain_api.php";
+  domainUrl = "http://devapi.synapsys.us/widgets/deepdive/bar/domain_api.php";
+  synapview = "http://dev-synapview.synapsys.us";
 } else if ( Meteor.absoluteUrl().indexOf("sandbox.") > -1) {
   callUrl = "http://sandbox-finance-api.synapsys.us/call_controller.php";
   AICall = "http://sandbox-finance-api.synapsys.us/";
-  getPartner = "http://dev-real-api.synapsys.us/";
-  var domainUrl = "http://w1.synapsys.us/widgets/deepdive/bar/domain_api.php";
+  domainUrl = "http://w1.synapsys.us/widgets/deepdive/bar/domain_api.php";
+  synapview = "http://synapview.synapsys.us";
 } else {
   callUrl = "http://apifin.investkit.com/call_controller.php";
   AICall = "http://apifin.investkit.com/";
-  getPartner = "http://apireal.synapsys.us/";
-  var domainUrl = "http://w1.synapsys.us/widgets/deepdive/bar/domain_api.php";
+  domainUrl = "http://w1.synapsys.us/widgets/deepdive/bar/domain_api.php";
+  synapview = "http://synapview.synapsys.us";
 }
 
 Meteor.methods({
@@ -856,8 +857,9 @@ Meteor.methods({
 
   GetPartnerHeader: function(partner_id) {
     var startTime = (new Date()).getTime();
-    var URLString = getPartner+"listhuv/?action=get_partner_data&domain=" + partner_id;
+    var URLString = synapview +"/?action=get_header_data&vertical=finance&domain=" + partner_id;
     var future = new Future();
+    console.log(URLString);
     Meteor.http.get(URLString,(function(startTime, partner_id, error,data){
       if ( error ) {
         future.return(error);
@@ -885,7 +887,7 @@ Meteor.methods({
       // graph_option = "&graph_option=5Y";//old call that does not pull all historical datapoints
     }
     var UrlString = callUrl + "?action=location_profile&option="+batch+"&partner_domain="+partner_id+graph_option;
-    //console.log(UrlString);
+    // console.log(UrlString);
 
     Meteor.http.get(UrlString, (function(startTime, batch, partner_id, error, data){
       try{
