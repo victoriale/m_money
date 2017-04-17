@@ -456,13 +456,7 @@ Template.finance_homepage.onCreated(function() {
    Meteor.http.get('//waldo.synapsys.us/getlocation/2', function(error, data){
 
      var getLoc = data.data[0];
-     var state = 'KS';
-     for(var obj in getLoc){
-       //console.log(obj);
-       if ( getLoc.hasOwnProperty(obj) ) {
-         var state = getLoc[obj].state;
-       }
-     }
+     var state = getLoc.state;
      if ( typeof abbrstate(state) != "undefined" ) {
        state = abbrstate(state);
      }
