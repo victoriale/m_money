@@ -453,7 +453,7 @@ Template.finance_homepage.events({
 Template.finance_homepage.onCreated(function() {
    Session.set('SuggestTime',0);
    Session.set('IsHome', true);
-   Meteor.http.get('//dev-waldo.synapsys.us/getlocation/2', function(error, data){
+   Meteor.http.get('//waldo.synapsys.us/getlocation/2', function(error, data){
 
      var getLoc = data.data[0];
      var state = 'KS';
