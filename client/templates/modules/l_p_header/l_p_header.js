@@ -69,7 +69,7 @@ Template.lp_body.helpers({
   execUrl: function(){
     if ( Router.current().route.getName() == 'content.partnerhome' ) {
       if ( typeof Session.get('p_data') != "undefined" ) {
-        loc_id = fullstate(Session.get('p_data')['results']['location']['realestate']['location']['city'][0]['state']);
+        loc_id = fullstate(Session.get('p_data')['state']);
       } else {
         loc_id = 'default';
       }

@@ -21,7 +21,7 @@ Template.copyright_page.helpers({
   Country: "The United States",
   Statement: "For InvestKit",
   Update: globalDateFormat(1435150800000,'timeZone'),
-  // Update: moment.utc(1435150800000).tz('America/New_York').format('MM/DD/YYYY, h:mm A z'),
+  //Update: moment(moment(1435150800000).format()).tz('America/New_York').format('dddd, MMM. DD, YYYY h:mmA (z)'),
   back_url: function(){
     if(Session.get('IsCompany')) {
        return "/company/"+ Session.get("profile_header").c_ticker;
