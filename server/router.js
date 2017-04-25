@@ -346,18 +346,18 @@ function company_profile(params, req, res){
       });
     });
 
-    functions.push(function(batch){
-      batch_envar.withValue(batch,function(){
-        var bound_cb = function(error, data) {
-          if ( error ) {
-            batch_envar.get().done({});
-          } else {
-            batch_envar.get().done({news: data.data});
-          }
-        }
-        Meteor.http.get('http://newsapi.synapsys.us/news/?action=get_finance_news&ticker=' + params.ticker,bound_cb);
-      });
-    });
+    // functions.push(function(batch){
+    //   batch_envar.withValue(batch,function(){
+    //     var bound_cb = function(error, data) {
+    //       if ( error ) {
+    //         batch_envar.get().done({});
+    //       } else {
+    //         batch_envar.get().done({news: data.data});
+    //       }
+    //     }
+    //     Meteor.http.get('http://newsapi.synapsys.us/news/?action=get_finance_news&ticker=' + params.ticker,bound_cb);
+    //   });
+    // });
 
     if ( typeof params.partner_id != "undefined" ) {
       functions.push(function(batch){
@@ -1765,18 +1765,18 @@ function cmp_news(params, req, res) {
       });
     });
 
-    functions.push(function(batch){
-      batch_envar.withValue(batch,function(){
-        var bound_cb = function(error, data) {
-          if ( error ) {
-            batch_envar.get().done({});
-          } else {
-            batch_envar.get().done({news: data.data});
-          }
-        }
-        Meteor.http.get('http://newsapi.synapsys.us/news/?action=get_finance_news&ticker=' + params.ticker,bound_cb);
-      });
-    });
+    // functions.push(function(batch){
+    //   batch_envar.withValue(batch,function(){
+    //     var bound_cb = function(error, data) {
+    //       if ( error ) {
+    //         batch_envar.get().done({});
+    //       } else {
+    //         batch_envar.get().done({news: data.data});
+    //       }
+    //     }
+    //     Meteor.http.get('http://newsapi.synapsys.us/news/?action=get_finance_news&ticker=' + params.ticker,bound_cb);
+    //   });
+    // });
 
     if ( typeof params.partner_id != "undefined" ) {
       functions.push(function(batch){
