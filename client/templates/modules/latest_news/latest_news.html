@@ -5,14 +5,14 @@ Description: latest_news module
 Associated Files: latest_news.less, latest_news_logic.js
 -->
 <!-- Template -->
-<template name='latest_news'>
-  {{#if isData}}
+<!-- <template name='latest_news'> -->
+  <!-- {{#if isData}} -->
   <!-- Module -->
-  <div class = "module-4 nws">
+  <!-- <div class = "module-4 nws"> -->
     <!-- Company News Header -->
-    <div class = "nws-hdr">
+    <!-- <div class = "nws-hdr"> -->
       <!-- Company News Header Text -->
-      <div class = "nws-hdr-top">
+      <!-- <div class = "nws-hdr-top">
         {{#if isComp}}
         <p>News & Media Surrounding {{company}}</p>
         {{/if}}
@@ -22,42 +22,42 @@ Associated Files: latest_news.less, latest_news_logic.js
         {{#if isLoc}}
         <p>News & Media Surrounding {{loc}}</p>
         {{/if}}
-        <i class="fa fa-newspaper-o"></i>
-      </div>
+        <i class="fa fa-newspaper-o"></i> -->
+      <!-- </div> -->
       <!-- END Company News Header Text -->
       <!-- Company News Header Bottom Border -->
-      <div class = "nws-hdr-bttm"></div>
+      <!-- <div class = "nws-hdr-bttm"></div> -->
       <!-- END Company News Header Bottom Border -->
-    </div>
+    <!-- </div> -->
     <!-- END Company News Header -->
 
     <!-- Company News Body -->
-    <div class = "nws-bdy">
+    <!-- <div class = "nws-bdy"> -->
       <!-- Company News Body Description -->
-      <div class = "nws-bdy-desc">
+      <!-- <div class = "nws-bdy-desc"> -->
         <!-- Company News Body Description Image Placeholder -->
-        {{#if isLoc}}
+        <!-- {{#if isLoc}} -->
         <!--Location News Image Placeholder-->
-          <div class = "nws-bdy-desc-plchldr" style="{{newsImage topImage}}"></div>
-        {{else}}
+          <!-- <div class = "nws-bdy-desc-plchldr" style="{{newsImage topImage}}"></div>
+        {{else}} -->
         <!--Company/Executive News Image Placeholder-->
-          <div class = "nws-bdy-desc-plchldr" style="background-image:url('{{newsImage topImage}}')"></div>
-        {{/if}}
+          <!-- <div class = "nws-bdy-desc-plchldr" style="background-image:url('{{newsImage topImage}}')"></div>
+        {{/if}} -->
         <!-- END Company News Body Description Image Placeholder -->
         <!-- Company News Body Descricption Main Text Box -->
-        <div class = "nws-bdy-desc-txtbx">
+        <!-- <div class = "nws-bdy-desc-txtbx"> -->
           <!-- Company News Body Description Update -->
-          <div class = "nws-bdy-desc-txtbx-updt">
+          <!-- <div class = "nws-bdy-desc-txtbx-updt">
             LAST UPDATED: {{updt_dt}}
-          </div>
+          </div> -->
           <!-- END Company News Body Description Update -->
           <!-- Company News Body Description Location -->
-          <div class = "nws-bdy-desc-txtbx-loc">
+          <!-- <div class = "nws-bdy-desc-txtbx-loc">
             <i class="fa fa-map-marker"></i>&nbsp;{{location}}
-          </div>
+          </div> -->
           <!-- END Company News Body Description Location -->
           <!-- Company News Body Description Title -->
-          <div class = "nws-bdy-desc-txtbx-ttl">
+          <!-- <div class = "nws-bdy-desc-txtbx-ttl">
             {{#if isComp}}
             {{company}}'s Latest News
             {{/if}}
@@ -67,10 +67,10 @@ Associated Files: latest_news.less, latest_news_logic.js
             {{#if isLoc}}
             {{loc}}'s Latest News
             {{/if}}
-          </div>
+          </div> -->
           <!-- END Company News Body Description Title -->
           <!-- Company News Body Description Subtitle -->
-          <div class = "nws-bdy-desc-txtbx-subttl">
+          <!-- <div class = "nws-bdy-desc-txtbx-subttl">
             {{#if isComp}}
             Covering All News for {{company}}
             {{/if}}
@@ -80,53 +80,53 @@ Associated Files: latest_news.less, latest_news_logic.js
             {{#if isLoc}}
             Covering All News for {{loc}}
             {{/if}}
-          </div>
+          </div> -->
           <!-- END Company News Body Description Subtitle -->
-        </div>
+        <!-- </div> -->
         <!-- END Company News Body Description Main Text Box -->
-      </div>
+      <!-- </div> -->
       <!-- END Company News Body Description -->
       <!-- Company News Body Content -->
-      <div class = "nws-bdy-ctnt">
+      <!-- <div class = "nws-bdy-ctnt"> -->
         <!-- Company News Body Content Main Tile -->
-        <a href="{{main_url}}" target="_blank">
-        <div class = "nws-bdy-ctnt-main" id="nws-art0">
+        <!-- <a href="{{main_url}}" target="_blank">
+        <div class = "nws-bdy-ctnt-main" id="nws-art0"> -->
           <!-- Company News Body Content Main Tile Buttons -->
-          <div style="height:35px">
-            <div class = "nws-bdy-ctnt-main-bttns">
-              {{#each mntags}}
-                {{> main_tag_item artindex=0 value=this}}
-              {{/each}}
-            </div>
-            {{#if isNotZero mnnum}}
-              {{#if isM mnnum}}
-              <div class = "nws-numsM" id="nws-num0">+{{mnnum}}</div>
-            {{/if}}
-            {{#if isL num}}
-              <div class = "nws-numsL" id="nws-num0">+{{mnnum}}</div>
-              {{/if}}
-            {{/if}}
-          </div>
+          <!-- <div style="height:35px">
+            <div class = "nws-bdy-ctnt-main-bttns"> -->
+              <!-- {{#each mntags}} -->
+                <!-- {{> main_tag_item artindex=0 value=this}} -->
+              <!-- {{/each}} -->
+            <!-- </div> -->
+            <!-- {{#if isNotZero mnnum}} -->
+              <!-- {{#if isM mnnum}} -->
+              <!-- <div class = "nws-numsM" id="nws-num0">+{{mnnum}}</div> -->
+            <!-- {{/if}} -->
+            <!-- {{#if isL num}} -->
+              <!-- <div class = "nws-numsL" id="nws-num0">+{{mnnum}}</div> -->
+              <!-- {{/if}} -->
+            <!-- {{/if}} -->
+          <!-- </div> -->
           <!-- END Company News Body Content Main Tile Buttons -->
           <!-- Company News Body Content Main Tile Text -->
-          <div class = "nws-bdy-ctnt-main-txt">
+          <!-- <div class = "nws-bdy-ctnt-main-txt"> -->
             <!-- Company News Body Content Main Title Headline -->
-            <div class = "nws-bdy-ctnt-main-txt-hdln">{{main_title}}</div>
+            <!-- <div class = "nws-bdy-ctnt-main-txt-hdln">{{main_title}}</div> -->
             <!-- END Company News Body Content Main Tile Headline -->
             <!-- Company News Body Content Main Tile Description -->
-            <div class = "nws-bdy-ctnt-main-txt-desc">{{main_description}}</div>
+            <!-- <div class = "nws-bdy-ctnt-main-txt-desc">{{main_description}}</div> -->
             <!-- END Company News Body Content Main Tile Description -->
             <!-- Company News Body Content Main Title Subsection -->
-            <div class = "nws-bdy-ctnt-main-txt-sub">
-              <i class="fa fa-newspaper-o"></i>
+            <!-- <div class = "nws-bdy-ctnt-main-txt-sub"> -->
+              <!-- <i class="fa fa-newspaper-o"></i> -->
               <!-- Main Tile Publisher -->
-              <span class = "nws-bdy-ctnt-main-txt-sub-pub">Article Published:
+              <!-- <span class = "nws-bdy-ctnt-main-txt-sub-pub">Article Published: -->
               <!-- <a href="{{main_pub}}">  -->
-                 <span style = "font-family: HN-B"><em>{{main_pub}}</em></span>&nbsp;&nbsp;
+                 <!-- <span style = "font-family: HN-B"><em>{{main_pub}}</em></span>&nbsp;&nbsp; -->
               <!-- </a> -->
 
                 <!--<i class="fa fa-angle-right"></i>-->
-              </span>
+              <!-- </span> -->
               <!-- END Main Tile Publisher -->
               <!-- Main Tile Author -->
               <!-- <span class = "nws-bdy-ctnt-main-txt-sub-aut">Written By:
@@ -135,40 +135,40 @@ Associated Files: latest_news.less, latest_news_logic.js
               </span> -->
               <!-- END Main Tile Author -->
               <!-- Main Tile Time Section -->
-              <span class = "nws-bdy-ctnt-main-txt-sub-time">{{main_time}}</span>
+              <!-- <span class = "nws-bdy-ctnt-main-txt-sub-time">{{main_time}}</span> -->
               <!-- END Main Tile Time Section -->
-            </div>
+            <!-- </div> -->
             <!-- END Company News Body Content Main Tile Subsection -->
-          </div>
+          <!-- </div> -->
           <!-- END Company News Body Content Main Tile Text -->
           <!-- Company News Body Content Main Tile Image Placeholder -->
-          <div class = "nws-bdy-ctnt-main-plchldr" style="background-image:url({{newsImage main_image}})"></div>
+          <!-- <div class = "nws-bdy-ctnt-main-plchldr" style="background-image:url({{newsImage main_image}})"></div> -->
           <!-- Company News Body Content Main Tile Image Placeholder -->
-        </div>
-      </a>
+        <!-- </div> -->
+      <!-- </a> -->
         <!-- END Company News Body Content Main Tile -->
 
         <!-- Company News Body Content Sub Tiles -->
-        <div class = "nws-bdy-ctnt-sub">
+        <!-- <div class = "nws-bdy-ctnt-sub"> -->
 
           <!-- Body Content Left Sub-Tile -->
-          <div class = "nws-bdy-ctnt-sub-left">
+          <!-- <div class = "nws-bdy-ctnt-sub-left"> -->
             <!-- Body Content Left Sub-Tile Articles -->
-            {{#each artlft}}
+            <!-- {{#each artlft}}
             <a href="{{url}}" target="_blank">
-            <div class = "nws-art" id="nws-art{{index}}">
+            <div class = "nws-art" id="nws-art{{index}}"> -->
               <!-- Body Content Left Sub-Tile Article Buttons -->
-              <div style="height:35px">
-              <div class = "nws-art-btns">
+              <!-- <div style="height:35px">
+              <div class = "nws-art-btns"> -->
                 <!-- Body Content Left Sub-Tile Article Individual Button -->
-                {{#each buttons}}
+                <!-- {{#each buttons}}
                   {{> main_tag_item artindex=index value=string}}
-                {{/each}}
+                {{/each}} -->
                 <!-- END Body Content Left Sub-Tile Article Individual Button -->
                 <!-- Body Content Left Sub-Tile Article Number -->
                 <!-- END Body Content Left Sub-Tile Article Number -->
 
-              </div>
+              <!-- </div>
               {{#if isNotZero num}}
                 {{#if isM num}}
                   <div class = "nws-numsM" id="nws-num{{index}}">+{{num}}</div>
@@ -177,56 +177,56 @@ Associated Files: latest_news.less, latest_news_logic.js
                   <div class = "nws-numsL" id="nws-num{{index}}">+{{num}}</div>
                 {{/if}}
               {{/if}}
-              </div>
+              </div> -->
               <!-- END Body Content Left Sub-Tile Article Buttons -->
               <!-- Body Content Left Sub-Tile Article Image Placeholder -->
-              <div class = "nws-art-plchldr" style="background-image:url({{newsImage image}})"></div>
+              <!-- <div class = "nws-art-plchldr" style="background-image:url({{newsImage image}})"></div> -->
               <!-- END Body Content Left Sub-Tile Article Image Placeholder -->
 
 
               <!-- Body Content Left Sub-Tile Article Text -->
-              <div class = "nws-art-txt">
+              <!-- <div class = "nws-art-txt"> -->
                 <!-- Article Headline -->
-                <div class = "nws-art-txt-hdln">{{title}}</div>
+                <!-- <div class = "nws-art-txt-hdln">{{title}}</div> -->
                 <!-- END Article Headline -->
                 <!-- Article Author and Publisher -->
-                 <div class = "nws-art-txt-pub">{{pub}}&nbsp;
+                 <!-- <div class = "nws-art-txt-pub">{{pub}}&nbsp; -->
                   <!-- <i class = "fa fa-angle-right"></i>&nbsp;{{author}} -->
-                </div>
+                <!-- </div> -->
                 <!-- END Article Author and Publisher -->
                 <!-- Article Date Published -->
-                <span class = "nws-art-txt-dt">
-                  <i class = {{fontawesome}}></i>&nbsp;{{type}}
-                   published {{time}}
-                </span>
+                <!-- <span class = "nws-art-txt-dt"> -->
+                  <!-- <i class = {{fontawesome}}></i>&nbsp;{{type}} -->
+                   <!-- published {{time}} -->
+                <!-- </span> -->
                 <!-- END Article Date Published -->
-              </div>
+              <!-- </div> -->
               <!-- END Body Content Left Sub-Tile Article Text -->
-            </div>
-          </a>
-            {{/each}}
+            <!-- </div> -->
+          <!-- </a> -->
+            <!-- {{/each}} -->
             <!-- END Body Content Left Sub-Tile Articles -->
-          </div>
+          <!-- </div> -->
           <!-- END Body Content Left Sub-Tile -->
 
           <!-- Body Content Right Sub-Tile -->
-          <div class = "nws-bdy-ctnt-sub-right">
-            {{#each artrt}}
+          <!-- <div class = "nws-bdy-ctnt-sub-right">
+            {{#each artrt}} -->
             <!-- Right Pane Article -->
-            <a href="{{url}}" target="_blank">
-            <div class = "nws-art" id="nws-art{{index}}">
+            <!-- <a href="{{url}}" target="_blank">
+            <div class = "nws-art" id="nws-art{{index}}"> -->
               <!-- Right Pane Article Tags -->
-              <div style="height:35px">
-              <div class = "nws-art-btns">
+              <!-- <div style="height:35px">
+              <div class = "nws-art-btns"> -->
                 <!-- Body Content Left Sub-Tile Article Individual Button -->
-                {{#each buttons}}
+                <!-- {{#each buttons}}
                   {{> main_tag_item artindex=index value=string}}
-                {{/each}}
+                {{/each}} -->
                 <!-- END Body Content Left Sub-Tile Article Individual Button -->
                 <!-- Body Content Left Sub-Tile Article Number -->
                 <!-- END Body Content Left Sub-Tile Article Number -->
-              </div>
-              {{#if isNotZero num}}
+              <!-- </div> -->
+              <!-- {{#if isNotZero num}}
                 {{#if isM num}}
                   <div class = "nws-numsM" id="nws-num{{index}}">+{{num}}</div>
                 {{/if}}
@@ -234,35 +234,35 @@ Associated Files: latest_news.less, latest_news_logic.js
                   <div class = "nws-numsL" id="nws-num{{index}}">+{{num}}</div>
                 {{/if}}
               {{/if}}
-              </div>
+              </div> -->
               <!-- END Right Pane Article Tags -->
               <!-- Right Pane Article Image Placeholder -->
-              <div class = "nws-art-plchldr" style="background-image:url({{newsImage image}})"></div>
+              <!-- <div class = "nws-art-plchldr" style="background-image:url({{newsImage image}})"></div> -->
               <!-- END Right Pane Article Image Placeholder -->
               <!-- Right Pane Article Text -->
-              <div class = "nws-art-txt">
+              <!-- <div class = "nws-art-txt">
                 <div class = "nws-art-txt-hdln">{{title}}</div>
-              <div class = "nws-art-txt-pub">{{pub}}&nbsp;
+              <div class = "nws-art-txt-pub">{{pub}}&nbsp; -->
                   <!-- <i class = "fa fa-angle-right"></i>&nbsp;{{author}} -->
-                </div>
+                <!-- </div>
                 <span class = "nws-art-txt-dt">
                   <i class = {{fontawesome}}></i>&nbsp;{{type}}
-                  Published {{time}}
-                </span>
-              </div>
+                  Published {{time}} -->
+                <!-- </span> -->
+              <!-- </div> -->
               <!-- END Right Pane Article Text -->
-            </div>
-          </a>
-            {{/each}}
+            <!-- </div> -->
+          <!-- </a> -->
+            <!-- {{/each}} -->
             <!-- END Right Pane Article -->
-          </div>
+          <!-- </div> -->
           <!-- END Right Pane -->
-        </div>
+        <!-- </div> -->
         <!-- END Company News Body Content Sub Tiles -->
-      </div>
+      <!-- </div> -->
       <!-- END Company News Body Content -->
 
-      <div class = "nws-fog"></div>
+      <!-- <div class = "nws-fog"></div>
 
       <div class="module-footer">
         <a href= "{{newsURL}}">
@@ -276,15 +276,15 @@ Associated Files: latest_news.less, latest_news_logic.js
         </a>
       </div>
 
-    </div>
+    </div> -->
     <!-- END Company News Body -->
-  </div>
+  <!-- </div> -->
   <!-- END Module -->
-  {{/if}}
-</template>
+  <!-- {{/if}} -->
+<!-- </template> -->
 <!-- END Template -->
 
 <!--Tag template-->
-<template name="main_tag_item">
+<!-- <template name="main_tag_item">
   <div class = "nws-btn">{{this.value}}</div>
-</template>
+</template> -->
