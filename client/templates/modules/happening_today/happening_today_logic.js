@@ -15,16 +15,16 @@
      var city = Session.get('bio_location');
      //var url = "http://api.synapsys.us/news/?action=get_finance_whats_happening&ticker=CSCO";
      if(typeof city != 'undefined'){
-    //    var url = "http://newsapi.synapsys.us/news/?action=get_finance_whats_happening&ticker="+ params.ticker;
-    //    Meteor.http.get(url ,function(err, data){
-    //      if(err){
-    //        console.log('CALL ERROR', err);
-    //        return false;
-    //      }else{
-    //        Session.set("whats_happening",data['data']);
-    //      }
-    //    })
-    //  }else{
+        var url = "http://newsapi.synapsys.us/news/?action=get_finance_whats_happening&ticker="+ params.ticker;
+        Meteor.http.get(url ,function(err, data){
+          if(err){
+            console.log('CALL ERROR', err);
+            return false;
+          }else{
+           Session.set("whats_happening",data['data']);
+          }
+        })
+      }else{
        return '';
      }
    })

@@ -6,317 +6,317 @@ Related Files:
 - /client/templates/webpages/article_list_page.js
 - /client/stylesheets/webpages/article_list_page.less
 -->
-<!-- <template name="article_news_page">
-  {{#with headerinfo}}
-  <div class="art-lst">
-    <a href="#" onclick="history.go(-1)">
-      <div class="excmp-return">
-        <div class="excmp-return-button">
-          <i class="fa fa-mail-reply"></i>
-        </div>
-        <div class="excmp-return-triangle"></div> -->
-        <!-- Go Back -->
-      <!-- </div> -->
-    <!-- </a> -->
-    <!--Page header-->
-    <!-- <div class="art-lst-hdr"> -->
-      <!-- the header box -->
-      <!-- <div class="art-lst-hdr-head-box"> -->
-        <!-- image inside the header box-->
-        <!-- <div class="art-lst-hdr-head-image" style="{{headImage}}"></div> -->
-        <!-- the text inside the header box-->
-        <!-- <div class="art-lst-hdr-text"> -->
-          <!-- the latest update-->
-          <!-- <div class="art-lst-hdr-text-update"> -->
-<!--
-      </div> -->
-          <!-- location of the article-->
-          <!-- <div class="art-lst-hdr-text-loc">
-            <i class="fa fa-map-marker"></i> {{location}}
-          </div> -->
-          <!-- the name of the article-->
-          <!-- <div class="art-lst-hdr-text-name">
-            Today's Latest News
-          </div> -->
-          <!-- the author of the article-->
-          <!-- <div class="art-lst-hdr-text-auth">
-            Covering All News about {{name}}
-          </div>
-        </div>
-      </div>
-      <div class="art-lst-hdr-bar">
-        <div class="art-lst-hdr-bar-title">
-          Today's Top Articles
-        </div> -->
-        <!--<div class="art-lst-hdr-bar-button">
-          <a href="#"><i class="fa fa-heart art-lst-hdr-bar-button-fa"></i><span class="art-lst-hdr-bar-text">Save</span></a>
-        </div>-->
-        <!-- <a href="{{shareURL}}" target="_blank">
-          <div class="art-lst-hdr-bar-button"> -->
-            <!-- share option button
-            <i class="fa fa-share-alt art-lst-hdr-bar-button-fa"></i><span class="art-lst-hdr-bar-text">Share</span>
-            -->
-          <!-- </div>
-        </a>
-      </div>
-      {{#with newsCarousel}} -->
-      <!-- <div class="art-lst-hdr-main-container"> -->
-        <!-- the module.less file navigation buttons-->
-        <!-- <button class='art-lst-hdr-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
-        <button class='art-lst-hdr-righthov'><i class="fa fa-angle-right fa-2x"></i></button> -->
-        <!-- end of the module.less navigation button -->
-        <!-- wrapper class-->
-        <!-- <div class="art-lst-hdr-main-container-image-wrapper">
-          <div class="art-lst-hdr-main-container-image" style="background-image:url('{{artNewsImage lead_image}}')"></div>
-        </div> -->
-        <!-- the main container -->
+<template name="article_news_page">
+    {{#with headerinfo}}
+        <div class="art-lst">
+            <a href="#" onclick="history.go(-1)">
+                <div class="excmp-return">
+                    <div class="excmp-return-button">
+                        <i class="fa fa-mail-reply"></i>
+                    </div>
+                    <div class="excmp-return-triangle"></div>
+                    Go Back
+                </div>
+            </a>
+            <!--Page header-->
+            <div class="art-lst-hdr">
+                <!-- the header box -->
+                <div class="art-lst-hdr-head-box">
+                    <!-- image inside the header box-->
+                    <div class="art-lst-hdr-head-image" style="{{headImage}}"></div>
+                    <!-- the text inside the header box-->
+                    <div class="art-lst-hdr-text">
+                        <!-- the latest update-->
+                        <div class="art-lst-hdr-text-update">
 
-        <!-- <ul class="art-lst-hdr-main-container-container"> -->
-          <!-- the image in blue circle-->
-          <!-- <li class="art-lst-hdr-main-container-title">
-            <div class="art-lst-hdr-main-container-title-image"><i class="fa fa-newspaper-o"></i></div>
-            <div class="art-lst-hdr-main-container-title-txt">
-              {{title}}
-            </div>
-          </li> -->
-          <!-- the description about the person-->
-          <!-- <li class="art-lst-hdr-main-container-description">
-            <div class="art-lst-hdr-main-container-description-ln1">
-              {{description}}
-            </div> -->
-            <!--
-            <span class="art-lst-hdr-main-container-description-ln2">
-              Published By: <i class="art-lst-b"> THIS GUY </i>
-            </span>
-          -->
-          <!-- </li>
-        </ul> -->
-        <!-- the bottom bar-->
-        <!-- <div class="art-lst-hdr-main-container-view_more"> -->
-          <!-- the details about the comapny-->
-          <!-- <div class="art-lst-hdr-main-container-view_more-text">
-            <div class="art-lst-hdr-main-container-view_more-text-ln1">Interested in this article?</div>
-            <div class="art-lst-hdr-main-container-view_more-text-ln2">Written On: <i class="art-lst-b">{{dateWritten}}</i></div>
-          </div>
-          <a href="{{link}}" target="_blank">
-            <button class="art-lst-hdr-main-container-view_more-button">
-              Read Full Article<i class="fa fa-angle-right"></i>
-            </button>
-          </a>
-        </div>
-      </div>
-      {{/with}}
-    </div> -->
-    <!--End Page header-->
-    <!--<div class="art-lst-sortby">
-      Sort by:
-      <span class="art-lst-sortby-text">Most Viewed Articles</span>
-      <i class="fa fa-angle-down art-lst-sortby-icon"></i>
-    </div>-->
-    <!-- <div class="art-lst-whatis">
-      <div class="art-lst-whatis-header">
-        What is this list?
-        <i class="fa fa-times art-lst-whatis-header-x"></i>
-      </div>
-      <div class="art-lst-whatis-text">
-        This is a list of all trending articles in the United States today. Trending articles are calculated by the most views, shares, etc.
-      </div>
-    </div> -->
-    <!-- <div class="art-lst-sim"> -->
-      <!-- Company News Body Content -->
-      <!-- <div class = "nws-bdy-ctnt" style="height: auto;"> -->
-        <!-- Company News Body Content Main Tile -->
-        <!-- <a href="{{main_url}}" target="_blank">
-        <div class = "nws-bdy-ctnt-main" id="nws-art0"> -->
-          <!-- Company News Body Content Main Tile Buttons -->
-          <!-- <div style="height:35px">
-            <div class = "nws-bdy-ctnt-main-bttns">
-              {{#each mntags}}
-                {{> main_tag_item artindex=0 value=this}}
-              {{/each}}
-            </div>
-            {{#if isNotZero mnnum}}
-              {{#if isM mnnum}}
-              <div class = "nws-numsM" id="nws-num0">+{{mnnum}}</div>
-            {{/if}}
-            {{#if isL num}}
-              <div class = "nws-numsL" id="nws-num0">+{{mnnum}}</div>
-              {{/if}} -->
-            <!-- {{/if}} -->
-          <!-- </div> -->
-          <!-- END Company News Body Content Main Tile Buttons -->
-          <!-- Company News Body Content Main Tile Text -->
-          <!-- <div class = "nws-bdy-ctnt-main-txt"> -->
-            <!-- Company News Body Content Main Title Headline -->
-            <!-- <div class = "nws-bdy-ctnt-main-txt-hdln">{{main_title}}</div> -->
-            <!-- END Company News Body Content Main Tile Headline -->
-            <!-- Company News Body Content Main Tile Description -->
-            <!-- <div class = "nws-bdy-ctnt-main-txt-desc">{{main_description}}</div> -->
-            <!-- END Company News Body Content Main Tile Description -->
-            <!-- Company News Body Content Main Title Subsection -->
-            <!-- <div class = "nws-bdy-ctnt-main-txt-sub"> -->
-              <!-- <i class="fa fa-newspaper-o"></i> -->
-              <!-- Main Tile Publisher -->
-              <!-- <span class = "nws-bdy-ctnt-main-txt-sub-pub">Article Published: -->
-              <!-- <a href="{{main_pub}}">  -->
-                 <!-- <span style = "font-family: HN-B"><em>{{main_pub}}</em></span>&nbsp;&nbsp; -->
-              <!-- </a> -->
+                        </div>
+                        <!-- location of the article-->
+                        <div class="art-lst-hdr-text-loc">
+                            <i class="fa fa-map-marker"></i> {{location}}
+                        </div>
+                        <!-- the name of the article-->
+                        <div class="art-lst-hdr-text-name">
+                            Today's Latest News
+                        </div>
+                        <!-- the author of the article-->
+                        <div class="art-lst-hdr-text-auth">
+                            Covering All News about {{name}}
+                        </div>
+                    </div>
+                </div>
+                <div class="art-lst-hdr-bar">
+                    <div class="art-lst-hdr-bar-title">
+                        Today's Top Articles
+                    </div>
+                    <!--<div class="art-lst-hdr-bar-button">
+                      <a href="#"><i class="fa fa-heart art-lst-hdr-bar-button-fa"></i><span class="art-lst-hdr-bar-text">Save</span></a>
+                    </div>-->
+                    <a href="{{shareURL}}" target="_blank">
+                        <div class="art-lst-hdr-bar-button">
+                            <!-- share option button
+                            <i class="fa fa-share-alt art-lst-hdr-bar-button-fa"></i><span class="art-lst-hdr-bar-text">Share</span>
+                            -->
+                        </div>
+                    </a>
+                </div>
+                {{#with newsCarousel}}
+                    <div class="art-lst-hdr-main-container">
+                        <!-- the module.less file navigation buttons-->
+                        <button class='art-lst-hdr-lefthov'><i class="fa fa-angle-left fa-2x" ></i></button>
+                        <button class='art-lst-hdr-righthov'><i class="fa fa-angle-right fa-2x"></i></button>
+                        <!-- end of the module.less navigation button -->
+                        <!-- wrapper class-->
+                        <div class="art-lst-hdr-main-container-image-wrapper">
+                            <div class="art-lst-hdr-main-container-image" style="background-image:url('{{artNewsImage lead_image}}')"></div>
+                        </div>
+                        <!-- the main container -->
 
-                <!-- <i class="fa fa-angle-right"></i>
-              </span> -->
-              <!-- END Main Tile Publisher -->
-              <!-- Main Tile Author -->
-              <!-- <span class = "nws-bdy-ctnt-main-txt-sub-aut">Written By:
+                        <ul class="art-lst-hdr-main-container-container">
+                            <!-- the image in blue circle-->
+                            <li class="art-lst-hdr-main-container-title">
+                                <div class="art-lst-hdr-main-container-title-image"><i class="fa fa-newspaper-o"></i></div>
+                                <div class="art-lst-hdr-main-container-title-txt">
+                                    {{title}}
+                                </div>
+                            </li>
+                            <!-- the description about the person-->
+                            <li class="art-lst-hdr-main-container-description">
+                                <div class="art-lst-hdr-main-container-description-ln1">
+                                    {{description}}
+                                </div>
+                                <!--
+                                <span class="art-lst-hdr-main-container-description-ln2">
+                                  Published By: <i class="art-lst-b"> THIS GUY </i>
+                                </span>
+                              -->
+                            </li>
+                        </ul>
+                        <!-- the bottom bar-->
+                        <div class="art-lst-hdr-main-container-view_more">
+                            <!-- the details about the comapny-->
+                            <div class="art-lst-hdr-main-container-view_more-text">
+                                <div class="art-lst-hdr-main-container-view_more-text-ln1">Interested in this article?</div>
+                                <div class="art-lst-hdr-main-container-view_more-text-ln2">Written On: <i class="art-lst-b">{{dateWritten}}</i></div>
+                            </div>
+                            <a href="{{link}}" target="_blank">
+                                <button class="art-lst-hdr-main-container-view_more-button">
+                                    Read Full Article<i class="fa fa-angle-right"></i>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                {{/with}}
+            </div>
+            <!--End Page header-->
+            <!--<div class="art-lst-sortby">
+              Sort by:
+              <span class="art-lst-sortby-text">Most Viewed Articles</span>
+              <i class="fa fa-angle-down art-lst-sortby-icon"></i>
+            </div>-->
+            <div class="art-lst-whatis">
+                <div class="art-lst-whatis-header">
+                    What is this list?
+                    <i class="fa fa-times art-lst-whatis-header-x"></i>
+                </div>
+                <div class="art-lst-whatis-text">
+                    This is a list of all trending articles in the United States today. Trending articles are calculated by the most views, shares, etc.
+                </div>
+            </div>
+            <div class="art-lst-sim">
+                <!-- Company News Body Content -->
+                <div class = "nws-bdy-ctnt" style="height: auto;">
+                    <!-- Company News Body Content Main Tile -->
+                    <a href="{{main_url}}" target="_blank">
+                        <div class = "nws-bdy-ctnt-main" id="nws-art0">
+                            <!-- Company News Body Content Main Tile Buttons -->
+                            <div style="height:35px">
+                                <div class = "nws-bdy-ctnt-main-bttns">
+                                    {{#each mntags}}
+                                        {{> main_tag_item artindex=0 value=this}}
+                                    {{/each}}
+                                </div>
+                                {{#if isNotZero mnnum}}
+                                    {{#if isM mnnum}}
+                                        <div class = "nws-numsM" id="nws-num0">+{{mnnum}}</div>
+                                    {{/if}}
+                                    {{#if isL num}}
+                                        <div class = "nws-numsL" id="nws-num0">+{{mnnum}}</div>
+                                    {{/if}}
+                                {{/if}}
+                            </div>
+                            <!-- END Company News Body Content Main Tile Buttons -->
+                            <!-- Company News Body Content Main Tile Text -->
+                            <div class = "nws-bdy-ctnt-main-txt">
+                                <!-- Company News Body Content Main Title Headline -->
+                                <div class = "nws-bdy-ctnt-main-txt-hdln">{{main_title}}</div>
+                                <!-- END Company News Body Content Main Tile Headline -->
+                                <!-- Company News Body Content Main Tile Description -->
+                                <div class = "nws-bdy-ctnt-main-txt-desc">{{main_description}}</div>
+                                <!-- END Company News Body Content Main Tile Description -->
+                                <!-- Company News Body Content Main Title Subsection -->
+                                <div class = "nws-bdy-ctnt-main-txt-sub">
+                                    <i class="fa fa-newspaper-o"></i>
+                                    <!-- Main Tile Publisher -->
+                                    <span class = "nws-bdy-ctnt-main-txt-sub-pub">Article Published:
+                                        <!-- <a href="{{main_pub}}">  -->
+                 <span style = "font-family: HN-B"><em>{{main_pub}}</em></span>&nbsp;&nbsp;
+                                        <!-- </a> -->
+
+                <i class="fa fa-angle-right"></i>
+              </span>
+                                    <!-- END Main Tile Publisher -->
+                                    <!-- Main Tile Author -->
+                                    <!-- <span class = "nws-bdy-ctnt-main-txt-sub-aut">Written By:
                 <span style = "font-family: HN-B"><em>{{mnaut}}</em></span>&nbsp;&nbsp;
                 <i class="fa fa-angle-right"></i>
               </span> -->
-              <!-- END Main Tile Author -->
-              <!-- Main Tile Time Section -->
-              <!-- <span class = "nws-bdy-ctnt-main-txt-sub-time">{{main_time}}</span> -->
-              <!-- END Main Tile Time Section -->
-            <!-- </div> -->
-            <!-- END Company News Body Content Main Tile Subsection -->
-          <!-- </div> -->
-          <!-- END Company News Body Content Main Tile Text -->
-          <!-- Company News Body Content Main Tile Image Placeholder -->
-          <!-- <div class = "nws-bdy-ctnt-main-plchldr" style="background-image:url('{{artNewsImage main_image}}')"></div> -->
-          <!-- Company News Body Content Main Tile Image Placeholder -->
-        <!-- </div> -->
-      <!-- </a> -->
-        <!-- END Company News Body Content Main Tile -->
+                                    <!-- END Main Tile Author -->
+                                    <!-- Main Tile Time Section -->
+                                    <span class = "nws-bdy-ctnt-main-txt-sub-time">{{main_time}}</span>
+                                    <!-- END Main Tile Time Section -->
+                                </div>
+                                <!-- END Company News Body Content Main Tile Subsection -->
+                            </div>
+                            <!-- END Company News Body Content Main Tile Text -->
+                            <!-- Company News Body Content Main Tile Image Placeholder -->
+                            <div class = "nws-bdy-ctnt-main-plchldr" style="background-image:url('{{artNewsImage main_image}}')"></div>
+                            <!-- Company News Body Content Main Tile Image Placeholder -->
+                        </div>
+                    </a>
+                    <!-- END Company News Body Content Main Tile -->
 
-        <!-- Company News Body Content Sub Tiles -->
-        <!-- <div class = "nws-bdy-ctnt-sub" style="height: auto;"> -->
+                    <!-- Company News Body Content Sub Tiles -->
+                    <div class = "nws-bdy-ctnt-sub" style="height: auto;">
 
-          <!-- Body Content Left Sub-Tile -->
-          <!-- <div class = "nws-bdy-ctnt-sub-left"> -->
-            <!-- Body Content Left Sub-Tile Articles -->
-            <!-- {{#each artlft}} -->
-            <!-- <a href="{{url}}" target="_blank"> -->
-            <!-- <div class = "nws-art" id="nws-art{{index}}"> -->
-              <!-- Body Content Left Sub-Tile Article Buttons -->
-              <!-- <div style="height:35px"> -->
-              <!-- <div class = "nws-art-btns"> -->
-                <!-- Body Content Left Sub-Tile Article Individual Button -->
-                <!-- {{#each buttons}} -->
-                  <!-- {{> main_tag_item artindex=index value=string}} -->
-                <!-- {{/each}} -->
-                <!-- END Body Content Left Sub-Tile Article Individual Button -->
-                <!-- Body Content Left Sub-Tile Article Number -->
-                <!-- END Body Content Left Sub-Tile Article Number -->
+                        <!-- Body Content Left Sub-Tile -->
+                        <div class = "nws-bdy-ctnt-sub-left">
+                            <!-- Body Content Left Sub-Tile Articles -->
+                            {{#each artlft}}
+                                <a href="{{url}}" target="_blank">
+                                    <div class = "nws-art" id="nws-art{{index}}">
+                                        <!-- Body Content Left Sub-Tile Article Buttons -->
+                                        <div style="height:35px">
+                                            <div class = "nws-art-btns">
+                                                <!-- Body Content Left Sub-Tile Article Individual Button -->
+                                                {{#each buttons}}
+                                                    {{> main_tag_item artindex=index value=string}}
+                                                {{/each}}
+                                                <!-- END Body Content Left Sub-Tile Article Individual Button -->
+                                                <!-- Body Content Left Sub-Tile Article Number -->
+                                                <!-- END Body Content Left Sub-Tile Article Number -->
 
-              <!-- </div> -->
-              <!-- {{#if isNotZero num}} -->
-                <!-- {{#if isM num}} -->
-                  <!-- <div class = "nws-numsM" id="nws-num{{index}}">+{{num}}</div> -->
-                <!-- {{/if}} -->
-                <!-- {{#if isL num}} -->
-                  <!-- <div class = "nws-numsL" id="nws-num{{index}}">+{{num}}</div> -->
-                <!-- {{/if}} -->
-              <!-- {{/if}} -->
-              <!-- </div> -->
-              <!-- END Body Content Left Sub-Tile Article Buttons -->
-              <!-- Body Content Left Sub-Tile Article Image Placeholder -->
-              <!-- <div class = "nws-art-plchldr" style="background-image:url('{{artNewsImage image}}')"></div> -->
-              <!-- END Body Content Left Sub-Tile Article Image Placeholder -->
+                                            </div>
+                                            {{#if isNotZero num}}
+                                                {{#if isM num}}
+                                                    <div class = "nws-numsM" id="nws-num{{index}}">+{{num}}</div>
+                                                {{/if}}
+                                                {{#if isL num}}
+                                                    <div class = "nws-numsL" id="nws-num{{index}}">+{{num}}</div>
+                                                {{/if}}
+                                            {{/if}}
+                                        </div>
+                                        <!-- END Body Content Left Sub-Tile Article Buttons -->
+                                        <!-- Body Content Left Sub-Tile Article Image Placeholder -->
+                                        <div class = "nws-art-plchldr" style="background-image:url('{{artNewsImage image}}')"></div>
+                                        <!-- END Body Content Left Sub-Tile Article Image Placeholder -->
 
 
-              <!-- Body Content Left Sub-Tile Article Text -->
-              <!-- <div class = "nws-art-txt"> -->
-                <!-- Article Headline -->
-                <!-- <div class = "nws-art-txt-hdln">{{title}}</div> -->
-                <!-- END Article Headline -->
-                <!-- Article Author and Publisher -->
-                 <!-- <div class = "nws-art-txt-pub">{{pub}}&nbsp; -->
-                  <!-- <i class = "fa fa-angle-right"></i>&nbsp;{{author}} -->
-                <!-- </div> -->
-                <!-- END Article Author and Publisher -->
-                <!-- Article Date Published -->
-                <!-- <span class = "nws-art-txt-dt">
+                                        <!-- Body Content Left Sub-Tile Article Text -->
+                                        <div class = "nws-art-txt">
+                                            <!-- Article Headline -->
+                                            <div class = "nws-art-txt-hdln">{{title}}</div>
+                                            <!-- END Article Headline -->
+                                            <!-- Article Author and Publisher -->
+                                            <div class = "nws-art-txt-pub">{{pub}}&nbsp;
+                                                <!-- <i class = "fa fa-angle-right"></i>&nbsp;{{author}} -->
+                                            </div>
+                                            <!-- END Article Author and Publisher -->
+                                            <!-- Article Date Published -->
+                                            <span class = "nws-art-txt-dt">
                   <i class = {{fontawesome}}></i>&nbsp;{{type}}
-                   Published {{time}} -->
-                <!-- </span> -->
-                <!-- END Article Date Published -->
-              <!-- </div> -->
-              <!-- END Body Content Left Sub-Tile Article Text -->
-            <!-- </div> -->
-          <!-- </a> -->
-            <!-- {{/each}} -->
-            <!-- END Body Content Left Sub-Tile Articles -->
-          <!-- </div> -->
-          <!-- END Body Content Left Sub-Tile -->
-
-          <!-- Body Content Right Sub-Tile -->
-          <!-- <div class = "nws-bdy-ctnt-sub-right"> -->
-            <!-- {{#each artrt}} -->
-            <!-- Right Pane Article -->
-            <!-- <a href="{{url}}" target="_blank">
-            <div class = "nws-art" id="nws-art{{index}}"> -->
-              <!-- Right Pane Article Tags -->
-              <!-- <div style="height:35px">
-              <div class = "nws-art-btns"> -->
-                <!-- Body Content Left Sub-Tile Article Individual Button -->
-                <!-- {{#each buttons}}
-                  {{> main_tag_item artindex=index value=string}}
-                {{/each}} -->
-                <!-- END Body Content Left Sub-Tile Article Individual Button -->
-                <!-- Body Content Left Sub-Tile Article Number -->
-                <!-- END Body Content Left Sub-Tile Article Number -->
-              <!-- </div>
-              {{#if isNotZero num}}
-                {{#if isM num}}
-                  <div class = "nws-numsM" id="nws-num{{index}}">+{{num}}</div>
-                {{/if}}
-                {{#if isL num}}
-                  <div class = "nws-numsL" id="nws-num{{index}}">+{{num}}</div>
-                {{/if}}
-              {{/if}}
-              </div> -->
-              <!-- END Right Pane Article Tags -->
-              <!-- Right Pane Article Image Placeholder -->
-              <!-- <div class = "nws-art-plchldr" style="background-image:url('{{artNewsImage image}}')"></div> -->
-              <!-- END Right Pane Article Image Placeholder -->
-              <!-- Right Pane Article Text -->
-              <!-- <div class = "nws-art-txt">
-                <div class = "nws-art-txt-hdln">{{title}}</div>
-              <div class = "nws-art-txt-pub">{{pub}}&nbsp; -->
-                  <!-- <i class = "fa fa-angle-right"></i>&nbsp;{{author}} -->
-                <!-- </div>
-                <span class = "nws-art-txt-dt">
-                  <i class = {{fontawesome}}></i>&nbsp;{{type}}
-                  Published {{time}}
+                                                Published {{time}}
                 </span>
-              </div> -->
-              <!-- END Right Pane Article Text -->
-            <!-- </div> -->
-          <!-- </a> -->
-            <!-- {{/each}} -->
-            <!-- END Right Pane Article -->
-          <!-- </div> -->
-          <!-- END Right Pane -->
-        <!-- </div> -->
-        <!-- END Company News Body Content Sub Tiles -->
-      <!-- </div> -->
-      <!-- END Company News Body Content -->
-    <!-- </div> -->
-    <!--
-    <div class="art-lst-pages art-lst-l art-lst-pa">
-      <i class="fa fa-angle-left art-lst-pages-leftarrow"></i>
-      <div class="art-lst-pages-circle-selected" id="artLstPage1" onClick="artLstSelect(1)">1</div>
-      <div class="art-lst-pages-circle" id="artLstPage2" onClick="artLstSelect(2)">2</div>
-      <div class="art-lst-pages-circle" id="artLstPage3" onClick="artLstSelect(3)">3</div>
-      <i class="art-lst-pages-ellipsis art-lst-l">...</i>
-      <div class="art-lst-pages-oval" id="artLstPage4" onClick="artLstSelect(4)">15</div>
-      <i class="fa fa-angle-right art-lst-pages-rightarrow"></i>
-      <div class="art-lst-pages-view_all art-lst-pr">
-        VIEW ALL
-        <img src="/public/infinite-icon.png" class="art-lst-pages-view_all-i art-lst-pr">
-      </div>
-    </div>
-  -->
-    <!-- <div class="art-lst-search">
-      {{> search_module}}
-    </div>
-  </div>
-  {{/with}}
-</template> -->
+                                            <!-- END Article Date Published -->
+                                        </div>
+                                        <!-- END Body Content Left Sub-Tile Article Text -->
+                                    </div>
+                                </a>
+                            {{/each}}
+                            <!-- END Body Content Left Sub-Tile Articles -->
+                        </div>
+                        <!-- END Body Content Left Sub-Tile -->
+
+                        <!-- Body Content Right Sub-Tile -->
+                        <div class = "nws-bdy-ctnt-sub-right">
+                            {{#each artrt}}
+                                <!-- Right Pane Article -->
+                                <a href="{{url}}" target="_blank">
+                                    <div class = "nws-art" id="nws-art{{index}}">
+                                        <!-- Right Pane Article Tags -->
+                                        <div style="height:35px">
+                                            <div class = "nws-art-btns">
+                                                <!-- Body Content Left Sub-Tile Article Individual Button -->
+                                                {{#each buttons}}
+                                                    {{> main_tag_item artindex=index value=string}}
+                                                {{/each}}
+                                                <!-- END Body Content Left Sub-Tile Article Individual Button -->
+                                                <!-- Body Content Left Sub-Tile Article Number -->
+                                                <!-- END Body Content Left Sub-Tile Article Number -->
+                                            </div>
+                                            {{#if isNotZero num}}
+                                                {{#if isM num}}
+                                                    <div class = "nws-numsM" id="nws-num{{index}}">+{{num}}</div>
+                                                {{/if}}
+                                                {{#if isL num}}
+                                                    <div class = "nws-numsL" id="nws-num{{index}}">+{{num}}</div>
+                                                {{/if}}
+                                            {{/if}}
+                                        </div>
+                                        <!-- END Right Pane Article Tags -->
+                                        <!-- Right Pane Article Image Placeholder -->
+                                        <div class = "nws-art-plchldr" style="background-image:url('{{artNewsImage image}}')"></div>
+                                        <!-- END Right Pane Article Image Placeholder -->
+                                        <!-- Right Pane Article Text -->
+                                        <div class = "nws-art-txt">
+                                            <div class = "nws-art-txt-hdln">{{title}}</div>
+                                            <div class = "nws-art-txt-pub">{{pub}}&nbsp;
+                                                <!-- <i class = "fa fa-angle-right"></i>&nbsp;{{author}} -->
+                                            </div>
+                                            <span class = "nws-art-txt-dt">
+                  <i class = {{fontawesome}}></i>&nbsp;{{type}}
+                                                Published {{time}}
+                </span>
+                                        </div>
+                                        <!-- END Right Pane Article Text -->
+                                    </div>
+                                </a>
+                            {{/each}}
+                            <!-- END Right Pane Article -->
+                        </div>
+                        <!-- END Right Pane -->
+                    </div>
+                    <!-- END Company News Body Content Sub Tiles -->
+                </div>
+                <!-- END Company News Body Content -->
+            </div>
+            <!--
+            <div class="art-lst-pages art-lst-l art-lst-pa">
+              <i class="fa fa-angle-left art-lst-pages-leftarrow"></i>
+              <div class="art-lst-pages-circle-selected" id="artLstPage1" onClick="artLstSelect(1)">1</div>
+              <div class="art-lst-pages-circle" id="artLstPage2" onClick="artLstSelect(2)">2</div>
+              <div class="art-lst-pages-circle" id="artLstPage3" onClick="artLstSelect(3)">3</div>
+              <i class="art-lst-pages-ellipsis art-lst-l">...</i>
+              <div class="art-lst-pages-oval" id="artLstPage4" onClick="artLstSelect(4)">15</div>
+              <i class="fa fa-angle-right art-lst-pages-rightarrow"></i>
+              <div class="art-lst-pages-view_all art-lst-pr">
+                VIEW ALL
+                <img src="/public/infinite-icon.png" class="art-lst-pages-view_all-i art-lst-pr">
+              </div>
+            </div>
+          -->
+            <div class="art-lst-search">
+                {{> search_module}}
+            </div>
+        </div>
+    {{/with}}
+</template>
