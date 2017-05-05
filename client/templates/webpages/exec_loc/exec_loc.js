@@ -13,10 +13,7 @@ Template.exec_loc.helpers({
   back_url: function(){
     var params = Router.current().getParams();
     if(params.partner_id) {
-      return Router.pick_path('partner.locationprofile', {
-        partner_id: params.partner_id,
-        loc_id: params.loc_id
-      });
+      return Router.pick_path('content.partnerhome',{});
     } else {
       return Router.pick_path('content.locationprofile', {
         loc_id: params.loc_id
