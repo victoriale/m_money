@@ -18,30 +18,30 @@ var synapview = "";
 
 //Global Url that will auto check the environment and call the appropriate api
 if (Meteor.absoluteUrl().indexOf("localhost") > -1 ) {
-  callUrl = "http://dev-finance-api.synapsys.us/call_controller.php";
-  AICall = "http://dev-finance-api.synapsys.us/";
-  domainUrl = "http://devapi.synapsys.us/widgets/deepdive/bar/domain_api.php";
-  synapview = "http://dev-synapview.synapsys.us";
+    callUrl = "http://dev-finance-api.synapsys.us/call_controller.php";
+    AICall = "http://dev-finance-api.synapsys.us/";
+    domainUrl = "http://devapi.synapsys.us/widgets/deepdive/bar/domain_api.php";
+    synapview = "http://prod-synapview.synapsys.us";
 } else if ( Meteor.absoluteUrl().indexOf("dev.") > -1) {
-  callUrl = "http://dev-finance-api.synapsys.us/call_controller.php";
-  AICall = "http://dev-finance-api.synapsys.us/";
-  domainUrl = "http://devapi.synapsys.us/widgets/deepdive/bar/domain_api.php";
-  synapview = "http://dev-synapview.synapsys.us";
+    callUrl = "http://dev-finance-api.synapsys.us/call_controller.php";
+    AICall = "http://dev-finance-api.synapsys.us/";
+    domainUrl = "http://devapi.synapsys.us/widgets/deepdive/bar/domain_api.php";
+    synapview = "http://prod-synapview.synapsys.us";
 } else if ( Meteor.absoluteUrl().indexOf("qa.") > -1) {
-  callUrl = "http://qa-finance-api.synapsys.us/call_controller.php";
-  AICall = "http://qa-finance-api.synapsys.us/";
-  domainUrl = "http://devapi.synapsys.us/widgets/deepdive/bar/domain_api.php";
-  synapview = "http://dev-synapview.synapsys.us";
+    callUrl = "http://qa-finance-api.synapsys.us/call_controller.php";
+    AICall = "http://qa-finance-api.synapsys.us/";
+    domainUrl = "http://devapi.synapsys.us/widgets/deepdive/bar/domain_api.php";
+    synapview = "http://prod-synapview.synapsys.us";
 } else if ( Meteor.absoluteUrl().indexOf("sandbox.") > -1) {
-  callUrl = "http://sandbox-finance-api.synapsys.us/call_controller.php";
-  AICall = "http://sandbox-finance-api.synapsys.us/";
-  domainUrl = "http://w1.synapsys.us/widgets/deepdive/bar/domain_api.php";
-  synapview = "http://synapview.synapsys.us";
+    callUrl = "http://sandbox-finance-api.synapsys.us/call_controller.php";
+    AICall = "http://sandbox-finance-api.synapsys.us/";
+    domainUrl = "http://w1.synapsys.us/widgets/deepdive/bar/domain_api.php";
+    synapview = "http://prod-synapview.synapsys.us";
 } else {
-  callUrl = "http://apifin.investkit.com/call_controller.php";
-  AICall = "http://apifin.investkit.com/";
-  domainUrl = "http://w1.synapsys.us/widgets/deepdive/bar/domain_api.php";
-  synapview = "http://synapview.synapsys.us";
+    callUrl = "http://apifin.investkit.com/call_controller.php";
+    AICall = "http://apifin.investkit.com/";
+    domainUrl = "http://w1.synapsys.us/widgets/deepdive/bar/domain_api.php";
+    synapview = "http://prod-synapview.synapsys.us";
 }
 
 Meteor.methods({
