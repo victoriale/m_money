@@ -16,15 +16,7 @@ var robotsPicker = Picker.filter(function(req, res) {
 
 // Robots.txt
 robotsPicker.route('/robots.txt',function(params, req, res){
-  res.end('User-agent: *\nDisallow: /');
-  return false;
-
-  // Code for when the robots are allowed in
-  if ( isMyInvestKit(req) ) {
-    res.end('User-agent: *\nDisallow: /$\nAllow: /');
-  } else {
-    res.end('User-agent: *\nAllow: /');
-  }
+  res.end('User-agent: *\nAllow: /');
 });
 
 // Filter out bot requests
